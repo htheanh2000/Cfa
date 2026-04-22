@@ -23,24 +23,88 @@
   .eyebrow { font-family: 'Roboto Mono', monospace; font-size: 14px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); margin: 0 0 18px; }
   h1 { font-family: 'Roboto Slab', Georgia, serif; font-size: 72px; font-weight: 800; line-height: 1; letter-spacing: -0.02em; margin: 0 0 24px; }
   h1 em { font-style: italic; font-weight: 400; color: var(--accent); }
-  .lede { font-size: 22px; line-height: 1.55; color: var(--ink-soft); max-width: 680px; margin: 0 0 64px; }
-  .group { margin-bottom: 56px; }
-  .group-title { font-family: 'Roboto Mono', monospace; font-size: 16px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0 0 20px; padding-bottom: 14px; border-bottom: 3px solid var(--accent); }
-  .lesson { display: grid; grid-template-columns: 80px 1fr auto; gap: 24px; padding: 24px 0; border-top: 1px solid var(--rule-soft); align-items: baseline; }
-  .lesson:last-child { border-bottom: 1px solid var(--rule-soft); }
-  .lesson .n { font-family: 'Roboto Mono', monospace; font-size: 18px; color: var(--accent); font-weight: 600; letter-spacing: 0.08em; }
-  .lesson .title { font-family: 'Roboto Slab', Georgia, serif; font-size: 26px; font-weight: 700; color: var(--ink); line-height: 1.3; text-decoration: none; display: block; }
+  .lede { font-size: 22px; line-height: 1.55; color: var(--ink-soft); max-width: 680px; margin: 0 0 48px; }
+
+  /* ── Module dropdown ─────────────────────── */
+  .modules { border-top: 3px solid var(--accent); }
+  .module { border-bottom: 1px solid var(--rule-soft); }
+  .module > summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 22px 0;
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    gap: 20px;
+    align-items: baseline;
+    user-select: none;
+  }
+  .module > summary::-webkit-details-marker { display: none; }
+  .module > summary:hover .module-title { color: var(--accent); }
+  .chevron {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 18px;
+    color: var(--ink-muted);
+    transition: transform 180ms ease;
+    align-self: baseline;
+    justify-self: start;
+    font-weight: 600;
+  }
+  .module[open] > summary .chevron { transform: rotate(90deg); color: var(--accent); }
+  .module-title {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    transition: color 120ms;
+  }
+  .module-title .code { color: var(--accent); margin-right: 10px; }
+  .module-meta {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .module-body { padding: 0 0 22px 60px; }
+  .module-body .coming {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    margin: 0;
+    padding: 8px 0 4px;
+  }
+  .module-body .coming em { font-style: italic; color: var(--accent); }
+
+  /* ── Lesson row (inside module-body) ──────── */
+  .lesson {
+    display: grid;
+    grid-template-columns: 70px 1fr auto;
+    gap: 20px;
+    padding: 18px 0;
+    border-top: 1px solid var(--rule-soft);
+    align-items: baseline;
+  }
+  .lesson:first-child { border-top: 0; padding-top: 6px; }
+  .lesson .n { font-family: 'Roboto Mono', monospace; font-size: 15px; color: var(--accent); font-weight: 600; letter-spacing: 0.08em; }
+  .lesson .title { font-family: 'Roboto Slab', Georgia, serif; font-size: 22px; font-weight: 700; color: var(--ink); line-height: 1.3; text-decoration: none; display: block; }
   .lesson .title:hover { color: var(--accent); }
   .lesson .title em { font-style: italic; font-weight: 500; color: var(--accent); }
-  .lesson .desc { display: block; font-family: 'Roboto', sans-serif; font-size: 15px; color: var(--ink-muted); margin-top: 6px; font-weight: 400; line-height: 1.4; }
-  .lesson .meta { font-family: 'Roboto Mono', monospace; font-size: 14px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; }
-  .lesson.upcoming { opacity: 0.45; }
-  .lesson.upcoming .title { color: var(--ink-muted); }
+  .lesson .desc { display: block; font-family: 'Roboto', sans-serif; font-size: 14px; color: var(--ink-muted); margin-top: 5px; font-weight: 400; line-height: 1.45; }
+  .lesson .meta { font-family: 'Roboto Mono', monospace; font-size: 13px; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; }
+
   footer { margin-top: 96px; padding-top: 32px; border-top: 1px solid var(--rule-soft); font-family: 'Roboto Mono', monospace; font-size: 13px; color: var(--ink-muted); letter-spacing: 0.06em; }
   footer a { color: var(--ink-muted); text-decoration: none; }
   footer a:hover { color: var(--accent); }
+
   @media (max-width: 640px) {
     h1 { font-size: 48px; }
+    .module > summary { grid-template-columns: 28px 1fr; }
+    .module-meta { grid-column: 2; padding-top: 4px; }
+    .module-body { padding-left: 28px; }
     .lesson { grid-template-columns: 1fr; gap: 6px; }
     .lesson .meta { justify-self: end; }
   }
@@ -52,44 +116,141 @@
   <h1>Lesson <em>decks.</em></h1>
   <p class="lede">Slide-deck bài giảng CFA Level I, biên soạn song ngữ Anh-Việt theo chương trình chính thức của CFA Institute. Mỗi bài 60–90 phút, dùng phím <code>← →</code> để điều hướng, <code>Cmd+P</code> để xuất PDF.</p>
 
-  <div class="group">
-    <p class="group-title">Topic 01 · Ethics &amp; Professional Standards</p>
-    <div class="lesson">
-      <div class="n">01.01</div>
-      <div>
-        <a class="title" href="/ethics/lesson/1/">Ethics &amp; <em>Trust</em> — in the Investment Profession</a>
-        <span class="desc">Ethics foundations · Legal vs Ethical · 6 tenets · 7 Standards overview</span>
-      </div>
-      <div class="meta">12 slides · 60 min</div>
-    </div>
-    <div class="lesson">
-      <div class="n">01.02</div>
-      <div>
-        <a class="title" href="/ethics/lesson/2/">Standards <em>I · II · III</em> — Professionalism, Capital Markets, Clients</a>
-        <span class="desc">11 sub-standards deep dive · 3 practice questions (EN → Hint → Dịch đề → Đáp án)</span>
-      </div>
-      <div class="meta">24 slides · 90 min</div>
-    </div>
-    <div class="lesson">
-      <div class="n">01.03</div>
-      <div>
-        <a class="title" href="/ethics/lesson/3/">Standards <em>IV · V · VI · VII</em> — Employers, Analysis, Conflicts + GIPS</a>
-        <span class="desc">11 sub-standards + Introduction to GIPS · 3 practice questions</span>
-      </div>
-      <div class="meta">25 slides · 90 min</div>
-    </div>
-  </div>
+  <div class="modules">
 
-  <div class="group">
-    <p class="group-title">Topic 02 · Quantitative Methods</p>
-    <div class="lesson upcoming">
-      <div class="n">02.01</div>
-      <div>
-        <span class="title">Time Value of Money</span>
-        <span class="desc">Coming soon</span>
+    <details class="module" open>
+      <summary>
+        <span class="chevron">›</span>
+        <span class="module-title"><span class="code">Topic 01</span>Ethics &amp; Professional Standards</span>
+        <span class="module-meta">3 lessons · 61 slides · complete</span>
+      </summary>
+      <div class="module-body">
+        <div class="lesson">
+          <div class="n">01.01</div>
+          <div>
+            <a class="title" href="/ethics/lesson/1/">Ethics &amp; <em>Trust</em> — in the Investment Profession</a>
+            <span class="desc">Ethics foundations · Legal vs Ethical · 6 tenets · 7 Standards overview</span>
+          </div>
+          <div class="meta">12 slides · 60 min</div>
+        </div>
+        <div class="lesson">
+          <div class="n">01.02</div>
+          <div>
+            <a class="title" href="/ethics/lesson/2/">Standards <em>I · II · III</em> — Professionalism, Capital Markets, Clients</a>
+            <span class="desc">11 sub-standards deep dive · 3 practice questions (EN → Hint → Dịch đề → Đáp án)</span>
+          </div>
+          <div class="meta">24 slides · 90 min</div>
+        </div>
+        <div class="lesson">
+          <div class="n">01.03</div>
+          <div>
+            <a class="title" href="/ethics/lesson/3/">Standards <em>IV · V · VI · VII</em> — Employers, Analysis, Conflicts + GIPS</a>
+            <span class="desc">11 sub-standards + Introduction to GIPS · 3 practice questions</span>
+          </div>
+          <div class="meta">25 slides · 90 min</div>
+        </div>
       </div>
-      <div class="meta">—</div>
-    </div>
+    </details>
+
+    <details class="module">
+      <summary>
+        <span class="chevron">›</span>
+        <span class="module-title"><span class="code">Topic 02</span>Quantitative Methods</span>
+        <span class="module-meta">Coming soon</span>
+      </summary>
+      <div class="module-body">
+        <p class="coming"><em>Time Value of Money</em> · Probability &amp; distributions · Sampling &amp; estimation · Hypothesis testing · Simple linear regression.</p>
+      </div>
+    </details>
+
+    <details class="module">
+      <summary>
+        <span class="chevron">›</span>
+        <span class="module-title"><span class="code">Topic 03</span>Economics</span>
+        <span class="module-meta">Coming soon</span>
+      </summary>
+      <div class="module-body">
+        <p class="coming"><em>Supply &amp; demand</em> · Firm &amp; market structures · Aggregate output &amp; business cycles · Monetary &amp; fiscal policy · International trade &amp; FX.</p>
+      </div>
+    </details>
+
+    <details class="module">
+      <summary>
+        <span class="chevron">›</span>
+        <span class="module-title"><span class="code">Topic 04</span>Financial Statement Analysis</span>
+        <span class="module-meta">Coming soon</span>
+      </summary>
+      <div class="module-body">
+        <p class="coming"><em>Income statement · Balance sheet · Cash flow statement</em> · Ratio &amp; financial analysis · Inventories · Long-lived assets · Income taxes · Non-current liabilities.</p>
+      </div>
+    </details>
+
+    <details class="module">
+      <summary>
+        <span class="chevron">›</span>
+        <span class="module-title"><span class="code">Topic 05</span>Corporate Issuers</span>
+        <span class="module-meta">Coming soon</span>
+      </summary>
+      <div class="module-body">
+        <p class="coming"><em>Capital structure · WACC</em> · Capital budgeting · Working capital management · Corporate governance &amp; ESG · Business model &amp; risks.</p>
+      </div>
+    </details>
+
+    <details class="module">
+      <summary>
+        <span class="chevron">›</span>
+        <span class="module-title"><span class="code">Topic 06</span>Portfolio Management</span>
+        <span class="module-meta">Coming soon</span>
+      </summary>
+      <div class="module-body">
+        <p class="coming"><em>Risk &amp; return · CAPM</em> · Portfolio planning &amp; IPS · Asset allocation · Behavioral finance · Introduction to risk management.</p>
+      </div>
+    </details>
+
+    <details class="module">
+      <summary>
+        <span class="chevron">›</span>
+        <span class="module-title"><span class="code">Topic 07</span>Equity Investments</span>
+        <span class="module-meta">Coming soon</span>
+      </summary>
+      <div class="module-body">
+        <p class="coming"><em>Market organization · Security indexes</em> · Market efficiency · Equity valuation (DCF, relative) · Industry &amp; company analysis.</p>
+      </div>
+    </details>
+
+    <details class="module">
+      <summary>
+        <span class="chevron">›</span>
+        <span class="module-title"><span class="code">Topic 08</span>Fixed Income</span>
+        <span class="module-meta">Coming soon</span>
+      </summary>
+      <div class="module-body">
+        <p class="coming"><em>Bond features &amp; types</em> · Fixed-income valuation &amp; yields · Duration &amp; convexity · Credit analysis · Securitization · Term structure.</p>
+      </div>
+    </details>
+
+    <details class="module">
+      <summary>
+        <span class="chevron">›</span>
+        <span class="module-title"><span class="code">Topic 09</span>Derivatives</span>
+        <span class="module-meta">Coming soon</span>
+      </summary>
+      <div class="module-body">
+        <p class="coming"><em>Forwards · Futures · Options · Swaps</em> · Derivative markets &amp; instruments · Pricing &amp; valuation fundamentals.</p>
+      </div>
+    </details>
+
+    <details class="module">
+      <summary>
+        <span class="chevron">›</span>
+        <span class="module-title"><span class="code">Topic 10</span>Alternative Investments</span>
+        <span class="module-meta">Coming soon</span>
+      </summary>
+      <div class="module-body">
+        <p class="coming"><em>Real estate · Private equity · Hedge funds · Commodities · Infrastructure</em> · Features, risks, returns &amp; fee structures.</p>
+      </div>
+    </details>
+
   </div>
 
   <footer>
