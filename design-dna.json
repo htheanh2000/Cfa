@@ -1,0 +1,146 @@
+{
+  "$schema": "https://design-dna.dev/schema/v1.json",
+  "meta": {
+    "name": "CFA Level I Deck",
+    "version": "0.1.0",
+    "author": "htheanh2000",
+    "description": "Editorial-textbook style for teaching CFA Level I in Vietnamese. Navy-ink on warm paper, serif display, monotype labels. Shared deck infrastructure with the IELTS project — only the theme tokens in cfa-theme.css differ."
+  },
+
+  "_comment_a": "════════════════════ 1. DESIGN SYSTEM — hard tokens ════════════════════",
+  "designSystem": {
+    "canvas": { "width": 1920, "height": 1080, "aspectRatio": "16:9" },
+
+    "color": {
+      "accent":      "#14365F",
+      "accent_dk":   "#0B2140",
+      "accent_soft": "rgba(20, 54, 95, 0.08)",
+      "ink":         "#1A1A1A",
+      "ink_soft":    "#4A4A4A",
+      "ink_muted":   "#8A8A8A",
+      "paper":       "#FAF6EF",
+      "bg":          "#FFFFFF",
+      "bg_panel":    "#F0EDE4",
+      "rule_soft":   "rgba(20, 54, 95, 0.16)",
+      "_usage": {
+        "accent":    "eyebrow, mono-labels, section-break band, highlight key",
+        "paper":     "long-read blocks (passages, example cards) — cream, not white",
+        "ink":       "primary text, h-title, h-section",
+        "ink_soft":  "body copy, secondary prose",
+        "ink_muted": "chrome, footer labels, meta keys"
+      }
+    },
+
+    "typography": {
+      "families": {
+        "display": "'Roboto Slab', Georgia, serif",
+        "sans":    "'Roboto', -apple-system, BlinkMacSystemFont, sans-serif",
+        "mono":    "'Roboto Mono', ui-monospace, monospace"
+      },
+      "scale": {
+        "title_main":  { "size": 136, "weight": 800, "tracking": "-0.03em", "lineHeight": 0.96 },
+        "hero":        { "size": 120, "weight": 800, "tracking": "-0.025em","lineHeight": 0.98, "usage": "section-break h2" },
+        "h_title":     { "size":  88, "weight": 700, "tracking": "-0.015em","lineHeight": 1.05 },
+        "h_section":   { "size":  64, "weight": 600, "tracking": "-0.01em", "lineHeight": 1.1 },
+        "h_sub":       { "size":  42, "weight": 400, "tracking": "0",       "lineHeight": 1.2 },
+        "body":        { "size":  30, "weight": 400, "tracking": "0",       "lineHeight": 1.5 },
+        "small":       { "size":  26, "weight": 400, "tracking": "0",       "lineHeight": 1.55 },
+        "eyebrow":     { "size":  26, "weight": 700, "tracking": "0.22em",  "lineHeight": 1.0, "transform": "uppercase", "color": "accent", "family": "sans" },
+        "mono_label":  { "size":  24, "weight": 500, "tracking": "0.06em",  "lineHeight": 1.2, "transform": "uppercase", "color": "accent", "family": "mono" },
+        "chrome":      { "size":  24, "weight": 500, "tracking": "0.14em",  "lineHeight": 1.0, "transform": "uppercase", "color": "ink_muted", "family": "sans" }
+      }
+    },
+
+    "spacing": {
+      "slidePadding": 100,
+      "headerTop": 48,
+      "footerBottom": 48,
+      "sectionGapLarge": 96,
+      "sectionGapMid": 48
+    },
+
+    "borders": {
+      "ruleHairline": { "color": "rule_soft", "width": 1 },
+      "accentEdge":   { "color": "accent",    "width": 3, "usage": "col-card top, ex-card left, section stat-row top" },
+      "accentEdgeBold": { "color": "accent",  "width": 6, "usage": "ex-card left border" }
+    },
+
+    "shapes": { "cornerRadius": 0, "_rationale": "Zero radius everywhere. Textbook look." }
+  },
+
+  "_comment_b": "════════════════════ 2. DESIGN STYLE — qualitative feel ════════════════════",
+  "designStyle": {
+    "archetype": "editorial-print-textbook (CFA variant)",
+    "keywords": ["rigorous", "authoritative", "unhurried", "bilingual", "exam-focused"],
+
+    "inspirations": [
+      "Schweser / Wiley CFA Study Guides (but more generous whitespace)",
+      "Penguin Modern Classics covers — navy + cream restraint",
+      "Financial Times Lex column — serif display, mono data"
+    ],
+
+    "principles": [
+      "One paper. One ink. Navy for signal, grays for hierarchy. No secondary brand colors.",
+      "Bilingual by design — English term = source of truth, Vietnamese = interpretation. Both present on first mention, English alone thereafter.",
+      "Monotype for technical labels (standards I-VII, formulas, axes). Serif slab for prose and headings.",
+      "Every slide answers a single question. If it takes two questions, split it.",
+      "Whitespace > density. A slide with one concept + one illustration beats a slide with four.",
+      "Vocabulary is content, not afterthought — each lesson ends with a vocab-grid the student can screenshot."
+    ],
+
+    "doNot": [
+      "No drop shadows, no rounded corners, no gradients.",
+      "No emoji or decorative icons — mono symbols (→, §, ✓) only.",
+      "No accent color other than navy. Don't add 'alert red' or 'success green'.",
+      "No multi-column prose — single column with generous margins.",
+      "No Vietnamese in technical labels (keep Standards / mono labels in English for exam parity)."
+    ],
+
+    "chromePattern": {
+      "top":    [ { "position": "top-left",  "content": "Subject · MODULE.LESSON (e.g., ETHICS · 01.01)", "style": "chrome" },
+                  { "position": "top-right", "content": "slide index (e.g., 03 / 12)",                     "style": "chrome mono" } ],
+      "bottom": [ { "position": "bottom-left",  "content": "CFA LEVEL I · VIETNAMESE",        "style": "mono accent" },
+                  { "position": "bottom-right", "content": "lesson title short code",           "style": "mono ink_muted" } ]
+    }
+  },
+
+  "_comment_c": "════════════════════ 3. SLIDE TEMPLATES ════════════════════",
+  "slideTemplates": [
+    { "name": "title",         "usage": "Subject + module + lesson cover",                    "class": "title-slide" },
+    { "name": "section-break", "usage": "Part separator with numeric band",                   "class": "section-break" },
+    { "name": "concept",       "usage": "Single concept with numbered list",                  "class": "num-list" },
+    { "name": "compare",       "usage": "Two-column A vs B contrast",                         "class": "compare" },
+    { "name": "standards",     "usage": "Keyword-tile grid for Standards I-VII",              "class": "kw-grid" },
+    { "name": "flow",          "usage": "Decision framework — 4 sequential steps",            "class": "flow" },
+    { "name": "dilemmas",      "usage": "2x2 grid of exam-style pitfall cases",               "class": "mistake-grid" },
+    { "name": "exam-focus",    "usage": "Accented sidebar with exam weighting + tips",        "class": "ex-card" },
+    { "name": "vocab",         "usage": "Bilingual term list (EN term, VN meaning)",          "class": "vocab-grid" },
+    { "name": "end",           "usage": "Recap card + next-lesson pointer",                   "class": "end-slide" }
+  ],
+
+  "_comment_d": "════════════════════ 4. REUSE GUIDE ════════════════════",
+  "reuse": {
+    "newLesson": {
+      "location": "<subject>/lesson/<n>/index.html",
+      "clone":    "Copy ethics/lesson/1/index.html, update <title>, chrome labels, slide content only.",
+      "chromeVars": "Top-left chrome per slide: 'ETHICS · 01.01' → change subject code + module.lesson for your new lesson."
+    },
+    "newSubject": {
+      "example": "quant/lesson/1/  (Quantitative Methods)",
+      "steps": [
+        "Create <subject>/lesson/1/index.html (clone existing)",
+        "Update root index.html (landing) to link the new lesson",
+        "Subjects map to CFA L1 topic areas: ethics, quant, econ, fsa, corp, port, equity, fixedincome, deriv, alt"
+      ]
+    },
+    "sharedAssets": {
+      "path": "/assets/",
+      "files": [
+        "deck-stage.js  — web component (kept in sync with IELTS repo)",
+        "deck-styles.css — design tokens (kept in sync with IELTS repo)",
+        "cfa-theme.css  — navy token overrides (this repo only)"
+      ],
+      "linkOrder": "<link deck-styles.css> BEFORE <link cfa-theme.css> so the overrides win."
+    }
+  }
+}

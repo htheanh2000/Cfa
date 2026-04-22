@@ -1,0 +1,33 @@
+http:
+  routers:
+    cfa:
+      rule: "Host(`lesson.leaprep.com`)"
+      entryPoints:
+        - websecure
+      service: cfa
+      tls:
+        certResolver: letsencrypt
+
+    # www → apex redirect (permanent)
+    cfa-www:
+      rule: "Host(`www.lesson.leaprep.com`)"
+      entryPoints:
+        - websecure
+      service: cfa
+      tls:
+        certResolver: letsencrypt
+      middlewares:
+        - cfa-www-redirect
+
+  services:
+    cfa:
+      loadBalancer:
+        servers:
+          - url: "http://cfa:80"
+
+  middlewares:
+    cfa-www-redirect:
+      redirectRegex:
+        regex: "^https://www\\.lesson\\.leaprep\\.com/(.*)"
+        replacement: "https://lesson.leaprep.com/${1}"
+        permanent: true

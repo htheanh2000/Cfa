@@ -1,0 +1,298 @@
+/* CFA theme overlay — layered on top of deck-styles.css.
+   Keep deck-styles.css byte-identical with the IELTS source so we can
+   diff upstream changes easily; this file owns all brand deltas. */
+:root {
+  /* Navy accent — CFA-textbook rigor, away from IELTS red */
+  --accent:       #14365F;
+  --accent-dk:    #0B2140;
+  --accent-soft:  rgba(20, 54, 95, 0.08);
+
+  /* Warmer paper for long reads, cooler chrome */
+  --paper:        #FAF6EF;
+  --bg:           #FFFFFF;
+  --bg-panel:     #F0EDE4;
+  --rule:         #14365F;
+  --rule-soft:    rgba(20, 54, 95, 0.16);
+}
+
+/* Title slide accent band + highlights switch to navy automatically via
+   the overrides above (they reference the --accent token). Nothing else
+   to patch — the IELTS stylesheet was token-first. */
+
+
+/* ═════════ SHARED COMPONENTS ═════════
+   Classes that exist in IELTS lesson-inline <style> blocks but NOT in
+   deck-styles.css — lifted here so every CFA lesson can reuse them
+   without copy-pasting the same CSS. */
+
+/* Two-column compare — used for "A vs B" contrast slides */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+.compare .cc { border-top: 4px solid var(--accent); padding-top: 28px; }
+.compare .cc .head {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 64px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  margin-bottom: 28px;
+}
+.compare .cc .head em { font-style: italic; font-weight: 400; color: var(--ink); }
+.compare .cc dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 20px;
+  row-gap: 24px;
+}
+.compare .cc dt {
+  font-family: var(--mono);
+  font-size: 22px;
+  color: var(--ink-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.compare .cc dd { margin: 0; font-size: 26px; line-height: 1.4; color: var(--ink); }
+.compare .cc dd b { color: var(--accent); font-weight: 700; }
+
+/* Section-break table-of-contents list */
+.section-break .content .toc {
+  font-family: var(--mono);
+  font-size: 22px;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 2;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.section-break .content .toc li { display: block; }
+.section-break .content .toc li.active { color: var(--accent); font-weight: 700; }
+
+/* Fine-print footnote (reused across slides) */
+.fine-muted {
+  font-family: var(--mono);
+  font-size: 20px;
+  color: var(--ink-muted);
+  letter-spacing: 0.06em;
+  margin-top: 32px;
+  max-width: 1440px;
+}
+
+/* Slightly tighter num-list.tight — CFA rows carry EN term + VN gloss
+   so the default 16px padding crowds the footer on 4-item slides. */
+.num-list.tight li { padding: 13px 0 !important; }
+
+/* Tenets grid — 2-col × 3-row for 6 parallel items.
+   Fits inside the 880px vertical budget where a stacked num-list cannot. */
+.tenets-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 56px;
+  margin-top: 12px;
+}
+.tenet {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 18px;
+  padding: 16px 0;
+  border-top: 1px solid var(--rule-soft);
+  align-items: baseline;
+}
+.tenet .n {
+  font-family: var(--mono);
+  font-size: 22px;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.tenet .t {
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.22;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+.tenet .t em.hi { font-style: normal; color: var(--accent); font-weight: 700; }
+.tenet .d {
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+/* ═════════ PRACTICE QUESTION COMPONENTS ═════════ */
+
+.q-card {
+  background: var(--paper);
+  border-left: 6px solid var(--accent);
+  padding: 26px 34px;
+  margin-top: 10px;
+  max-width: 1600px;
+}
+.q-card .q-tag {
+  display: block;
+  font-family: var(--mono);
+  font-size: 18px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.q-card .q-stem {
+  font-family: var(--display);
+  font-size: 23px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.q-options {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
+}
+.q-options li {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 20px;
+  padding: 16px 0;
+  border-top: 1px solid var(--rule-soft);
+  align-items: baseline;
+}
+.q-options li:last-child { border-bottom: 1px solid var(--rule-soft); }
+.q-options .lbl {
+  font-family: var(--mono);
+  font-size: 24px;
+  color: var(--accent);
+  font-weight: 700;
+}
+.q-options .opt {
+  font-family: var(--sans);
+  font-size: 21px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.q-options li.correct .lbl,
+.q-options li.correct .opt { color: var(--accent); font-weight: 600; }
+
+/* Reasoning: three rows [tag | body] for Correct / Wrong / Wrong */
+.reasoning {
+  display: grid;
+  gap: 0;
+  margin-top: 10px;
+}
+.reasoning .rblock {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 28px;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule-soft);
+  align-items: baseline;
+}
+.reasoning .rblock:last-child { border-bottom: 1px solid var(--rule-soft); }
+.reasoning .rtag {
+  font-family: var(--mono);
+  font-size: 19px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.reasoning .rblock.wrong .rtag { color: var(--ink-muted); }
+.reasoning .rtext {
+  font-family: var(--sans);
+  font-size: 21px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.reasoning .rtext b { color: var(--accent); font-weight: 700; }
+
+.takeaway-box {
+  margin-top: 22px;
+  background: var(--accent);
+  color: #fff;
+  padding: 22px 32px;
+  max-width: 1600px;
+}
+.takeaway-box .tlabel {
+  font-family: var(--mono);
+  font-size: 17px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 0.72;
+  margin-bottom: 6px;
+}
+.takeaway-box .ttext {
+  font-family: var(--display);
+  font-size: 22px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+.takeaway-box .ttext em { font-style: italic; opacity: 0.92; }
+
+/* Hint slide — same shell as q-card but with <mark> highlights + bullet hints */
+.hint-card {
+  background: var(--paper);
+  border-left: 6px solid var(--accent);
+  padding: 26px 34px;
+  margin-top: 10px;
+  max-width: 1600px;
+  font-family: var(--display);
+  font-size: 22px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.hint-card .h-tag {
+  display: block;
+  font-family: var(--mono);
+  font-size: 18px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.hint-card mark {
+  background: rgba(20, 54, 95, 0.14);
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 1px 4px;
+  border-radius: 0;
+}
+
+.hint-list {
+  list-style: none;
+  padding: 0;
+  margin: 22px 0 0;
+}
+.hint-list li {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 20px;
+  padding: 14px 0;
+  border-top: 1px solid var(--rule-soft);
+  align-items: baseline;
+}
+.hint-list li:last-child { border-bottom: 1px solid var(--rule-soft); }
+.hint-list .hnum {
+  font-family: var(--mono);
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+}
+.hint-list .htxt {
+  font-family: var(--sans);
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.hint-list .htxt em { font-style: italic; color: var(--accent); font-weight: 600; }

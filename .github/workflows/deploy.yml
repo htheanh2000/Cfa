@@ -1,0 +1,61 @@
+name: Deploy CFA to VPS
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: cfa-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH + pull + restart on VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script_stop: true
+          script: |
+            set -euo pipefail
+            cd /srv/cfa
+            git fetch --all
+            git reset --hard origin/main
+
+            # Idempotent Traefik dynamic config copy
+            cp deploy/traefik-cfa.yml /srv/traefik/data/dynamic/cfa.yml
+
+            # Nginx picks up volume-mounted files immediately;
+            # restart only if compose or nginx.conf itself changed.
+            if git diff --name-only HEAD@{1} HEAD 2>/dev/null | grep -qE '^(docker-compose\.yml|deploy/nginx\.conf)$'; then
+              docker compose up -d --force-recreate
+            else
+              docker compose up -d
+            fi
+
+            docker compose ps
+
+      - name: Smoke test
+        run: |
+          sleep 8
+          STATUS=$(curl -sk -o /dev/null -w "%{http_code}" https://lesson.leaprep.com/)
+          echo "Landing: HTTP $STATUS"
+          [ "$STATUS" = "200" ] || exit 1
+
+          STATUS=$(curl -sk -o /dev/null -w "%{http_code}" https://lesson.leaprep.com/ethics/lesson/1/)
+          echo "Ethics L1: HTTP $STATUS"
+          [ "$STATUS" = "200" ] || exit 1
+
+          STATUS=$(curl -sk -o /dev/null -w "%{http_code}" https://lesson.leaprep.com/ethics/lesson/2/)
+          echo "Ethics L2: HTTP $STATUS"
+          [ "$STATUS" = "200" ] || exit 1
+
+          STATUS=$(curl -sk -o /dev/null -w "%{http_code}" https://lesson.leaprep.com/ethics/lesson/3/)
+          echo "Ethics L3: HTTP $STATUS"
+          [ "$STATUS" = "200" ] || exit 1
+
+          echo "Deploy verified"
