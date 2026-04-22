@@ -19,9 +19,8 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          script_stop: true
           script: |
-            set -euxo pipefail
+            set -euo pipefail
             cd /srv/cfa
             git fetch --all
             git reset --hard origin/main
@@ -29,15 +28,10 @@ jobs:
             # Idempotent Traefik dynamic config copy
             cp deploy/traefik-cfa.yml /srv/traefik/data/dynamic/cfa.yml
 
-            # Nginx picks up volume-mounted files immediately;
-            # restart only if compose or nginx.conf itself changed.
-            CHANGED=$(git diff --name-only 'HEAD@{1}' HEAD 2>/dev/null || true)
-            if echo "$CHANGED" | grep -qE '^(docker-compose\.yml|deploy/nginx\.conf)$'; then
-              docker compose up -d --force-recreate
-            else
-              docker compose up -d
-            fi
-
+            # Always up -d (idempotent); reload nginx so volume-mounted
+            # /etc/nginx/conf.d/default.conf changes land without recreate.
+            docker compose up -d
+            docker exec cfa nginx -s reload 2>/dev/null || true
             docker compose ps
 
       - name: Smoke test
