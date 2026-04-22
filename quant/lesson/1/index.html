@@ -68,7 +68,7 @@
   <div class="run-header">
     <span>Quant · 02.01</span>
     <span class="rule"></span>
-    <span>03 / 24</span>
+    <span>03 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Concept</div>
@@ -138,7 +138,7 @@
   <div class="run-header">
     <span>Quant · 02.01</span>
     <span class="rule"></span>
-    <span>04 / 24</span>
+    <span>04 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Single-period return</div>
@@ -179,35 +179,29 @@
 </section>
 
 
-<!-- 05 · ARITHMETIC vs GEOMETRIC -->
+<!-- 05 · ARITHMETIC vs GEOMETRIC — Concept -->
 <section data-label="Arithmetic vs Geometric" class="slide">
   <div class="run-header">
     <span>Quant · 02.01</span>
     <span class="rule"></span>
-    <span>05 / 24</span>
+    <span>05 / 26</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Multi-period average</div>
+    <div class="eyebrow">Multi-period average · concept</div>
     <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Arithmetic</em> vs <em class="hi">Geometric</em> mean.</h2>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Formulas</span>
-    <div class="eq">Arithmetic: <span class="var">R̄</span> = (<span class="var">R</span><sub>1</sub> + <span class="var">R</span><sub>2</sub> + ... + <span class="var">R</span><sub>n</sub>) / <span class="var">n</span></div>
-    <div class="eq">Geometric: <span class="var">R̄</span><sub>g</sub> = [(1+<span class="var">R</span><sub>1</sub>)(1+<span class="var">R</span><sub>2</sub>)...(1+<span class="var">R</span><sub>n</sub>)]<sup>1/<span class="var">n</span></sup> − 1</div>
-    <div class="note">Khi returns biến động → <b>Arithmetic &gt; Geometric</b>. Khi tất cả returns bằng nhau → 2 giá trị bằng nhau.</div>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Hai cách đo average return qua nhiều kỳ — <em>mục đích khác nhau</em>, số ra cũng khác nhau khi returns biến động.
+    </p>
   </div>
 
   <div class="compare" style="margin-top: 24px;">
     <div class="cc">
       <div class="head">Arithmetic <em>— forward-looking</em></div>
       <dl>
-        <dt>Công thức</dt>
-        <dd>Sum / n — average đơn giản</dd>
         <dt>Ý nghĩa</dt>
         <dd>Best estimate of <b>next-period expected</b> return</dd>
-        <dt>Dùng</dt>
-        <dd>Forecasting, CAPM expected return</dd>
+        <dt>Dùng khi</dt>
+        <dd>Forecasting, CAPM expected return, risk premium</dd>
         <dt>Nhược</dt>
         <dd>Overstate compound growth khi returns volatile</dd>
       </dl>
@@ -215,12 +209,10 @@
     <div class="cc">
       <div class="head">Geometric <em>— backward-looking</em></div>
       <dl>
-        <dt>Công thức</dt>
-        <dd>Geometric mean — compound returns</dd>
         <dt>Ý nghĩa</dt>
         <dd>Actual <b>realized</b> compounded return</dd>
-        <dt>Dùng</dt>
-        <dd>Historical performance reporting</dd>
+        <dt>Dùng khi</dt>
+        <dd>Historical performance reporting (GIPS)</dd>
         <dt>Ưu</dt>
         <dd>Reflects true wealth accumulation</dd>
       </dl>
@@ -228,12 +220,84 @@
   </div>
 
   <p class="fine-muted-sm">
-    § Rule — <em>Arithmetic ≥ Geometric</em>. Gap tăng khi volatility tăng. Ví dụ: returns +50%, −50% → Arithmetic = 0%, Geometric = −13.4%.
+    § Rule — <em>Arithmetic ≥ Geometric</em>. Gap tăng theo volatility. Returns bằng nhau → 2 giá trị bằng nhau.
   </p>
 
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>QUANT · 02.01 — MEANS</span>
+    <span>QUANT · 02.01 — MEANS · CONCEPT</span>
+  </div>
+</section>
+
+
+<!-- 06 · ARITHMETIC vs GEOMETRIC — Formulas -->
+<section data-label="Arith/Geom · Formulas" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>06 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Multi-period average · formulas</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">equations</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Arithmetic mean — simple average</span>
+    <div class="eq"><span class="var">R̄</span> = (<span class="var">R</span><sub>1</sub> + <span class="var">R</span><sub>2</sub> + ... + <span class="var">R</span><sub>n</sub>) / <span class="var">n</span></div>
+    <div class="note">Tổng returns chia số kỳ. Đơn giản nhưng bỏ qua compounding.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 20px;">
+    <span class="fmt-label">§ Geometric mean — compound average</span>
+    <div class="eq"><span class="var">R̄</span><sub>g</sub> = [(1+<span class="var">R</span><sub>1</sub>)(1+<span class="var">R</span><sub>2</sub>) ... (1+<span class="var">R</span><sub>n</sub>)]<sup>1/<span class="var">n</span></sup> − 1</div>
+    <div class="note">Nhân (1+R) của từng kỳ, lấy căn bậc n, trừ 1. Reflect actual compounded growth.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — MEANS · FORMULAS</span>
+  </div>
+</section>
+
+
+<!-- 07 · ARITHMETIC vs GEOMETRIC — Example -->
+<section data-label="Arith/Geom · Example" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>07 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Multi-period average · example</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Worked <em class="hi">example</em>.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Scenario</span>
+    Portfolio <b>$100</b> đầu Year 1. Year 1 return <b>+50%</b> → $150. Year 2 return <b>−50%</b> → $75.
+    <em>Actual ending wealth = $75 (loss $25).</em>
+  </div>
+
+  <div class="formula-box" style="margin-top: 20px;">
+    <span class="fmt-label">§ Step 1 — Arithmetic mean</span>
+    <div class="eq"><span class="var">R̄</span> = (0.50 + (−0.50)) / 2 = <span class="var">0%</span></div>
+    <div class="note"><b>Arithmetic says 0% average return</b>. Nhưng wealth thực sự giảm $100 → $75. Arithmetic misleading khi có volatility.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Step 2 — Geometric mean</span>
+    <div class="eq"><span class="var">R̄</span><sub>g</sub> = [(1.5)(0.5)]<sup>1/2</sup> − 1 = √0.75 − 1 ≈ <span class="var">−13.4%</span></div>
+    <div class="note"><b>Geometric says −13.4%/năm</b>. Verify: $100 × (1−0.134)<sup>2</sup> ≈ $75 ✓ — khớp actual ending wealth.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Takeaway — Gap arithmetic (0%) vs geometric (−13.4%) = <em>13.4%</em>. Càng volatile, gap càng lớn. Luôn dùng <em>Geometric</em> cho historical wealth report.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — MEANS · EXAMPLE</span>
   </div>
 </section>
 
@@ -243,7 +307,7 @@
   <div class="run-header">
     <span>Quant · 02.01</span>
     <span class="rule"></span>
-    <span>06 / 24</span>
+    <span>08 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Investor return</div>
@@ -289,7 +353,7 @@
   <div class="run-header">
     <span>Quant · 02.01</span>
     <span class="rule"></span>
-    <span>07 / 24</span>
+    <span>09 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Manager return</div>
@@ -335,7 +399,7 @@
   <div class="run-header">
     <span>Quant · 02.01</span>
     <span class="rule"></span>
-    <span>08 / 24</span>
+    <span>10 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Log return</div>
@@ -381,7 +445,7 @@
   <div class="run-header">
     <span>Quant · 02.01</span>
     <span class="rule"></span>
-    <span>09 / 24</span>
+    <span>11 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Nuances</div>
@@ -435,7 +499,7 @@
   <div class="run-header">
     <span>Quant · 02.01</span>
     <span class="rule"></span>
-    <span>10 / 24</span>
+    <span>12 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Exam focus</div>
@@ -482,7 +546,7 @@
   <div class="run-header">
     <span>Quant · 02.01</span>
     <span class="rule"></span>
-    <span>12 / 24</span>
+    <span>14 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Original</div>
@@ -511,7 +575,7 @@
   <div class="run-header">
     <span>Quant · 02.01</span>
     <span class="rule"></span>
-    <span>13 / 24</span>
+    <span>15 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 01</div>
@@ -547,7 +611,7 @@
   <div class="run-header">
     <span>Quant · 02.01</span>
     <span class="rule"></span>
-    <span>14 / 24</span>
+    <span>16 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
@@ -576,7 +640,7 @@
   <div class="run-header">
     <span>Quant · 02.01</span>
     <span class="rule"></span>
-    <span>15 / 24</span>
+    <span>17 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 01</div>
@@ -612,7 +676,7 @@
   <div class="run-header">
     <span>Quant · 02.01</span>
     <span class="rule"></span>
-    <span>16 / 24</span>
+    <span>18 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Original</div>
@@ -641,7 +705,7 @@
   <div class="run-header">
     <span>Quant · 02.01</span>
     <span class="rule"></span>
-    <span>17 / 24</span>
+    <span>19 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 02</div>
@@ -677,7 +741,7 @@
   <div class="run-header">
     <span>Quant · 02.01</span>
     <span class="rule"></span>
-    <span>18 / 24</span>
+    <span>20 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
@@ -706,7 +770,7 @@
   <div class="run-header">
     <span>Quant · 02.01</span>
     <span class="rule"></span>
-    <span>19 / 24</span>
+    <span>21 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 02</div>
@@ -742,7 +806,7 @@
   <div class="run-header">
     <span>Quant · 02.01</span>
     <span class="rule"></span>
-    <span>20 / 24</span>
+    <span>22 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Original</div>
@@ -771,7 +835,7 @@
   <div class="run-header">
     <span>Quant · 02.01</span>
     <span class="rule"></span>
-    <span>21 / 24</span>
+    <span>23 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 03</div>
@@ -807,7 +871,7 @@
   <div class="run-header">
     <span>Quant · 02.01</span>
     <span class="rule"></span>
-    <span>22 / 24</span>
+    <span>24 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
@@ -836,7 +900,7 @@
   <div class="run-header">
     <span>Quant · 02.01</span>
     <span class="rule"></span>
-    <span>23 / 24</span>
+    <span>25 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 03</div>

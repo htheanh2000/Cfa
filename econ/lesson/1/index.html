@@ -1,0 +1,804 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Econ 03.01 — Demand and Supply Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 124px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Demand &amp;<br><em>Supply.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 03 · Lesson 03.01 · Economics</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module đầu tiên của Economics</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Econ</dd></div>
+      <div><dt>Module</dt><dd>01</dd></div>
+      <div><dt>Lesson</dt><dd>03.01</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Law of Demand/Supply · Equilibrium · Elasticity</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">01</div>
+    <div class="lbl">Microfoundations</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How <em>prices</em> emerge<br>from buyers &amp; sellers.</h2>
+    <ul class="toc">
+      <li class="active">01 · Law of Demand — downward slope</li>
+      <li>02 · Law of Supply — upward slope</li>
+      <li>03 · Market equilibrium — where they meet</li>
+      <li>04 · Elasticity — concept + formulas + example</li>
+      <li>05 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · LAW OF DEMAND -->
+<section data-label="Law of Demand" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>03 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Law of <em class="hi">Demand</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Khi giá cao → cầu thấp. Đường cầu dốc xuống — <em>ceteris paribus</em> (giữ các yếu tố khác không đổi).
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Substitution effect — hiệu ứng thay thế</span>
+        <span class="step-body">Giá hàng A tăng → consumer switch sang hàng B (substitute). Thí dụ: giá Coca tăng → mua Pepsi nhiều hơn.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Income effect — hiệu ứng thu nhập</span>
+        <span class="step-body">Giá tăng → real income giảm (mua được ít hàng hơn với cùng số tiền). Consumer cut consumption.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Exceptions — Giffen &amp; Veblen goods</span>
+        <span class="step-body"><em>Giffen</em>: hàng thiết yếu cho người nghèo, giá tăng → mua nhiều hơn. <em>Veblen</em>: luxury, giá cao → prestige → mua nhiều. Cả hai đều violate law of demand.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — DEMAND</span>
+  </div>
+</section>
+
+
+<!-- 04 · DEMAND FUNCTION — FORMULA -->
+<section data-label="Demand function" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>04 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Demand · formula</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">demand function</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Linear demand function</span>
+    <div class="eq"><span class="var">Q</span><sub>d</sub> = <span class="var">a</span> − <span class="var">b</span> · <span class="var">P</span></div>
+    <div class="note"><b>Q<sub>d</sub></b> = quantity demanded · <b>P</b> = price · <b>a</b> = intercept (max demand at P=0) · <b>b</b> = slope magnitude (&gt;0). Dấu âm phản ánh law of demand.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 20px;">
+    <span class="fmt-label">§ General form (multi-variable)</span>
+    <div class="eq"><span class="var">Q</span><sub>d</sub> = <span class="var">f</span>(<span class="var">P</span>, <span class="var">I</span>, <span class="var">P</span><sub>s</sub>, <span class="var">P</span><sub>c</sub>, taste, expectations)</div>
+    <div class="note"><b>I</b> = income · <b>P<sub>s</sub></b> = price substitute · <b>P<sub>c</sub></b> = price complement. Khi chỉ P thay đổi → <em>movement along</em> curve. Khi các biến khác đổi → <em>shift</em> của cả curve.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — DEMAND FUNC</span>
+  </div>
+</section>
+
+
+<!-- 05 · LAW OF SUPPLY -->
+<section data-label="Law of Supply" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>05 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Law of <em class="hi">Supply</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Khi giá cao → cung nhiều. Đường cung dốc lên — producer được incentivized khi giá tăng.
+    </p>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Linear supply function</span>
+    <div class="eq"><span class="var">Q</span><sub>s</sub> = <span class="var">c</span> + <span class="var">d</span> · <span class="var">P</span></div>
+    <div class="note"><b>Q<sub>s</sub></b> = quantity supplied · <b>c</b> = intercept (thường âm, nghĩa là giá tối thiểu cần có để sản xuất) · <b>d</b> = slope (&gt;0, reflect law of supply).</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 24px;">
+    <li>
+      <span>
+        <span class="step-title">Supply shifters — causes shift of the curve</span>
+        <span class="step-body"><em>Input costs</em> (raw materials, wages) giảm → supply tăng. <em>Technology</em> tiến bộ → supply tăng. <em>Taxes</em> tăng → supply giảm. <em>Number of producers</em> tăng → supply tăng.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Movement vs Shift — giống demand</span>
+        <span class="step-body">Chỉ P thay đổi → movement along. Supply shifter thay đổi → shift của cả curve (rightward = more supply, leftward = less supply).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — SUPPLY</span>
+  </div>
+</section>
+
+
+<!-- 06 · EQUILIBRIUM — CONCEPT -->
+<section data-label="Equilibrium" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>06 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Market equilibrium</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Where demand <em class="hi">meets</em> supply.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Equilibrium price <em>P*</em> là nơi Q<sub>d</sub> = Q<sub>s</sub>. Above P* → surplus (excess supply). Below P* → shortage (excess demand).
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 24px;">
+    <div class="cc">
+      <div class="head">Surplus <em>— price too high</em></div>
+      <dl>
+        <dt>Điều kiện</dt>
+        <dd>P &gt; P*  →  Q<sub>s</sub> &gt; Q<sub>d</sub></dd>
+        <dt>Phản ứng</dt>
+        <dd>Inventory builds up; sellers cut price</dd>
+        <dt>Kết quả</dt>
+        <dd>Price falls back toward P*</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Shortage <em>— price too low</em></div>
+      <dl>
+        <dt>Điều kiện</dt>
+        <dd>P &lt; P*  →  Q<sub>d</sub> &gt; Q<sub>s</sub></dd>
+        <dt>Phản ứng</dt>
+        <dd>Queues, rationing; buyers bid up</dd>
+        <dt>Kết quả</dt>
+        <dd>Price rises back toward P*</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — EQUILIBRIUM</span>
+  </div>
+</section>
+
+
+<!-- 07 · EQUILIBRIUM — EXAMPLE -->
+<section data-label="Equilibrium · Example" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>07 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Equilibrium · example</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Worked <em class="hi">example</em>.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Scenario</span>
+    Q<sub>d</sub> = 100 − 2P · Q<sub>s</sub> = −20 + 4P. Tìm equilibrium price P* và quantity Q*.
+  </div>
+
+  <div class="formula-box" style="margin-top: 20px;">
+    <span class="fmt-label">§ Step 1 — Set Q<sub>d</sub> = Q<sub>s</sub></span>
+    <div class="eq">100 − 2<span class="var">P</span> = −20 + 4<span class="var">P</span></div>
+    <div class="eq">120 = 6<span class="var">P</span>  →  <span class="var">P*</span> = 20</div>
+    <div class="note">Equilibrium price = <b>$20</b>.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Step 2 — Plug P* back in</span>
+    <div class="eq"><span class="var">Q*</span> = 100 − 2(20) = 60</div>
+    <div class="note">Equilibrium quantity = <b>60 units</b>. Verify: Q<sub>s</sub> = −20 + 4(20) = 60 ✓</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Takeaway — Ở P=$25 (trên P*), Q<sub>d</sub>=50, Q<sub>s</sub>=80 → surplus 30. Ở P=$15, Q<sub>d</sub>=70, Q<sub>s</sub>=40 → shortage 30.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — EQUILIBRIUM EX</span>
+  </div>
+</section>
+
+
+<!-- 08 · ELASTICITY — CONCEPT -->
+<section data-label="Elasticity concept" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>08 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Elasticity · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">How <em class="hi">sensitive</em> is quantity?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Elasticity đo <em>% thay đổi quantity</em> chia <em>% thay đổi của biến khác</em>. 3 loại chính: price, income, cross-price.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">PED</span>
+      <div>
+        <div class="t">Price Elasticity of <em class="hi">Demand</em></div>
+        <div class="d">%ΔQ<sub>d</sub> / %ΔP. Luôn âm (law of demand). |PED|&gt;1 = elastic, &lt;1 = inelastic.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">IED</span>
+      <div>
+        <div class="t">Income Elasticity</div>
+        <div class="d">%ΔQ<sub>d</sub> / %ΔI. &gt;0 = normal good, &lt;0 = inferior good. &gt;1 = luxury.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CPE</span>
+      <div>
+        <div class="t">Cross-Price Elasticity</div>
+        <div class="d">%ΔQ<sub>A</sub> / %ΔP<sub>B</sub>. &gt;0 = substitutes, &lt;0 = complements.</div>
+      </div>
+    </div>
+    <div class="tenet" style="border-top-color: var(--rule-soft);">
+      <span class="n" style="color: var(--ink-muted);">§</span>
+      <div>
+        <div class="t" style="font-weight: 500; color: var(--ink-soft);">Units don't matter</div>
+        <div class="d">Elasticity là tỷ số của % thay đổi — không phụ thuộc đơn vị tiền tệ hay quantity. Comparable across countries/products.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — ELASTICITY CONCEPT</span>
+  </div>
+</section>
+
+
+<!-- 09 · ELASTICITY — FORMULAS -->
+<section data-label="Elasticity formulas" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>09 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Elasticity · formulas</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">equations</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Price Elasticity of Demand</span>
+    <div class="eq"><span class="var">PED</span> = (%Δ<span class="var">Q</span><sub>d</sub>) / (%Δ<span class="var">P</span>) = (Δ<span class="var">Q</span>/<span class="var">Q</span>) / (Δ<span class="var">P</span>/<span class="var">P</span>)</div>
+    <div class="note">Negative (theo law of demand). |PED| &gt; 1 <b>elastic</b>; |PED| &lt; 1 <b>inelastic</b>; |PED| = 1 <b>unit-elastic</b>.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Income &amp; Cross-Price Elasticity</span>
+    <div class="eq"><span class="var">IED</span> = (%Δ<span class="var">Q</span><sub>d</sub>) / (%Δ<span class="var">I</span>)</div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">CPE</span> = (%Δ<span class="var">Q</span><sub>A</sub>) / (%Δ<span class="var">P</span><sub>B</sub>)</div>
+    <div class="note"><b>IED</b>: &gt;0 normal, &lt;0 inferior. <b>CPE</b>: &gt;0 substitutes, &lt;0 complements, = 0 unrelated.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — ELASTICITY FORMULAS</span>
+  </div>
+</section>
+
+
+<!-- 10 · ELASTICITY — EXAMPLE -->
+<section data-label="Elasticity example" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>10 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Elasticity · example</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Worked <em class="hi">example</em>.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Scenario</span>
+    Giá cà phê tăng từ <b>$4</b> lên <b>$5</b>. Quantity demanded giảm từ <b>100</b> ly/ngày xuống <b>85</b> ly/ngày. Tính PED và kết luận elastic/inelastic.
+  </div>
+
+  <div class="formula-box" style="margin-top: 20px;">
+    <span class="fmt-label">§ Step 1 — Tính % thay đổi</span>
+    <div class="eq">%Δ<span class="var">Q</span> = (85 − 100) / 100 = <span class="var">−15%</span></div>
+    <div class="eq">%Δ<span class="var">P</span> = (5 − 4) / 4 = <span class="var">+25%</span></div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Step 2 — Tính PED</span>
+    <div class="eq"><span class="var">PED</span> = −15% / +25% = <span class="var">−0.6</span></div>
+    <div class="note">|PED| = 0.6 &lt; 1 → cà phê ở range giá này là <b>inelastic</b>. Consumer không cắt nhiều dù giá tăng 25% — addictive/habitual good.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Insight — Khi inelastic, tăng giá → revenue tăng (dù quantity giảm). Đây là lý do sao cà phê chain thường tăng giá khi inflation.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — ELASTICITY EX</span>
+  </div>
+</section>
+
+
+<!-- 11 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 12 · Q1 EN — Elasticity calc -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>12 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Calculate <em class="hi">PED</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      The price of a luxury watch brand rises from <strong>$2,000</strong> to <strong>$2,400</strong>. Quantity demanded falls from <strong>500</strong> units to <strong>300</strong> units per month. The Price Elasticity of Demand (PED) is <strong>most likely</strong>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">−0.40 (inelastic demand).</span></li>
+    <li><span class="lbl">B</span><span class="opt">−2.00 (elastic demand).</span></li>
+    <li><span class="lbl">C</span><span class="opt">−1.00 (unit-elastic).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 13 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>13 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Price <mark>$2,000 → $2,400</mark>. Quantity <mark>500 → 300</mark>. Asking for <mark>PED</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">%ΔP = (2400−2000)/2000 = <em>+20%</em>. %ΔQ = (300−500)/500 = <em>−40%</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">PED = %ΔQ / %ΔP = −40% / +20% = <em>−2.0</em>. |PED| &gt; 1 → elastic.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Luxury goods thường elastic: khi giá tăng, consumer có thể trì hoãn hoặc chuyển sang competitor — quantity giảm mạnh.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 14 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>14 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Giá của một thương hiệu đồng hồ luxury tăng từ <strong>$2,000</strong> lên <strong>$2,400</strong>. Quantity demanded giảm từ <strong>500</strong> chiếc xuống <strong>300</strong> chiếc/tháng. Price Elasticity of Demand (PED) <strong>có thể nhất</strong> là:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">−0.40 (inelastic demand).</span></li>
+    <li><span class="lbl">B</span><span class="opt">−2.00 (elastic demand).</span></li>
+    <li><span class="lbl">C</span><span class="opt">−1.00 (unit-elastic).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 15 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>15 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — PED = −2.0.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">%ΔQ = (300 − 500)/500 = <b>−40%</b>. %ΔP = (2400 − 2000)/2000 = <b>+20%</b>. PED = −40% / 20% = <b>−2.0</b>. |PED| = 2 &gt; 1 → demand là <em>elastic</em>, phù hợp với luxury good.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">−0.40 là ngược đảo của đúng (20% / −40% + bỏ dấu). Common mistake: chia nhầm tử/mẫu của PED formula.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">−1.0 là unit-elastic. Ở đây %ΔQ (40%) lớn hơn gấp đôi %ΔP (20%) → không phải unit-elastic.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">PED = <em>%ΔQ / %ΔP</em>. Luôn kiểm tra tử là quantity change, mẫu là price change. |PED| &gt; 1 elastic, &lt; 1 inelastic. Luxury thường elastic, necessities thường inelastic.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 16 · Q2 EN — Income Elasticity -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>16 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Normal vs Inferior</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      As consumers' income rises by <strong>10%</strong>, the quantity demanded for <em>instant noodles</em> falls by <strong>5%</strong>, while quantity demanded for <em>organic produce</em> rises by <strong>20%</strong>. Which classification is <strong>most accurate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Both are normal goods; organic produce is a luxury.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Instant noodles are inferior; organic produce is a normal luxury good.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Instant noodles are a necessity; organic produce is a Giffen good.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>17 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Income <mark>+10%</mark>. Noodles demand <mark>−5%</mark> · Organic <mark>+20%</mark>. Classification by IED.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">IED = %ΔQ / %ΔI. Noodles: −5/10 = <em>−0.5</em> (âm → inferior). Organic: 20/10 = <em>+2.0</em> (&gt;1 → luxury).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Phân loại: IED &lt; 0 <em>inferior</em>; 0 &lt; IED &lt; 1 <em>normal necessity</em>; IED &gt; 1 <em>normal luxury</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Giffen good có law of demand violated (price-quantity). Không liên quan đến income elasticity — loại option C.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>18 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Khi thu nhập tăng <strong>10%</strong>, quantity demanded cho <em>mì ăn liền</em> giảm <strong>5%</strong>, trong khi quantity demanded cho <em>thực phẩm organic</em> tăng <strong>20%</strong>. Phân loại <strong>chính xác nhất</strong> là:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Cả hai là normal goods; organic là luxury.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Mì ăn liền là inferior; organic là normal luxury good.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Mì ăn liền là necessity; organic là Giffen good.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>19 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Inferior + Luxury.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Noodles: IED = −5% / 10% = <b>−0.5</b> → IED &lt; 0 → <em>inferior good</em>. Organic: IED = 20% / 10% = <b>+2.0</b> → IED &gt; 1 → <em>normal luxury</em>. Cả hai interpretation đều đúng.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Noodles có IED <b>âm</b> (quantity giảm khi income tăng) → KHÔNG phải normal. Đây là dấu hiệu điển hình của inferior good.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Giffen good là về <em>price-quantity</em> relationship (khi giá tăng thì quantity tăng — violate law of demand). Ở đây input là <em>income</em>, không phải giá — không liên quan Giffen.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">IED classification: <em>IED &lt; 0 inferior</em>; <em>0 &lt; IED &lt; 1 normal necessity</em>; <em>IED &gt; 1 normal luxury</em>. Dấu của IED quyết định normal vs inferior, magnitude quyết định necessity vs luxury.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q3 EN — Equilibrium Shift -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>20 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Equilibrium shift</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A new production technology reduces the <strong>cost of producing</strong> semiconductor chips by 30%. At the same time, rising smartphone demand increases <strong>consumer preference</strong> for chips. The <strong>most likely</strong> new equilibrium shows:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Higher price, higher quantity (demand shift dominates).</span></li>
+    <li><span class="lbl">B</span><span class="opt">Higher quantity; price change ambiguous (both curves shift right).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Lower price, lower quantity (supply shift dominates).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>21 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Cost of producing</mark> giảm → supply shifter. <mark>Consumer preference</mark> tăng → demand shifter. Both shift <mark>rightward</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Supply shift right → tendency: price ↓, quantity ↑. Demand shift right → tendency: price ↑, quantity ↑.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Hai effect lên price <em>đối kháng</em>: supply muốn đẩy giá xuống, demand muốn đẩy giá lên → net effect lên price là <b>ambiguous</b>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Hai effect lên quantity <em>cộng hưởng</em>: cả supply và demand đều muốn tăng quantity → net effect là <b>quantity tăng chắc chắn</b>.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>22 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một công nghệ sản xuất mới giúp giảm <strong>chi phí sản xuất</strong> chip bán dẫn 30%. Đồng thời, smartphone demand tăng đẩy <strong>consumer preference</strong> cho chip lên cao. Equilibrium mới <strong>có thể nhất</strong> cho thấy:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Price cao hơn, quantity cao hơn (demand shift dominates).</span></li>
+    <li><span class="lbl">B</span><span class="opt">Quantity cao hơn; price change không rõ ràng (cả hai curve shift right).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Price thấp hơn, quantity thấp hơn (supply shift dominates).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>23 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Quantity ↑; Price ambiguous.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Cost giảm → <b>supply shift right</b> (cung tăng → price ↓, quantity ↑). Preference tăng → <b>demand shift right</b> (cầu tăng → price ↑, quantity ↑). Quantity effects <em>cộng hưởng</em>; price effects <em>đối kháng</em> → quantity tăng chắc, price <b>ambiguous</b>.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">"Demand shift dominates" chỉ là <em>assumption</em> — không thể kết luận từ thông tin đề. Nếu supply shift lớn hơn, price có thể giảm.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Quantity tăng chắc chắn (cả hai shift đều đẩy quantity lên). "Quantity giảm" trái với logic cơ bản của 2 shifts rightward.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Khi cả D và S cùng shift right: <em>quantity tăng chắc chắn, price direction ambiguous</em> (phụ thuộc magnitude relative). Ngược lại: D right + S left → price tăng chắc, quantity ambiguous.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 24 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>03.01 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 03.02 — The Firm and Market Structures</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

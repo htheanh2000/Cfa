@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Econ 03.02 — The Firm and Market Structures</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">The Firm<br>&amp; <em>Markets.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 03 · Lesson 03.02 · Economics</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 02 · Firm behavior &amp; market structures</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Econ</dd></div>
+      <div><dt>Module</dt><dd>02</dd></div>
+      <div><dt>Lesson</dt><dd>03.02</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Costs · MR = MC · 4 market structures</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">02</div>
+    <div class="lbl">Firm theory</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How <em>firms</em> decide<br>what to produce.</h2>
+    <ul class="toc">
+      <li class="active">01 · Cost concepts — fixed, variable, marginal</li>
+      <li>02 · Average costs — ATC, AVC, AFC</li>
+      <li>03 · Profit maximization — MR = MC</li>
+      <li>04 · 4 market structures — perfect competition → monopoly</li>
+      <li>05 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · COST CONCEPTS -->
+<section data-label="Cost concepts" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.02</span>
+    <span class="rule"></span>
+    <span>03 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Costs · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Fixed</em>, variable, marginal.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Ba loại cost cơ bản quyết định production decision của firm. Phân biệt quan trọng cho profit maximization.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">FC</span>
+      <div>
+        <div class="t"><em class="hi">Fixed Costs</em></div>
+        <div class="d">Không đổi theo output trong short run. Rent, salaries, depreciation. Vẫn phải trả dù sản xuất 0 unit.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">VC</span>
+      <div>
+        <div class="t"><em class="hi">Variable Costs</em></div>
+        <div class="d">Tỷ lệ theo output. Raw materials, hourly labor, utilities. Q=0 → VC=0.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">TC</span>
+      <div>
+        <div class="t"><em class="hi">Total Cost</em></div>
+        <div class="d">TC = FC + VC. Tổng cost firm bỏ ra để sản xuất Q units.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">MC</span>
+      <div>
+        <div class="t"><em class="hi">Marginal Cost</em></div>
+        <div class="d">MC = ΔTC / ΔQ. Cost của việc sản xuất thêm 1 unit. Key for profit decisions.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.02 — COSTS</span>
+  </div>
+</section>
+
+
+<!-- 04 · AVERAGE COSTS -->
+<section data-label="Average costs" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.02</span>
+    <span class="rule"></span>
+    <span>04 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Costs · formulas</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Average <em class="hi">costs</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ The core relationships</span>
+    <div class="eq"><span class="var">ATC</span> = <span class="var">TC</span> / <span class="var">Q</span> = <span class="var">AVC</span> + <span class="var">AFC</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">AVC</span> = <span class="var">VC</span> / <span class="var">Q</span> · <span class="var">AFC</span> = <span class="var">FC</span> / <span class="var">Q</span></div>
+    <div class="note"><b>ATC</b> Average Total Cost · <b>AVC</b> Average Variable Cost · <b>AFC</b> Average Fixed Cost. Khi Q tăng, AFC giảm (spread fixed cost wider).</div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Cost curve shapes — MC cuts ATC và AVC từ dưới lên TẠI điểm minimum của chúng. Khi MC &lt; ATC, ATC đang giảm. Khi MC &gt; ATC, ATC đang tăng. Đây là property toán học quan trọng.
+  </p>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Economies of scale — scale up giảm cost</span>
+        <span class="step-body">ATC giảm khi output tăng. Nguyên nhân: fixed cost spread, bulk purchasing, specialization.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Diseconomies of scale — quá lớn tăng cost</span>
+        <span class="step-body">ATC tăng khi output rất lớn. Coordination cost, bureaucracy. Optimal firm size ở điểm minimum ATC.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.02 — AVG COSTS</span>
+  </div>
+</section>
+
+
+<!-- 05 · PROFIT MAXIMIZATION — CONCEPT -->
+<section data-label="Profit max concept" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.02</span>
+    <span class="rule"></span>
+    <span>05 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Profit max · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">MR = MC</em> rule.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Firm tối đa hóa lợi nhuận bằng cách sản xuất đến điểm <em>marginal revenue = marginal cost</em>. Đây là universal rule cho mọi market structure.
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Khi MR &gt; MC → sản xuất thêm có lợi</span>
+        <span class="step-body">Mỗi unit thêm mang về revenue nhiều hơn cost → tăng profit. Firm có incentive tăng production.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Khi MR &lt; MC → sản xuất thêm có hại</span>
+        <span class="step-body">Mỗi unit thêm mang về ít revenue hơn cost bỏ ra → giảm profit. Firm nên cắt production.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Khi MR = MC → optimal</span>
+        <span class="step-body">Marginal unit "break even" về mặt contribution. Profit đạt maximum tại đây. <em>Q optimal</em> = nơi 2 curve cắt nhau.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.02 — PROFIT MAX</span>
+  </div>
+</section>
+
+
+<!-- 06 · PROFIT MAX — FORMULA -->
+<section data-label="Profit max formula" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.02</span>
+    <span class="rule"></span>
+    <span>06 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Profit max · formula</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">equation</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Profit function</span>
+    <div class="eq"><span class="var">π</span> = <span class="var">TR</span> − <span class="var">TC</span> = (<span class="var">P</span> · <span class="var">Q</span>) − (<span class="var">FC</span> + <span class="var">VC</span>)</div>
+    <div class="note"><b>π</b> (pi) = profit · <b>TR</b> = total revenue = P × Q · <b>TC</b> = total cost.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Profit maximization condition</span>
+    <div class="eq"><span class="var">d</span><span class="var">π</span>/<span class="var">dQ</span> = <span class="var">MR</span> − <span class="var">MC</span> = 0  →  <span class="var">MR</span> = <span class="var">MC</span></div>
+    <div class="note">Derivative = 0 → <b>MR = MC</b>. Second-order condition: MC dốc lên nhanh hơn MR (cut from below).</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Perfect competition: P = MR (firm là price-taker). Monopoly: MR &lt; P (firm phải hạ giá để bán thêm). Cả hai đều max profit tại MR = MC, nhưng Q và P khác nhau.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.02 — MR=MC FORMULA</span>
+  </div>
+</section>
+
+
+<!-- 07 · PROFIT MAX — EXAMPLE -->
+<section data-label="Profit max example" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.02</span>
+    <span class="rule"></span>
+    <span>07 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Profit max · example</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Worked <em class="hi">example</em>.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Scenario · perfect competition firm</span>
+    Market price <b>$20</b>/unit (firm là price-taker, MR = P = $20). TC(Q) = 100 + 2Q + <em>Q²</em>. Tìm Q optimal để max profit.
+  </div>
+
+  <div class="formula-box" style="margin-top: 20px;">
+    <span class="fmt-label">§ Step 1 — Derive MC from TC</span>
+    <div class="eq"><span class="var">MC</span> = <span class="var">d</span>(<span class="var">TC</span>)/<span class="var">dQ</span> = 2 + 2<span class="var">Q</span></div>
+    <div class="note">Differentiate TC. Fixed cost (100) biến mất vì không phụ thuộc Q.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Step 2 — Set MR = MC</span>
+    <div class="eq">20 = 2 + 2<span class="var">Q</span>  →  18 = 2<span class="var">Q</span>  →  <span class="var">Q*</span> = 9</div>
+    <div class="note">Firm nên sản xuất <b>9 units</b>. Verify profit: TR = 20×9 = 180; TC = 100 + 18 + 81 = 199 → π = −19. <em>Loss!</em> Nhưng vẫn better than shutting down (fixed cost 100 vẫn phải trả).</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Short-run rule — Firm continue operating nếu P &gt; AVC (cover variable costs). Shut down nếu P &lt; AVC (cut losses further).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.02 — PROFIT EX</span>
+  </div>
+</section>
+
+
+<!-- 08 · 4 MARKET STRUCTURES OVERVIEW -->
+<section data-label="Market structures" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.02</span>
+    <span class="rule"></span>
+    <span>08 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Market structures</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">4 market types</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CFA L1 test sự phân biệt giữa 4 structures theo 3 tiêu chí: <em>số firms</em>, <em>product differentiation</em>, <em>pricing power</em>.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Perfect Competition</em></div>
+        <div class="d">Nhiều firms · homogeneous products · no pricing power · P = MR. Ví dụ: commodities (wheat, gold).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Monopolistic</em> Competition</div>
+        <div class="d">Nhiều firms · <em>differentiated</em> products · some pricing power · elastic demand. Ví dụ: restaurants, clothing brands.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Oligopoly</em></div>
+        <div class="d">Vài firms · products có thể differ or similar · strategic pricing · game theory. Ví dụ: airlines, telecom.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Monopoly</em></div>
+        <div class="d">1 firm · unique product · full pricing power · MR &lt; P. Ví dụ: utilities, patented drugs.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.02 — MARKETS</span>
+  </div>
+</section>
+
+
+<!-- 09 · PERFECT COMPETITION -->
+<section data-label="Perfect Competition" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.02</span>
+    <span class="rule"></span>
+    <span>09 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Structure 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Perfect Competition</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Characteristics</div>
+      <dl>
+        <dt>Firms</dt>
+        <dd>Many small firms — none can influence market price</dd>
+        <dt>Product</dt>
+        <dd>Homogeneous (identical)</dd>
+        <dt>Entry</dt>
+        <dd>Free entry &amp; exit — no barriers</dd>
+        <dt>Info</dt>
+        <dd>Perfect information among all participants</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Pricing &amp; profit</div>
+      <dl>
+        <dt>Pricing</dt>
+        <dd>Price-taker: P = MR = market equilibrium</dd>
+        <dt>Demand</dt>
+        <dd>Perfectly elastic (horizontal line at P)</dd>
+        <dt>LR profit</dt>
+        <dd>Zero economic profit (normal profit only)</dd>
+        <dt>Example</dt>
+        <dd>Commodities: wheat, copper, gold</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Long-run equilibrium — Firm entry đẩy price xuống đến P = minimum ATC. Firms chỉ earn "normal profit" (opportunity cost covered). Super-normal profit thu hút entry mới, erasing above-normal returns.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.02 — PERFECT COMP</span>
+  </div>
+</section>
+
+
+<!-- 10 · MONOPOLY -->
+<section data-label="Monopoly" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.02</span>
+    <span class="rule"></span>
+    <span>10 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Structure 04</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Monopoly</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Characteristics</div>
+      <dl>
+        <dt>Firms</dt>
+        <dd>One firm — controls entire market</dd>
+        <dt>Product</dt>
+        <dd>Unique — no close substitutes</dd>
+        <dt>Entry</dt>
+        <dd>High barriers: patents, licenses, economies of scale</dd>
+        <dt>Demand</dt>
+        <dd>Equals market demand curve (downward slope)</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Pricing &amp; profit</div>
+      <dl>
+        <dt>Pricing</dt>
+        <dd>Price-maker: chooses P to max profit</dd>
+        <dt>MR vs P</dt>
+        <dd>MR &lt; P (phải hạ giá để bán thêm, revenue từ unit mới &lt; price)</dd>
+        <dt>LR profit</dt>
+        <dd>Can earn persistent economic profit (barriers prevent entry)</dd>
+        <dt>Example</dt>
+        <dd>Utilities (local monopoly), patented drugs</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Deadweight loss — Monopoly produce ít hơn và charge cao hơn perfect competition → consumer surplus giảm, dẫn đến deadweight loss (inefficiency). Đây là lý do regulators break up monopolies hoặc regulate prices.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.02 — MONOPOLY</span>
+  </div>
+</section>
+
+
+<!-- 11 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 12 · Q1 EN — Cost calculation -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.02</span>
+    <span class="rule"></span>
+    <span>12 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Calculate <em class="hi">Marginal Cost</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A firm produces <strong>100 units</strong> at total cost of <strong>$5,000</strong>. When production increases to <strong>120 units</strong>, total cost rises to <strong>$5,800</strong>. What is the <strong>marginal cost (MC)</strong> of producing the additional 20 units?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$40 per unit.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$48 per unit (average cost at 120 units).</span></li>
+    <li><span class="lbl">C</span><span class="opt">$50 per unit (average cost at 100 units).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.02 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 13 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.02</span>
+    <span class="rule"></span>
+    <span>13 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Q <mark>100 → 120</mark>. TC <mark>$5,000 → $5,800</mark>. Asking for <mark>marginal cost</mark> of additional units.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">MC = ΔTC / ΔQ. ΔTC = 5800 − 5000 = <em>$800</em>. ΔQ = 120 − 100 = <em>20 units</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">MC = $800 / 20 = <em>$40/unit</em>. Đây là cost để sản xuất thêm MỘT unit trong range 100-120.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Đừng nhầm với Average Total Cost (ATC = TC/Q). ATC@120 = 5800/120 ≈ $48 (option B). MC ≠ ATC khi có fixed cost.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.02 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 14 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.02</span>
+    <span class="rule"></span>
+    <span>14 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một firm sản xuất <strong>100 units</strong> với tổng chi phí <strong>$5,000</strong>. Khi production tăng lên <strong>120 units</strong>, total cost tăng lên <strong>$5,800</strong>. <strong>Marginal cost (MC)</strong> của 20 units thêm là bao nhiêu?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$40 per unit.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$48 per unit (average cost tại 120 units).</span></li>
+    <li><span class="lbl">C</span><span class="opt">$50 per unit (average cost tại 100 units).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.02 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 15 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.02</span>
+    <span class="rule"></span>
+    <span>15 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — $40/unit.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">MC = ΔTC / ΔQ = ($5,800 − $5,000) / (120 − 100) = $800 / 20 = <b>$40/unit</b>. Đây là cost incremental của mỗi unit thêm trong range Q = 100 → 120.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">$48 là <em>ATC at 120 units</em> ($5,800 / 120). ATC và MC khác nhau khi có fixed cost. Câu hỏi yêu cầu MC (marginal), không phải ATC.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">$50 là <em>ATC at 100 units</em> ($5,000 / 100). Cũng là average, không phải marginal. Common mistake confusing AC and MC.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">MC = <em>change in TC divided by change in Q</em>. ATC = <em>TC / Q</em>. Khi câu hỏi cho 2 điểm TC và Q khác nhau → dùng MC formula (delta). Một điểm duy nhất → ATC.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.02 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 16 · Q2 EN — Market Structure ID -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.02</span>
+    <span class="rule"></span>
+    <span>16 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Identify <em class="hi">market structure</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An industry has <strong>4 major firms</strong> holding a combined 85% market share. Products are slightly differentiated but highly substitutable. Each firm carefully monitors competitors' pricing and reactions before changing its own price. Which market structure best describes this industry?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Perfect competition — many firms with pricing power.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Oligopoly — few firms with strategic interdependence.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Monopolistic competition — many firms with differentiated products.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.02 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.02</span>
+    <span class="rule"></span>
+    <span>17 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>4 major firms</mark>, <mark>85% market share</mark>. Products <mark>slightly differentiated</mark>. Each firm <mark>monitors competitors</mark> before pricing.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">"Vài firms dominate" (4 firms, 85%) → KHÔNG phải perfect competition (cần <em>nhiều small firms</em>) hay monopolistic competition (<em>many firms</em>).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">"Monitor competitors before pricing" = <em>strategic interdependence</em> — dấu hiệu đặc trưng của oligopoly (game theory).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Trong monopolistic competition, firm KHÔNG quan tâm action của competitor (quá nhiều để monitor). Trong oligopoly, CÓ — vì few firms, action quan trọng.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.02 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.02</span>
+    <span class="rule"></span>
+    <span>18 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một ngành có <strong>4 firms chính</strong> nắm tổng cộng 85% market share. Sản phẩm hơi differentiated nhưng có thể thay thế nhau cao. Mỗi firm theo dõi kỹ competitor pricing và phản ứng trước khi thay đổi giá mình. Market structure nào mô tả đúng nhất?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Perfect competition — nhiều firms với pricing power.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Oligopoly — vài firms với strategic interdependence.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Monopolistic competition — nhiều firms với differentiated products.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.02 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.02</span>
+    <span class="rule"></span>
+    <span>19 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Oligopoly.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Dấu hiệu của oligopoly: <b>few firms</b> (chỉ 4), <b>high market share concentration</b> (85%), và <b>strategic interdependence</b> (monitor competitors). Firm trong oligopoly phải tính toán reaction của rival vì action của mỗi firm ảnh hưởng đáng kể đến mọi firm khác.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Perfect competition yêu cầu <em>many small firms</em>, <em>homogeneous products</em>, và <em>no pricing power</em>. Option A tự mâu thuẫn ("many firms với pricing power") — perfect competition = price-takers, không có pricing power.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Monopolistic competition cần <em>many firms</em> (hàng chục/trăm), mỗi firm quá nhỏ để ảnh hưởng thị trường. 4 firms với 85% market share là oligopoly, không phải monopolistic.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Dấu hiệu oligopoly: <em>few firms</em> + <em>high concentration</em> + <em>strategic interdependence</em>. Test: nếu firm phải nghĩ về "đối thủ sẽ phản ứng thế nào" → oligopoly. Nếu không quan tâm đối thủ cụ thể → monopolistic competition hoặc perfect.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.02 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q3 EN — Profit maximization -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.02</span>
+    <span class="rule"></span>
+    <span>20 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Profit max</em> decision.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A perfectly competitive firm produces 500 units at a market price of <strong>$10/unit</strong>. Its Marginal Cost at 500 units is <strong>$8</strong>, Average Variable Cost (AVC) is <strong>$7</strong>, and Average Total Cost (ATC) is <strong>$11</strong>. Which action <strong>should</strong> the firm take in the short run?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Shut down — the firm is incurring a loss (ATC &gt; P).</span></li>
+    <li><span class="lbl">B</span><span class="opt">Increase output — MR (= P = $10) &gt; MC ($8), and P &gt; AVC, so continue.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Decrease output — MC is rising and profit is shrinking.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.02 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.02</span>
+    <span class="rule"></span>
+    <span>21 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    P = <mark>$10</mark>, MC = <mark>$8</mark>, AVC = <mark>$7</mark>, ATC = <mark>$11</mark>. Perfect competition → <mark>P = MR</mark>. Short-run decision.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">So sánh MR và MC: MR ($10) &gt; MC ($8) → sản xuất thêm vẫn có lời trên margin → <em>increase output</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Shutdown rule: shut down chỉ khi <em>P &lt; AVC</em>. Ở đây P ($10) &gt; AVC ($7) → continue operating, kể cả có loss.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">ATC &gt; P nghĩa là firm có economic loss. Nhưng P &gt; AVC nghĩa là firm cover được variable cost + một phần fixed cost → better than shutdown (mất 100% fixed).</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.02 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.02</span>
+    <span class="rule"></span>
+    <span>22 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một firm trong perfect competition sản xuất 500 units ở market price <strong>$10/unit</strong>. MC tại 500 units = <strong>$8</strong>, AVC = <strong>$7</strong>, ATC = <strong>$11</strong>. Firm <strong>nên</strong> làm gì trong short run?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Shut down — firm đang chịu lỗ (ATC &gt; P).</span></li>
+    <li><span class="lbl">B</span><span class="opt">Tăng output — MR (= P = $10) &gt; MC ($8), và P &gt; AVC, nên continue.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Giảm output — MC đang tăng và profit đang shrinking.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.02 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.02</span>
+    <span class="rule"></span>
+    <span>23 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Increase output.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Hai điều kiện quan trọng: (1) <b>MR &gt; MC</b> ($10 &gt; $8) → sản xuất thêm 1 unit mang về $10 revenue với chi phí chỉ $8 → contribute $2 to profit. (2) <b>P &gt; AVC</b> ($10 &gt; $7) → firm cover variable cost + đóng góp vào fixed cost. Cả hai signals: <em>continue and increase</em>.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Shutdown rule là P &lt; AVC, không phải ATC &gt; P. Ở đây P ($10) &gt; AVC ($7) → continue. Nếu shut down, firm mất TOÀN BỘ fixed cost. Operating ở loss còn tốt hơn — firm cover variable cost + một phần fixed.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Giảm output chỉ đúng khi MC &gt; MR. Ở đây MR (10) vẫn &gt; MC (8) → sản xuất thêm vẫn contribute. Giảm output = lose profit opportunity.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Short-run rules: <em>MR = MC</em> cho optimal Q. <em>Shut down</em> nếu P &lt; AVC. <em>Continue operating</em> ngay cả khi loss nếu P &gt; AVC. Fixed cost là sunk — không ảnh hưởng short-run decision.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.02 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 24 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>03.02 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 03.03 — Aggregate Output, Prices, and Economic Growth</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>
