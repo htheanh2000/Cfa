@@ -258,12 +258,16 @@
   margin-bottom: 10px;
 }
 
-/* Formula box — mono-font equation display with highlighted variables */
+/* Formula box — mono-font equation display with highlighted variables.
+   Layered framing: outer paper box (full outline + thick accent left edge)
+   contains a nested white equation block with full navy border, so the
+   formula stands out strongly against the slide background. */
 .formula-box {
   background: var(--paper);
+  border: 1px solid var(--rule-soft);
   border-left: 6px solid var(--accent);
-  padding: 22px 28px;
-  margin-top: 12px;
+  padding: 22px 28px 24px;
+  margin: 16px 0;
   max-width: 1600px;
   color: var(--ink);
 }
@@ -278,21 +282,34 @@
   margin-bottom: 14px;
 }
 .formula-box .eq {
+  display: block;
+  background: #FFFFFF;
+  border: 3px solid var(--accent);
+  padding: 20px 28px;
+  margin: 12px 0;
   font-family: var(--mono);
-  font-size: 28px;
-  line-height: 1.5;
+  font-size: 32px;
+  line-height: 1.55;
   color: var(--ink);
-  margin: 8px 0;
   font-weight: 500;
+  letter-spacing: 0.01em;
+  overflow-x: auto;
 }
-.formula-box .eq .var { color: var(--accent); font-weight: 700; }
-.formula-box .eq sup { font-size: 0.7em; }
-.formula-box .eq sub { font-size: 0.7em; }
+.formula-box .eq + .eq { margin-top: 14px; }
+.formula-box .eq .var {
+  color: var(--accent);
+  font-weight: 700;
+  background: rgba(20, 54, 95, 0.08);
+  padding: 0 4px;
+  border-radius: 0;
+}
+.formula-box .eq sup { font-size: 0.62em; vertical-align: super; line-height: 0; }
+.formula-box .eq sub { font-size: 0.62em; vertical-align: sub; line-height: 0; }
 .formula-box .note {
   font-family: var(--sans);
   font-size: 18px;
   color: var(--ink-soft);
-  margin-top: 14px;
+  margin-top: 16px;
   line-height: 1.5;
 }
 .formula-box .note b { color: var(--ink); font-weight: 600; }
