@@ -1,0 +1,842 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Quant 02.02 — Time Value of Money in Finance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 120px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Time Value<br>of <em>Money.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 02 · Lesson 02.02 · Quantitative Methods</div>
+  </div>
+  <div class="right">
+    <div class="mark">Foundation for all CFA finance</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Quant</dd></div>
+      <div><dt>Module</dt><dd>02</dd></div>
+      <div><dt>Lesson</dt><dd>02.02</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">PV · FV · Annuities · APR vs EAR · NPV</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">01</div>
+    <div class="lbl">Foundations</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>The most <em>fundamental</em><br>idea in finance.</h2>
+    <ul class="toc">
+      <li class="active">01 · Why TVM matters — time preference, opportunity cost</li>
+      <li>02 · FV &amp; PV — compounding and discounting</li>
+      <li>03 · Annuities &amp; perpetuities</li>
+      <li>04 · Nominal vs Effective rates (APR vs EAR)</li>
+      <li>05 · NPV &amp; IRR introduction</li>
+      <li>06 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · WHY TVM -->
+<section data-label="Why TVM" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.02</span>
+    <span class="rule"></span>
+    <span>03 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Concept</div>
+    <h2 class="h-section">Why does <em class="hi">time</em> change money's value?</h2>
+  </div>
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Time preference — $1 hôm nay &gt; $1 ngày mai</span>
+        <span class="step-body">Con người có xu hướng <em>ưu tiên hiện tại</em>. Nhận tiền ngay = consume/invest ngay; chờ = mất cơ hội. Đây là <em>impatience</em> mang tính psychological + rational.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Opportunity cost — tiền biết kiếm tiền</span>
+        <span class="step-body">$1 nay có thể gửi tiết kiệm lãi 5% → $1.05 sau 1 năm. Từ chối $1 nay = từ chối cơ hội kiếm 5%. <em>Interest rate là giá của thời gian</em>.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Inflation — purchasing power erodes</span>
+        <span class="step-body">Lạm phát 3%/năm → $1 nay chỉ mua được bằng $0.97 giá trị thực sau 1 năm. Nominal stays same, <em>real value</em> giảm.</span>
+      </span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.02 — WHY TVM</span>
+  </div>
+</section>
+
+
+<!-- 04 · FV & PV FORMULAS -->
+<section data-label="FV & PV" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.02</span>
+    <span class="rule"></span>
+    <span>04 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Core formulas</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">FV</em> &amp; <em class="hi">PV</em> — compounding &amp; discounting.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Future Value</span>
+    <div class="eq"><span class="var">FV</span> = <span class="var">PV</span> × (1 + <span class="var">r</span>)<sup><span class="var">n</span></sup></div>
+    <div class="note"><b>FV</b> = Future Value · <b>PV</b> = Present Value · <b>r</b> = lãi suất/kỳ · <b>n</b> = số kỳ</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 20px;">
+    <span class="fmt-label">§ Present Value</span>
+    <div class="eq"><span class="var">PV</span> = <span class="var">FV</span> / (1 + <span class="var">r</span>)<sup><span class="var">n</span></sup></div>
+    <div class="note">Discounting là nghịch đảo của compounding. Càng xa tương lai → discount càng nhiều.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Rule of 72 — Để gấp đôi tiền với lãi suất <em>r%</em>: cần khoảng <em>72/r</em> năm. Ví dụ: r=8% → ~9 năm. Mnemonic hữu ích cho exam.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.02 — FV &amp; PV</span>
+  </div>
+</section>
+
+
+<!-- 05 · COMPOUNDING FREQUENCY -->
+<section data-label="Compounding" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.02</span>
+    <span class="rule"></span>
+    <span>05 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Compounding frequency</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">How often <em class="hi">matters</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Multiple compounding periods</span>
+    <div class="eq"><span class="var">FV</span> = <span class="var">PV</span> × (1 + <span class="var">r</span>/<span class="var">m</span>)<sup><span class="var">m</span>·<span class="var">n</span></sup></div>
+    <div class="note"><b>m</b> = số lần compound/năm · <b>r</b> = lãi suất năm nominal · <b>n</b> = số năm</div>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 20px;">
+    <div class="tenet">
+      <span class="n">m=1</span>
+      <div>
+        <div class="t">Annual — kỳ năm</div>
+        <div class="d">Gốc đơn giản nhất. <em>FV = PV(1+r)<sup>n</sup></em>. Dùng cho most textbook examples.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">m=2</span>
+      <div>
+        <div class="t">Semi-annual</div>
+        <div class="d">Chuẩn của US Treasury bonds. Coupon 6% năm = 3% × 2 lần/năm.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">m=12</span>
+      <div>
+        <div class="t">Monthly</div>
+        <div class="d">Credit card, mortgage, personal loan hay dùng monthly compounding.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">m→∞</span>
+      <div>
+        <div class="t">Continuous</div>
+        <div class="d"><em>FV = PV · e<sup>rn</sup></em>. Dùng nhiều trong derivatives pricing (Black-Scholes).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.02 — COMPOUNDING</span>
+  </div>
+</section>
+
+
+<!-- 06 · ANNUITIES -->
+<section data-label="Annuities" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.02</span>
+    <span class="rule"></span>
+    <span>06 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Annuities</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Annuity</em> — dòng tiền đều nhau.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ PV of Ordinary Annuity</span>
+    <div class="eq"><span class="var">PV</span> = <span class="var">PMT</span> × [1 − (1 + <span class="var">r</span>)<sup>−<span class="var">n</span></sup>] / <span class="var">r</span></div>
+    <div class="note"><b>PMT</b> = payment đều mỗi kỳ · Ordinary annuity: payment xảy ra <em>cuối</em> mỗi kỳ.</div>
+  </div>
+
+  <div class="compare" style="margin-top: 24px;">
+    <div class="cc">
+      <div class="head">Ordinary <em>— end of period</em></div>
+      <dl>
+        <dt>Khi</dt>
+        <dd>Payment xảy ra <b>cuối</b> mỗi kỳ</dd>
+        <dt>Ví dụ</dt>
+        <dd>Tiền thuê nhà trả cuối tháng; coupon bonds</dd>
+        <dt>Formula</dt>
+        <dd>Standard PV/FV annuity formulas</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Annuity due <em>— start of period</em></div>
+      <dl>
+        <dt>Khi</dt>
+        <dd>Payment xảy ra <b>đầu</b> mỗi kỳ</dd>
+        <dt>Ví dụ</dt>
+        <dd>Rent-to-own; retirement withdrawals</dd>
+        <dt>Formula</dt>
+        <dd>PV<sub>due</sub> = PV<sub>ord</sub> × (1 + r)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.02 — ANNUITIES</span>
+  </div>
+</section>
+
+
+<!-- 07 · PERPETUITIES -->
+<section data-label="Perpetuities" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.02</span>
+    <span class="rule"></span>
+    <span>07 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Perpetuities</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Perpetuity</em> — forever.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ PV of Perpetuity</span>
+    <div class="eq"><span class="var">PV</span> = <span class="var">PMT</span> / <span class="var">r</span></div>
+    <div class="note">Dòng tiền đều <em>vô hạn</em>. Elegant: chỉ cần chia cho <em>r</em>.</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 24px;">
+    <li>
+      <span>
+        <span class="step-title">Ví dụ — British consols</span>
+        <span class="step-body">Trái phiếu chính phủ Anh £100 trả £5/năm mãi mãi. Nếu r=5% → PV = 5/0.05 = £100.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Growing perpetuity — Gordon Growth</span>
+        <span class="step-body">PV = PMT / (r − g) khi dòng tiền tăng <em>g</em>% mỗi năm. Nền tảng cho DDM equity valuation.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Condition — r phải &gt; g</span>
+        <span class="step-body">Nếu g ≥ r → formula không hội tụ, PV = ∞. Đây là tại sao DDM không phù hợp cho growth stocks cao.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.02 — PERPETUITIES</span>
+  </div>
+</section>
+
+
+<!-- 08 · APR vs EAR -->
+<section data-label="APR vs EAR" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.02</span>
+    <span class="rule"></span>
+    <span>08 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Interest rates</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">APR</em> vs <em class="hi">EAR</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Effective Annual Rate</span>
+    <div class="eq"><span class="var">EAR</span> = (1 + <span class="var">APR</span>/<span class="var">m</span>)<sup><span class="var">m</span></sup> − 1</div>
+    <div class="note"><b>APR</b> = Annual Percentage Rate (nominal) · <b>m</b> = compounding periods/year · <b>EAR</b> luôn ≥ APR.</div>
+  </div>
+
+  <div class="compare" style="margin-top: 24px;">
+    <div class="cc">
+      <div class="head">APR <em>— nominal</em></div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>Lãi suất <b>chỉ báo</b> (stated rate)</dd>
+        <dt>Đơn vị</dt>
+        <dd>Not annualized compound</dd>
+        <dt>Dùng khi</dt>
+        <dd>Quảng cáo credit card, mortgage ("18% APR")</dd>
+        <dt>Hạn chế</dt>
+        <dd>Undervalue chi phí vay thực nếu compound nhiều lần</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">EAR <em>— effective</em></div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>Lãi suất <b>thật sự</b> trả/năm sau compounding</dd>
+        <dt>Đơn vị</dt>
+        <dd>Annualized + compounded</dd>
+        <dt>Dùng khi</dt>
+        <dd>So sánh loans/investments khác frequency</dd>
+        <dt>Ưu điểm</dt>
+        <dd>Reflects true cost/return; apples-to-apples</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Example — APR 12% compounded monthly: EAR = (1 + 0.12/12)<sup>12</sup> − 1 ≈ <b>12.68%</b>. Cao hơn APR.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.02 — APR vs EAR</span>
+  </div>
+</section>
+
+
+<!-- 09 · NPV & IRR -->
+<section data-label="NPV & IRR" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.02</span>
+    <span class="rule"></span>
+    <span>09 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Investment decisions</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">NPV</em> &amp; <em class="hi">IRR</em> — đánh giá dự án.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Net Present Value</span>
+    <div class="eq"><span class="var">NPV</span> = Σ <span class="var">CF</span><sub><span class="var">t</span></sub> / (1 + <span class="var">r</span>)<sup><span class="var">t</span></sup> − <span class="var">CF</span><sub>0</sub></div>
+    <div class="note">Tổng PV của mọi cash flow trừ initial investment. <b>NPV &gt; 0</b> → accept project.</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 24px;">
+    <li>
+      <span>
+        <span class="step-title">NPV rule — accept if positive</span>
+        <span class="step-body">NPV &gt; 0 nghĩa là dự án tạo giá trị vượt chi phí vốn. NPV &lt; 0 → reject. NPV = 0 → break-even.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">IRR — discount rate làm NPV = 0</span>
+        <span class="step-body">IRR là <em>internal return</em> của dự án. Accept nếu IRR &gt; cost of capital. Conflict với NPV khi mutually exclusive.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">NPV wins — khi có conflict</span>
+        <span class="step-body">Khi NPV và IRR đối lập (mutually exclusive, unconventional cash flows), luôn theo <b>NPV</b>. IRR có multiple values problem.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.02 — NPV &amp; IRR</span>
+  </div>
+</section>
+
+
+<!-- 10 · EXAM FOCUS -->
+<section data-label="Exam focus" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.02</span>
+    <span class="rule"></span>
+    <span>10 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Exam focus</div>
+    <h2 class="h-section">TVM <em class="hi">trên phòng thi</em>.</h2>
+  </div>
+
+  <div class="take" style="margin-top: 8px;">
+    <div class="item">
+      <div class="k">Heavy weight</div>
+      <div class="v">TVM chiếm ~30% số câu Quant. Là foundation cho Fixed Income, Corporate, Equity valuation.</div>
+    </div>
+    <div class="item">
+      <div class="k">Calculator muscle</div>
+      <div class="v">Thành thạo <em>TI BA II Plus</em> — N, I/Y, PV, PMT, FV keys. Exam cho 3 phút/câu — phải thao tác nhanh.</div>
+    </div>
+    <div class="item">
+      <div class="k">Sign convention</div>
+      <div class="v">Cash <em>outflow</em> = negative, cash <em>inflow</em> = positive. Sai sign → sai đáp án dù công thức đúng.</div>
+    </div>
+    <div class="item">
+      <div class="k">EAR trap</div>
+      <div class="v">Câu hỏi compare loans/deposits với frequency khác nhau → phải convert sang <em>EAR</em>, không so APR trực tiếp.</div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.02 — EXAM FOCUS</span>
+  </div>
+</section>
+
+
+<!-- 11 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 12 · Q1 EN — Basic FV -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.02</span>
+    <span class="rule"></span>
+    <span>12 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Basic <em class="hi">Future Value</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An investor deposits <strong>$1,000</strong> today in a savings account earning <strong>5%</strong> annual interest, compounded annually. What is the account balance after <strong>10 years</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$1,500.00 (simple interest).</span></li>
+    <li><span class="lbl">B</span><span class="opt">$1,628.89 (compound interest).</span></li>
+    <li><span class="lbl">C</span><span class="opt">$1,714.25 (continuous compounding).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.02 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 13 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.02</span>
+    <span class="rule"></span>
+    <span>13 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Deposit <mark>$1,000</mark> today, earn <mark>5% annual interest</mark>, <mark>compounded annually</mark>. Balance after <mark>10 years</mark>?
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">"Compounded annually" → m=1, dùng <em>FV = PV(1+r)<sup>n</sup></em>. Không phải simple interest, không phải continuous.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">PV=1000, r=0.05, n=10 → FV = 1000 × 1.05<sup>10</sup> = 1000 × 1.6289 = <em>$1,628.89</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Simple interest = 1000 + 1000×0.05×10 = $1,500 (option A). Continuous = 1000·e<sup>0.5</sup> ≈ $1,648 (option C hơi sai).</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.02 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 14 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.02</span>
+    <span class="rule"></span>
+    <span>14 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một nhà đầu tư gửi <strong>$1,000</strong> hôm nay vào tài khoản tiết kiệm hưởng lãi <strong>5%/năm</strong>, compound annually (kỳ năm). Số dư tài khoản sau <strong>10 năm</strong> là bao nhiêu?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$1,500.00 (lãi đơn).</span></li>
+    <li><span class="lbl">B</span><span class="opt">$1,628.89 (lãi kép).</span></li>
+    <li><span class="lbl">C</span><span class="opt">$1,714.25 (compound liên tục).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.02 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 15 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.02</span>
+    <span class="rule"></span>
+    <span>15 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $1,628.89.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Dùng <b>FV = PV(1+r)<sup>n</sup></b> = 1000 × (1.05)<sup>10</sup> = 1000 × 1.6289 = <b>$1,628.89</b>. "Compounded annually" = m=1 = standard annual compounding.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">$1,500 là <em>simple interest</em>: PV + PV·r·n = 1000 + 50·10. Đề ghi "compounded annually" → phải dùng compound, không simple.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">$1,714 gợi đến continuous compounding (e<sup>rn</sup>), nhưng đề là "compounded <em>annually</em>", không phải continuously.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">"Compounded X-ly" định nghĩa m. Đọc kỹ: <em>annually</em> (m=1), <em>semi-annually</em> (m=2), <em>monthly</em> (m=12), <em>continuously</em> (m→∞).</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.02 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 16 · Q2 EN — Annuity PV -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.02</span>
+    <span class="rule"></span>
+    <span>16 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Retirement <em class="hi">annuity</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      You plan to withdraw <strong>$50,000</strong> at the end of each year for <strong>20 years</strong>, starting one year from today. If the annual discount rate is <strong>6%</strong>, how much must you have in your account today?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$573,496 (ordinary annuity).</span></li>
+    <li><span class="lbl">B</span><span class="opt">$607,906 (annuity due).</span></li>
+    <li><span class="lbl">C</span><span class="opt">$1,000,000 (simple sum).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.02 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.02</span>
+    <span class="rule"></span>
+    <span>17 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Withdraw <mark>$50,000 at the END of each year</mark> for <mark>20 years</mark>, <mark>starting one year from today</mark>. Discount rate <mark>6%</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">"At the <em>end</em> of each year" + "starting <em>one year</em> from today" → <em>ordinary annuity</em>, không phải annuity due.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">PV<sub>ord</sub> = PMT × [1 − (1+r)<sup>−n</sup>] / r = 50000 × [1 − 1.06<sup>−20</sup>] / 0.06 = 50000 × 11.4699.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Nhân cuối: 50000 × 11.4699 = <em>$573,496</em>. Nếu nhầm annuity due → ×1.06 = $607,906 (option B).</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.02 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.02</span>
+    <span class="rule"></span>
+    <span>18 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Bạn dự định rút <strong>$50,000</strong> vào cuối mỗi năm trong <strong>20 năm</strong>, bắt đầu từ một năm kể từ hôm nay. Nếu discount rate là <strong>6%/năm</strong>, bạn phải có bao nhiêu tiền trong tài khoản hôm nay?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$573,496 (ordinary annuity).</span></li>
+    <li><span class="lbl">B</span><span class="opt">$607,906 (annuity due).</span></li>
+    <li><span class="lbl">C</span><span class="opt">$1,000,000 (tổng đơn giản).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.02 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.02</span>
+    <span class="rule"></span>
+    <span>19 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — $573,496.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">"Cuối mỗi năm, bắt đầu 1 năm nữa" = <b>ordinary annuity</b>. PV = PMT × [1 − (1+r)<sup>−n</sup>]/r = 50000 × [1 − 1.06<sup>−20</sup>] / 0.06 ≈ 50000 × 11.4699 = <b>$573,496</b>.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">$607,906 là <em>annuity due</em> (payment đầu kỳ). Nhưng đề nói "end of each year, starting one year from today" → ordinary, không phải due.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">$1,000,000 = 50000 × 20 (tổng simple). Bỏ qua time value of money hoàn toàn — đây chính là lý do tồn tại TVM.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">"End of period" = <em>ordinary</em>. "Start of period" = <em>due</em>. Annuity due = Ordinary × (1+r). Difference: ~6% trong ví dụ này — không trivial.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.02 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q3 EN — APR vs EAR -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.02</span>
+    <span class="rule"></span>
+    <span>20 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Credit card <em class="hi">EAR</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Your credit card advertises an APR of <strong>18%</strong>, compounded <strong>monthly</strong>. What is the effective annual rate (EAR) you actually pay on unpaid balance?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">18.00% (same as APR).</span></li>
+    <li><span class="lbl">B</span><span class="opt">19.56% (effective annual rate).</span></li>
+    <li><span class="lbl">C</span><span class="opt">216.00% (APR × 12).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.02 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.02</span>
+    <span class="rule"></span>
+    <span>21 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Credit card: <mark>APR 18%</mark>, <mark>compounded monthly</mark>. Asking for <mark>effective annual rate (EAR)</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">EAR = (1 + APR/m)<sup>m</sup> − 1. Ở đây m=12 (monthly), APR=0.18 → EAR = (1 + 0.18/12)<sup>12</sup> − 1.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">(1.015)<sup>12</sup> ≈ 1.1956 → EAR ≈ <em>19.56%</em>. EAR luôn ≥ APR khi m &gt; 1.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Option A (18%) chỉ đúng khi compound annually (m=1). Option C (216%) nhầm: APR × 12 không có ý nghĩa financial.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.02 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.02</span>
+    <span class="rule"></span>
+    <span>22 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Thẻ tín dụng của bạn quảng cáo APR <strong>18%</strong>, compound <strong>theo tháng</strong>. Effective annual rate (EAR) thật sự bạn phải trả trên số dư chưa thanh toán là bao nhiêu?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">18.00% (bằng APR).</span></li>
+    <li><span class="lbl">B</span><span class="opt">19.56% (effective annual rate).</span></li>
+    <li><span class="lbl">C</span><span class="opt">216.00% (APR × 12).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.02 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.02</span>
+    <span class="rule"></span>
+    <span>23 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 19.56%.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">EAR = (1 + APR/m)<sup>m</sup> − 1 = (1 + 0.18/12)<sup>12</sup> − 1 = (1.015)<sup>12</sup> − 1 ≈ 1.1956 − 1 = <b>19.56%</b>. Đây là true cost of borrowing — cao hơn 1.56% so với APR do monthly compounding.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">18% chỉ đúng khi compound <em>annually</em> (m=1). Với monthly compounding, EAR strictly &gt; APR. Đây là tại sao regulators yêu cầu <em>disclose EAR</em>, không chỉ APR.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">216% = APR × 12 không có ý nghĩa financial. Compounding không phải nhân đơn giản — là exponentiation.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Khi so sánh loans/investments có compounding frequency khác nhau → luôn convert sang <em>EAR</em>. APR là "stated", EAR là "truly paid".</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.02 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 24 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>02.02 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 02.03 — Statistical Measures of Asset Returns</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

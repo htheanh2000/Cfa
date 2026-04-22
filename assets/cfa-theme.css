@@ -235,6 +235,68 @@
 }
 .takeaway-box .ttext em { font-style: italic; opacity: 0.92; }
 
+/* Rule box — quote a formal rule or law text */
+.rule-box {
+  border-left: 6px solid var(--accent);
+  background: var(--paper);
+  padding: 22px 28px;
+  font-family: var(--display);
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: 1600px;
+  margin-top: 8px;
+}
+.rule-box .tag {
+  display: block;
+  font-family: var(--mono);
+  font-size: 18px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Formula box — mono-font equation display with highlighted variables */
+.formula-box {
+  background: var(--paper);
+  border-left: 6px solid var(--accent);
+  padding: 22px 28px;
+  margin-top: 12px;
+  max-width: 1600px;
+  color: var(--ink);
+}
+.formula-box .fmt-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 17px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.formula-box .eq {
+  font-family: var(--mono);
+  font-size: 28px;
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 8px 0;
+  font-weight: 500;
+}
+.formula-box .eq .var { color: var(--accent); font-weight: 700; }
+.formula-box .eq sup { font-size: 0.7em; }
+.formula-box .eq sub { font-size: 0.7em; }
+.formula-box .note {
+  font-family: var(--sans);
+  font-size: 18px;
+  color: var(--ink-soft);
+  margin-top: 14px;
+  line-height: 1.5;
+}
+.formula-box .note b { color: var(--ink); font-weight: 600; }
+
 /* Hint slide — same shell as q-card but with <mark> highlights + bullet hints */
 .hint-card {
   background: var(--paper);

@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Quant 02.01 — Rates and Returns</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 128px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Rates &amp;<br><em>Returns.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 02 · Lesson 02.01 · Quantitative Methods</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module đầu tiên của Quantitative Methods</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Quant</dd></div>
+      <div><dt>Module</dt><dd>01</dd></div>
+      <div><dt>Lesson</dt><dd>02.01</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">HPR · Arithmetic/Geometric · MWR vs TWR</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">01</div>
+    <div class="lbl">Foundations</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>Interest rates &amp;<br><em>measuring returns.</em></h2>
+    <ul class="toc">
+      <li class="active">01 · Interest rate components — real, inflation, risk premiums</li>
+      <li>02 · Holding Period Return (HPR)</li>
+      <li>03 · Arithmetic vs Geometric mean returns</li>
+      <li>04 · Money-Weighted vs Time-Weighted Return</li>
+      <li>05 · Continuously compounded returns</li>
+      <li>06 · Gross/Net, Real/Nominal, Leveraged</li>
+      <li>07 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · INTEREST RATE COMPONENTS -->
+<section data-label="Interest rate components" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>03 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Interest rate is <em class="hi">priced by components</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Nominal risk-free rate decomposition</span>
+    <div class="eq"><span class="var">r</span><sub>nominal</sub> = <span class="var">r</span><sub>real</sub> + <span class="var">E</span>(inflation) + <span class="var">Risk Premiums</span></div>
+    <div class="note">Nominal rate quoted trên thị trường = real rate + expected inflation + risk premiums.</div>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 24px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Real risk-free</em> rate</div>
+        <div class="d">Lãi suất "thuần túy" khi không có inflation và không có risk. Reflects time preference + real productivity of capital.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Inflation</em> premium</div>
+        <div class="d">Bù đắp cho sự mất giá của tiền trong tương lai. Approx = expected inflation rate.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Default risk</em> premium</div>
+        <div class="d">Bù đắp cho khả năng bên vay không trả được. Corporate bond yield &gt; Treasury yield.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Liquidity</em> premium</div>
+        <div class="d">Bù đắp khi khó bán nhanh không lỗ. Small-cap stocks, private bonds yield cao hơn.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">05</span>
+      <div>
+        <div class="t"><em class="hi">Maturity</em> premium</div>
+        <div class="d">Bù đắp cho interest rate risk khi kỳ hạn dài. Long bonds thường yield cao hơn short bonds.</div>
+      </div>
+    </div>
+    <div class="tenet" style="border-top-color: var(--rule-soft);">
+      <span class="n" style="color: var(--ink-muted);">§</span>
+      <div>
+        <div class="t" style="font-weight: 500; color: var(--ink-soft);">Fisher relation</div>
+        <div class="d">(1 + r<sub>nominal</sub>) = (1 + r<sub>real</sub>)(1 + inflation). Multiplicative form khi chính xác hơn approximation.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — RATE COMPONENTS</span>
+  </div>
+</section>
+
+
+<!-- 04 · HOLDING PERIOD RETURN -->
+<section data-label="HPR" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>04 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Single-period return</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Holding Period Return</em> (HPR).</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ HPR</span>
+    <div class="eq"><span class="var">HPR</span> = (<span class="var">P</span><sub>1</sub> − <span class="var">P</span><sub>0</sub> + <span class="var">D</span>) / <span class="var">P</span><sub>0</sub></div>
+    <div class="note"><b>P<sub>0</sub></b> = giá đầu kỳ · <b>P<sub>1</sub></b> = giá cuối kỳ · <b>D</b> = dividend/income nhận được trong kỳ.</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 24px;">
+    <li>
+      <span>
+        <span class="step-title">HPR captures total return — không chỉ price change</span>
+        <span class="step-body">Bao gồm cả <em>capital gain</em> (P<sub>1</sub> − P<sub>0</sub>) và <em>income</em> (D). Bỏ qua D sẽ undervalue returns của stocks trả cổ tức cao.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Period agnostic — không specify kỳ</span>
+        <span class="step-body">HPR có thể là 1 ngày, 1 tháng, 1 năm, 5 năm... Nếu muốn annualize, dùng (1+HPR)<sup>1/n</sup> − 1.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Ví dụ cụ thể</span>
+        <span class="step-body">Mua cổ phiếu $100, nhận $3 dividend, bán $108. HPR = (108 − 100 + 3) / 100 = <em>11%</em>.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — HPR</span>
+  </div>
+</section>
+
+
+<!-- 05 · ARITHMETIC vs GEOMETRIC -->
+<section data-label="Arithmetic vs Geometric" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>05 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Multi-period average</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Arithmetic</em> vs <em class="hi">Geometric</em> mean.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Formulas</span>
+    <div class="eq">Arithmetic: <span class="var">R̄</span> = (<span class="var">R</span><sub>1</sub> + <span class="var">R</span><sub>2</sub> + ... + <span class="var">R</span><sub>n</sub>) / <span class="var">n</span></div>
+    <div class="eq">Geometric: <span class="var">R̄</span><sub>g</sub> = [(1+<span class="var">R</span><sub>1</sub>)(1+<span class="var">R</span><sub>2</sub>)...(1+<span class="var">R</span><sub>n</sub>)]<sup>1/<span class="var">n</span></sup> − 1</div>
+    <div class="note">Khi returns biến động → <b>Arithmetic &gt; Geometric</b>. Khi tất cả returns bằng nhau → 2 giá trị bằng nhau.</div>
+  </div>
+
+  <div class="compare" style="margin-top: 24px;">
+    <div class="cc">
+      <div class="head">Arithmetic <em>— forward-looking</em></div>
+      <dl>
+        <dt>Công thức</dt>
+        <dd>Sum / n — average đơn giản</dd>
+        <dt>Ý nghĩa</dt>
+        <dd>Best estimate of <b>next-period expected</b> return</dd>
+        <dt>Dùng</dt>
+        <dd>Forecasting, CAPM expected return</dd>
+        <dt>Nhược</dt>
+        <dd>Overstate compound growth khi returns volatile</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Geometric <em>— backward-looking</em></div>
+      <dl>
+        <dt>Công thức</dt>
+        <dd>Geometric mean — compound returns</dd>
+        <dt>Ý nghĩa</dt>
+        <dd>Actual <b>realized</b> compounded return</dd>
+        <dt>Dùng</dt>
+        <dd>Historical performance reporting</dd>
+        <dt>Ưu</dt>
+        <dd>Reflects true wealth accumulation</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Rule — <em>Arithmetic ≥ Geometric</em>. Gap tăng khi volatility tăng. Ví dụ: returns +50%, −50% → Arithmetic = 0%, Geometric = −13.4%.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — MEANS</span>
+  </div>
+</section>
+
+
+<!-- 06 · MONEY-WEIGHTED RETURN -->
+<section data-label="Money-weighted return" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>06 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Investor return</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Money-Weighted</em> Return (MWR).</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ MWR = IRR of cash flows</span>
+    <div class="eq">0 = Σ <span class="var">CF</span><sub><span class="var">t</span></sub> / (1 + <span class="var">MWR</span>)<sup><span class="var">t</span></sup></div>
+    <div class="note">MWR là discount rate làm NPV của tất cả cash flows = 0. Tức là <b>IRR</b> applied to investor's cash flows (deposits/withdrawals + final value).</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 24px;">
+    <li>
+      <span>
+        <span class="step-title">Reflects investor <em>timing decisions</em></span>
+        <span class="step-body">Nếu investor nạp thêm tiền đúng trước khi market tăng mạnh → MWR cao. Nạp trước khi crash → MWR thấp. Penalize/reward timing.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Best for <em>individual</em> investor perspective</span>
+        <span class="step-body">Phản ánh "tôi đã kiếm được bao nhiêu" dựa trên cụ thể các lần deposit/withdrawal của mình.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Sensitive to timing — không fair khi so sánh managers</span>
+        <span class="step-body">Manager không kiểm soát được khi nào client nạp/rút. Dùng MWR để đánh giá manager là không fair → dùng TWR thay thế.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — MWR</span>
+  </div>
+</section>
+
+
+<!-- 07 · TIME-WEIGHTED RETURN -->
+<section data-label="Time-weighted return" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>07 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Manager return</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Time-Weighted</em> Return (TWR).</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ TWR — geometric linking</span>
+    <div class="eq"><span class="var">TWR</span> = [(1 + <span class="var">HPR</span><sub>1</sub>)(1 + <span class="var">HPR</span><sub>2</sub>)...(1 + <span class="var">HPR</span><sub>n</sub>)]<sup>1/<span class="var">n</span></sup> − 1</div>
+    <div class="note">Tính HPR của từng sub-period (giữa các cash flows), rồi <em>geometrically link</em> lại. Loại bỏ ảnh hưởng của investor timing.</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 24px;">
+    <li>
+      <span>
+        <span class="step-title">Portfolio manager's <em>fair</em> metric</span>
+        <span class="step-body">TWR chỉ phản ánh skill của manager — không bị skew bởi timing nạp/rút của client. GIPS standard yêu cầu dùng TWR.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Mechanics — break period tại mỗi cash flow</span>
+        <span class="step-body">Mỗi lần có deposit/withdrawal, tính HPR của sub-period trước đó, reset cho sub-period sau. Link tất cả.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Exam rule of thumb</span>
+        <span class="step-body">Evaluating manager performance → <em>TWR</em>. Evaluating individual investor actual gain → <em>MWR</em>. Nếu không cash flows giữa kỳ → MWR = TWR.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — TWR</span>
+  </div>
+</section>
+
+
+<!-- 08 · CONTINUOUSLY COMPOUNDED RETURN -->
+<section data-label="Continuous compounding" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>08 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Log return</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Continuously Compounded</em> Return.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Log return</span>
+    <div class="eq"><span class="var">r</span><sub>cc</sub> = ln(<span class="var">P</span><sub>1</sub>/<span class="var">P</span><sub>0</sub>) = ln(1 + <span class="var">HPR</span>)</div>
+    <div class="note">Dùng natural log. Còn gọi là <em>log return</em>. Nhận diện qua ký hiệu ln hoặc "continuously compounded".</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 24px;">
+    <li>
+      <span>
+        <span class="step-title">Time-additive — ưu điểm lớn nhất</span>
+        <span class="step-body">Log returns qua nhiều periods <em>cộng trực tiếp</em>: r<sub>total</sub> = r<sub>1</sub> + r<sub>2</sub> + ... Không như HPR (phải geometric link).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Symmetric — không bị bias</span>
+        <span class="step-body">HPR +50% rồi −50% ≠ 0% (lossess). Log return +ln(1.5) rồi −ln(1.5) = 0. Nice math property cho econometrics.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Dùng nhiều trong quant research</span>
+        <span class="step-body">Options pricing (Black-Scholes), time series analysis, portfolio modeling — đều prefer log returns. CFA L1 chỉ cần nhận diện + tính đổi được.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — LOG RETURNS</span>
+  </div>
+</section>
+
+
+<!-- 09 · RETURN ADJUSTMENTS -->
+<section data-label="Return adjustments" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>09 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Nuances</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Gross, Net, Real, Leveraged</em>.</h2>
+  </div>
+
+  <div class="tenets-grid">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t">Gross vs Net</div>
+        <div class="d">Gross = before fees. Net = after management fees + expenses. Investor bạn <em>thực nhận</em> là NET. Reported returns đôi khi là gross — đọc kỹ.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t">Pre-tax vs After-tax</div>
+        <div class="d">After-tax return = r × (1 − tax rate). Taxable vs tax-deferred accounts khác nhau rõ. Dividend tax rate có thể khác capital gain tax rate.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t">Real vs Nominal</div>
+        <div class="d">(1 + r<sub>real</sub>) = (1 + r<sub>nominal</sub>) / (1 + inflation). Approx: r<sub>real</sub> ≈ r<sub>nominal</sub> − inflation. Exact với Fisher multiplicative.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Leveraged</em> returns</div>
+        <div class="d">Khi borrow để đầu tư (margin): r<sub>leveraged</sub> = [r<sub>asset</sub> + (D/E)(r<sub>asset</sub> − r<sub>debt</sub>)]. Magnifies gains AND losses.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Warning — Đừng so sánh nominal với real, gross với net, pre-tax với after-tax. Phải <em>apples-to-apples</em> để tránh misleading.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — ADJUSTMENTS</span>
+  </div>
+</section>
+
+
+<!-- 10 · EXAM FOCUS -->
+<section data-label="Exam focus" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>10 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Exam focus</div>
+    <h2 class="h-section">Rates &amp; Returns <em class="hi">on the exam</em>.</h2>
+  </div>
+
+  <div class="take" style="margin-top: 8px;">
+    <div class="item">
+      <div class="k">Heavy concept</div>
+      <div class="v">Arithmetic vs Geometric mean là <em>must-know</em>. Expect 2–3 câu test sự hiểu khác biệt.</div>
+    </div>
+    <div class="item">
+      <div class="k">MWR vs TWR</div>
+      <div class="v">Dấu hiệu nhận biết: "manager performance" → TWR. "Investor actual gain with deposits/withdrawals" → MWR.</div>
+    </div>
+    <div class="item">
+      <div class="k">Log return</div>
+      <div class="v">Nhận diện qua keyword "continuously compounded" hoặc "ln". Time-additive là key property.</div>
+    </div>
+    <div class="item">
+      <div class="k">Fisher exact</div>
+      <div class="v">Exam có thể trick bằng approximation (r<sub>real</sub> ≈ nominal − inflation) vs exact (multiplicative). Đọc kỹ đề.</div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — EXAM FOCUS</span>
+  </div>
+</section>
+
+
+<!-- 11 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 12 · Q1 EN — HPR -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>12 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">HPR</em> with dividend.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An investor buys a stock at <strong>$50.00</strong>, receives a <strong>$2.00 dividend</strong> during the year, and sells the stock at the end of the year for <strong>$53.00</strong>. What is the investor's Holding Period Return (HPR)?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">6.00% (capital gain only).</span></li>
+    <li><span class="lbl">B</span><span class="opt">10.00% (capital gain + dividend).</span></li>
+    <li><span class="lbl">C</span><span class="opt">4.00% (dividend yield only).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 13 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>13 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Buy at <mark>$50.00</mark>, receive <mark>$2.00 dividend</mark>, sell at <mark>$53.00</mark>. Asking for <mark>HPR</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">HPR = (P<sub>1</sub> − P<sub>0</sub> + D) / P<sub>0</sub>. <em>Phải</em> include dividend — HPR là total return.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">(53 − 50 + 2) / 50 = 5/50 = 10%. Capital gain 6% + dividend yield 4% = <em>10%</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Option A (6%) bỏ dividend. Option C (4%) chỉ tính dividend yield. Cả hai đều incomplete.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 14 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>14 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một nhà đầu tư mua cổ phiếu ở giá <strong>$50.00</strong>, nhận <strong>$2.00 dividend</strong> trong năm, và bán cổ phiếu cuối năm với giá <strong>$53.00</strong>. Holding Period Return (HPR) của nhà đầu tư là bao nhiêu?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">6.00% (chỉ capital gain).</span></li>
+    <li><span class="lbl">B</span><span class="opt">10.00% (capital gain + dividend).</span></li>
+    <li><span class="lbl">C</span><span class="opt">4.00% (chỉ dividend yield).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 15 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>15 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 10.00%.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">HPR = (P<sub>1</sub> − P<sub>0</sub> + D) / P<sub>0</sub> = (53 − 50 + 2) / 50 = 5/50 = <b>10%</b>. HPR là <em>total return</em>: bao gồm capital gain ($3) VÀ income ($2 dividend).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">6% là <em>capital gain yield</em> ((53 − 50)/50). Bỏ qua dividend → underestimate return. Common mistake cho beginner.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">4% là <em>dividend yield</em> (2/50). Chỉ tính income, bỏ capital gain. HPR phải combine cả hai.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">HPR = <em>price change + income, divided by initial price</em>. Luôn include dividends/coupons — đây là total return measure, không phải price-only.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 16 · Q2 EN — Arithmetic vs Geometric -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>16 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Arithmetic vs Geometric</em> mean.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A fund has annual returns of <strong>+50%</strong> in Year 1 and <strong>−50%</strong> in Year 2. An analyst wants to report the fund's <strong>realized compound return</strong> for the 2-year period. Which measure is <strong>most appropriate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Arithmetic mean of 0.00%.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Geometric mean of −13.40%.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Simple average of absolute values, 50.00%.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>17 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Returns <mark>+50%</mark> then <mark>−50%</mark>. Analyst wants <mark>realized compound return</mark>. Which measure is most appropriate?
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">"Realized compound return" = <em>Geometric mean</em>. Đây là actual wealth outcome, không phải next-period expectation.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Geometric: [(1+0.5)(1−0.5)]<sup>1/2</sup> − 1 = [0.75]<sup>1/2</sup> − 1 ≈ 0.866 − 1 = <em>−13.40%</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Arithmetic mean là 0% (+50 −50)/2 = 0 — SAI vì $100 thành $150 rồi thành $75. Rõ ràng mất tiền, không phải 0%.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>18 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một quỹ có returns hàng năm là <strong>+50%</strong> trong Year 1 và <strong>−50%</strong> trong Year 2. Analyst muốn report <strong>realized compound return</strong> của quỹ trong 2-year period. Measure nào <strong>phù hợp nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Arithmetic mean 0.00%.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Geometric mean −13.40%.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Simple average của trị tuyệt đối, 50.00%.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>19 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Geometric −13.40%.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Realized compound return = <b>Geometric mean</b>. Tính: [(1+0.5)(1−0.5)]<sup>1/2</sup> − 1 = √0.75 − 1 ≈ <b>−13.40%</b>. Reflect actual wealth: $100 → $150 → $75 → CAGR −13.4%/năm.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Arithmetic mean 0% misleading — investor rõ ràng mất 25% wealth ($100 → $75). Arithmetic overstate return khi có volatility.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Trị tuyệt đối không có ý nghĩa financial. +50 và −50 có sign opposite — không thể "average" bằng cách bỏ dấu.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Khi returns volatile → <em>Arithmetic &gt; Geometric</em>. Realized wealth outcome dùng <em>Geometric</em>. Forward-looking expected return dùng <em>Arithmetic</em>.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q3 EN — MWR vs TWR -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>20 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">MWR vs TWR</em> choice.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A pension fund is evaluating the <strong>performance of a portfolio manager</strong> who manages a mandate on their behalf. The fund makes contributions and withdrawals at irregular intervals based on its liquidity needs — not the manager's timing decisions. Which return measure should the fund use to <strong>fairly evaluate the manager</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Money-Weighted Return (MWR) — reflects the IRR of fund's cash flows.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Time-Weighted Return (TWR) — removes impact of fund's cash-flow timing.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Arithmetic average return across all quarters.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>21 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Evaluating <mark>performance of portfolio manager</mark>. Fund makes <mark>contributions and withdrawals at irregular intervals</mark> based on <mark>its own liquidity needs — not manager's timing</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Key rule: Manager không kiểm soát cash flows của client → không fair dùng MWR. TWR loại bỏ timing effect.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">TWR = geometric linking của HPR từng sub-period. Chỉ phản ánh skill của manager với AUM sẵn có.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">GIPS (Global Investment Performance Standards) yêu cầu <em>TWR</em> cho manager performance reporting. Đây là industry standard.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>22 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một pension fund đang đánh giá <strong>hiệu suất của portfolio manager</strong> quản lý mandate cho họ. Fund nạp và rút tiền ở các thời điểm bất thường dựa trên nhu cầu thanh khoản của fund — không phải quyết định timing của manager. Fund nên dùng return measure nào để <strong>đánh giá công bằng</strong> manager?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Money-Weighted Return (MWR) — phản ánh IRR của cash flows của fund.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Time-Weighted Return (TWR) — loại bỏ ảnh hưởng timing cash flow của fund.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Arithmetic average return qua tất cả các quý.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.01</span>
+    <span class="rule"></span>
+    <span>23 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — TWR.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">TWR <b>loại bỏ</b> ảnh hưởng của cash-flow timing bằng cách tính HPR của từng sub-period rồi geometrically link. Manager chỉ được đánh giá trên skill đầu tư của họ, không bị penalize bởi timing decisions của fund. GIPS standard yêu cầu TWR cho performance reporting.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">MWR nhạy với timing — nếu fund rút tiền lớn trước khi portfolio tăng mạnh, MWR sẽ <em>underestimate</em> skill của manager. Không fair để đánh giá manager không kiểm soát cash flows.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Arithmetic average của quarterly returns có thể overstate compound return khi volatile. Hơn nữa không tính đến sub-period structure khi có cash flows.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Manager evaluation → <em>TWR</em> (fair, GIPS standard). Individual investor actual gain/loss → <em>MWR</em> (reflect their timing). Không có cash flows giữa kỳ → MWR = TWR.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.01 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 24 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>02.01 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 02.02 — Time Value of Money in Finance</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>
