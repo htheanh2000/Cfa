@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · FSA 04.02 — Analyzing Income Statements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 120px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Income<br><em>Statement.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 04 · Lesson 04.02 · FSA</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 02 · Analyzing Income Statements</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>FSA</dd></div>
+      <div><dt>Module</dt><dd>02</dd></div>
+      <div><dt>Lesson</dt><dd>04.02</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Revenue recognition · EPS · Comprehensive income</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">02</div>
+    <div class="lbl">Income Statement</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>Where <em>earnings</em><br>come from.</h2>
+    <ul class="toc">
+      <li class="active">01 · Revenue recognition — IFRS 15 · 5-step model</li>
+      <li>02 · Expense recognition — matching principle</li>
+      <li>03 · Non-recurring items — discontinued ops</li>
+      <li>04 · EPS — basic &amp; diluted</li>
+      <li>05 · Comprehensive income &amp; common-size analysis</li>
+      <li>06 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · IS STRUCTURE -->
+<section data-label="IS Structure" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.02</span>
+    <span class="rule"></span>
+    <span>03 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Income Statement · structure</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">top-down</em> format.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Income Statement chạy từ <em>Revenue</em> xuống <em>Net Income</em>. Mỗi subtotal là một layer profitability — analyst đọc từng layer để identify cost driver.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Basic structure (multi-step)</span>
+    <div class="eq"><span class="var">Revenue</span> − <span class="var">COGS</span> = <span class="var">Gross Profit</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Gross Profit</span> − SG&amp;A − Dep − R&amp;D = <span class="var">Operating Income</span> (EBIT)</div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">EBIT</span> − Interest − Tax = <span class="var">Net Income</span></div>
+    <div class="note"><b>COGS</b> Cost of Goods Sold · <b>SG&amp;A</b> Selling, General &amp; Admin · <b>EBIT</b> Earnings Before Interest &amp; Tax. Dưới NI còn EPS và OCI.</div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Accrual vs cash basis — Income Statement dùng <em>accrual accounting</em>: revenue ghi nhận khi earned, expense ghi nhận khi incurred, không phải khi thu/chi tiền. Đây là lý do NI ≠ CFO.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.02 — STRUCTURE</span>
+  </div>
+</section>
+
+
+<!-- 04 · REVENUE RECOGNITION CONCEPT -->
+<section data-label="Rev rec concept" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.02</span>
+    <span class="rule"></span>
+    <span>04 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Revenue · IFRS 15 / ASC 606</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">When</em> is revenue earned?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      IFRS 15 và US GAAP ASC 606 (converged 2018) dùng chung mô hình <em>5-step</em>. Nguyên lý cốt lõi: recognize revenue khi firm <em>transfers control</em> of goods/services đến customer, ở mức reflecting consideration expected.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">01 · Identify the <em>contract</em> with customer</span>
+        <span class="step-body">Contract phải có commercial substance, rights &amp; payment terms rõ, collection probable. Oral / written / implied đều OK.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">02 · Identify <em>performance obligations</em> (POs)</span>
+        <span class="step-body">Các promise deliver goods/services distinct trong contract. Phần mềm + installation + support có thể là 3 POs riêng.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">03 · Determine <em>transaction price</em></span>
+        <span class="step-body">Total consideration firm expects. Adjust cho variable consideration (discounts, rebates), non-cash, financing component.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">04 · <em>Allocate</em> transaction price to each PO</span>
+        <span class="step-body">Theo standalone selling price của từng PO. Nếu bundled discount, phân bổ pro-rata.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">05 · <em>Recognize</em> revenue khi PO satisfied</span>
+        <span class="step-body">Khi control transfers. Point in time (sale of goods) hoặc over time (long-term construction, subscription).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.02 — REV REC</span>
+  </div>
+</section>
+
+
+<!-- 05 · REV REC — EXAMPLE -->
+<section data-label="Rev rec example" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.02</span>
+    <span class="rule"></span>
+    <span>05 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Revenue · worked example</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Applying <em class="hi">5 steps</em>.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Scenario · SaaS firm</span>
+    Software company bán một bundle $12,000: <b>license trọn đời</b> (standalone $8,000), <b>1 năm support</b> (standalone $3,000), và <b>customer training</b> (standalone $1,500). Ngày delivery: license ngay, support qua 12 tháng, training tháng thứ 3.
+  </div>
+
+  <div class="formula-box" style="margin-top: 20px;">
+    <span class="fmt-label">§ Step 3–4 — Allocate $12,000 to 3 POs</span>
+    <div class="eq">Total standalone = 8,000 + 3,000 + 1,500 = <span class="var">12,500</span></div>
+    <div class="eq" style="margin-top: 8px;">License: 12,000 × (8,000/12,500) = <span class="var">$7,680</span> (recognize on delivery)</div>
+    <div class="eq" style="margin-top: 8px;">Support: 12,000 × (3,000/12,500) = <span class="var">$2,880</span> (over 12 tháng, $240/tháng)</div>
+    <div class="eq" style="margin-top: 8px;">Training: 12,000 × (1,500/12,500) = <span class="var">$1,440</span> (khi hoàn thành tháng 3)</div>
+    <div class="note">Bundle discount $500 được phân bổ <em>pro-rata</em> theo standalone prices. Tổng revenue recognized cuối năm = $7,680 + $2,880 + $1,440 = $12,000 ✓</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Timing matters — Nếu firm recognize toàn bộ $12,000 khi sign contract (Q1) → overstated revenue. Đây là <em>aggressive revenue recognition</em>, red flag cho earnings quality.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.02 — REV EXAMPLE</span>
+  </div>
+</section>
+
+
+<!-- 06 · EXPENSE RECOGNITION -->
+<section data-label="Expense recognition" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.02</span>
+    <span class="rule"></span>
+    <span>06 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Expense · concepts</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">matching</em> principle.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Expense được ghi nhận trong cùng period với revenue mà nó giúp tạo ra. Đây là nền tảng của accrual accounting — cash outflow có thể xảy ra trước, trong, hoặc sau period expense.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Direct matching</em></div>
+        <div class="d">COGS match với revenue từ bán hàng tương ứng. Sales commission match với sale.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Systematic allocation</em></div>
+        <div class="d">Depreciation, amortization spread cost over useful life. Long-term asset benefit nhiều periods.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Prepaid</em> expenses</div>
+        <div class="d">Cash out trước, expense sau. Ví dụ prepaid rent, insurance. Trên BS là asset, dần convert thành expense.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Accrued</em> expenses</div>
+        <div class="d">Expense trước, cash out sau. Wages earned cuối tháng nhưng pay đầu tháng sau. Trên BS là liability.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">05</span>
+      <div>
+        <div class="t"><em class="hi">Period costs</em></div>
+        <div class="d">Không match được với revenue cụ thể → expense ngay. SG&amp;A, utilities, advertising thường là period costs.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">06</span>
+      <div>
+        <div class="t"><em class="hi">Inventory</em> method</div>
+        <div class="d">FIFO · LIFO (GAAP only) · Weighted Avg. Ảnh hưởng COGS → Gross Profit. Trong inflation: LIFO → higher COGS → lower NI.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.02 — EXPENSE</span>
+  </div>
+</section>
+
+
+<!-- 07 · NON-RECURRING ITEMS -->
+<section data-label="Non-recurring" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.02</span>
+    <span class="rule"></span>
+    <span>07 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Non-recurring items</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Separating <em class="hi">core</em> earnings.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Analyst quan tâm đến <em>sustainable</em> earnings. Non-recurring items được disclose riêng để reader có thể adjust forecast — exclude khi build normalized earnings.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Discontinued operations</div>
+      <dl>
+        <dt>What</dt>
+        <dd>Segment business firm đã (hoặc đang) sell off / shut down</dd>
+        <dt>Report</dt>
+        <dd>Report <em>separately</em>, <b>below</b> continuing operations, net of tax</dd>
+        <dt>Why separate</dt>
+        <dd>Future earnings sẽ không còn segment này → exclude khỏi forecast</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Unusual / infrequent</div>
+      <dl>
+        <dt>What</dt>
+        <dd>Restructuring, impairment, gain/loss on asset sale, litigation settlement</dd>
+        <dt>Report</dt>
+        <dd>Reported <em>within</em> continuing ops (not separate line), <b>before tax</b></dd>
+        <dt>Extraordinary</dt>
+        <dd><em>Bỏ</em> category này từ 2015 (GAAP) — IFRS không bao giờ cho phép extraordinary</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Analyst adjustment — Normalized EPS = Reported EPS − (non-recurring items after tax) / WACSO. Giúp so sánh apples-to-apples across periods.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.02 — NON-RECURRING</span>
+  </div>
+</section>
+
+
+<!-- 08 · BASIC EPS -->
+<section data-label="Basic EPS" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.02</span>
+    <span class="rule"></span>
+    <span>08 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">EPS · basic</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Basic <em class="hi">EPS</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Basic EPS formula</span>
+    <div class="eq"><span class="var">Basic EPS</span> = (<span class="var">NI</span> − Preferred Dividends) / <span class="var">WACSO</span></div>
+    <div class="note"><b>NI</b> Net Income · <b>Preferred Dividends</b> trừ đi vì NI đó thuộc về preferred trước · <b>WACSO</b> Weighted Average Common Shares Outstanding trong period.</div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § WACSO weighting — Nếu firm issue 1,000 shares vào 1/7 (giữa năm), share mới chỉ count 6/12 tháng = 500 shares. Stock split và stock dividend được treat retroactively — adjust tất cả periods từ đầu.
+  </p>
+
+  <div class="rule-box" style="margin-top: 20px;">
+    <span class="tag">§ Quick example</span>
+    NI = $10M. Preferred dividends = $1M. Shares outstanding: 5M từ 1/1, issue thêm 2M vào 1/7. WACSO = 5M + 2M × (6/12) = <b>6M</b>. Basic EPS = (10 − 1) / 6 = <b>$1.50</b>.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.02 — BASIC EPS</span>
+  </div>
+</section>
+
+
+<!-- 09 · DILUTED EPS -->
+<section data-label="Diluted EPS" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.02</span>
+    <span class="rule"></span>
+    <span>09 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">EPS · diluted</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Diluted <em class="hi">EPS</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Diluted EPS formula (if-converted)</span>
+    <div class="eq"><span class="var">Diluted EPS</span> = (NI − Pref Div + <span class="var">Conv adj</span>) / (WACSO + <span class="var">Dilutive shares</span>)</div>
+    <div class="note">Assume tất cả <em>dilutive securities</em> được convert thành common shares. Tăng share count (denominator) và có thể adjust numerator. Diluted EPS ≤ Basic EPS luôn.</div>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Convertible debt</em></div>
+        <div class="d">Assume convert → add after-tax interest back vào NI, add shares. Dilutive nếu EPS giảm.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Convertible preferred</em></div>
+        <div class="d">Assume convert → add back pref dividends vào NI, add shares.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Options &amp; warrants</em></div>
+        <div class="d">Treasury stock method: proceeds từ exercise dùng mua lại shares ở avg market price. Net new shares = exercised − repurchased.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Antidilutive</em></div>
+        <div class="d">Nếu conversion <em>tăng</em> EPS → exclude (không được "improve" EPS giả tạo). Only dilutive included.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.02 — DILUTED EPS</span>
+  </div>
+</section>
+
+
+<!-- 10 · COMPREHENSIVE INCOME -->
+<section data-label="Comprehensive income" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.02</span>
+    <span class="rule"></span>
+    <span>10 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Comprehensive income</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">NI</em> vs <em class="hi">Comprehensive Income</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Definition</span>
+    <div class="eq"><span class="var">Comprehensive Income</span> = <span class="var">Net Income</span> + <span class="var">OCI</span></div>
+    <div class="note"><b>OCI</b> Other Comprehensive Income = gain/loss bypass IS, go directly to equity. Bao gồm: foreign currency translation, unrealized gain/loss on AFS securities (IFRS) / FVOCI debt (IFRS 9), pension remeasurement, cash flow hedge.</div>
+  </div>
+
+  <div class="compare" style="margin-top: 20px;">
+    <div class="cc">
+      <div class="head">Net Income</div>
+      <dl>
+        <dt>Scope</dt>
+        <dd>Realized earnings from operations &amp; recurring events</dd>
+        <dt>Flow to</dt>
+        <dd>Retained Earnings qua Statement of Equity</dd>
+        <dt>Use</dt>
+        <dd>EPS denominator; P/E ratio; dividend basis</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Comprehensive Income</div>
+      <dl>
+        <dt>Scope</dt>
+        <dd>NI + unrealized items bypassing IS</dd>
+        <dt>Flow to</dt>
+        <dd>Accumulated OCI (AOCI) section of Equity</dd>
+        <dt>Use</dt>
+        <dd>Đo total change in equity <em>excluding</em> transactions with owners</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.02 — COMP INCOME</span>
+  </div>
+</section>
+
+
+<!-- 11 · COMMON-SIZE IS -->
+<section data-label="Common-size" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.02</span>
+    <span class="rule"></span>
+    <span>11 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Analysis · common-size</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Common-size</em> income statement.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Express mỗi line như <em>% of Revenue</em>. Normalize cho firm size → cross-firm và cross-time comparison dễ hơn. Kỹ thuật bắt buộc trong CFA L1 analysis toolkit.
+    </p>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Common-size margin formulas</span>
+    <div class="eq"><span class="var">Gross Margin</span> = Gross Profit / Revenue</div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Operating Margin</span> = Operating Income (EBIT) / Revenue</div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Net Margin</span> = Net Income / Revenue</div>
+    <div class="note">Ba margin này là core profitability metrics. Trend analysis — margin giảm qua năm: đánh dấu pricing pressure hoặc cost inflation.</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Cross-sectional — so với peers</span>
+        <span class="step-body">Nếu Vinamilk gross margin 40%, competitor 30% → Vinamilk có pricing power hoặc cost advantage.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Time-series — so với quá khứ</span>
+        <span class="step-body">Operating margin 5 năm 18% → 15% → 12%: trend đi xuống, điều tra SG&amp;A, depreciation, hoặc gross margin compression.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.02 — COMMON-SIZE</span>
+  </div>
+</section>
+
+
+<!-- 12 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 13 · Q1 EN — EPS calc -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.02</span>
+    <span class="rule"></span>
+    <span>13 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Calculate <em class="hi">basic EPS</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Alpha Co. reports Net Income of <strong>$4,500,000</strong> for the year. It paid preferred dividends of <strong>$500,000</strong> and common dividends of <strong>$800,000</strong>. Common shares outstanding: <strong>2,000,000</strong> on 1 January; an additional <strong>600,000</strong> shares were issued on <strong>1 July</strong>. What is Alpha's <strong>basic EPS</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$1.74 per share.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$1.54 per share.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$1.39 per share.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.02 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 14 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.02</span>
+    <span class="rule"></span>
+    <span>14 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    NI <mark>$4.5M</mark>. <mark>Preferred div $500k</mark> (trừ numerator). <mark>Common div $800k</mark> (KHÔNG trừ). Share <mark>600k</mark> issue <mark>1/7 — mid-year</mark> → weighted.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Basic EPS formula: (NI − Pref Div) / WACSO. <em>Common dividends không trừ</em> — common shareholders là đối tượng tính EPS.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">WACSO: 2,000,000 × (12/12) + 600,000 × (6/12) = 2,000,000 + 300,000 = <em>2,300,000</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Basic EPS = (4,500,000 − 500,000) / 2,300,000 = 4,000,000 / 2,300,000 ≈ <em>$1.74</em>.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.02 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 15 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.02</span>
+    <span class="rule"></span>
+    <span>15 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Alpha Co. báo cáo Net Income <strong>$4,500,000</strong> trong năm. Firm trả preferred dividends <strong>$500,000</strong> và common dividends <strong>$800,000</strong>. Common shares outstanding: <strong>2,000,000</strong> từ 1/1; phát hành thêm <strong>600,000</strong> shares vào <strong>1/7</strong>. <strong>Basic EPS</strong> của Alpha là bao nhiêu?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$1.74 per share.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$1.54 per share.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$1.39 per share.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.02 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 16 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.02</span>
+    <span class="rule"></span>
+    <span>16 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — $1.74.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">Numerator = NI − Pref Div = 4,500,000 − 500,000 = <b>$4,000,000</b>. WACSO = 2,000,000 × 12/12 + 600,000 × 6/12 = 2,000,000 + 300,000 = <b>2,300,000</b>. Basic EPS = 4,000,000 / 2,300,000 = <b>$1.74</b>. Common dividends KHÔNG trừ vì EPS là earnings <em>per common share</em>, common div là distribution của earnings đó.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">$1.54 có được khi trừ cả preferred và common dividends: (4,500,000 − 500,000 − 800,000) / 2,300,000 ≈ $1.39... hoặc dùng sai WACSO. Common div không thuộc numerator.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">$1.39 có được khi trừ cả Pref + Common dividends (1,300,000 total) và chia cho WACSO 2.3M. Sai treatment — chỉ trừ Preferred dividends.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Basic EPS = (<em>NI − Preferred Div</em>) / WACSO. Common dividends KHÔNG trừ. WACSO weighted theo <em>fraction of year</em> share outstanding. Mid-year issue → multiply by remaining months / 12.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.02 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q2 EN — Revenue recognition timing -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.02</span>
+    <span class="rule"></span>
+    <span>17 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Revenue</em> recognition timing.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      On 1 December 20X1, a software company signs a <strong>3-year subscription</strong> contract with a customer for <strong>$36,000</strong> paid in full upfront. Service delivery begins immediately and continues for 36 months. Under <strong>IFRS 15 / ASC 606</strong>, how much revenue should the company recognize in <strong>fiscal year 20X1</strong> (ending 31 December)?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$36,000 — cash is received, performance obligation is committed.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$1,000 — one month of service delivered (36,000 / 36).</span></li>
+    <li><span class="lbl">C</span><span class="opt">$12,000 — one-third of the contract (proportion of years).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.02 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.02</span>
+    <span class="rule"></span>
+    <span>18 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Subscription</mark> — service <mark>over time</mark>. Start <mark>1/12</mark>, FY end <mark>31/12</mark> → chỉ <mark>1 tháng</mark> delivered. <mark>$36,000 upfront</mark> là cash, không phải revenue.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Subscription = performance obligation satisfied <em>over time</em> (không phải point in time). Revenue recognize theo time elapsed.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">$36,000 cash upfront là <em>unearned revenue</em> (liability) ban đầu. Convert thành revenue dần qua 36 tháng.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Trong 20X1 chỉ có 1 tháng service (Dec): 36,000 / 36 × 1 = <em>$1,000</em>. Còn lại $35,000 vẫn là liability trên BS.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.02 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.02</span>
+    <span class="rule"></span>
+    <span>19 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Ngày 1/12/20X1, một software company ký hợp đồng <strong>subscription 3 năm</strong> với customer giá <strong>$36,000</strong>, trả full upfront. Service bắt đầu ngay và kéo dài 36 tháng. Theo <strong>IFRS 15 / ASC 606</strong>, revenue nên ghi nhận trong <strong>fiscal year 20X1</strong> (kết thúc 31/12) là bao nhiêu?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$36,000 — cash đã nhận, performance obligation đã committed.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$1,000 — 1 tháng service delivered (36,000 / 36).</span></li>
+    <li><span class="lbl">C</span><span class="opt">$12,000 — 1/3 contract (tỷ lệ năm).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.02 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.02</span>
+    <span class="rule"></span>
+    <span>20 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $1,000.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Subscription là performance obligation <b>satisfied over time</b>. Recognize revenue khi service được delivered, không phải khi cash nhận. $36,000 cash upfront được record là <em>unearned revenue</em> (liability). Trong 20X1 chỉ có 1 tháng service (December) → revenue = 36,000 / 36 × 1 = <b>$1,000</b>. Còn lại $35,000 tiếp tục là liability, convert thành revenue dần 35 tháng tiếp theo.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">$36,000 là <em>cash</em> nhận được, không phải revenue. Revenue recognition độc lập với cash collection (accrual basis). Công ty chưa deliver 35/36 service → chưa earn $35,000 đó.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">$12,000 = 1/3 contract = 1 năm service. Nhưng contract chỉ active 1 tháng trong FY20X1 (từ 1/12 đến 31/12). Dùng monthly allocation chứ không phải yearly.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Revenue recognition theo IFRS 15: khi <em>control transfers</em>, không phải khi cash đổi chủ. Subscription / long-term contract → recognize <em>over time</em> theo pattern transfer. Cash upfront = unearned revenue (liability).</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.02 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q3 EN — Common-size analysis -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.02</span>
+    <span class="rule"></span>
+    <span>21 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Common-size</em> analysis.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst reviews two firms in the same industry. Firm X: Revenue <strong>$500M</strong>, Gross Profit <strong>$200M</strong>, Operating Income <strong>$75M</strong>. Firm Y: Revenue <strong>$2,000M</strong>, Gross Profit <strong>$700M</strong>, Operating Income <strong>$240M</strong>. Based on <strong>common-size analysis</strong>, which statement is MOST accurate?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Firm Y is more profitable because its absolute Operating Income ($240M) exceeds Firm X's ($75M).</span></li>
+    <li><span class="lbl">B</span><span class="opt">Firm X has a higher gross margin (40%) but both firms have identical operating margins of 12%.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Firm X has stronger profitability at both gross (40% vs 35%) and operating (15% vs 12%) levels.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.02 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.02</span>
+    <span class="rule"></span>
+    <span>22 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Common-size</mark> = % of revenue. Firm X: <mark>Rev 500</mark>, GP <mark>200</mark>, OI <mark>75</mark>. Firm Y: <mark>Rev 2000</mark>, GP <mark>700</mark>, OI <mark>240</mark>. So sánh <em>margins</em>, không phải absolute.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Firm X: Gross margin = 200/500 = <em>40%</em>. Operating margin = 75/500 = <em>15%</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Firm Y: Gross margin = 700/2000 = <em>35%</em>. Operating margin = 240/2000 = <em>12%</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">X có margin cao hơn ở CẢ HAI levels (40% &gt; 35%, 15% &gt; 12%). Common-size bỏ qua size absolute → X profitable hơn <em>theo tỷ lệ</em>.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.02 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.02</span>
+    <span class="rule"></span>
+    <span>23 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Analyst review hai firms cùng industry. Firm X: Revenue <strong>$500M</strong>, Gross Profit <strong>$200M</strong>, Operating Income <strong>$75M</strong>. Firm Y: Revenue <strong>$2,000M</strong>, Gross Profit <strong>$700M</strong>, Operating Income <strong>$240M</strong>. Dựa trên <strong>common-size analysis</strong>, statement nào CHÍNH XÁC NHẤT?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Firm Y profitable hơn vì Operating Income tuyệt đối ($240M) lớn hơn Firm X ($75M).</span></li>
+    <li><span class="lbl">B</span><span class="opt">Firm X có gross margin cao hơn (40%) nhưng cả hai có operating margin giống nhau 12%.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Firm X có profitability mạnh hơn ở cả gross (40% vs 35%) và operating level (15% vs 12%).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.02 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.02</span>
+    <span class="rule"></span>
+    <span>24 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — Firm X wins.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext">Common-size margins: <b>Firm X</b> Gross 200/500 = <b>40%</b>, Operating 75/500 = <b>15%</b>. <b>Firm Y</b> Gross 700/2000 = <b>35%</b>, Operating 240/2000 = <b>12%</b>. Firm X cao hơn ở <em>cả hai</em> margin levels → profitability mạnh hơn theo tỷ lệ. Dù revenue nhỏ hơn, mỗi dollar revenue của X tạo ra nhiều profit hơn.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Absolute Operating Income không reflect <em>efficiency</em>. Firm Y revenue lớn hơn 4x nhưng OI chỉ lớn hơn 3.2x → tương đối kém. Common-size analysis được sinh ra chính xác để tránh sai lầm này.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Operating margin không giống nhau. X = 15%, Y = 12%. Option B tính sai — có thể nhầm 240/2000 với 240/X revenue.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Common-size analysis normalize cho size → comparison fair giữa firms khác size. <em>Luôn</em> tính ratio trước khi kết luận profitability. Absolute dollars lớn không đồng nghĩa với profitable hơn.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.02 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 25 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>04.02 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 04.03 — Analyzing Balance Sheets</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

@@ -1,0 +1,846 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Alt Investments 10.02 — Private Capital &amp; Real Estate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">PE &amp;<br><em>Real Estate.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 10 · Lesson 10.02 · Alternative Investments</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 02 · Private Capital &amp; Real Estate</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Alt Inv</dd></div>
+      <div><dt>Module</dt><dd>02</dd></div>
+      <div><dt>Lesson</dt><dd>10.02</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">GP/LP · J-curve · Cap rate · REITs</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">02</div>
+    <div class="lbl">Private capital &amp; RE</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How <em>private capital</em><br>really works.</h2>
+    <ul class="toc">
+      <li class="active">01 · PE strategies — VC, Growth, Buyout, Distressed</li>
+      <li>02 · PE fund structure — GP/LP, 10-year life</li>
+      <li>03 · Waterfall distribution — hurdle, catch-up, carry</li>
+      <li>04 · J-curve + exit types</li>
+      <li>05 · Real Estate — direct, REITs, valuation</li>
+      <li>06 · Infrastructure basics</li>
+      <li>07 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · PE STRATEGIES -->
+<section data-label="PE strategies" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.02</span>
+    <span class="rule"></span>
+    <span>03 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Private Equity · strategies</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">4 PE sub-strategies</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      PE không phải monolithic — 4 sub-strategies đặc trưng theo giai đoạn của target company và mức độ leverage.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">VC</span>
+      <div>
+        <div class="t"><em class="hi">Venture Capital</em></div>
+        <div class="d">Early-stage startups, thường tech/biotech. High risk, high return, majority positions fail. Seed / Series A–C.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">GE</span>
+      <div>
+        <div class="t"><em class="hi">Growth Equity</em></div>
+        <div class="d">Established companies đã có revenue, cần capital để scale. Ít rủi ro hơn VC, ít leverage hơn LBO.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">BO</span>
+      <div>
+        <div class="t"><em class="hi">Buyout / LBO</em></div>
+        <div class="d">Mature, cash-generative companies. Significant leverage (50–70% debt). Improve ops, exit IPO/sale.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">DS</span>
+      <div>
+        <div class="t"><em class="hi">Distressed</em></div>
+        <div class="d">Struggling companies, bankruptcy/turnaround. Debt-to-equity conversion, operational restructuring.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 16px;">
+    § Risk-return spectrum — VC (highest vol, power-law returns) → Growth → Buyout (lower vol, leverage-amplified) → Distressed (event-driven). Blackstone, KKR, Apollo dominate buyout; Sequoia, a16z dominate VC.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.02 — PE STRATS</span>
+  </div>
+</section>
+
+
+<!-- 04 · FUND STRUCTURE -->
+<section data-label="PE fund structure" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.02</span>
+    <span class="rule"></span>
+    <span>04 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Structure · GP &amp; LP</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">PE fund <em class="hi">architecture</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">General Partner (GP)</div>
+      <dl>
+        <dt>Role</dt>
+        <dd>Fund manager — sources deals, manages portfolio, exits</dd>
+        <dt>Commit</dt>
+        <dd>1–5% fund capital ("skin in the game")</dd>
+        <dt>Fees</dt>
+        <dd>2% management + 20% carried interest</dd>
+        <dt>Liability</dt>
+        <dd>Unlimited — legally responsible for fund</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Limited Partners (LPs)</div>
+      <dl>
+        <dt>Role</dt>
+        <dd>Capital providers — pensions, endowments, SWFs, family offices</dd>
+        <dt>Commit</dt>
+        <dd>95–99% fund capital (drawn down via capital calls)</dd>
+        <dt>Return</dt>
+        <dd>80% of profits (after hurdle) + management fee payer</dd>
+        <dt>Liability</dt>
+        <dd>Limited to committed capital — không lose quá amount commit</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Fund life cycle — <b>Investment period</b> (year 1–5): GP deploys capital, làm new deals. <b>Harvest period</b> (year 6–10): exit portfolio, return capital. Extensions 1–2 năm thường được phép nếu cần.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.02 — GP/LP</span>
+  </div>
+</section>
+
+
+<!-- 05 · WATERFALL -->
+<section data-label="Waterfall" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.02</span>
+    <span class="rule"></span>
+    <span>05 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Distribution · waterfall</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">waterfall</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Waterfall = thứ tự distribute cash từ exit. 4 tiers tuần tự — money flow xuống tier dưới chỉ sau khi tier trên được đáp ứng.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Tier 1 — Return of capital (LP first)</span>
+        <span class="step-body">100% cash đầu tiên trả lại LPs cho đến khi họ recover đầy đủ contributed capital. Không split cho GP ở tier này.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Tier 2 — Preferred return (hurdle, thường 8%)</span>
+        <span class="step-body">Sau khi LP nhận lại capital, LP nhận thêm preferred return (vd 8% IRR) trên capital đã đầu tư. GP vẫn chưa được carry.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Tier 3 — GP catch-up</span>
+        <span class="step-body">GP nhận 100% cash flow cho đến khi tỷ lệ split overall đạt 80/20 (LP/GP). Catch-up "bù" cho GP khoản họ bỏ lỡ ở tier 1–2.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Tier 4 — Carried interest 80/20</span>
+        <span class="step-body">Mọi cash flow thêm được split 80% LP / 20% GP. Đây là carried interest — performance compensation chính của GP.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.02 — WATERFALL</span>
+  </div>
+</section>
+
+
+<!-- 06 · J-CURVE + EXITS -->
+<section data-label="J-curve exits" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.02</span>
+    <span class="rule"></span>
+    <span>06 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Return profile · J-curve &amp; exits</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">J-curve</em> &amp; exit routes.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ J-curve pattern</span>
+    PE fund returns initially NEGATIVE (year 1–3) do management fees + portfolio write-downs + chưa có exits, sau đó BẬT LÊN mạnh (year 4–8) khi exits materialize. Vẽ ra đồ thị giống chữ <b>J</b>.
+  </div>
+
+  <div class="compare" style="margin-top: 20px;">
+    <div class="cc">
+      <div class="head">Exit types</div>
+      <dl>
+        <dt>IPO</dt>
+        <dd>List on public exchange — highest valuation khi market hot, nhưng volatile</dd>
+        <dt>Strategic sale</dt>
+        <dd>Bán cho corporate buyer — strategic premium, quickest exit</dd>
+        <dt>Secondary sale</dt>
+        <dd>Bán cho PE fund khác — "secondary buyout"</dd>
+        <dt>Recap</dt>
+        <dd>Dividend recapitalization — vay debt mới trả dividend cho LPs mà không exit</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Performance metrics</div>
+      <dl>
+        <dt>IRR</dt>
+        <dd>Internal rate of return — time-weighted annualized return</dd>
+        <dt>MOIC</dt>
+        <dd>Multiple on Invested Capital = Total distributions / capital invested</dd>
+        <dt>DPI</dt>
+        <dd>Distributed to Paid-In — realized returns only</dd>
+        <dt>TVPI</dt>
+        <dd>Total Value to Paid-In = DPI + RVPI (unrealized NAV)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.02 — J-CURVE</span>
+  </div>
+</section>
+
+
+<!-- 07 · REAL ESTATE OVERVIEW -->
+<section data-label="Real Estate" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.02</span>
+    <span class="rule"></span>
+    <span>07 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Real Estate · vehicles</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Real Estate <em class="hi">access modes</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      RE có thể invest direct hoặc qua funds/REITs. Mỗi vehicle khác biệt về liquidity, fees và control.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Direct ownership</em></div>
+        <div class="d">Mua property physical. Income từ rent, appreciation. Full control nhưng illiquid, management burden, concentration risk.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t">Listed <em class="hi">REITs</em></div>
+        <div class="d">Trade trên exchange — liquid, daily pricing. Must distribute ≥ 90% taxable income → dividend-focused. Correlation với equity cao.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t">Non-listed <em class="hi">REITs</em></div>
+        <div class="d">Không trade public. Thanh khoản kém hơn nhưng không bị daily market volatility. Redemption theo chu kỳ.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t">Private RE <em class="hi">funds</em></div>
+        <div class="d">GP/LP structure như PE, 7–10 năm life. Core, value-add, opportunistic strategies. Cao fees, illiquid.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 16px;">
+    § Property types — <b>Residential</b>, <b>Office</b>, <b>Retail</b>, <b>Industrial/Logistics</b>, <b>Hotels</b>, <b>Timber/Farmland</b>. Post-COVID: office struggling, industrial &amp; data centers boom.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.02 — RE MODES</span>
+  </div>
+</section>
+
+
+<!-- 08 · RE VALUATION -->
+<section data-label="RE valuation" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.02</span>
+    <span class="rule"></span>
+    <span>08 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Valuation · approaches</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Valuing <em class="hi">real estate</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Income approach — Cap rate</span>
+    <div class="eq"><span class="var">Value</span> = <span class="var">NOI</span> / <span class="var">Cap rate</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Cap rate</span> = <span class="var">NOI</span> / <span class="var">Property value</span></div>
+    <div class="note"><b>NOI</b> (Net Operating Income) = rental income − operating expenses (exclude debt service + taxes + depreciation). <b>Cap rate</b> = yield của property — phản ánh risk &amp; growth kỳ vọng. Thấp = đắt hoặc prime location.</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Cost approach — replacement cost</span>
+        <span class="step-body">Value = land + cost to rebuild (minus depreciation). Hữu ích cho new / special-use properties (school, church). Không phản ánh income potential.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Comparable sales approach</span>
+        <span class="step-body">Benchmark recent sale prices của similar properties gần đây, cùng area, cùng type. Market-driven — cần data đủ từ comparable transactions.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">DCF approach</span>
+        <span class="step-body">Project future NOI cash flows + terminal value, discount về present. Sophisticated nhất nhưng sensitive với discount rate &amp; growth assumptions.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.02 — RE VAL</span>
+  </div>
+</section>
+
+
+<!-- 09 · INFRASTRUCTURE -->
+<section data-label="Infrastructure" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.02</span>
+    <span class="rule"></span>
+    <span>09 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Infrastructure · basics</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Infrastructure <em class="hi">investing</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Infrastructure = physical assets cung cấp essential services (transport, utilities, communication). Duration dài, cash flows ổn định và thường inflation-linked.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Greenfield</div>
+      <dl>
+        <dt>Stage</dt>
+        <dd>Dự án mới — đang build, chưa operational</dd>
+        <dt>Risk</dt>
+        <dd>Higher — construction risk, permitting, cost overrun</dd>
+        <dt>Return</dt>
+        <dd>Higher expected return để compensate dev risk</dd>
+        <dt>Cash flow</dt>
+        <dd>Zero / negative trong construction period</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Brownfield</div>
+      <dl>
+        <dt>Stage</dt>
+        <dd>Existing operational assets — acquisition</dd>
+        <dt>Risk</dt>
+        <dd>Lower — proven cash flows, known operations</dd>
+        <dt>Return</dt>
+        <dd>Lower return, bond-like profile</dd>
+        <dt>Cash flow</dt>
+        <dd>Stable, often regulated hoặc contracted long-term</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Examples — Roads, toll bridges, airports, ports, water utilities, power grids, telecom towers, pipelines, renewable energy. Pensions và SWFs thích infrastructure vì duration match liabilities + inflation pass-through (regulated tariffs tăng theo CPI).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.02 — INFRA</span>
+  </div>
+</section>
+
+
+<!-- 10 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 11 · Q1 EN — CARRIED INTEREST -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.02</span>
+    <span class="rule"></span>
+    <span>11 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Compute <em class="hi">carried interest</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A PE fund has <strong>$500 million</strong> of LP committed capital. After 8 years, the fund returns a total of <strong>$900 million</strong> to LPs + GP combined. The waterfall specifies: (1) LPs receive their committed capital back first, (2) LPs receive an <strong>8% preferred return</strong> (simple, on committed), (3) <strong>full GP catch-up</strong> to 80/20, (4) remaining split 80% LP / 20% GP. For simplicity, treat the preferred return as a flat <strong>$320M</strong> owed to LPs after return of capital. What is the GP's <strong>carried interest</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$16 million.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$80 million.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$100 million.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.02 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 12 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.02</span>
+    <span class="rule"></span>
+    <span>12 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Walk the <em class="hi">waterfall</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Total to distribute <mark>$900M</mark>. Committed <mark>$500M</mark>. Preferred <mark>$320M</mark>. Full <mark>catch-up</mark> to 80/20. Total profit = $900M − $500M = <mark>$400M</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Tier 1: return capital → LPs nhận $500M. Còn lại $400M.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Tier 2: preferred return → LPs nhận $320M. Còn lại $80M. LPs cumulative = $820M, GP = $0.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Tier 3 (catch-up): GP nhận 100% cho đến khi tỷ lệ đạt 80/20 trên PROFIT (không phải total). Profit được split target: 80% × $400M = $320M cho LP (đã có), 20% × $400M = <em>$80M cho GP</em>. Catch-up đưa GP lên $80M; LP giữ $320M preferred. Total GP carry = <b>$80M</b>.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.02 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 13 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.02</span>
+    <span class="rule"></span>
+    <span>13 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một PE fund có <strong>$500 triệu</strong> committed capital từ LPs. Sau 8 năm, fund trả tổng <strong>$900 triệu</strong> cho LPs + GP combined. Waterfall: (1) LPs nhận lại committed capital trước, (2) LPs nhận <strong>8% preferred return</strong>, (3) <strong>full GP catch-up</strong> đến 80/20, (4) phần còn lại split 80% LP / 20% GP. Giả định preferred return = <strong>$320M</strong> cho LPs. <strong>Carried interest</strong> của GP là bao nhiêu?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$16 triệu.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$80 triệu.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$100 triệu.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.02 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 14 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.02</span>
+    <span class="rule"></span>
+    <span>14 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $80 million.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Profit = $900M − $500M committed = <b>$400M</b>. Full catch-up waterfall nghĩa là: sau khi LP nhận prefs, target split trên toàn bộ profit là 80/20 → GP carry = 20% × $400M = <b>$80M</b>. LP total = $500M capital + $320M pref = $820M; GP = $80M. Check: 820 + 80 = $900M ✓.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">$16M = 20% × $80M (phần còn lại sau prefs). Sai — đây sẽ là answer cho waterfall <em>không có catch-up</em> (American-style). Đề nói <b>full catch-up</b>, nghĩa là GP được "bù" để đạt 80/20 trên full profit.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">$100M = 20% × $500M (committed) — áp sai base. Carry tính trên <em>profit</em> (return above capital), không phải committed capital.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Full catch-up waterfall: GP carry cuối cùng = <em>20% × profit</em>, bất kể bao nhiêu preferred LP nhận. No-catch-up (American): GP chỉ nhận 20% phần còn lại <em>sau</em> prefs → carry thấp hơn đáng kể. Đọc kỹ "full catch-up" vs "no catch-up" trong đề.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.02 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 15 · Q2 EN — CAP RATE -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.02</span>
+    <span class="rule"></span>
+    <span>15 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Value with <em class="hi">cap rate</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An office building generates annual rental income of <strong>$3.2 million</strong>, operating expenses of <strong>$1.2 million</strong>, and annual debt service of <strong>$400,000</strong>. Comparable buildings in the area trade at a <strong>cap rate of 6.25%</strong>. Using the income approach, the estimated value of the property is <strong>closest to</strong>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$25.6 million.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$32.0 million.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$51.2 million.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.02 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 16 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.02</span>
+    <span class="rule"></span>
+    <span>16 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">trap</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Rental <mark>$3.2M</mark>, opex <mark>$1.2M</mark>, debt service <mark>$400K</mark>. Cap rate <mark>6.25%</mark>. Công thức Value = NOI / Cap rate.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">NOI = rental − OPERATING expenses. NOI KHÔNG trừ debt service (financing cost), KHÔNG trừ depreciation, KHÔNG trừ tax.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">NOI = $3.2M − $1.2M = <em>$2.0M</em>. Debt service $400K là trap — bị loại khỏi NOI vì là capital structure item, không phải operating.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Value = $2.0M / 0.0625 = <em>$32.0M</em>. Nếu trừ debt service (sai), NOI = $1.6M → $25.6M (option A trap).</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.02 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.02</span>
+    <span class="rule"></span>
+    <span>17 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một office building có rental income hàng năm <strong>$3.2 triệu</strong>, operating expenses <strong>$1.2 triệu</strong>, và debt service hàng năm <strong>$400,000</strong>. Các building comparable trong khu vực trade ở <strong>cap rate 6.25%</strong>. Dùng income approach, giá trị ước tính của property <strong>gần nhất với</strong>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$25.6 triệu.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$32.0 triệu.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$51.2 triệu.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.02 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.02</span>
+    <span class="rule"></span>
+    <span>18 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $32.0M.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">NOI = Rental − Operating expenses = $3.2M − $1.2M = <b>$2.0M</b>. Value = NOI / Cap rate = $2.0M / 0.0625 = <b>$32.0M</b>. Debt service là financing item (capital structure), KHÔNG ảnh hưởng NOI. Cap rate valuation là <em>unlevered</em>.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">$25.6M = ($2.0M − $0.4M) / 6.25% = $1.6M / 0.0625. Trừ debt service khỏi NOI — SAI. NOI by definition là pre-financing, pre-tax. Property value không nên thay đổi theo cách owner funds it.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">$51.2M = $3.2M / 0.0625 — dùng rental GROSS thay vì NOI. Quên trừ operating expenses. Gross rent capitalization dùng GRM (gross rent multiplier), KHÔNG phải cap rate.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">NOI = Rental income − Operating expenses. <em>Exclude</em>: debt service, depreciation, income taxes. <em>Include</em>: utilities, property tax, insurance, maintenance, property management fees. Cap rate approach cho unlevered value — leverage thay đổi equity return, không thay đổi property value.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.02 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q3 EN — VC vs LBO -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.02</span>
+    <span class="rule"></span>
+    <span>19 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">VC vs <em class="hi">LBO</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Compared with leveraged buyout (LBO) funds, venture capital (VC) funds <strong>most likely</strong>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Use a higher proportion of debt financing in their portfolio investments.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Invest in later-stage, mature companies with stable cash flows.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Exhibit a wider dispersion of returns across portfolio companies, with a few large winners driving overall performance.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.02 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.02</span>
+    <span class="rule"></span>
+    <span>20 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    So sánh <mark>VC</mark> vs <mark>LBO</mark>. Chú ý <mark>debt financing</mark>, <mark>stage of target</mark>, <mark>return dispersion</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">VC target startup <em>chưa có cash flow ổn định</em> → không thể service debt → VC dùng ÍT debt, không nhiều. A sai (flipped).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">VC invest vào <em>early-stage</em>, KHÔNG phải mature. LBO mới invest vào mature companies để leverage được cash flow. B sai (flipped).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">VC returns = <em>power-law distribution</em>: majority fail hoặc return &lt; 1x, 1–2 winners trả 20–100x tạo most of fund return. Wide dispersion = đúng VC. C đúng.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.02 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.02</span>
+    <span class="rule"></span>
+    <span>21 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      So với leveraged buyout (LBO) funds, venture capital (VC) funds <strong>nhiều khả năng nhất</strong> sẽ:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Dùng tỷ lệ debt financing cao hơn trong portfolio investments.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Đầu tư vào later-stage, mature companies với cash flow ổn định.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Có return dispersion rộng hơn giữa portfolio companies, với một vài big winners chi phối overall performance.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.02 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.02</span>
+    <span class="rule"></span>
+    <span>22 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — power-law.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext">VC return distribution <b>highly skewed</b>: roughly 50–60% of portfolio companies fail (0x–1x), majority còn lại return modestly, 1–2 companies ra "home run" (20x–100x+) và tạo phần lớn fund return. Đây là <em>power-law</em>, đặc trưng VC. LBO dispersion hẹp hơn nhiều (debt discipline + mature targets).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Ngược lại thực tế. VC target companies chưa có stable cash flow → không service được debt → VC đầu tư chủ yếu bằng equity, minimal leverage. LBO DÙNG NHIỀU debt (50–70%) vì target companies có cash flow support leverage.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Cũng ngược lại. VC invest vào <em>early-stage</em> (pre-revenue, Series A–C startups). LBO mới invest vào <em>mature, stable-cash-flow</em> companies. B mô tả LBO, không phải VC.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">VC vs LBO: VC = <em>early-stage, equity-funded, power-law returns</em>. LBO = <em>mature, leverage-heavy, tighter dispersion</em>. Key mental model: VC bets on few mega-winners; LBO squeezes returns from operational improvement + leverage on already-profitable businesses.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.02 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 23 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>10.02 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Hoàn tất Topic 10 · Alternative Investments</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

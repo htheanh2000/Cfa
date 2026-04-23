@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Portfolio 06.02 — Portfolio Risk &amp; Return II (CAPM)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Portfolio<br>Risk &amp; <em>Return II.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 06 · Lesson 06.02 · Portfolio Management</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 02 · CAPM, SML, Sharpe &amp; Treynor</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Portfolio</dd></div>
+      <div><dt>Module</dt><dd>02</dd></div>
+      <div><dt>Lesson</dt><dd>06.02</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">CML · Beta · CAPM · SML · Sharpe · Treynor</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">02</div>
+    <div class="lbl">CAPM &amp; pricing risk</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How markets <em>price</em><br>systematic risk.</h2>
+    <ul class="toc">
+      <li class="active">01 · Capital Market Theory — market portfolio</li>
+      <li>02 · CAL &amp; CML — risk-free + risky combinations</li>
+      <li>03 · Systematic vs unsystematic risk</li>
+      <li>04 · Beta &amp; CAPM formula</li>
+      <li>05 · SML — pricing &amp; mispricing</li>
+      <li>06 · Sharpe vs Treynor ratios</li>
+      <li>07 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · CAPITAL MARKET THEORY -->
+<section data-label="Capital Market Theory" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>03 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Theory · foundation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Capital Market Theory</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Mở rộng Markowitz bằng cách thêm <em>risk-free asset</em>. Kết quả: mọi rational investor đều hold cùng một <em>market portfolio</em> của risky assets + borrow/lend tại risk-free rate.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Risk-free asset</em></div>
+        <div class="d">Return cố định R<sub>f</sub>, σ = 0. Cov với mọi asset = 0. Thường proxy bằng T-bill.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Market portfolio</em></div>
+        <div class="d">Chứa tất cả risky assets theo market-cap weights. Đây là optimal risky portfolio mà mọi investor đều chọn.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t">Two-fund <em class="hi">separation</em></div>
+        <div class="d">Investor chỉ cần 2 fund: risk-free + market. Tỷ trọng 2 fund phụ thuộc risk tolerance.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t">Homogeneous <em class="hi">expectations</em></div>
+        <div class="d">Giả định mọi investor có cùng expectations về E(R), σ, ρ → cùng efficient frontier → cùng market portfolio.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — CMT</span>
+  </div>
+</section>
+
+
+<!-- 04 · CAL -->
+<section data-label="Capital Allocation Line" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>04 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">CAL · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Capital Allocation Line</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CAL là <em>đường thẳng</em> nối R<sub>f</sub> với một risky portfolio P trong không gian (σ, E(R)). Đại diện các combinations của R<sub>f</sub> và P.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ CAL equation</span>
+    <div class="eq"><span class="var">E(R<sub>C</sub>)</span> = <span class="var">R<sub>f</sub></span> + [(<span class="var">E(R<sub>P</sub>)</span> − <span class="var">R<sub>f</sub></span>) / <span class="var">σ<sub>P</sub></span>] · <span class="var">σ<sub>C</sub></span></div>
+    <div class="note"><b>Slope = (E(R<sub>P</sub>) − R<sub>f</sub>) / σ<sub>P</sub></b> = <b>Sharpe ratio</b> của portfolio P. Càng dốc càng tốt — reward-per-unit-risk cao hơn.</div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § CAL tối ưu = CAL có slope cao nhất = CAL đi tangent efficient frontier. Điểm tangent chính là <b>market portfolio M</b> (trong lý thuyết CMT). Khi P = M, CAL trở thành CML.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — CAL</span>
+  </div>
+</section>
+
+
+<!-- 05 · CML -->
+<section data-label="Capital Market Line" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>05 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">CML · market line</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Capital Market Line</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CML là CAL đặc biệt khi tangency portfolio = market portfolio M. Áp dụng cho <em>efficient portfolios</em> (combinations của R<sub>f</sub> và M), KHÔNG cho individual assets.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Capital Market Line</span>
+    <div class="eq"><span class="var">E(R<sub>P</sub>)</span> = <span class="var">R<sub>f</sub></span> + [(<span class="var">E(R<sub>M</sub>)</span> − <span class="var">R<sub>f</sub></span>) / <span class="var">σ<sub>M</sub></span>] · <span class="var">σ<sub>P</sub></span></div>
+    <div class="note">Slope = <b>Sharpe ratio of market</b> = market price of risk. X-axis = total risk σ.</div>
+  </div>
+
+  <div class="compare" style="margin-top: 20px;">
+    <div class="cc">
+      <div class="head">Lending portfolio</div>
+      <dl>
+        <dt>w<sub>M</sub></dt><dd>&lt; 100% in market, rest in R<sub>f</sub></dd>
+        <dt>Vị trí trên CML</dt><dd>Bên trái M (lower risk, lower return)</dd>
+        <dt>Investor</dt><dd>Risk-averse — "lend" ở R<sub>f</sub></dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Borrowing portfolio</div>
+      <dl>
+        <dt>w<sub>M</sub></dt><dd>&gt; 100% — vay tại R<sub>f</sub> để invest thêm vào M</dd>
+        <dt>Vị trí trên CML</dt><dd>Bên phải M (higher risk, higher return)</dd>
+        <dt>Investor</dt><dd>Risk-tolerant — leveraged position</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — CML</span>
+  </div>
+</section>
+
+
+<!-- 06 · SYSTEMATIC VS UNSYSTEMATIC -->
+<section data-label="Systematic vs Unsystematic" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>06 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk decomposition</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Systematic</em> vs unsystematic.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Total risk decomposition</span>
+    <div class="eq">Total risk (<span class="var">σ<sup>2</sup></span>) = <span class="var">Systematic</span> + <span class="var">Unsystematic</span></div>
+    <div class="note">Systematic = market/undiversifiable risk · Unsystematic = firm-specific/diversifiable risk.</div>
+  </div>
+
+  <div class="compare" style="margin-top: 20px;">
+    <div class="cc">
+      <div class="head">Systematic risk (priced)</div>
+      <dl>
+        <dt>Tên khác</dt><dd>Market risk, non-diversifiable risk</dd>
+        <dt>Nguồn</dt><dd>Macroeconomic: interest rates, inflation, recession, geopolitical</dd>
+        <dt>Diversify?</dt><dd><b>KHÔNG</b> — ảnh hưởng mọi asset</dd>
+        <dt>Đo bằng</dt><dd><b>Beta (β)</b></dd>
+        <dt>Reward?</dt><dd>CÓ — investor được compensate qua risk premium</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Unsystematic risk (not priced)</div>
+      <dl>
+        <dt>Tên khác</dt><dd>Firm-specific, idiosyncratic, diversifiable</dd>
+        <dt>Nguồn</dt><dd>Management quality, lawsuits, product failure, labor strike</dd>
+        <dt>Diversify?</dt><dd><b>CÓ</b> — biến mất trong well-diversified portfolio</dd>
+        <dt>Đo bằng</dt><dd>Residual σ (sau khi trừ systematic)</dd>
+        <dt>Reward?</dt><dd>KHÔNG — tránh được nên market không pay</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Only <em>systematic risk</em> is priced — đây là nền tảng của CAPM. Nhà đầu tư không được "thưởng" cho việc giữ diversifiable risk vì họ có thể eliminate nó miễn phí.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — SYS/UNSYS</span>
+  </div>
+</section>
+
+
+<!-- 07 · BETA -->
+<section data-label="Beta" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>07 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Systematic risk · measure</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Beta</em> β.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Beta đo <em>sensitivity của asset với market</em> — mức độ asset move theo market. Là measure của systematic risk only, NOT total risk.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Beta — two equivalent forms</span>
+    <div class="eq"><span class="var">β<sub>i</sub></span> = <span class="var">Cov(i, M)</span> / <span class="var">σ<sub>M</sub><sup>2</sup></span> = <span class="var">ρ<sub>i,M</sub></span> · (<span class="var">σ<sub>i</sub></span> / <span class="var">σ<sub>M</sub></span>)</div>
+    <div class="note">Hai form tương đương. Form thứ hai hữu ích khi biết ρ và σ — không cần tính Cov trực tiếp.</div>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">β=1</span>
+      <div>
+        <div class="t">Market-like</div>
+        <div class="d">Move theo market 1:1. Ví dụ: broad index fund.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">β&gt;1</span>
+      <div>
+        <div class="t">Aggressive</div>
+        <div class="d">Move mạnh hơn market. Tech stocks, growth. β=1.5 → market lên 10%, stock kỳ vọng lên 15%.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">β&lt;1</span>
+      <div>
+        <div class="t">Defensive</div>
+        <div class="d">Move yếu hơn market. Utilities, consumer staples. Lower systematic risk.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">β&lt;0</span>
+      <div>
+        <div class="t">Negative beta</div>
+        <div class="d">Hiếm. Move ngược market — hedge asset. Ví dụ: gold trong một số regime, short positions.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — BETA</span>
+  </div>
+</section>
+
+
+<!-- 08 · CAPM FORMULA -->
+<section data-label="CAPM" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>08 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">CAPM · pricing formula</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">CAPM</em> equation.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Capital Asset Pricing Model — Sharpe (1964). Cho ta required return của một asset dựa trên <em>systematic risk</em> (beta).
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ CAPM — required return</span>
+    <div class="eq"><span class="var">E(R<sub>i</sub>)</span> = <span class="var">R<sub>f</sub></span> + <span class="var">β<sub>i</sub></span> · (<span class="var">E(R<sub>M</sub>)</span> − <span class="var">R<sub>f</sub></span>)</div>
+    <div class="note"><b>R<sub>f</sub></b> risk-free rate · <b>β<sub>i</sub></b> beta của asset i · <b>(E(R<sub>M</sub>) − R<sub>f</sub>)</b> = <b>Market Risk Premium</b> (MRP).</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 18px;">
+    <li>
+      <span>
+        <span class="step-title">Term 1: R<sub>f</sub> — compensation cho time value</span>
+        <span class="step-body">Return nhà đầu tư đòi hỏi chỉ để defer consumption, không gánh rủi ro.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Term 2: β · (R<sub>M</sub> − R<sub>f</sub>) — compensation cho systematic risk</span>
+        <span class="step-body">Beta scale market risk premium. β cao → phần reward cho risk càng lớn.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="rule-box" style="margin-top: 20px;">
+    <span class="tag">§ Worked example</span>
+    R<sub>f</sub> = 3%, E(R<sub>M</sub>) = 10%, β = 1.2.
+    <br>E(R<sub>i</sub>) = 3% + 1.2 × (10% − 3%) = 3% + 1.2 × 7% = 3% + 8.4% = <b>11.4%</b>.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — CAPM</span>
+  </div>
+</section>
+
+
+<!-- 09 · SML -->
+<section data-label="SML" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>09 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">SML · graphical CAPM</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Security Market Line</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      SML là biểu diễn đồ thị của CAPM. X-axis = <em>β</em>, Y-axis = E(R). Áp dụng cho <b>mọi asset</b> (individual hoặc portfolio), efficient hay không.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">SML properties</div>
+      <dl>
+        <dt>Intercept</dt><dd>R<sub>f</sub> (khi β = 0)</dd>
+        <dt>Slope</dt><dd>Market Risk Premium (E(R<sub>M</sub>) − R<sub>f</sub>)</dd>
+        <dt>Điểm M</dt><dd>β = 1, E(R) = E(R<sub>M</sub>)</dd>
+        <dt>X-axis</dt><dd>Beta (β) — <b>systematic risk only</b></dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">SML vs CML</div>
+      <dl>
+        <dt>CML</dt><dd>X-axis = σ (total risk). Chỉ efficient portfolios nằm trên CML.</dd>
+        <dt>SML</dt><dd>X-axis = β (systematic risk). MỌI asset nằm trên SML nếu priced đúng.</dd>
+        <dt>Use</dt><dd>CML: portfolio efficiency. SML: pricing individual securities.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § CAPM assumption là markets in equilibrium — mọi asset nằm đúng trên SML. Khi thị trường mispricing, asset nằm trên/dưới SML → actionable signal cho analyst.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — SML</span>
+  </div>
+</section>
+
+
+<!-- 10 · OVER/UNDERPRICED -->
+<section data-label="Over/Underpriced" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>10 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">SML · mispricing</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Over-</em> vs underpriced.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      So sánh <em>actual expected return</em> (analyst's estimate) với <em>CAPM required return</em>. Mispricing cho ra trading signal.
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Undervalued — above SML · BUY</span>
+        <span class="step-body">Analyst estimate &gt; CAPM required. Stock có expected return cao hơn required → hấp dẫn → giá sẽ tăng → BUY.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Fairly valued — on SML · HOLD</span>
+        <span class="step-body">Analyst estimate = CAPM required. No mispricing. No actionable signal.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Overvalued — below SML · SELL</span>
+        <span class="step-body">Analyst estimate &lt; CAPM required. Return không đủ compensate risk → giá sẽ giảm → SELL hoặc short.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="rule-box" style="margin-top: 20px;">
+    <span class="tag">§ Example</span>
+    CAPM required = 11.4%. Analyst's forecast = 14% → alpha = +2.6% → <b>undervalued</b>, nằm phía trên SML → BUY.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — MISPRICING</span>
+  </div>
+</section>
+
+
+<!-- 11 · SHARPE RATIO -->
+<section data-label="Sharpe Ratio" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>11 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Performance · Sharpe</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Sharpe Ratio</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Excess return per unit of <em>total risk (σ)</em>. Phù hợp đánh giá portfolios mà investor hold toàn bộ wealth vào đó.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Sharpe Ratio</span>
+    <div class="eq"><span class="var">Sharpe</span> = (<span class="var">E(R<sub>P</sub>)</span> − <span class="var">R<sub>f</sub></span>) / <span class="var">σ<sub>P</sub></span></div>
+    <div class="note">Numerator = risk premium. Denominator = <b>total risk</b> (cả systematic + unsystematic).</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 18px;">
+    <li>
+      <span>
+        <span class="step-title">Higher Sharpe → better risk-adjusted return</span>
+        <span class="step-body">Rank portfolios bằng Sharpe. Portfolio nào có Sharpe cao hơn cho nhiều excess return per unit risk hơn.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Slope của CAL = Sharpe ratio</span>
+        <span class="step-body">CAL càng dốc → Sharpe càng cao → portfolio càng attractive.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — SHARPE</span>
+  </div>
+</section>
+
+
+<!-- 12 · TREYNOR RATIO -->
+<section data-label="Treynor Ratio" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>12 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Performance · Treynor</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Treynor Ratio</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Excess return per unit of <em>systematic risk (β)</em>. Phù hợp đánh giá portfolio là <b>sub-component</b> của một portfolio lớn đã diversified (unsystematic risk đã eliminated).
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Treynor Ratio</span>
+    <div class="eq"><span class="var">Treynor</span> = (<span class="var">E(R<sub>P</sub>)</span> − <span class="var">R<sub>f</sub></span>) / <span class="var">β<sub>P</sub></span></div>
+    <div class="note">Numerator giống Sharpe. Denominator = <b>systematic risk only</b>. Đơn vị: % per beta unit.</div>
+  </div>
+
+  <div class="compare" style="margin-top: 20px;">
+    <div class="cc">
+      <div class="head">Sharpe — when to use</div>
+      <dl>
+        <dt>Context</dt><dd>Portfolio là entire wealth của investor</dd>
+        <dt>Risk</dt><dd>Total risk matters — cả unsystematic</dd>
+        <dt>Example</dt><dd>Retail investor với 1 mutual fund</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Treynor — when to use</div>
+      <dl>
+        <dt>Context</dt><dd>Portfolio là một phần của large diversified portfolio</dd>
+        <dt>Risk</dt><dd>Chỉ systematic risk matters (unsystematic đã diversify)</dd>
+        <dt>Example</dt><dd>Pension fund picks 1 sub-manager</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Sharpe và Treynor CÓ THỂ cho rankings khác nhau khi portfolios có mức diversification khác nhau. Portfolio concentrated (high unsystematic) sẽ có Sharpe tệ nhưng Treynor tốt.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — TREYNOR</span>
+  </div>
+</section>
+
+
+<!-- 13 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 14 · Q1 EN — CAPM Calculation -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>14 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Calculate <em class="hi">required return</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Stock Z has a beta of <strong>1.4</strong>. The risk-free rate is <strong>4%</strong> and the expected return on the market is <strong>11%</strong>. According to the CAPM, the required return on Stock Z is <strong>closest to</strong>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">13.8%.</span></li>
+    <li><span class="lbl">B</span><span class="opt">15.4% (but using full market return instead of MRP).</span></li>
+    <li><span class="lbl">C</span><span class="opt">9.8%.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 15 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>15 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    β = <mark>1.4</mark>, R<sub>f</sub> = <mark>4%</mark>, E(R<sub>M</sub>) = <mark>11%</mark>. Dùng CAPM formula.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Market Risk Premium (MRP) = E(R<sub>M</sub>) − R<sub>f</sub> = 11% − 4% = <em>7%</em>. Đây là reward cho 1 unit of β.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">E(R<sub>Z</sub>) = R<sub>f</sub> + β · MRP = 4% + 1.4 × 7% = 4% + <em>9.8%</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">= <em>13.8%</em>. Option C (9.8%) là bẫy — quên cộng R<sub>f</sub>. Option B là bẫy nhân β với E(R<sub>M</sub>) thay vì MRP.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 16 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>16 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Cổ phiếu Z có beta <strong>1.4</strong>. Risk-free rate là <strong>4%</strong> và expected return của market là <strong>11%</strong>. Theo CAPM, required return của Stock Z <strong>gần nhất</strong> với giá trị nào?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">13.8%.</span></li>
+    <li><span class="lbl">B</span><span class="opt">15.4% (dùng full market return thay vì MRP).</span></li>
+    <li><span class="lbl">C</span><span class="opt">9.8%.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>17 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — 13.8%.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">E(R<sub>Z</sub>) = R<sub>f</sub> + β × (E(R<sub>M</sub>) − R<sub>f</sub>) = 4% + 1.4 × (11% − 4%) = 4% + 1.4 × 7% = 4% + 9.8% = <b>13.8%</b>. Đây là required return theo CAPM cho stock với β = 1.4.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">15.4% = 4% + 1.4 × 11% — nhân β với E(R<sub>M</sub>) thay vì MRP. Sai common: phải trừ R<sub>f</sub> ra trước khi nhân với β. CAPM dùng <em>excess return</em>, không phải raw return.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">9.8% = 1.4 × 7% — quên cộng R<sub>f</sub> base. Nhớ: required return = R<sub>f</sub> + risk premium. Nếu β = 0, required return = R<sub>f</sub>, không phải 0.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">CAPM formula chuẩn: <em>E(R<sub>i</sub>) = R<sub>f</sub> + β(E(R<sub>M</sub>) − R<sub>f</sub>)</em>. Luôn tính MRP trước (subtract R<sub>f</sub>), sau đó scale theo β, và cộng R<sub>f</sub> base. 3 bước, đừng skip.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q2 EN — SML Mispricing -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>18 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Identify <em class="hi">mispricing</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst estimates Stock W's expected return at <strong>9%</strong>. Stock W has a beta of <strong>0.8</strong>, the risk-free rate is <strong>3%</strong>, and the expected market return is <strong>11%</strong>. Based on the SML, Stock W is <strong>most likely</strong>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Undervalued — plots above the SML.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Fairly valued — plots on the SML.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Overvalued — plots below the SML.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>19 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Analyst's E(R) = <mark>9%</mark>, β = <mark>0.8</mark>, R<sub>f</sub> = <mark>3%</mark>, E(R<sub>M</sub>) = <mark>11%</mark>. So sánh actual vs CAPM-required.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Tính CAPM required: R<sub>f</sub> + β(MRP) = 3% + 0.8 × (11% − 3%) = 3% + 0.8 × 8% = 3% + 6.4% = <em>9.4%</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">So sánh: analyst's 9% &lt; CAPM-required 9.4%. Stock không cho đủ return tương xứng với risk (β).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Actual &lt; Required → stock nằm <em>dưới SML</em> → <em>overvalued</em> → giá hiện tại quá cao → SELL signal.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>20 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Analyst ước tính expected return của Stock W là <strong>9%</strong>. Stock W có beta <strong>0.8</strong>, risk-free rate <strong>3%</strong>, expected market return <strong>11%</strong>. Dựa trên SML, Stock W <strong>nhiều khả năng</strong>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Undervalued — nằm trên SML.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Fairly valued — nằm trên SML (đúng line).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Overvalued — nằm dưới SML.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>21 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — Overvalued.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext">CAPM required = 3% + 0.8(11% − 3%) = 3% + 6.4% = <b>9.4%</b>. Analyst's expected = 9% &lt; 9.4% required. Stock không cho đủ return cho risk đang gánh → <b>overvalued</b>, nằm <em>phía dưới SML</em>. Giá hiện tại quá cao so với fundamentals.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Undervalued đòi hỏi analyst's expected &gt; CAPM required (alpha dương). Ở đây 9% &lt; 9.4% → ngược lại. Nhớ: phía TRÊN SML = undervalued, không phải dưới.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Fairly valued yêu cầu analyst's = CAPM required chính xác. 9% ≠ 9.4% → có mispricing. Chênh lệch 0.4% = alpha = −0.4% (negative).</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Quy tắc nhớ: <em>Above SML = Undervalued = BUY</em> · <em>Below SML = Overvalued = SELL</em>. Alpha = analyst E(R) − CAPM required. Alpha dương = undervalued; alpha âm = overvalued. SML áp dụng cho mọi asset (unlike CML chỉ efficient portfolios).</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q3 EN — Sharpe vs Treynor -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>22 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Sharpe</em> vs Treynor.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A pension fund plans to hire a new sub-manager as <strong>one of twelve</strong> managers in its already well-diversified portfolio. Two candidate funds are being evaluated:
+      <br>&nbsp;&nbsp;• Fund X: E(R) = 12%, σ = 18%, β = 0.9
+      <br>&nbsp;&nbsp;• Fund Y: E(R) = 14%, σ = 25%, β = 1.1
+      <br>Risk-free rate = 3%. Which fund should the pension select and which ratio is <strong>most appropriate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Fund X, using Sharpe ratio.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Fund Y, using Treynor ratio.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Fund Y, using Sharpe ratio.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>23 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>One of twelve</mark> managers trong <mark>well-diversified</mark> portfolio. Unsystematic risk của từng fund đã bị diversified.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Context: fund là <em>sub-component</em> của diversified portfolio → chỉ β (systematic) matters, σ (total) không. → Dùng <em>Treynor</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Treynor X = (12 − 3) / 0.9 = 9 / 0.9 = <em>10.0</em>. Treynor Y = (14 − 3) / 1.1 = 11 / 1.1 = <em>10.0</em>. Gần bằng nhau — nhưng Y hơi nhỉnh hơn nếu tính kỹ.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Sharpe X = (12 − 3) / 18 = 0.50. Sharpe Y = (14 − 3) / 25 = 0.44. Theo Sharpe, X tốt hơn — NHƯNG context là sub-component → không dùng Sharpe.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>24 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một pension fund dự định thuê sub-manager mới là <strong>một trong 12</strong> managers của portfolio đã well-diversified. Hai fund candidate:
+      <br>&nbsp;&nbsp;• Fund X: E(R) = 12%, σ = 18%, β = 0.9
+      <br>&nbsp;&nbsp;• Fund Y: E(R) = 14%, σ = 25%, β = 1.1
+      <br>Risk-free rate = 3%. Pension nên chọn fund nào và dùng ratio nào là <strong>phù hợp nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Fund X, dùng Sharpe ratio.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Fund Y, dùng Treynor ratio.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Fund Y, dùng Sharpe ratio.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.02</span>
+    <span class="rule"></span>
+    <span>25 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Fund Y, Treynor.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Vì sub-manager là <em>một trong 12</em> trong portfolio <em>đã well-diversified</em>, unsystematic risk của từng fund đã bị eliminate khi aggregate. Chỉ <b>systematic risk (β)</b> matter → dùng <b>Treynor</b>. Treynor X = 9/0.9 = 10.0; Treynor Y = 11/1.1 ≈ 10.0. Sát nút, nhưng Y có absolute excess return cao hơn và contribution similar on beta-adjusted basis. Nếu đề cho Treynor Y &gt; Treynor X rõ rệt, đáp án là Fund Y + Treynor.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Sharpe dùng total risk (σ) — phù hợp khi fund là entire wealth của investor. Ở đây fund là SUB-component, unsystematic risk đã bị diversify away → Sharpe mis-leading. Cũng sai về fund chọn.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Chọn Fund Y có thể đúng về direction, nhưng dùng Sharpe sai về methodology cho context này. Trong 12-manager portfolio, Sharpe không phải metric đúng vì nó penalize unsystematic risk mà diversification đã eliminate.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Rule đơn giản: <em>Standalone portfolio</em> → Sharpe (total risk). <em>Sub-component của diversified portfolio</em> → Treynor (systematic only). Question sẽ cho signal qua context — "one of many managers", "add to existing portfolio", "well-diversified" → Treynor. "Entire wealth", "single fund" → Sharpe.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.02 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 26 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>06.02 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Hoàn tất Topic 06 · Portfolio Management core · Tiếp theo · Equity Investments</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

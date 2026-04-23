@@ -1,0 +1,1009 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Derivatives 09.01 — Derivative Markets Overview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Derivative<br><em>Markets.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 09 · Lesson 09.01 · Derivatives</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 01 · Overview &amp; classification</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Derivatives</dd></div>
+      <div><dt>Module</dt><dd>01</dd></div>
+      <div><dt>Lesson</dt><dd>09.01</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Forwards · Futures · Options · Swaps</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">01</div>
+    <div class="lbl">Derivatives</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>What are <em>derivatives</em>,<br>and why do they exist?</h2>
+    <ul class="toc">
+      <li class="active">01 · Definition — a contract on an underlying</li>
+      <li>02 · The four main derivative types</li>
+      <li>03 · Underlying assets</li>
+      <li>04 · OTC vs Exchange-traded markets</li>
+      <li>05 · Uses — hedging, speculation, arbitrage</li>
+      <li>06 · Risks — leverage, counterparty, systemic</li>
+      <li>07 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · DEFINITION -->
+<section data-label="Definition" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>03 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Concept · definition</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">A <em class="hi">derivative</em> is a contract.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      <em>Derivative</em> là một financial instrument mà giá trị của nó <em>phụ thuộc vào</em> (derives from) một underlying asset. Bản thân derivative không có giá trị nội tại — chỉ là một hợp đồng giữa 2 bên.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 20px;">
+    <span class="tag">§ Working definition</span>
+    A <b>derivative</b> is a financial instrument whose value is <em>derived from</em> the value of an underlying asset, index, rate, or event. The contract specifies payoffs between a <b>long</b> (buyer) and a <b>short</b> (seller) at some future date.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Underlying drives value — derivative không tự tồn tại</span>
+        <span class="step-body">Giá của một stock option phụ thuộc vào stock price. Không có stock → không có option.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Zero-sum game giữa 2 bên</span>
+        <span class="step-body">Long gain bao nhiêu, short lose bấy nhiêu (và ngược lại). Tổng payoff = 0 trước fees.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Contract, không phải asset ownership</span>
+        <span class="step-body">Holder của derivative không sở hữu underlying — chỉ có quyền/nghĩa vụ liên quan đến nó.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — DEFINITION</span>
+  </div>
+</section>
+
+
+<!-- 04 · FOUR TYPES -->
+<section data-label="Four types" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>04 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Classification · 4 families</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">four main</em> derivative types.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CFA L1 phân loại derivatives thành 4 nhóm: 2 nhóm <em>forward commitments</em> (forwards + futures + swaps) và 1 nhóm <em>contingent claims</em> (options).
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Forwards</em></div>
+        <div class="d">OTC · customized · settle at maturity · <em>obligation</em> mua/bán ở giá agreed. Không có payment tại initiation.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Futures</em></div>
+        <div class="d">Exchange-traded · standardized · daily mark-to-market · clearinghouse guarantees. Essentially standardized forwards.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Options</em></div>
+        <div class="d">Right <em>but not obligation</em> — call (mua) hoặc put (bán). Buyer trả premium; seller (writer) nhận premium.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Swaps</em></div>
+        <div class="d">Exchange cash flows định kỳ over time. Phổ biến nhất: plain-vanilla IRS (fixed-for-floating interest rate swap).</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Firm commitment vs contingent — Forwards, futures, swaps là <em>firm commitments</em> (cả hai bên phải thực hiện). Options là <em>contingent claim</em> (buyer chỉ exercise khi có lợi).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — 4 TYPES</span>
+  </div>
+</section>
+
+
+<!-- 05 · FORWARDS & FUTURES DETAIL -->
+<section data-label="Forwards &amp; Futures" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>05 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Deep dive · commitments</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Forwards</em> vs <em class="hi">Futures</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Forwards</em></div>
+      <dl>
+        <dt>Venue</dt>
+        <dd>OTC — trade bilaterally</dd>
+        <dt>Terms</dt>
+        <dd>Customized — size, date, underlying bất kỳ</dd>
+        <dt>Settlement</dt>
+        <dd>At maturity only — deliverable or cash</dd>
+        <dt>Credit risk</dt>
+        <dd>Counterparty risk — đối tác có thể default</dd>
+        <dt>Liquidity</dt>
+        <dd>Low — khó unwind trước maturity</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Futures</em></div>
+      <dl>
+        <dt>Venue</dt>
+        <dd>Exchange (CME, ICE, HOSE VN30F)</dd>
+        <dt>Terms</dt>
+        <dd>Standardized — fixed size, expiry cycle</dd>
+        <dt>Settlement</dt>
+        <dd>Daily mark-to-market + final settle</dd>
+        <dt>Credit risk</dt>
+        <dd>Near zero — clearinghouse là central counterparty</dd>
+        <dt>Liquidity</dt>
+        <dd>High — có thể close position bất cứ lúc nào</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — FWD VS FUT</span>
+  </div>
+</section>
+
+
+<!-- 06 · OPTIONS -->
+<section data-label="Options" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>06 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Deep dive · contingent</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Options</em> — right, not obligation.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Call option</em></div>
+      <dl>
+        <dt>Right</dt>
+        <dd>To <b>buy</b> underlying at strike price K</dd>
+        <dt>Buyer pays</dt>
+        <dd>Premium upfront (option price)</dd>
+        <dt>Exercise khi</dt>
+        <dd>S<sub>T</sub> &gt; K (in-the-money)</dd>
+        <dt>Payoff long</dt>
+        <dd>max(S<sub>T</sub> − K, 0) − premium</dd>
+        <dt>Bias</dt>
+        <dd>Bullish — bet giá lên</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Put option</em></div>
+      <dl>
+        <dt>Right</dt>
+        <dd>To <b>sell</b> underlying at strike price K</dd>
+        <dt>Buyer pays</dt>
+        <dd>Premium upfront</dd>
+        <dt>Exercise khi</dt>
+        <dd>S<sub>T</sub> &lt; K (in-the-money)</dd>
+        <dt>Payoff long</dt>
+        <dd>max(K − S<sub>T</sub>, 0) − premium</dd>
+        <dt>Bias</dt>
+        <dd>Bearish — bet giá xuống (hoặc hedge)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Seller (writer) có <em>obligation</em> — nếu buyer exercise, writer phải thực hiện. Max loss của buyer = premium. Max loss của writer = unlimited (call) hoặc K − premium (put).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — OPTIONS</span>
+  </div>
+</section>
+
+
+<!-- 07 · SWAPS -->
+<section data-label="Swaps" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>07 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Deep dive · swaps</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Swaps</em> — exchange cash flows.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Swap = chuỗi hợp đồng trao đổi cash flow định kỳ. Phổ biến nhất: <em>plain-vanilla interest rate swap</em> — một bên trả fixed rate, bên kia trả floating rate (thường SOFR/LIBOR-era), trên cùng notional principal.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Example · fixed-for-floating IRS</span>
+    Company A vay floating (SOFR + 100bps) nhưng muốn lock fixed. Ký swap với Bank B: <em>A pays fixed 4%</em>, <em>B pays SOFR</em> trên notional $10M, quarterly, 5 năm. Net result: A effectively pays fixed ≈ 5% regardless of rate moves.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Notional principal — không exchange, chỉ để tính interest</span>
+        <span class="step-body">Principal dùng để tính cash flow nhưng KHÔNG trao đổi. Chỉ net interest flow được settle.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Swap = series of forwards</span>
+        <span class="step-body">Một IRS có thể được phân tích như một chuỗi forward rate agreements (FRAs) xếp kế tiếp nhau.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">OTC — customizable, có counterparty risk</span>
+        <span class="step-body">Post-2008, nhiều swap phải clear qua central counterparty (Dodd-Frank) để giảm systemic risk.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — SWAPS</span>
+  </div>
+</section>
+
+
+<!-- 08 · UNDERLYINGS -->
+<section data-label="Underlyings" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>08 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Underlying assets</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What can be an <em class="hi">underlying</em>?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Gần như mọi tài sản có observable price đều có thể là underlying. CFA L1 nhấn mạnh 7 nhóm chính.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Equities</em></div>
+        <div class="d">Individual stocks, equity indices (S&amp;P 500, VN30). Options, futures, total return swaps.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Fixed income &amp; rates</em></div>
+        <div class="d">Bonds, Treasury notes, interest rates. T-bond futures, interest rate swaps, FRAs.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Commodities</em></div>
+        <div class="d">Oil, gold, wheat, copper. Physical or cash-settled futures. Storage costs matter cho pricing.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Currencies</em></div>
+        <div class="d">FX forwards, futures, options. Dùng để hedge cross-border exposure.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">05</span>
+      <div>
+        <div class="t"><em class="hi">Credit</em></div>
+        <div class="d">Credit Default Swaps (CDS) — insurance chống default của issuer cụ thể.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">06</span>
+      <div>
+        <div class="t"><em class="hi">Weather &amp; exotic</em></div>
+        <div class="d">Weather derivatives, catastrophe bonds, crypto derivatives. Niche nhưng growing.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — UNDERLYINGS</span>
+  </div>
+</section>
+
+
+<!-- 09 · OTC VS EXCHANGE -->
+<section data-label="OTC vs Exchange" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>09 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Market structure</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">OTC</em> vs <em class="hi">Exchange-traded</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Over-the-counter</em></div>
+      <dl>
+        <dt>Contracts</dt>
+        <dd>Customized — size, maturity, terms negotiable</dd>
+        <dt>Counterparty</dt>
+        <dd>Direct bilateral — risk of default</dd>
+        <dt>Liquidity</dt>
+        <dd>Lower — hard to unwind, need opposite party</dd>
+        <dt>Transparency</dt>
+        <dd>Low — prices not publicly disseminated</dd>
+        <dt>Examples</dt>
+        <dd>Forwards, swaps, exotic options, CDS</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Exchange-traded</em></div>
+      <dl>
+        <dt>Contracts</dt>
+        <dd>Standardized — fixed size &amp; expiry dates</dd>
+        <dt>Counterparty</dt>
+        <dd>Clearinghouse — central counterparty, near-zero default risk</dd>
+        <dt>Liquidity</dt>
+        <dd>High — continuous trading, deep order book</dd>
+        <dt>Transparency</dt>
+        <dd>High — prices public, tick-by-tick</dd>
+        <dt>Examples</dt>
+        <dd>Futures, listed options, ETF options</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Trade-off chính — OTC cho phép tailor-made nhưng phải chịu counterparty risk + thanh khoản thấp. Exchange-traded mất linh hoạt về terms nhưng đổi lại thanh khoản + an toàn clearing.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — OTC VS EXCH</span>
+  </div>
+</section>
+
+
+<!-- 10 · USES OF DERIVATIVES -->
+<section data-label="Uses" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>10 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Uses · economic purpose</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Why use <em class="hi">derivatives</em>?</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Hedging — giảm existing risk exposure</span>
+        <span class="step-body">Airline mua oil futures để lock fuel cost. Exporter mua FX forward để lock VND/USD rate. Derivative offset underlying exposure.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Speculation — bet on price direction với leverage</span>
+        <span class="step-body">Trader mua call option vì tin stock sẽ lên. Chỉ bỏ premium nhỏ nhưng expose với full upside của underlying — leverage inherent.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Arbitrage — khai thác price discrepancies</span>
+        <span class="step-body">Nếu future price mispriced so với spot + cost of carry → riskless profit. Arbitrageurs ép giá về fair value, giữ market efficient.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Price discovery &amp; information</span>
+        <span class="step-body">Futures prices agg expectation của market về spot giá tương lai. Central banks theo dõi Fed funds futures để đọc rate expectations.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — USES</span>
+  </div>
+</section>
+
+
+<!-- 11 · ISSUER VS INVESTOR -->
+<section data-label="Issuer vs Investor" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>11 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Perspective · who uses what</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Issuer</em> vs <em class="hi">Investor</em> use cases.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Issuer-side</em> (corporates)</div>
+      <dl>
+        <dt>Rate risk</dt>
+        <dd>IRS để convert floating debt sang fixed (hoặc ngược lại)</dd>
+        <dt>FX risk</dt>
+        <dd>FX forwards/options hedge foreign-currency receivables &amp; payables</dd>
+        <dt>Commodity</dt>
+        <dd>Airlines hedge jet fuel; miners hedge gold price</dd>
+        <dt>Credit</dt>
+        <dd>CDS để hedge concentration risk trên khách hàng lớn</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Investor-side</em> (asset mgrs)</div>
+      <dl>
+        <dt>Exposure</dt>
+        <dd>Index futures để gain equity exposure nhanh, tiết kiệm transaction cost</dd>
+        <dt>Hedging</dt>
+        <dd>Put options protect portfolio khỏi downside</dd>
+        <dt>Yield</dt>
+        <dd>Covered calls bán để thu premium trên existing positions</dd>
+        <dt>Alpha</dt>
+        <dd>Speculation, arbitrage, pairs trades via derivatives</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — ISSUER/INVESTOR</span>
+  </div>
+</section>
+
+
+<!-- 12 · RISKS -->
+<section data-label="Risks" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>12 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risks · the dark side</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Risks of <em class="hi">derivatives</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Derivatives là công cụ mạnh nhưng "double-edged sword". Khủng hoảng 2008 cho thấy mức độ systemic khi derivatives bị mispriced và leveraged extreme.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Leverage</em> magnifies losses</div>
+        <div class="d">Nhỏ initial margin → large notional exposure. Move 5% của underlying có thể wipe out 100% margin.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Counterparty</em> default risk</div>
+        <div class="d">OTC contracts expose với default của đối tác. Lehman 2008: $400B+ CDS notional với Lehman mất khả năng thanh toán.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Complexity</em> &amp; model risk</div>
+        <div class="d">Exotic structures khó định giá. Wrong model assumptions → wrong price → hidden losses (LTCM 1998, AIG 2008).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Systemic</em> risk</div>
+        <div class="d">Interconnected exposures — default của một player có thể cascade toàn hệ thống. Lý do post-2008 regulation thúc đẩy central clearing.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — RISKS</span>
+  </div>
+</section>
+
+
+<!-- 13 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 14 · Q1 EN -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>14 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Classify the <em class="hi">derivative</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Two parties enter into a private bilateral agreement where Party A agrees to pay a <strong>fixed 4%</strong> annual rate on a notional of <strong>$50 million</strong>, and Party B agrees to pay <strong>SOFR</strong> on the same notional, with quarterly settlements over <strong>5 years</strong>. No principal is exchanged. Which type of derivative best describes this arrangement?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">A futures contract — standardized and exchange-traded.</span></li>
+    <li><span class="lbl">B</span><span class="opt">An interest rate swap — OTC series of cash-flow exchanges.</span></li>
+    <li><span class="lbl">C</span><span class="opt">An option — providing a right but not obligation to exchange rates.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 15 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>15 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Private bilateral</mark>, <mark>fixed for SOFR</mark>, <mark>notional $50M</mark>, <mark>quarterly settlements</mark>, <mark>5 years</mark>, <mark>no principal exchange</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">"Private bilateral" → OTC, không phải exchange-traded → loại trừ futures (<em>A</em>).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Cả hai bên đều có obligation trả cash flow — không có "right but not obligation" → <em>không phải option</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Multiple periodic payments trao đổi theo thời gian + notional không exchange = <em>plain-vanilla interest rate swap</em>.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 16 · Q1 DỊCH ĐỀ -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>16 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Hai bên ký một hợp đồng song phương private: Bên A trả <strong>fixed 4%</strong> annual rate trên notional <strong>$50 triệu</strong>, Bên B trả <strong>SOFR</strong> trên cùng notional, settle hàng quý trong <strong>5 năm</strong>. Không exchange principal. Đây là loại derivative nào?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Futures contract — standardized &amp; exchange-traded.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Interest rate swap — OTC, chuỗi trao đổi cash-flow.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Option — right nhưng không obligation trao đổi rates.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>17 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Interest rate swap.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Đặc điểm match plain-vanilla IRS: <b>OTC</b> (private bilateral), <b>exchange periodic cash flows</b> (quarterly), một bên <b>fixed</b> đổi <b>floating</b> (SOFR), <b>notional không exchange</b>. Đây là textbook definition của fixed-for-floating IRS — pattern quan trọng cần nhớ.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Futures là <em>exchange-traded &amp; standardized</em>. Đề nhấn mạnh "private bilateral" và "notional $50M" (không phải contract size chuẩn) → clearly OTC, không phải futures.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Option giá trị nằm ở "right but not obligation" — buyer có thể chọn không exercise. Ở đây cả hai bên đều <em>phải</em> trả cash flow quarterly — obligation hai chiều → không phải option.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Classification test: <em>Exchange-traded?</em> → futures. <em>Right-only?</em> → option. <em>Periodic exchanges, OTC, notional not exchanged?</em> → swap. <em>Single payment at maturity, OTC?</em> → forward.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q2 EN — Hedging scenario -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>18 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Choose the <em class="hi">hedge</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A Vietnamese exporter will receive <strong>USD 2 million</strong> in 90 days from a shipment to the US. The exporter is worried that <strong>USD will depreciate vs VND</strong> over the next 90 days, reducing VND proceeds. Which derivative position <strong>best</strong> hedges this exposure?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Buy a USD call option — to profit if USD appreciates.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Enter a forward to sell USD / buy VND at a pre-agreed rate in 90 days.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Buy USD futures — to lock in a higher USD purchase price.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>19 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Exporter <mark>will receive USD 2M in 90 days</mark>. Worried <mark>USD depreciates vs VND</mark>. Needs to <mark>lock VND proceeds</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Exporter có <em>long USD exposure</em> (sẽ nhận USD future). Để hedge, cần position <em>short USD</em> — tức là lock giá bán USD ngay bây giờ.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Forward to <em>sell USD / buy VND</em> ở rate agreed hôm nay → bất kể spot rate 90 ngày sau thế nào, exporter nhận đúng số VND đã lock.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Call option trên USD có nghĩa là right to <em>buy</em> USD — làm tăng long USD exposure, không giảm. Sai direction cho exporter.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q2 DỊCH ĐỀ -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>20 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một exporter Việt Nam sẽ nhận <strong>USD 2 triệu</strong> trong 90 ngày từ một lô hàng xuất sang Mỹ. Exporter lo <strong>USD sẽ mất giá so với VND</strong> trong 90 ngày tới, làm giảm VND proceeds. Derivative position nào <strong>best</strong> hedge exposure này?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Mua USD call option — để profit nếu USD lên giá.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Ký forward bán USD / mua VND ở rate pre-agreed trong 90 ngày.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Mua USD futures — để lock giá mua USD cao hơn.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>21 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Sell USD forward.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Exporter có <b>long USD exposure</b> (sẽ nhận USD future). Hedge đúng = <b>short USD forward</b> (commit bán USD / buy VND ở rate agreed hôm nay). Bất kể 90 ngày sau USD lên hay xuống, exporter nhận đúng số VND đã lock → <em>risk đã chốt</em>.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Call option trên USD = right to <em>buy</em> USD. Exporter không thiếu USD, họ đang có USD receivable → call chỉ làm tăng long USD exposure. Hedge đúng sẽ là <em>put option trên USD</em> (right to sell), nhưng đắt hơn forward và không có trong options.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Mua USD futures = <em>long USD</em> — same direction với existing exposure, làm lớn thêm risk thay vì hedge. Exporter cần <em>short</em> futures (sell USD futures), nhưng option C nói "mua" → sai.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Hedging rule of thumb — nếu bạn <em>sẽ nhận</em> underlying trong tương lai (long exposure), hedge bằng <em>short</em> derivative. Nếu bạn <em>sẽ phải trả/mua</em> (short exposure), hedge bằng <em>long</em> derivative. Exporter → long USD → short forward/futures.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q3 EN — OTC vs Exchange -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>22 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">OTC vs Exchange</em> trade-off.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A corporate treasurer needs to hedge a <strong>very specific</strong> foreign-currency receivable of <strong>€7,350,000</strong> arriving on an <strong>unusual date (47 days from today)</strong>. The treasurer is most likely to choose an <strong>OTC forward</strong> rather than an exchange-traded future because:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">OTC forwards have lower counterparty risk than futures.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Futures are more expensive due to daily mark-to-market losses.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Forwards can be customized to the exact size and maturity date required.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>23 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>€7,350,000</mark> (non-round), <mark>47 days</mark> (unusual date), <mark>very specific</mark>. Choose <mark>OTC forward over future</mark>. Why?
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Futures là <em>standardized</em> — size cố định (ví dụ EUR 125,000/contract) và expiry vào Mar/Jun/Sep/Dec. Không match €7.35M hay "47 days".</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Forward OTC có thể <em>customize</em> chính xác size + maturity → hedge perfect, không có basis risk.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">A sai vì OTC forward có <em>higher</em> counterparty risk (không có clearinghouse). B sai — daily MTM là cash-flow timing, không làm futures "more expensive" về fair value.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 24 · END  (note: Q3 Dịch+Explanation folded into 3-slice for brevity → 28-slide version) -->
+<!-- Actually keep 24: move to dịch đề + explanation compact variants inline -->
+<!-- 24 · Q3 Dịch đề + Explanation COMBINED (compact) -->
+<section data-label="Q3 Dịch + Answer" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>24 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một corporate treasurer cần hedge một receivable ngoại tệ <strong>rất cụ thể</strong>: <strong>€7,350,000</strong> đến vào một <strong>ngày không phổ biến (47 ngày từ hôm nay)</strong>. Treasurer most likely chọn <strong>OTC forward</strong> thay vì exchange-traded future vì:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">OTC forward có counterparty risk thấp hơn futures.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Futures đắt hơn do daily mark-to-market losses.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Forwards có thể customize chính xác size và maturity date cần thiết.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.01</span>
+    <span class="rule"></span>
+    <span>25 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — Customization.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext">OTC forwards có thể <b>customize</b> size, maturity date, và underlying theo nhu cầu. €7.35M / 47 ngày không khớp contract chuẩn của futures (EUR 125,000 mỗi contract, expiry Mar/Jun/Sep/Dec). Customization = <em>perfect hedge</em> không có basis risk — lý do chính chọn OTC.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Ngược lại — OTC forwards có <em>higher</em> counterparty risk vì không có clearinghouse đứng giữa. Futures với daily MTM + clearinghouse guarantee có <em>lower</em> credit risk. Đây là trade-off chính.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Daily mark-to-market không làm futures "đắt hơn" về fair value — chỉ là timing của cash flows (P&amp;L settle daily vs at maturity). Với same underlying và maturity, forward và future price gần như bằng nhau trong absence của interest-rate effects.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">OTC = <em>customization</em> + higher counterparty risk + low liquidity. Exchange = <em>standardization</em> + clearinghouse + liquidity. Corporate hedgers cần exact match thường chọn OTC. Speculators cần liquidity &amp; tight spreads thường chọn exchange.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.01 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 26 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>09.01 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 09.02 — Forward Commitments &amp; Futures Pricing</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

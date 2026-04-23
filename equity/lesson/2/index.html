@@ -1,0 +1,1002 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Equity 07.02 — Security Market Indexes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Market<br>&amp; <em>Indexes.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 07 · Lesson 07.02 · Equity Investments</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 02 · Security market indexes</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Equity</dd></div>
+      <div><dt>Module</dt><dd>02</dd></div>
+      <div><dt>Lesson</dt><dd>07.02</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Construction · weighting · types · rebalancing</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">02</div>
+    <div class="lbl">Security market indexes</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How <em>indexes</em> measure<br>the market.</h2>
+    <ul class="toc">
+      <li class="active">01 · Purpose &amp; uses of indexes</li>
+      <li>02 · Index construction &amp; weighting methods</li>
+      <li>03 · Types of indexes (broad, sector, style, FI, alt)</li>
+      <li>04 · Price vs total return · rebalancing · reconstitution</li>
+      <li>05 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · PURPOSE OF INDEXES -->
+<section data-label="Purpose" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>03 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Indexes · purpose</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Why we <em class="hi">build</em> indexes.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Market index = single number đại diện cho performance của một rổ securities. Là công cụ nền tảng cho đo lường, benchmark, và passive investing.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Benchmarks</em> cho active managers</div>
+        <div class="d">So sánh fund performance với index (S&amp;P 500, VN30). Alpha = return của manager trừ return của benchmark.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Proxies</em> cho systematic risk</div>
+        <div class="d">Beta trong CAPM tính relative to market index. Index = proxy cho "market portfolio".</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Performance</em> measurement</div>
+        <div class="d">Tracking market trend theo thời gian. Historical returns của index cung cấp asset-class statistics cho asset allocation.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Investable</em> vehicles</div>
+        <div class="d">ETFs và index funds replicate index → passive investing ngày càng lớn. VFMVN30 ETF tracking VN30 là ví dụ VN.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Bonus — Indexes cũng dùng cho <em>asset allocation models</em>, <em>economic indicator</em> (stock market như leading indicator), và <em>derivatives underlying</em> (futures, options trên S&amp;P 500, VN30).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — PURPOSE</span>
+  </div>
+</section>
+
+
+<!-- 04 · INDEX CONSTRUCTION -->
+<section data-label="Index construction" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>04 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Construction · 4 decisions</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Four <em class="hi">decisions</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Index provider (S&amp;P, MSCI, FTSE) phải quyết định 4 điều khi tạo index. Mỗi lựa chọn ảnh hưởng tính chất và performance.
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Target market — phạm vi universe</span>
+        <span class="step-body">Quốc gia nào? Sector nào? Size (large/mid/small cap)? Style (growth/value)? Ví dụ: S&amp;P 500 = 500 large-cap US stocks.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Constituent selection — chọn stocks nào</span>
+        <span class="step-body">Rule-based (market cap threshold) hay committee-based (S&amp;P index committee). Tiêu chí: liquidity, domicile, sector representation.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Weighting method — tỷ trọng mỗi stock</span>
+        <span class="step-body">Price-weighted, market-cap weighted, equal-weighted, float-adjusted, fundamental. <em>Quyết định quan trọng nhất</em>.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Rebalancing &amp; reconstitution — cập nhật</span>
+        <span class="step-body">Tần suất điều chỉnh weights (quarterly) và thay thế constituents (annual). Ảnh hưởng turnover và tracking cost.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — CONSTRUCTION</span>
+  </div>
+</section>
+
+
+<!-- 05 · WEIGHTING METHODS — OVERVIEW -->
+<section data-label="Weighting overview" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>05 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Weighting methods</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Five <em class="hi">weighting</em> methods.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Price-weighted</em></div>
+        <div class="d">Weight ∝ price. DJIA (30 US blue chips), Nikkei 225. <em>Stock split</em> gây lệch → cần adjust divisor.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Market-cap</em> weighted</div>
+        <div class="d">Weight ∝ market cap. S&amp;P 500, VN-Index. Mega-caps dominate. Tự-rebalance theo price.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Equal-weighted</em></div>
+        <div class="d">Mỗi stock = 1/N. S&amp;P 500 Equal Weight. Overweight small caps vs cap-weighted. Đòi hỏi frequent rebalancing.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Float-adjusted</em> market cap</div>
+        <div class="d">Loại trừ insider/restricted/government shares. Chỉ đếm shares <em>available</em> cho public trading. Hiện là standard (MSCI, FTSE, S&amp;P).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">05</span>
+      <div>
+        <div class="t"><em class="hi">Fundamental</em>-weighted</div>
+        <div class="d">Weight dựa trên earnings, dividends, book value, cash flow. Tránh "momentum bias" của cap-weight. Ví dụ: RAFI indexes.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">§</span>
+      <div>
+        <div class="t">Tại sao <em class="hi">quan trọng</em>?</div>
+        <div class="d">Cùng universe nhưng weighting khác nhau → index return khác nhau đáng kể. Đây là điểm CFA test nhiều nhất.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — WEIGHTING</span>
+  </div>
+</section>
+
+
+<!-- 06 · PRICE-WEIGHTED — FORMULA & EXAMPLE -->
+<section data-label="Price-weighted" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>06 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Method 01 · price-weighted</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Price</em>-weighted.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Index value formula</span>
+    <div class="eq"><span class="var">Index value</span> = (Σ <span class="var">Pᵢ</span>) / <span class="var">divisor</span></div>
+    <div class="note">Chỉ cộng giá các stocks, chia cho divisor. Divisor ban đầu = N (số stocks), sau đó adjusted khi có stock split, spin-off, hoặc thay constituent.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Example — 3-stock price-weighted index</span>
+    <div class="eq">Stocks: A @ $90, B @ $60, C @ $30</div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Index</span> = (90 + 60 + 30) / 3 = <b>60</b></div>
+    <div class="note">Weight của A = 90/180 = 50%; B = 33%; C = 17%. Stock giá cao dominate, bất kể market cap. <b>DJIA có Goldman Sachs weight cao hơn Apple</b> vì GS price cao hơn, dù AAPL cap lớn gấp 10×.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Stock split problem — Nếu A split 2:1, price xuống $45. Sum = 45+60+30 = 135. Để index không đổi (60), phải điều chỉnh divisor: 135 / 60 = <b>2.25</b>. Đây là "Dow divisor" nổi tiếng.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — PRICE-WT</span>
+  </div>
+</section>
+
+
+<!-- 07 · MARKET-CAP WEIGHTED -->
+<section data-label="Cap-weighted" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>07 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Method 02 · market-cap weighted</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Market-cap</em> weighted.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Weight &amp; index formula</span>
+    <div class="eq"><span class="var">wᵢ</span> = (<span class="var">Pᵢ</span> · <span class="var">Nᵢ</span>) / Σ(<span class="var">Pⱼ</span> · <span class="var">Nⱼ</span>)</div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Index</span> = Σ(<span class="var">Pᵢ</span> · <span class="var">Nᵢ</span>) / <span class="var">divisor</span></div>
+    <div class="note"><b>Pᵢ · Nᵢ</b> = market cap của stock i (price × shares outstanding). Tử số = tổng market cap. Stocks với cap lớn có weight lớn.</div>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Ưu điểm</div>
+      <dl>
+        <dt>Tự-rebalance</dt>
+        <dd>Khi price tăng, weight tự tăng theo — không cần rebalance thường xuyên</dd>
+        <dt>Đại diện</dt>
+        <dd>Phản ánh giá trị kinh tế thực của market</dd>
+        <dt>Low turnover</dt>
+        <dd>Passive funds tracking dễ, chi phí thấp</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Nhược điểm</div>
+      <dl>
+        <dt>Mega-cap bias</dt>
+        <dd>Top 10 stocks S&amp;P 500 chiếm &gt;30% weight → concentration risk</dd>
+        <dt>Momentum</dt>
+        <dd>Stock đang đắt càng được weight cao → có thể over-pay bubble stocks</dd>
+        <dt>Float issue</dt>
+        <dd>Shares insider/state không trade → cần float-adjusted để fix</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — CAP-WT</span>
+  </div>
+</section>
+
+
+<!-- 08 · EQUAL-WEIGHTED & FUNDAMENTAL -->
+<section data-label="Equal &amp; Fundamental" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>08 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Methods 03 &amp; 05</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Equal</em> &amp; <em class="hi">fundamental</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Equal-weighted</div>
+      <dl>
+        <dt>Weight</dt>
+        <dd>wᵢ = 1/N cho mọi stock — bình đẳng tuyệt đối</dd>
+        <dt>Bias</dt>
+        <dd>Tilt về <em>small-cap</em> (so với cap-weighted) → small-cap premium</dd>
+        <dt>Rebalance</dt>
+        <dd>Thường xuyên (quarterly) vì price move làm lệch 1/N — tạo turnover cost</dd>
+        <dt>Ví dụ</dt>
+        <dd>S&amp;P 500 Equal Weight (RSP ETF), Invesco DB Equal Weight</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Fundamental-weighted</div>
+      <dl>
+        <dt>Weight</dt>
+        <dd>wᵢ ∝ earnings, dividends, sales, book value, cash flow — không phải price</dd>
+        <dt>Bias</dt>
+        <dd>Tilt về <em>value stocks</em> (cheap vs fundamentals) — tránh momentum/bubble trap</dd>
+        <dt>Rebalance</dt>
+        <dd>Annual (khi báo cáo tài chính cập nhật). Turnover vừa phải.</dd>
+        <dt>Ví dụ</dt>
+        <dd>RAFI 1000 (Research Affiliates), PowerShares FTSE RAFI</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Float-adjusted market cap (method 04) — Variant của cap-weighted: chỉ tính <em>float shares</em> (public, untied). Excluded: insider holdings, government stakes, strategic cross-holdings. Là modern standard cho MSCI, FTSE, S&amp;P Global — phản ánh thanh khoản thực tế để passive fund mua được.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — EQUAL/FUND</span>
+  </div>
+</section>
+
+
+<!-- 09 · TYPES OF INDEXES -->
+<section data-label="Types" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>09 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Index types</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Types of <em class="hi">indexes</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Broad market</em></div>
+        <div class="d">Phản ánh toàn thị trường: S&amp;P 500, Russell 3000, Wilshire 5000, VN-Index. Large universe, diversified.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Sector</em> indexes</div>
+        <div class="d">Industry-specific: Technology (XLK), Energy (XLE), Financials (XLF). Dùng sector rotation strategies.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Style</em> indexes</div>
+        <div class="d">Growth vs value, large vs small cap, momentum, quality. Russell 1000 Value vs Growth. Factor investing.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Fixed-income</em> indexes</div>
+        <div class="d">Bloomberg US Aggregate Bond Index (Agg), ICE BofA Merrill Lynch. Challenge: illiquid bonds, frequent maturity.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">05</span>
+      <div>
+        <div class="t"><em class="hi">Alternative</em> indexes</div>
+        <div class="d">REIT (FTSE NAREIT), commodities (S&amp;P GSCI, Bloomberg Commodity), hedge funds (HFRI). Illiquid, selection bias issues.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">06</span>
+      <div>
+        <div class="t"><em class="hi">Global &amp; regional</em></div>
+        <div class="d">MSCI ACWI (all-country world), EAFE (Europe, Australia, Far East), Emerging Markets Index. Currency impact important.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — TYPES</span>
+  </div>
+</section>
+
+
+<!-- 10 · PRICE vs TOTAL RETURN -->
+<section data-label="Price vs Total Return" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>10 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Return measurement</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Price</em> vs <em class="hi">total</em> return.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Price return index</div>
+      <dl>
+        <dt>Tính</dt>
+        <dd>Chỉ đo thay đổi giá — không gồm dividend/coupon</dd>
+        <dt>Formula</dt>
+        <dd>R_price = (P₁ − P₀) / P₀</dd>
+        <dt>Ví dụ</dt>
+        <dd>S&amp;P 500 Price Index, DJIA (default báo chí)</dd>
+        <dt>Bias</dt>
+        <dd>Underestimate long-run equity returns (dividends là ~2% annual của S&amp;P)</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Total return index</div>
+      <dl>
+        <dt>Tính</dt>
+        <dd>Gồm price change + dividends/coupons (reinvested)</dd>
+        <dt>Formula</dt>
+        <dd>R_total = (P₁ − P₀ + Income) / P₀</dd>
+        <dt>Ví dụ</dt>
+        <dd>S&amp;P 500 Total Return (SPXTR), Bloomberg Agg Total Return</dd>
+        <dt>Use case</dt>
+        <dd>Chuẩn cho <em>performance comparison</em>, asset allocation modeling</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Magnitude — Từ 1926 đến nay, S&amp;P 500 price return ~6-7%/năm, total return ~10%/năm. <b>Dividend reinvestment</b> thêm 3-4%/năm, compound đáng kể qua decades. Đây là lý do CFA luôn ưu tiên total return cho benchmark.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — PRICE vs TR</span>
+  </div>
+</section>
+
+
+<!-- 11 · REBALANCING & RECONSTITUTION -->
+<section data-label="Rebalancing" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>11 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Maintenance · rebalancing</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Rebalance</em> &amp; <em class="hi">reconstitute</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Index không static — providers cập nhật định kỳ. CFA phân biệt 2 khái niệm: rebalancing (điều chỉnh weights) và reconstitution (thay constituents).
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Rebalancing — reset weights</span>
+        <span class="step-body">Trả weights về target. <em>Equal-weighted</em> và <em>fundamental-weighted</em> cần rebalance thường xuyên (quarterly). <em>Cap-weighted</em> tự-rebalance theo price — ít cần action.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Reconstitution — thay constituents</span>
+        <span class="step-body">Thêm/xóa stocks khỏi index. Tiêu chí: market cap threshold, liquidity, sector representation. Annual (Russell tháng 6) hoặc ad-hoc (M&amp;A, bankruptcy).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Passive investing impact</span>
+        <span class="step-body">Khi S&amp;P thêm stock mới, index funds PHẢI buy → giá tăng ngay khi announce ("index effect"). Ngược lại, removal tạo selling pressure.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § Tracking cost — Rebalance/reconstitute tạo <em>turnover</em>, dẫn đến transaction cost. Equal-weighted có turnover cao nhất (~20%/năm), cap-weighted thấp nhất (~4%/năm). Đây là hidden cost của passive investing.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — REBALANCE</span>
+  </div>
+</section>
+
+
+<!-- 12 · PASSIVE vs ACTIVE -->
+<section data-label="Passive vs Active" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>12 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Using indexes · investment styles</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Passive</em> vs <em class="hi">active</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Passive investing</div>
+      <dl>
+        <dt>Mục tiêu</dt>
+        <dd><em>Match</em> index return — không cố gắng beat thị trường</dd>
+        <dt>Vehicle</dt>
+        <dd>Index funds, ETFs (SPY, VOO, VFMVN30)</dd>
+        <dt>Fee</dt>
+        <dd>Thấp (0.03-0.20%/year). Low turnover → tax efficient</dd>
+        <dt>Rationale</dt>
+        <dd>Efficient market hypothesis: active managers khó consistently beat market sau fee</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Active management</div>
+      <dl>
+        <dt>Mục tiêu</dt>
+        <dd><em>Outperform</em> benchmark (generate alpha)</dd>
+        <dt>Vehicle</dt>
+        <dd>Mutual funds, hedge funds, separately managed accounts</dd>
+        <dt>Fee</dt>
+        <dd>Cao (0.5-2.0% management + 20% performance cho hedge funds)</dd>
+        <dt>Rationale</dt>
+        <dd>Belief market inefficient; skill + research → alpha. Nhưng data cho thấy &lt;20% active managers beat index over 10 years.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Index fund growth — Passive AUM vượt active AUM tại US từ 2019. Vanguard, BlackRock iShares, State Street SPDR kiểm soát trillions USD. Xu hướng tiếp tục: phí thấp hơn → flows tích cực.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — PASSIVE/ACTIVE</span>
+  </div>
+</section>
+
+
+<!-- 13 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 14 · Q1 EN — Price-weighted calculation -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>14 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Calculate the <em class="hi">price-weighted</em> index.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A price-weighted index is constructed from 3 stocks with the following prices and shares outstanding:<br>
+      Stock A: <strong>$80</strong>, 10 million shares · Stock B: <strong>$40</strong>, 50 million shares · Stock C: <strong>$30</strong>, 100 million shares.<br>
+      Assuming the initial divisor equals the number of stocks, what is the <strong>value of the price-weighted index</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">50.00 — simple average of prices.</span></li>
+    <li><span class="lbl">B</span><span class="opt">36.67 — weighted by market cap.</span></li>
+    <li><span class="lbl">C</span><span class="opt">150.00 — sum of prices without divisor.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 15 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>15 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Price-weighted</mark> index. Divisor = <mark>number of stocks (3)</mark>. Ignore shares outstanding.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Price-weighted chỉ dùng giá, KHÔNG dùng shares outstanding hay market cap. Shares = 10M, 50M, 100M là <em>distractor</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Formula: <em>Index = Σ Pᵢ / divisor</em> = (80 + 40 + 30) / 3 = 150 / 3 = <em>50</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Nếu dùng cap-weighted: Tổng cap = 80×10 + 40×50 + 30×100 = 800 + 2000 + 3000 = $5,800M. Số đó khác với price-weighted. Đừng nhầm 2 methods.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 16 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>16 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một price-weighted index được construct từ 3 cổ phiếu với giá và shares outstanding như sau:<br>
+      Stock A: <strong>$80</strong>, 10 triệu shares · Stock B: <strong>$40</strong>, 50 triệu shares · Stock C: <strong>$30</strong>, 100 triệu shares.<br>
+      Giả sử initial divisor = số stocks, <strong>giá trị của price-weighted index</strong> là bao nhiêu?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">50.00 — trung bình cộng giá.</span></li>
+    <li><span class="lbl">B</span><span class="opt">36.67 — weighted theo market cap.</span></li>
+    <li><span class="lbl">C</span><span class="opt">150.00 — tổng giá không chia divisor.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>17 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — 50.00.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">Price-weighted formula: <b>Index = Σ Pᵢ / divisor</b> = ($80 + $40 + $30) / 3 = $150 / 3 = <b>50</b>. Shares outstanding KHÔNG dùng trong price-weighted — đó là distractor. Weight mỗi stock ∝ giá: A = 80/150 = 53%, B = 27%, C = 20%.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">36.67 trông giống cap-weighted average price (Σ(P·N) / Σ N = 5,800 / 160 = 36.25) nhưng không khớp chuẩn. Và quan trọng hơn: <em>cap-weighted index không tính trung bình giá</em>. Option sai về methodology.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">150 là tổng giá — thiếu divisor. Price-weighted LUÔN chia cho divisor để rebase index về level quản lý được (thường 100 lúc khởi tạo). Không chia = raw sum, không phải index.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Price-weighted: <em>Σ P / divisor</em>. Chỉ giá; shares &amp; cap bị ignore. Stocks giá cao dominate. Stock split làm méo → phải adjust divisor để index không bị "fake jump".</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q2 EN — Which weighting overweights large caps -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>18 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Which method <em class="hi">overweights</em> large caps?</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst is comparing equity indexes constructed using different weighting methodologies on the <em>same universe</em> of 500 stocks. Which of the following weighting methods <strong>most</strong> overweights large-cap stocks and <strong>most</strong> underweights small-cap stocks?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Equal-weighted index.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Market-capitalization weighted index.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Fundamental-weighted index based on book value.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>19 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Same universe</mark> (500 stocks). Which weighting <mark>overweights large caps</mark>? Compare bias.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Cap-weighted: weight ∝ market cap → <em>mega-caps dominate</em> by definition. S&amp;P 500: top 10 stocks &gt; 30% weight.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Equal-weighted: mỗi stock = 1/500 = 0.20% — BIGGEST overweight <em>small caps</em> (chúng có weight cap-wt &lt; 0.20%), underweight large caps.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Fundamental-weighted: tilts về <em>value</em> (high book value vs price). Có thể large hoặc small tùy fundamental, nhưng KHÔNG systematically overweight large như cap-weighted.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>20 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một analyst so sánh các equity indexes construct bằng weighting methods khác nhau trên <em>cùng universe</em> 500 cổ phiếu. Weighting method nào <strong>overweight large-cap</strong> nhiều nhất và <strong>underweight small-cap</strong> nhiều nhất?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Equal-weighted index.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Market-capitalization weighted index.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Fundamental-weighted index dựa trên book value.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>21 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Market-cap weighted.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Theo định nghĩa, cap-weighted assign <b>weight ∝ market cap</b>. Large caps (trillion USD như AAPL, MSFT) có weight khổng lồ; small caps (vài trăm triệu USD) có weight cực nhỏ. S&amp;P 500: top 10 stocks chiếm hơn 30% index. Không method nào overweight large-cap nhiều bằng cap-weighted.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Equal-weighted assign 1/N cho mọi stock. Ngược lại của cap-weighted: <em>overweight small-caps</em>, underweight large-caps. Nếu equal-weighted S&amp;P 500, Apple = 0.20% (nhỏ hơn nhiều so với 7% trong cap-weighted).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Fundamental-weighted tilts về <em>value</em> (stocks cheap vs fundamentals) — không có tilt systematic về size. Một số value stocks là large (banks, utilities), một số là small. Không phải size-tilt chủ đạo.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Size tilt của 3 methods: <b>Cap-weighted</b> → overweight large. <b>Equal-weighted</b> → overweight small. <b>Fundamental-weighted</b> → value tilt (size neutral). Đây là lý do tại sao cùng universe nhưng returns khác nhau — weighting quyết định exposure.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q3 EN — Fundamental vs Cap-weighted -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>22 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Fundamental</em> vs cap-weighted.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Compared to a market-capitalization weighted index, a <strong>fundamental-weighted index</strong> (based on earnings and dividends) is <strong>most likely</strong> to exhibit which of the following characteristics?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">A growth-stock tilt and higher momentum exposure.</span></li>
+    <li><span class="lbl">B</span><span class="opt">A value-stock tilt and contrarian rebalancing behavior.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Zero rebalancing needs and lower tracking error.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>23 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Fundamental-weighted</mark> vs cap-weighted. Weight theo <mark>earnings, dividends</mark> (không phải price).
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Cap-weighted: weight tăng khi <em>price</em> tăng. Fundamental-weighted: weight tăng khi <em>earnings/dividends</em> tăng, không phụ thuộc trực tiếp price.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Khi một stock price tăng mạnh (nhưng earnings chưa theo kịp) → P/E tăng → weight trong cap-wt TĂNG, nhưng weight trong fundamental <em>không đổi</em>. Relative underweight = <em>value tilt</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Rebalance behavior: khi price tăng, fundamental-wt phải SELL stock đó (đã overvalued vs fundamental) để giữ target weight. Đây là <em>contrarian</em> (mua rẻ bán đắt) — trái ngược cap-weighted (momentum).</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>24 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      So với market-cap weighted index, một <strong>fundamental-weighted index</strong> (dựa trên earnings và dividends) <strong>most likely</strong> thể hiện đặc điểm nào?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Growth-stock tilt và momentum exposure cao hơn.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Value-stock tilt và contrarian rebalancing behavior.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Không cần rebalance và tracking error thấp hơn.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 EXPLANATION + END combined in explanation; then END slide -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.02</span>
+    <span class="rule"></span>
+    <span>25 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Value tilt &amp; contrarian.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Fundamental-weighted giữ weight theo <b>earnings/dividends</b> (không theo price). Stock nào đắt lên (P tăng nhanh hơn earnings) → P/E tăng → <em>relative underweight</em> trong fundamental index = <b>value tilt</b>. Rebalance: bán stocks đắt lên, mua stocks rẻ xuống → <b>contrarian behavior</b> (đối ngược cap-weighted momentum).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Growth tilt và momentum là đặc tính của <em>cap-weighted</em>, không phải fundamental. Cap-weighted auto tăng weight cho stocks đang lên → momentum. Fundamental làm ngược lại.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Fundamental-weighted CẦN rebalance annually khi báo cáo tài chính cập nhật. Tracking error so với cap-weighted benchmark cũng <em>cao hơn</em> (vì weighting khác nhau). Cap-weighted mới là method có low turnover / auto-rebalance.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Fundamental-weighted = <em>value tilt + contrarian rebalance</em>. Cap-weighted = <em>size-neutral vs market + momentum</em>. Equal-weighted = <em>small-cap tilt + high turnover</em>. Mỗi method là exposure khác nhau — chọn theo investment thesis.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.02 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>07.02 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 07.03 — Market Efficiency</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

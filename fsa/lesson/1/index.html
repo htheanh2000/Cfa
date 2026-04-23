@@ -1,0 +1,931 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · FSA 04.01 — Introduction to Financial Statement Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 120px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Financial<br><em>Statements.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 04 · Lesson 04.01 · FSA</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 01 · Introduction to FSA framework</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>FSA</dd></div>
+      <div><dt>Module</dt><dd>01</dd></div>
+      <div><dt>Lesson</dt><dd>04.01</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">4 statements · IFRS vs GAAP · 6-step framework</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">01</div>
+    <div class="lbl">FSA framework</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>Reading <em>what</em> a<br>company really earns.</h2>
+    <ul class="toc">
+      <li class="active">01 · Primary financial statements — IS, BS, CF, Equity</li>
+      <li>02 · Supplementary info — footnotes, MD&amp;A, auditor</li>
+      <li>03 · IFRS vs US GAAP — harmonization roadmap</li>
+      <li>04 · 6-step analysis framework</li>
+      <li>05 · Quality of financial reports — earnings quality</li>
+      <li>06 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · ROLE OF FSA -->
+<section data-label="Role of FSA" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.01</span>
+    <span class="rule"></span>
+    <span>03 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">FSA · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Role of <em class="hi">financial analysis</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Financial Statement Analysis (FSA) chuyển đổi raw financial data thành investment insights. Mục tiêu: đánh giá <em>past performance</em>, <em>current position</em>, và <em>future prospects</em> của firm.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Equity analyst — forecast earnings &amp; intrinsic value</span>
+        <span class="step-body">Dùng FSA để build forecast cash flow, apply DCF/relative valuation → <em>buy/sell/hold</em> recommendation.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Credit analyst — đánh giá default risk</span>
+        <span class="step-body">Focus leverage ratios, interest coverage, cash flow stability → rating hoặc lending decision.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">M&amp;A · internal management · regulator</span>
+        <span class="step-body">Deal structuring, performance benchmarking, compliance monitoring. FSA là common language của capital markets.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § Key insight — Financial statements là <em>output</em> của accounting system, nhưng <em>input</em> của investment process. Analyst phải hiểu cả hai phía để đọc đúng.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.01 — ROLE</span>
+  </div>
+</section>
+
+
+<!-- 04 · 4 PRIMARY STATEMENTS -->
+<section data-label="Primary statements" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.01</span>
+    <span class="rule"></span>
+    <span>04 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Primary statements</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">4 statements</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Mỗi statement cung cấp một góc nhìn khác nhau. Hiểu từng cái và relationship giữa chúng là nền tảng của FSA.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">IS</span>
+      <div>
+        <div class="t"><em class="hi">Income Statement</em></div>
+        <div class="d">Revenue − Expenses = Net Income. Đo <em>performance</em> trong period (flow). Accrual basis.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">BS</span>
+      <div>
+        <div class="t"><em class="hi">Balance Sheet</em></div>
+        <div class="d">Assets = Liabilities + Equity. Đo <em>financial position</em> tại point in time (stock).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CF</span>
+      <div>
+        <div class="t"><em class="hi">Cash Flow Statement</em></div>
+        <div class="d">CFO + CFI + CFF = Δ Cash. Dòng tiền thực tế, 3 categories: operating, investing, financing.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SE</span>
+      <div>
+        <div class="t"><em class="hi">Statement of Equity</em></div>
+        <div class="d">Reconcile opening equity → closing equity. Share issuance, dividends, NI, OCI.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Articulation — Net Income (IS) → Retained Earnings (BS &amp; SE). Ending cash (CF) → Cash (BS). Bốn statements liên kết với nhau, không đọc rời.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.01 — 4 STATEMENTS</span>
+  </div>
+</section>
+
+
+<!-- 05 · ACCOUNTING EQUATION -->
+<section data-label="Accounting equation" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.01</span>
+    <span class="rule"></span>
+    <span>05 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Balance sheet · formula</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">accounting equation</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Fundamental identity</span>
+    <div class="eq"><span class="var">Assets</span> = <span class="var">Liabilities</span> + <span class="var">Equity</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Equity</span> = Contributed Capital + Retained Earnings + <span class="var">OCI</span></div>
+    <div class="note"><b>Assets</b> resources firm sở hữu · <b>Liabilities</b> claims của creditors · <b>Equity</b> residual claim của owners. <b>OCI</b> Other Comprehensive Income — gain/loss bypass IS.</div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Tại sao luôn balance? Mỗi transaction được ghi double-entry — debit và credit phải bằng nhau. Đây là lý do Balance Sheet phải luôn balance về mặt toán học.
+  </p>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Retained Earnings link IS ↔ BS</span>
+        <span class="step-body">RE(end) = RE(begin) + Net Income − Dividends. NI từ Income Statement chảy vào Equity.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Cash link CF ↔ BS</span>
+        <span class="step-body">Cash(end) − Cash(begin) = CFO + CFI + CFF. Cash Flow Statement giải thích Δ Cash trên Balance Sheet.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.01 — EQUATION</span>
+  </div>
+</section>
+
+
+<!-- 06 · SUPPLEMENTARY INFO -->
+<section data-label="Supplementary" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.01</span>
+    <span class="rule"></span>
+    <span>06 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Beyond the numbers</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Supplementary</em> information.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Financial statements không "tự đứng một mình". CFA L1 yêu cầu phân biệt 5 nguồn thông tin kèm theo — mỗi cái bổ sung context cho analyst.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Footnotes</em> (Notes)</div>
+        <div class="d">Accounting policies, segment data, breakdown chi tiết. Phải đọc kỹ — thường có information quan trọng hơn statement.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">MD&amp;A</em></div>
+        <div class="d">Management's Discussion &amp; Analysis. Narrative giải thích results, trends, risks, outlook. Không audited.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Auditor's report</em></div>
+        <div class="d">Unqualified (clean) · Qualified · Adverse · Disclaimer. Chỉ đảm bảo "fair presentation", không đảm bảo accuracy hay performance.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Proxy</em> &amp; other filings</div>
+        <div class="d">10-K (annual), 10-Q (quarterly), 8-K (material event), proxy statement (governance, executive comp).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.01 — SUPPLEMENTARY</span>
+  </div>
+</section>
+
+
+<!-- 07 · AUDITOR OPINIONS -->
+<section data-label="Auditor opinions" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.01</span>
+    <span class="rule"></span>
+    <span>07 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Auditor's report · 4 opinions</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What the <em class="hi">auditor</em> says.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Good news</div>
+      <dl>
+        <dt>Unqualified</dt>
+        <dd>"Clean" opinion — statements fair &amp; in accordance with GAAP/IFRS. <b>Đây là kết quả mong muốn</b>.</dd>
+        <dt>Qualified</dt>
+        <dd>Fair overall <em>except</em> một exception cụ thể. Red flag nhẹ — đọc kỹ phần "except for".</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Red flags</div>
+      <dl>
+        <dt>Adverse</dt>
+        <dd>Statements <em>không</em> fairly presented. Material misstatement → do not rely.</dd>
+        <dt>Disclaimer</dt>
+        <dd>Auditor không thể đưa ra opinion (không đủ evidence, scope limitation). Worst case.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Going concern — Auditor phải flag nếu có "substantial doubt" về khả năng firm survive 12 tháng tới. Emphasis-of-matter paragraph nằm trong report dù là unqualified.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.01 — AUDITOR</span>
+  </div>
+</section>
+
+
+<!-- 08 · IFRS vs GAAP -->
+<section data-label="IFRS vs GAAP" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.01</span>
+    <span class="rule"></span>
+    <span>08 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Standards · overview</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">IFRS</em> vs <em class="hi">US GAAP</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">IFRS</div>
+      <dl>
+        <dt>Body</dt>
+        <dd>IASB — International Accounting Standards Board</dd>
+        <dt>Approach</dt>
+        <dd><b>Principles-based</b> — judgement-led, broader framework</dd>
+        <dt>Inventory</dt>
+        <dd>LIFO <b>cấm</b>; FIFO &amp; weighted avg OK. Lower of cost or NRV.</dd>
+        <dt>Users</dt>
+        <dd>140+ quốc gia (EU, UK, Japan, HK, SG, VN adopting)</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">US GAAP</div>
+      <dl>
+        <dt>Body</dt>
+        <dd>FASB — Financial Accounting Standards Board</dd>
+        <dt>Approach</dt>
+        <dd><b>Rules-based</b> — detailed bright-line tests</dd>
+        <dt>Inventory</dt>
+        <dd>LIFO <b>cho phép</b>. Lower of cost or market (LCM).</dd>
+        <dt>Users</dt>
+        <dd>US public companies (SEC filings)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Convergence — IFRS và US GAAP đã harmonize nhiều standards (revenue IFRS 15 ↔ ASC 606, leases IFRS 16 ↔ ASC 842). CFA L1 test sự khác biệt còn lại (LIFO, R&amp;D cap, inventory reversal).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.01 — IFRS/GAAP</span>
+  </div>
+</section>
+
+
+<!-- 09 · KEY DIFFERENCES -->
+<section data-label="Key differences" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.01</span>
+    <span class="rule"></span>
+    <span>09 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">IFRS vs GAAP · differences</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">High-yield <em class="hi">differences</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t">Inventory — <em class="hi">LIFO</em></div>
+        <div class="d">IFRS: không cho phép. GAAP: cho phép (LIFO conformity rule với taxes).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t">R&amp;D — <em class="hi">capitalization</em></div>
+        <div class="d">IFRS: Research expense, Development <em>capitalize</em> khi meet criteria. GAAP: cả hai expense (trừ software).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t">Inventory <em class="hi">writedown reversal</em></div>
+        <div class="d">IFRS: cho phép reverse writedown (up to original). GAAP: <em>không</em> — writedown là permanent.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t">Cash flow <em class="hi">classification</em></div>
+        <div class="d">IFRS flexible: interest paid có thể CFO hoặc CFF. GAAP strict: interest paid = CFO.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.01 — DIFFERENCES</span>
+  </div>
+</section>
+
+
+<!-- 10 · 6-STEP FRAMEWORK -->
+<section data-label="Analysis framework" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.01</span>
+    <span class="rule"></span>
+    <span>10 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Process · 6 steps</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">6-step</em> framework.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CFA Institute khuyến nghị quy trình 6 bước chuẩn cho mọi financial analysis. Thứ tự quan trọng — skip bước đầu dễ dẫn đến analysis vô hướng.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">01 · Articulate purpose &amp; context</span>
+        <span class="step-body">Define mục tiêu: credit decision? equity valuation? M&amp;A? Xác định resources, deliverables, timeline.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">02 · Collect input data</span>
+        <span class="step-body">Financial statements, industry data, macro data, interview với management. Multiple sources để cross-check.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">03 · Process data</span>
+        <span class="step-body">Compute ratios, common-size statements, adjust for one-offs, build spreadsheet model.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">04 · Analyze &amp; interpret processed data</span>
+        <span class="step-body">So sánh với peers, trends, expectations. Hình thành <em>investment conclusion</em>.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">05 · Develop &amp; communicate conclusions / recommendations</span>
+        <span class="step-body">Written report theo Standards of Practice (CFA). Rõ ràng về assumptions, limitations.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">06 · Follow up</span>
+        <span class="step-body">Update khi có new data. Quyết định đầu tư là ongoing process, không phải one-shot.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.01 — 6 STEPS</span>
+  </div>
+</section>
+
+
+<!-- 11 · QUALITY OF REPORTS -->
+<section data-label="Quality of reports" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.01</span>
+    <span class="rule"></span>
+    <span>11 / 24</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Quality · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Quality</em> of financial reports.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Quality có 2 chiều: <em>reporting quality</em> (statements có đúng GAAP/IFRS không, có mô tả trung thực không) và <em>earnings quality</em> (earnings có sustainable, cash-backed, không bị manipulated không).
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Reporting quality</div>
+      <dl>
+        <dt>High</dt>
+        <dd>Compliance với standards, decision-useful info, transparent disclosures</dd>
+        <dt>Low</dt>
+        <dd>Aggressive accounting choices, hidden risks, non-GAAP emphasis, restatements</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Earnings quality</div>
+      <dl>
+        <dt>High</dt>
+        <dd>Sustainable, recurring, cash-backed (CFO ≈ NI), low accruals</dd>
+        <dt>Low</dt>
+        <dd>One-off gains, aggressive revenue recognition, high accruals (NI &gt;&gt; CFO)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Conservatism principle — Khi uncertain, chọn treatment <em>không</em> overstate assets/income. "Anticipate no profit, but anticipate all losses". Conservatism bảo vệ user khỏi over-optimism.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.01 — QUALITY</span>
+  </div>
+</section>
+
+
+<!-- 12 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 13 · Q1 EN — Primary statements -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.01</span>
+    <span class="rule"></span>
+    <span>13 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Identify the <em class="hi">statement</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst wishes to evaluate a company's <strong>financial position at a single point in time</strong>, specifically the resources it controls and the claims against those resources. Which of the following financial statements is <strong>most appropriate</strong> for this purpose?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Income Statement — measures performance over a period.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Balance Sheet — reports assets, liabilities, and equity at a point in time.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Statement of Cash Flows — reconciles cash inflows and outflows.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.01 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 14 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.01</span>
+    <span class="rule"></span>
+    <span>14 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Point in time</mark>, <mark>resources controlled</mark> (assets), <mark>claims against</mark> (liabilities + equity). Key phrase: <mark>financial position</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">"Point in time" = <em>stock</em> measure. Income Statement và Cash Flow là <em>flow</em> (over a period) → loại.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">"Resources controlled" = <em>Assets</em>. "Claims against" = <em>Liabilities + Equity</em>. Equation này mô tả Balance Sheet.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Nhớ: IS = <em>performance</em>, BS = <em>position</em>, CF = <em>cash movement</em>, SE = <em>equity changes</em>.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.01 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 15 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.01</span>
+    <span class="rule"></span>
+    <span>15 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một analyst muốn đánh giá <strong>financial position tại một thời điểm cụ thể</strong>, đặc biệt là resources mà company kiểm soát và claims đối với những resources đó. Statement nào <strong>phù hợp nhất</strong> cho mục đích này?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Income Statement — đo performance trong một period.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Balance Sheet — report assets, liabilities, equity tại point in time.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Statement of Cash Flows — reconcile dòng tiền vào/ra.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.01 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 16 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.01</span>
+    <span class="rule"></span>
+    <span>16 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Balance Sheet.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Balance Sheet report <b>Assets = Liabilities + Equity</b> tại point in time. Assets = resources firm controls. Liabilities + Equity = claims của creditors và shareholders. Đây chính là "financial position" mà câu hỏi hỏi.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Income Statement đo <em>performance over a period</em> (flow), không phải position at a point. Nó cho biết firm earn bao nhiêu trong Q1, không phải firm owns cái gì ngày 31/3.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Cash Flow Statement track dòng tiền <em>trong period</em> (flow), chia theo CFO/CFI/CFF. Không phải snapshot of position.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext"><em>Stock vs Flow</em> là distinction quan trọng nhất. BS = stock (point in time). IS + CF + SE = flow (over a period). CFA L1 dùng ngôn ngữ này liên tục.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.01 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q2 EN — IFRS vs GAAP -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.01</span>
+    <span class="rule"></span>
+    <span>17 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">IFRS</em> vs GAAP.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A manufacturing firm uses <strong>LIFO</strong> for inventory valuation and capitalizes <strong>development costs</strong> when technical feasibility is demonstrated. Under which set of standards does this combination of policies MOST LIKELY comply?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">IFRS only.</span></li>
+    <li><span class="lbl">B</span><span class="opt">US GAAP only.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Neither IFRS nor US GAAP — the combination is inconsistent.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.01 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.01</span>
+    <span class="rule"></span>
+    <span>18 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>LIFO</mark> inventory. <mark>Capitalize development costs</mark> when <mark>technical feasibility</mark> demonstrated. Hai policies khác nhau cho 2 standards.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">LIFO: IFRS <em>cấm</em>, GAAP <em>cho phép</em>. → Chỉ GAAP firm mới dùng LIFO.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Development capitalization khi "technical feasibility": IFRS <em>cho phép</em> (IAS 38 criteria), GAAP <em>expense</em> (trừ software IAS có exception).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Hai policies mâu thuẫn — LIFO only GAAP, Dev cap only IFRS. Một firm không thể follow cả hai → <em>inconsistent</em>.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.01 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.01</span>
+    <span class="rule"></span>
+    <span>19 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một firm manufacturing dùng <strong>LIFO</strong> để định giá inventory và <strong>capitalize development costs</strong> khi technical feasibility được chứng minh. Kết hợp 2 policies này KHẢ NĂNG CAO NHẤT tuân thủ theo bộ standards nào?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Chỉ IFRS.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Chỉ US GAAP.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Không IFRS cũng không GAAP — kết hợp này inconsistent.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.01 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.01</span>
+    <span class="rule"></span>
+    <span>20 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — Inconsistent.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext"><b>LIFO</b> chỉ được phép theo US GAAP — IFRS (IAS 2) cấm LIFO. <b>Capitalization of development costs</b> (IAS 38 criteria bao gồm technical feasibility) là IFRS treatment; US GAAP expense hầu hết R&amp;D theo ASC 730. Hai policies này <em>không thể cùng tồn tại</em> trong một bộ statements tuân thủ duy nhất một standard.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">IFRS cho phép development capitalization nhưng KHÔNG cho phép LIFO. Firm theo IFRS không thể dùng LIFO.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">US GAAP cho phép LIFO nhưng KHÔNG cho phép capitalize development costs (ngoại trừ internal-use software). Firm theo GAAP không thể routine capitalize dev.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Các khác biệt high-yield IFRS vs GAAP: <em>LIFO</em> (chỉ GAAP), <em>Dev costs capitalization</em> (chỉ IFRS), <em>Inventory writedown reversal</em> (chỉ IFRS), <em>Interest paid classification</em> (CFO strict ở GAAP, flexible ở IFRS).</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.01 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q3 EN — 6-step framework -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.01</span>
+    <span class="rule"></span>
+    <span>21 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">first step</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst is beginning a financial analysis of a potential acquisition target. According to the CFA Institute's <strong>six-step financial statement analysis framework</strong>, which of the following should the analyst do <strong>first</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Collect financial statements, industry data, and management interview notes.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Articulate the purpose and context of the analysis, including deliverables and timeline.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Compute common-size statements and key ratios to process the raw data.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.01 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.01</span>
+    <span class="rule"></span>
+    <span>22 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>First</mark> step of CFA's <mark>6-step framework</mark>. Ba options map tới steps: <mark>collect data</mark>, <mark>articulate purpose</mark>, <mark>process data</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Nhớ thứ tự: (1) <em>Articulate purpose</em> → (2) Collect data → (3) Process → (4) Analyze → (5) Communicate → (6) Follow up.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Logic: không thể collect data đúng nếu chưa biết mình cần phân tích cái gì. <em>Purpose</em> định hướng mọi bước sau.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Đừng nhầm "collect" (step 2) với "articulate" (step 1). "Collect" là thu thập raw data, "articulate" là xác định tại sao collect nó.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.01 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.01</span>
+    <span class="rule"></span>
+    <span>23 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một analyst bắt đầu phân tích financial của một acquisition target tiềm năng. Theo <strong>6-step FSA framework</strong> của CFA Institute, analyst nên làm gì <strong>đầu tiên</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Collect financial statements, industry data, và notes phỏng vấn management.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Articulate purpose và context của analysis, bao gồm deliverables và timeline.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Tính common-size statements và key ratios để process raw data.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.01 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.01</span>
+    <span class="rule"></span>
+    <span>24 / 25</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Articulate purpose.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Step 1 trong 6-step framework là <b>articulate purpose and context</b>. Bao gồm define mục tiêu (M&amp;A valuation trong trường hợp này), xác định users, resources có sẵn, timeline, và nature of deliverables. Nếu không rõ purpose, các bước sau sẽ vô hướng.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Collect input data là <em>step 2</em>, không phải step 1. Chỉ khi biết purpose thì mới biết cần collect data nào.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Process data (ratios, common-size) là <em>step 3</em>. Đây là giai đoạn sau khi đã thu thập data raw.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Thứ tự 6 bước: <em>Articulate → Collect → Process → Analyze → Communicate → Follow-up</em>. CFA L1 hay test "what is the first/last step" và "which step comes before X". Học thuộc lòng order.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.01 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 25 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>04.01 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 04.02 — Analyzing Income Statements</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>
