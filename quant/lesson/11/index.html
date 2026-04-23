@@ -1,0 +1,1135 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Quant 02.11 — Big Data Techniques</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 104px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+  .flow { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-top: 24px; }
+  .flow .step { background: var(--panel, #f5f2ec); border: 1px solid rgba(0,0,0,0.08); padding: 18px 14px; border-radius: 8px; position: relative; }
+  .flow .step .sn { font-family: var(--mono); font-size: 14px; color: var(--ink-muted); letter-spacing: 0.08em; }
+  .flow .step .st { font-family: var(--slab, 'Roboto Slab'); font-weight: 600; font-size: 22px; margin-top: 6px; }
+  .flow .step .sd { font-size: 14px; color: var(--ink-muted); margin-top: 6px; line-height: 1.35; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Big Data<br>&amp; <em>Machine Learning.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 02 · Lesson 02.11 · Quantitative Methods</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 11 · Introduction to Big Data Techniques</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Quant</dd></div>
+      <div><dt>Module</dt><dd>11</dd></div>
+      <div><dt>Lesson</dt><dd>02.11</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">4 V's · ML taxonomy · NLP · fintech apps</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">11</div>
+    <div class="lbl">Big data &amp; ML</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>From <em>raw data</em><br>to <em>alpha</em>.</h2>
+    <ul class="toc">
+      <li class="active">01 · Big Data — 4 V's &amp; data types</li>
+      <li>02 · Data pipeline — collect → deploy → monitor</li>
+      <li>03 · Machine Learning taxonomy — supervised / unsupervised / RL</li>
+      <li>04 · Overfitting, NLP, financial applications &amp; caveats</li>
+      <li>05 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · 4 V's -->
+<section data-label="4 Vs" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Big Data · definition</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">4 V's</em> of Big Data.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Big Data không chỉ là "nhiều data". CFA định nghĩa qua 4 chiều: <em>Volume, Velocity, Variety, Veracity</em> — vượt qua capability của traditional databases.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">V1</span>
+      <div>
+        <div class="t"><em class="hi">Volume</em></div>
+        <div class="d">Quy mô dataset — terabytes, petabytes. Ví dụ: tick-by-tick order book, satellite imagery.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">V2</span>
+      <div>
+        <div class="t"><em class="hi">Velocity</em></div>
+        <div class="d">Tốc độ data arrive &amp; process. Real-time streaming: market ticks, Twitter feed, IoT sensors.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">V3</span>
+      <div>
+        <div class="t"><em class="hi">Variety</em></div>
+        <div class="d">Nhiều loại: structured (CSV), semi-structured (JSON, XML), unstructured (text, image, audio).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">V4</span>
+      <div>
+        <div class="t"><em class="hi">Veracity</em></div>
+        <div class="d">Độ tin cậy &amp; chất lượng — missing values, noise, bias. "Garbage in, garbage out".</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — 4 V'S</span>
+  </div>
+</section>
+
+
+<!-- 04 · DATA TYPES -->
+<section data-label="Data types" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Data types</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Structured vs <em class="hi">unstructured</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Structured</div>
+      <dl>
+        <dt>Form</dt>
+        <dd>Rows &amp; columns — relational tables</dd>
+        <dt>Storage</dt>
+        <dd>SQL databases (Postgres, MySQL)</dd>
+        <dt>Examples</dt>
+        <dd>Stock prices, financial statements, trade blotter</dd>
+        <dt>Analysis</dt>
+        <dd>Ready for regression, time-series ngay lập tức</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Semi-structured &amp; Unstructured</div>
+      <dl>
+        <dt>Semi</dt>
+        <dd>JSON, XML — tags nhưng không phải rigid schema</dd>
+        <dt>Unstructured</dt>
+        <dd>Text (news, filings), images (satellite), audio (earnings calls), video</dd>
+        <dt>Storage</dt>
+        <dd>NoSQL (MongoDB), data lakes (S3)</dd>
+        <dt>Analysis</dt>
+        <dd>Phải transform: NLP, computer vision trước khi model</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Ước tính 80-90% data doanh nghiệp ngày nay là <em>unstructured</em>. Alternative data (satellite imagery đo traffic parking lot, credit card txn) là unstructured/semi-structured — nơi alpha mới nằm.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — DATA TYPES</span>
+  </div>
+</section>
+
+
+<!-- 05 · PREPROCESSING -->
+<section data-label="Preprocessing" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Pre-processing</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Data <em class="hi">preparation</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      80% thời gian ML project là data prep. 4 bước cốt lõi cho CFA L1:
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Cleaning — sửa lỗi, xử lý missing</span>
+        <span class="step-body">Remove duplicates, fix typos, handle NaN (drop hoặc impute bằng mean/median/forward-fill). Identify outliers.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Wrangling (munging) — reshape &amp; merge</span>
+        <span class="step-body">Pivot wide/long, join datasets, parse dates, extract features. Biến raw thành analyzable form.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Aggregation — roll-up</span>
+        <span class="step-body">Tick data → minute bars → daily returns. Summary statistics theo group/time bucket.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Normalization / standardization — đưa về same scale</span>
+        <span class="step-body">Min-max [0,1] hoặc z-score (x−μ)/σ. Cần cho ML distance-based (k-means, SVM) để feature không dominate nhau.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — PREPROCESS</span>
+  </div>
+</section>
+
+
+<!-- 06 · PIPELINE -->
+<section data-label="Pipeline" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Data processing pipeline</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">End-to-end <em class="hi">workflow</em>.</h2>
+  </div>
+
+  <div class="flow">
+    <div class="step">
+      <div class="sn">01</div>
+      <div class="st">Collect</div>
+      <div class="sd">APIs, web scraping, vendors. Raw ingestion vào data lake.</div>
+    </div>
+    <div class="step">
+      <div class="sn">02</div>
+      <div class="st">Clean</div>
+      <div class="sd">Handle missing, outliers, duplicates. Quality checks.</div>
+    </div>
+    <div class="step">
+      <div class="sn">03</div>
+      <div class="st">Prepare</div>
+      <div class="sd">Wrangle, normalize, feature engineering, train/val/test split.</div>
+    </div>
+    <div class="step">
+      <div class="sn">04</div>
+      <div class="st">Model</div>
+      <div class="sd">Chọn algorithm, train, tune hyperparameters, validate.</div>
+    </div>
+    <div class="step">
+      <div class="sn">05</div>
+      <div class="st">Deploy</div>
+      <div class="sd">Production: serve predictions via API / trading system.</div>
+    </div>
+    <div class="step">
+      <div class="sn">06</div>
+      <div class="st">Monitor</div>
+      <div class="sd">Drift detection, performance tracking, retrain khi model degrade.</div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Pipeline là <em>iterative</em>, không linear. Monitor trigger retrain → model mới → deploy. Data drift (distribution thay đổi) và concept drift (relationship X→Y thay đổi) là risks chính của model production.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — PIPELINE</span>
+  </div>
+</section>
+
+
+<!-- 07 · ML TAXONOMY -->
+<section data-label="ML taxonomy" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Machine Learning · overview</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">ML taxonomy</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CFA L1 phân ML thành 4 loại theo cách learning. Phân biệt dựa trên <em>có labels hay không</em> và <em>cách feedback</em>.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Supervised</em></div>
+        <div class="d">Có labels (Y known). Learn mapping X → Y. Regression (continuous Y), classification (categorical Y).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Unsupervised</em></div>
+        <div class="d">Không labels. Tìm pattern/structure trong X. Clustering, dimension reduction.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Deep Learning</em></div>
+        <div class="d">Neural networks nhiều hidden layers. Có thể supervised hoặc unsupervised. Đặc biệt mạnh cho image, text, audio.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Reinforcement</em></div>
+        <div class="d">Agent tương tác với environment, learn qua reward/penalty. Trial-and-error. Ví dụ: AlphaGo, trading bot.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — ML TYPES</span>
+  </div>
+</section>
+
+
+<!-- 08 · SUPERVISED -->
+<section data-label="Supervised" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Supervised learning</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Learning with <em class="hi">labels</em>.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Core idea</span>
+    Dataset có cả feature <b>X</b> và target <b>Y</b>. Algorithm học mapping f: X → Y từ training data, rồi predict Y cho new X.
+  </div>
+
+  <div class="compare" style="margin-top: 20px;">
+    <div class="cc">
+      <div class="head">Regression — predict continuous Y</div>
+      <dl>
+        <dt>Output</dt>
+        <dd>Số thực (price, return, revenue)</dd>
+        <dt>Algorithms</dt>
+        <dd>Linear / penalized (LASSO, Ridge), tree-based, neural nets</dd>
+        <dt>Example</dt>
+        <dd>Predict next-day stock return từ macro features</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Classification — predict category</div>
+      <dl>
+        <dt>Output</dt>
+        <dd>Class label (up/down, default/safe, spam/ham)</dd>
+        <dt>Algorithms</dt>
+        <dd>Logistic regression, <em>SVM</em>, <em>decision trees</em>, <em>random forest</em>, <em>neural networks</em></dd>
+        <dt>Example</dt>
+        <dd>Credit scoring: default vs non-default</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § SVM tìm hyperplane tách 2 class với maximum margin. Decision tree split theo feature tạo if-else rules. Random forest = ensemble của nhiều decision trees (bagging) → giảm variance, chống overfit.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — SUPERVISED</span>
+  </div>
+</section>
+
+
+<!-- 09 · UNSUPERVISED -->
+<section data-label="Unsupervised" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Unsupervised learning</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Finding <em class="hi">structure</em> without labels.</h2>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Clustering — nhóm observations similar lại</span>
+        <span class="step-body"><em>k-means</em>: chia data thành k clusters minimize within-cluster variance. Ứng dụng: customer segmentation, stock grouping theo behavior, regime detection.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Dimension reduction — giảm số features</span>
+        <span class="step-body"><em>PCA (Principal Component Analysis)</em>: project data lên axes capture most variance. Ứng dụng: từ 500 stocks → 3-5 factor components; visualization high-dim data.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Anomaly detection — tìm outlier</span>
+        <span class="step-body">Observation không fit với cluster nào → fraud, market manipulation, trading error.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="rule-box" style="margin-top: 20px;">
+    <span class="tag">§ Key distinction</span>
+    Supervised <b>needs labeled training data</b> (Y known). Unsupervised <b>không cần labels</b> — algorithm tự tìm structure. Nếu đề cho dataset "không có target variable" → unsupervised.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — UNSUPERVISED</span>
+  </div>
+</section>
+
+
+<!-- 10 · OVERFITTING -->
+<section data-label="Overfitting" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Model generalization</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Over- vs <em class="hi">underfitting</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Trade-off trung tâm của ML: <em>bias-variance tradeoff</em>. Model phải đủ flexible để fit data nhưng đủ simple để generalize.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Underfitting (high bias)</div>
+      <dl>
+        <dt>Behavior</dt>
+        <dd>Model quá đơn giản — miss patterns</dd>
+        <dt>Symptom</dt>
+        <dd>High error trên <em>cả</em> training và test set</dd>
+        <dt>Fix</dt>
+        <dd>Model phức tạp hơn, thêm features, giảm regularization</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Overfitting (high variance)</div>
+      <dl>
+        <dt>Behavior</dt>
+        <dd>Model học cả noise — memorize training data</dd>
+        <dt>Symptom</dt>
+        <dd>Low training error NHƯNG <em>high test error</em> (gap lớn)</dd>
+        <dt>Fix</dt>
+        <dd><em>Cross-validation</em>, <em>regularization</em> (L1/L2), thêm training data, giảm complexity</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Dấu hiệu overfit trong đề CFA: "model performs excellent on training data but poorly on new/out-of-sample data". Đó là overfit — đáp án là regularization hoặc cross-validation.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — OVER/UNDERFIT</span>
+  </div>
+</section>
+
+
+<!-- 11 · TRAIN/VAL/TEST -->
+<section data-label="Train-val-test" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Dataset splitting</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Training · <em class="hi">validation</em> · test.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Why 3 sets?</span>
+    Tách data thành 3 phần để <b>honestly evaluate</b> model. Common split: 60% / 20% / 20% hoặc 70% / 15% / 15%.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Training set (~60%) — fit parameters</span>
+        <span class="step-body">Algorithm học pattern ở đây. Weights, coefficients được optimize trên training data.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Validation set (~20%) — tune hyperparameters</span>
+        <span class="step-body">Thử nhiều configurations (learning rate, tree depth, regularization strength). Chọn version performs tốt nhất trên validation.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Test set (~20%) — final unbiased estimate</span>
+        <span class="step-body">CHỈ touch ONE time ở cuối. Report performance trên test như true out-of-sample estimate. Touch nhiều lần → data leakage → overfit test set.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § <em>K-fold cross-validation</em>: chia training thành K folds, train K lần — mỗi lần giữ 1 fold làm validation. Trung bình performance → robust hyperparameter selection khi data ít.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — TRAIN/VAL/TEST</span>
+  </div>
+</section>
+
+
+<!-- 12 · NLP -->
+<section data-label="NLP" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Natural Language Processing</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">NLP</em> — text as data.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      NLP biến unstructured text (news, filings, tweets, earnings transcripts) thành numeric features cho ML models. Alpha source mới của hedge funds.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t">Text <em class="hi">analysis</em></div>
+        <div class="d">Tokenization, stemming, remove stopwords. Đưa raw text về token list dùng được.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Sentiment</em> analysis</div>
+        <div class="d">Classify text: positive, negative, neutral. Ví dụ: Bloomberg news → sentiment score → trade signal.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Topic</em> modeling</div>
+        <div class="d">Unsupervised (LDA): tự discover topics từ corpus. Tag filings theo theme để track exposure.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t">Named entity recognition</div>
+        <div class="d">Trích xuất: tên công ty, ticker, person, date, dollar amount — feed vào downstream systems.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — NLP</span>
+  </div>
+</section>
+
+
+<!-- 13 · FINANCIAL APPS -->
+<section data-label="Financial apps" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>13 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Financial applications</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Where ML <em class="hi">meets money</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">A</span>
+      <div>
+        <div class="t"><em class="hi">Algo trading</em></div>
+        <div class="d">ML signals, execution algos, HFT. Pattern recognition trên tick data.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">B</span>
+      <div>
+        <div class="t"><em class="hi">Credit scoring</em></div>
+        <div class="d">Gradient boosting / NN predict default probability. FICO evolves thành ML-based scores.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">C</span>
+      <div>
+        <div class="t"><em class="hi">Fraud detection</em></div>
+        <div class="d">Anomaly detection trên txn patterns. Real-time flag unusual behavior.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">D</span>
+      <div>
+        <div class="t"><em class="hi">Robo-advisors</em></div>
+        <div class="d">Automated portfolio construction + rebalancing theo risk profile.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">E</span>
+      <div>
+        <div class="t"><em class="hi">Sentiment</em> from news/social</div>
+        <div class="d">NLP Twitter, Reddit, news → directional signals / positioning indicators.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">F</span>
+      <div>
+        <div class="t"><em class="hi">Alternative data</em></div>
+        <div class="d">Satellite imagery (retail traffic, oil storage), credit card txn, web scrape — edge trước official release.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — APPS</span>
+  </div>
+</section>
+
+
+<!-- 14 · CAVEATS -->
+<section data-label="Caveats" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>14 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risks &amp; caveats</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Không phải <em class="hi">magic</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CFA code of ethics yêu cầu analyst hiểu <em>limitations</em> của tool mình dùng. Big data/ML có 4 nhóm risk quan trọng:
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Data quality — bias, missing, survivorship</span>
+        <span class="step-body">Training data có sample selection bias → model inherit bias đó. Historical data có thể không đại diện cho future regime.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Model risk — black box, overfitting</span>
+        <span class="step-body">Deep learning khó explain. Model fit quá khớp historical → backtest đẹp, live performance tệ. Cần model validation, stress test.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Regulatory compliance — GDPR, data privacy</span>
+        <span class="step-body">Thu thập PII phải tuân thủ GDPR (EU), CCPA (California). Alternative data source phải có legal sourcing — không được insider info.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Ethics — fairness, transparency</span>
+        <span class="step-body">Credit model discriminate theo race/gender (proxy variables) vi phạm pháp luật. Fiduciary duty → explain decisions đến clients.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — CAVEATS</span>
+  </div>
+</section>
+
+
+<!-- 15 · TAKEAWAY -->
+<section data-label="Takeaway" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>15 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Lesson takeaway</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">big picture</em>.</h2>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="tlabel">Core mental model</div>
+    <div class="ttext">Big Data = <em>4 V's</em>. Raw data qua pipeline (<em>collect → clean → prepare → model → deploy → monitor</em>) → ML. ML có <em>labels</em> → supervised. Không có labels → unsupervised. Feedback qua reward → reinforcement. Nhiều layers → deep. Model phải balance bias-variance, dùng train/val/test + cross-validation + regularization để tránh overfit.</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 20px;">
+    <span class="tag">§ CFA L1 exam angles</span>
+    Câu hỏi hay test: (1) <b>identify ML type</b> từ use case, (2) <b>structured vs unstructured</b> data classification, (3) <b>overfitting diagnosis</b> và fix, (4) <b>4 V's</b> definition, (5) <b>NLP applications</b> trong finance.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — TAKE</span>
+  </div>
+</section>
+
+
+<!-- 16 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 EN — ML approach ID -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>17 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Identify <em class="hi">ML approach</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A portfolio manager wants to group <strong>500 stocks</strong> into clusters based on similarity of their return patterns over the past five years. She has <strong>no pre-defined categories</strong> and wants the algorithm to <strong>discover natural groupings</strong>. Which machine learning approach is most appropriate?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Supervised regression — predict future returns from features.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Supervised classification — assign each stock to a sector label.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Unsupervised clustering (k-means) — discover groupings without labels.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Group</mark> stocks into clusters. <mark>No pre-defined categories</mark>. <mark>Discover natural groupings</mark> từ data.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">"No pre-defined categories" = KHÔNG có labels Y. Supervised yêu cầu labels → <em>loại A và B</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">"Group... based on similarity... discover natural groupings" = definition của <em>clustering</em> — unsupervised task tìm structure trong X.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">k-means là clustering algorithm điển hình. Chia N observations thành K clusters minimize within-cluster variance.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một portfolio manager muốn nhóm <strong>500 cổ phiếu</strong> thành các clusters dựa trên sự tương đồng của return patterns trong 5 năm qua. Cô ấy <strong>không có các categories định sẵn</strong> và muốn algorithm <strong>tự discover natural groupings</strong>. ML approach nào phù hợp nhất?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Supervised regression — predict future returns từ features.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Supervised classification — gán mỗi stock một sector label.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Unsupervised clustering (k-means) — tự discover groupings, không cần labels.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — Unsupervised clustering.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext">Không có labels (no pre-defined categories) + task là <b>discover groupings</b> → <em>unsupervised clustering</em>. k-means chia N stocks thành K clusters theo similarity của return pattern — đúng scenario.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Regression cần target Y liên tục (future return). Đề không yêu cầu predict value, chỉ yêu cầu group. Supervised regression cần labels training — đề nói KHÔNG có.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Classification cần <em>labeled training set</em> (stock → sector). Đề nói "no pre-defined categories" — nghĩa là không có labels để train. Nếu đã có sector labels thì không cần ML để gán.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Decision rule: <em>có labels</em> + predict Y → supervised. <em>Không có labels</em> + tìm structure → unsupervised. Keywords "discover", "group", "segment", "no labels" → unsupervised. Keywords "predict", "classify" + có training labels → supervised.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 EN — Data type -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Classify <em class="hi">data type</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A quantitative analyst uses the following data sources for a trading model: (1) <strong>daily OHLCV stock prices</strong> in a SQL database, (2) <strong>satellite images</strong> of retail parking lots, (3) <strong>earnings call transcripts</strong> (text). Which statement about these data types is <strong>most accurate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">All three are structured data because they come from identified sources.</span></li>
+    <li><span class="lbl">B</span><span class="opt">OHLCV is structured; satellite images and transcripts are unstructured.</span></li>
+    <li><span class="lbl">C</span><span class="opt">OHLCV and transcripts are structured; only satellite images are unstructured.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>OHLCV in SQL</mark>, <mark>satellite images</mark>, <mark>text transcripts</mark>. Định nghĩa structured theo <em>form</em>, không phải <em>source</em>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Structured = <em>rows &amp; columns</em>, fits in SQL table. OHLCV (open/high/low/close/volume per ticker per day) là perfect table → <em>structured</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Image là pixel grid — không fit tự nhiên vào columns. <em>Unstructured</em>. Phải dùng computer vision extract features.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Text (earnings call transcript) không có schema cố định — free-form language. <em>Unstructured</em>. NLP cần process trước khi dùng.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một quant analyst dùng 3 data sources cho trading model: (1) <strong>OHLCV giá cổ phiếu hàng ngày</strong> trong SQL database, (2) <strong>ảnh vệ tinh</strong> của bãi đỗ xe trung tâm thương mại, (3) <strong>earnings call transcripts</strong> (text). Phát biểu nào về data types <strong>chính xác nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Cả 3 đều structured vì đến từ nguồn xác định.</span></li>
+    <li><span class="lbl">B</span><span class="opt">OHLCV là structured; satellite images và transcripts là unstructured.</span></li>
+    <li><span class="lbl">C</span><span class="opt">OHLCV và transcripts là structured; chỉ satellite images là unstructured.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em>.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">OHLCV trong SQL = rows (date) × columns (O,H,L,C,V) → <b>structured</b>. Satellite image là pixel matrix, không fit schema relational → <b>unstructured</b>. Earnings call transcript là free-form text, không có column schema → <b>unstructured</b>.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Định nghĩa structured dựa trên <em>form</em> (có fit vào table hay không), KHÔNG dựa trên source reliability. Data từ nguồn đáng tin vẫn có thể là unstructured (ví dụ: Bloomberg news).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Text transcript là <em>unstructured</em>, không phải structured. Mặc dù có thể store trong database column, content bên trong là free text chưa có schema — phải NLP mới extract được features.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Structured = fit tự nhiên vào rows &amp; columns (SQL table). Semi-structured = có tags/hierarchy nhưng flexible schema (JSON, XML). Unstructured = text, image, audio, video — cần transform (NLP, CV) trước khi ML consume. 80-90% data doanh nghiệp ngày nay là unstructured.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 EN — Overfitting -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Diagnose the <em class="hi">problem</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst trains a deep neural network to predict stock returns. The model achieves <strong>98% accuracy on the training set</strong> but only <strong>52% accuracy on the out-of-sample test set</strong>. Which issue is the model <strong>most likely</strong> suffering from, and what is the best remedy?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Underfitting — add more layers and features to the model.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Overfitting — apply regularization and cross-validation to improve generalization.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Data leakage — the training and test sets are identical, so retrain from scratch.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>26 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Training accuracy <mark>98%</mark>, test accuracy <mark>52%</mark>. <em>Gap 46 percentage points</em>. Deep neural network (high capacity).
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Dấu hiệu điển hình: <em>training error thấp, test error cao</em> → <b>overfitting</b>. Model memorize training data nhưng không generalize.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Deep NN có nhiều parameters → high capacity → prone to overfit, đặc biệt khi training data ít. Cần <em>regularization</em> (L1/L2, dropout) để constrain model.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Underfitting có <em>cả training và test đều kém</em> (ví dụ 60%/55%). 98%/52% KHÔNG phải underfit. Data leakage sẽ cho test accuracy <em>cao</em> bất thường — opposite của đây.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 Dịch đề + Answer -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>27 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một analyst train deep neural network để predict stock returns. Model đạt <strong>98% accuracy trên training set</strong> nhưng chỉ <strong>52% accuracy trên out-of-sample test set</strong>. Model <strong>most likely</strong> đang gặp vấn đề gì, và remedy tốt nhất là gì?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Underfitting — thêm layers và features cho model.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Overfitting — áp dụng regularization và cross-validation để cải thiện generalization.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Data leakage — training và test set trùng nhau, phải retrain từ đầu.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 EXPLANATION + END MERGED -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.11</span>
+    <span class="rule"></span>
+    <span>28 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Overfitting.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Signature pattern: <b>high training accuracy (98%) + low test accuracy (52%)</b> = <em>overfitting</em>. Model đã memorize noise của training data. Remedies: (1) <b>Regularization</b> (L1/L2, dropout) — penalize complex weights, (2) <b>Cross-validation</b> — validate trên multiple folds để catch overfit sớm, (3) thêm training data, (4) giảm model complexity.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Underfitting = <em>cả training và test đều kém</em> (high bias). Training 98% là excellent — model không underfit. Thêm layers/features làm overfit tệ hơn.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Data leakage (train/test overlap) sẽ cho test accuracy <em>cao bất thường</em>, không phải 52%. Ở đây test accuracy THẤP hơn training nhiều — opposite của data leakage.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Decision rule cho exam: <em>training ↑ test ↓</em> với gap lớn → <b>overfit</b> → fix bằng regularization + CV. <em>Training ↓ test ↓</em> cả 2 đều kém → <b>underfit</b> → tăng complexity. Deep NN đặc biệt prone to overfit khi data ít.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.11 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 29 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>02.11 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Quant Module 11 complete · Big Data + ML fundamentals<br>Tiếp theo · Module review &amp; mock questions</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

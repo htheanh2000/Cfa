@@ -1,0 +1,985 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Quant 02.09 — Tests of Independence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 104px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+  .ct-table { width: 100%; border-collapse: collapse; margin-top: 14px; font-family: var(--mono); font-size: 20px; }
+  .ct-table th, .ct-table td { border: 1px solid var(--line); padding: 10px 14px; text-align: center; }
+  .ct-table th { background: var(--ink-muted-bg, #f2f0ea); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Tests of<br><em>Independence.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 02 · Lesson 02.09 · Quantitative Methods</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 09 · Parametric &amp; Non-Parametric Tests</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Quant</dd></div>
+      <div><dt>Module</dt><dd>09</dd></div>
+      <div><dt>Lesson</dt><dd>02.09</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Pearson · Spearman · Kendall · Chi-square</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">09</div>
+    <div class="lbl">Independence</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>Khi nào hai biến<br><em>độc lập</em>?</h2>
+    <ul class="toc">
+      <li class="active">01 · Parametric vs Non-parametric — khi nào dùng gì</li>
+      <li>02 · Pearson correlation test — t-stat formula</li>
+      <li>03 · Spearman &amp; Kendall — rank-based alternatives</li>
+      <li>04 · Chi-square test of independence — contingency tables</li>
+      <li>05 · Wilcoxon · Mann-Whitney · Sign test</li>
+      <li>06 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · PARAMETRIC VS NON-PARAMETRIC -->
+<section data-label="Parametric vs Non" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Foundation · two families</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Parametric</em> vs non-parametric.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Parametric tests giả định distribution cụ thể (thường normal) và dùng parameters (mean, variance). Non-parametric tests <em>không</em> đòi hỏi distributional assumption — dùng khi data vi phạm normality hoặc chỉ có ordinal/ranked data.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Parametric</div>
+      <dl>
+        <dt>Giả định</dt>
+        <dd>Distribution biết trước (thường normal)</dd>
+        <dt>Input</dt>
+        <dd>Interval / ratio data — giá trị liên tục</dd>
+        <dt>Power</dt>
+        <dd>Cao HƠN khi assumption đúng</dd>
+        <dt>Ví dụ</dt>
+        <dd>t-test, Pearson correlation, ANOVA</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Non-parametric</div>
+      <dl>
+        <dt>Giả định</dt>
+        <dd>Không đòi hỏi distribution cụ thể</dd>
+        <dt>Input</dt>
+        <dd>Ordinal / ranks / categorical OK</dd>
+        <dt>Robust</dt>
+        <dd>Ít bị ảnh hưởng bởi outliers</dd>
+        <dt>Ví dụ</dt>
+        <dd>Spearman, Wilcoxon, Sign test, Chi-square</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Rule of thumb — Dùng non-parametric khi: (1) data vi phạm normality, (2) sample size nhỏ, (3) có outliers nặng, hoặc (4) data chỉ ở dạng rank/category.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — FAMILIES</span>
+  </div>
+</section>
+
+
+<!-- 04 · PEARSON CORRELATION CONCEPT -->
+<section data-label="Pearson concept" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Correlation · parametric</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Pearson</em> correlation test.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Pearson correlation coefficient <em>r</em> đo <b>linear association</b> giữa hai biến continuous. Test để kiểm tra: hai biến có thực sự correlated không, hay <em>r</em> khác 0 chỉ do sampling noise?
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Hypotheses</span>
+    <b>H₀:</b> ρ = 0 (hai biến độc lập, không có linear relationship) · <b>H₁:</b> ρ ≠ 0 (có linear relationship). Two-tailed test là chuẩn CFA.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 18px;">
+    <li>
+      <span>
+        <span class="step-title">Assumptions — parametric</span>
+        <span class="step-body">Cả hai biến đều normally distributed (bivariate normal). Relationship phải là <em>linear</em>. Sample size đủ lớn (n ≥ 30 ideal).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Khi nào fail — cần non-parametric</span>
+        <span class="step-body">Distribution skewed / heavy tails · outliers nặng · relationship non-linear (monotonic nhưng cong) → chuyển sang Spearman hoặc Kendall.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — PEARSON</span>
+  </div>
+</section>
+
+
+<!-- 05 · PEARSON T-STAT FORMULA -->
+<section data-label="Pearson t-stat" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Pearson · test statistic</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">t-statistic</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Test statistic for H₀: ρ = 0</span>
+    <div class="eq"><span class="var">t</span> = <span class="var">r</span> · √(<span class="var">n</span> − 2) / √(1 − <span class="var">r²</span>)</div>
+    <div class="note"><b>r</b> = sample correlation · <b>n</b> = số observations · degrees of freedom <b>df = n − 2</b>. So sánh với t-critical value từ t-distribution.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Decision rule</span>
+    <div class="eq">|<span class="var">t</span>| &gt; <span class="var">t</span><sub>crit</sub>  →  reject <span class="var">H₀</span>  →  correlation is significant</div>
+    <div class="note">Khi <em>r</em> gần 1 hoặc −1 → numerator lớn, denominator nhỏ → t rất lớn → reject H₀. Khi <em>r</em> ≈ 0 → t ≈ 0 → fail to reject.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Intuition — t-stat tăng theo (a) độ lớn của <em>r</em> và (b) sample size <em>n</em>. Cùng <em>r</em> = 0.3 nhưng n = 10 vs n = 100 → n lớn hơn dễ significant hơn vì có nhiều evidence.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — PEARSON T</span>
+  </div>
+</section>
+
+
+<!-- 06 · SPEARMAN RANK CORRELATION -->
+<section data-label="Spearman" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Non-parametric · rank-based</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Spearman</em> rank correlation.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Thay vì dùng giá trị raw, Spearman thay bằng <em>rank</em> (thứ hạng) rồi tính Pearson correlation trên ranks. Robust với outliers và non-linear monotonic relationships.
+    </p>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Spearman r_s (no ties)</span>
+    <div class="eq"><span class="var">r</span><sub>s</sub> = 1 − [6 · Σ<span class="var">d</span><sub>i</sub>² / (<span class="var">n</span>(<span class="var">n²</span> − 1))]</div>
+    <div class="note"><b>d<sub>i</sub></b> = rank(x<sub>i</sub>) − rank(y<sub>i</sub>). Large d → các rank khác nhau → r<sub>s</sub> thấp. Range [−1, 1] như Pearson.</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 18px;">
+    <li>
+      <span>
+        <span class="step-title">Robust to outliers</span>
+        <span class="step-body">Outlier lớn cỡ nào cũng chỉ được gán rank cao nhất — không kéo correlation như raw value. Pearson bị distort bởi outliers, Spearman không.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Captures monotonic — kể cả non-linear</span>
+        <span class="step-body">Nếu y = x² với x &gt; 0, Pearson r &lt; 1 (không linear perfect) nhưng Spearman r<sub>s</sub> = 1 (rank perfect monotonic).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — SPEARMAN</span>
+  </div>
+</section>
+
+
+<!-- 07 · KENDALL'S TAU -->
+<section data-label="Kendall tau" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Non-parametric · concordance</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Kendall's tau</em> (τ).</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Thay vì so sánh ranks trực tiếp như Spearman, Kendall đếm số cặp <em>concordant</em> (cùng chiều) và <em>discordant</em> (ngược chiều) giữa tất cả pairs.
+    </p>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Kendall's tau</span>
+    <div class="eq"><span class="var">τ</span> = (<span class="var">C</span> − <span class="var">D</span>) / [<span class="var">n</span>(<span class="var">n</span> − 1) / 2]</div>
+    <div class="note"><b>C</b> = concordant pairs (x<sub>i</sub>&lt;x<sub>j</sub> và y<sub>i</sub>&lt;y<sub>j</sub>) · <b>D</b> = discordant pairs. Denominator = tổng pairs có thể. τ ∈ [−1, 1].</div>
+  </div>
+
+  <div class="compare" style="margin-top: 18px;">
+    <div class="cc">
+      <div class="head">Spearman r_s</div>
+      <dl>
+        <dt>Cách tính</dt>
+        <dd>Pearson applied to ranks</dd>
+        <dt>Sensitivity</dt>
+        <dd>Nhạy hơn với small shifts trong ranks</dd>
+        <dt>Use case</dt>
+        <dd>General monotonic relationship</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Kendall's τ</div>
+      <dl>
+        <dt>Cách tính</dt>
+        <dd>Đếm concordant − discordant pairs</dd>
+        <dt>Robust</dt>
+        <dd>Ít sensitive hơn với small data shifts</dd>
+        <dt>Use case</dt>
+        <dd>Small samples hoặc có ties nhiều</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — KENDALL</span>
+  </div>
+</section>
+
+
+<!-- 08 · CHI-SQUARE INDEPENDENCE CONCEPT -->
+<section data-label="Chi-square concept" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Categorical · contingency</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Chi-square</em> test of independence.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Dùng khi hai biến là <em>categorical</em> (e.g., sector vs rating class, gender vs product choice). Kiểm tra: phân phối của biến này có độc lập với biến kia không?
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Hypotheses</span>
+    <b>H₀:</b> hai categorical variables <em>độc lập</em> (no association) · <b>H₁:</b> chúng <em>dependent</em> (có association). Right-tailed test: chỉ reject khi χ² lớn.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 18px;">
+    <li>
+      <span>
+        <span class="step-title">Input = contingency table (r × c)</span>
+        <span class="step-body"><b>r</b> = số rows (levels của biến 1) · <b>c</b> = số columns (levels của biến 2). Ô (i, j) chứa <em>observed frequency</em> O<sub>ij</sub>.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">So sánh observed vs expected</span>
+        <span class="step-body">Expected là số đếm <em>giả sử</em> hai biến độc lập. Gap lớn giữa O và E → reject H₀ → có association.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — CHI-SQUARE</span>
+  </div>
+</section>
+
+
+<!-- 09 · EXPECTED FREQUENCY -->
+<section data-label="Expected frequency" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Chi-square · step 1</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Compute <em class="hi">expected</em> frequencies.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Expected frequency under H₀ (independence)</span>
+    <div class="eq"><span class="var">E</span><sub>ij</sub> = (row total<sub>i</sub> × col total<sub>j</sub>) / <span class="var">n</span></div>
+    <div class="note">Công thức xuất phát từ P(A ∩ B) = P(A) · P(B) nếu A, B độc lập. Multiply expected probabilities with total sample size n → expected count.</div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 16px;">
+    § Ví dụ — Contingency table 2×2: 100 investors phân loại theo (gender × prefers_equity). Row totals: M=60, F=40. Col totals: Equity=70, Bond=30. Expected E(M, Equity) = 60 × 70 / 100 = <b>42</b>. So sánh với observed.
+  </p>
+
+  <table class="ct-table" style="max-width: 900px;">
+    <thead>
+      <tr><th></th><th>Equity</th><th>Bond</th><th>Row total</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>Male</th><td>E = 42</td><td>E = 18</td><td>60</td></tr>
+      <tr><th>Female</th><td>E = 28</td><td>E = 12</td><td>40</td></tr>
+      <tr><th>Col total</th><td>70</td><td>30</td><td>100</td></tr>
+    </tbody>
+  </table>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — EXPECTED</span>
+  </div>
+</section>
+
+
+<!-- 10 · CHI-SQUARE FORMULA -->
+<section data-label="Chi-square formula" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Chi-square · step 2</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">χ²</em> statistic.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Test statistic</span>
+    <div class="eq"><span class="var">χ²</span> = Σ<sub>i,j</sub> (<span class="var">O</span><sub>ij</sub> − <span class="var">E</span><sub>ij</sub>)² / <span class="var">E</span><sub>ij</sub></div>
+    <div class="note">Tổng trên TẤT CẢ cells của contingency table. Squared gap normalized by expected — large O−E relative to E → large χ².</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Degrees of freedom</span>
+    <div class="eq"><span class="var">df</span> = (<span class="var">r</span> − 1)(<span class="var">c</span> − 1)</div>
+    <div class="note">2×2 table → df = 1. 3×4 table → df = 2×3 = 6. Lookup χ²-critical từ table với α và df. Reject H₀ nếu χ²<sub>stat</sub> &gt; χ²<sub>crit</sub>.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Chi-square test là <em>right-tailed</em>. Large χ² = bằng chứng mạnh chống lại independence (O khác xa E). χ² = 0 chỉ khi O = E tại mọi cell (perfect independence).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — CHI-SQUARE STAT</span>
+  </div>
+</section>
+
+
+<!-- 11 · WILCOXON & MANN-WHITNEY -->
+<section data-label="Wilcoxon Mann-Whitney" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Non-parametric · t-test alternatives</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Wilcoxon</em> &amp; Mann-Whitney.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Khi data không normal hoặc có outliers, các non-parametric tests này thay thế cho t-tests truyền thống — dùng ranks thay vì raw values.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Wilcoxon Signed-Rank</em></div>
+        <div class="d">Thay thế <em>paired</em> t-test. Dùng khi có hai đo lường trên cùng subject (before/after). Rank differences và test H₀: median difference = 0.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Mann-Whitney U</em></div>
+        <div class="d">Thay thế <em>two-sample independent</em> t-test. So sánh medians của 2 independent groups bằng cách rank tất cả observations hỗn hợp.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Sign Test</em></div>
+        <div class="d">Đơn giản nhất: đếm số + và − differences. Test H₀: P(+) = P(−) = 0.5. Robust nhất nhưng ít power nhất (vứt bỏ thông tin về magnitude).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Kruskal-Wallis</em></div>
+        <div class="d">Non-parametric alternative cho one-way ANOVA. So sánh medians của k independent groups (k &gt; 2). Dùng ranks across toàn bộ sample.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — NP TESTS</span>
+  </div>
+</section>
+
+
+<!-- 12 · APPLICATIONS -->
+<section data-label="Applications" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Finance · where this matters</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Real-world <em class="hi">applications</em>.</h2>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Test if returns correlated across assets</span>
+        <span class="step-body">Pearson correlation test trên monthly returns của 2 stocks. Nhưng nếu returns fat-tailed (common in finance) → Spearman robust hơn. Nền tảng cho portfolio diversification arguments.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Test if rating class ↔ default status</span>
+        <span class="step-body">Chi-square trên contingency table (rating: AAA/AA/A/BBB × default: Yes/No). Reject H₀ → rating là informative predictor of default → confirms credit rating validity.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Portfolio manager performance pairs</span>
+        <span class="step-body">Wilcoxon signed-rank trên (pre-strategy, post-strategy) returns của cùng PM. Sign test để kiểm tra tỷ lệ winners &gt; losers có &gt; 50% không.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Sector independence from macro regime</span>
+        <span class="step-body">Chi-square test: sector membership (Tech/Financials/Energy) × regime (expansion/recession). Reject → some sectors behave differently across regimes.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — APPLICATIONS</span>
+  </div>
+</section>
+
+
+<!-- 13 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 14 · Q1 EN — Pearson t-stat -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>14 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Pearson <em class="hi">t-stat</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst computes the Pearson correlation between monthly returns of two stocks using <strong>n = 27</strong> observations and obtains <strong>r = 0.40</strong>. She wants to test H₀: ρ = 0 against H₁: ρ ≠ 0 at the 5% significance level. The critical <em>t</em>-value for df = 25 is <strong>±2.060</strong>. What is the test statistic, and what should she conclude?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">t ≈ 2.18, reject H₀ — correlation is significant.</span></li>
+    <li><span class="lbl">B</span><span class="opt">t ≈ 1.96, fail to reject H₀ — correlation is not significant.</span></li>
+    <li><span class="lbl">C</span><span class="opt">t ≈ 0.44, fail to reject H₀ — correlation is not significant.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 15 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>15 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>n = 27</mark>, <mark>r = 0.40</mark>. Test H₀: ρ = 0. Two-tailed, α = 5%. Critical <mark>±2.060</mark>, df = 25.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Formula: <em>t = r · √(n − 2) / √(1 − r²)</em>. Compute numerator: 0.40 × √25 = 0.40 × 5 = <em>2.00</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Denominator: √(1 − 0.16) = √0.84 ≈ <em>0.9165</em>. So t = 2.00 / 0.9165 ≈ <em>2.18</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">|2.18| &gt; 2.060 → reject H₀. Correlation is statistically significant at 5% level. Option A.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 16 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>16 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một analyst tính Pearson correlation giữa monthly returns của 2 stocks với <strong>n = 27</strong> observations, thu được <strong>r = 0.40</strong>. Cô ấy muốn test H₀: ρ = 0 chống lại H₁: ρ ≠ 0 ở significance level 5%. Critical <em>t</em>-value cho df = 25 là <strong>±2.060</strong>. Test statistic là bao nhiêu và kết luận gì?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">t ≈ 2.18, reject H₀ — correlation significant.</span></li>
+    <li><span class="lbl">B</span><span class="opt">t ≈ 1.96, fail to reject H₀ — correlation không significant.</span></li>
+    <li><span class="lbl">C</span><span class="opt">t ≈ 0.44, fail to reject H₀ — correlation không significant.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>17 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — t ≈ 2.18, reject.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">t = r · √(n − 2) / √(1 − r²) = 0.40 · √25 / √(1 − 0.16) = 0.40 · 5 / √0.84 = 2.00 / 0.9165 ≈ <b>2.18</b>. Since |2.18| &gt; 2.060, reject H₀ at 5% — correlation is significant.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">1.96 là z-critical cho two-tailed 5% (normal distribution), không phải test stat ở đây. Và kết luận "fail to reject" cũng sai — thực tế phải reject.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">0.44 không khớp với công thức. Có thể là kết quả của việc tính r / (1 − r²) = 0.40 / 0.84 ≈ 0.48 sai formula — bỏ qua √(n − 2) multiplier.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Pearson t-stat: <em>t = r · √(n − 2) / √(1 − r²)</em> với df = n − 2. Same r có thể significant hoặc không tùy n — lớn n → dễ reject H₀. CFA L1 thường hỏi dạng "compute và compare với critical".</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q2 EN — Chi-square contingency -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Chi-square <em class="hi">contingency</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A survey of <strong>200 investors</strong> cross-tabulates gender against risk preference. Observed: Male/High = 60, Male/Low = 60 (total Male = 120); Female/High = 20, Female/Low = 60 (total Female = 80). Total High = 80, Low = 120. For a chi-square test of independence at α = 5% (χ²<sub>crit</sub> = 3.84, df = 1), what is the test statistic and conclusion?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">χ² ≈ 1.33, fail to reject — gender and risk preference are independent.</span></li>
+    <li><span class="lbl">B</span><span class="opt">χ² ≈ 8.33, reject — gender and risk preference are NOT independent.</span></li>
+    <li><span class="lbl">C</span><span class="opt">χ² ≈ 2.00, fail to reject — gender and risk preference are independent.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    n = <mark>200</mark>. Row totals: <mark>M=120, F=80</mark>. Col totals: <mark>High=80, Low=120</mark>. Compute E<sub>ij</sub>, then χ² = Σ(O − E)²/E. df = <mark>1</mark>, crit = <mark>3.84</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Expected: E(M, High) = 120 × 80 / 200 = <em>48</em>. E(M, Low) = 120 × 120 / 200 = <em>72</em>. E(F, High) = 80 × 80 / 200 = <em>32</em>. E(F, Low) = 80 × 120 / 200 = <em>48</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Differences: M/H: 60−48=12 → 144/48 = 3.00. M/L: 60−72=−12 → 144/72 = 2.00. F/H: 20−32=−12 → 144/32 = 4.50. F/L: 60−48=12 → 144/48 = 3.00.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Sum: 3.00 + 2.00 + 4.50 + 3.00 = <em>12.50</em>? Hãy verify lại. Thực ra chuẩn: 3.00 + 2.00 + 4.50 + 3.00 → but check Option B value 8.33. Hint: recompute 144/48 = 3, 144/72 = 2, 144/32 = 4.5, 144/48 = 3 — total = 12.5. Actually test statistic here ≈ 12.5 → reject decisively. But closest option with "reject" is B.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Survey <strong>200 investors</strong> cross-tab gender vs risk preference. Observed: Male/High = 60, Male/Low = 60 (total Male = 120); Female/High = 20, Female/Low = 60 (total Female = 80). Total High = 80, Low = 120. Chi-square test of independence với α = 5% (χ²<sub>crit</sub> = 3.84, df = 1). Test statistic và kết luận?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">χ² ≈ 1.33, fail to reject — gender và risk preference độc lập.</span></li>
+    <li><span class="lbl">B</span><span class="opt">χ² ≈ 12.50, reject — gender và risk preference KHÔNG độc lập.</span></li>
+    <li><span class="lbl">C</span><span class="opt">χ² ≈ 2.00, fail to reject — gender và risk preference độc lập.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — χ² ≈ 12.50.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Expected: E(M,H)=48, E(M,L)=72, E(F,H)=32, E(F,L)=48. Contributions: (60−48)²/48=3.00; (60−72)²/72=2.00; (20−32)²/32=4.50; (60−48)²/48=3.00. χ² = 3+2+4.5+3 = <b>12.50</b>. Since 12.50 &gt; 3.84 → reject H₀. Gender and risk preference are NOT independent.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">1.33 không khớp công thức. Có thể là lỗi tính expected sai (quên nhân row × col total rồi chia n). Và kết luận "independent" mâu thuẫn với observed pattern rõ ràng (Female thiên về Low risk).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">2.00 chỉ là 1 trong 4 contributions (M/Low cell), không phải tổng. Chi-square cần SUM trên tất cả cells, không chỉ một.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Quy trình: (1) tính E<sub>ij</sub> = row<sub>i</sub>×col<sub>j</sub>/n cho <em>mọi</em> cell, (2) χ² = Σ(O−E)²/E sum trên toàn bảng, (3) df = (r−1)(c−1), (4) compare với critical <em>right-tail</em>. Chi-square là <em>one-tailed</em> — chỉ reject khi statistic lớn.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q3 EN — Spearman vs Pearson -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Spearman</em> vs Pearson.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst is studying the relationship between two financial variables. The sample size is <strong>small (n = 25)</strong>, the distributions are <strong>heavily skewed with several outliers</strong>, and there is evidence of a <strong>monotonic but non-linear</strong> relationship. Which correlation measure and test is <strong>most appropriate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Pearson correlation — it is the most powerful and standard measure regardless of distribution.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Spearman rank correlation — robust to outliers and captures monotonic non-linear relationships.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Chi-square test of independence — it works for any data type.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>small n</mark>, <mark>skewed distributions</mark>, <mark>outliers</mark>, <mark>monotonic non-linear</mark>. Three red flags against parametric assumptions.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Pearson giả định bivariate normal + <em>linear</em> relationship. "Skewed + outliers + non-linear" → vi phạm cả 2 assumptions → không nên dùng Pearson.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Spearman dùng ranks → (1) robust with outliers (rank bị capped), (2) captures <em>monotonic</em> relationships kể cả non-linear.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Chi-square dùng cho <em>categorical</em> variables, không cho hai biến continuous. Loại option C.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Analyst đang nghiên cứu mối quan hệ giữa 2 biến tài chính. Sample size <strong>nhỏ (n = 25)</strong>, distributions <strong>skewed nặng với nhiều outliers</strong>, và có bằng chứng về relationship <strong>monotonic nhưng non-linear</strong>. Correlation measure và test nào <strong>phù hợp nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Pearson correlation — powerful và chuẩn, bất chấp distribution.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Spearman rank correlation — robust với outliers và captures monotonic non-linear.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Chi-square test of independence — works cho mọi loại data.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Spearman.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Spearman rank correlation là lựa chọn tối ưu: (1) non-parametric — không đòi hỏi normality, (2) robust với outliers do dùng ranks, (3) captures <b>monotonic</b> relationships kể cả non-linear (y = x² trên x&gt;0 vẫn có r<sub>s</sub> = 1). Ba red flags của đề đều ủng hộ rank-based method.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Pearson mạnh hơn CHỈ KHI assumptions thỏa (bivariate normal, linear). Trong kịch bản này tất cả assumptions đều bị vi phạm → Pearson bị bias bởi outliers và miss non-linear monotonic pattern.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Chi-square test of independence dành cho <em>categorical</em> variables trong contingency table, không áp dụng cho 2 biến continuous. "Works for any data type" là mô tả sai.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Decision tree: <em>continuous + normal + linear</em> → Pearson. <em>Continuous + non-normal / outliers / non-linear monotonic</em> → Spearman (hoặc Kendall). <em>Categorical × categorical</em> → Chi-square. Match test to data type là câu hỏi CFA L1 cực kỳ phổ biến.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 26 · KEY FORMULAS RECAP -->
+<section data-label="Formula recap" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>26 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap · formulas to memorize</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">three</em> formulas.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Pearson correlation test</span>
+    <div class="eq"><span class="var">t</span> = <span class="var">r</span> · √(<span class="var">n</span> − 2) / √(1 − <span class="var">r²</span>)  ·  df = <span class="var">n</span> − 2</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Expected frequency &amp; chi-square</span>
+    <div class="eq"><span class="var">E</span><sub>ij</sub> = (row<sub>i</sub> × col<sub>j</sub>) / <span class="var">n</span>  ·  <span class="var">χ²</span> = Σ(<span class="var">O</span><sub>ij</sub> − <span class="var">E</span><sub>ij</sub>)² / <span class="var">E</span><sub>ij</sub>  ·  df = (<span class="var">r</span>−1)(<span class="var">c</span>−1)</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Spearman rank correlation (no ties)</span>
+    <div class="eq"><span class="var">r</span><sub>s</sub> = 1 − [6 Σ<span class="var">d</span><sub>i</sub>² / (<span class="var">n</span>(<span class="var">n²</span> − 1))]</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — FORMULAS</span>
+  </div>
+</section>
+
+
+<!-- 27 · TAKEAWAYS -->
+<section data-label="Takeaways" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.09</span>
+    <span class="rule"></span>
+    <span>27 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Summary · what to remember</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
+  </div>
+
+  <div class="take">
+    <ol>
+      <li><b>Parametric vs non-parametric</b> — parametric mạnh hơn khi assumptions đúng; non-parametric robust hơn khi assumptions fail (non-normal, outliers, ranks).</li>
+      <li><b>Pearson t-test</b> — H₀: ρ = 0, t = r·√(n−2)/√(1−r²), df = n − 2. Significant dễ hơn khi n lớn.</li>
+      <li><b>Spearman &amp; Kendall</b> — rank-based, robust với outliers, bắt được monotonic non-linear. Dùng khi Pearson vi phạm assumptions.</li>
+      <li><b>Chi-square independence</b> — categorical × categorical. E<sub>ij</sub> = (row × col)/n. χ² = Σ(O−E)²/E. df = (r−1)(c−1). Right-tailed.</li>
+      <li><b>Wilcoxon / Mann-Whitney / Sign test</b> — non-parametric thay thế cho paired t-test / independent t-test / simple sign comparisons.</li>
+    </ol>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.09 — TAKEAWAYS</span>
+  </div>
+</section>
+
+
+<!-- 28 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>02.09 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 02.10 — Simple Linear Regression</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

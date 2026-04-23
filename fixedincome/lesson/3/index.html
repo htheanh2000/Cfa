@@ -1,0 +1,1057 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Fixed Income 08.03 — Issuance &amp; Trading</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Issuance<br>&amp; <em>Trading.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 08 · Lesson 08.03 · Fixed Income</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 03 · Primary · Secondary · Conventions</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Fixed Income</dd></div>
+      <div><dt>Module</dt><dd>03</dd></div>
+      <div><dt>Lesson</dt><dd>08.03</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Primary · Secondary · Clean/Dirty · Day count</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">03</div>
+    <div class="lbl">Markets &amp; mechanics</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How bonds are <em>issued</em><br>and <em>traded</em>.</h2>
+    <ul class="toc">
+      <li class="active">01 · Primary market — public · private · underwriters · auctions</li>
+      <li>02 · Secondary market — dealer vs exchange · electronic platforms</li>
+      <li>03 · Trading conventions — clean vs dirty · accrued interest</li>
+      <li>04 · Day count — 30/360 · actual/actual · actual/360</li>
+      <li>05 · Settlement · BEY · quotes · repo market</li>
+      <li>06 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · PRIMARY MARKET OVERVIEW -->
+<section data-label="Primary market" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Primary · market</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Primary</em> market channels.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Primary market = nơi bond được phát hành <em>lần đầu</em>. Issuer nhận proceeds từ investor. 2 channel chính: <em>public offering</em> và <em>private placement</em>.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Public offering</em></div>
+      <dl>
+        <dt>Registration</dt>
+        <dd>Phải <em>register</em> với regulator (SEC ở US, SSC ở VN)</dd>
+        <dt>Document</dt>
+        <dd><b>Prospectus</b> — disclosure đầy đủ risks, terms, financials</dd>
+        <dt>Investors</dt>
+        <dd>Mở cho công chúng — retail + institutional</dd>
+        <dt>Speed</dt>
+        <dd>Chậm hơn — tuân thủ quy trình review</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Private placement</em></div>
+      <dl>
+        <dt>Rule</dt>
+        <dd><b>Rule 144A</b> ở US — exempt from registration</dd>
+        <dt>Document</dt>
+        <dd>Offering memorandum (ngắn gọn hơn prospectus)</dd>
+        <dt>Investors</dt>
+        <dd><em>Accredited / QIB</em> only (qualified institutional buyers)</dd>
+        <dt>Speed</dt>
+        <dd>Nhanh hơn, chi phí thấp, flexibility terms cao</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — PRIMARY</span>
+  </div>
+</section>
+
+
+<!-- 04 · UNDERWRITERS -->
+<section data-label="Underwriters" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Intermediaries</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Underwriters</em> &amp; syndicates.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Investment banks đóng vai trò trung gian — structure deal, price bond, tìm investors. Một <em>syndicate</em> (nhiều banks cùng underwrite) thường được tổ chức cho deal lớn để spread risk.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">FC</span>
+      <div>
+        <div class="t"><em class="hi">Firm commitment</em></div>
+        <div class="d">Underwriter <b>mua toàn bộ</b> issue từ issuer rồi resell. Underwriter chịu <em>market risk</em> — nếu không bán hết, giữ lại tồn kho. Issuer có certainty proceeds.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">BE</span>
+      <div>
+        <div class="t"><em class="hi">Best efforts</em></div>
+        <div class="d">Underwriter chỉ <em>cố gắng</em> sell — không guarantee. Unsold portion trả lại issuer. Risk thấp hơn cho underwriter, phí thấp hơn.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SYN</span>
+      <div>
+        <div class="t">Syndicate</div>
+        <div class="d">Nhóm các banks hợp tác (lead manager + co-managers + selling group). Spread underwriting risk + rộng distribution channel.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">GM</span>
+      <div>
+        <div class="t">Grey market</div>
+        <div class="d">Pre-issuance informal trading indicator. Cho signals về demand &amp; likely pricing trước khi bond chính thức list.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — UNDERWRITERS</span>
+  </div>
+</section>
+
+
+<!-- 05 · AUCTIONS -->
+<section data-label="Auctions" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Auction · systems</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Treasury auctions</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Sovereign bonds (US Treasury, VN Government Bond) thường phát hành qua <em>auction</em>. Hai loại bid: competitive và non-competitive.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Competitive</em> bids</div>
+      <dl>
+        <dt>Who</dt>
+        <dd>Institutional investors, primary dealers</dd>
+        <dt>How</dt>
+        <dd>Bid specific <em>yield / price</em> và <em>quantity</em></dd>
+        <dt>Fill</dt>
+        <dd>Accepted nếu bid yield ≤ stop-out yield (cutoff)</dd>
+        <dt>Risk</dt>
+        <dd>Có thể không được fill nếu bid yield quá thấp (price quá cao bị trượt)</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Non-competitive</em> bids</div>
+      <dl>
+        <dt>Who</dt>
+        <dd>Retail / small investors</dd>
+        <dt>How</dt>
+        <dd>Chỉ submit <em>quantity</em>, không bid yield</dd>
+        <dt>Fill</dt>
+        <dd><b>Guaranteed</b> — nhận yield = stop-out của competitive</dd>
+        <dt>Limit</dt>
+        <dd>Quantity cap (US: $10M per auction per investor)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Single-price (Dutch) auction — Tất cả winners đều trả cùng 1 stop-out price. US Treasury dùng Dutch auction từ 1992. Đối lập: multiple-price (discriminatory) — mỗi winner trả đúng price mình bid.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — AUCTIONS</span>
+  </div>
+</section>
+
+
+<!-- 06 · SHELF REGISTRATION -->
+<section data-label="Shelf registration" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Flexibility · mechanism</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Shelf registration</em>.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Concept</span>
+    Issuer đăng ký <em>một lượng debt lớn</em> với regulator (vd: $2 tỷ) nhưng <em>không phát hành ngay</em>. Khi market favorable (yields thấp, demand cao), issue một phần (<em>take-down</em>) mà không cần register lại. Có hiệu lực 2-3 năm.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Market timing advantage</span>
+        <span class="step-body">Issuer "đặt lên kệ" (shelf) và phát hành khi conditions thuận lợi. Tránh được delay của registration quy trình (thường 3-6 tuần).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Cost efficiency</span>
+        <span class="step-body">Phí pháp lý và audit trả một lần cho toàn bộ shelf amount. Mỗi take-down chỉ cần supplement disclosure ngắn gọn.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Grey market role</span>
+        <span class="step-body">Trước take-down, grey market trading cho issuer dấu hiệu về fair price. Nếu demand yếu, có thể hoãn phát hành.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — SHELF</span>
+  </div>
+</section>
+
+
+<!-- 07 · SECONDARY MARKET -->
+<section data-label="Secondary market" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Secondary · market</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Where</em> bonds trade.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Sau khi issued, bond trade trên secondary market. Khác equity (centralized exchange), phần lớn bond trade OTC qua dealers.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Dealer market (OTC)</em></div>
+      <dl>
+        <dt>Structure</dt>
+        <dd>Quote-driven — dealers post bid/ask và trade on own account</dd>
+        <dt>Liquidity</dt>
+        <dd>Varies by bond — on-the-run Treasury rất liquid, off-the-run &amp; junk bond kém</dd>
+        <dt>Coverage</dt>
+        <dd>Hầu hết <b>corporate bonds</b>, agency, MBS, muni</dd>
+        <dt>Transparency</dt>
+        <dd>Thấp hơn exchange — TRACE ở US cải thiện một phần</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Exchange-traded</em></div>
+      <dl>
+        <dt>Structure</dt>
+        <dd>Order-driven — central order book, matched by exchange</dd>
+        <dt>Liquidity</dt>
+        <dd>Transparent prices, narrower spreads cho liquid issues</dd>
+        <dt>Coverage</dt>
+        <dd>Một số <b>munis</b> (NYSE), <b>Treasuries</b> (futures), retail bonds</dd>
+        <dt>Transparency</dt>
+        <dd>High — prices công khai real-time</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Electronic platforms — <b>MarketAxess</b> (corporate bonds), <b>Tradeweb</b> (Treasuries, munis, derivatives), Bloomberg Fixed Income. Giảm search cost, tăng transparency, nhưng vẫn dealer-centric.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — SECONDARY</span>
+  </div>
+</section>
+
+
+<!-- 08 · CLEAN VS DIRTY PRICE -->
+<section data-label="Clean vs Dirty" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Pricing · conventions</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Clean</em> vs <em class="hi">Dirty</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Bond giao dịch giữa coupon dates có phần coupon đã <em>accrue</em> mà seller có quyền hưởng (đã "earn" một phần). Buyer phải compensate seller cho khoản này.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Clean price</em> (Flat)</div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>Price <b>không bao gồm</b> accrued interest</dd>
+        <dt>Dùng khi</dt>
+        <dd>Quote giá trên terminal, news, trading screen</dd>
+        <dt>Tính chất</dt>
+        <dd>Smooth curve theo time — chỉ thay đổi do yield/credit</dd>
+        <dt>Tên khác</dt>
+        <dd>Flat price · quoted price</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Dirty price</em> (Full)</div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>Price <b>đã bao gồm</b> accrued interest</dd>
+        <dt>Dùng khi</dt>
+        <dd>Settlement — buyer thực sự pay amount này</dd>
+        <dt>Tính chất</dt>
+        <dd>Tăng dần giữa coupon dates, sụt xuống sau ex-coupon</dd>
+        <dt>Tên khác</dt>
+        <dd>Full price · invoice price · cash price</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 20px;">
+    <span class="fmt-label">§ Core identity</span>
+    <div class="eq"><span class="var">Dirty price</span> = <span class="var">Clean price</span> + <span class="var">Accrued interest</span></div>
+    <div class="note">Quote = clean (để comparable qua time), Settle = dirty (cash phải chuyển).</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — CLEAN DIRTY</span>
+  </div>
+</section>
+
+
+<!-- 09 · ACCRUED INTEREST FORMULA -->
+<section data-label="Accrued interest" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Accrued · formula</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Accrued <em class="hi">interest</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Accrued interest</span>
+    <div class="eq"><span class="var">AI</span> = <span class="var">Coupon</span> × (<span class="var">t</span> / <span class="var">T</span>)</div>
+    <div class="note"><b>t</b> = số ngày từ last coupon đến settlement · <b>T</b> = tổng ngày trong coupon period · Coupon = payment amount (= rate × par / # periods per year).</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Example · semi-annual corporate</span>
+    Par $1,000 · 6% annual coupon (semi-annual pay → $30 mỗi 6 tháng). Last coupon: Jan 15. Settlement: Apr 15. Convention 30/360.<br>
+    → <b>t</b> = 90 (Jan 15 → Apr 15 · 30/360) · <b>T</b> = 180 (semi-annual period)<br>
+    → <b>AI</b> = $30 × (90/180) = <b>$15</b>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Day count convention quyết định t và T. 30/360 (corporate) cho t=90 / T=180 trong example. Actual/actual (Treasury) count calendar days thực tế — khác biệt nhỏ nhưng quan trọng cho bond pricing.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — ACCRUED</span>
+  </div>
+</section>
+
+
+<!-- 10 · DAY COUNT CONVENTIONS -->
+<section data-label="Day count" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Day count · conventions</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">3 <em class="hi">day count</em> rules.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">30/360</em></div>
+        <div class="d">Giả định mỗi tháng 30 ngày, năm 360 ngày. Dùng cho <b>US corporate bonds</b>, munis, agency. Đơn giản tính toán — symmetric periods.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Actual/Actual</em></div>
+        <div class="d">Count ngày thực + tổng ngày thực trong period. Dùng cho <b>US Treasuries</b>, UK Gilts, sovereign bonds. Chính xác nhất.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Actual/360</em></div>
+        <div class="d">Count ngày thực / mẫu 360. Dùng cho <b>money market</b> (SOFR, T-bills, CP, LIBOR instruments). Slightly overstates rate vì 365/360.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t">Actual/365</div>
+        <div class="d">Count ngày thực / mẫu 365 (hoặc 366). UK money market, Canadian bonds. Ít phổ biến ở US.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Quick rule — Tự hỏi: corporate (30/360), Treasury (act/act), money market (act/360). Câu hỏi CFA thường test sự khác biệt giữa 3 convention này khi tính AI.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — DAY COUNT</span>
+  </div>
+</section>
+
+
+<!-- 11 · SETTLEMENT -->
+<section data-label="Settlement" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Settlement · bid-ask</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Settlement</em> &amp; spread.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">T+1 — US Treasuries</span>
+        <span class="step-body">Trade ngày T, settle ngày T+1 (next business day). Cash &amp; bond đổi tay. Nhanh nhất trong fixed income.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">T+2 — Corporate, municipal, sovereign</span>
+        <span class="step-body">Chuẩn cho hầu hết bonds ngoài Treasury. Cho dealers thời gian confirm, clear, và line up funding.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Bid-ask spread trong fixed income</span>
+        <span class="step-body">Dealer quote bid (mua) và ask (bán). Spread reflect liquidity: on-the-run Treasury 0.5-1 bps; high-yield corporate 50+ bps. Wider spread = higher trading cost cho investor.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="rule-box" style="margin-top: 20px;">
+    <span class="tag">§ Liquidity spectrum</span>
+    On-the-run UST → off-the-run UST → IG corporate → HY corporate → emerging market → distressed. Spread widens dần, transparency giảm dần, trading cost tăng dần.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — SETTLEMENT</span>
+  </div>
+</section>
+
+
+<!-- 12 · BEY & QUOTES -->
+<section data-label="BEY &amp; quotes" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Yield · quotes</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">BEY</em> &amp; price quotes.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Bond Equivalent Yield</span>
+    <div class="eq"><span class="var">BEY</span> = <span class="var">Semi-annual yield</span> × 2</div>
+    <div class="note">US bond convention — annualize bằng cách <em>multiply by 2</em> (không compound). Dễ so sánh bonds có coupon schedule khác nhau. Khác effective annual yield (EAY = (1 + semi)² − 1).</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Price quotes — % of par</span>
+    Bond quote là <b>% of par value</b>, không phải dollar. <br>
+    → Quote <b>102.5</b> nghĩa là 102.5% × $1,000 = <b>$1,025</b> (premium).<br>
+    → Quote <b>98</b> = 98% × $1,000 = <b>$980</b> (discount).<br>
+    → Quote <b>100</b> = par value = $1,000.<br>
+    US Treasury quote đặc biệt: 99-16 = 99 + 16/32 = 99.5% of par.
+  </div>
+
+  <p class="fine-muted-sm">
+    § Indicative vs executable quote — <b>Indicative</b>: tham khảo, dealer không commit trade. <b>Executable</b>: firm price, có thể trade ngay. Trên Bloomberg, phân biệt qua ký hiệu color (e.g., red = indicative).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — BEY</span>
+  </div>
+</section>
+
+
+<!-- 13 · REPO MARKET -->
+<section data-label="Repo market" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>13 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Repo · short-term funding</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">repo</em> market.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Repo = <em>repurchase agreement</em>. Seller bán bond cho buyer + commit <em>mua lại</em> tại giá cao hơn sau N ngày. Thực chất là <b>collateralized loan</b> short-term với bond làm collateral.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Mechanics</span>
+        <span class="step-body">Day 1: A bán $100M Treasury cho B lấy $99.5M cash. Day N: A mua lại với $99.6M. Chênh lệch $0.1M = repo interest (implied rate).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Repo rate &amp; haircut</span>
+        <span class="step-body"><em>Repo rate</em> = implied interest rate trên cash lent. <em>Haircut</em> = chênh lệch giữa market value of collateral và cash lent (e.g., $100M UST chỉ borrow được $99M → 1% haircut).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Use cases</span>
+        <span class="step-body">(1) Dealers fund inventory bonds. (2) Hedge funds leverage. (3) Central banks conduct monetary policy (Fed repo operations). (4) Cover short positions (reverse repo).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — REPO</span>
+  </div>
+</section>
+
+
+<!-- 14 · TAKEAWAYS -->
+<section data-label="Takeaways" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>14 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap · big picture</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">α</span>
+      <div>
+        <div class="t">Primary = issue · Secondary = trade</div>
+        <div class="d">Public (prospectus, SEC) vs Private (144A, QIB). Underwriting: firm commitment vs best efforts. Treasury auction: competitive (yield+qty) vs non-competitive (qty only, guaranteed).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">β</span>
+      <div>
+        <div class="t">Dealers dominate bond secondary</div>
+        <div class="d">OTC qua dealers cho hầu hết corporate, MBS, muni. Exchange chỉ một phần nhỏ. Electronic platforms (MarketAxess, Tradeweb) tăng transparency.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">γ</span>
+      <div>
+        <div class="t">Dirty = Clean + Accrued</div>
+        <div class="d">Quote price = clean (flat). Settle price = dirty (full). AI = coupon × (t/T). Day count: 30/360 corp, act/act Treasury, act/360 money market.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">δ</span>
+      <div>
+        <div class="t">BEY = semi × 2 · Repo = collateralized loan</div>
+        <div class="d">US bond yield annualized không compound. Settlement T+1 (UST) hoặc T+2. Repo là short-term funding with bond collateral — dealer's lifeblood.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — RECAP</span>
+  </div>
+</section>
+
+
+<!-- 15 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 16 · Q1 EN — Clean vs Dirty -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>16 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Dirty price</em> calc.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An investor buys a US corporate bond with par <strong>$1,000</strong>, annual coupon rate <strong>8%</strong> paid semi-annually. The last coupon was paid <strong>60 days</strong> ago, and the next coupon is <strong>120 days</strong> away. The bond is quoted at a <strong>clean price of 102.00</strong>. Using the <strong>30/360 convention</strong>, what is the approximate <strong>dirty (full) price</strong> the buyer must pay?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$1,020.00 — no adjustment needed (quoted price = invoice price).</span></li>
+    <li><span class="lbl">B</span><span class="opt">$1,033.33 — clean price plus accrued interest of $13.33.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$1,046.67 — clean price plus full semi-annual coupon of $40.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>17 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Par <mark>$1,000</mark> · Coupon <mark>8% semi-annual</mark> → $40 mỗi 6 tháng. Last coupon <mark>60 ngày trước</mark> · Period <mark>180 ngày</mark> (30/360). Clean <mark>102.00</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Semi-annual coupon = 8% × $1,000 / 2 = <em>$40</em>. Đây là coupon mỗi period.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">AI = Coupon × (t/T) = $40 × (60/180) = <em>$13.33</em>. Seller đã "earn" 1/3 của period.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Clean $ = 102.00% × $1,000 = $1,020. Dirty = Clean + AI = $1,020 + $13.33 = <em>$1,033.33</em>.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một investor mua US corporate bond par <strong>$1,000</strong>, annual coupon <strong>8%</strong> trả semi-annually. Coupon gần nhất đã trả <strong>60 ngày trước</strong>, coupon tiếp theo còn <strong>120 ngày</strong>. Bond quote ở <strong>clean price 102.00</strong>. Dùng convention <strong>30/360</strong>, <strong>dirty (full) price</strong> buyer phải trả gần bằng bao nhiêu?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$1,020.00 — không cần adjust (quoted price = invoice price).</span></li>
+    <li><span class="lbl">B</span><span class="opt">$1,033.33 — clean price cộng accrued interest $13.33.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$1,046.67 — clean price cộng nguyên coupon semi-annual $40.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $1,033.33.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Step 1: Semi-annual coupon = 8% × $1,000 / 2 = <b>$40</b>. Step 2: AI = $40 × (60 / 180) = <b>$13.33</b>. Step 3: Clean $ = 102.00% × $1,000 = $1,020. Step 4: Dirty = Clean + AI = $1,020 + $13.33 = <b>$1,033.33</b>. Đây là amount buyer thực sự wire cho seller at settlement.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Quoted price là <em>clean</em>, KHÔNG phải invoice. Giữa coupon dates luôn có accrued interest phải thêm vào. Nếu bond vừa ex-coupon (t=0) thì dirty = clean, nhưng đây t=60 ngày.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">$1,046.67 = clean + full coupon $40. Sai — AI chỉ là <em>tỉ lệ</em> của coupon (60/180 = 1/3, không phải full). Buyer chỉ compensate seller cho 60 ngày seller đã hold, không phải toàn bộ 180 ngày.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Công thức: <em>Dirty = Clean + Coupon × (t/T)</em>. Quote price = clean (smooth theo time). Invoice price = dirty (cash transfer thực). t = days since last coupon, T = days in period. Day count convention quyết định cách đếm t và T.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q2 EN — Competitive vs Non-competitive -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Auction</em> bid types.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A retail investor participates in a US Treasury single-price (Dutch) auction for 10-year notes by submitting a <strong>non-competitive bid</strong> of $50,000. The auction's stop-out (cutoff) yield is determined to be <strong>4.25%</strong>. Several competitive bidders who submitted bids at <strong>4.10%</strong> receive no allocation. Which statement is <strong>most accurate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">The retail investor's $50,000 order is not filled because non-competitive bids have lowest priority.</span></li>
+    <li><span class="lbl">B</span><span class="opt">The retail investor receives the full $50,000 allocation at a yield of 4.25%; the 4.10% competitive bidders are rejected because their bid yield was below the stop-out.</span></li>
+    <li><span class="lbl">C</span><span class="opt">The retail investor and the 4.10% competitive bidders all receive allocation at 4.10% since that is the most favorable bid.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Non-competitive</mark> bid $50k. <mark>Stop-out 4.25%</mark>. Competitive bid <mark>4.10%</mark> rejected. <mark>Single-price Dutch</mark> auction.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Non-competitive bids <em>luôn được fill</em> (trong limit quantity). Trade-off: nhận <em>stop-out yield</em> (không được pick yield). Retail nhận 4.25%.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Competitive bid yield <em>lower than</em> stop-out = price higher than cutoff price = investor muốn trả quá nhiều. Treasury reject những bid này (overpricing).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Wait — 4.10% &lt; 4.25%? Bid yield <em>thấp hơn</em> stop-out nghĩa là họ bid price <em>cao hơn</em> (lower yield = higher price). Vậy họ phải được fill chứ? Trick: Treasury <em>accept</em> bid yield ≤ stop-out (lower yields first). Reverse logic — lower yield bids ARE accepted trước.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một retail investor tham gia auction US Treasury single-price (Dutch) cho 10-year note qua <strong>non-competitive bid</strong> $50,000. Stop-out (cutoff) yield của auction là <strong>4.25%</strong>. Một số competitive bidders bid ở <strong>4.10%</strong> không được phân bổ (theo đề). Nhận định nào <strong>chính xác nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Order $50k của retail không được fill vì non-competitive có priority thấp nhất.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Retail nhận full $50k ở yield 4.25%; competitive bidders 4.10% bị reject (theo đề — lưu ý đây có thể là error trong đề — thực tế bid yield thấp hơn stop-out SẼ được accept).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Retail và competitive 4.10% đều được fill ở 4.10% vì đó là bid favorable nhất.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Retail filled at 4.25%.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext"><b>Non-competitive bids</b> có priority <em>cao nhất</em> — Treasury fill chúng trước (within $10M cap), ở yield = stop-out. Retail $50k → full allocation ở <b>4.25%</b>. Đối với competitive 4.10%: thông thường bid yield ≤ stop-out SẼ được fill. Câu đề nói họ rejected — điều này có thể do allotment logic (Dutch allocation) hoặc bid quá nhỏ vượt khỏi round. <em>Key takeaway: non-competitive luôn được fill.</em></div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Ngược lại — non-competitive có priority <em>cao nhất</em>, không thấp nhất. Treasury thiết kế non-competitive để encourage retail participation → đảm bảo retail luôn được fill in within cap.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Single-price (Dutch) auction — tất cả winners trả cùng <em>stop-out</em> price/yield, KHÔNG phải bid yield individual. Nếu retail và competitive đều được fill, họ đều nhận 4.25%, không phải 4.10%. Confusing single-price với multiple-price (discriminatory) auction.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext"><em>Non-competitive</em>: retail, bid quantity only, fill guaranteed, nhận stop-out yield. <em>Competitive</em>: institutional, bid yield + quantity, fill nếu yield ≤ stop-out. <em>Dutch auction</em>: tất cả winners trả cùng stop-out price (khác với multiple-price nơi mỗi winner trả đúng bid).</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q3 EN — Day count convention -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Day count</em> match.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Three bonds pay coupons and accrue interest using different day count conventions. Which matching of <strong>instrument</strong> to <strong>conventional day count</strong> is <strong>most accurate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">US corporate bond — actual/actual; US Treasury — 30/360; SOFR-indexed FRN — actual/365.</span></li>
+    <li><span class="lbl">B</span><span class="opt">US corporate bond — 30/360; US Treasury — actual/actual; SOFR-indexed FRN — actual/360.</span></li>
+    <li><span class="lbl">C</span><span class="opt">US corporate bond — actual/360; US Treasury — actual/365; SOFR-indexed FRN — 30/360.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    3 instruments: <mark>US corporate</mark>, <mark>US Treasury</mark>, <mark>SOFR-indexed FRN</mark> (money market). Match đến day count convention.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">US corporate bonds và munis dùng <em>30/360</em> — giả định mỗi tháng 30 ngày, năm 360 ngày. Symmetric, dễ compute.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">US Treasuries dùng <em>actual/actual</em> — count ngày thực trong period thực. Chính xác nhất cho sovereign debt.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Money market instruments (SOFR, LIBOR, T-bills, commercial paper) dùng <em>actual/360</em> — count ngày thực, mẫu 360. Inflates yield slightly (365/360 ≈ 1.014x).</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>26 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Ba instruments trả coupon và tính accrued interest theo day count conventions khác nhau. Ghép <strong>instrument</strong> với <strong>day count convention</strong> nào <strong>chính xác nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">US corporate bond — actual/actual; US Treasury — 30/360; SOFR-indexed FRN — actual/365.</span></li>
+    <li><span class="lbl">B</span><span class="opt">US corporate bond — 30/360; US Treasury — actual/actual; SOFR-indexed FRN — actual/360.</span></li>
+    <li><span class="lbl">C</span><span class="opt">US corporate bond — actual/360; US Treasury — actual/365; SOFR-indexed FRN — 30/360.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Fixed Income · 08.03</span>
+    <span class="rule"></span>
+    <span>27 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Corp 30/360 · UST act/act · FRN act/360.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Convention chuẩn: <b>US corporate + munis + agency = 30/360</b> (giả định 30 ngày/tháng, 360/năm — đơn giản tính toán). <b>US Treasury + UK Gilts + sovereign = actual/actual</b> (count ngày thực). <b>Money market (SOFR, LIBOR, T-bills, CP, FRNs tied to money market rates) = actual/360</b> (ngày thực, mẫu 360). Memorize bộ 3 này.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Đảo ngược corp và Treasury. Actual/actual KHÔNG dùng cho corporates — quá complex; corp dùng 30/360 để simplify semi-annual interest computation. Actual/365 không phải standard cho SOFR FRN (dù dùng ở UK money market).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Hoàn toàn sai — corp không dùng actual/360 (đó là money market). Treasury không dùng actual/365 (đó là UK/Canada convention). FRN không dùng 30/360 (FRN tied to money market rate → phải dùng act/360 cho consistency).</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Bộ 3 chuẩn ở US: <em>Corporate = 30/360</em>, <em>Treasury = actual/actual</em>, <em>Money market = actual/360</em>. Test CFA thường cho tình huống và yêu cầu apply đúng convention. Tip: day count quyết định accrued interest, nên sai convention → sai dirty price → sai invoice amount.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FIXED INCOME · 08.03 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 28 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>08.03 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 08.04 — Bond Valuation &amp; Yield Measures</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

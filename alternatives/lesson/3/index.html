@@ -1,0 +1,991 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Alt Investments 10.03 — Returns &amp; Performance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Returns<br>&amp; <em>Performance.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 10 · Lesson 10.03 · Alternative Investments</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 03 · IRR · MOIC · DPI · TVPI · fee impact</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Alt Inv</dd></div>
+      <div><dt>Module</dt><dd>03</dd></div>
+      <div><dt>Lesson</dt><dd>10.03</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">PE multiples · J-curve · GIPS · biases</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">03</div>
+    <div class="lbl">Returns &amp; reporting</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How <em>alt returns</em><br>are measured.</h2>
+    <ul class="toc">
+      <li class="active">01 · Vì sao alt khác traditional — unique metrics</li>
+      <li>02 · IRR — core return measure cho PE</li>
+      <li>03 · MOIC · DPI · RVPI · TVPI — multiples family</li>
+      <li>04 · J-curve + fee drag + high-water + hurdle + catch-up</li>
+      <li>05 · Return sources theo từng alt type</li>
+      <li>06 · Biases — survivorship + smoothing</li>
+      <li>07 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · WHY UNIQUE METRICS -->
+<section data-label="Why unique" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Return measurement · context</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Vì sao alt cần <em class="hi">metrics riêng</em>?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Public equities dùng Holding Period Return (HPR) vì giá hàng ngày liên tục. Alt investments (đặc biệt PE) có <em>capital calls</em> dần và <em>distributions</em> irregular → cần IRR + multiples để phản ánh timing và magnitude của cash flows.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Irregular</em> cash flows</div>
+        <div class="d">LPs commit capital trước, GP call dần qua 3-5 năm. Distributions bắt đầu sau khi có exits. HPR không capture được timing.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Illiquid</em> · no daily prices</div>
+        <div class="d">Không có market price → NAV estimate periodic (quarterly). Return đo sau khi realize — cần end-to-end metrics.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Fund life</em> 10-12 năm</div>
+        <div class="d">Long horizon với J-curve early. Cần phân biệt realized vs unrealized return → DPI, RVPI, TVPI.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Fee structures</em> phức tạp</div>
+        <div class="d">2-and-20, hurdle, high-water, catch-up — gross return rất khác net return. Reporting phải rõ.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — WHY UNIQUE</span>
+  </div>
+</section>
+
+
+<!-- 04 · IRR CONCEPT -->
+<section data-label="IRR concept" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">IRR · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Internal Rate of Return</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      IRR = discount rate làm NPV của tất cả cash flows = 0. Đây là <em>primary return measure</em> cho PE funds vì capture được cả timing lẫn magnitude của capital calls và distributions.
+    </p>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ IRR definition</span>
+    <div class="eq"><span class="var">NPV</span> = <span class="var">Σ</span> [ <span class="var">CF<sub>t</sub></span> / (1 + <span class="var">IRR</span>)<sup><span class="var">t</span></sup> ] = 0</div>
+    <div class="note">Cash flows: <b>CF&lt;0</b> = capital calls (outflow LP), <b>CF&gt;0</b> = distributions (inflow LP). Solve iteratively.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Gross IRR vs Net IRR — Gross = before fund-level fees. Net = sau management fee + carried interest. LPs quan tâm <em>net IRR</em> vì đó là return thực họ nhận. Gross – Net spread phản ánh fee drag ~3-5%/năm.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — IRR</span>
+  </div>
+</section>
+
+
+<!-- 05 · MULTIPLES FAMILY -->
+<section data-label="Multiples family" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Multiples · family</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">MOIC · <em class="hi">DPI</em> · RVPI · TVPI.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      4 multiples liên quan, chia theo <em>Paid-in Capital</em> (PIC) — tổng số tiền LP đã góp. Khác IRR ở chỗ: KHÔNG tính time value of money. Đơn giản, dễ so sánh.
+    </p>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ The 4 multiples</span>
+    <div class="eq"><span class="var">MOIC</span> = (<span class="var">Distributions</span> + <span class="var">NAV</span>) / <span class="var">Paid-in Capital</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">DPI</span> = <span class="var">Cumulative Distributions</span> / <span class="var">Paid-in</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">RVPI</span> = <span class="var">NAV</span> / <span class="var">Paid-in</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">TVPI</span> = <span class="var">DPI</span> + <span class="var">RVPI</span> = <span class="var">MOIC</span></div>
+    <div class="note"><b>MOIC</b> Multiple on Invested Capital · <b>DPI</b> Distributions to Paid-in · <b>RVPI</b> Residual Value to Paid-in · <b>TVPI</b> Total Value to Paid-in.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — MULTIPLES</span>
+  </div>
+</section>
+
+
+<!-- 06 · DPI vs RVPI INTERPRETATION -->
+<section data-label="DPI vs RVPI" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Realized vs unrealized</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">DPI vs RVPI — <em class="hi">meaning</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">DPI — "realized multiple"</div>
+      <dl>
+        <dt>Cho biết</dt>
+        <dd>LPs đã nhận lại <em>bao nhiêu tiền thực tế</em> so với vốn góp</dd>
+        <dt>Early fund</dt>
+        <dd>Gần 0× (chưa có exits)</dd>
+        <dt>Mature fund</dt>
+        <dd>Tốt nếu &gt;1.0× (đã hoàn vốn)</dd>
+        <dt>Certainty</dt>
+        <dd>Cash in hand — không rủi ro đánh giá lại</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">RVPI — "unrealized multiple"</div>
+      <dl>
+        <dt>Cho biết</dt>
+        <dd>NAV còn lại trên sổ — <em>potential</em> future value</dd>
+        <dt>Early fund</dt>
+        <dd>Cao (hầu hết vốn vẫn ở dạng NAV)</dd>
+        <dt>Mature fund</dt>
+        <dd>Giảm dần khi exits hiện thực hóa</dd>
+        <dt>Certainty</dt>
+        <dd>Ước tính — có thể mark-up hoặc mark-down</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Interpretation rule — Khi fund còn trẻ: TVPI cao nhưng DPI thấp là bình thường. Khi fund gần end of life: kỳ vọng DPI tiến dần đến TVPI (RVPI → 0 khi mọi thứ đã exit).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — DPI VS RVPI</span>
+  </div>
+</section>
+
+
+<!-- 07 · J-CURVE -->
+<section data-label="J-curve" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">PE pattern</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">J-curve</em> effect.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      PE funds thường có IRR <em>âm trong năm đầu</em>, sau đó dương dần khi exits xảy ra. Đồ thị cumulative return giống chữ "J" — đi xuống rồi bật lên mạnh.
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Phase 1 — Early years (âm)</span>
+        <span class="step-body">Management fees charge trên committed capital ngay từ Y1. Investments mới có thể write-down. Chưa có exits → cash flow toàn outflow. IRR âm 10-20%.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Phase 2 — Holding period (hồi phục)</span>
+        <span class="step-body">Portfolio companies ổn định, operational improvements bắt đầu kick in. NAV revaluations có thể đẩy unrealized return dương. DPI vẫn thấp.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Phase 3 — Harvest (dương mạnh)</span>
+        <span class="step-body">Exits qua IPO hoặc strategic sale tạo distributions lớn. DPI tăng nhanh, IRR cuối cùng có thể 15-25% net cho top-quartile fund.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — J-CURVE</span>
+  </div>
+</section>
+
+
+<!-- 08 · FEE IMPACT -->
+<section data-label="Fee impact" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Fees · net return drag</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">2-and-20</em> drag.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Standard hedge fund / PE fee</span>
+    <b>2% management fee</b> hàng năm trên AUM (hoặc committed capital) + <b>20% performance fee</b> (carried interest) trên profits above hurdle.
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Approximate fee drag</span>
+    <div class="eq"><span class="var">Net Return</span> ≈ <span class="var">Gross Return</span> − 2% − 0.20 × (Gross − Hurdle)</div>
+    <div class="note">Ví dụ: Gross = 15%, hurdle = 8% → Net ≈ 15% − 2% − 0.20×(15%−8%) = 15% − 2% − 1.4% = <b>11.6%</b>. Fee drag ~3.4%.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Fee drag tổng cộng thường 3-5%/năm tuỳ performance. High-performing fund → fee drag cao hơn (vì carry kick in). LPs cần benchmark net-of-fee returns.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — FEE DRAG</span>
+  </div>
+</section>
+
+
+<!-- 09 · HIGH-WATER MARK -->
+<section data-label="High-water" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Performance fee · protection 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">High-water mark</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      GP chỉ được charge performance fee trên <em>gains vượt previous peak NAV</em>. Bảo vệ LP khỏi việc trả phí hai lần cho cùng một mức return sau khi drawdown rồi phục hồi.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Example</span>
+    Year 1 NAV = 100 → 120 (peak). Year 2 NAV = 120 → 105 (drawdown). Year 3 NAV = 105 → 125. Performance fee <b>chỉ trên 5</b> (125 − 120, phần vượt peak 120), không phải trên toàn bộ 20 của Y3.
+  </div>
+
+  <p class="fine-muted-sm">
+    § Without high-water mark, GP sẽ được trả phí mỗi lần NAV bật lên — kể cả khi net value không tăng từ đỉnh cũ. Chuẩn industry là HWM để align incentives.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — HIGH-WATER</span>
+  </div>
+</section>
+
+
+<!-- 10 · HURDLE + CATCH-UP -->
+<section data-label="Hurdle + catch-up" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Performance fee · protection 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Hurdle</em> + catch-up provision.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Hurdle rate — 2 flavours</div>
+      <dl>
+        <dt>Hurdle</dt>
+        <dd>Minimum return (vd 8%) phải đạt trước khi GP được carry</dd>
+        <dt>Soft hurdle</dt>
+        <dd>Khi vượt hurdle, GP charge 20% trên <em>toàn bộ</em> profit (cả phần dưới hurdle)</dd>
+        <dt>Hard hurdle</dt>
+        <dd>GP chỉ charge 20% trên <em>phần vượt hurdle</em> — chặt hơn với GP</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Catch-up provision</div>
+      <dl>
+        <dt>Cơ chế</dt>
+        <dd>Sau khi LP đạt hurdle, GP nhận 100% distributions cho đến khi đạt 20/80 split</dd>
+        <dt>Effect</dt>
+        <dd>GP "bắt kịp" nhanh sau hurdle — giống soft hurdle về mặt economics</dd>
+        <dt>Common</dt>
+        <dd>PE funds thường có: hurdle 8% + 100% catch-up + 80/20 split sau đó</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Waterfall order — (1) Return of capital đến LP. (2) Preferred return (hurdle) đến LP. (3) Catch-up cho GP. (4) 80/20 split phần còn lại. Biết thứ tự giúp tính carry chính xác.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — HURDLE</span>
+  </div>
+</section>
+
+
+<!-- 11 · GIPS FOR ALT -->
+<section data-label="GIPS" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Reporting standards</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">GIPS</em> for alternatives.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Global Investment Performance Standards (GIPS) là chuẩn tự nguyện cho reporting. CFA Institute publish — đảm bảo <em>fair representation + full disclosure</em> trong performance presentation.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">PE funds — since-inception IRR (SI-IRR)</span>
+        <span class="step-body">Report IRR từ ngày đầu tiên capital call cho đến period end. Must disclose gross + net.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Composite reporting + vintage year grouping</span>
+        <span class="step-body">Funds phải được group theo vintage year (năm đầu tiên capital called). So sánh fair giữa funds cùng vintage.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Multiples disclosure bắt buộc</span>
+        <span class="step-body">TVPI, DPI, PIC multiple phải trình bày cùng IRR. Single metric không đủ — cần cả picture.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — GIPS</span>
+  </div>
+</section>
+
+
+<!-- 12 · COMPARING ALT INDICES -->
+<section data-label="Comparing alts" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Benchmarking challenges</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">So sánh <em class="hi">alt indices</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Hedge fund indices</div>
+      <dl>
+        <dt>Ví dụ</dt>
+        <dd>HFRI, Credit Suisse HF Index, Eurekahedge</dd>
+        <dt>Limitation</dt>
+        <dd>Self-reporting → survivorship bias + backfill bias</dd>
+        <dt>Coverage</dt>
+        <dd>Chỉ ~30-40% hedge funds actually report data</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">PE benchmarks</div>
+      <dl>
+        <dt>Ví dụ</dt>
+        <dd>Cambridge Associates, Preqin, Pitchbook, Burgiss</dd>
+        <dt>Key concept</dt>
+        <dd>Vintage year benchmarks — compare funds cùng năm start</dd>
+        <dt>Percentile</dt>
+        <dd>Top-quartile vs median vs bottom-quartile cho từng vintage</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Public Market Equivalent (PME) — so sánh PE return với hypothetical public index đầu tư cùng timing. PME &gt; 1.0 → PE outperformed public market. Metric phổ biến cho LP allocation decisions.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — COMPARE</span>
+  </div>
+</section>
+
+
+<!-- 13 · RETURN SOURCES BY TYPE -->
+<section data-label="Return sources" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>13 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Return attribution</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Return <em class="hi">sources</em> theo alt type.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">PE</span>
+      <div>
+        <div class="t"><em class="hi">Private Equity</em></div>
+        <div class="d">Leverage (debt amplification) + operational improvement (EBITDA growth) + multiple expansion (exit EV/EBITDA &gt; entry). "Value creation bridge".</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">RE</span>
+      <div>
+        <div class="t"><em class="hi">Real Estate</em></div>
+        <div class="d">Rental income (current yield) + capital appreciation (price growth). Core = rental-heavy; Opportunistic = appreciation-heavy.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">HF</span>
+      <div>
+        <div class="t"><em class="hi">Hedge Funds</em></div>
+        <div class="d">Active trading alpha — long/short, arbitrage, macro, event-driven. Skill-dependent; beta exposures variable theo strategy.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CM</span>
+      <div>
+        <div class="t"><em class="hi">Commodities</em></div>
+        <div class="d">Spot price change + roll yield (futures curve shape: contango &lt; 0, backwardation &gt; 0) + collateral yield (T-bill on margin).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — SOURCES</span>
+  </div>
+</section>
+
+
+<!-- 14 · BIASES -->
+<section data-label="Biases" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>14 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Reported return · biases</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Survivorship + <em class="hi">smoothing</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Survivorship bias</div>
+      <dl>
+        <dt>Cơ chế</dt>
+        <dd>Failed funds ngừng reporting → index chỉ chứa survivors</dd>
+        <dt>Effect</dt>
+        <dd>Index return <em>overstated</em> 2-4%/năm cho hedge funds</dd>
+        <dt>Related</dt>
+        <dd>Backfill bias — fund join index chỉ khi đã có good track record</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Smoothed returns</div>
+      <dl>
+        <dt>Cơ chế</dt>
+        <dd>Illiquid assets (PE, RE) valued infrequently → NAV lag true value</dd>
+        <dt>Effect</dt>
+        <dd>Reported <em>volatility understated</em>, Sharpe ratio overstated</dd>
+        <dt>Related</dt>
+        <dd>Low correlation với public market có thể là artifact, không phải diversification thật</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Practical implication — Khi due diligence, LP nên unsmooth returns (adjust cho autocorrelation) và adjust cho survivorship. Raw HFRI/NCREIF indices thường <em>flatter</em> thực tế.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — BIASES</span>
+  </div>
+</section>
+
+
+<!-- 15 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 EN — MOIC + IRR -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>16 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Calculate <em class="hi">MOIC</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A PE fund has the following cash flow history for an LP. Paid-in capital (contributions): <strong>$100M</strong>. Cumulative distributions received: <strong>$140M</strong>. Current NAV of remaining holdings: <strong>$60M</strong>. What is the <strong>MOIC (Multiple on Invested Capital)</strong> for this LP?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">1.4× (distributions divided by paid-in only).</span></li>
+    <li><span class="lbl">B</span><span class="opt">2.0× (distributions plus NAV, divided by paid-in).</span></li>
+    <li><span class="lbl">C</span><span class="opt">0.6× (NAV divided by paid-in only).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>17 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Paid-in = <mark>$100M</mark>. Distributions = <mark>$140M</mark>. NAV = <mark>$60M</mark>. Tính <mark>MOIC</mark> (= TVPI).
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Nhớ công thức: MOIC = (Distributions + NAV) / Paid-in. Cả <em>realized</em> và <em>unrealized</em> đều tính.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">(140 + 60) / 100 = 200/100 = <em>2.0×</em>. Đây là TVPI cũng chính là MOIC.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Option A là DPI (140/100 = 1.4×) — chỉ realized. Option C là RVPI (60/100 = 0.6×) — chỉ unrealized. MOIC = DPI + RVPI.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một PE fund có cash flow history cho LP như sau. Paid-in capital (tổng góp vốn): <strong>$100M</strong>. Cumulative distributions đã nhận: <strong>$140M</strong>. NAV hiện tại của phần remaining: <strong>$60M</strong>. <strong>MOIC (Multiple on Invested Capital)</strong> của LP này là bao nhiêu?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">1.4× (distributions chia paid-in only).</span></li>
+    <li><span class="lbl">B</span><span class="opt">2.0× (distributions cộng NAV, chia paid-in).</span></li>
+    <li><span class="lbl">C</span><span class="opt">0.6× (NAV chia paid-in only).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 2.0×.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">MOIC = (Distributions + NAV) / Paid-in Capital = ($140M + $60M) / $100M = <b>2.0×</b>. Metric này capture cả realized cash LP đã nhận và unrealized value còn trên sổ. Tương đương TVPI (= DPI + RVPI = 1.4 + 0.6 = 2.0).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">1.4× là <em>DPI</em> (Distributions to Paid-in) — chỉ đo realized cash. Bỏ qua NAV còn lại. Không phải MOIC đầy đủ.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">0.6× là <em>RVPI</em> (Residual Value to Paid-in) — chỉ đo unrealized. Bỏ qua $140M distributions đã trả. Dưới 1.0 không có nghĩa là lỗ, chỉ là phần NAV.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">MOIC = TVPI = DPI + RVPI. Luôn cộng <em>cả distributions đã nhận + NAV còn lại</em>, rồi chia paid-in. Nếu câu hỏi chỉ cho distributions → đó là DPI. Chỉ cho NAV → RVPI. Cả hai → MOIC/TVPI.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 EN — DPI vs TVPI -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Differentiate <em class="hi">DPI vs TVPI</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Fund Alpha (vintage 2020, 4 years old) reports <strong>TVPI = 1.8×</strong> and <strong>DPI = 0.3×</strong>. Fund Beta (vintage 2014, 10 years old) reports <strong>TVPI = 1.8×</strong> and <strong>DPI = 1.7×</strong>. Which statement <strong>best</strong> compares the two funds' realized performance?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Funds are equivalent — both have the same TVPI of 1.8×.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Fund Beta is more realized — nearly all value returned as cash; Alpha still relies on unrealized NAV.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Fund Alpha outperformed — early-stage fund with high TVPI shows faster growth.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Alpha: TVPI <mark>1.8×</mark>, DPI <mark>0.3×</mark>. Beta: TVPI <mark>1.8×</mark>, DPI <mark>1.7×</mark>. Câu hỏi so sánh <mark>realized performance</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">DPI = realized multiple (cash in LP's hand). TVPI = total (DPI + RVPI). So sánh <em>realized</em> → nhìn DPI, không phải TVPI.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Alpha RVPI = 1.8 − 0.3 = 1.5× — phần lớn giá trị vẫn <em>trên sổ</em>, chưa exit. Beta RVPI = 1.8 − 1.7 = 0.1× — hầu hết đã realized.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Beta (10 tuổi) mature, nên DPI cao là kỳ vọng. Alpha (4 tuổi) trẻ, vẫn ở đoạn giữa J-curve. TVPI bằng nhau KHÔNG có nghĩa là equivalent — rủi ro realization khác nhau.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Fund Alpha (vintage 2020, 4 năm tuổi) báo cáo <strong>TVPI = 1.8×</strong> và <strong>DPI = 0.3×</strong>. Fund Beta (vintage 2014, 10 năm tuổi) báo cáo <strong>TVPI = 1.8×</strong> và <strong>DPI = 1.7×</strong>. Statement nào <strong>đúng nhất</strong> khi so sánh realized performance của 2 funds?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Hai funds tương đương — cùng TVPI 1.8×.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Fund Beta realized nhiều hơn — gần như toàn bộ value đã về cash; Alpha vẫn dựa vào unrealized NAV.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Fund Alpha outperformed — early-stage fund với TVPI cao là dấu hiệu tăng nhanh.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Beta more realized.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Fund Beta: DPI 1.7× → LPs đã nhận lại 1.7× paid-in dưới dạng cash, chỉ còn 0.1× NAV trên sổ — <b>realized gần như hoàn toàn</b>. Fund Alpha: DPI 0.3× → LPs mới nhận 30%, phần lớn 1.5× vẫn là <em>unrealized NAV</em>, có rủi ro mark-down.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">TVPI bằng nhau không có nghĩa funds equivalent. Cùng TVPI 1.8× nhưng composition khác: Alpha (0.3 DPI + 1.5 RVPI) mang rủi ro realization cao hơn Beta (1.7 DPI + 0.1 RVPI). Cash in hand &gt; paper gain.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Không có bằng chứng Alpha "outperformed". Alpha mới 4 tuổi với TVPI 1.8× là tín hiệu tốt trên paper, nhưng J-curve nói IRR early thường âm — chưa thể kết luận. Cần chờ exits để confirm.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Khi so sánh PE funds, <em>KHÔNG chỉ nhìn TVPI</em>. Decompose thành DPI + RVPI. Cùng TVPI nhưng DPI-heavy &gt; RVPI-heavy về mặt certainty. Mature fund expected có DPI tiến dần đến TVPI (RVPI → 0).</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 EN — J-CURVE ID -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Identify the <em class="hi">J-curve</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A PE fund reports the following net IRR trajectory to LPs: <strong>Year 1: −12%</strong>, Year 2: −6%, Year 3: +4%, Year 4: +11%, Year 5: +17%, Year 6: +19%. Which phenomenon <strong>best</strong> explains this return pattern?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Survivorship bias — only successful years are reported.</span></li>
+    <li><span class="lbl">B</span><span class="opt">The J-curve effect — early fees and write-downs dominate; exits drive later positive returns.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Smoothed returns — illiquid assets are revalued infrequently.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    IRR Y1 <mark>−12%</mark> → Y2 −6% → <mark>gradual recovery</mark> → Y5-Y6 <mark>+17-19%</mark>. Pattern: âm sâu rồi hồi phục mạnh.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Đồ thị giống chữ <em>J</em>: dip xuống rồi bật lên mạnh. Đây là signature của J-curve trong PE.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Nguyên nhân Y1-Y2 âm: management fees 2% trên committed capital (tính ngay) + invest mới có thể write-down + chưa exit nào.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Survivorship bias không tạo pattern thế này — nó chỉ inflate average. Smoothing thì <em>giảm</em> volatility, không tạo dip sâu rồi bật.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>26 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một PE fund báo cáo net IRR trajectory sau đến LPs: <strong>Year 1: −12%</strong>, Year 2: −6%, Year 3: +4%, Year 4: +11%, Year 5: +17%, Year 6: +19%. Hiện tượng nào <strong>giải thích đúng nhất</strong> pattern return này?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Survivorship bias — chỉ có những năm thành công được báo cáo.</span></li>
+    <li><span class="lbl">B</span><span class="opt">J-curve effect — early fees và write-downs chiếm ưu thế; exits đẩy return dương ở giai đoạn sau.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Smoothed returns — illiquid assets được revaluated không thường xuyên.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.03</span>
+    <span class="rule"></span>
+    <span>27 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — J-curve.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Pattern âm sâu Y1-Y2 rồi bật lên mạnh Y4-Y6 là <b>signature J-curve</b>. Early: management fees charge ngay + invest mới có write-downs + chưa exits → IRR âm. Late: portfolio companies mature, operational improvements + exits tạo distributions → IRR dương mạnh, tiến về realized TVPI 1.5-2.5× cho top-quartile fund.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Survivorship bias là vấn đề về <em>index construction</em> (failed funds rơi khỏi mẫu) — inflate average return, không tạo pattern dip-then-rise trong single fund. Ở đây ta có full 6 năm track record của một fund cụ thể.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Smoothed returns <em>giảm</em> reported volatility (illiquid assets mark ít) → pattern sẽ flatter, không có cú dip rõ như −12%. Smoothing che dấu drawdown, còn J-curve show drawdown.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">J-curve = signature của PE fund IRR trajectory. Early âm do <em>fee drag + write-downs + no exits</em>. Late dương do <em>exits tạo distributions</em>. LP cần patience capital 10-12 năm. Nếu thấy pattern dip-then-rise trong exam → J-curve.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.03 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 29 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>10.03 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 10.04 — Private Capital (PE, VC, Private Debt)</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>
+</content>
+</invoke>

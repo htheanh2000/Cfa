@@ -1,0 +1,1073 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Quant 02.08 — Hypothesis Testing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 108px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Hypothesis<br><em>Testing.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 02 · Lesson 02.08 · Quant Methods</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 08 · Statistical inference for finance</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Quant</dd></div>
+      <div><dt>Module</dt><dd>08</dd></div>
+      <div><dt>Lesson</dt><dd>02.08</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">H₀ vs H₁ · Type I/II · t, z, F, χ² · p-value</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">08</div>
+    <div class="lbl">Inference</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>Từ <em>sample</em> suy ra<br>kết luận về <em>population</em>.</h2>
+    <ul class="toc">
+      <li class="active">01 · 7-step framework — từ H₀ đến conclusion</li>
+      <li>02 · Errors & power — Type I, Type II, trade-off α vs β</li>
+      <li>03 · Test statistics — z, t, F, χ² · cách chọn</li>
+      <li>04 · t-tests — one-sample, two-sample, paired</li>
+      <li>05 · Variance tests — χ² và F-test</li>
+      <li>06 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · 7-STEP FRAMEWORK -->
+<section data-label="7-step framework" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Framework · overview</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">7-step</em> hypothesis testing flow.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CFA prescribe một quy trình chuẩn cho mọi hypothesis test — cứ bám trình tự này, không skip bước nào.
+    </p>
+  </div>
+
+  <div class="flow" style="margin-top: 16px;">
+    <ol class="num-list tight">
+      <li><span><span class="step-title">State hypotheses — H₀ và H₁</span><span class="step-body">Xác định null (cái muốn reject) vs alternative (cái muốn chứng minh).</span></span></li>
+      <li><span><span class="step-title">Identify test statistic</span><span class="step-body">Chọn z, t, F, hoặc χ² tuỳ parameter và distribution assumption.</span></span></li>
+      <li><span><span class="step-title">Specify significance level α</span><span class="step-body">Thông thường 0.10, 0.05, hoặc 0.01 — probability chấp nhận sai.</span></span></li>
+      <li><span><span class="step-title">State the decision rule</span><span class="step-body">Critical value (rejection region) hoặc p-value threshold.</span></span></li>
+      <li><span><span class="step-title">Collect data &amp; compute test statistic</span><span class="step-body">Từ sample, tính z-stat/t-stat thực tế.</span></span></li>
+      <li><span><span class="step-title">Make statistical decision</span><span class="step-body">Reject H₀ hay fail to reject H₀.</span></span></li>
+      <li><span><span class="step-title">Make economic/investment decision</span><span class="step-body">Statistical significance ≠ economic significance — bước này CFA emphasize.</span></span></li>
+    </ol>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — 7-STEP FLOW</span>
+  </div>
+</section>
+
+
+<!-- 04 · H0 vs H1 -->
+<section data-label="H0 vs H1" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hypotheses · formulation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Null</em> vs <em class="hi">alternative</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">H₀ — Null hypothesis</div>
+      <dl>
+        <dt>Ý nghĩa</dt>
+        <dd>Statement "mặc định" — điều ta <em>giả định đúng</em> cho đến khi data chứng minh ngược lại</dd>
+        <dt>Dấu</dt>
+        <dd>Luôn chứa <b>=</b> (=, ≤, hoặc ≥)</dd>
+        <dt>Kết quả test</dt>
+        <dd>Reject hoặc fail to reject — KHÔNG bao giờ "accept H₀"</dd>
+        <dt>Ví dụ</dt>
+        <dd>H₀: μ = 0 (mean return = 0)</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">H₁ — Alternative hypothesis</div>
+      <dl>
+        <dt>Ý nghĩa</dt>
+        <dd>Statement nhà nghiên cứu <em>muốn chứng minh</em> — the "research claim"</dd>
+        <dt>Dấu</dt>
+        <dd>Không chứa = (≠, &gt;, hoặc &lt;)</dd>
+        <dt>Kết quả test</dt>
+        <dd>Được "supported" khi H₀ bị reject</dd>
+        <dt>Ví dụ</dt>
+        <dd>H₁: μ ≠ 0 (mean return khác 0)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Quy tắc — Đặt H₀ sao cho điều nhà nghiên cứu muốn chứng minh nằm trong H₁. Luôn phải thiết lập H₀/H₁ <em>trước</em> khi nhìn data (avoid data snooping).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — H0 vs H1</span>
+  </div>
+</section>
+
+
+<!-- 05 · ONE-TAILED vs TWO-TAILED -->
+<section data-label="One vs two-tailed" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Test direction</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">One-tailed</em> vs <em class="hi">two-tailed</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">2T</span>
+      <div>
+        <div class="t"><em class="hi">Two-tailed</em> — H₁ có dấu ≠</div>
+        <div class="d">H₀: μ = μ₀ · H₁: μ ≠ μ₀. Rejection region ở <em>cả hai đuôi</em>, mỗi đuôi có α/2. Critical values: ±z<sub>α/2</sub>.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">1T↑</span>
+      <div>
+        <div class="t"><em class="hi">Right-tailed</em> — H₁ có dấu &gt;</div>
+        <div class="d">H₀: μ ≤ μ₀ · H₁: μ &gt; μ₀. Rejection region ở <em>đuôi phải</em>, toàn bộ α. Critical value: +z<sub>α</sub>.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">1T↓</span>
+      <div>
+        <div class="t"><em class="hi">Left-tailed</em> — H₁ có dấu &lt;</div>
+        <div class="d">H₀: μ ≥ μ₀ · H₁: μ &lt; μ₀. Rejection region ở <em>đuôi trái</em>, toàn bộ α. Critical value: −z<sub>α</sub>.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CV</span>
+      <div>
+        <div class="t"><em class="hi">Example</em> α = 0.05</div>
+        <div class="d">Two-tailed z: ±1.96. One-tailed z: 1.645. One-tailed có critical value "dễ" reject hơn — vì tập trung α vào 1 đuôi.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — TAILS</span>
+  </div>
+</section>
+
+
+<!-- 06 · TYPE I vs TYPE II -->
+<section data-label="Type I vs Type II" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Errors · classification</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Type I</em> vs <em class="hi">Type II</em> errors.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Type I — α (false positive)</div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>Reject H₀ khi H₀ thực sự <b>đúng</b></dd>
+        <dt>Ký hiệu</dt>
+        <dd>α = P(reject H₀ | H₀ true) = significance level</dd>
+        <dt>Typical values</dt>
+        <dd>0.01, 0.05, 0.10</dd>
+        <dt>Analogy</dt>
+        <dd>Tuyên án người vô tội (false alarm)</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Type II — β (false negative)</div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>Fail to reject H₀ khi H₀ thực sự <b>sai</b></dd>
+        <dt>Ký hiệu</dt>
+        <dd>β = P(fail to reject H₀ | H₀ false)</dd>
+        <dt>Phụ thuộc</dt>
+        <dd>Sample size n, effect size, α level, variance</dd>
+        <dt>Analogy</dt>
+        <dd>Tha bổng kẻ có tội (missed detection)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Power of a test</span>
+    <b>Power = 1 − β</b> = P(reject H₀ | H₀ false) — khả năng phát hiện ra một H₀ sai. Power cao = test "nhạy".
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — ERRORS</span>
+  </div>
+</section>
+
+
+<!-- 07 · α vs β TRADE-OFF -->
+<section data-label="Alpha beta tradeoff" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Trade-off · α vs β</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Giảm α thì <em class="hi">β tăng</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Với sample size <em>n cố định</em>, α và β di chuyển ngược chiều. Chỉ tăng <b>n</b> mới giảm được cả hai.
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Hạ α từ 0.05 xuống 0.01 → rejection region hẹp lại</span>
+        <span class="step-body">Critical value xa mean H₀ hơn → khó reject hơn → β tăng (dễ bỏ sót H₀ sai).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Tăng α → reject nhiều hơn → β giảm</span>
+        <span class="step-body">Test "nhạy" hơn (power tăng) nhưng false positive cũng nhiều hơn.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Tăng n → giảm standard error → cả α và β đều có thể thấp</span>
+        <span class="step-body">Sample size lớn làm distribution của test statistic "nhọn" hơn quanh true value → phân biệt H₀ đúng/sai dễ hơn.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § CFA insight — Nếu "cost of false positive" cao (e.g. FDA approval cho thuốc) → chọn α thấp (0.01). Nếu "cost of missing" cao (e.g. screening ung thư) → chọn α cao hơn (0.10).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — TRADE-OFF</span>
+  </div>
+</section>
+
+
+<!-- 08 · TEST STATISTICS OVERVIEW -->
+<section data-label="Test statistics" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Test statistics · four workhorses</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">z</em>, <em class="hi">t</em>, <em class="hi">F</em>, <em class="hi">χ²</em> — chọn cái nào?</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">z</span>
+      <div>
+        <div class="t"><em class="hi">z-test</em> — Normal / Large n</div>
+        <div class="d">Test mean với σ (population std) <b>known</b>, hoặc n ≥ 30 (CLT). Distribution: Standard Normal.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">t</span>
+      <div>
+        <div class="t"><em class="hi">t-test</em> — Student's t</div>
+        <div class="d">Test mean với σ <b>unknown</b>, dùng sample std s. Degrees of freedom df = n − 1. Tail dày hơn normal.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">χ²</span>
+      <div>
+        <div class="t"><em class="hi">chi-square</em> — variance test</div>
+        <div class="d">Test population variance σ² vs giá trị cụ thể. Right-skewed, non-negative. df = n − 1.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">F</span>
+      <div>
+        <div class="t"><em class="hi">F-test</em> — ratio of variances</div>
+        <div class="d">Test <em>equality của 2 variances</em>. Right-skewed, non-negative. Two dfs: (n₁−1, n₂−1).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — STATISTICS</span>
+  </div>
+</section>
+
+
+<!-- 09 · CRITICAL VALUE vs P-VALUE -->
+<section data-label="Critical vs p-value" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Decision rule · two approaches</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Critical value vs <em class="hi">p-value</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Critical value approach</div>
+      <dl>
+        <dt>Bước 1</dt>
+        <dd>Chọn α → tra critical value từ bảng (e.g. z<sub>0.025</sub> = 1.96)</dd>
+        <dt>Bước 2</dt>
+        <dd>Tính test statistic từ sample</dd>
+        <dt>Rule</dt>
+        <dd>Reject H₀ nếu |test stat| &gt; |critical value|</dd>
+        <dt>Ưu</dt>
+        <dd>Trực quan — "nằm trong rejection region"</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">p-value approach</div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>P(observe test statistic extreme như thế <em>hoặc hơn</em> | H₀ true)</dd>
+        <dt>Bước</dt>
+        <dd>Tính p-value từ test statistic</dd>
+        <dt>Rule</dt>
+        <dd>Reject H₀ nếu <b>p-value &lt; α</b></dd>
+        <dt>Ưu</dt>
+        <dd>Chính xác hơn — cho thấy <em>độ mạnh</em> của evidence</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Warning — p-value KHÔNG phải "probability H₀ đúng". Nó là prob của observing data như vậy <em>giả định H₀ đúng</em>. Nhiều practitioner nhầm lẫn điểm này.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — DECISION RULE</span>
+  </div>
+</section>
+
+
+<!-- 10 · ONE-SAMPLE t-TEST -->
+<section data-label="One-sample t-test" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Test · one-sample mean</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">One-sample <em class="hi">t-test</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      So sánh mean của <em>một sample</em> với một giá trị giả định μ₀. Dùng khi σ population unknown — trường hợp phổ biến nhất.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Test statistic</span>
+    <div class="eq"><span class="var">t</span> = (<span class="var">X̄</span> − <span class="var">μ₀</span>) / (<span class="var">s</span> / √<span class="var">n</span>)</div>
+    <div class="note"><b>X̄</b> = sample mean · <b>μ₀</b> = hypothesized population mean · <b>s</b> = sample standard deviation · <b>n</b> = sample size · <b>df = n − 1</b>.</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Worked example</span>
+    Fund claim mean monthly return = <b>1.0%</b>. Sample n=25, X̄=0.8%, s=0.6%. Test H₀: μ = 1.0 vs H₁: μ ≠ 1.0 tại α = 0.05.<br>
+    → t = (0.8 − 1.0) / (0.6/√25) = −0.2 / 0.12 = <b>−1.667</b>. df = 24. Critical value ±2.064 (two-tailed, α=0.05). <em>|−1.667| &lt; 2.064 → fail to reject H₀.</em>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — 1-SAMPLE T</span>
+  </div>
+</section>
+
+
+<!-- 11 · TWO-SAMPLE t-TEST -->
+<section data-label="Two-sample t-test" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Test · two independent means</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Two-sample <em class="hi">t-test</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Equal variances (pooled)</span>
+    <div class="eq"><span class="var">t</span> = (<span class="var">X̄₁</span> − <span class="var">X̄₂</span>) / √(<span class="var">s²<sub>p</sub></span>/<span class="var">n₁</span> + <span class="var">s²<sub>p</sub></span>/<span class="var">n₂</span>)</div>
+    <div class="note">Pooled variance: <b>s²<sub>p</sub></b> = [(n₁−1)s₁² + (n₂−1)s₂²] / (n₁+n₂−2). df = n₁ + n₂ − 2.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Unequal variances — Welch's t</span>
+    <div class="eq"><span class="var">t</span> = (<span class="var">X̄₁</span> − <span class="var">X̄₂</span>) / √(<span class="var">s₁²</span>/<span class="var">n₁</span> + <span class="var">s₂²</span>/<span class="var">n₂</span>)</div>
+    <div class="note">KHÔNG pool variance. df tính bằng công thức Welch-Satterthwaite (phức tạp, thường cho sẵn). Mặc định khi không có lý do assume equal variances.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Assumption — Both samples drawn from normal populations, observations <em>độc lập</em> giữa 2 samples. H₀ điển hình: μ₁ − μ₂ = 0 (2 means bằng nhau).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — 2-SAMPLE T</span>
+  </div>
+</section>
+
+
+<!-- 12 · PAIRED t-TEST -->
+<section data-label="Paired t-test" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Test · paired observations</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Paired</em> t-test (mean of differences).</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Dùng khi hai samples <em>có cặp tự nhiên</em> — before/after, cùng firm qua 2 thời kỳ, hai fund managers trên <em>cùng một universe</em>.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Test statistic</span>
+    <div class="eq"><span class="var">t</span> = (<span class="var">d̄</span> − <span class="var">μ<sub>d0</sub></span>) / (<span class="var">s<sub>d</sub></span> / √<span class="var">n</span>)</div>
+    <div class="note"><b>d̄</b> = mean của differences (d<sub>i</sub> = X₁ᵢ − X₂ᵢ) · <b>s<sub>d</sub></b> = std của differences · <b>μ<sub>d0</sub></b> thường = 0 · df = n − 1 (n là số cặp).</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Why paired ≠ two-sample</span>
+    Paired test <em>exploit correlation</em> giữa 2 observations trong 1 cặp — thường cho power cao hơn two-sample test rất nhiều khi correlation dương. Ví dụ: return của stock A và B trong cùng 24 tháng.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — PAIRED T</span>
+  </div>
+</section>
+
+
+<!-- 13 · CHI-SQUARE VARIANCE -->
+<section data-label="Chi-square variance" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>13 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Test · single variance</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Test of population <em class="hi">variance</em> — χ².</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Chi-square test statistic</span>
+    <div class="eq"><span class="var">χ²</span> = (<span class="var">n</span> − 1) · <span class="var">s²</span> / <span class="var">σ₀²</span></div>
+    <div class="note"><b>s²</b> = sample variance · <b>σ₀²</b> = hypothesized population variance · df = n − 1.</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Distribution bất đối xứng — right-skewed</span>
+        <span class="step-body">χ² chỉ nhận giá trị ≥ 0. Two-tailed test dùng critical values <em>khác nhau</em> ở hai đuôi (χ²<sub>α/2</sub> và χ²<sub>1−α/2</sub>).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Assumption — population phải normal</span>
+        <span class="step-body">χ² test khá <em>sensitive</em> với departures from normality. Kiểm tra normality trước khi apply.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Ứng dụng — risk testing</span>
+        <span class="step-body">Portfolio manager kiểm tra "volatility của strategy có vượt threshold không" → test H₀: σ² ≤ σ₀² vs H₁: σ² &gt; σ₀².</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — CHI-SQ VAR</span>
+  </div>
+</section>
+
+
+<!-- 14 · F-TEST EQUALITY OF VARIANCES -->
+<section data-label="F-test variances" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>14 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Test · equality of 2 variances</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">F-test</em> — ratio s₁² / s₂².</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ F-statistic — CFA convention: larger on top</span>
+    <div class="eq"><span class="var">F</span> = <span class="var">s₁²</span> / <span class="var">s₂²</span> &nbsp; <span style="color: var(--ink-muted);">(với s₁² ≥ s₂²)</span></div>
+    <div class="note">df<sub>numerator</sub> = n₁ − 1, df<sub>denominator</sub> = n₂ − 1. H₀: σ₁² = σ₂². H₁: σ₁² ≠ σ₂² (hoặc one-tailed).</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Trick for two-tailed F</span>
+    Nếu luôn đặt <em>variance lớn hơn lên tử số</em>, F ≥ 1 luôn → chỉ cần tra critical value ở <em>đuôi phải</em> với α/2 (cho two-tailed). Tiết kiệm 1 bước.
+  </div>
+
+  <p class="fine-muted-sm">
+    § Ứng dụng — Kiểm tra 2 fund có volatility khác nhau không. Hoặc pre-check trước khi chạy two-sample t-test: F-test quyết định pooled vs Welch's t.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — F-TEST</span>
+  </div>
+</section>
+
+
+<!-- 15 · P-VALUE INTERPRETATION -->
+<section data-label="p-value interpretation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>15 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">p-value · what it really means</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Đọc <em class="hi">p-value</em> cho đúng.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Definition (formal)</span>
+    <div class="eq"><span class="var">p</span> = P(observe test statistic ≥ |observed| &nbsp;|&nbsp; <span class="var">H₀</span> true)</div>
+    <div class="note">Xác suất thu được test statistic "cực đoan" như thế này (hoặc hơn), <em>giả định H₀ đúng</em>.</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">p nhỏ (e.g. 0.01) → evidence <em>mạnh</em> chống lại H₀</span>
+        <span class="step-body">"Nếu H₀ đúng, chỉ 1% sample có test stat cực đoan như sample của ta" — khó coincidence → reject.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">p lớn (e.g. 0.40) → evidence <em>yếu</em> chống lại H₀</span>
+        <span class="step-body">40% sample có test stat như thế ngay cả khi H₀ đúng — không có gì bất thường.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Decision rule chuẩn — reject H₀ khi p &lt; α</span>
+        <span class="step-body">p &lt; 0.01: "highly significant". p &lt; 0.05: "significant". p &lt; 0.10: "marginally significant".</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ COMMON MISINTERPRETATIONS</span>
+    p KHÔNG phải P(H₀ true). p KHÔNG phải P(data là do chance). p KHÔNG đo effect size. p nhỏ ≠ effect lớn.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — P-VALUE</span>
+  </div>
+</section>
+
+
+<!-- 16 · STATISTICAL vs ECONOMIC -->
+<section data-label="Statistical vs economic" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>16 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Significance · two lenses</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Statistical</em> ≠ <em class="hi">economic</em> significance.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Statistical significance</div>
+      <dl>
+        <dt>Ý nghĩa</dt>
+        <dd>Test reject H₀ tại α chosen</dd>
+        <dt>Driven by</dt>
+        <dd>Effect size, sample size n, variability s</dd>
+        <dt>Với n cực lớn</dt>
+        <dd>Effect nhỏ xíu cũng thành "statistically significant"</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Economic significance</div>
+      <dl>
+        <dt>Ý nghĩa</dt>
+        <dd>Effect đủ lớn để <em>thay đổi investment decision</em> thực tế</dd>
+        <dt>Phải tính</dt>
+        <dd>Transaction costs, taxes, liquidity, risk</dd>
+        <dt>Ví dụ</dt>
+        <dd>Alpha 2bps/năm có thể statistically significant nhưng KHÔNG economically significant sau fees</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="take" style="margin-top: 20px;">
+    <span class="t-tag">§ CFA bottom line</span>
+    Step 7 trong 7-step framework là "economic decision". Analyst phải hỏi: "reject H₀ có dẫn đến action khác không?" Nếu không → effect không economically significant dù p có nhỏ thế nào.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — ECON SIG</span>
+  </div>
+</section>
+
+
+<!-- 17 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 EN — One-sample t-test -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">One-sample <em class="hi">t-test</em> of mean.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst tests whether a fund's mean monthly return differs from <strong>0.50%</strong>. From a random sample of <strong>n = 36</strong> months, the sample mean is <strong>X̄ = 0.75%</strong> and the sample standard deviation is <strong>s = 0.90%</strong>. The population standard deviation is unknown. Using α = 0.05 (two-tailed, critical t ≈ ±2.03, df = 35), what is the test statistic and conclusion?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">t ≈ 1.67; fail to reject H₀ — mean is not significantly different from 0.50%.</span></li>
+    <li><span class="lbl">B</span><span class="opt">t ≈ 1.67; reject H₀ — evidence of difference from 0.50%.</span></li>
+    <li><span class="lbl">C</span><span class="opt">t ≈ 2.78; reject H₀ — mean is significantly greater than 0.50%.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>population σ unknown</mark> + <mark>sample s</mark> → t-test (không z). <mark>n = 36</mark>, <mark>df = 35</mark>. <mark>two-tailed</mark>, critical ±2.03.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Formula: t = (X̄ − μ₀) / (s/√n) = (0.75 − 0.50) / (0.90/√36) = 0.25 / 0.15 = <em>1.667</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">So sánh với critical value: |1.67| &lt; 2.03 → <em>nằm ngoài rejection region</em> → fail to reject H₀.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Cẩn thận option C: t ≈ 2.78 là nếu dùng σ = 0.15/√36 = sai phép chia. Ngoài ra two-tailed test không kết luận "greater than".</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Analyst test xem mean monthly return của fund có khác <strong>0.50%</strong> hay không. Random sample <strong>n = 36</strong> tháng, sample mean <strong>X̄ = 0.75%</strong>, sample std <strong>s = 0.90%</strong>. Population σ unknown. Dùng α = 0.05 (two-tailed, critical t ≈ ±2.03, df = 35), test statistic và kết luận là gì?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">t ≈ 1.67; fail to reject H₀ — mean không khác biệt significant so với 0.50%.</span></li>
+    <li><span class="lbl">B</span><span class="opt">t ≈ 1.67; reject H₀ — có evidence khác biệt so với 0.50%.</span></li>
+    <li><span class="lbl">C</span><span class="opt">t ≈ 2.78; reject H₀ — mean lớn hơn significant so với 0.50%.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — t ≈ 1.67, fail to reject.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">Standard error = s/√n = 0.90/6 = 0.15. t = (0.75 − 0.50) / 0.15 = <b>1.667</b>. Với df = 35, two-tailed critical t = ±2.03. |1.667| &lt; 2.03 → <b>fail to reject H₀</b>. Data không đủ evidence kết luận mean khác 0.50%.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Tính đúng t = 1.67 nhưng kết luận sai. 1.67 &lt; 2.03 → fail to reject, KHÔNG reject. Distractor dành cho người nhầm direction của decision rule.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">t = 2.78 là nếu (sai) dùng s/n thay vì s/√n, tức SE = 0.09 → t = 0.25/0.09 ≈ 2.78. Ngoài ra two-tailed không cho kết luận "greater than" — two-tailed chỉ kết luận "different".</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Khi σ unknown → dùng <em>t-test</em>, không phải z. Standard error là <em>s / √n</em> (chia căn n, không phải n). Two-tailed kết luận "different", one-tailed mới kết luận "greater/less than".</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 EN — p-value interpretation -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Interpret the <em class="hi">p-value</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst runs a hypothesis test and reports a <strong>p-value of 0.03</strong> using a significance level of α = 0.05. Which statement is the <strong>most accurate</strong> interpretation?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">There is a 3% probability that the null hypothesis is true.</span></li>
+    <li><span class="lbl">B</span><span class="opt">If H₀ were true, there is a 3% probability of observing a test statistic at least as extreme as the one obtained; reject H₀.</span></li>
+    <li><span class="lbl">C</span><span class="opt">There is a 97% probability that the alternative hypothesis is true; reject H₀.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>p-value = 0.03</mark>, <mark>α = 0.05</mark>. Câu hỏi về <mark>interpretation</mark> của p-value — phân biệt 3 formulation phổ biến nhất.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Nhớ formal definition: <em>p = P(data extreme như thế | H₀ true)</em>. KHÔNG phải P(H₀ true | data). Đây là điều kiện (conditional), không bao giờ đảo được.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Decision rule: p (0.03) &lt; α (0.05) → <em>reject H₀</em>. Cả hai phần (meaning + decision) phải đúng mới chọn được option.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Option A và C đều đảo conditional (Bayesian fallacy). Chỉ frequentist interpretation của option B là chuẩn.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Analyst chạy hypothesis test và báo cáo <strong>p-value = 0.03</strong> với significance level α = 0.05. Interpretation nào <strong>chính xác nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Có 3% probability null hypothesis là đúng.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Nếu H₀ đúng, có 3% probability quan sát được test statistic cực đoan ít nhất bằng kết quả hiện tại; reject H₀.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Có 97% probability alternative hypothesis là đúng; reject H₀.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — conditional + reject.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">p-value = P(observed test statistic ≥ |current| <em>given H₀ true</em>). Đúng mô tả conditional probability. Decision: p (0.03) &lt; α (0.05) → <b>reject H₀</b>. Cả hai phần interpretation và decision đều đúng.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Đây là <em>Bayesian fallacy</em> cổ điển. p-value KHÔNG phải P(H₀ true). Muốn tính P(H₀ true | data) cần prior probability của H₀ (Bayes' theorem). Frequentist p-value không cung cấp điều đó.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">"97% probability H₁ true" cũng là Bayesian fallacy (1 − p ≠ P(H₁ true)). Decision "reject H₀" đúng nhưng interpretation sai → toàn bộ câu sai.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">p-value là <em>conditional</em>: P(data | H₀), không phải P(H₀ | data). Đừng đảo. Interpret: "nếu H₀ đúng, khả năng observe như thế là p%". Decision: reject khi p &lt; α.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 EN — Type I vs Type II tradeoff -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>26 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Type I vs Type II</em> trade-off.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A portfolio manager tests whether a new quant strategy generates positive alpha. H₀: α ≤ 0 vs H₁: α &gt; 0. She <strong>decreases the significance level from 0.05 to 0.01</strong> while keeping sample size fixed. Which statement about the resulting changes is <strong>most accurate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Probability of Type I error decreases; probability of Type II error decreases; power increases.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Probability of Type I error decreases; probability of Type II error increases; power decreases.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Probability of Type I error is unchanged; probability of Type II error decreases; power increases.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>27 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>α giảm từ 0.05 → 0.01</mark>. <mark>n cố định</mark>. <mark>trade-off</mark> giữa Type I và Type II. Power = 1 − β.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">α = P(Type I). α giảm → Type I error rate giảm. Đây là phần dễ.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Giảm α nghĩa là critical value xa hơn → rejection region nhỏ hơn → <em>khó reject H₀ hơn</em> → dễ bỏ sót H₁ đúng → β tăng.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Power = 1 − β. β tăng → power GIẢM. Chỉ có tăng n mới giảm đồng thời α và β; với n cố định, có <em>trade-off</em>.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 Dịch đề + EXPLANATION + END (combined into two slides) -->
+<!-- 28a · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.08</span>
+    <span class="rule"></span>
+    <span>28 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt + Answer</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — α↓, β↑, power↓.</h2>
+  </div>
+  <div class="q-card" style="margin-bottom: 18px;">
+    <span class="q-tag">§ Vignette (dịch)</span>
+    <div class="q-stem">
+      PM test xem strategy mới có tạo positive alpha không. H₀: α ≤ 0 vs H₁: α &gt; 0. Cô <b>giảm significance level từ 0.05 xuống 0.01</b>, giữ nguyên sample size. Statement nào chính xác nhất về thay đổi?
+    </div>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">α giảm (0.05 → 0.01) → P(Type I) giảm theo định nghĩa. Rejection region hẹp hơn → khó reject H₀ hơn → dễ fail to reject khi H₀ sai → <b>β tăng</b>. Power = 1 − β → <b>power giảm</b>. Test kém "nhạy" trong việc phát hiện alpha dương thực sự.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Không thể vừa giảm α vừa giảm β khi n cố định — đó là trade-off nổi tiếng. Muốn giảm cả hai phải tăng sample size (hoặc tăng effect size).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">α = significance level = P(Type I) <em>by construction</em>. Thay đổi α đương nhiên thay đổi P(Type I). "Unchanged" là sai.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Với n cố định: α↓ ⇒ β↑ ⇒ power↓. Chỉ có <em>tăng n</em> mới cải thiện đồng thời Type I và Type II errors. CFA test rule: bước đầu tiên để tăng power mà không đổi α là <em>sample size</em>.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.08 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>02.08 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 02.09 — Parametric and Non-Parametric Tests of Independence</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

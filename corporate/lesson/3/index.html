@@ -1,0 +1,935 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Corporate 05.03 — Working Capital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 118px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Working<br><em>Capital.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 05 · Lesson 05.03 · Corporate Issuers</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 03 · Liquidity &amp; short-term finance</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Corporate</dd></div>
+      <div><dt>Module</dt><dd>03</dd></div>
+      <div><dt>Lesson</dt><dd>05.03</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">NWC · CCC · Liquidity ratios · Short-term financing</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">03</div>
+    <div class="lbl">WC &amp; liquidity</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How firms manage<br><em>short-term</em> cash.</h2>
+    <ul class="toc">
+      <li class="active">01 · Net Working Capital — components &amp; meaning</li>
+      <li>02 · Cash Conversion Cycle — DSO + DIO − DPO</li>
+      <li>03 · Liquidity ratios — current, quick, cash</li>
+      <li>04 · Short-term financing — CP, LOC, trade credit, factoring, repos</li>
+      <li>05 · Managing AR, Inventory, AP</li>
+      <li>06 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · NET WORKING CAPITAL -->
+<section data-label="Net Working Capital" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Working capital · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Net <em class="hi">Working Capital</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Working capital đo lường khả năng firm đáp ứng nghĩa vụ ngắn hạn. Quá thấp → <em>liquidity risk</em>. Quá cao → <em>idle capital</em> (cost of holding).
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Core definition</span>
+    <div class="eq"><span class="var">Working Capital</span> = <span class="var">Current Assets</span> − <span class="var">Current Liabilities</span></div>
+    <div class="note"><b>Current Assets</b> — cash, AR, inventory, prepaid (convert to cash &lt; 1 năm). <b>Current Liabilities</b> — AP, short-term debt, accrued expenses (due &lt; 1 năm).</div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Net vs gross — <b>Gross</b> working capital = total current assets. <b>Net</b> = current assets − current liabilities. CFA L1 dùng "working capital" = NWC mặc định.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — NWC</span>
+  </div>
+</section>
+
+
+<!-- 04 · NWC COMPONENTS -->
+<section data-label="NWC Components" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">NWC · 4 building blocks</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">four components</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Cash &amp; equivalents</em></div>
+        <div class="d">Most liquid asset. Money market funds, treasury bills &lt; 90d. Giữ quá nhiều = opportunity cost cao.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Accounts Receivable</em> (AR)</div>
+        <div class="d">Tiền khách hàng nợ. Rủi ro default + delay. Cần credit policy + collection process hiệu quả.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Inventory</em></div>
+        <div class="d">Raw materials + WIP + finished goods. Cost: storage, obsolescence, insurance. Tối ưu qua EOQ, JIT.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Accounts Payable</em> (AP)</div>
+        <div class="d">Tiền firm nợ supplier. <em>Free financing</em> nếu pay on due date. Pay sớm = lose float; pay trễ = damage relationship.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Sign convention — AR, inventory tăng → <em>uses</em> cash. AP tăng → <em>source</em> of cash. Đây là logic của working capital trong cash flow statement.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — COMPONENTS</span>
+  </div>
+</section>
+
+
+<!-- 05 · CCC CONCEPT -->
+<section data-label="CCC concept" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Cash Conversion Cycle · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">CCC</em> story.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CCC đo thời gian (days) từ khi firm bỏ tiền mua inventory đến khi thu lại tiền từ customer. <em>Càng ngắn càng tốt</em> — firm cần ít working capital hơn.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Day 0 — Mua inventory (chưa trả supplier)</span>
+        <span class="step-body">Firm nhận hàng từ supplier, invoice xuất. Inventory tăng, AP tăng. CHƯA chi cash.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Day DPO — Trả supplier</span>
+        <span class="step-body">Hết credit term với supplier → chi cash. Từ đây firm đã "rút tiền" ra để funding inventory.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Day DIO — Bán inventory cho customer</span>
+        <span class="step-body">Inventory ra khỏi kho, AR tăng. Nhưng customer chưa trả tiền → firm vẫn chưa thấy cash.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Day DIO + DSO — Customer trả tiền → cash in</span>
+        <span class="step-body">AR collection. CCC = (DIO + DSO) − DPO = tổng thời gian cash bị "trapped" trong operating cycle.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — CCC CONCEPT</span>
+  </div>
+</section>
+
+
+<!-- 06 · CCC FORMULA -->
+<section data-label="CCC formula" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">CCC · formulas</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">four equations</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Cash Conversion Cycle</span>
+    <div class="eq"><span class="var">CCC</span> = <span class="var">DSO</span> + <span class="var">DIO</span> − <span class="var">DPO</span></div>
+    <div class="note">Đơn vị: <b>days</b>. Shorter CCC = working capital efficiency tốt hơn. Một số ngành (Amazon, Dell) có <em>negative CCC</em> — thu tiền customer trước khi trả supplier.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Days Sales Outstanding (collection speed)</span>
+    <div class="eq"><span class="var">DSO</span> = <span class="var">AR</span> / (<span class="var">Revenue</span> / 365)</div>
+    <div class="note"><b>DSO</b> — Số ngày trung bình để thu tiền từ customer sau khi bán. Thấp = collect nhanh.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 12px;">
+    <span class="fmt-label">§ Days Inventory Outstanding (inventory holding)</span>
+    <div class="eq"><span class="var">DIO</span> = <span class="var">Inventory</span> / (<span class="var">COGS</span> / 365)</div>
+    <div class="note"><b>DIO</b> — Số ngày trung bình inventory nằm trong kho trước khi bán. Thấp = turnover cao.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 12px;">
+    <span class="fmt-label">§ Days Payables Outstanding (payment delay)</span>
+    <div class="eq"><span class="var">DPO</span> = <span class="var">AP</span> / (<span class="var">COGS</span> / 365)</div>
+    <div class="note"><b>DPO</b> — Số ngày trung bình firm trả supplier. Cao = giữ cash lâu hơn (nhưng cẩn thận damage relationship).</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — CCC FORMULA</span>
+  </div>
+</section>
+
+
+<!-- 07 · CCC WORKED EXAMPLE -->
+<section data-label="CCC example" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">CCC · worked example</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Worked <em class="hi">example</em>.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Scenario · retail firm annual data</span>
+    Revenue <b>$730M</b>, COGS <b>$547.5M</b>, AR <b>$80M</b>, Inventory <b>$90M</b>, AP <b>$45M</b>. Tính CCC.
+  </div>
+
+  <div class="formula-box" style="margin-top: 20px;">
+    <span class="fmt-label">§ Step 1 — DSO</span>
+    <div class="eq"><span class="var">DSO</span> = 80 / (730/365) = 80 / 2 = <b>40</b> days</div>
+    <div class="note">Firm thu tiền customer trung bình sau 40 ngày.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 12px;">
+    <span class="fmt-label">§ Step 2 — DIO</span>
+    <div class="eq"><span class="var">DIO</span> = 90 / (547.5/365) = 90 / 1.5 = <b>60</b> days</div>
+    <div class="note">Inventory nằm trong kho trung bình 60 ngày.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 12px;">
+    <span class="fmt-label">§ Step 3 — DPO + CCC</span>
+    <div class="eq"><span class="var">DPO</span> = 45 / 1.5 = <b>30</b> days  →  <span class="var">CCC</span> = 40 + 60 − 30 = <b>70</b> days</div>
+    <div class="note">Firm cần funding 70 ngày cho working capital. Giảm DSO xuống 30 → CCC = 60, tiết kiệm $20M AR funding.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — CCC EX</span>
+  </div>
+</section>
+
+
+<!-- 08 · LIQUIDITY RATIOS -->
+<section data-label="Liquidity ratios" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Liquidity · 3 ratios</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Three <em class="hi">liquidity tests</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Từ loose → strict. Mỗi ratio loại bỏ dần các asset kém liquid hơn. Benchmark &gt; 1 thường được coi là "healthy" nhưng industry-dependent.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Current ratio (loosest)</span>
+    <div class="eq"><span class="var">Current Ratio</span> = <span class="var">Current Assets</span> / <span class="var">Current Liabilities</span></div>
+    <div class="note">Bao gồm inventory + prepaid. Benchmark &gt; 1.5 thường OK. Không tính đến liquidity chất lượng.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 12px;">
+    <span class="fmt-label">§ Quick ratio (acid test) — loại inventory</span>
+    <div class="eq"><span class="var">Quick</span> = (<span class="var">Cash</span> + <span class="var">Marketable Sec.</span> + <span class="var">AR</span>) / <span class="var">CL</span></div>
+    <div class="note">Bỏ inventory (khó convert). Benchmark &gt; 1 conservative. Useful cho industries có slow-moving inventory.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 12px;">
+    <span class="fmt-label">§ Cash ratio (strictest)</span>
+    <div class="eq"><span class="var">Cash Ratio</span> = (<span class="var">Cash</span> + <span class="var">Marketable Sec.</span>) / <span class="var">CL</span></div>
+    <div class="note">Chỉ tính cash + short-term investments. Test "worst-case" — firm trả được CL ngay lập tức không?</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — LIQUIDITY</span>
+  </div>
+</section>
+
+
+<!-- 09 · SHORT-TERM FINANCING OVERVIEW -->
+<section data-label="Short-term financing" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Short-term financing · 5 sources</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Where <em class="hi">short-term cash</em> comes from.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Commercial Paper</em></div>
+        <div class="d">Unsecured short-term notes (&lt; 270 days). Chỉ cho large, high-credit firms. <em>Cheapest</em> funding thường thấy.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Bank Lines of Credit</em></div>
+        <div class="d">Committed (bank bắt buộc lend, có fee) vs uncommitted (bank tùy ý). Revolving pre-approved credit.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Trade Credit</em></div>
+        <div class="d">Supplier cho phép pay trễ (vd "2/10 net 30"). "Free" nếu pay on due date. Expensive nếu miss discount.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Factoring</em></div>
+        <div class="d">Bán AR cho factor ở discount → nhận cash ngay. Expensive (effective rate có thể 15-25%) nhưng fast.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Also — <b>Repurchase agreements (repos)</b> — financial firms (banks, dealers) funding collateralized bằng securities. Overnight đến vài tuần. Không áp dụng cho non-financial corporations thông thường.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — FINANCING</span>
+  </div>
+</section>
+
+
+<!-- 10 · COST OF BORROWING COMPARISON -->
+<section data-label="Cost comparison" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Borrowing cost · pecking order</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Cheapest to <em class="hi">most expensive</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Low cost</em> (if eligible)</div>
+      <dl>
+        <dt>Commercial paper</dt>
+        <dd>Near risk-free rate + small spread. Yêu cầu: large, investment-grade firm</dd>
+        <dt>Bank LOC (committed)</dt>
+        <dd>Prime rate hoặc LIBOR/SOFR + spread. Có commitment fee</dd>
+        <dt>Trade credit (within discount)</dt>
+        <dd>0% nếu pay on due date. Free short-term funding</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>High cost</em> sources</div>
+      <dl>
+        <dt>Trade credit (miss 2/10 discount)</dt>
+        <dd>Effective annualized ~37% — expensive hidden cost</dd>
+        <dt>Factoring (non-recourse)</dt>
+        <dd>Discount 2–5% của face value + fees → APR 15-25%</dd>
+        <dt>Uncommitted LOC</dt>
+        <dd>Bank có thể từ chối bất cứ lúc nào → unreliable</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 20px;">
+    <span class="fmt-label">§ Cost of missing "2/10 net 30"</span>
+    <div class="eq"><span class="var">r</span> = (2/98) × (365/20) = 2.04% × 18.25 ≈ <b>37.2%</b> annualized</div>
+    <div class="note">Forgo 2% discount để delay 20 days (30−10). Đây là why smart firms <em>take the discount</em> và finance bằng bank LOC (cost 6-8%) thay vì stretch AP.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — BORROWING COST</span>
+  </div>
+</section>
+
+
+<!-- 11 · INVENTORY MANAGEMENT -->
+<section data-label="Inventory mgmt" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Inventory · 3 techniques</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Managing <em class="hi">inventory</em>.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">EOQ (Economic Order Quantity)</span>
+        <span class="step-body">Quantity optimal để balance ordering cost vs holding cost. EOQ = √(2DS/H). D = demand, S = order cost, H = holding cost/unit.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Just-in-Time (JIT)</span>
+        <span class="step-body">Minimize inventory: supplier giao đúng lúc cần. Toyota pioneer. Pros: reduce holding cost. Cons: supply chain risk (COVID 2020-2021).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">ABC Analysis — Pareto focus</span>
+        <span class="step-body">A items (top 20% SKU, 80% value) → tight control, frequent review. C items (bottom 50% SKU, 5% value) → loose control. Focus resources where money is.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § Trade-off — Low inventory tiết kiệm holding cost nhưng tăng <em>stockout risk</em> (lost sales, customer dissatisfaction). Optimal point depends on stockout cost vs holding cost.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — INVENTORY</span>
+  </div>
+</section>
+
+
+<!-- 12 · AR & AP MANAGEMENT -->
+<section data-label="AR AP management" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">AR &amp; AP · best practices</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Receivables &amp; <em class="hi">payables</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">AR <em>management</em></div>
+      <dl>
+        <dt>Credit policy</dt>
+        <dd>Screen customers · credit limits · payment terms (2/10 net 30)</dd>
+        <dt>Aging schedule</dt>
+        <dd>Break AR by age: &lt; 30d, 30-60d, 60-90d, &gt; 90d. Track deterioration</dd>
+        <dt>Collection</dt>
+        <dd>Reminder → call → collection agency → write-off. Balance aggressive vs customer relationship</dd>
+        <dt>Metric</dt>
+        <dd>DSO trend vs industry; % AR &gt; 90 days</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">AP <em>management</em></div>
+      <dl>
+        <dt>Timing</dt>
+        <dd>Pay <em>exactly</em> on due date — không sớm (lose float) không trễ (damage credit)</dd>
+        <dt>Discount</dt>
+        <dd>Take 2/10 discounts → effective saving ~37% APR</dd>
+        <dt>Negotiation</dt>
+        <dd>Extend terms với supplier khi có bargaining power</dd>
+        <dt>Metric</dt>
+        <dd>DPO benchmark vs industry average</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Aging signals — Share of AR &gt; 90 days tăng đều = red flag (credit policy loose hoặc customer base deteriorating). Concentration risk: 1 customer &gt; 20% AR → vulnerability.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — AR/AP MGMT</span>
+  </div>
+</section>
+
+
+<!-- 13 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 14 · Q1 EN — CCC calc -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>14 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Calculate the <em class="hi">CCC</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A firm reports: Revenue <strong>$1,095M</strong>, COGS <strong>$730M</strong>, Accounts Receivable <strong>$120M</strong>, Inventory <strong>$146M</strong>, Accounts Payable <strong>$60M</strong>. Using a 365-day year, what is the firm's <strong>Cash Conversion Cycle</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">63 days.</span></li>
+    <li><span class="lbl">B</span><span class="opt">83 days.</span></li>
+    <li><span class="lbl">C</span><span class="opt">113 days.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 15 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>15 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Revenue <mark>$1,095M</mark>, COGS <mark>$730M</mark>, AR <mark>$120M</mark>, Inv <mark>$146M</mark>, AP <mark>$60M</mark>. CCC = <mark>DSO + DIO − DPO</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">DSO dùng <em>Revenue</em>: DSO = AR / (Rev/365) = 120 / (1095/365) = 120 / 3 = <em>40 days</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">DIO và DPO dùng <em>COGS</em>: DIO = 146 / (730/365) = 146/2 = <em>73 days</em>. DPO = 60/2 = <em>30 days</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">CCC = 40 + 73 − 30 = <em>83 days</em>. Common mistake: dùng Revenue cho DIO/DPO → ra số khác (trap!).</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 16 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>16 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một firm báo cáo: Revenue <strong>$1,095M</strong>, COGS <strong>$730M</strong>, Accounts Receivable <strong>$120M</strong>, Inventory <strong>$146M</strong>, Accounts Payable <strong>$60M</strong>. Dùng 365 ngày/năm, <strong>Cash Conversion Cycle</strong> của firm là bao nhiêu?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">63 ngày.</span></li>
+    <li><span class="lbl">B</span><span class="opt">83 ngày.</span></li>
+    <li><span class="lbl">C</span><span class="opt">113 ngày.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>17 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 83 days.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">DSO = 120 / (1095/365) = 120/3 = <b>40</b>. DIO = 146 / (730/365) = 146/2 = <b>73</b>. DPO = 60 / 2 = <b>30</b>. CCC = 40 + 73 − 30 = <b>83 days</b>. Quan trọng: DSO dùng Revenue (sales-based), DIO và DPO dùng COGS (cost-based).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">63 days = sai vì dùng Revenue cho cả DIO: DIO nếu = 146/3 ≈ 48.7 → 40 + 48.7 − 30 ≈ 58.7. Không matching exactly nhưng reflect sai formula (dùng Revenue thay vì COGS cho inventory).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">113 days = <em>quên trừ DPO</em>: 40 + 73 = 113. Common error — DPO là component <em>giảm</em> CCC (supplier financing), không phải tăng.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">CCC = DSO + DIO − DPO. Nhớ: <em>DSO dùng Revenue</em>; <em>DIO và DPO dùng COGS</em>. DPO <em>giảm</em> CCC vì supplier đang "lend" firm (free financing). Shorter CCC = less working capital needed.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q2 EN — Compare financing -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Short-term <em class="hi">financing</em> choice.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A supplier offers a non-financial corporate customer terms of <strong>"2/10, net 30"</strong>. The customer can alternatively borrow from a committed bank line of credit at an effective annual rate of <strong>8%</strong>. Assuming the customer always has cash to pay and wants to minimize financing cost, which action is <strong>most appropriate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Stretch AP to day 30 and forgo the discount — preserves cash.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Take the 2% discount on day 10, funded by the bank LOC if needed.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Use factoring of receivables — accelerates cash inflow.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Terms <mark>2/10 net 30</mark>. LOC rate <mark>8% EAR</mark>. Compare <mark>effective cost</mark> of forgoing discount vs borrowing.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Cost of forgoing discount (20 extra days of float): <em>(2/98) × (365/20) ≈ 37.2%</em> annualized. Rất đắt.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">LOC chỉ cost 8% EAR → rõ ràng <em>cheaper</em> hơn nhiều so với "stretch AP" (37%). Take discount + borrow from LOC là optimal.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Factoring không phù hợp — expensive (15-25% APR) và không cần thiết vì firm đã có LOC và có cash. Chỉ dùng factoring khi không access được credit rẻ.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một supplier đưa ra term <strong>"2/10, net 30"</strong> cho customer là doanh nghiệp. Customer có thể vay từ committed bank line of credit với effective annual rate <strong>8%</strong>. Giả sử customer luôn có đủ cash và muốn tối thiểu cost of financing, hành động nào <strong>phù hợp nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Stretch AP đến ngày 30 và bỏ discount — giữ cash lại.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Take 2% discount vào ngày 10, funding bằng bank LOC nếu cần.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Dùng factoring AR — đẩy nhanh cash inflow.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Take discount.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Cost of forgoing 2/10 discount: <b>(2/98) × (365/20) ≈ 37.2%</b> annualized. Borrowing từ LOC chỉ <b>8%</b>. Spread khổng lồ <em>~29 percentage points</em> → rõ ràng borrow LOC để take discount là optimal. Đây là classic exam trap: "stretch AP" nghe "free" nhưng hidden cost cực cao.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Stretching AP đến 30 ngày forgoes discount 2% → effective ~37% APR. Đắt hơn LOC 4.6 lần. "Giữ cash" không phải lợi thế nếu opportunity cost cao. Common mistake: treat AP như "free" financing mà không tính hidden discount cost.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Factoring effective cost thường 15-25% APR — cao hơn LOC 8%. Factoring chỉ hợp lý khi firm không access được bank credit hoặc cần cash rất nhanh. Với firm có committed LOC, factoring là choice inferior.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">"2/10 net 30" discount = <em>~37% APR</em> nếu miss — always take nếu có cheaper funding (LOC, CP). Rule: <b>compare effective annualized cost</b>, không chỉ nominal. Trade credit "free" là myth khi có discount terms.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q3 EN — Aging schedule -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Interpret <em class="hi">aging schedule</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst reviews a firm's AR aging schedule over three years. The share of receivables aged <strong>&gt; 90 days</strong> has risen from <strong>5%</strong> to <strong>12%</strong> to <strong>22%</strong>, while DSO increased from 42 to 55 to 71 days. Reported revenue has grown, but cash collection has lagged. What does this <strong>most likely</strong> indicate?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Improving credit policy — firm is attracting larger customers.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Deteriorating collection quality and possible revenue recognition concerns.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Normal seasonal variation — no action needed.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    AR &gt; 90d: <mark>5% → 12% → 22%</mark>. DSO: <mark>42 → 55 → 71</mark>. Revenue <mark>tăng</mark> nhưng <mark>cash collection lags</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Tỷ lệ AR &gt; 90 days tăng mạnh (4x) + DSO tăng đều = dấu hiệu <em>customer không trả</em> hoặc <em>credit policy quá lỏng</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Revenue tăng nhưng cash không vào = red flag <em>revenue recognition</em>: có thể firm đang record sales không thu được tiền (channel stuffing, aggressive accounting).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Không phải "improving" (A) — aging worse là <em>deterioration</em>, không phải improvement. "Seasonal" (C) không giải thích trend 3 năm liên tiếp.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một analyst xem AR aging schedule của firm trong 3 năm. Tỷ lệ receivables <strong>&gt; 90 ngày</strong> tăng từ <strong>5%</strong> → <strong>12%</strong> → <strong>22%</strong>, DSO tăng từ 42 → 55 → 71 ngày. Revenue báo cáo tăng nhưng cash collection lagged. Điều này <strong>most likely</strong> cho thấy gì?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Improving credit policy — firm đang attract customer lớn hơn.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Collection quality deteriorating và possible revenue recognition concerns.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Seasonal variation bình thường — không cần action.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.03</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Deteriorating.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Hai signals cùng lúc: (1) Aging <em>&gt; 90 days</em> từ 5% lên 22% — customer không trả đúng hạn. (2) DSO từ 42 lên 71 days — firm take gần 2x thời gian để thu tiền. Revenue tăng nhưng cash không vào = possible <b>channel stuffing</b> hoặc <b>aggressive revenue recognition</b>. Analyst nên soi kỹ: bad debt reserve, customer concentration, revenue quality.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">"Improving credit policy" mâu thuẫn với data — aging worse và DSO dài hơn là <em>deterioration</em>. Larger customer không tự nhiên pay slower. Đây là misreading trend direction.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Seasonality giải thích fluctuation trong năm, không phải <em>trend 3 năm liên tục</em>. Monotonic deterioration không phải pattern seasonal. "No action" là dangerous complacency.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">AR aging red flags: (1) share <em>&gt; 90 days</em> tăng; (2) DSO tăng nhiều hơn industry; (3) revenue grow nhưng cash flow from operations không follow. Combined = possible revenue recognition issue. Always cross-check <em>AR growth vs revenue growth</em>: AR tăng nhanh hơn revenue = warning.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.03 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 26 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>05.03 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 05.04 — Cost of Capital &amp; WACC</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

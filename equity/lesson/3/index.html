@@ -1,0 +1,1038 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Equity 07.03 — Market Efficiency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Market<br><em>Efficiency.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 07 · Lesson 07.03 · Equity Investments</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 03 · Market efficiency &amp; behavioral finance</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Equity</dd></div>
+      <div><dt>Module</dt><dd>03</dd></div>
+      <div><dt>Lesson</dt><dd>07.03</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">EMH · anomalies · behavioral biases</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">03</div>
+    <div class="lbl">Efficiency &amp; behavior</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>Do <em>prices</em> reflect<br>all information?</h2>
+    <ul class="toc">
+      <li class="active">01 · Efficient market · definition &amp; EMH three forms</li>
+      <li>02 · Empirical tests · weak, semi-strong, strong</li>
+      <li>03 · Implications — active vs passive management</li>
+      <li>04 · Market anomalies — calendar, size, value, momentum</li>
+      <li>05 · Behavioral finance — heuristics, biases, prospect theory</li>
+      <li>06 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · DEFINITION -->
+<section data-label="Definition" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Efficient market · definition</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Prices <em class="hi">reflect</em> information.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Một <em>efficient market</em> là thị trường mà giá chứng khoán <b>nhanh chóng và đầy đủ</b> phản ánh mọi thông tin có sẵn (<em>available information</em>). Trong efficient market, giá hiện tại = intrinsic value (fair value) — không có mispricing kéo dài.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <div class="rb-label">§ Key characteristic</div>
+    <div class="rb-body">
+      Market efficiency phụ thuộc vào <b>tốc độ</b> và <b>tính đầy đủ</b> của phản ứng giá với new information.
+      Càng nhiều participants, càng nhiều thông tin công khai, chi phí giao dịch càng thấp → market càng efficient.
+    </div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li><span><span class="step-title">Speed</span><span class="step-body">Giá phản ứng gần như <em>ngay lập tức</em> khi có tin mới (earnings release, M&amp;A, macro news).</span></span></li>
+    <li><span><span class="step-title">Fullness</span><span class="step-body">Giá không chỉ move đúng hướng mà còn <em>đúng magnitude</em> — không under/over-reaction.</span></span></li>
+    <li><span><span class="step-title">No abnormal returns</span><span class="step-body">Không investor nào có thể kiếm <em>risk-adjusted abnormal return</em> một cách hệ thống (sau chi phí).</span></span></li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § Market value vs intrinsic value — <b>Market value</b> = giá hiện tại trên thị trường. <b>Intrinsic value</b> = giá "đúng" dựa trên fundamentals. Trong efficient market, 2 giá này bằng nhau (hoặc rất gần).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — DEFINITION</span>
+  </div>
+</section>
+
+
+<!-- 04 · FACTORS AFFECTING EFFICIENCY -->
+<section data-label="Efficiency factors" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Factors affecting market efficiency</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What makes a market <em class="hi">efficient</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Market participants</em></div>
+        <div class="d">Số lượng investors + analysts lớn → nhiều người săn mispricing → giá nhanh về fair value. Developed markets > emerging markets.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Information availability</em></div>
+        <div class="d">Disclosure requirements, financial reporting standards, media coverage. Nhiều thông tin công khai → giá phản ánh tốt hơn.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Limits to arbitrage</em></div>
+        <div class="d">Short-selling restrictions, trading costs, margin limits → arbitrageurs không thể loại bỏ mispricing → efficiency giảm.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Transaction costs</em></div>
+        <div class="d">Commissions, taxes, bid-ask spread. Chi phí cao → mispricing nhỏ không đáng khai thác → tồn tại lâu hơn.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Practical test — Một market được coi là efficient nếu mispricing nhỏ hơn transaction cost để khai thác nó. Small-cap, emerging markets thường kém efficient hơn large-cap US.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — FACTORS</span>
+  </div>
+</section>
+
+
+<!-- 05 · EMH THREE FORMS -->
+<section data-label="EMH three forms" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Efficient Market Hypothesis · Fama 1970</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Three <em class="hi">forms</em> of EMH.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Eugene <b>Fama (1970)</b> chia EMH thành 3 forms theo <em>phạm vi thông tin</em> được phản ánh. Mỗi form là superset của form yếu hơn — strong ⊃ semi-strong ⊃ weak.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">W</span>
+      <div>
+        <div class="t"><em class="hi">Weak form</em></div>
+        <div class="d">Giá phản ánh mọi <b>past price &amp; volume</b> data. Hệ quả: <em>technical analysis</em> (phân tích đồ thị, pattern, moving average) <b>vô dụng</b>. Không thể predict từ lịch sử giá.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SS</span>
+      <div>
+        <div class="t"><em class="hi">Semi-strong form</em></div>
+        <div class="d">Giá phản ánh mọi <b>public information</b> — past prices + financial statements + news + macro data. Hệ quả: cả <em>technical</em> VÀ <em>fundamental analysis</em> <b>vô dụng</b>.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">S</span>
+      <div>
+        <div class="t"><em class="hi">Strong form</em></div>
+        <div class="d">Giá phản ánh mọi thông tin — public <b>VÀ private (insider)</b>. Hệ quả: ngay cả <em>insiders</em> cũng không thể beat market. Cực kỳ khó support empirically.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 20px;">
+    <div class="rb-label">§ Superset logic</div>
+    <div class="rb-body">
+      Nếu <b>strong form</b> holds → semi-strong &amp; weak đều hold. Nếu <b>semi-strong</b> holds → weak cũng hold. Ngược lại không đúng. Empirically: weak ≈ supported, semi-strong ≈ mostly supported, strong = rejected.
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — EMH FORMS</span>
+  </div>
+</section>
+
+
+<!-- 06 · EMPIRICAL TESTS -->
+<section data-label="Empirical tests" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Empirical evidence · what tests show</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Testing the <em class="hi">three forms</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Weak · supported</div>
+      <dl>
+        <dt>Test</dt>
+        <dd><em>Serial correlation</em> of returns, <em>runs tests</em>, filter rules</dd>
+        <dt>Finding</dt>
+        <dd>Past returns không predict future returns (correlation ≈ 0). Technical trading rules không beat buy-and-hold sau chi phí.</dd>
+        <dt>Verdict</dt>
+        <dd><b>Supports weak form</b> trong most developed markets.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Semi-strong · mostly supported</div>
+      <dl>
+        <dt>Test</dt>
+        <dd><em>Event studies</em> — đo abnormal return quanh public announcement (earnings, M&amp;A, splits)</dd>
+        <dt>Finding</dt>
+        <dd>Giá điều chỉnh <em>trong phút/giờ</em> sau announcement. Không thể trade sau tin ra để kiếm abnormal return.</dd>
+        <dt>Verdict</dt>
+        <dd><b>Mostly supports</b> semi-strong; một số anomaly tồn tại (PEAD).</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Strong · rejected</div>
+      <dl>
+        <dt>Test</dt>
+        <dd><em>Insider trading returns</em>, mutual fund alpha, access-restricted info studies</dd>
+        <dt>Finding</dt>
+        <dd>Corporate insiders earn <em>consistent abnormal returns</em>. SEC cấm insider trading chính vì nó hoạt động.</dd>
+        <dt>Verdict</dt>
+        <dd><b>Rejects</b> strong form. Private info có giá trị kinh tế.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Event study mechanics — Pick event date t=0, compute cumulative abnormal return (CAR) trên window [−n, +n]. Nếu CAR ≠ 0 sau t=0 → information không được pricing in ngay → semi-strong bị vi phạm.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — EMPIRICAL</span>
+  </div>
+</section>
+
+
+<!-- 07 · IMPLICATIONS — ACTIVE vs PASSIVE -->
+<section data-label="Active vs Passive" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Implications · portfolio management</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Active</em> vs <em class="hi">passive</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">If market is efficient</div>
+      <dl>
+        <dt>Implication</dt>
+        <dd>Active management không tạo alpha sau phí. Technical + fundamental analysis đều không work.</dd>
+        <dt>Strategy</dt>
+        <dd><em>Passive</em> — low-cost index fund, diversification, buy-and-hold.</dd>
+        <dt>Focus</dt>
+        <dd>Giảm chi phí (expense ratio, tax, turnover), optimize asset allocation theo risk tolerance.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">If market is inefficient</div>
+      <dl>
+        <dt>Implication</dt>
+        <dd>Skilled analysts có thể identify mispricing và kiếm alpha.</dd>
+        <dt>Strategy</dt>
+        <dd><em>Active</em> — stock picking, market timing, sector rotation.</dd>
+        <dt>Reality check</dt>
+        <dd>Empirically: &gt;60% active funds underperform benchmark sau phí (SPIVA reports). Alpha khó maintain.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="take" style="margin-top: 20px;">
+    <b>Take</b> — Most CFA exam answers lean passive cho large-cap developed markets; active có thể justify ở small-cap, emerging markets, alternatives (nơi efficiency thấp hơn).
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — ACTIVE/PASSIVE</span>
+  </div>
+</section>
+
+
+<!-- 08 · ANOMALIES OVERVIEW -->
+<section data-label="Anomalies overview" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Market anomalies · overview</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Anomalies</em> — challenges to EMH.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      <em>Anomaly</em> = patterns trong returns mà EMH không giải thích được. Nếu persistent và exploitable sau phí → vi phạm EMH. Nhiều anomaly biến mất sau khi bị publish (arbitrage away).
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">CAL</span>
+      <div>
+        <div class="t"><em class="hi">Calendar effects</em></div>
+        <div class="d">January effect (small-cap tăng bất thường tháng 1), day-of-week (Monday returns thấp), turn-of-month, holiday effect.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CS</span>
+      <div>
+        <div class="t"><em class="hi">Cross-sectional</em></div>
+        <div class="d">Size effect (small-cap premium, Banz 1981), value effect (low P/B, P/E outperform — Fama-French).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">MOM</span>
+      <div>
+        <div class="t"><em class="hi">Momentum</em></div>
+        <div class="d">Past 6-12 month winners tiếp tục outperform 3-12 tháng sau (Jegadeesh-Titman 1993). Vi phạm weak form.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PEAD</span>
+      <div>
+        <div class="t"><em class="hi">Post-earnings drift</em></div>
+        <div class="d">Sau earnings surprise, giá <em>drift</em> theo hướng surprise trong weeks/months. Vi phạm semi-strong form.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Caveat — Nhiều anomaly có thể là <em>risk-based</em> (compensation cho risk không đo được trong CAPM) chứ không phải true mispricing. Fama-French 3-factor model giải thích size + value như risk factors.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — ANOMALIES</span>
+  </div>
+</section>
+
+
+<!-- 09 · ANOMALIES DETAIL -->
+<section data-label="Anomalies detail" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Anomalies · detailed mechanics</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">How <em class="hi">each anomaly</em> works.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">January effect</span>
+        <span class="step-body">Small-cap stocks earn abnormally high returns trong <em>2 tuần đầu tháng 1</em>. Giải thích: <b>tax-loss selling</b> cuối năm → giá giảm → rebound tháng 1. Phần lớn biến mất sau publication.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Size effect</span>
+        <span class="step-body">Small-cap outperform large-cap dài hạn (≈ 2-3%/year risk-adjusted). Banz (1981). Fama-French coi là <em>SMB factor</em> — risk premium cho small-cap risk.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Value effect</span>
+        <span class="step-body">Value stocks (low P/B, P/E) outperform growth stocks dài hạn. Fama-French <em>HML factor</em>. Giải thích: risk-based hoặc overreaction → mean reversion.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Momentum</span>
+        <span class="step-body">Buy past winners (top decile 12-month return), sell past losers → earn 1%/month. Reversal sau 3-5 năm (long-term reversal — De Bondt-Thaler).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Post-earnings announcement drift (PEAD)</span>
+        <span class="step-body">Stock với earnings beat tiếp tục drift up 60-90 ngày. Vi phạm semi-strong: information không pricing in ngay. Underreaction to earnings news.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — ANOMALIES DETAIL</span>
+  </div>
+</section>
+
+
+<!-- 10 · BEHAVIORAL FINANCE INTRO -->
+<section data-label="Behavioral intro" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Behavioral finance · non-rational actors</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">When investors <em class="hi">aren't rational</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      EMH giả định rational agents + Bayesian updating. <em>Behavioral finance</em> (Kahneman, Tversky, Thaler) cho rằng investors dùng <em>heuristics</em> (shortcuts) và mắc <em>systematic biases</em> — tạo ra mispricing.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <div class="rb-label">§ Rational vs behavioral</div>
+    <div class="rb-body">
+      <b>Rational</b> — unbiased expectations, risk-averse utility maximization, consistent preferences.
+      <b>Behavioral</b> — cognitive limits, emotional shortcuts, frame-dependent choices, biased probability assessment.
+      Key insight: bias không random mà <em>systematic</em> → có thể predict direction của mispricing.
+    </div>
+  </div>
+
+  <div class="take" style="margin-top: 20px;">
+    <b>Take</b> — Behavioral finance không phủ nhận EMH toàn bộ; nó giải thích <em>tại sao</em> anomaly tồn tại. Arbitrage limits ngăn rational traders loại bỏ mispricing hoàn toàn.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — BEHAVIORAL INTRO</span>
+  </div>
+</section>
+
+
+<!-- 11 · HEURISTICS -->
+<section data-label="Heuristics" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Behavioral · heuristics (mental shortcuts)</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Three <em class="hi">heuristics</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Anchoring</em></div>
+        <div class="d">Neo quyết định vào giá trị khởi đầu (ví dụ: giá mua ban đầu, 52-week high). Điều chỉnh không đủ khi có thông tin mới → giá target bị kéo về anchor.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Availability</em></div>
+        <div class="d">Đánh giá xác suất bằng việc nhớ ra ví dụ dễ đến đâu. Crash gần đây → overestimate crash probability. Media-heavy stocks được overvalued.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Representativeness</em></div>
+        <div class="d">Judge probability dựa trên <em>similarity</em> đến stereotype. "Good company = good stock". Extrapolate trend ngắn hạn → bỏ qua base rates.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Representativeness example — Investor thấy công ty có 5 quý earnings tăng liên tiếp → kết luận "growth company forever" → overpay. Bỏ qua base rate rằng &gt;80% growth stocks mean-revert sau 5 năm.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — HEURISTICS</span>
+  </div>
+</section>
+
+
+<!-- 12 · BEHAVIORAL BIASES -->
+<section data-label="Biases" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Behavioral · systematic biases</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Four <em class="hi">biases</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Overconfidence</em></div>
+        <div class="d">Đánh giá quá cao kiến thức và prediction accuracy của mình. Giao dịch quá nhiều → chi phí cao, dưới performance. Nam giới overconfident hơn nữ giới trong trading.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Loss aversion</em></div>
+        <div class="d">Cảm giác đau từ loss ≈ 2× sướng từ gain tương đương. Hệ quả: <em>disposition effect</em> — bán winners quá sớm, giữ losers quá lâu (hy vọng về break-even).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Herding</em></div>
+        <div class="d">Theo đám đông thay vì independent analysis. Tạo bubble (dot-com, crypto, housing) và crash. Social proof + career risk (fund manager không muốn underperform peers).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Confirmation bias</em></div>
+        <div class="d">Tìm/diễn giải thông tin ủng hộ belief sẵn có, ignore thông tin trái chiều. Investor bullish bỏ qua red flags; bearish phóng đại rủi ro.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Disposition effect math — Nếu bạn mua $100 và giá hiện tại $90, bạn neo vào $100 (loss aversion + anchoring). Bán = realize loss (đau gấp đôi gain). Giữ = hy vọng breakeven → irrational decision nếu expected return &lt; alternative.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — BIASES</span>
+  </div>
+</section>
+
+
+<!-- 13 · PROSPECT THEORY -->
+<section data-label="Prospect theory" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>13 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Kahneman &amp; Tversky · 1979</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Prospect</em> theory.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Thay thế <em>expected utility theory</em>. Investors đánh giá outcome theo <b>gains/losses quanh reference point</b> (thường giá mua), không theo final wealth. Losses loom larger than gains — nỗi đau từ mất $100 &gt; niềm vui từ được $100.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <div class="rb-label">§ Three key features</div>
+    <div class="rb-body">
+      <b>1. Reference dependence</b> — outcome judged relative to reference point (purchase price, status quo). <br>
+      <b>2. Loss aversion</b> — loss function steeper than gain function (slope ratio ≈ 2:1). <br>
+      <b>3. Probability weighting</b> — overweight small probabilities (lottery tickets, tail risk), underweight large probabilities.
+    </div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li><span><span class="step-title">Risk-averse over gains</span><span class="step-body">Khi đang lời, investor <em>risk-averse</em> — thích lock in profit, bán sớm → disposition effect.</span></span></li>
+    <li><span><span class="step-title">Risk-seeking over losses</span><span class="step-body">Khi đang lỗ, investor <em>risk-seeking</em> — giữ hoặc nhồi thêm (double down) để hy vọng gỡ → crystallize lớn hơn.</span></span></li>
+    <li><span><span class="step-title">Implications</span><span class="step-body">Giải thích equity premium puzzle, disposition effect, house-money effect, break-even effect. Nhiều anomaly có root ở prospect theory.</span></span></li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — PROSPECT</span>
+  </div>
+</section>
+
+
+<!-- 14 · IMPLICATIONS FOR INVESTING -->
+<section data-label="Implications" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>14 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Putting it together · investing implications</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What to <em class="hi">do</em> about it.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Default passive</em></div>
+        <div class="d">Trong large-cap developed markets, index fund + diversification + low cost thường thắng. Bằng chứng SPIVA ủng hộ.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Exploit anomalies carefully</em></div>
+        <div class="d">Factor investing (size, value, momentum, quality) có thể earn premium — nhưng phí, tax, slippage có thể eat up alpha. Smart beta ETFs.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Mitigate own biases</em></div>
+        <div class="d">Pre-commit rules (stop-loss, rebalance schedule), written IPS, keep decision journal, seek dissenting views. Automation &gt; willpower.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Exploit others' biases</em></div>
+        <div class="d">Contrarian investing, momentum, post-earnings drift — all exploit systematic misreaction. Requires discipline không bị herding cuốn theo.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="take" style="margin-top: 20px;">
+    <b>Take</b> — EMH là <em>good first approximation</em>. Behavioral finance giải thích deviations. Most investors nên default passive, nhưng hiểu biases giúp tránh shooting own foot.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — IMPLICATIONS</span>
+  </div>
+</section>
+
+
+<!-- 15 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 16 · Q1 EN — Classify EMH form -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>16 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Classify the <em class="hi">EMH form</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst builds a trading model using <strong>publicly available financial statement data</strong> (P/E ratios, book value, earnings growth) and backtests it over the past 20 years. The model generates <strong>positive risk-adjusted returns</strong> after transaction costs. This result is <strong>most consistent</strong> with a violation of which EMH form?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Weak form only.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Semi-strong form.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Strong form only.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>17 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Model dùng <mark>publicly available financial statement</mark> data (P/E, book value) → kiếm <mark>abnormal return</mark>. Loại nào bao gồm public info?
+  </div>
+  <ol class="hint-list">
+    <li><span class="hnum">Hint 1</span><span class="htxt">Weak form chỉ bao gồm <em>past price/volume</em>. Model này dùng fundamental (P/E, book value) → vượt scope weak form.</span></li>
+    <li><span class="hnum">Hint 2</span><span class="htxt">Semi-strong bao gồm <em>ALL public information</em>, tức tất cả past prices + public fundamentals. Nếu model dùng public data và vẫn earn alpha → vi phạm semi-strong.</span></li>
+    <li><span class="hnum">Hint 3</span><span class="htxt">Strong form đòi hỏi cả private info được price in. Model không dùng private/insider info → không test strong form. Answer: semi-strong.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một analyst xây dựng model giao dịch dùng <strong>public financial statement data</strong> (P/E, book value, earnings growth) và backtest trên 20 năm. Model tạo ra <strong>positive risk-adjusted return</strong> sau chi phí giao dịch. Kết quả này <strong>đúng nhất</strong> vi phạm EMH form nào?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Chỉ weak form.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Semi-strong form.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Chỉ strong form.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Semi-strong.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Model dùng <b>public fundamental data</b> (P/E, book value) và earn abnormal return. Public info → phạm vi của semi-strong form. Nếu semi-strong holds, ALL public info phải price in → không thể kiếm alpha từ public data. Kết quả này <b>vi phạm semi-strong</b>. Vì semi-strong ⊃ weak, nó cũng <em>consistent với weak form holding</em>; nhưng câu hỏi hỏi form nào bị VI PHẠM — semi-strong.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Weak form chỉ restrict past prices/volumes. Model dùng fundamental data (ngoài past prices), nên kể cả weak form holds, model vẫn có thể work. "Weak form only" không phải diễn giải đúng của vi phạm.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Strong form đòi hỏi cả private info price in. Model không dùng insider/private data → không phải test strong form specifically. Empirically strong form đã rejected, nhưng kết quả này test semi-strong.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Match loại <em>data input</em> với scope của từng form. <b>Past prices only</b> → weak. <b>Public info (incl. fundamentals, news)</b> → semi-strong. <b>Private/insider info</b> → strong. Công cụ nào earn alpha từ public data = vi phạm semi-strong.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q2 EN — Identify anomaly -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Identify the <em class="hi">anomaly</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A researcher finds that companies reporting <strong>positive earnings surprises</strong> continue to <strong>outperform the market</strong> for approximately <strong>60 trading days after the announcement</strong>, even after controlling for risk factors. This pattern is <strong>best</strong> described as:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">January effect.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Post-earnings announcement drift (PEAD).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Momentum effect.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Positive earnings surprise</mark> → stock tiếp tục <mark>outperform 60 days after announcement</mark>. Đặc trưng liên quan event cụ thể.
+  </div>
+  <ol class="hint-list">
+    <li><span class="hnum">Hint 1</span><span class="htxt">January effect liên quan <em>calendar timing</em> (tháng 1, small-cap). Không liên quan earnings announcement → loại.</span></li>
+    <li><span class="hnum">Hint 2</span><span class="htxt">Momentum = past winners tiếp tục winners <em>basis 6-12 months past return</em>, không trigger bởi earnings event cụ thể. Gần đúng nhưng không chính xác.</span></li>
+    <li><span class="hnum">Hint 3</span><span class="htxt">PEAD = <em>giá drift theo hướng earnings surprise</em> sau announcement. Keyword "post-earnings" match 1-1 với câu hỏi. Đây là cross-section anomaly vi phạm semi-strong.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một researcher phát hiện các công ty báo cáo <strong>positive earnings surprise</strong> tiếp tục <strong>outperform market</strong> trong khoảng <strong>60 ngày giao dịch sau announcement</strong>, kể cả sau khi control cho risk factors. Pattern này được mô tả <strong>đúng nhất</strong> là:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">January effect.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Post-earnings announcement drift (PEAD).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Momentum effect.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — PEAD.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext"><b>PEAD</b> = Post-Earnings Announcement Drift. Stocks với positive earnings surprise tiếp tục outperform trong <em>60-90 ngày</em> sau announcement; negative surprises drift down. Vi phạm <b>semi-strong</b> form — public earnings info không price in đầy đủ ngay, market <em>underreacts</em>. Câu hỏi match chính xác definition: earnings surprise + drift sau announcement.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">January effect = small-cap outperform trong 2 tuần đầu tháng 1, driven bởi tax-loss selling rebound. Liên quan <em>calendar timing</em>, không liên quan earnings event. Không match câu hỏi.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Momentum = past 6-12 month winners tiếp tục winners 3-12 months tới. Dựa trên <em>past return</em>, không dựa trên earnings event specific. Gần liên quan (cùng underreaction family) nhưng mechanism khác: PEAD trigger bởi earnings, momentum trigger bởi price history.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Nhận dạng anomaly qua <em>trigger</em>: <b>Calendar</b> (January, day-of-week) → timing. <b>Cross-sectional</b> (size, value) → stock characteristics. <b>Momentum</b> → past return. <b>PEAD</b> → earnings surprise event. Keyword "post-earnings" = PEAD, always.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q3 EN — Behavioral bias -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Name the <em class="hi">bias</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An investor bought 500 shares at $50 each. The stock now trades at $35. Despite new information suggesting the company's fundamentals have <strong>permanently deteriorated</strong>, the investor <strong>refuses to sell</strong>, saying: <em>"I'll sell when it gets back to $50 so I don't lose money."</em> Meanwhile, the investor <strong>quickly sold</strong> another stock after a small gain to "lock in profits." This behavior is <strong>best</strong> explained by:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Confirmation bias and herding.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Loss aversion and the disposition effect.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Overconfidence and representativeness.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Giữ <mark>loser chờ break-even</mark> ($50). Bán <mark>winner quá sớm</mark> để "lock in profit". Neo vào <mark>giá mua</mark>.
+  </div>
+  <ol class="hint-list">
+    <li><span class="hnum">Hint 1</span><span class="htxt">"Sell when back to $50" → anchor vào purchase price, tránh realize loss → <em>loss aversion</em>. Cảm giác đau từ loss lớn hơn niềm vui từ gain.</span></li>
+    <li><span class="hnum">Hint 2</span><span class="htxt">Bán winner sớm + giữ loser lâu = <em>disposition effect</em> — hệ quả trực tiếp của loss aversion + prospect theory (risk-averse in gains, risk-seeking in losses).</span></li>
+    <li><span class="hnum">Hint 3</span><span class="htxt">Confirmation bias (A) = tìm thông tin ủng hộ belief. Overconfidence (C) = overestimate skill. Cả 2 không mô tả behavior cụ thể ở đây — keyword "break-even" và sell winners sớm = loss aversion.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>26 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một investor mua 500 shares giá $50. Stock hiện tại $35. Dù có thông tin mới cho thấy fundamentals <strong>đã xấu đi vĩnh viễn</strong>, investor <strong>không bán</strong>, nói: <em>"Tôi sẽ bán khi giá quay lại $50 để không bị lỗ."</em> Trong khi đó, investor <strong>đã bán sớm</strong> một cổ phiếu khác sau gain nhỏ để "lock in profit". Behavior này <strong>được giải thích đúng nhất</strong> bởi:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Confirmation bias và herding.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Loss aversion và disposition effect.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Overconfidence và representativeness.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Equity · 07.03</span>
+    <span class="rule"></span>
+    <span>27 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Loss aversion.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Behavior classic: giữ loser chờ break-even + bán winner sớm = <b>disposition effect</b>, hệ quả của <b>loss aversion</b> (nỗi đau loss ≈ 2× niềm vui gain tương đương). Investor anchor vào purchase price $50 làm reference point, refuse realize loss dù fundamentals đã xấu. Đồng thời risk-averse over gains → lock in profit sớm. Đây chính là prediction của <em>prospect theory</em> (Kahneman-Tversky).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Confirmation bias = chỉ tìm info ủng hộ belief. Herding = theo đám đông. Đề không cho thấy investor ignore dissenting info hay theo crowd — chỉ thấy refuse sell loser. Không match.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Overconfidence = overestimate skill, trade quá nhiều. Representativeness = judge qua similarity/stereotype. Đề không thể hiện over-trading hay stereotype judgment — thể hiện loss aversion rõ ràng qua "sell when back to $50".</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Khi đề mô tả <em>giữ loser + bán winner sớm</em> hoặc <em>anchor vào purchase price để break-even</em> → luôn là <b>loss aversion / disposition effect</b>. Đây là bias phổ biến nhất trong CFA exam behavioral questions. Prospect theory là foundation: risk-averse in gains, risk-seeking in losses.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>EQUITY · 07.03 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 28 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>07.03 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 07.04 — Security Market Indexes / Equity Valuation</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

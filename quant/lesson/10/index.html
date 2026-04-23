@@ -1,0 +1,1036 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Quant 02.10 — Simple Linear Regression</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+  .chart-box { border: 1px solid var(--rule); padding: 24px; margin-top: 16px; background: var(--paper-alt, #fafaf7); }
+  .chart-box .fmt-label { font-family: var(--mono); font-size: 14px; color: var(--ink-muted); letter-spacing: 0.08em; text-transform: uppercase; display: block; margin-bottom: 12px; }
+  .chart-box svg { display: block; width: 100%; max-width: 1200px; height: auto; }
+  .chart-box .note { font-family: var(--mono); font-size: 16px; color: var(--ink-muted); margin-top: 10px; }
+  .take { border-left: 4px solid var(--accent); padding: 14px 20px; margin-top: 18px; background: rgba(0,0,0,0.02); font-size: 20px; line-height: 1.45; max-width: 1600px; }
+  .take b { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Simple<br>Linear <em>Regression.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 02 · Lesson 02.10 · Quantitative Methods</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 10 · One-variable OLS regression</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Quant</dd></div>
+      <div><dt>Module</dt><dd>10</dd></div>
+      <div><dt>Lesson</dt><dd>02.10</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">OLS · R² · SEE · t-test slope</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">10</div>
+    <div class="lbl">Regression 101</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>Fit a <em>line</em> through<br>the data.</h2>
+    <ul class="toc">
+      <li class="active">01 · Regression model — Y = b₀ + b₁X + ε</li>
+      <li>02 · OLS estimation — minimize Σ(residuals)²</li>
+      <li>03 · Six assumptions — linearity → normal errors</li>
+      <li>04 · Goodness-of-fit — R², SEE, ANOVA</li>
+      <li>05 · Inference — t-test, F-test, CI</li>
+      <li>06 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · REGRESSION MODEL -->
+<section data-label="Regression model" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Model · specification</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">population</em> regression.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Simple linear regression mô tả quan hệ tuyến tính giữa một <em>dependent variable</em> Y và một <em>independent variable</em> X, cộng error term ε.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Population model</span>
+    <div class="eq"><span class="var">Y</span><sub>i</sub> = <span class="var">b</span><sub>0</sub> + <span class="var">b</span><sub>1</sub><span class="var">X</span><sub>i</sub> + <span class="var">ε</span><sub>i</sub></div>
+    <div class="note"><b>Y</b> dependent (regressand) · <b>X</b> independent (regressor) · <b>b₀</b> intercept · <b>b₁</b> slope · <b>ε</b> error term (disturbance).</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Fitted (estimated) line</span>
+    <div class="eq"><span class="var">Ŷ</span><sub>i</sub> = <span class="var">b̂</span><sub>0</sub> + <span class="var">b̂</span><sub>1</sub><span class="var">X</span><sub>i</sub>  ·  <span class="var">e</span><sub>i</sub> = <span class="var">Y</span><sub>i</sub> − <span class="var">Ŷ</span><sub>i</sub></div>
+    <div class="note">Sample estimates b̂₀, b̂₁ từ data. <b>Residual</b> eᵢ = sample analog của εᵢ (chỉ observable sau khi fit).</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Interpretation — b₁ = change in expected Y per one-unit change in X. b₀ = expected Y khi X = 0 (meaningful chỉ khi X = 0 nằm trong data range).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — MODEL</span>
+  </div>
+</section>
+
+
+<!-- 04 · OLS ESTIMATION -->
+<section data-label="OLS estimation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Estimation · OLS</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Ordinary Least Squares</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      OLS chọn b̂₀, b̂₁ sao cho <em>sum of squared residuals</em> (SSR) nhỏ nhất. Đây là criterion phổ biến nhất vì cho closed-form solution và BLUE estimator (Gauss-Markov).
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Objective — minimize SSR</span>
+    <div class="eq">min  Σ(<span class="var">Y</span><sub>i</sub> − <span class="var">Ŷ</span><sub>i</sub>)² = Σ<span class="var">e</span><sub>i</sub>²</div>
+    <div class="note">Minimize <b>sum of squared residuals</b>. Bình phương để (i) tránh cộng dồn bằng 0, (ii) penalize large errors nhiều hơn.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Closed-form solutions</span>
+    <div class="eq"><span class="var">b̂</span><sub>1</sub> = Cov(<span class="var">X</span>,<span class="var">Y</span>) / Var(<span class="var">X</span>) = <span class="var">ρ</span><sub>xy</sub> · (<span class="var">σ</span><sub>y</sub> / <span class="var">σ</span><sub>x</sub>)</div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">b̂</span><sub>0</sub> = <span class="var">Ȳ</span> − <span class="var">b̂</span><sub>1</sub>·<span class="var">X̄</span></div>
+    <div class="note">Slope = covariance scaled by variance of X. Intercept đảm bảo regression line đi qua điểm trung bình (<b>X̄, Ȳ</b>).</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — OLS</span>
+  </div>
+</section>
+
+
+<!-- 05 · SCATTER + REGRESSION LINE -->
+<section data-label="Scatter plot" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Visual intuition</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">best-fit</em> line.</h2>
+  </div>
+
+  <div class="chart-box">
+    <span class="fmt-label">§ Scatter plot · Ŷ = b̂₀ + b̂₁X</span>
+    <svg viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scatter plot with OLS regression line">
+      <!-- axes -->
+      <line x1="90" y1="460" x2="1150" y2="460" stroke="#222" stroke-width="2"/>
+      <line x1="90" y1="40" x2="90" y2="460" stroke="#222" stroke-width="2"/>
+      <!-- ticks X -->
+      <g font-family="ui-monospace, Roboto Mono" font-size="14" fill="#555">
+        <text x="90" y="485" text-anchor="middle">0</text>
+        <text x="302" y="485" text-anchor="middle">2</text>
+        <text x="514" y="485" text-anchor="middle">4</text>
+        <text x="726" y="485" text-anchor="middle">6</text>
+        <text x="938" y="485" text-anchor="middle">8</text>
+        <text x="1150" y="485" text-anchor="middle">10</text>
+        <text x="620" y="510" text-anchor="middle" font-size="16">X (independent)</text>
+      </g>
+      <!-- ticks Y -->
+      <g font-family="ui-monospace, Roboto Mono" font-size="14" fill="#555">
+        <text x="78" y="465" text-anchor="end">0</text>
+        <text x="78" y="381" text-anchor="end">5</text>
+        <text x="78" y="297" text-anchor="end">10</text>
+        <text x="78" y="213" text-anchor="end">15</text>
+        <text x="78" y="129" text-anchor="end">20</text>
+        <text x="78" y="45"  text-anchor="end">25</text>
+        <text x="30" y="250" text-anchor="middle" font-size="16" transform="rotate(-90 30 250)">Y (dependent)</text>
+      </g>
+      <!-- regression line: Y = 2 + 2X, X in [0,10], Y in [2,22]; map x: 90 + 106*X, y: 460 - 16.8*Y -->
+      <line x1="90" y1="426.4" x2="1150" y2="90.4" stroke="#c94a2b" stroke-width="3"/>
+      <!-- scatter points around line with some noise -->
+      <g fill="#2a4d8f">
+        <circle cx="196"  cy="410" r="6"/>
+        <circle cx="302"  cy="385" r="6"/>
+        <circle cx="408"  cy="360" r="6"/>
+        <circle cx="514"  cy="315" r="6"/>
+        <circle cx="620"  cy="285" r="6"/>
+        <circle cx="726"  cy="240" r="6"/>
+        <circle cx="832"  cy="210" r="6"/>
+        <circle cx="938"  cy="165" r="6"/>
+        <circle cx="1044" cy="130" r="6"/>
+        <circle cx="248"  cy="370" r="6"/>
+        <circle cx="460"  cy="330" r="6"/>
+        <circle cx="672"  cy="260" r="6"/>
+        <circle cx="884"  cy="195" r="6"/>
+      </g>
+      <!-- residual example dashed line -->
+      <line x1="620" y1="285" x2="620" y2="259.6" stroke="#c94a2b" stroke-width="2" stroke-dasharray="4 3"/>
+      <text x="634" y="276" font-family="Roboto Mono" font-size="14" fill="#c94a2b">eᵢ = Yᵢ − Ŷᵢ</text>
+      <text x="1000" y="80" font-family="Roboto Mono" font-size="14" fill="#c94a2b">Ŷ = b̂₀ + b̂₁X</text>
+    </svg>
+    <div class="note">Mỗi <span style="color:#2a4d8f;">•</span> = một observation (Xᵢ, Yᵢ). <span style="color:#c94a2b;">Red line</span> = OLS fit. Vertical distance từ point tới line = residual eᵢ. OLS minimize Σeᵢ².</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — SCATTER</span>
+  </div>
+</section>
+
+
+<!-- 06 · SIX OLS ASSUMPTIONS -->
+<section data-label="OLS assumptions" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Classical assumptions</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">6 OLS assumptions</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Khi 6 assumption này hold, OLS là <em>BLUE</em> — Best Linear Unbiased Estimator. Vi phạm → estimator bias hoặc inefficient → standard errors sai.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Linearity</em></div>
+        <div class="d">Quan hệ giữa Y và X là linear trong parameters. Nonlinear pattern → phải transform (log, sqrt) hoặc đổi model.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Independence</em> of errors</div>
+        <div class="d">Observations độc lập nhau. Panel/time-series dễ vi phạm (serial correlation).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Homoscedasticity</em></div>
+        <div class="d">Var(εᵢ) = σ² constant với mọi Xᵢ. Heteroscedasticity → SE lệch, t-stat không tin cậy.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t">No <em class="hi">autocorrelation</em></div>
+        <div class="d">Cov(εᵢ, εⱼ) = 0 với i ≠ j. Durbin-Watson test detect. Common trong time series.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">05</span>
+      <div>
+        <div class="t"><em class="hi">Normal</em> errors</div>
+        <div class="d">ε ~ N(0, σ²). Cần cho valid t-test/F-test ở small sample. Large n → CLT cứu (asymptotic).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">06</span>
+      <div>
+        <div class="t">X <em class="hi">non-stochastic</em></div>
+        <div class="d">X uncorrelated với ε (exogenous). Vi phạm → endogeneity bias (omitted-variable, reverse causality).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — ASSUMPTIONS</span>
+  </div>
+</section>
+
+
+<!-- 07 · ANOVA DECOMPOSITION -->
+<section data-label="ANOVA" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Variance decomposition</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Analysis of <em class="hi">variance</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Sum of squares identity</span>
+    <div class="eq"><span class="var">TSS</span> = <span class="var">RSS</span> + <span class="var">SSE</span></div>
+    <div class="eq" style="margin-top: 8px;">Σ(<span class="var">Y</span><sub>i</sub> − <span class="var">Ȳ</span>)² = Σ(<span class="var">Ŷ</span><sub>i</sub> − <span class="var">Ȳ</span>)² + Σ(<span class="var">Y</span><sub>i</sub> − <span class="var">Ŷ</span><sub>i</sub>)²</div>
+    <div class="note"><b>TSS</b> Total SS (total variation trong Y) · <b>RSS</b> Regression SS (explained) · <b>SSE</b> Sum of Squared Errors (unexplained residuals). <em>Note:</em> CFA đôi khi ký hiệu khác — ở đây RSS = Regression Sum of Squares (explained). SSE = Residual SS.</div>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Degrees of freedom</div>
+      <dl>
+        <dt>TSS df</dt>
+        <dd>n − 1 (total observations minus Ȳ estimate)</dd>
+        <dt>RSS df</dt>
+        <dd>k = 1 (one slope parameter)</dd>
+        <dt>SSE df</dt>
+        <dd>n − 2 (n minus b̂₀ và b̂₁)</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Mean squares</div>
+      <dl>
+        <dt>MSR</dt>
+        <dd>RSS / 1 = RSS</dd>
+        <dt>MSE</dt>
+        <dd>SSE / (n − 2) = variance of residuals</dd>
+        <dt>Use</dt>
+        <dd>F = MSR / MSE cho overall significance</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — ANOVA</span>
+  </div>
+</section>
+
+
+<!-- 08 · R² -->
+<section data-label="R-squared" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Goodness-of-fit</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">R²</em> — coefficient of determination.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Definition</span>
+    <div class="eq"><span class="var">R²</span> = <span class="var">RSS</span> / <span class="var">TSS</span> = 1 − (<span class="var">SSE</span> / <span class="var">TSS</span>)</div>
+    <div class="note"><b>0 ≤ R² ≤ 1</b>. R² = % variation trong Y được "giải thích" bởi X. R² = 1 → perfect fit; R² = 0 → X giải thích 0%.</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Simple linear regression only</span>
+    Trong simple LR (1 independent variable), <b>R² = ρ²<sub>xy</sub></b> — bình phương correlation giữa X và Y. Slope b̂₁ cùng dấu với ρ<sub>xy</sub>.
+  </div>
+
+  <p class="fine-muted-sm">
+    § Caveats — R² cao KHÔNG đảm bảo model tốt. Có thể do: (i) spurious regression (time series không stationary), (ii) omitted variable, (iii) R² luôn tăng khi thêm regressor → multiple regression dùng <em>Adjusted R²</em>.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — R²</span>
+  </div>
+</section>
+
+
+<!-- 09 · SEE + SE(b1) -->
+<section data-label="SEE and SE(b1)" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Precision · standard errors</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">SEE</em> và SE(b̂₁).</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Standard Error of Estimate (SEE)</span>
+    <div class="eq"><span class="var">SEE</span> = √(<span class="var">SSE</span> / (<span class="var">n</span> − 2)) = √<span class="var">MSE</span></div>
+    <div class="note">SEE = standard deviation của residuals. Đơn vị giống Y. Thấp → points sát line → model fit tốt.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Standard error of slope coefficient</span>
+    <div class="eq"><span class="var">se</span>(<span class="var">b̂</span><sub>1</sub>) = <span class="var">SEE</span> / √(Σ(<span class="var">X</span><sub>i</sub> − <span class="var">X̄</span>)²)</div>
+    <div class="note">Càng nhiều variation trong X → mẫu số lớn → se(b̂₁) nhỏ → estimate chính xác hơn. Càng nhiều data points (n) → thường làm tăng Σ(X−X̄)² → SE giảm.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Intuition — SE(b̂₁) đo uncertainty quanh slope estimate. 95% CI cho true b₁: b̂₁ ± t<sub>critical</sub> · se(b̂₁), với df = n − 2.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — SEE</span>
+  </div>
+</section>
+
+
+<!-- 10 · t-TEST SLOPE -->
+<section data-label="t-test slope" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Inference · significance</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">t-test</em> on slope.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Kiểm định xem slope b₁ có khác 0 không — tức X có giải thích Y không.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Hypotheses</span>
+    <div class="eq">H<sub>0</sub>: <span class="var">b</span><sub>1</sub> = 0  ·  H<sub>a</sub>: <span class="var">b</span><sub>1</sub> ≠ 0</div>
+    <div class="note">Null: X không giải thích Y (slope = 0 → horizontal line). Two-tailed test.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Test statistic</span>
+    <div class="eq"><span class="var">t</span> = (<span class="var">b̂</span><sub>1</sub> − 0) / <span class="var">se</span>(<span class="var">b̂</span><sub>1</sub>)  ·  df = <span class="var">n</span> − 2</div>
+    <div class="note">Reject H₀ nếu |t| &gt; t<sub>critical</sub> (hoặc p-value &lt; α). Rule of thumb: |t| &gt; 2 ≈ significant ở α = 5% (df lớn).</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Confidence interval for b₁</span>
+    <div class="eq"><span class="var">b̂</span><sub>1</sub> ± <span class="var">t</span><sub>crit</sub> · <span class="var">se</span>(<span class="var">b̂</span><sub>1</sub>)</div>
+    <div class="note">Nếu CI không chứa 0 → reject H₀ — equivalent với t-test.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — t-TEST</span>
+  </div>
+</section>
+
+
+<!-- 11 · F-TEST -->
+<section data-label="F-test" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Inference · overall fit</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">F-test</em> overall significance.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ F-statistic</span>
+    <div class="eq"><span class="var">F</span> = <span class="var">MSR</span> / <span class="var">MSE</span> = (<span class="var">RSS</span>/1) / (<span class="var">SSE</span>/(<span class="var">n</span>−2))</div>
+    <div class="note">df<sub>num</sub> = 1, df<sub>den</sub> = n − 2. One-tailed (right tail) — luôn F ≥ 0.</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Simple linear regression identity</span>
+    Trong simple LR một biến, <b>F = t²</b> (t của slope bình phương). Kết luận F-test và t-test trên slope luôn giống nhau. Trong multiple regression → F ≠ t², F test <em>joint</em> significance của tất cả slopes.
+  </div>
+
+  <div class="take">
+    <b>Take:</b> Simple LR → t-test slope là đủ. F-test dư thừa nhưng vẫn hiện trong ANOVA table. Multiple regression mới cần F-test riêng.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — F-TEST</span>
+  </div>
+</section>
+
+
+<!-- 12 · PREDICTION -->
+<section data-label="Prediction" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Forecasting with the model</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Point <em class="hi">prediction</em> &amp; intervals.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Point prediction for new X₀</span>
+    <div class="eq"><span class="var">Ŷ</span><sub>0</sub> = <span class="var">b̂</span><sub>0</sub> + <span class="var">b̂</span><sub>1</sub><span class="var">X</span><sub>0</sub></div>
+    <div class="note">Plug X₀ vào fitted equation → expected Y.</div>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Confidence interval (mean Ŷ)</div>
+      <dl>
+        <dt>Target</dt>
+        <dd>E[Y | X₀] — mean response</dd>
+        <dt>Width</dt>
+        <dd>Hẹp hơn — chỉ uncertainty trong b̂₀, b̂₁</dd>
+        <dt>Use</dt>
+        <dd>"Average Y của nhiều observations với X = X₀"</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Prediction interval (individual Y)</div>
+      <dl>
+        <dt>Target</dt>
+        <dd>Y₀ — single new observation</dd>
+        <dt>Width</dt>
+        <dd>Rộng hơn — thêm residual variance σ²</dd>
+        <dt>Use</dt>
+        <dd>"Y của một observation cụ thể với X = X₀"</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Cả hai đều rộng nhất ở xa X̄ — extrapolation beyond data range rủi ro cao (leverage tăng, assumption có thể break).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — PREDICTION</span>
+  </div>
+</section>
+
+
+<!-- 13 · INTERPRETATION -->
+<section data-label="Interpretation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>13 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Reading coefficients</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What do <em class="hi">b₀, b₁</em> mean?</h2>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Slope b₁ — marginal effect</span>
+        <span class="step-body">Kỳ vọng thay đổi trong Y khi X tăng 1 unit, <em>ceteris paribus</em>. Đơn vị: unit(Y) / unit(X). Dấu cho hướng quan hệ.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Intercept b₀ — baseline</span>
+        <span class="step-body">Expected Y khi X = 0. Meaningful chỉ khi X = 0 nằm trong data range hoặc có economic interpretation (ví dụ: lương khởi điểm khi experience = 0).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Correlation ≠ causation</span>
+        <span class="step-body">Slope significant không chứng minh X <em>gây</em> Y. Cần economic theory + research design (natural experiment, IV) để claim causal.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Units matter</span>
+        <span class="step-body">Đổi unit X (ví dụ $ → $000) sẽ rescale b̂₁ (nhân 1000) nhưng R², t-stat không đổi. Dimensionless stats invariant to scaling.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — INTERPRET</span>
+  </div>
+</section>
+
+
+<!-- 14 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 15 · Q1 EN — Interpret slope -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>15 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Interpret <em class="hi">slope</em> coefficient.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst estimates the regression <strong>Return<sub>i</sub> = 2.5 + 1.3·Beta<sub>i</sub> + ε<sub>i</sub></strong>, where returns are in percent and Beta is unitless. Which statement best interprets the slope coefficient <strong>b̂₁ = 1.3</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Expected return is 1.3% when Beta equals 0.</span></li>
+    <li><span class="lbl">B</span><span class="opt">A one-unit increase in Beta is associated with a 1.3 percentage-point increase in expected return.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Beta explains 1.3% of the total variation in returns (R² = 1.3%).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 16 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>16 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Model <mark>Return = 2.5 + 1.3·Beta</mark>. Y đơn vị <mark>%</mark>, X <mark>unitless</mark>. Đang hỏi interpret <mark>b̂₁ = 1.3</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Slope b̂₁ = <em>change in Y per one-unit change in X</em>. X = Beta → ΔBeta = 1 → ΔReturn kỳ vọng = 1.3.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Đơn vị của Y là %, nên "1.3" nghĩa là <em>1.3 percentage points</em>, không phải "1.3% relative".</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">A nhầm slope với intercept (b̂₀ = 2.5 mới là expected return khi Beta = 0). C nhầm slope với R². Slope ≠ R².</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>17 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một analyst estimate regression <strong>Return<sub>i</sub> = 2.5 + 1.3·Beta<sub>i</sub> + ε<sub>i</sub></strong>, với Return tính theo phần trăm và Beta không có đơn vị. Statement nào interpret đúng nhất slope coefficient <strong>b̂₁ = 1.3</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Expected return bằng 1.3% khi Beta = 0.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Beta tăng 1 unit kéo theo expected return tăng 1.3 percentage points.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Beta giải thích 1.3% tổng variation của returns (R² = 1.3%).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 1.3pp per Beta.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Slope definition: <b>b̂₁ = ΔE[Y] / ΔX</b>. Khi Beta tăng 1 unit, expected Return tăng b̂₁ = 1.3 (đơn vị của Y = %, nên 1.3 percentage points). Đây là marginal effect chuẩn.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">"Expected return khi Beta = 0" là <em>intercept b̂₀ = 2.5</em>, không phải slope. Confusing b̂₀ và b̂₁ là lỗi phổ biến.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">R² đo proportion of variance giải thích bởi model (0 ≤ R² ≤ 1). Slope coefficient b̂₁ không liên quan trực tiếp tới R² về numerical value. 1.3 không phải là 1.3% variance.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">b̂₁ = <em>change in Y per one-unit change in X</em>. Đọc slope theo đơn vị: ΔX = 1 unit → ΔE[Y] = b̂₁ (cùng đơn vị với Y). Intercept = value khi X = 0. R² ≠ slope.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q2 EN — R² calculation/meaning -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Compute &amp; interpret <em class="hi">R²</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A simple linear regression of Y on X (n = 50) produces: <strong>Total SS = 400</strong>, <strong>Regression SS = 300</strong>, <strong>Sum of Squared Errors = 100</strong>. Which statement about R² is <strong>most accurate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">R² = 0.25; X explains 25% of the variation in Y.</span></li>
+    <li><span class="lbl">B</span><span class="opt">R² = 0.75; X explains 75% of the variation in Y.</span></li>
+    <li><span class="lbl">C</span><span class="opt">R² = 3.00; the model fit is very strong because RSS &gt; SSE.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>TSS = 400</mark>, <mark>RSS = 300</mark>, <mark>SSE = 100</mark>. Verify identity: 300 + 100 = 400 ✓. Asking <mark>R²</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Công thức: <em>R² = RSS / TSS</em> = (explained) / (total).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">R² = 300 / 400 = <em>0.75</em>. Tức X giải thích 75% tổng biến thiên của Y.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">R² bị bounded trong [0, 1]. Đáp án C (R² = 3) vi phạm bound — sai logic. R² KHÔNG phải RSS/SSE.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một simple linear regression của Y theo X (n = 50) cho ra: <strong>Total SS = 400</strong>, <strong>Regression SS = 300</strong>, <strong>Sum of Squared Errors = 100</strong>. Statement nào về R² là <strong>chính xác nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">R² = 0.25; X giải thích 25% variation của Y.</span></li>
+    <li><span class="lbl">B</span><span class="opt">R² = 0.75; X giải thích 75% variation của Y.</span></li>
+    <li><span class="lbl">C</span><span class="opt">R² = 3.00; model fit rất mạnh vì RSS &gt; SSE.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — R² = 0.75.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">R² = RSS/TSS = 300/400 = <b>0.75</b>. Equivalent: R² = 1 − SSE/TSS = 1 − 100/400 = 0.75. Nghĩa là 75% variation trong Y được giải thích bởi X; 25% còn lại unexplained (residual).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">0.25 là <em>SSE/TSS</em> (proportion unexplained) = 100/400. Đây là 1 − R², không phải R². Nhầm numerator (dùng SSE thay vì RSS).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">R² = RSS/SSE = 300/100 = 3 là sai công thức. R² bị bounded [0, 1] — không thể &gt; 1. Mẫu số đúng là TSS, không phải SSE.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">R² = <em>RSS / TSS</em> = 1 − (SSE/TSS). Luôn nằm trong [0, 1]. Verify sum-of-squares identity: TSS = RSS + SSE trước khi compute. Trong simple LR, R² = ρ²<sub>xy</sub>.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q3 EN — t-test slope -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Test <em class="hi">slope</em> significance.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Using n = 32 monthly observations, an analyst regresses portfolio return on an economic index and obtains <strong>b̂₁ = 0.80</strong> with standard error <strong>se(b̂₁) = 0.25</strong>. The two-tailed critical t-value at α = 5% with 30 degrees of freedom is approximately <strong>2.042</strong>. Which conclusion is <strong>most appropriate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Fail to reject H₀: b₁ = 0 because t = 0.20 &lt; 2.042.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Reject H₀: b₁ = 0 because t = 3.20 &gt; 2.042 — slope is statistically significant.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Reject H₀ only if R² exceeds 0.50; t-statistics are unreliable in small samples.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    n = <mark>32</mark>, b̂₁ = <mark>0.80</mark>, se(b̂₁) = <mark>0.25</mark>, df = n − 2 = <mark>30</mark>, t<sub>crit</sub> = <mark>2.042</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Công thức: <em>t = (b̂₁ − 0) / se(b̂₁) = 0.80 / 0.25 = 3.20</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">So sánh |t| = 3.20 với t<sub>crit</sub> = 2.042. |3.20| &gt; 2.042 → <em>reject H₀</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Reject H₀ nghĩa là slope significant — X có explanatory power cho Y ở α = 5%. R² threshold không liên quan đến significance test.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Với n = 32 monthly observations, analyst regress portfolio return theo một economic index và thu được <strong>b̂₁ = 0.80</strong> với standard error <strong>se(b̂₁) = 0.25</strong>. Critical t-value two-tailed ở α = 5% với 30 degrees of freedom xấp xỉ <strong>2.042</strong>. Kết luận nào <strong>phù hợp nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Fail to reject H₀: b₁ = 0 vì t = 0.20 &lt; 2.042.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Reject H₀: b₁ = 0 vì t = 3.20 &gt; 2.042 — slope có ý nghĩa thống kê.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Chỉ reject H₀ khi R² vượt 0.50; t-statistics không đáng tin với small sample.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>26 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Reject H₀, t = 3.20.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">t = (b̂₁ − 0) / se(b̂₁) = 0.80 / 0.25 = <b>3.20</b>. df = n − 2 = 30; t<sub>crit</sub> = 2.042. Vì |3.20| &gt; 2.042 → <b>reject H₀: b₁ = 0</b>. Slope khác 0 có ý nghĩa thống kê ở α = 5%. Tương đương: CI 95% cho b̂₁ = 0.80 ± 2.042·0.25 = [0.29, 1.31] — không chứa 0.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">t = 0.20 là sai phép tính — nhầm đặt b̂₁ vào mẫu số (0.25 / 0.80 ≈ 0.31 hoặc 0.25 × 0.80 = 0.20). Công thức đúng: tử = coefficient − hypothesized value, mẫu = standard error.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">R² threshold (0.50) không phải là tiêu chí của t-test. Significance dựa trên t-stat so với t<sub>crit</sub>. Trong small sample, t-test vẫn valid nếu errors normal; n = 32 cũng không quá nhỏ với CFA context.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">3 bước: (1) <em>t = b̂₁ / se(b̂₁)</em>, (2) df = n − 2, (3) so |t| với t<sub>crit</sub>. |t| &gt; t<sub>crit</sub> → reject H₀ → slope significant. CI không chứa 0 → equivalent conclusion.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 27 · RECAP -->
+<section data-label="Recap" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.10</span>
+    <span class="rule"></span>
+    <span>27 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Lesson recap</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What to <em class="hi">remember</em>.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Model &amp; OLS</span>
+        <span class="step-body">Y = b₀ + b₁X + ε. OLS chọn b̂₀, b̂₁ để minimize Σeᵢ². Slope = Cov(X,Y)/Var(X) = ρ·(σ<sub>y</sub>/σ<sub>x</sub>).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">6 assumptions</span>
+        <span class="step-body">Linearity, independence, homoscedasticity, no autocorrelation, normal errors, X non-stochastic. Hold → OLS là BLUE.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">ANOVA &amp; R²</span>
+        <span class="step-body">TSS = RSS + SSE. R² = RSS/TSS ∈ [0,1]. SEE = √(SSE/(n−2)). Trong simple LR, R² = ρ²<sub>xy</sub>.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Inference</span>
+        <span class="step-body">t = b̂₁/se(b̂₁), df = n−2. F = MSR/MSE, trong simple LR F = t². CI: b̂₁ ± t<sub>crit</sub>·se(b̂₁).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="take">
+    <b>Take:</b> Simple LR là nền tảng cho mọi advanced econometric model. Hiểu chắc OLS mechanics, R², và t-test slope là đủ cover 80% câu hỏi CFA L1 về regression.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.10 — RECAP</span>
+  </div>
+</section>
+
+
+<!-- 28 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>02.10 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 02.11 — Introduction to Big Data Techniques</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

@@ -1,0 +1,1208 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Derivatives 09.03 — Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+
+  .formula-box {
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent);
+    background: var(--paper-2, #fafaf7);
+    padding: 22px 28px;
+    font-family: var(--mono);
+    font-size: 22px;
+    line-height: 1.7;
+    color: var(--ink);
+    margin: 14px 0;
+  }
+  .formula-box .flabel {
+    display: block;
+    font-family: var(--sans, 'Roboto', sans-serif);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 10px;
+  }
+  .formula-box b { color: var(--accent); font-weight: 600; }
+  .formula-box em { font-style: italic; color: var(--ink-muted); }
+
+  .chart-box {
+    border: 1px solid var(--rule);
+    background: #fff;
+    padding: 18px 22px 8px;
+    margin: 14px 0;
+  }
+  .chart-box .clabel {
+    font-family: var(--mono);
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 6px;
+  }
+  .chart-box svg { display: block; width: 100%; height: auto; }
+  .chart-grid { grid-template-columns: 1fr 1fr; display: grid; gap: 18px; }
+
+  .take {
+    border-left: 4px solid var(--accent);
+    padding: 14px 22px;
+    background: var(--paper-2, #fafaf7);
+    margin-top: 16px;
+    font-size: 22px;
+    color: var(--ink);
+  }
+  .take b { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Contingent<br><em>Claims.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 09 · Lesson 09.03 · Options</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 03 · Calls, puts &amp; payoffs</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Derivatives</dd></div>
+      <div><dt>Module</dt><dd>03</dd></div>
+      <div><dt>Lesson</dt><dd>09.03</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Call · Put · Long · Short · Moneyness · Payoff</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">03</div>
+    <div class="lbl">Options</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>What is an <em>option</em>,<br>and how does it <em>pay off</em>?</h2>
+    <ul class="toc">
+      <li class="active">01 · Option = right but not obligation</li>
+      <li>02 · Call vs Put · Long vs Short</li>
+      <li>03 · American vs European · Moneyness</li>
+      <li>04 · Payoff diagrams tại expiry</li>
+      <li>05 · Intrinsic value &amp; Time value</li>
+      <li>06 · 6 factors affecting option price</li>
+      <li>07 · Basic strategies · Risk/reward asymmetry</li>
+      <li>08 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · DEFINITION -->
+<section data-label="Definition" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Concept · definition</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">An <em class="hi">option</em> is a right, not an obligation.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      <em>Option</em> là một contingent claim — contract cho <em>buyer</em> quyền (nhưng không bắt buộc) mua hoặc bán underlying ở <b>strike price K</b> trong tương lai. Buyer trả <em>premium</em> upfront cho <em>writer</em>.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Working definition</span>
+    Một <b>option</b> cho holder <em>right</em> to buy (<b>call</b>) hoặc sell (<b>put</b>) một underlying ở strike price <b>K</b> tại (hoặc trước) expiry <b>T</b>. Holder chỉ exercise khi có lợi → payoff luôn ≥ 0 trước khi trừ premium.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 18px;">
+    <li>
+      <span>
+        <span class="step-title">Asymmetric — quyền một chiều</span>
+        <span class="step-body">Khác với forwards/futures (obligation hai bên), option buyer chỉ exercise khi có lợi. Payoff của buyer bounded below by 0.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Premium = giá của quyền</span>
+        <span class="step-body">Buyer pay upfront; writer nhận. Premium = max loss của buyer, max gain của writer.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Contingent claim — payoff phụ thuộc điều kiện</span>
+        <span class="step-body">Payoff chỉ "kích hoạt" nếu S<sub>T</sub> vượt K theo đúng chiều. Tên gọi "contingent" đến từ chỗ này.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — DEFINITION</span>
+  </div>
+</section>
+
+
+<!-- 04 · CALL VS PUT -->
+<section data-label="Call vs Put" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Two flavors</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Call</em> vs <em class="hi">Put</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Call option</em></div>
+      <dl>
+        <dt>Right</dt>
+        <dd>To <b>BUY</b> underlying at strike K</dd>
+        <dt>Bias</dt>
+        <dd>Bullish — bet giá underlying sẽ lên</dd>
+        <dt>Exercise khi</dt>
+        <dd>S<sub>t</sub> &gt; K</dd>
+        <dt>Buyer hopes</dt>
+        <dd>S<sub>T</sub> rises well above K</dd>
+        <dt>Analogy</dt>
+        <dd>Mua "coupon giảm giá" cố định giá K</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Put option</em></div>
+      <dl>
+        <dt>Right</dt>
+        <dd>To <b>SELL</b> underlying at strike K</dd>
+        <dt>Bias</dt>
+        <dd>Bearish — bet giá giảm (hoặc hedge)</dd>
+        <dt>Exercise khi</dt>
+        <dd>S<sub>t</sub> &lt; K</dd>
+        <dt>Buyer hopes</dt>
+        <dd>S<sub>T</sub> falls well below K</dd>
+        <dt>Analogy</dt>
+        <dd>Mua "insurance" chống giá xuống</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Mnemonic — <em>C</em>all = <em>C</em>hoose to buy · <em>P</em>ut = <em>P</em>ut it to them (ép bán). Luôn nhớ "right" thuộc về buyer.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — CALL VS PUT</span>
+  </div>
+</section>
+
+
+<!-- 05 · LONG VS SHORT -->
+<section data-label="Long vs Short" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Two sides of the trade</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Long</em> (buyer) vs <em class="hi">Short</em> (writer).</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Long</em> — Buyer / holder</div>
+      <dl>
+        <dt>Cash flow</dt>
+        <dd>Pays premium upfront</dd>
+        <dt>Rights</dt>
+        <dd>Right to exercise — không có obligation</dd>
+        <dt>Max loss</dt>
+        <dd>= premium (limited)</dd>
+        <dt>Max gain</dt>
+        <dd>Long call: unlimited · Long put: K − premium</dd>
+        <dt>Posture</dt>
+        <dd>Chọn khi có directional view mạnh</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Short</em> — Writer / seller</div>
+      <dl>
+        <dt>Cash flow</dt>
+        <dd>Nhận premium upfront</dd>
+        <dt>Obligation</dt>
+        <dd>Phải execute nếu buyer exercise</dd>
+        <dt>Max gain</dt>
+        <dd>= premium (limited)</dd>
+        <dt>Max loss</dt>
+        <dd>Short call: unlimited · Short put: K − premium</dd>
+        <dt>Posture</dt>
+        <dd>Chọn khi tin giá sẽ ít biến động / bound</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Zero-sum — Gain của long = loss của short (và ngược lại), trước phí giao dịch. Option là "transfer of risk", không "create risk".
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — LONG VS SHORT</span>
+  </div>
+</section>
+
+
+<!-- 06 · AMERICAN VS EUROPEAN -->
+<section data-label="American vs European" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Exercise style</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">American</em> vs <em class="hi">European</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Phân biệt theo <em>khi nào</em> được exercise — không liên quan tới địa lý.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 12px;">
+    <div class="cc">
+      <div class="head"><em>American</em></div>
+      <dl>
+        <dt>Exercise</dt>
+        <dd>Bất cứ lúc nào từ purchase → expiry</dd>
+        <dt>Flexibility</dt>
+        <dd>Cao — có thể early exercise</dd>
+        <dt>Price</dt>
+        <dd>≥ European (thêm early-exercise premium)</dd>
+        <dt>Example</dt>
+        <dd>Most US listed equity options</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>European</em></div>
+      <dl>
+        <dt>Exercise</dt>
+        <dd>Chỉ tại expiry T</dd>
+        <dt>Flexibility</dt>
+        <dd>Thấp — must hold to T</dd>
+        <dt>Price</dt>
+        <dd>≤ American (với cùng terms)</dd>
+        <dt>Example</dt>
+        <dd>Most index options (SPX), FX options</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="take">
+    <b>Note.</b> Với non-dividend-paying stock, early exercise của American call <em>không tối ưu</em> → American call ≈ European call về giá. American put thường &gt; European put vì early exercise có thể có giá trị khi S giảm mạnh.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — EXERCISE STYLE</span>
+  </div>
+</section>
+
+
+<!-- 07 · MONEYNESS -->
+<section data-label="Moneyness" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Where is S relative to K?</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Moneyness</em> — ITM / ATM / OTM.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Moneyness tại thời điểm <em>t</em> mô tả quan hệ giữa spot <b>S<sub>t</sub></b> và strike <b>K</b>. Call và put ngược chiều nhau.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 14px;">
+    <div class="tenet">
+      <span class="n">ITM</span>
+      <div>
+        <div class="t"><em class="hi">In-the-money</em></div>
+        <div class="d">Call: S<sub>t</sub> &gt; K (exercise có lợi).<br>Put: S<sub>t</sub> &lt; K. Intrinsic value &gt; 0.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">ATM</span>
+      <div>
+        <div class="t"><em class="hi">At-the-money</em></div>
+        <div class="d">S<sub>t</sub> ≈ K cho cả call và put. Intrinsic value ≈ 0. Time value thường lớn nhất tại ATM.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">OTM</span>
+      <div>
+        <div class="t"><em class="hi">Out-of-the-money</em></div>
+        <div class="d">Call: S<sub>t</sub> &lt; K (exercise không có lợi).<br>Put: S<sub>t</sub> &gt; K. Intrinsic value = 0.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">§</span>
+      <div>
+        <div class="t"><em class="hi">Deep ITM / OTM</em></div>
+        <div class="d">"Deep" = S cách K rất xa. Deep ITM → option move ≈ 1:1 với underlying. Deep OTM → ít nhạy, gần như lottery ticket.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Quick check — Call với K = 100: S = 110 → ITM · S = 100 → ATM · S = 90 → OTM. Put ngược lại.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — MONEYNESS</span>
+  </div>
+</section>
+
+
+<!-- 08 · PAYOFF FORMULAS -->
+<section data-label="Payoff formulas" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Payoff at expiry (T)</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Four payoff</em> equations.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Ký hiệu: S<sub>T</sub> = spot tại expiry, K = strike, c = call premium, p = put premium. "Net profit" trừ premium; "gross payoff" thì không.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="flabel">Long positions — buyer pays premium</span>
+    <b>Long Call profit</b> &nbsp;=&nbsp; max(S<sub>T</sub> − K, 0) − c &nbsp;&nbsp; <em>· bullish, unlimited upside</em><br>
+    <b>Long Put profit</b> &nbsp;=&nbsp; max(K − S<sub>T</sub>, 0) − p &nbsp;&nbsp; <em>· bearish, upside capped at K − p</em>
+  </div>
+
+  <div class="formula-box">
+    <span class="flabel">Short positions — writer receives premium</span>
+    <b>Short Call profit</b> &nbsp;=&nbsp; −max(S<sub>T</sub> − K, 0) + c &nbsp;&nbsp; <em>· unlimited downside risk</em><br>
+    <b>Short Put profit</b> &nbsp;=&nbsp; −max(K − S<sub>T</sub>, 0) + p &nbsp;&nbsp; <em>· loss capped at K − p</em>
+  </div>
+
+  <div class="take">
+    <b>Symmetry.</b> Long + Short cùng option = 0 (zero-sum). Long call payoff là "hockey stick" hướng lên; long put là hockey stick hướng xuống; short versions là ngược lại (mirror qua trục x).
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — PAYOFF EQ</span>
+  </div>
+</section>
+
+
+<!-- 09 · PAYOFF DIAGRAMS (SVG) -->
+<section data-label="Payoff diagrams" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 36px;">
+    <div class="eyebrow">Visualize · hockey-stick</div>
+    <h2 class="h-section" style="margin-bottom: 14px;"><em class="hi">Payoff diagrams</em> at expiry.</h2>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-box">
+      <div class="clabel">Long Call · profit vs S<sub>T</sub></div>
+      <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+        <line x1="30" y1="180" x2="380" y2="180" stroke="#999" stroke-width="1"/>
+        <line x1="30" y1="20" x2="30" y2="200" stroke="#999" stroke-width="1"/>
+        <line x1="30" y1="140" x2="380" y2="140" stroke="#ddd" stroke-dasharray="4 4"/>
+        <text x="5" y="144" font-size="11" fill="#666">0</text>
+        <line x1="200" y1="20" x2="200" y2="200" stroke="#bbb" stroke-dasharray="3 3"/>
+        <text x="192" y="214" font-size="11" fill="#666">K</text>
+        <path d="M 30 170 L 200 170 L 370 40" stroke="#c04a1f" stroke-width="3" fill="none"/>
+        <line x1="30" y1="170" x2="200" y2="170" stroke="#c04a1f" stroke-width="3"/>
+        <text x="340" y="30" font-size="11" fill="#c04a1f">Unlimited ↑</text>
+        <text x="50" y="163" font-size="10" fill="#c04a1f">−c (loss = premium)</text>
+        <text x="355" y="214" font-size="11" fill="#666">S<tspan font-size="8" dy="3">T</tspan></text>
+      </svg>
+    </div>
+    <div class="chart-box">
+      <div class="clabel">Long Put · profit vs S<sub>T</sub></div>
+      <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+        <line x1="30" y1="180" x2="380" y2="180" stroke="#999" stroke-width="1"/>
+        <line x1="30" y1="20" x2="30" y2="200" stroke="#999" stroke-width="1"/>
+        <line x1="30" y1="140" x2="380" y2="140" stroke="#ddd" stroke-dasharray="4 4"/>
+        <text x="5" y="144" font-size="11" fill="#666">0</text>
+        <line x1="200" y1="20" x2="200" y2="200" stroke="#bbb" stroke-dasharray="3 3"/>
+        <text x="192" y="214" font-size="11" fill="#666">K</text>
+        <path d="M 40 40 L 200 170 L 370 170" stroke="#c04a1f" stroke-width="3" fill="none"/>
+        <text x="40" y="32" font-size="11" fill="#c04a1f">Max = K − p</text>
+        <text x="220" y="163" font-size="10" fill="#c04a1f">−p</text>
+        <text x="355" y="214" font-size="11" fill="#666">S<tspan font-size="8" dy="3">T</tspan></text>
+      </svg>
+    </div>
+    <div class="chart-box">
+      <div class="clabel">Short Call · profit vs S<sub>T</sub></div>
+      <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+        <line x1="30" y1="110" x2="380" y2="110" stroke="#999" stroke-width="1"/>
+        <line x1="30" y1="20" x2="30" y2="200" stroke="#999" stroke-width="1"/>
+        <text x="5" y="114" font-size="11" fill="#666">0</text>
+        <line x1="200" y1="20" x2="200" y2="200" stroke="#bbb" stroke-dasharray="3 3"/>
+        <text x="192" y="214" font-size="11" fill="#666">K</text>
+        <path d="M 30 90 L 200 90 L 370 190" stroke="#1a5e3a" stroke-width="3" fill="none"/>
+        <text x="50" y="82" font-size="10" fill="#1a5e3a">+c (keep premium)</text>
+        <text x="310" y="205" font-size="11" fill="#1a5e3a">Unlimited ↓</text>
+        <text x="355" y="214" font-size="11" fill="#666">S<tspan font-size="8" dy="3">T</tspan></text>
+      </svg>
+    </div>
+    <div class="chart-box">
+      <div class="clabel">Short Put · profit vs S<sub>T</sub></div>
+      <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+        <line x1="30" y1="110" x2="380" y2="110" stroke="#999" stroke-width="1"/>
+        <line x1="30" y1="20" x2="30" y2="200" stroke="#999" stroke-width="1"/>
+        <text x="5" y="114" font-size="11" fill="#666">0</text>
+        <line x1="200" y1="20" x2="200" y2="200" stroke="#bbb" stroke-dasharray="3 3"/>
+        <text x="192" y="214" font-size="11" fill="#666">K</text>
+        <path d="M 40 190 L 200 90 L 370 90" stroke="#1a5e3a" stroke-width="3" fill="none"/>
+        <text x="40" y="205" font-size="11" fill="#1a5e3a">−(K − p)</text>
+        <text x="220" y="82" font-size="10" fill="#1a5e3a">+p (keep premium)</text>
+        <text x="355" y="214" font-size="11" fill="#666">S<tspan font-size="8" dy="3">T</tspan></text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — DIAGRAMS</span>
+  </div>
+</section>
+
+
+<!-- 10 · INTRINSIC VALUE -->
+<section data-label="Intrinsic value" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Decomposition 1 of 2</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Intrinsic value</em> — "if you exercised now".</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Intrinsic value (IV) là phần payoff <em>certain</em> mà option có nếu được exercise ngay tại thời điểm t. Luôn ≥ 0, không bao giờ âm — vì holder có right không exercise.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="flabel">Intrinsic value at time t</span>
+    <b>Call IV</b> &nbsp;=&nbsp; max(S<sub>t</sub> − K, 0)<br>
+    <b>Put IV</b> &nbsp;=&nbsp; max(K − S<sub>t</sub>, 0)
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Moneyness ↔ IV</span>
+    <b>ITM</b> ⇔ IV &gt; 0 &nbsp;·&nbsp; <b>ATM</b> ⇔ IV ≈ 0 &nbsp;·&nbsp; <b>OTM</b> ⇔ IV = 0. OTM options vẫn có giá trị thị trường &gt; 0 — giá đó là 100% time value.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Example · Call K=100, S=110 → IV = $10</span>
+        <span class="step-body">Nếu exercise ngay: buy at 100, sell ở market 110 → $10 gain. Đó là intrinsic.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Example · Put K=100, S=110 → IV = 0 (OTM)</span>
+        <span class="step-body">Không ai sell ở 100 khi market là 110 → không exercise → IV = 0. Option có thể vẫn có giá nhờ time value.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — INTRINSIC</span>
+  </div>
+</section>
+
+
+<!-- 11 · TIME VALUE -->
+<section data-label="Time value" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Decomposition 2 of 2</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Time value</em> — quyền tự chọn trong tương lai.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Time value (TV) là phần giá option trên mức intrinsic — phản ánh khả năng S biến động có lợi giữa t và T. TV luôn ≥ 0 và decay về 0 khi t → T.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="flabel">Option price decomposition</span>
+    <b>Option price</b> &nbsp;=&nbsp; Intrinsic value &nbsp;+&nbsp; Time value<br>
+    <b>Time value</b> &nbsp;=&nbsp; Option price − Intrinsic value &nbsp;&nbsp; <em>· ≥ 0, → 0 at expiry</em>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Time decay (theta) — TV giảm nhanh gần expiry</span>
+        <span class="step-body">Decay phi-tuyến: chậm khi còn nhiều thời gian, tăng tốc trong vài tuần cuối. Option writers "harvest" time decay.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Time value lớn nhất khi ATM</span>
+        <span class="step-body">Gần K → xác suất cross K trong future cao nhất → optionality có giá trị nhiều nhất.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">At expiry T → Option price = Intrinsic value</span>
+        <span class="step-body">Không còn "time" → không còn TV. Đây là lý do payoff diagram tại T chỉ là hockey stick (chỉ IV, không có TV bump).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — TIME VALUE</span>
+  </div>
+</section>
+
+
+<!-- 12 · 6 FACTORS -->
+<section data-label="6 factors" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Pricing drivers</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Six factors</em> affecting option price.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Ghi nhớ dấu ảnh hưởng (↑ factor → call ↑ hay ↓ · put ↑ hay ↓) là một trong những điểm CFA L1 test rất thường.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 14px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Underlying S</em> ↑</div>
+        <div class="d">Call price <b>↑</b> · Put price <b>↓</b>. Underlying cao hơn → call ITM hơn, put OTM hơn.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Strike K</em> ↑</div>
+        <div class="d">Call price <b>↓</b> · Put price <b>↑</b>. Strike cao → mua khó lợi → call rẻ; bán ở giá cao → put đắt.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Time to expiry T</em> ↑</div>
+        <div class="d">Call <b>↑</b> · Put <b>↑</b> (hầu như luôn). Nhiều thời gian hơn → nhiều optionality → TV cao hơn.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Volatility σ</em> ↑</div>
+        <div class="d">Call <b>↑</b> · Put <b>↑</b>. Phân phối S<sub>T</sub> rộng hơn → xác suất extreme payoff cao hơn · downside vẫn capped.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">05</span>
+      <div>
+        <div class="t"><em class="hi">Risk-free rate r</em> ↑</div>
+        <div class="d">Call <b>↑</b> · Put <b>↓</b>. PV của K (strike phải trả future) giảm → call tốt hơn, put tệ hơn.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">06</span>
+      <div>
+        <div class="t"><em class="hi">Dividends</em> ↑</div>
+        <div class="d">Call <b>↓</b> · Put <b>↑</b>. Dividend làm giá underlying drop ex-date → hại call, lợi cho put.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Memory trick — "Call thích S, r cao; Put thích K, D cao". Cả hai đều thích σ và T. Đây là textbook Greek intuition (delta, theta, vega, rho).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — 6 FACTORS</span>
+  </div>
+</section>
+
+
+<!-- 13 · STRATEGIES -->
+<section data-label="Strategies" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>13 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Basic option strategies</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Three <em class="hi">building blocks</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CFA L1 không test sâu, chỉ yêu cầu biết intuition payoff của ba strategy phổ biến.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 14px;">
+    <li>
+      <span>
+        <span class="step-title">Covered call — Long stock + Short call</span>
+        <span class="step-body">Thu premium bù yield. Giới hạn upside (bị called away nếu S &gt; K) nhưng bảo toàn hầu hết downside. Phổ biến với income investors.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Protective put — Long stock + Long put</span>
+        <span class="step-body">"Insurance policy" cho portfolio. Floor tại K (trừ premium). Vẫn giữ full upside của stock. Cost = put premium.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Straddle — Long call + Long put cùng K, cùng T</span>
+        <span class="step-body">Bet on volatility, không phải direction. Profit nếu S move mạnh cả hai chiều vượt mức breakeven. Loss tối đa = cả 2 premiums.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="take">
+    <b>Big picture.</b> Options là LEGO blocks — kết hợp long/short/call/put + stock + bond có thể tạo ra gần như bất kỳ payoff profile nào. Đó là lý do market options khổng lồ và quan trọng.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — STRATEGIES</span>
+  </div>
+</section>
+
+
+<!-- 14 · RISK/REWARD ASYMMETRY -->
+<section data-label="Asymmetry" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>14 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Why options are special</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Risk/reward asymmetry</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Long option</em> — buyer</div>
+      <dl>
+        <dt>Max loss</dt>
+        <dd>Premium (known, capped)</dd>
+        <dt>Max gain</dt>
+        <dd>Call: unlimited · Put: K − premium</dd>
+        <dt>Profile</dt>
+        <dd>Limited downside, large upside</dd>
+        <dt>Cost</dt>
+        <dd>Pay premium upfront · time decay là enemy</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Short option</em> — writer</div>
+      <dl>
+        <dt>Max gain</dt>
+        <dd>Premium (known, capped)</dd>
+        <dt>Max loss</dt>
+        <dd>Short call: unlimited · Short put: K − premium</dd>
+        <dt>Profile</dt>
+        <dd>Limited upside, large downside</dd>
+        <dt>Compensation</dt>
+        <dd>Nhận premium upfront · time decay là friend</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="take">
+    <b>Core insight.</b> Long = "lottery-like" (small cost, asymmetric upside). Short = "insurance-like" (nhận premium đều đặn, nhưng tail-risk lớn). Hai posture đối lập — position sizing và risk management hoàn toàn khác nhau.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — ASYMMETRY</span>
+  </div>
+</section>
+
+
+<!-- 15 · SUMMARY -->
+<section data-label="Summary" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>15 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Lesson recap</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Options</em> · the cheat sheet.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="flabel">Core equations to memorize</span>
+    Long Call profit = max(S<sub>T</sub> − K, 0) − c &nbsp;·&nbsp; Long Put profit = max(K − S<sub>T</sub>, 0) − p<br>
+    Call IV = max(S<sub>t</sub> − K, 0) &nbsp;·&nbsp; Put IV = max(K − S<sub>t</sub>, 0)<br>
+    Option price = Intrinsic + Time value &nbsp;·&nbsp; TV → 0 at expiry
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Sign table — 6 factors</span>
+    S↑ · K↑ · T↑ · σ↑ · r↑ · D↑ → Call: <b>+ − + + + −</b> &nbsp;·&nbsp; Put: <b>− + + + − +</b>
+  </div>
+
+  <div class="take">
+    <b>In one line.</b> An option = right (not obligation) to trade at strike K · paid for with a premium · value = intrinsic + time, driven by 6 factors · buyer has capped loss &amp; large upside, writer the mirror image.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — RECAP</span>
+  </div>
+</section>
+
+
+<!-- 16 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 EN — Long call payoff -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>17 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Compute the <em class="hi">long call</em> profit.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An investor buys a European <strong>call option</strong> on stock XYZ with strike <strong>K = $50</strong>, paying a premium of <strong>c = $3</strong>. Calculate the investor's <strong>net profit at expiry</strong> if the stock price is (i) <strong>S<sub>T</sub> = $45</strong>, (ii) <strong>S<sub>T</sub> = $52</strong>, and (iii) <strong>S<sub>T</sub> = $60</strong>.
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">(i) −$3 · (ii) +$2 · (iii) +$10</span></li>
+    <li><span class="lbl">B</span><span class="opt">(i) −$3 · (ii) −$1 · (iii) +$7</span></li>
+    <li><span class="lbl">C</span><span class="opt">(i) −$5 · (ii) +$2 · (iii) +$10</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Apply the <em class="hi">payoff formula</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Formula</span>
+    <mark>Long call profit = max(S<sub>T</sub> − K, 0) − c</mark>. Với K = 50, c = 3. Nhớ trừ premium cả khi OTM.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">S<sub>T</sub> = 45 &lt; K → OTM → gross payoff = max(45−50, 0) = 0. Profit = 0 − 3 = <em>−$3</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">S<sub>T</sub> = 52 &gt; K → ITM → gross = max(52−50, 0) = 2. Profit = 2 − 3 = <em>−$1</em> (vẫn lose net!). Breakeven chỉ tại S<sub>T</sub> = K + c = $53.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">S<sub>T</sub> = 60 → gross = 10, profit = 10 − 3 = <em>+$7</em>. Notice breakeven &amp; asymmetric payoff.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 DỊCH ĐỀ -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một nhà đầu tư mua một European <strong>call option</strong> trên cổ phiếu XYZ với strike <strong>K = $50</strong>, premium <strong>c = $3</strong>. Tính <strong>net profit tại expiry</strong> trong ba kịch bản: (i) <strong>S<sub>T</sub> = $45</strong>, (ii) <strong>S<sub>T</sub> = $52</strong>, (iii) <strong>S<sub>T</sub> = $60</strong>.
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">(i) −$3 · (ii) +$2 · (iii) +$10</span></li>
+    <li><span class="lbl">B</span><span class="opt">(i) −$3 · (ii) −$1 · (iii) +$7</span></li>
+    <li><span class="lbl">C</span><span class="opt">(i) −$5 · (ii) +$2 · (iii) +$10</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — (−3, −1, +7).</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Áp dụng profit = max(S<sub>T</sub>−K, 0) − c = max(S<sub>T</sub>−50, 0) − 3. (i) S=45: max(−5,0)−3 = <b>−3</b>. (ii) S=52: max(2,0)−3 = <b>−1</b>. (iii) S=60: max(10,0)−3 = <b>+7</b>. Breakeven tại S = K + c = $53.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Tính gross payoff (max(S<sub>T</sub>−K,0)) nhưng <em>quên trừ premium</em> ở (ii) và (iii). Một lỗi rất phổ biến — "net profit" luôn trừ premium bất kể ITM hay OTM.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Ở (i), option OTM → buyer chỉ mất premium = 3, KHÔNG phải 5. "max(·, 0)" floor tại 0 — buyer không exercise khi lose money on exercise. Nhớ rằng premium là max loss.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Long call <em>net profit</em> = max(S<sub>T</sub> − K, 0) − c. Luôn trừ premium. Breakeven = K + c cho call, K − p cho put. Max loss = premium; max gain = unlimited cho call, K − premium cho put.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 EN — Moneyness ID -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Identify <em class="hi">moneyness</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Stock ABC trades at <strong>S<sub>t</sub> = $102</strong>. Three options on ABC have strike <strong>K = $100</strong>. Classify the moneyness of each:
+      <br>(I) A <strong>call</strong> with K = 100.
+      <br>(II) A <strong>put</strong> with K = 100.
+      <br>(III) A <strong>call</strong> with K = 102.
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">(I) ITM · (II) ITM · (III) ATM</span></li>
+    <li><span class="lbl">B</span><span class="opt">(I) ITM · (II) OTM · (III) ATM</span></li>
+    <li><span class="lbl">C</span><span class="opt">(I) OTM · (II) ITM · (III) ITM</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Use the <em class="hi">S vs K</em> rule.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Call: ITM khi <mark>S &gt; K</mark>. Put: ITM khi <mark>S &lt; K</mark>. ATM khi <mark>S ≈ K</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">(I) Call, S = 102, K = 100. S &gt; K → <em>ITM</em>. Intrinsic value = 2.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">(II) Put, S = 102, K = 100. S &gt; K → với <em>put</em> là <em>OTM</em> (bán ở 100 khi market 102 thì bad deal). IV = 0.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">(III) Call, S = 102, K = 102. S = K → <em>ATM</em>. IV = 0 nhưng option vẫn có giá thị trường (pure time value).</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 DỊCH ĐỀ -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Cổ phiếu ABC đang trade ở <strong>S<sub>t</sub> = $102</strong>. Phân loại moneyness của ba options:
+      <br>(I) Một <strong>call</strong> với K = 100.
+      <br>(II) Một <strong>put</strong> với K = 100.
+      <br>(III) Một <strong>call</strong> với K = 102.
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">(I) ITM · (II) ITM · (III) ATM</span></li>
+    <li><span class="lbl">B</span><span class="opt">(I) ITM · (II) OTM · (III) ATM</span></li>
+    <li><span class="lbl">C</span><span class="opt">(I) OTM · (II) ITM · (III) ITM</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — ITM, OTM, ATM.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Call với K = 100, S = 102 → S &gt; K → <b>ITM</b>, IV = $2. Put với K = 100, S = 102 → S &gt; K → put là <b>OTM</b>, IV = 0. Call với K = 102, S = 102 → S = K → <b>ATM</b>, IV = 0. Đáp án đúng (ITM, OTM, ATM).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Sai ở (II): cho rằng put là ITM vì thấy option trên cổ phiếu cùng giá. Nhớ rule cho put ngược call — put ITM cần S &lt; K. Ở đây S = 102 &gt; K = 100 → put OTM.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Nhầm lẫn call/put rule cả hai chiều. Mistake điển hình khi học mới options — luôn verify bằng cách hỏi: "nếu exercise ngay, có positive cash flow không?". Nếu có → ITM.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Moneyness cheat sheet: <em>Call ITM nếu S &gt; K, OTM nếu S &lt; K</em>. <em>Put ngược lại</em>. <em>ATM khi S ≈ K</em> cho cả hai. OTM/ATM có IV = 0 nhưng premium &gt; 0 nhờ time value.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 EN — Volatility effect -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Effect of <em class="hi">volatility</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      All else equal, an analyst observes that the <strong>implied volatility</strong> σ of stock XYZ has <strong>increased</strong>. Which statement about the prices of European <strong>call</strong> and <strong>put</strong> options on XYZ with the same strike and expiry is <strong>most accurate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Both the call price and the put price increase.</span></li>
+    <li><span class="lbl">B</span><span class="opt">The call price increases, the put price decreases.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Volatility is irrelevant; only S, K, T, and r affect option prices.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>26 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Think about <em class="hi">asymmetry</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Volatility σ ↑</mark>. Option holder có <mark>capped downside</mark> (max loss = premium). Rộng distribution của S<sub>T</sub> = gì?
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Volatility cao hơn → tail của distribution S<sub>T</sub> mở rộng <em>cả hai phía</em>. Xác suất extreme S<sub>T</sub> cao hơn.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Holder có max loss capped (= premium) — không care nếu S<sub>T</sub> đi cực xa về phía "xấu". Nhưng rất thích nếu S<sub>T</sub> đi cực xa phía "tốt" → payoff bigger.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Do asymmetry này, σ ↑ làm <em>expected payoff tăng cho CẢ call và put</em> → cả hai giá đều tăng.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 DỊCH + EXPLANATION -->
+<section data-label="Q3 Dịch + Answer" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.03</span>
+    <span class="rule"></span>
+    <span>27 / 28</span>
+  </div>
+  <div style="margin-top: 36px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt + Answer</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">Dịch &amp; <em class="hi">đáp án</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette (Vi)</span>
+    <div class="q-stem">
+      All else equal, implied volatility σ của XYZ <strong>tăng</strong>. Statement nào về giá European call và put (cùng K, cùng T) là <strong>most accurate</strong>?
+    </div>
+  </div>
+  <ol class="q-options" style="margin-top: 8px;">
+    <li><span class="lbl">A</span><span class="opt">Cả call và put đều tăng giá.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Call tăng, put giảm.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Volatility không liên quan; chỉ S, K, T, r affect giá option.</span></li>
+  </ol>
+  <div class="reasoning" style="margin-top: 14px;">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">σ ↑ → phân phối S<sub>T</sub> rộng hơn → xác suất extreme payoff cao hơn cả hai chiều. Vì holder có <b>capped downside</b> (max loss = premium) + <b>uncapped upside</b>, giá cả call và put đều <em>tăng</em>. Đây là lý do vega (Greek của volatility) luôn positive cho long options.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Nhầm volatility với directional move. Volatility <em>magnitude</em> của dao động (cả hai chiều), không phải direction. Call và put cùng hưởng lợi từ σ ↑.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Sai nghiêm trọng — σ là <em>một trong sáu factors</em> chính và là biến duy nhất không observable trực tiếp từ market. Đó là lý do có "implied volatility" — solve ngược từ option price.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">σ ↑ → cả call lẫn put đều ↑ (vega &gt; 0 cho long options). Giữ trong đầu "sign table" 6 factors: chỉ S và r có tác động <em>ngược chiều</em> giữa call và put. T, σ cùng chiều (both +). K, D cũng ngược chiều (D+ lợi put, K+ lợi put).</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.03 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 28 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>09.03 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 09.04 — Swaps &amp; Credit Derivatives</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

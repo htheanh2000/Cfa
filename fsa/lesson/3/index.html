@@ -1,0 +1,1025 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · FSA 04.03 — Analyzing Balance Sheets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Balance<br><em>Sheets.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 04 · Lesson 04.03 · FSA</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 03 · Analyzing the statement of financial position</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>FSA</dd></div>
+      <div><dt>Module</dt><dd>03</dd></div>
+      <div><dt>Lesson</dt><dd>04.03</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">A = L + E · current vs non-current · liquidity &amp; solvency ratios</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">03</div>
+    <div class="lbl">Balance sheet</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>What a firm <em>owns</em><br>and <em>owes</em>, one day.</h2>
+    <ul class="toc">
+      <li class="active">01 · The accounting equation — A = L + E</li>
+      <li>02 · Current vs non-current classification</li>
+      <li>03 · Assets, Liabilities &amp; Equity breakdown</li>
+      <li>04 · Measurement bases — historical cost, fair value, amortized</li>
+      <li>05 · Common-size BS · Liquidity &amp; Solvency ratios</li>
+      <li>06 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · THE EQUATION -->
+<section data-label="Accounting equation" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Balance sheet · foundation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">accounting equation</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Balance Sheet (Statement of Financial Position) chụp lại <em>snapshot</em> tại một thời điểm cụ thể: firm owns bao nhiêu, owes bao nhiêu, shareholders còn lại bao nhiêu.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ The fundamental identity</span>
+    <div class="eq"><span class="var">Assets</span> = <span class="var">Liabilities</span> + <span class="var">Equity</span></div>
+    <div class="note"><b>Assets</b> resources owned · <b>Liabilities</b> obligations owed to creditors · <b>Equity</b> residual claim của shareholders. Phương trình LUÔN balance — mỗi transaction tác động cả 2 vế.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Rearranged — <b>Equity = Assets − Liabilities</b>. Equity là "net worth" accounting. Khác với <em>market value</em> của equity (market cap) — book value có thể lệch đáng kể do historical cost, intangibles không ghi nhận đầy đủ.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — A = L + E</span>
+  </div>
+</section>
+
+
+<!-- 04 · CURRENT VS NON-CURRENT -->
+<section data-label="Classification" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Classification</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Current</em> vs non-current.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      BS phân loại items theo thời gian converted to cash hoặc settled. Classification ảnh hưởng trực tiếp đến liquidity ratios.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Current (short-term)</div>
+      <dl>
+        <dt>Tiêu chí</dt>
+        <dd>Expected to be realized / settled trong <em>12 months</em> hoặc <em>operating cycle</em> (lấy cái dài hơn)</dd>
+        <dt>Assets ví dụ</dt>
+        <dd>Cash, receivables, inventories, prepaid expenses</dd>
+        <dt>Liabilities ví dụ</dt>
+        <dd>Accounts payable, accrued expenses, short-term debt, unearned revenue</dd>
+        <dt>Vai trò</dt>
+        <dd>Drive <em>liquidity analysis</em> — khả năng trả nợ ngắn hạn</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Non-current (long-term)</div>
+      <dl>
+        <dt>Tiêu chí</dt>
+        <dd>Beyond 1 năm hoặc ngoài operating cycle</dd>
+        <dt>Assets ví dụ</dt>
+        <dd>PP&amp;E, intangibles, goodwill, long-term investments</dd>
+        <dt>Liabilities ví dụ</dt>
+        <dd>Long-term debt, deferred tax liabilities, pension obligations</dd>
+        <dt>Vai trò</dt>
+        <dd>Drive <em>solvency analysis</em> — capital structure, long-run sustainability</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Operating cycle — thời gian từ khi mua inventory → bán → thu tiền. Với ngành như shipbuilding hay wine, operating cycle &gt; 1 năm → current có thể &gt; 12 months.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — CLASSIFY</span>
+  </div>
+</section>
+
+
+<!-- 05 · ASSETS BREAKDOWN -->
+<section data-label="Assets" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Balance sheet · left side</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Assets</em> breakdown.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">CA</span>
+      <div>
+        <div class="t"><em class="hi">Current Assets</em></div>
+        <div class="d">Cash &amp; equivalents, marketable securities, accounts receivable, inventories, prepaid expenses. Liệt kê theo thứ tự <em>liquidity</em> giảm dần.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PP&amp;E</span>
+      <div>
+        <div class="t"><em class="hi">Property, Plant &amp; Equipment</em></div>
+        <div class="d">Tangible long-term assets dùng trong operations. Ghi nhận tại <em>historical cost − accumulated depreciation</em>. IFRS cho phép revaluation model.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">INT</span>
+      <div>
+        <div class="t"><em class="hi">Intangibles</em></div>
+        <div class="d">Patents, trademarks, software, licenses. <em>Finite-life</em> → amortized over useful life. <em>Indefinite-life</em> → tested annually for impairment.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">GW</span>
+      <div>
+        <div class="t"><em class="hi">Goodwill</em></div>
+        <div class="d">Arise trong M&amp;A khi <em>purchase price &gt; fair value of net identifiable assets</em>. KHÔNG amortize — tested annually; impairment loss không reverse.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Long-term investments — equity stakes (associate: 20-50% → equity method) và debt securities (held-to-maturity, available-for-sale, trading) với classification rules khác nhau.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — ASSETS</span>
+  </div>
+</section>
+
+
+<!-- 06 · INTANGIBLES & GOODWILL DEEP DIVE -->
+<section data-label="Intangibles" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Assets · deep dive</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Intangibles &amp; <em class="hi">Goodwill</em>.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Key distinction</span>
+    <b>Internally generated</b> intangibles (branding, R&amp;D dưới IFRS research phase, US GAAP software trước technological feasibility) → <em>expensed</em>, KHÔNG on BS. <b>Acquired</b> intangibles → capitalized tại fair value.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Finite-life intangibles → amortization</span>
+        <span class="step-body">Patent 20 năm, license 10 năm. Amortize straight-line over useful life. Tested for impairment khi có indicator (triggering event).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Indefinite-life intangibles → annual test</span>
+        <span class="step-body">Trademark, brand, goodwill. KHÔNG amortize — tested annually for impairment (và khi có indicator). Impairment loss = carrying value − recoverable amount.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Goodwill arises only in M&amp;A</span>
+        <span class="step-body">Acquirer trả $500M, fair value of target's net assets = $350M → goodwill = $150M. Đại diện <em>synergies</em>, workforce, brand premium không ghi nhận riêng.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § Analyst adjustment — một số analyst loại goodwill khỏi book value khi compute tangible book value hoặc ROA/ROE để so sánh firms không có M&amp;A history.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — INTANGIBLES</span>
+  </div>
+</section>
+
+
+<!-- 07 · LIABILITIES -->
+<section data-label="Liabilities" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Balance sheet · right side (top)</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Liabilities</em> breakdown.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Current liabilities</div>
+      <dl>
+        <dt>Accounts payable</dt>
+        <dd>Nợ nhà cung cấp từ trade credit — no interest</dd>
+        <dt>Accrued expenses</dt>
+        <dd>Wages payable, interest payable, taxes payable — đã phát sinh chưa chi</dd>
+        <dt>Short-term debt</dt>
+        <dd>Commercial paper, notes payable, current portion of LT debt</dd>
+        <dt>Unearned revenue</dt>
+        <dd>Đã thu cash nhưng chưa deliver good/service → <em>liability</em> cho đến khi earn</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Non-current liabilities</div>
+      <dl>
+        <dt>Long-term debt</dt>
+        <dd>Bonds, term loans, mortgages &gt; 1 năm</dd>
+        <dt>Deferred tax liabilities</dt>
+        <dd>Tax owed in future khi temporary difference reverse (IFRS/GAAP vs tax code)</dd>
+        <dt>Pension obligations</dt>
+        <dd>Defined-benefit plan — PV future payouts − plan assets</dd>
+        <dt>Lease liabilities</dt>
+        <dd>Post IFRS 16 / ASC 842 — hầu hết leases capitalized on BS</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Unearned revenue nhìn giống liability nhưng thực chất là <em>cash đã thu, obligation chưa hoàn thành</em>. High unearned revenue growth = strong future revenue pipeline (SaaS, subscription models).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — LIABILITIES</span>
+  </div>
+</section>
+
+
+<!-- 08 · EQUITY -->
+<section data-label="Equity" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Balance sheet · right side (bottom)</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Equity</em> breakdown.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Equity là residual claim của shareholders sau khi trừ liabilities. Gồm 5 components chính trong CFA L1.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">CS</span>
+      <div>
+        <div class="t"><em class="hi">Common Stock</em></div>
+        <div class="d">Par value × shares issued. Par value là số kế toán danh nghĩa (thường rất nhỏ, $0.01).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">APIC</span>
+      <div>
+        <div class="t"><em class="hi">Additional Paid-in Capital</em></div>
+        <div class="d">Phần chênh lệch giữa issue price và par value. Cổ đông trả $20, par $0.01 → APIC = $19.99/share.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">RE</span>
+      <div>
+        <div class="t"><em class="hi">Retained Earnings</em></div>
+        <div class="d">Cumulative net income − cumulative dividends paid. Nguồn internal funding quan trọng nhất của firm.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">AOCI</span>
+      <div>
+        <div class="t"><em class="hi">AOCI</em></div>
+        <div class="d">Accumulated Other Comprehensive Income — FX translation, unrealized gains on AFS securities, pension remeasurements, cash flow hedges.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Treasury stock (contra-equity)</span>
+    Shares mà firm mua lại từ thị trường — ghi nhận ở cost, <em>trừ vào equity</em>. Buyback giảm shares outstanding, thường tăng EPS.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — EQUITY</span>
+  </div>
+</section>
+
+
+<!-- 09 · MEASUREMENT BASES -->
+<section data-label="Measurement" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">BS · measurement</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Measurement</em> bases.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Không phải mọi item trên BS đều ghi ở cùng một "thước đo". CFA L1 yêu cầu biết 4 bases chính và áp dụng cho item nào.
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Historical cost — PP&amp;E, most inventories</span>
+        <span class="step-body">Original purchase price, ít subjective, nhưng lệch thực tế khi inflation. PP&amp;E sau đó được adjust bằng accumulated depreciation.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Fair value — trading &amp; AFS securities, derivatives</span>
+        <span class="step-body">Market price (Level 1) hoặc model-based estimate (Level 2/3). Trading gains/losses → Income Statement; AFS → OCI (US GAAP legacy).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Amortized cost — held-to-maturity debt, most bonds issued</span>
+        <span class="step-body">Initial cost adjusted bằng amortization of premium/discount + impairment. Không phản ánh biến động interest rate.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Lower of cost or NRV — inventory</span>
+        <span class="step-body">IFRS: lower of cost hay NRV (net realizable value). US GAAP (FIFO/weighted avg): lower of cost hay NRV từ 2015. Write-downs hit COGS.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — MEASURE</span>
+  </div>
+</section>
+
+
+<!-- 10 · COMMON-SIZE BS -->
+<section data-label="Common-size" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Analysis technique</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Common-size</em> balance sheet.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Express mọi line item như % của <em>total assets</em>. Cho phép so sánh firms có size khác nhau, hoặc track shift trong asset/liability mix qua thời gian.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Common-size formula</span>
+    <div class="eq"><span class="var">Item %</span> = <span class="var">Line item</span> / <span class="var">Total assets</span> × 100</div>
+    <div class="note">Ví dụ: Inventory $200M / Total assets $1,000M = 20%. So với peer ở mức 10% → có thể báo hiệu inventory buildup hoặc obsolete stock.</div>
+  </div>
+
+  <div class="take" style="margin-top: 16px;">
+    <b>Use cases</b> — (1) <em>Cross-sectional</em> so với competitors cùng ngành. (2) <em>Time-series</em> trong chính firm, phát hiện structural shifts. (3) <em>Warning signal</em>: receivables hoặc inventory growth faster than revenue → quality of earnings suspect.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — COMMON-SIZE</span>
+  </div>
+</section>
+
+
+<!-- 11 · LIQUIDITY RATIOS -->
+<section data-label="Liquidity ratios" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Ratio analysis · short-term</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Liquidity</em> ratios.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Three core liquidity ratios</span>
+    <div class="eq"><span class="var">Current Ratio</span> = <span class="var">CA</span> / <span class="var">CL</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Quick Ratio</span> = (<span class="var">CA</span> − <span class="var">Inventory</span>) / <span class="var">CL</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Cash Ratio</span> = (<span class="var">Cash</span> + <span class="var">ST Investments</span>) / <span class="var">CL</span></div>
+    <div class="note">Mỗi ratio kế tiếp <em>stricter</em> hơn — loại dần các CA kém liquid. Cash ratio là thước đo khắt khe nhất.</div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Interpretation — Current ratio &gt; 1 gợi ý firm cover được CL bằng CA. Nhưng too high (&gt;3) có thể là inefficient asset use. Quick ratio hữu ích khi inventory khó convert fast (B2B, capital goods). Industry benchmarks rất quan trọng — retailer thường có current ratio thấp hơn manufacturer.
+  </p>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Current ratio — broadest measure</span>
+        <span class="step-body">Tính cả inventory. OK cho firms có inventory turn nhanh (grocery, fast fashion).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Quick (acid-test) ratio — loại inventory</span>
+        <span class="step-body">Conservative hơn. Phù hợp cho firms có specialized hoặc slow-moving inventory.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — LIQUIDITY</span>
+  </div>
+</section>
+
+
+<!-- 12 · SOLVENCY RATIOS -->
+<section data-label="Solvency ratios" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Ratio analysis · long-term</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Solvency</em> ratios.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Capital structure ratios</span>
+    <div class="eq"><span class="var">Debt-to-Equity</span> = <span class="var">Total Debt</span> / <span class="var">Total Equity</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Debt-to-Assets</span> = <span class="var">Total Debt</span> / <span class="var">Total Assets</span></div>
+    <div class="note"><b>Total Debt</b> — thường chỉ tính interest-bearing debt (short-term + long-term borrowings), không phải toàn bộ liabilities. Check footnote để định nghĩa "debt".</div>
+  </div>
+
+  <div class="take" style="margin-top: 16px;">
+    <b>Interpretation</b> — D/E cao → leverage cao → tăng ROE khi good times, nhưng default risk lớn. Industry matters: utilities D/E có thể &gt; 2 do cash flows ổn định; tech firms thường &lt; 0.5. Trend analysis quan trọng hơn mức tuyệt đối.
+  </div>
+
+  <p class="fine-muted-sm">
+    § Financial leverage = Total Assets / Total Equity. Liên quan DuPont ROE decomposition (ROE = NPM × Asset Turnover × Leverage). Sẽ gặp lại trong ratio analysis lesson.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — SOLVENCY</span>
+  </div>
+</section>
+
+
+<!-- 13 · OFF-BALANCE-SHEET -->
+<section data-label="Off-BS items" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>13 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Analyst adjustments</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Off-balance-sheet</em> items.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Một số obligations hoặc interests KHÔNG hiện đầy đủ trên BS. Analyst phải điều chỉnh để có bức tranh true economic leverage.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Operating leases (legacy) — giảm vai trò post-reform</span>
+        <span class="step-body">Trước IFRS 16 (2019) và ASC 842 (2019), operating leases không lên BS. Nay hầu hết leases capitalized → right-of-use asset + lease liability.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Joint ventures &amp; special purpose entities</span>
+        <span class="step-body">Equity method recording có thể che giấu full scale of investment. Investor chỉ thấy net equity stake, không thấy assets &amp; liabilities riêng lẻ của JV.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Contingent liabilities &amp; guarantees</span>
+        <span class="step-body">Disclose trong footnotes nếu possible nhưng không probable. Analyst phải đọc footnotes để ước tính exposure (lawsuits, warranties, loan guarantees).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — OFF-BS</span>
+  </div>
+</section>
+
+
+<!-- 14 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 15 · Q1 EN -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>15 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Classify <em class="hi">current vs non-current</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Which of the following items would <strong>most likely</strong> be classified as a <strong>non-current asset</strong> on a company's balance sheet prepared under IFRS?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Trade receivables expected to be collected within 90 days.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Goodwill arising from the acquisition of a subsidiary two years ago.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Inventory of finished goods expected to be sold in the next quarter.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 16 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>16 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Non-current asset</mark>. <mark>90 days</mark> / <mark>next quarter</mark> / <mark>two years ago</mark>. Tiêu chí: realized within 12 months hay operating cycle.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Trade receivables 90 days → current. Inventory "next quarter" → current. Cả hai đều realized trong &lt; 12 months.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Goodwill là <em>intangible</em>, indefinite-life, tested annually — không phải để "bán" hay "collect" trong short run → non-current.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Nhớ: goodwill chỉ arise trong M&amp;A khi <em>purchase price &gt; fair value of net identifiable assets</em>. Không amortize; impairment không reverse.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 VN -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>17 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Item nào <strong>most likely</strong> được phân loại là <strong>non-current asset</strong> trên balance sheet prepared dưới IFRS?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Trade receivables dự kiến thu trong 90 ngày.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Goodwill phát sinh từ vụ acquisition subsidiary 2 năm trước.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Inventory thành phẩm dự kiến bán trong quý tới.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Goodwill.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Goodwill là <b>non-current intangible asset</b>, indefinite-life. Không được amortize, chỉ tested for impairment annually. Nó đại diện synergies và premium trả cho target vượt fair value of net identifiable assets.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Trade receivables thu trong 90 ngày → <em>current asset</em>. Normal trade receivables luôn current trừ khi có indication rõ ràng phần nào sẽ collect &gt; 12 months (rare).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Inventory bán trong quý tới → realized trong &lt; 12 months → <em>current asset</em>. Inventory chỉ là non-current khi có useful life dài như aging wine, hay stock for long-term projects.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Current = realized / settled trong 12 months hoặc operating cycle. Non-current = mọi thứ khác. Goodwill, PP&amp;E, long-term investments, indefinite-life intangibles luôn non-current.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q2 EN -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Calculate <em class="hi">current ratio</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A firm reports: Cash <strong>$200M</strong>, Receivables <strong>$400M</strong>, Inventory <strong>$500M</strong>, Prepaid <strong>$100M</strong>, PP&amp;E <strong>$2,000M</strong>. Current liabilities total <strong>$600M</strong>. The firm's current ratio and the <strong>most appropriate</strong> interpretation is:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">1.00 — firm just covers current obligations with cash-like items.</span></li>
+    <li><span class="lbl">B</span><span class="opt">2.00 — firm can cover current liabilities using current assets with a comfortable margin.</span></li>
+    <li><span class="lbl">C</span><span class="opt">5.33 — firm has excessively high liquidity and should return cash to shareholders.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Current ratio</mark> = CA / CL. Cần sum <mark>current assets only</mark>. PP&amp;E là <mark>non-current</mark>, KHÔNG tính.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">CA = Cash 200 + Receivables 400 + Inventory 500 + Prepaid 100 = <em>$1,200M</em>. Loại PP&amp;E ra vì non-current.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Current ratio = 1,200 / 600 = <em>2.00</em>. Firm có $2 current asset cho mỗi $1 current liability.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Option C (5.33) dùng total assets / CL — sai definition. Option A (1.00) chắc dùng cash only. Chỉ B đúng công thức và interpretation hợp lý.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 VN -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một firm báo cáo: Cash <strong>$200M</strong>, Receivables <strong>$400M</strong>, Inventory <strong>$500M</strong>, Prepaid <strong>$100M</strong>, PP&amp;E <strong>$2,000M</strong>. Current liabilities tổng <strong>$600M</strong>. Current ratio và interpretation <strong>phù hợp nhất</strong> là:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">1.00 — firm chỉ vừa đủ cover current obligations bằng cash-like items.</span></li>
+    <li><span class="lbl">B</span><span class="opt">2.00 — firm cover được current liabilities bằng current assets với margin thoải mái.</span></li>
+    <li><span class="lbl">C</span><span class="opt">5.33 — firm có liquidity quá cao, nên trả cash lại cho shareholders.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 2.00.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">CA = 200 + 400 + 500 + 100 = <b>$1,200M</b>. Current ratio = 1,200 / 600 = <b>2.00</b>. Có $2 CA cho mỗi $1 CL → adequate liquidity margin. Nhiều textbook coi 2.0 là "healthy" baseline, nhưng phải so với industry.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">1.00 có thể là cash ratio (200/600 = 0.33 — không khớp) hoặc chỉ đếm cash + prepaid. Không phải current ratio. Interpretation cũng sai — "just covers" applies khi ratio ≈ 1.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">5.33 = (1,200 + 2,000) / 600 = total assets / CL. Không phải current ratio (chỉ dùng CA). Ngoài ra, "return cash to shareholders" là policy recommendation, không phải ratio interpretation.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Current ratio = <em>CA / CL</em>. Bước 1: chỉ cộng current assets. Bước 2: chia. Bước 3: so industry benchmark trước khi kết luận "healthy" hay "weak". Nhớ: PP&amp;E, goodwill, LT investments KHÔNG phải current.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q3 EN -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Goodwill</em> impairment.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A company performs its annual goodwill impairment test and records a <strong>$300M impairment loss</strong>. Which of the following best describes the <strong>effect</strong> on the company's financial statements in the current period?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Decrease in total assets and equity; no effect on operating cash flow.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Decrease in total assets only; equity unchanged because impairment is non-cash.</span></li>
+    <li><span class="lbl">C</span><span class="opt">No effect in the current period; goodwill impairment is amortized over 10 years.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Goodwill impairment $300M</mark>. <mark>Effect on financial statements</mark>. Nhớ: impairment là <mark>non-cash</mark> expense.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Impairment hit <em>Income Statement</em> như expense → giảm Net Income → giảm Retained Earnings → giảm <em>Equity</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Trên BS: goodwill (asset) giảm $300M → <em>Total Assets</em> giảm. Phía bên kia: Equity giảm $300M (qua RE). Phương trình vẫn balance.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Impairment là non-cash → trên CF statement, add back vào Net Income trong Operating section → <em>không ảnh hưởng Operating Cash Flow</em>. Goodwill KHÔNG amortize (loại option C).</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 VN -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một công ty thực hiện annual goodwill impairment test và ghi nhận <strong>$300M impairment loss</strong>. Điều nào mô tả đúng nhất <strong>ảnh hưởng</strong> lên financial statements trong kỳ hiện tại?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Giảm total assets và equity; không ảnh hưởng operating cash flow.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Chỉ giảm total assets; equity không đổi vì impairment là non-cash.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Không ảnh hưởng kỳ hiện tại; goodwill impairment được amortize qua 10 năm.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>26 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — Assets ↓, Equity ↓.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">Impairment loss $300M: (1) BS — goodwill (asset) ↓ $300M → <b>Total Assets ↓</b>. (2) IS — impairment expense ↑ → Net Income ↓ → Retained Earnings ↓ → <b>Equity ↓</b>. (3) CF — non-cash → add back trong Operating section → <b>Operating Cash Flow không đổi</b>. A = L + E vẫn balance.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Sai ở "equity unchanged". Impairment đi qua IS trước (giảm NI) → flow vào RE → giảm equity. Chỉ riêng asset giảm mà equity không đổi sẽ phá vỡ A = L + E.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Goodwill KHÔNG amortize dưới cả IFRS và US GAAP. Impairment được ghi <em>full lump-sum</em> tại kỳ xác định, không spread qua nhiều năm. Ngoài ra, impairment loss KHÔNG reverse (goodwill, dưới IFRS và GAAP).</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Goodwill impairment: <em>Assets ↓</em>, <em>NI ↓</em>, <em>RE ↓</em>, <em>Equity ↓</em>, <em>OCF không đổi</em>. Non-cash expense → add back khi compute OCF (indirect method). Goodwill tested annually, không amortized, impairment không reverse.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 27 · WRAP -->
+<section data-label="Wrap" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.03</span>
+    <span class="rule"></span>
+    <span>27 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What to <em class="hi">remember</em>.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">A = L + E luôn balance</span>
+        <span class="step-body">Mỗi transaction tác động cả hai vế. Equity = Assets − Liabilities = residual claim của shareholders.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Current vs non-current theo 12 months / operating cycle</span>
+        <span class="step-body">Drive liquidity ratios (current, quick, cash) và solvency ratios (D/E, D/A). Industry benchmark bắt buộc.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Measurement bases khác nhau cho items khác nhau</span>
+        <span class="step-body">PP&amp;E historical cost; securities fair value; bonds amortized cost; inventory lower of cost or NRV.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Goodwill: chỉ từ M&amp;A, không amortize, annual impairment test</span>
+        <span class="step-body">Impairment: Assets ↓, Equity ↓, OCF không đổi (non-cash). Không reverse.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.03 — RECAP</span>
+  </div>
+</section>
+
+
+<!-- 28 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>04.03 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 04.04 — Analyzing the Income Statement</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

@@ -1,0 +1,1101 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Econ 03.08 — Monetary &amp; Fiscal Policy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 108px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Monetary<br>&amp; <em>Fiscal.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 03 · Lesson 03.08 · Economics</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 08 · Policy tools &amp; transmission</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Econ</dd></div>
+      <div><dt>Module</dt><dd>08</dd></div>
+      <div><dt>Lesson</dt><dd>03.08</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">MV = PY · Taylor rule · Policy mix</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">08</div>
+    <div class="lbl">Policy</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How <em>central banks</em> and<br><em>governments</em> steer the economy.</h2>
+    <ul class="toc">
+      <li class="active">01 · Money supply &amp; quantity theory — MV = PY</li>
+      <li>02 · Monetary policy tools &amp; transmission</li>
+      <li>03 · Taylor rule, inflation targeting, QE/QT</li>
+      <li>04 · Fiscal policy — spending, taxes, stabilizers</li>
+      <li>05 · Policy mix &amp; central bank independence</li>
+      <li>06 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · MONEY SUPPLY AGGREGATES -->
+<section data-label="Money aggregates" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Money supply · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">M0</em>, M1, M2 aggregates.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Central bank đo money supply theo từng lớp <em>liquidity</em>. Broader aggregate = less liquid nhưng vẫn được coi là "money".
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">M0</span>
+      <div>
+        <div class="t"><em class="hi">Monetary Base</em></div>
+        <div class="d">Physical currency + bank reserves tại central bank. Thứ CB kiểm soát trực tiếp nhất.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">M1</span>
+      <div>
+        <div class="t"><em class="hi">Narrow Money</em></div>
+        <div class="d">Currency in circulation + demand deposits + checkable deposits. Dùng ngay cho giao dịch.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">M2</span>
+      <div>
+        <div class="t"><em class="hi">Broad Money</em></div>
+        <div class="d">M1 + savings deposits + small time deposits + retail money market funds. CFA focus chính.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">μ</span>
+      <div>
+        <div class="t"><em class="hi">Money Multiplier</em></div>
+        <div class="d">μ = 1 / reserve requirement. Broad money / monetary base. Bank lending amplify M0 thành M2.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — MONEY AGG</span>
+  </div>
+</section>
+
+
+<!-- 04 · QUANTITY THEORY OF MONEY -->
+<section data-label="Quantity theory" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Quantity theory · formula</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">MV = PY</em> identity.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Equation of exchange</span>
+    <div class="eq"><span class="var">M</span> · <span class="var">V</span> = <span class="var">P</span> · <span class="var">Y</span></div>
+    <div class="note"><b>M</b> money supply · <b>V</b> velocity (số lần 1 đơn vị money được spent/yr) · <b>P</b> price level · <b>Y</b> real GDP. <em>P · Y</em> = nominal GDP.</div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Classical assumption — Nếu V stable và Y ở full employment → thay đổi M dẫn proportional thay đổi P. Đây là nền tảng của <em>monetarism</em> (Friedman): "Inflation is always and everywhere a monetary phenomenon."
+  </p>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Growth form — %ΔM + %ΔV = %ΔP + %ΔY</span>
+        <span class="step-body">Nếu V constant (%ΔV = 0) và Y tăng 2% trong khi M tăng 7% → inflation ≈ 5%.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Modern view — V không stable trong short run</span>
+        <span class="step-body">QE 2010-2020 tăng M mạnh nhưng V giảm → inflation thấp. Relationship M → P chỉ hold trong long run.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — MV=PY</span>
+  </div>
+</section>
+
+
+<!-- 05 · CB OBJECTIVES & TOOLS -->
+<section data-label="CB tools" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Central bank · toolkit</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Four <em class="hi">conventional</em> tools.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CB dùng 4 công cụ để điều chỉnh <em>money supply</em> và <em>short-term interest rate</em>.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Open Market Operations</em></div>
+        <div class="d">Mua/bán government securities. BUY → bơm reserves → M tăng, rates giảm. SELL → ngược lại. Tool chính, dùng hàng ngày.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Policy Rate</em></div>
+        <div class="d">Target rate CB set cho overnight lending (Fed funds rate, ECB refi rate). Signal chính cho market.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Discount Rate</em></div>
+        <div class="d">Rate CB charge commercial banks vay trực tiếp (discount window). Ceiling cho interbank rate.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Reserve Requirement</em></div>
+        <div class="d">% deposits banks phải giữ reserve. Giảm RR → multiplier tăng → M2 tăng. Blunt tool, ít dùng.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — CB TOOLS</span>
+  </div>
+</section>
+
+
+<!-- 06 · TRANSMISSION MECHANISM -->
+<section data-label="Transmission" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Transmission · mechanism</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">From <em class="hi">policy rate</em> to AD.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Policy rate thay đổi tác động lan tỏa qua 4 channel đến aggregate demand. Lag 6-18 tháng.
+    </p>
+  </div>
+
+  <div class="flow" style="margin-top: 16px;">
+    <div class="step"><span class="lbl">01</span><div class="txt"><b>Policy rate ↓</b> — CB cut target rate, signal easing.</div></div>
+    <div class="step"><span class="lbl">02</span><div class="txt"><b>Market rates ↓</b> — bank lending rates, bond yields, mortgage rates follow.</div></div>
+    <div class="step"><span class="lbl">03</span><div class="txt"><b>Credit ↑ · Asset prices ↑</b> — cheaper borrowing, equity &amp; housing tăng (wealth effect).</div></div>
+    <div class="step"><span class="lbl">04</span><div class="txt"><b>Spending ↑ · AD ↑</b> — consumption, investment tăng → GDP, inflation tăng.</div></div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Exchange rate channel — Rate cut làm currency yếu → exports cạnh tranh hơn, imports đắt hơn → net exports tăng → AD tăng. Channel thứ 5, quan trọng với small open economy như VN.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — TRANSMISSION</span>
+  </div>
+</section>
+
+
+<!-- 07 · TAYLOR RULE -->
+<section data-label="Taylor rule" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Policy rule · Taylor</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">Taylor rule</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Taylor rule — policy rate prescription</span>
+    <div class="eq"><span class="var">R<sub>target</sub></span> = <span class="var">R<sub>neutral</sub></span> + 0.5 · (<span class="var">π</span> − <span class="var">π*</span>) + 0.5 · (<span class="var">Y</span> − <span class="var">Y*</span>)</div>
+    <div class="note"><b>R<sub>neutral</sub></b> neutral real rate + target inflation · <b>π − π*</b> inflation gap · <b>Y − Y*</b> output gap (% deviation from potential). Weight 0.5 — CB cân bằng inflation và output.</div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Ví dụ — R<sub>neutral</sub> = 4%, inflation 5%, target 2%, output gap +1%. Target = 4 + 0.5(5−2) + 0.5(1) = 4 + 1.5 + 0.5 = <em>6%</em>. CB nên giữ rate ở 6% để cool economy và bring inflation về target.
+  </p>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Dương (positive) inflation gap → hike rate</span>
+        <span class="step-body">Inflation &gt; target → R &gt; neutral → contractionary stance để kéo inflation xuống.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Âm (negative) output gap → cut rate</span>
+        <span class="step-body">Y &lt; potential (recession) → R &lt; neutral → expansionary stance kích thích growth.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — TAYLOR</span>
+  </div>
+</section>
+
+
+<!-- 08 · INFLATION TARGETING & FORWARD GUIDANCE -->
+<section data-label="Inflation targeting" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Policy framework</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Inflation targeting</em> &amp; guidance.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Inflation targeting</span>
+    CB công bố explicit inflation target (thường <b>2%</b>). Mọi policy decision aim đạt target đó trong medium run. Đa số developed-market CB theo framework này (Fed, ECB, BoE, BoJ, SBV).
+  </div>
+
+  <ol class="num-list" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Forward guidance — communication tool</span>
+        <span class="step-body">CB công khai future path của rates (ví dụ "rates sẽ stay low until 2027"). Anchor market expectations, giảm volatility. Fed dot plot là ví dụ điển hình.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Credibility matters — CB uy tín = inflation expectations ổn định</span>
+        <span class="step-body">Nếu public tin CB sẽ giữ inflation 2%, wage/price setters act accordingly → self-fulfilling. Mất credibility → inflation spiral (1970s US).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Symmetric vs flexible targeting</span>
+        <span class="step-body">Symmetric: undershoot và overshoot đều quan trọng. Flexible: có thể tolerate deviation tạm thời để support employment (Fed dual mandate).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — INFL TARGET</span>
+  </div>
+</section>
+
+
+<!-- 09 · QE / QT — UNCONVENTIONAL -->
+<section data-label="QE QT" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Unconventional · balance sheet</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">QE</em> &amp; <em class="hi">QT</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Khi policy rate chạm <em>zero lower bound</em> (ZLB), CB dùng balance sheet expansion/contraction thay vì rate cuts.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Quantitative Easing (QE)</div>
+      <dl>
+        <dt>Action</dt>
+        <dd>CB mua large-scale long-term bonds, MBS</dd>
+        <dt>Effect</dt>
+        <dd>Balance sheet expand, bơm reserves vào banking system</dd>
+        <dt>Goal</dt>
+        <dd>Giảm long-term rates, stimulate lending &amp; asset prices</dd>
+        <dt>Use case</dt>
+        <dd>GFC 2008, COVID 2020 — khi rates đã ở 0</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Quantitative Tightening (QT)</div>
+      <dl>
+        <dt>Action</dt>
+        <dd>CB để bonds mature mà không tái đầu tư, hoặc sell</dd>
+        <dt>Effect</dt>
+        <dd>Balance sheet shrink, rút reserves ra khỏi system</dd>
+        <dt>Goal</dt>
+        <dd>Tăng long rates, tighten financial conditions</dd>
+        <dt>Use case</dt>
+        <dd>Fed 2022-2024 sau khi inflation lên 9%</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Portfolio balance channel — QE đẩy investors khỏi bonds (yields thấp) sang risky assets (equities, credit) → wealth effect + lower cost of capital for firms.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — QE/QT</span>
+  </div>
+</section>
+
+
+<!-- 10 · FISCAL POLICY TOOLS -->
+<section data-label="Fiscal tools" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Fiscal policy · levers</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Government <em class="hi">spending</em>, taxes, transfers.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Fiscal policy = quyết định của government (legislature + executive) về <em>budget</em>. Tác động AD trực tiếp hơn monetary.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">G</span>
+      <div>
+        <div class="t"><em class="hi">Government Spending</em></div>
+        <div class="d">Infrastructure, defense, public services. Thành phần trực tiếp của GDP (Y = C+I+G+NX). Multiplier effect lên AD.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">T</span>
+      <div>
+        <div class="t"><em class="hi">Taxes</em></div>
+        <div class="d">Income, corporate, VAT, payroll. Cut tax → disposable income tăng → C tăng. Distortionary effects cần cân nhắc.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">TR</span>
+      <div>
+        <div class="t"><em class="hi">Transfer Payments</em></div>
+        <div class="d">Social security, unemployment benefits, subsidies. Không phải G (không mua goods/services) nhưng tăng disposable income.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">Δ</span>
+      <div>
+        <div class="t"><em class="hi">Budget balance</em></div>
+        <div class="d">Surplus (T &gt; G + TR) = contractionary. Deficit = expansionary. Balance = neutral stance.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — FISCAL TOOLS</span>
+  </div>
+</section>
+
+
+<!-- 11 · STABILIZERS & CROWDING OUT -->
+<section data-label="Stabilizers" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Fiscal · automatic vs discretionary</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Stabilizers</em> &amp; crowding-out.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Automatic stabilizers</div>
+      <dl>
+        <dt>Definition</dt>
+        <dd>Fiscal features tự động smooth business cycle, không cần legislation</dd>
+        <dt>Examples</dt>
+        <dd>Progressive income tax, unemployment benefits, welfare</dd>
+        <dt>Mechanism</dt>
+        <dd>Recession → tax revenue ↓, transfers ↑ → deficit tự động tăng → cushion AD</dd>
+        <dt>Lag</dt>
+        <dd>Không lag — hoạt động ngay</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Discretionary fiscal policy</div>
+      <dl>
+        <dt>Definition</dt>
+        <dd>Deliberate policy change (new spending, tax cut) qua legislation</dd>
+        <dt>Examples</dt>
+        <dd>COVID stimulus checks, infrastructure bills</dd>
+        <dt>Mechanism</dt>
+        <dd>Chính phủ quyết định ΔG hoặc ΔT để target cycle stage</dd>
+        <dt>Lag</dt>
+        <dd>Recognition + legislative + implementation lag — thường 6-18 tháng</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 20px;">
+    <span class="tag">§ Crowding-out effect</span>
+    Government borrow để tài trợ deficit → demand for loanable funds ↑ → interest rates ↑ → <b>private investment ↓</b>. Offset một phần expansionary effect của fiscal stimulus. Mạnh nhất khi economy near full employment.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — STABILIZERS</span>
+  </div>
+</section>
+
+
+<!-- 12 · DEBT SUSTAINABILITY & RICARDIAN -->
+<section data-label="Debt sustainability" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Deficit · debt · expectations</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Debt</em> &amp; Ricardian equivalence.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Debt sustainability condition</span>
+    <div class="eq"><span class="var">Δ</span>(<span class="var">Debt/GDP</span>) ≈ (<span class="var">r</span> − <span class="var">g</span>) · (<span class="var">Debt/GDP</span>) − <span class="var">Primary balance/GDP</span></div>
+    <div class="note"><b>r</b> real interest rate · <b>g</b> real GDP growth. Nếu r &gt; g và primary deficit → debt ratio tăng không ngừng. g &gt; r → debt tự ổn định dù có deficit nhỏ.</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Ricardian equivalence (Barro)</span>
+        <span class="step-body">Tax cut tài trợ bằng deficit → người dân anticipate tax tăng tương lai → tăng saving, giảm consumption → fiscal stimulus KHÔNG tăng AD. Strong assumptions (rational, no liquidity constraint) — empirically chỉ partial hold.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Red flags cho debt sustainability</span>
+        <span class="step-body">Debt/GDP &gt; 90-100%, rising r − g, FX-denominated debt, short maturity profile, weak tax base. Debt crisis: Greece 2010, Argentina recurring.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — DEBT</span>
+  </div>
+</section>
+
+
+<!-- 13 · POLICY MIX (4 COMBINATIONS) -->
+<section data-label="Policy mix" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>13 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Monetary + Fiscal · interaction</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">4 policy mixes</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Monetary và fiscal có thể <em>reinforce</em> hoặc <em>offset</em> nhau. Mỗi combination có implications cho rates, growth, currency.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">++</span>
+      <div>
+        <div class="t"><em class="hi">Easy M + Easy F</em></div>
+        <div class="d">Rate cut + deficit spending. Mạnh nhất kích thích AD. Rates có thể flat hoặc down. Ví dụ: COVID 2020-2021.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">+−</span>
+      <div>
+        <div class="t"><em class="hi">Easy M + Tight F</em></div>
+        <div class="d">Rate cut + austerity. Lower rates, weaker currency, support private sector. Eurozone crisis 2011-2013.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">−+</span>
+      <div>
+        <div class="t"><em class="hi">Tight M + Easy F</em></div>
+        <div class="d">Rate hike + deficit spending. Rates cao, currency mạnh. Reagan/Volcker 1980s, US 2022-2024.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">−−</span>
+      <div>
+        <div class="t"><em class="hi">Tight M + Tight F</em></div>
+        <div class="d">Rate hike + surplus. Mạnh nhất kìm AD và inflation. Rủi ro recession cao. Ít dùng.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — POLICY MIX</span>
+  </div>
+</section>
+
+
+<!-- 14 · CB INDEPENDENCE -->
+<section data-label="CB independence" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>14 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Institutional · credibility</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Central bank <em class="hi">independence</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Independence cho phép CB focus long-term price stability thay vì short-term political pressures.
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Operational independence</span>
+        <span class="step-body">CB tự quyết định tools và rate paths để đạt target. Không bị can thiệp hàng ngày. Fed, ECB, BoE có operational independence cao.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Target independence</span>
+        <span class="step-body">CB tự set inflation target. Hiếm hơn — thường target do government set (BoE) hoặc joint (Fed dual mandate từ Congress).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Why independence matters</span>
+        <span class="step-body">Politicians có incentive cut rate trước election → inflation bias. Independent CB kháng political pressure → credible commitment → lower inflation expectations → lower actual inflation. Empirical: độc lập cao ↔ inflation thấp.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="takeaway-box" style="margin-top: 20px;">
+    <div class="tlabel">Key nuance</div>
+    <div class="ttext">Independence KHÔNG có nghĩa là isolation. CB vẫn accountable (report to legislature), transparent (publish minutes, forecasts), và coordinate với Treasury trong crisis (2008, 2020).</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — INDEPENDENCE</span>
+  </div>
+</section>
+
+
+<!-- 15 · LIMITATIONS & POLICY LAGS -->
+<section data-label="Limitations" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>15 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Policy · limits</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What policy <em class="hi">cannot</em> do.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Monetary policy limits</div>
+      <dl>
+        <dt>Zero lower bound</dt>
+        <dd>Rate không thể quá âm — "pushing on a string" khi rates đã ở 0</dd>
+        <dt>Lag</dt>
+        <dd>6-18 tháng từ rate change đến real-economy impact</dd>
+        <dt>Credit channel broken</dt>
+        <dd>Banks không lend (GFC) → rate cuts không transmit</dd>
+        <dt>Exchange rate spillover</dt>
+        <dd>Small open economy bị trói bởi major CB policies</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Fiscal policy limits</div>
+      <dl>
+        <dt>Political lag</dt>
+        <dd>Legislation chậm, timing thường off-cycle</dd>
+        <dt>Crowding-out</dt>
+        <dd>Deficit financing đẩy rates, giảm private investment</dd>
+        <dt>Debt ceiling</dt>
+        <dd>Debt/GDP cao → bond vigilantes, rating downgrade</dd>
+        <dt>Ricardian offset</dt>
+        <dd>Household anticipate tax → tiết kiệm nhiều hơn</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Take-aways cho CFA — Policy không phải thuốc tiên. <em>Supply-side shocks</em> (oil, pandemic) đặc biệt khó handle vì monetary/fiscal đều work qua demand side. Stagflation 1970s minh họa rõ.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — LIMITS</span>
+  </div>
+</section>
+
+
+<!-- 16 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 EN — Taylor rule -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>17 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Apply the <em class="hi">Taylor rule</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A central bank applies the standard Taylor rule with a neutral nominal rate of <strong>4%</strong>. Current inflation is <strong>5%</strong>, the inflation target is <strong>2%</strong>, and the output gap is <strong>+2%</strong> (actual GDP above potential). What is the <strong>Taylor-rule prescribed policy rate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">5.5%.</span></li>
+    <li><span class="lbl">B</span><span class="opt">6.5%.</span></li>
+    <li><span class="lbl">C</span><span class="opt">7.5%.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Neutral <mark>4%</mark>. Inflation <mark>5%</mark>, target <mark>2%</mark>. Output gap <mark>+2%</mark>. Taylor rule weights <mark>0.5 and 0.5</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Formula: R = R<sub>neutral</sub> + 0.5(π − π*) + 0.5(Y − Y*). Plug in: R = 4 + 0.5(5 − 2) + 0.5(2).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Inflation gap = 5 − 2 = <em>3</em>. Weighted: 0.5 × 3 = <em>1.5</em>. Output gap = <em>2</em>. Weighted: 0.5 × 2 = <em>1</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Sum: 4 + 1.5 + 1 = <em>6.5%</em>. Cả hai gap đều dương → rate prescribed cao hơn neutral → contractionary stance.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một central bank áp dụng Taylor rule chuẩn với neutral nominal rate <strong>4%</strong>. Inflation hiện tại <strong>5%</strong>, target inflation <strong>2%</strong>, output gap <strong>+2%</strong> (GDP thực tế trên potential). <strong>Policy rate</strong> mà Taylor rule khuyến nghị là bao nhiêu?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">5.5%.</span></li>
+    <li><span class="lbl">B</span><span class="opt">6.5%.</span></li>
+    <li><span class="lbl">C</span><span class="opt">7.5%.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 6.5%.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">R = 4 + 0.5(5 − 2) + 0.5(2) = 4 + 1.5 + 1.0 = <b>6.5%</b>. Inflation trên target 3% (weighted 1.5) + output trên potential 2% (weighted 1) → CB nên set rate 2.5 điểm trên neutral để cool economy.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">5.5% sai vì quên output gap. Nếu chỉ tính inflation gap: 4 + 1.5 = 5.5. Nhưng Taylor rule bao gồm CẢ hai gap — phải add 0.5 × output gap = 1.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">7.5% sai vì weight sai (có thể dùng 1.0 thay vì 0.5 cho inflation gap). Standard Taylor rule dùng weights 0.5 cho cả hai gap.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Taylor rule: <em>R = R<sub>neutral</sub> + 0.5 × inflation gap + 0.5 × output gap</em>. Cả hai gap dương → tighter than neutral. Cả hai âm → easier than neutral. Plug và go.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 EN — Policy mix ID -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Identify <em class="hi">policy mix</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      In a given economy, the central bank has raised its policy rate by <strong>200 bps</strong> over the past year, and the government has simultaneously enacted a large <strong>infrastructure spending program</strong> financed by new debt issuance. The combined stance is <em>most accurately</em> described as:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Expansionary monetary + expansionary fiscal.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Contractionary monetary + expansionary fiscal.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Contractionary monetary + contractionary fiscal.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    CB <mark>raised policy rate 200 bps</mark>. Government <mark>infrastructure spending</mark> financed by <mark>new debt</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">"Raised policy rate" = <em>rate hike</em> → tighten money supply → <em>contractionary monetary</em> policy.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">"Infrastructure spending financed by new debt" = ↑G với deficit financing → increase AD → <em>expansionary fiscal</em> policy.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Kết hợp: <em>tight monetary + easy fiscal</em>. Case điển hình: Reagan/Volcker 1980s, US 2022-2024. Characteristic: high rates + strong currency.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Trong một nền kinh tế, central bank đã <strong>tăng policy rate 200 bps</strong> trong năm qua, đồng thời government triển khai chương trình <strong>chi tiêu hạ tầng lớn</strong> tài trợ bằng phát hành nợ mới. Policy stance kết hợp <em>chính xác nhất</em> được mô tả là:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Expansionary monetary + expansionary fiscal.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Contractionary monetary + expansionary fiscal.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Contractionary monetary + contractionary fiscal.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Tight M + Easy F.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Rate hike 200 bps = <b>contractionary monetary</b> (giảm money supply, tăng cost of borrowing). Infrastructure spending financed by debt = <b>expansionary fiscal</b> (↑G, tăng deficit, kích thích AD). Kết hợp: tight M + easy F. Expected outcome: rates cao, currency mạnh, crowding-out private investment.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Rate hike KHÔNG phải expansionary monetary. Expansionary monetary = rate CUT, QE, tăng money supply. Đề bài nói "raised rate" → contractionary.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Infrastructure spending với new debt KHÔNG phải contractionary fiscal. Contractionary fiscal = cut G, raise T, budget surplus. Đề bài là NEW spending và NEW debt → expansionary.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Monetary stance: rate ↑ = tight, rate ↓ = easy. Fiscal stance: deficit ↑ (↑G hoặc ↓T) = easy, surplus ↑ = tight. 4 mixes: ++ strongly stimulative, −− strongly restrictive, +− và −+ conflicting signals.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 EN — Crowding out -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Crowding-out</em> scenario.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An economy is operating <strong>near full employment</strong>. The government announces a large deficit-financed tax cut to stimulate growth. Interest rates on government bonds rise by <strong>150 bps</strong> in response, and business investment spending declines. The <em>most likely</em> economic effect is:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">A full Keynesian multiplier effect — GDP increases by the full tax-cut amount times the multiplier.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Crowding-out — higher rates reduce private investment, partially offsetting the fiscal stimulus.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Ricardian equivalence with zero net effect — households save the entire tax cut expecting future tax hikes.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>26 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Near full employment</mark>. <mark>Deficit-financed tax cut</mark>. Bond rates <mark>rise 150 bps</mark>. Business investment <mark>declines</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">"Deficit financing" = government borrow → demand for loanable funds ↑ → interest rates ↑. Chính là textbook <em>crowding-out mechanism</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">"Business investment declines" khi rates rise = classic crowding-out symptom. Private sector bị <em>squeezed out</em> bởi government borrowing.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">"Near full employment" là điều kiện crowding-out mạnh nhất — không còn slack capacity, mọi resource đều competitive giữa public và private.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>27 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một nền kinh tế đang hoạt động <strong>gần full employment</strong>. Government công bố cắt thuế lớn tài trợ bằng deficit để kích thích growth. Lãi suất government bonds tăng <strong>150 bps</strong> phản ứng, và chi tiêu đầu tư doanh nghiệp giảm. Tác động kinh tế <em>khả dĩ nhất</em> là:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Full Keynesian multiplier effect — GDP tăng bằng full amount tax cut × multiplier.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Crowding-out — rates cao hơn giảm private investment, offset một phần fiscal stimulus.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Ricardian equivalence với net effect bằng 0 — household tiết kiệm toàn bộ tax cut vì dự đoán tax tăng tương lai.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 EXPLANATION + END COMBINED -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>28 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Crowding-out.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Classic crowding-out: deficit-financed stimulus → government borrow ↑ → <b>interest rates ↑ 150 bps</b> → cost of capital cho firms tăng → <b>private investment ↓</b>. Effect lên GDP bị <em>partially offset</em>, không full multiplier. Hiệu ứng mạnh nhất khi <em>near full employment</em> (no slack).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Full Keynesian multiplier chỉ hold khi rates KHÔNG đổi (accommodative monetary) và <em>far below full employment</em>. Ở đây rates tăng mạnh và economy near full capacity → multiplier bị kéo thấp đáng kể.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Ricardian equivalence predict household tăng saving ~ tax cut → zero AD effect. Nhưng đề bài chỉ ra rates tăng + investment giảm — đây là <em>crowding-out</em> channel, không phải Ricardian saving response.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Crowding-out signature: deficit financing → rates ↑ → private investment ↓. Strongest near full employment. Khác với Ricardian (household saving response, không qua rates). CFA hay test phân biệt hai cơ chế này.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>03.08 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 03.09 — International Trade and Capital Flows</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

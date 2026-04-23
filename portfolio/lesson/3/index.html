@@ -1,0 +1,1120 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Portfolio 06.03 — Management Overview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Portfolio<br>Management <em>Overview.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 06 · Lesson 06.03 · Portfolio Management</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 03 · Process · Investors · Vehicles · Styles</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Portfolio</dd></div>
+      <div><dt>Module</dt><dd>03</dd></div>
+      <div><dt>Lesson</dt><dd>06.03</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">IPS · Investor types · Mutual · ETF · Active vs Passive</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">03</div>
+    <div class="lbl">Management overview</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How <em>portfolios</em> are planned,<br>executed, and <em>monitored</em>.</h2>
+    <ul class="toc">
+      <li class="active">01 · Portfolio approach — why diversification beats stock-picking</li>
+      <li>02 · 3-step process — Planning, Execution, Feedback</li>
+      <li>03 · Investor types — individual vs institutional</li>
+      <li>04 · Pooled vehicles — mutual, ETF, hedge, SMA, PE</li>
+      <li>05 · Styles — active/passive, top-down/bottom-up, rebalancing</li>
+      <li>06 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · PORTFOLIO APPROACH -->
+<section data-label="Portfolio approach" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Philosophy · why portfolio</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Portfolio <em class="hi">approach</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Thay vì "chọn cổ phiếu tốt nhất", portfolio approach tập trung vào <em>diversification</em> — kết hợp nhiều asset để tối ưu risk-return ở mức tổng thể.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Core principle</span>
+    Với ρ &lt; 1 giữa các asset, portfolio SD &lt; weighted average SD. Nhà đầu tư nhận được <b>risk reduction miễn phí</b> mà không giảm expected return — đây là điểm đột phá của Markowitz (1952).
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Individual security picking → fragile</span>
+        <span class="step-body">Tập trung vào 1-2 stocks → idiosyncratic risk lớn. Một earnings miss có thể wipe out capital.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Portfolio diversification → robust</span>
+        <span class="step-body">Nhiều assets với low correlation → unsystematic risk bị triệt tiêu, chỉ còn systematic risk (market risk).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Investor's goal là portfolio-level outcome</span>
+        <span class="step-body">Returns và risk được đo ở cấp portfolio, không phải từng asset. Một stock thua lỗ vẫn OK nếu portfolio vẫn đạt mục tiêu.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — APPROACH</span>
+  </div>
+</section>
+
+
+<!-- 04 · 3-STEP PROCESS OVERVIEW -->
+<section data-label="3-step process" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Process · overview</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">3-step</em> process.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CFA Institute định nghĩa 3 bước tuần tự: <em>Planning → Execution → Feedback</em>. Loop liên tục, không phải one-shot.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Planning</em></div>
+        <div class="d">Hiểu client, viết <b>IPS</b> (Investment Policy Statement). Định objectives (risk/return) + constraints (LTLU — Liquidity, Time horizon, Tax, Legal, Unique).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Execution</em></div>
+        <div class="d">Strategic asset allocation → security selection → trade execution. Đây là nơi IPS được translate thành positions thực tế.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Feedback</em></div>
+        <div class="d">Monitor performance, rebalance về targets, re-evaluate IPS khi client/market thay đổi. Close the loop.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">∞</span>
+      <div>
+        <div class="t">Continuous loop</div>
+        <div class="d">3 steps lặp lại liên tục suốt life của portfolio. Không stop sau khi invested — quản lý chủ động.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — PROCESS</span>
+  </div>
+</section>
+
+
+<!-- 05 · PLANNING + IPS -->
+<section data-label="Planning · IPS" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Step 01 · Planning</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">IPS</em> — Investment Policy Statement.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      IPS là <em>written document</em> định nghĩa mục tiêu đầu tư và ràng buộc của client. Nó là "governing document" — mọi decision sau đó đều phải consistent với IPS.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Objectives · the "wants"</div>
+      <dl>
+        <dt>Risk</dt>
+        <dd>Willingness &amp; ability to take risk — risk tolerance</dd>
+        <dt>Return</dt>
+        <dd>Required return (meet liabilities) vs desired return</dd>
+        <dt>Balance</dt>
+        <dd>Return objective phải consistent với risk tolerance</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Constraints · the "musts" (LTLU+L)</div>
+      <dl>
+        <dt>L — Liquidity</dt>
+        <dd>Cash needs trong short-run</dd>
+        <dt>T — Time horizon</dt>
+        <dd>Single vs multi-stage; short vs long</dd>
+        <dt>T — Tax</dt>
+        <dd>Tax status: taxable, tax-deferred, tax-exempt</dd>
+        <dt>L — Legal</dt>
+        <dd>Regulatory, fiduciary rules (ERISA, trust law)</dd>
+        <dt>U — Unique</dt>
+        <dd>ESG preferences, concentrated holdings, others</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § IPS phải được review định kỳ (annual) hoặc khi có material change trong circumstances của client (marriage, retirement, inheritance, major market move).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — IPS</span>
+  </div>
+</section>
+
+
+<!-- 06 · EXECUTION -->
+<section data-label="Execution" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Step 02 · Execution</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">From <em class="hi">IPS</em> to positions.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Execution gồm 3 sub-steps: <em>asset allocation → security selection → trade execution</em>. Mỗi sub-step thêm giá trị (hoặc risk) vào portfolio.
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Sub-step 1 — Strategic Asset Allocation (SAA)</span>
+        <span class="step-body">Chia capital giữa asset classes (equity, bond, cash, alt). <em>Explain &gt; 90% return variance</em> cross-sectionally. Đây là decision quan trọng nhất.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Sub-step 2 — Security selection</span>
+        <span class="step-body">Trong mỗi asset class, chọn specific securities. Có thể dùng top-down hoặc bottom-up. Active manager thêm value qua step này.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Sub-step 3 — Trade execution</span>
+        <span class="step-body">Actual buying/selling. Minimize transaction costs, market impact, implementation shortfall. Thường bị underestimated về tầm quan trọng.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="rule-box" style="margin-top: 20px;">
+    <span class="tag">§ Rule of thumb</span>
+    Brinson/Singer/Beebower (1986/1991): Asset allocation explains ~90% of return variability over time. Security selection và timing đóng góp phần nhỏ hơn — nhưng có thể quan trọng <em>cross-sectionally</em> giữa các manager.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — EXECUTE</span>
+  </div>
+</section>
+
+
+<!-- 07 · FEEDBACK -->
+<section data-label="Feedback" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Step 03 · Feedback</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Monitor, <em class="hi">rebalance</em>, re-evaluate.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">M</span>
+      <div>
+        <div class="t"><em class="hi">Monitor</em></div>
+        <div class="d">Track performance vs benchmark, vs peer, vs IPS targets. Attribution analysis: return từ allocation vs selection vs timing.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">R</span>
+      <div>
+        <div class="t"><em class="hi">Rebalance</em></div>
+        <div class="d">Market moves → drift khỏi target weights. Bring back to policy. 2 styles: calendar-based (quarterly) hoặc threshold-based (±5% band).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">E</span>
+      <div>
+        <div class="t"><em class="hi">Re-evaluate</em></div>
+        <div class="d">IPS không đứng yên. Life events, market regime, objectives evolve → update IPS. Trigger: annual review hoặc material change.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">↻</span>
+      <div>
+        <div class="t">Close the loop</div>
+        <div class="d">Feedback quay về Planning. Process là circular, không linear. Portfolio management = continuous discipline.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Rebalancing trade-off — Calendar rebalancing simple nhưng có thể rebalance khi không cần. Threshold rebalancing reactive đến market moves nhưng tốn transaction cost khi biến động cao. Combined approach phổ biến.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — FEEDBACK</span>
+  </div>
+</section>
+
+
+<!-- 08 · INDIVIDUAL INVESTORS -->
+<section data-label="Individual investors" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Investor types · individual</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Individual</em> investors.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Individual = natural person hoặc household. Đặc trưng: <em>taxable</em>, finite lifespan, liability = retirement/consumption, risk tolerance heterogeneous.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Objectives</div>
+      <dl>
+        <dt>Risk</dt>
+        <dd>Tùy thuộc age, wealth, personality — wide range</dd>
+        <dt>Return</dt>
+        <dd>Fund retirement + intermediate goals (house, education)</dd>
+        <dt>Horizon</dt>
+        <dd>Multi-stage: accumulation → retirement → legacy</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Constraints — usually binding</div>
+      <dl>
+        <dt>Tax</dt>
+        <dd>Taxable — after-tax return matters. Tax-loss harvesting, asset location</dd>
+        <dt>Liquidity</dt>
+        <dd>Emergency funds, lumpy expenses</dd>
+        <dt>Legal</dt>
+        <dd>Estate planning, beneficiary designations</dd>
+        <dt>Unique</dt>
+        <dd>Concentrated stock (công ty), ESG preferences</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Life-cycle investing — Young individuals thường tilt equity (long horizon, human capital như bond); retirees tilt fixed income (capital preservation, income). Glide path adjust weights theo age.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — INDIVIDUAL</span>
+  </div>
+</section>
+
+
+<!-- 09 · INSTITUTIONAL — PENSION + ENDOWMENT + FOUNDATION -->
+<section data-label="Institutional I" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Investor types · institutional</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Pensions, <em class="hi">endowments</em>, foundations.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">DB</span>
+      <div>
+        <div class="t"><em class="hi">Defined Benefit</em> pension</div>
+        <div class="d">Sponsor (employer) chịu investment risk. Liability = future pension payments (discounted). Focus: liability-driven investing (LDI), duration match.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">DC</span>
+      <div>
+        <div class="t"><em class="hi">Defined Contribution</em> pension</div>
+        <div class="d">Employee chịu investment risk. Employer chỉ contribute. Account balance at retirement = invested + returns. 401(k) US, pension Việt Nam DC-like.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">EN</span>
+      <div>
+        <div class="t"><em class="hi">Endowments</em></div>
+        <div class="d">Nonprofit (thường university) fund. Goal: support operations <em>in perpetuity</em>. Long horizon, return = spending rate + inflation. Tax-exempt.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">FD</span>
+      <div>
+        <div class="t"><em class="hi">Foundations</em></div>
+        <div class="d">Charitable giving entity. Private foundations: phải spend ≥ 5%/yr (US IRS). Horizon có thể finite hoặc perpetual. Similar logic như endowment.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § DB vs DC — Global trend từ DB → DC (sponsor chuyển risk). CFA L1 test kỹ sự khác biệt: ai chịu risk, ai quyết định allocation, cash flow pattern. Endowment/foundation thường long horizon → tolerate volatility cao.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — PENSION/ENDOW</span>
+  </div>
+</section>
+
+
+<!-- 10 · INSTITUTIONAL — INSURANCE + SWF + BANKS + MF -->
+<section data-label="Institutional II" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Investor types · institutional</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Insurance, <em class="hi">SWF</em>, banks, mutual funds.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">LI</span>
+      <div>
+        <div class="t"><em class="hi">Life Insurance</em></div>
+        <div class="d">Liability predictable (actuarial). Long duration. Focus: bonds, immunization, steady income. Risk: low — policyholders expect claim payments.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PC</span>
+      <div>
+        <div class="t"><em class="hi">P&amp;C Insurance</em></div>
+        <div class="d">Liability lumpy, short-duration, cat risk. Portfolio: short-duration bonds, high liquidity. Underwriting cycle affects allocation.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SW</span>
+      <div>
+        <div class="t"><em class="hi">Sovereign Wealth</em> Funds</div>
+        <div class="d">Quốc gia quản lý external surplus (commodity, FX). Rất long horizon, cross-generation. Ví dụ: Norway NBIM, Singapore Temasek/GIC.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">BK</span>
+      <div>
+        <div class="t"><em class="hi">Banks</em> &amp; Mutual Funds</div>
+        <div class="d">Bank: manage excess reserves, short-term liquidity, regulatory-driven (Basel). Mutual fund: pool retail money, regulated vehicle — follow prospectus.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — INSURE/SWF/BK</span>
+  </div>
+</section>
+
+
+<!-- 11 · POOLED VEHICLES — MUTUAL + ETF -->
+<section data-label="Pooled I" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Pooled vehicles · retail</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Mutual funds</em> &amp; ETFs.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Mutual funds</div>
+      <dl>
+        <dt>Structure</dt>
+        <dd>Open-end (mainstream) · closed-end (fixed shares, trade on exchange) · exchange-traded</dd>
+        <dt>Pricing</dt>
+        <dd>Open-end: NAV end-of-day. Closed-end: market price ≠ NAV (premium/discount)</dd>
+        <dt>Fees</dt>
+        <dd>Expense ratio 0.5% – 1.5% · có thể có load (sales charge)</dd>
+        <dt>Regulation</dt>
+        <dd>Heavy (US: '40 Act) — daily NAV, transparency rules</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">ETFs (Exchange-Traded Funds)</div>
+      <dl>
+        <dt>Structure</dt>
+        <dd>Open-end nhưng trade trên exchange intraday như stock</dd>
+        <dt>Strategy</dt>
+        <dd>Phần lớn <em>passive</em> (track index) — SPY, VOO, QQQ</dd>
+        <dt>Fees</dt>
+        <dd>Very low (0.03% – 0.2%) — cost-efficient</dd>
+        <dt>Tax</dt>
+        <dd>In-kind creation/redemption → tax-efficient vs mutual fund</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Open-end vs closed-end — Open-end fund issue/redeem shares tại NAV mỗi ngày. Closed-end fund có số shares cố định, trade trên exchange giống stock → price có thể diverge khỏi NAV.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — MF/ETF</span>
+  </div>
+</section>
+
+
+<!-- 12 · POOLED VEHICLES — HF + SMA + PE/VC -->
+<section data-label="Pooled II" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Pooled vehicles · sophisticated</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Hedge funds</em>, SMAs, PE, VC.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">HF</span>
+      <div>
+        <div class="t"><em class="hi">Hedge Funds</em></div>
+        <div class="d">Accredited/qualified investors only. Flexible strategies (long/short, leverage, derivatives). Fees <b>"2-and-20"</b>: 2% mgmt + 20% performance. Lock-up.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SM</span>
+      <div>
+        <div class="t"><em class="hi">SMAs</em> · Separately Managed Accounts</div>
+        <div class="d">Client own securities directly (không share pool). Customization + tax optimization. Thường minimum $500k – $1M.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PE</span>
+      <div>
+        <div class="t"><em class="hi">Private Equity</em></div>
+        <div class="d">Invest vào private companies, buyouts, growth. Closed-end, 10-year life. Illiquid. J-curve pattern: early negative returns → later positive.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">VC</span>
+      <div>
+        <div class="t"><em class="hi">Venture Capital</em></div>
+        <div class="d">Subset of PE — early-stage startups. Higher risk, higher upside. Power-law returns (few winners drive fund return).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Accredited investor</span>
+    US: net worth &gt; $1M (excl. primary residence) hoặc income &gt; $200k/yr. Purpose: investor có đủ sophistication/wealth để hiểu &amp; chịu được risk của vehicle ít regulated.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — HF/SMA/PE</span>
+  </div>
+</section>
+
+
+<!-- 13 · ACTIVE VS PASSIVE -->
+<section data-label="Active vs Passive" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>13 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Management style</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Active</em> vs <em class="hi">Passive</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Passive management</div>
+      <dl>
+        <dt>Goal</dt>
+        <dd>Track a benchmark (S&amp;P 500, MSCI) — minimize tracking error</dd>
+        <dt>Assumption</dt>
+        <dd>Market efficient (EMH) — khó beat sau phí</dd>
+        <dt>Fees</dt>
+        <dd>Very low (0.03% – 0.2%) — index funds, ETFs</dd>
+        <dt>Turnover</dt>
+        <dd>Low — tax efficient</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Active management</div>
+      <dl>
+        <dt>Goal</dt>
+        <dd>Beat benchmark (generate alpha) bằng security selection/timing</dd>
+        <dt>Assumption</dt>
+        <dd>Market có inefficiencies — skill tạo value</dd>
+        <dt>Fees</dt>
+        <dd>Higher (0.5% – 2%+) — pay for research, expertise</dd>
+        <dt>Evidence</dt>
+        <dd>Most active managers underperform benchmark over 10+ yrs (SPIVA)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Smart beta — the middle ground</span>
+    Rules-based strategies tilt portfolio về <em>factors</em> đã được academic research xác nhận: <b>value</b>, <b>momentum</b>, <b>quality</b>, <b>low volatility</b>, <b>size</b>. Systematic như passive + factor exposure như active. Fee 0.2% – 0.5%.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — ACTIVE/PASSIVE</span>
+  </div>
+</section>
+
+
+<!-- 14 · TOP-DOWN VS BOTTOM-UP -->
+<section data-label="Top-down vs Bottom-up" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>14 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Selection style</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Top-down</em> vs <em class="hi">Bottom-up</em>.</h2>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Top-down — macro first</span>
+        <span class="step-body">Flow: <em>macro outlook → asset class → country/region → sector → individual security</em>. Economist/strategist-driven. Phù hợp tactical asset allocation.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Bottom-up — security first</span>
+        <span class="step-body">Flow: <em>individual company analysis → aggregate lên sector/portfolio</em>. Analyst-driven, focus fundamentals. Buffett-style value investing.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Combined approach</span>
+        <span class="step-body">Thực tế đa số firms dùng cả hai: top-down cho asset allocation, bottom-up cho security selection trong từng asset class.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § Asset allocation importance — Brinson studies cho thấy asset allocation (top-down layer) explain phần lớn return variance. Bottom-up selection quan trọng cross-sectional giữa managers, nhưng một portfolio mà allocation sai thì security picking giỏi cũng không cứu được.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — TOP/BOTTOM</span>
+  </div>
+</section>
+
+
+<!-- 15 · REBALANCING STRATEGIES -->
+<section data-label="Rebalancing" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>15 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Feedback · tactical</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Rebalancing</em> strategies.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Drift xảy ra khi asset classes perform khác nhau → portfolio weights lệch khỏi IPS targets. Rebalancing bring back to policy, enforce <em>"sell high, buy low"</em> discipline.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Calendar-based</div>
+      <dl>
+        <dt>Trigger</dt>
+        <dd>Cố định: quarterly, annually</dd>
+        <dt>Pros</dt>
+        <dd>Simple, predictable, easy to implement</dd>
+        <dt>Cons</dt>
+        <dd>Có thể rebalance khi không cần (drift nhỏ) hoặc chờ lâu trong market stress</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Threshold-based (percentage-range)</div>
+      <dl>
+        <dt>Trigger</dt>
+        <dd>Khi weight lệch ra ngoài band (vd. ±5% quanh target)</dd>
+        <dt>Pros</dt>
+        <dd>Reactive đến market moves, hiệu quả hơn</dd>
+        <dt>Cons</dt>
+        <dd>Transaction cost cao trong volatile periods, cần monitoring liên tục</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Best practice — combined</span>
+    Nhiều pension/endowment dùng <em>calendar + threshold</em>: check hàng tháng, rebalance nếu vượt band. Balance giữa discipline và flexibility.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — REBALANCE</span>
+  </div>
+</section>
+
+
+<!-- 16 · KEY TAKEAWAYS -->
+<section data-label="Recap" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>16 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap · before practice</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
+  </div>
+
+  <div class="takeaway-box" style="margin-top: 20px;">
+    <div class="tlabel">1 · Portfolio approach</div>
+    <div class="ttext">Diversification &gt; stock picking. Portfolio-level outcome mới là thứ client quan tâm. ρ &lt; 1 tạo <em>free risk reduction</em>.</div>
+  </div>
+
+  <div class="takeaway-box" style="margin-top: 14px;">
+    <div class="tlabel">2 · 3-step process</div>
+    <div class="ttext"><em>Planning (IPS)</em> → <em>Execution (SAA → selection → trade)</em> → <em>Feedback (monitor, rebalance, re-evaluate)</em>. Loop liên tục.</div>
+  </div>
+
+  <div class="takeaway-box" style="margin-top: 14px;">
+    <div class="tlabel">3 · Investors</div>
+    <div class="ttext">Individuals (taxable, life-cycle). Institutionals: DB vs DC pension, endowment (perpetual), foundation (5% rule), insurance (life vs P&amp;C), SWF, banks, mutual funds.</div>
+  </div>
+
+  <div class="takeaway-box" style="margin-top: 14px;">
+    <div class="tlabel">4 · Vehicles &amp; styles</div>
+    <div class="ttext">Mutual fund · ETF · hedge (2-and-20) · SMA · PE/VC. Active vs passive · smart beta · top-down vs bottom-up · rebalancing calendar/threshold.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — RECAP</span>
+  </div>
+</section>
+
+
+<!-- 17 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 EN — Investor Type ID -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Identify the <em class="hi">investor type</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A large university manages <strong>$8 billion</strong> of assets intended to fund scholarships and operating expenses <strong>in perpetuity</strong>. The entity is <strong>tax-exempt</strong>, has an <strong>indefinite time horizon</strong>, and typically spends about 4.5% of its asset base annually. Which investor type best describes this entity?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Defined benefit pension plan.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Endowment.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Life insurance company.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>University</mark>, <mark>perpetuity</mark>, <mark>tax-exempt</mark>, <mark>indefinite horizon</mark>, <mark>4.5% spending</mark>. Purpose: fund scholarships/operations.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">"University" + "perpetuity" + "scholarships" là signature của <em>endowment</em> (nonprofit education fund). Nếu là hospital/charity → foundation.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">DB pension có liability = future benefit payments cho retirees → horizon dài nhưng <em>finite</em> (không perpetual). Tax-deferred, không tax-exempt.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Life insurance liability = actuarial policy payouts. Taxable ở corporate level. Không tồn tại in perpetuity theo cùng cách endowment.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 DỊCH ĐỀ -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một đại học lớn quản lý <strong>$8 tỷ</strong> tài sản nhằm tài trợ học bổng và chi phí vận hành <strong>vĩnh viễn</strong>. Entity này <strong>tax-exempt</strong>, có <strong>indefinite time horizon</strong>, và thường spend khoảng 4.5% base tài sản mỗi năm. Investor type nào mô tả đúng nhất?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Defined benefit pension plan.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Endowment.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Life insurance company.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Endowment.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Endowment = nonprofit educational fund (university), <b>perpetual horizon</b>, <b>tax-exempt</b>, spending rule (~4-5%/yr) — khớp hoàn hảo với vignette. Return objective thường = spending rate + inflation + fees để preserve real value <em>in perpetuity</em>.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">DB pension có <em>defined liability</em> = future benefit payments cho employees về hưu. Horizon dài nhưng <em>finite</em> (finite number of retirees). Typically tax-deferred chứ không tax-exempt. University không có employee pension liability pattern này.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Life insurance liability = payout theo actuarial mortality tables. Duration long nhưng finite. Corporate entity thường taxable. Investment focus: immunization, duration match — rất khác endowment's equity-tilted perpetual approach.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Endowment signatures: <em>education/nonprofit</em>, <em>perpetuity</em>, <em>tax-exempt</em>, <em>spending rate ~4-5%</em>. Foundation tương tự nhưng charitable (không giới hạn giáo dục) và private foundation phải spend ≥ 5% (US IRS rule).</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 EN — Active vs Passive -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Active vs Passive <em class="hi">trade-off</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An advisor is evaluating two equity options for a cost-sensitive, long-horizon client: (i) an <strong>S&amp;P 500 index ETF</strong> with a 0.03% expense ratio, and (ii) an <strong>actively managed large-cap fund</strong> with a 0.85% expense ratio and a 5-year return that is 40 bps <em>below</em> the S&amp;P 500. Which statement <strong>best</strong> characterizes the trade-off?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">The active fund is preferable because active management always outperforms passive after fees.</span></li>
+    <li><span class="lbl">B</span><span class="opt">The passive ETF is preferable for this client: lower fees, and the active fund has failed to generate alpha net of fees.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Both are equivalent because expense ratios are irrelevant to long-term outcomes.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Cost-sensitive</mark>, <mark>long-horizon</mark>. ETF <mark>0.03%</mark> vs active <mark>0.85%</mark>. Active return <mark>−40 bps</mark> below benchmark.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Active fund <em>net</em> return = gross return − fees. Nếu gross ≈ benchmark, net = −85 bps vs benchmark → chưa kể fact là gross chính nó đã miss. Active không "always" beat — SPIVA studies cho thấy đa số underperform.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Fees compound — 0.82% khác biệt qua 30 năm = giảm cuối kỳ ~22% (rule of thumb). Long horizon khuếch đại fee drag.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">"Cost-sensitive" + "long horizon" → đặc trưng passive/ETF. Active chỉ justifiable nếu có <em>persistent skill</em>, mà ở đây evidence đã cho thấy không có.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 DỊCH ĐỀ -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một advisor đang đánh giá 2 lựa chọn equity cho client cost-sensitive, long-horizon: (i) <strong>S&amp;P 500 index ETF</strong> với expense ratio 0.03%, và (ii) <strong>actively managed large-cap fund</strong> expense ratio 0.85% và 5-year return <em>thấp hơn</em> S&amp;P 500 40 bps. Câu nào <strong>đúng nhất</strong> về trade-off?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Active fund tốt hơn vì active management luôn outperform passive sau phí.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Passive ETF tốt hơn với client này: phí thấp hơn, và active fund đã fail generate alpha net of fees.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Cả hai tương đương vì expense ratio không liên quan đến long-term outcomes.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Passive ETF.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Client profile (<em>cost-sensitive, long-horizon</em>) khớp với passive. Expense gap 82 bps là drag lớn, compound qua thời gian. Active fund đã fail beat benchmark (−40 bps pre-fee, nghĩa là net còn tệ hơn). Không có evidence về skill → không justify higher fee.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">"Active always outperforms" là sai về empirics. SPIVA &amp; Morningstar: phần lớn active managers underperform benchmark sau fees trên 10+ years. Active <em>có thể</em> beat, nhưng không luôn.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Fees <em>rất</em> liên quan long-term outcomes — fees compound đúng cách như returns. 0.82%/yr khác biệt qua 30 năm = vài chục % terminal wealth khác nhau. "Irrelevant" là sai.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Active justify được khi: (1) có evidence về <em>persistent skill</em>, (2) market segment có inefficiencies, (3) client chấp nhận tracking error. Cost-sensitive + long-horizon + no-skill-evidence → <em>passive</em> là default choice.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 EN — 3-step process ordering -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>26 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">3-step</em> ordering.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      According to the CFA Institute's portfolio management process, which of the following sequences of activities is <strong>correct</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Security selection → IPS drafting → Rebalancing → Asset allocation.</span></li>
+    <li><span class="lbl">B</span><span class="opt">IPS drafting → Strategic asset allocation → Security selection → Monitoring and rebalancing.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Rebalancing → Security selection → IPS drafting → Performance measurement.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 HINT + DỊCH ĐỀ + EXPLANATION (combined) -->
+<section data-label="Q3 Hint &amp; Answer" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.03</span>
+    <span class="rule"></span>
+    <span>27 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Hint &amp; Answer</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Correct sequence.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords &amp; Việt</span>
+    Process: <mark>Planning → Execution → Feedback</mark>. IPS phải trước asset allocation; asset allocation trước security selection; monitor/rebalance là <em>last</em>.
+  </div>
+  <div class="reasoning" style="margin-top: 18px;">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">B đúng thứ tự Planning → Execution → Feedback: (1) <b>IPS drafting</b> (Planning — định objectives/constraints), (2) <b>Strategic asset allocation</b> (Execution sub-1), (3) <b>Security selection</b> (Execution sub-2), (4) <b>Monitor và rebalance</b> (Feedback). Đúng chuẩn CFA textbook.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A &amp; C</div>
+      <div class="rtext">A đặt security selection TRƯỚC IPS → không thể: không biết client mục tiêu gì mà đã pick securities. C đặt rebalancing đầu tiên → không có portfolio để rebalance khi chưa có IPS. Cả hai violate sequence logic.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Ghi nhớ thứ tự: <em>Plan (IPS) → Execute (SAA → selection → trade) → Feedback (monitor → rebalance → re-evaluate)</em>. IPS luôn đầu tiên — không có IPS, mọi decision sau đều unanchored. Feedback close the loop, không đứng độc lập.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>PORTFOLIO · 06.03 — Q3 ANSWER</span>
+  </div>
+</section>
+
+
+<!-- 28 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>06.03 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 06.04 — Risk Management Framework</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>
