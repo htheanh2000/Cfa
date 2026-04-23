@@ -1,0 +1,1073 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Quant 02.06 — Simulation Methods</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Simulation<br>&amp; <em>Randomness.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 02 · Lesson 02.06 · Quantitative Methods</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 02 · Simulation methods for uncertainty</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Quant</dd></div>
+      <div><dt>Module</dt><dd>02</dd></div>
+      <div><dt>Lesson</dt><dd>02.06</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Monte Carlo · Bootstrap · Lognormal</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">06</div>
+    <div class="lbl">Simulation</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How random numbers<br>model <em>uncertainty.</em></h2>
+    <ul class="toc">
+      <li class="active">01 · Simulation concept — random numbers model outcomes</li>
+      <li>02 · Monte Carlo — 5 steps · applications</li>
+      <li>03 · Bootstrap — resampling empirical data</li>
+      <li>04 · Lognormal distribution — stock price modeling</li>
+      <li>05 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · WHAT IS SIMULATION -->
+<section data-label="What is simulation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Simulation · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What is <em class="hi">simulation</em>?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Simulation dùng <em>random numbers</em> + computer để mô phỏng outcome của các biến số không chắc chắn. Thay vì giải công thức analytical, ta chạy hàng nghìn scenarios và quan sát distribution.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Random inputs</em></div>
+        <div class="d">Tạo random numbers theo distribution đã chọn (normal, uniform, lognormal...). Là "hạt nhân" của simulation.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Model</em> / function</div>
+        <div class="d">Map inputs → output. Ví dụ option payoff, portfolio return, project NPV.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Many trials</em></div>
+        <div class="d">Lặp lại N lần (1k–100k). Càng nhiều trials, ước lượng càng ổn định (law of large numbers).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Output distribution</em></div>
+        <div class="d">Thống kê kết quả: mean, std, percentiles, VaR. Quyết định dựa trên distribution thay vì single point.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — CONCEPT</span>
+  </div>
+</section>
+
+
+<!-- 04 · WHY SIMULATION -->
+<section data-label="Why simulation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Motivation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Why <em class="hi">simulate</em>?</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ The problem</span>
+    Nhiều bài toán tài chính KHÔNG có closed-form solution: path-dependent options, complex portfolio paths, multi-factor risk. Analytical math bất lực → simulation là lối thoát.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Complex models — không giải được bằng tay</span>
+        <span class="step-body">Asian options, barrier options, portfolio với tương quan phức tạp. Simulation "brute-force" ra distribution.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Visualize distribution — không chỉ mean</span>
+        <span class="step-body">Mean đôi khi gây hiểu lầm. Simulation cho thấy tail risk, skewness, full shape of output.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Scenario analysis — what-if flexibility</span>
+        <span class="step-body">Thay input distribution → chạy lại ngay. Stress test, sensitivity analysis dễ dàng.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — WHY</span>
+  </div>
+</section>
+
+
+<!-- 05 · MONTE CARLO DEFINITION -->
+<section data-label="Monte Carlo def" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Monte Carlo · definition</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Monte Carlo</em> simulation.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Monte Carlo = tạo <em>many random scenarios</em> từ distribution được specify trước → tính output cho mỗi scenario → statistics (mean, VaR...) từ distribution của outputs.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Core idea</span>
+    <div class="eq"><span class="var">E[f(X)]</span> ≈ (1/<span class="var">N</span>) · Σ <span class="var">f(X<sub>i</sub>)</span>, với <span class="var">X<sub>i</sub></span> ~ <span class="var">F(x)</span></div>
+    <div class="note"><b>N</b> = số trials · <b>X<sub>i</sub></b> = random draw thứ i từ distribution <b>F</b> · <b>f</b> = model mapping input → output. Khi N → ∞, average → true expected value.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Tên gọi — "Monte Carlo" từ casino ở Monaco, gợi ý tính chất random. Stanislaw Ulam đặt tên trong Manhattan Project thập niên 1940 khi simulate neutron diffusion.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — MC DEF</span>
+  </div>
+</section>
+
+
+<!-- 06 · MONTE CARLO — 5 STEPS -->
+<section data-label="MC 5 steps" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Monte Carlo · procedure</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">5 steps</em>.</h2>
+  </div>
+
+  <ol class="num-list tight flow" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">1 · Specify variables &amp; distributions</span>
+        <span class="step-body">Xác định input variables (stock price, interest rate, vol...) và distribution của chúng (normal, lognormal, t...).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">2 · Generate random inputs</span>
+        <span class="step-body">Dùng RNG (random number generator) draw N samples từ distribution đã chọn.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">3 · Compute output per trial</span>
+        <span class="step-body">Plug random input vào model. Ví dụ option payoff = max(S<sub>T</sub> − K, 0); portfolio value.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">4 · Repeat N times (e.g. 10,000)</span>
+        <span class="step-body">Càng nhiều trials, standard error càng nhỏ (SE ∝ 1/√N). N = 10k là typical starting point.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">5 · Analyze output distribution</span>
+        <span class="step-body">Tính mean, std, percentiles (5%, 95%), VaR. Visualize histogram. Quyết định dựa trên full distribution.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — 5 STEPS</span>
+  </div>
+</section>
+
+
+<!-- 07 · MC APPLICATIONS -->
+<section data-label="MC applications" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Monte Carlo · applications</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Where we <em class="hi">use it</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Option pricing</em></div>
+        <div class="d">Alternative cho Black-Scholes khi option path-dependent (Asian, barrier, lookback). Simulate S<sub>t</sub> path → discount payoff trung bình.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Value at Risk (VaR)</em></div>
+        <div class="d">Simulate portfolio returns → lấy percentile 5% → VaR. Captures nonlinear payoff (options, structured products).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Retirement planning</em></div>
+        <div class="d">Simulate portfolio value N năm với random returns → probability of ruin, expected balance at age 65.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Capital budgeting</em></div>
+        <div class="d">NPV với uncertain cash flows. Input distributions cho revenue, cost, discount rate → distribution of NPV.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Rule of thumb — Nếu model có ≥ 2 random variables với tương quan phức tạp, hoặc payoff phi tuyến, Monte Carlo thường là công cụ chuẩn. Black-Scholes chỉ work cho European vanilla options.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — APPS</span>
+  </div>
+</section>
+
+
+<!-- 08 · BOOTSTRAP -->
+<section data-label="Bootstrap" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Bootstrap · method</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">bootstrap</em> method.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Bootstrap = <em>resample from historical data with replacement</em> để ước lượng sampling distribution. <em>Non-parametric</em> — không giả định distribution shape của data.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Procedure</span>
+    Cho dataset với n observations. (1) Draw n samples <em>with replacement</em> từ dataset gốc → tạo 1 bootstrap sample. (2) Tính statistic quan tâm (mean, median, Sharpe) trên bootstrap sample. (3) Lặp lại B lần (B = 1k–10k). (4) Distribution của B statistics = ước lượng sampling distribution.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">With replacement — key feature</span>
+        <span class="step-body">Một observation có thể xuất hiện nhiều lần trong 1 bootstrap sample, hoặc hoàn toàn không xuất hiện. Đây là điểm khác biệt với permutation.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Confidence interval — empirical percentile</span>
+        <span class="step-body">95% CI cho mean = (2.5 percentile, 97.5 percentile) của distribution các bootstrap means. Không cần assume normal.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — BOOTSTRAP</span>
+  </div>
+</section>
+
+
+<!-- 09 · BOOTSTRAP VS MONTE CARLO -->
+<section data-label="Bootstrap vs MC" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Comparison</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Bootstrap <em class="hi">vs</em> Monte Carlo.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Bootstrap</div>
+      <dl>
+        <dt>Source</dt>
+        <dd>Empirical data — resample từ historical observations</dd>
+        <dt>Assumption</dt>
+        <dd>Non-parametric — KHÔNG giả định distribution shape</dd>
+        <dt>When</dt>
+        <dd>Có historical data tốt, không biết distribution lý thuyết</dd>
+        <dt>Risk</dt>
+        <dd>Past data có thể không đại diện cho future (regime change)</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Monte Carlo</div>
+      <dl>
+        <dt>Source</dt>
+        <dd>Theoretical distribution — draw từ F(x) chọn trước</dd>
+        <dt>Assumption</dt>
+        <dd>Parametric — assume shape (normal, lognormal, t...)</dd>
+        <dt>When</dt>
+        <dd>Biết (hoặc giả định) distribution; ít/không có historical data</dd>
+        <dt>Risk</dt>
+        <dd>Model risk — distribution giả định có thể sai</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Trade-off — Bootstrap tránh assumption sai về distribution, nhưng bị giới hạn bởi data thực tế. Monte Carlo flexible hơn (có thể simulate tail events không có trong data), nhưng nếu distribution sai → output sai hệ thống.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — BS vs MC</span>
+  </div>
+</section>
+
+
+<!-- 10 · LOGNORMAL DISTRIBUTION -->
+<section data-label="Lognormal" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Lognormal · distribution</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">lognormal</em> distribution.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Random variable <em>X</em> lognormal ⟺ <em>ln(X)</em> normal. Nghĩa là log của X phân phối chuẩn. Dùng cho stock prices vì price luôn &gt; 0 (không thể âm).
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Definition</span>
+    <div class="eq">Nếu <span class="var">ln(X)</span> ~ <span class="var">N(μ, σ²)</span>  →  <span class="var">X</span> ~ <span class="var">Lognormal(μ, σ²)</span></div>
+    <div class="note"><b>μ, σ</b> là mean và std của <em>log</em>, KHÔNG phải của X. Support: X ∈ (0, ∞). Right-skewed với long right tail.</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Why stock prices? — non-negative</span>
+        <span class="step-body">Stock price không thể âm (limited liability). Normal distribution cho phép X &lt; 0 → không phù hợp. Lognormal tự nhiên enforces X &gt; 0.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Continuously compounded returns — normal</span>
+        <span class="step-body">r = ln(S<sub>t</sub>/S<sub>t−1</sub>) thường được giả định ~ Normal. Khi đó S<sub>t</sub> = S<sub>t−1</sub>·exp(r) → lognormal.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Right-skewed — limited downside, unlimited upside</span>
+        <span class="step-body">Đuôi phải dài: stock có thể tăng gấp 10x nhưng chỉ giảm tối đa đến 0 (−100%). Lognormal capture asymmetry này.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — LOGNORMAL</span>
+  </div>
+</section>
+
+
+<!-- 11 · GEOMETRIC BROWNIAN MOTION -->
+<section data-label="GBM" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Stock price model</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Geometric</em> Brownian Motion.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      GBM là model chuẩn cho stock price trong Black-Scholes và Monte Carlo. Price process có drift <em>μ</em> và volatility <em>σ</em>, log-returns là normal.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Discrete form (simulation-friendly)</span>
+    <div class="eq"><span class="var">S<sub>t+Δt</sub></span> = <span class="var">S<sub>t</sub></span> · exp[(<span class="var">μ</span> − ½<span class="var">σ²</span>)·<span class="var">Δt</span> + <span class="var">σ</span>·√<span class="var">Δt</span>·<span class="var">Z</span>]</div>
+    <div class="note"><b>Z</b> ~ N(0,1) standard normal draw · <b>μ</b> drift · <b>σ</b> volatility · <b>Δt</b> time step. Mỗi step: draw Z mới → update S. Lặp T/Δt bước → 1 price path.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Monte Carlo option pricing — Simulate 10k price paths với GBM → tính payoff tại maturity cho mỗi path → discount → average = option price. Flexible cho mọi payoff structure.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — GBM</span>
+  </div>
+</section>
+
+
+<!-- 12 · VAR EXAMPLE -->
+<section data-label="VaR example" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk management · example</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Simulation for <em class="hi">VaR</em>.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Scenario · 1-day 95% VaR</span>
+    Portfolio $10M với daily return ~ N(0.05%, 1.5%). Hỏi: mức lỗ trong ngày xấu nhất trong 100 ngày (95% VaR)?
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Step 1 — Simulate 10,000 daily returns</span>
+        <span class="step-body">Draw r<sub>i</sub> ~ N(0.0005, 0.015) cho i = 1..10,000. Tính P&amp;L<sub>i</sub> = $10M × r<sub>i</sub>.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Step 2 — Sort &amp; find 5 percentile</span>
+        <span class="step-body">Sort P&amp;L ascending. Lấy giá trị ở vị trí 5% (thứ 500). Đó là loss threshold.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Step 3 — Interpret</span>
+        <span class="step-body">95% VaR ≈ $10M × (0.0005 − 1.645×0.015) ≈ −$241k. Simulation trả về số tương tự với sampling error nhỏ.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § Why simulation cho VaR? — Với portfolio có options/nonlinear payoffs, analytical VaR sai. Simulation capture nonlinearity chính xác.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — VaR EX</span>
+  </div>
+</section>
+
+
+<!-- 13 · PROS -->
+<section data-label="Pros" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>13 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Simulation · advantages</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Pros</em> of simulation.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">+1</span>
+      <div>
+        <div class="t"><em class="hi">Handle complex models</em></div>
+        <div class="d">Path-dependent options, multi-factor risk, regime switching. Analytical math đầu hàng, simulation vẫn work.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">+2</span>
+      <div>
+        <div class="t"><em class="hi">Full distribution</em></div>
+        <div class="d">Không chỉ mean — cả std, skew, kurtosis, percentiles, VaR, CVaR. Decision based on full risk profile.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">+3</span>
+      <div>
+        <div class="t"><em class="hi">Scenario analysis</em></div>
+        <div class="d">Change input distribution → rerun trong phút. Stress test crisis scenarios dễ dàng.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">+4</span>
+      <div>
+        <div class="t"><em class="hi">Intuitive visualization</em></div>
+        <div class="d">Histogram dễ hiểu hơn analytical formulas. Truyền đạt risk cho stakeholder không có background quant.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — PROS</span>
+  </div>
+</section>
+
+
+<!-- 14 · CONS -->
+<section data-label="Cons" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>14 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Simulation · limitations</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Cons</em> &amp; pitfalls.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">−1</span>
+      <div>
+        <div class="t"><em class="hi">Garbage-in, garbage-out</em></div>
+        <div class="d">Input distribution sai → output sai hệ thống. Simulation KHÔNG tự sửa lỗi assumption.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">−2</span>
+      <div>
+        <div class="t"><em class="hi">Computationally expensive</em></div>
+        <div class="d">Cần N lớn (10k–1M) cho tail accuracy. Complex path simulations tốn CPU/time.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">−3</span>
+      <div>
+        <div class="t"><em class="hi">Model risk</em></div>
+        <div class="d">Assumption về distribution (ví dụ normal) có thể fail trong crisis. Fat tails bị underestimate.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">−4</span>
+      <div>
+        <div class="t"><em class="hi">Pseudo-randomness</em></div>
+        <div class="d">RNG không phải "random" thực. Seeds, period, correlation của RNG có thể ảnh hưởng kết quả.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Key insight — Simulation là công cụ ước lượng, không phải "sự thật". Kết quả phụ thuộc hoàn toàn vào quality của inputs. CFA curriculum nhấn mạnh "model risk" như critical pitfall.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — CONS</span>
+  </div>
+</section>
+
+
+<!-- 15 · TAKEAWAYS -->
+<section data-label="Key takeaways" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>15 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Summary</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">take</em>.</h2>
+  </div>
+
+  <div class="take" style="margin-top: 16px;">
+    <ul>
+      <li><b>Simulation</b> = random numbers + computer để model uncertain outcomes.</li>
+      <li><b>Monte Carlo</b> = draw từ <em>theoretical distribution</em>. 5 steps: specify → generate → compute → repeat → analyze.</li>
+      <li><b>Bootstrap</b> = resample <em>historical data with replacement</em>. Non-parametric.</li>
+      <li><b>Lognormal</b> cho stock prices: ln(P) ~ Normal → P &gt; 0, right-skewed.</li>
+      <li><b>Applications</b>: option pricing, VaR, retirement, capital budgeting.</li>
+      <li><b>Pitfall #1</b>: GIGO — input sai thì output sai. Model risk.</li>
+    </ul>
+  </div>
+
+  <div class="takeaway-box" style="margin-top: 20px;">
+    <div class="tlabel">Exam-ready rule</div>
+    <div class="ttext">Nếu đề hỏi "use historical data to estimate sampling distribution" → <em>bootstrap</em>. Nếu đề cho distribution parameters (μ, σ của normal) và yêu cầu simulate outcomes → <em>Monte Carlo</em>. Nếu đề nói "stock price" + "non-negative" → <em>lognormal</em>.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — TAKEAWAYS</span>
+  </div>
+</section>
+
+
+<!-- 16 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 EN — MC vs Bootstrap -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>17 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Monte Carlo <em class="hi">vs</em> Bootstrap.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst wants to estimate the sampling distribution of the mean return of a hedge fund, using <strong>only 120 monthly historical returns</strong>. She does <strong>not</strong> want to assume the returns follow a normal distribution. Which simulation method is <strong>most appropriate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Monte Carlo simulation drawing from a fitted normal distribution.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Bootstrap resampling with replacement from the 120 observed returns.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Monte Carlo with a lognormal distribution fitted to the sample mean and variance.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>120 historical returns</mark>. <mark>Does NOT want to assume</mark> distribution shape. Asking for <mark>sampling distribution of mean</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">"Does not want to assume distribution" → cần <em>non-parametric</em> method. Monte Carlo là parametric (phải chọn distribution).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Có <em>historical data thực tế</em> (120 months) → bootstrap resample từ đó. Không cần giả định normal/lognormal.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Bootstrap procedure: draw 120 returns <em>with replacement</em> → tính mean → lặp B lần → distribution của B means = sampling distribution.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Analyst muốn ước lượng sampling distribution của mean return của một hedge fund, chỉ dùng <strong>120 monthly returns lịch sử</strong>. Cô <strong>không</strong> muốn giả định returns là normal. Phương pháp simulation nào <strong>phù hợp nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Monte Carlo draw từ normal distribution fit vào data.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Bootstrap resample with replacement từ 120 returns quan sát.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Monte Carlo với lognormal fit theo sample mean và variance.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Bootstrap.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Bootstrap là <b>non-parametric</b> — không giả định distribution shape, phù hợp điều kiện "does not want to assume normality". Resample with replacement từ 120 returns thực tế → tính mean mỗi resample → distribution của means = sampling distribution ước lượng empirically.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Monte Carlo từ normal <em>giả định</em> returns là normal — vi phạm requirement của analyst. Đây chính xác là điều cô muốn tránh.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Lognormal cũng là một distribution giả định. Hedge fund returns (không phải prices) có thể âm → lognormal không phù hợp. Và vẫn là parametric, vẫn vi phạm requirement.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext"><em>Bootstrap</em> = resample historical data, non-parametric. <em>Monte Carlo</em> = draw từ theoretical distribution, parametric. Khi có data thực + không muốn assume distribution → bootstrap. Khi biết/giả định distribution + cần simulate rare events → Monte Carlo.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 EN — Lognormal for stock prices -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Why <em class="hi">lognormal</em>?</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      In a Monte Carlo simulation of stock prices for option pricing, the analyst models prices as <strong>lognormally distributed</strong> rather than normally distributed. The <strong>primary reason</strong> is that the lognormal distribution:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">has a thinner right tail, consistent with observed stock return behavior.</span></li>
+    <li><span class="lbl">B</span><span class="opt">is bounded below by zero, preventing the model from generating negative stock prices.</span></li>
+    <li><span class="lbl">C</span><span class="opt">has zero skewness and zero excess kurtosis, satisfying the Black-Scholes assumptions.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Stock prices</mark>. <mark>Lognormal instead of normal</mark>. Primary reason. Monte Carlo for option pricing.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Stock price không thể âm (limited liability + P &gt; 0 in reality). Nếu dùng normal, simulation có thể draw negative prices → vô lý.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Lognormal support là (0, ∞) — bounded below by 0. Đây là property "tự nhiên" cho prices.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Lognormal là <em>right-skewed</em> với <em>thick</em> right tail, không phải thin. Và lognormal có positive skew + excess kurtosis, KHÔNG phải zero → loại A và C.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Trong Monte Carlo simulation cho stock prices (mục đích option pricing), analyst model giá theo <strong>lognormal distribution</strong> thay vì normal. <strong>Lý do chính</strong> là lognormal distribution:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">có right tail mỏng hơn, phù hợp với hành vi stock return thực tế.</span></li>
+    <li><span class="lbl">B</span><span class="opt">bị giới hạn dưới bởi 0, ngăn model tạo ra giá âm.</span></li>
+    <li><span class="lbl">C</span><span class="opt">có skewness và excess kurtosis bằng 0, thỏa mãn giả định Black-Scholes.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Bounded by zero.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Lognormal có support <b>(0, ∞)</b> — giá luôn dương. Đây là property quan trọng nhất cho stock price modeling. Stock price không thể âm (limited liability). Nếu dùng normal, simulation sẽ tạo negative prices (phi thực tế); lognormal tự nhiên enforce P &gt; 0.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Lognormal thực ra có right tail <em>dày hơn</em> (thicker, không phải thinner) normal. Đây là một lý do phụ cho việc dùng lognormal (capture large price jumps), nhưng primary reason vẫn là non-negativity. Ngoài ra "thinner right tail" sai về mặt toán học.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Lognormal có <em>positive skew</em> và <em>excess kurtosis &gt; 0</em>, KHÔNG phải zero. Distribution có zero skew + zero kurtosis là normal. Và Black-Scholes giả định log-returns normal (tương đương prices lognormal), không phải skew/kurtosis = 0.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Stock prices → <em>lognormal</em> vì (1) non-negative, (2) right-skewed (upside unbounded, downside capped at 0), (3) ln(Price) ~ Normal matches continuously compounded returns assumption. Returns (not prices) có thể modeled as normal.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 EN — Limitations / Model risk -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Simulation <em class="hi">limitation</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A risk manager uses Monte Carlo simulation with <strong>100,000 trials</strong> to estimate the 1-day 99% VaR of a portfolio, <strong>assuming returns are normally distributed</strong> with the historical mean and variance. During a market crisis, the realized loss far exceeds the estimated VaR. The <strong>most likely</strong> reason is:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">The number of trials (100,000) was insufficient; the sampling error dominates.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Model risk — the normal distribution assumption underestimates tail risk because actual returns exhibit fat tails.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Bootstrap would have produced a smaller VaR estimate and therefore a smaller loss.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>26 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>100,000 trials</mark>. <mark>Assuming normal</mark>. <mark>Crisis</mark>. Realized loss <mark>far exceeds VaR</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">100k trials là quá đủ cho 99% VaR — sampling error rất nhỏ. Loại A (sampling không phải vấn đề).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Crisis returns thực tế có <em>fat tails</em> (excess kurtosis). Normal distribution underestimate probability của extreme losses → VaR bị thấp hơn reality.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Đây là <em>model risk</em> — assumption về distribution sai (normal thay vì fat-tailed như t-distribution). GIGO: input sai → output sai, bất kể N lớn bao nhiêu.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 Dịch đề + EXPLANATION (combined) -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>27 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Risk manager dùng Monte Carlo với <strong>100,000 trials</strong> để ước lượng 1-day 99% VaR của portfolio, <strong>giả định returns normal</strong> với historical mean và variance. Trong crisis thị trường, loss thực tế <strong>vượt xa</strong> VaR ước lượng. <strong>Lý do khả dĩ nhất</strong>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">100,000 trials không đủ; sampling error chi phối.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Model risk — normal assumption underestimate tail risk vì returns thực tế có fat tails.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Bootstrap sẽ cho VaR nhỏ hơn và loss nhỏ hơn.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.06</span>
+    <span class="rule"></span>
+    <span>28 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Model risk.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext"><b>Model risk</b> là root cause. Normal distribution có thin tails → probability của extreme moves quá thấp so với thực tế. Actual returns có <em>fat tails</em> (excess kurtosis &gt; 0), đặc biệt trong crisis. Dù N = 100k, simulation chỉ "đúng" với model — và model sai thì output sai. GIGO nguyên tắc cốt lõi.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">100,000 trials là quá đủ. Standard error of VaR estimate ∝ 1/√N → ở N = 100k, SE rất nhỏ. Sampling error không phải vấn đề chính ở đây. Tăng N lên 1M cũng không giải quyết — vì model wrong.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Bootstrap không "cho VaR nhỏ hơn" — thường ngược lại, bootstrap capture fat tails trong historical data tốt hơn normal MC. Và VaR nhỏ hơn KHÔNG làm loss nhỏ hơn — loss thực tế do market quyết định, VaR chỉ là prediction. Câu này sai logic.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext"><em>Model risk</em> là pitfall lớn nhất của simulation. Normal distribution underestimate tail events (Black Monday, 2008, COVID crash). Giải pháp: dùng fat-tailed distribution (Student t, mixture), hoặc bootstrap từ historical data bao gồm crisis periods. Tăng N không fix được assumption sai.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.06 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 29 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>02.06 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 02.07 — Estimation and Inference</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

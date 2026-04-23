@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Econ 03.06 — International Trade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">International<br><em>Trade.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 03 · Lesson 03.06 · Economics</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 06 · Trade, barriers &amp; Balance of Payments</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Econ</dd></div>
+      <div><dt>Module</dt><dd>06</dd></div>
+      <div><dt>Lesson</dt><dd>03.06</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Comparative advantage · Tariffs · BoP</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">06</div>
+    <div class="lbl">Trade theory</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>Why countries <em>trade</em><br>và ai được lợi.</h2>
+    <ul class="toc">
+      <li class="active">01 · Benefits of trade — specialization &amp; consumer choice</li>
+      <li>02 · Absolute vs comparative advantage — Ricardo</li>
+      <li>03 · Heckscher-Ohlin — factor endowments</li>
+      <li>04 · Trade barriers — tariff, quota, VER, subsidy, NTB</li>
+      <li>05 · Trade agreements — WTO, FTA, customs/common/monetary union</li>
+      <li>06 · Balance of Payments — CA + KA + FA = 0</li>
+      <li>07 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · BENEFITS OF TRADE -->
+<section data-label="Benefits of trade" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Trade · benefits</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Why <em class="hi">trade</em>?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Trade giữa các quốc gia tạo ra <em>gains from trade</em> cho cả hai bên — không phải zero-sum. Bốn lợi ích cốt lõi mà CFA L1 thường hỏi.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Specialization</em></div>
+        <div class="d">Mỗi country tập trung vào good nó sản xuất hiệu quả nhất → tổng output thế giới tăng lên.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Economies of scale</em></div>
+        <div class="d">Thị trường toàn cầu lớn hơn → sản xuất lớn hơn → average cost giảm → giá thấp hơn cho tất cả.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Consumer choice</em></div>
+        <div class="d">Consumer tiếp cận đa dạng hàng hoá, brand, chất lượng. Welfare tăng qua variety.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Competition</em></div>
+        <div class="d">Foreign firms tạo áp lực cạnh tranh → domestic firms phải innovate, cut cost. Productivity tăng.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — BENEFITS</span>
+  </div>
+</section>
+
+
+<!-- 04 · ABSOLUTE ADVANTAGE -->
+<section data-label="Absolute advantage" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Trade theory · Adam Smith</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Absolute</em> advantage.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Adam Smith (1776, <em>Wealth of Nations</em>) — một country có <b>absolute advantage</b> khi dùng cùng input sản xuất được nhiều output hơn country khác.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Definition</span>
+    Country A có absolute advantage trong sản xuất good X nếu A sản xuất được NHIỀU X hơn với CÙNG lượng lao động / tài nguyên — hoặc sản xuất được cùng lượng X với ÍT input hơn.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Example — 1 hour labor</span>
+        <span class="step-body">Country A sản xuất 10 cái áo/giờ; Country B sản xuất 5 cái áo/giờ → A có absolute advantage về <em>shirts</em>.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Limitation của Smith</span>
+        <span class="step-body">Nếu A có absolute advantage ở <b>MỌI</b> goods (năng suất cao hơn B mọi thứ) → Smith implies A không cần trade với B. <em>Sai!</em> Ricardo sửa khái niệm này.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — ABS ADV</span>
+  </div>
+</section>
+
+
+<!-- 05 · COMPARATIVE ADVANTAGE CONCEPT -->
+<section data-label="Comparative advantage" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Trade theory · David Ricardo</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Comparative</em> advantage.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      David Ricardo (1817) — trade vẫn <em>có lợi cho cả hai</em> ngay cả khi một country có absolute advantage ở MỌI goods. Key insight: <b>opportunity cost</b>.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Definition</span>
+    Country có <b>comparative advantage</b> trong good X nếu sản xuất X có <em>opportunity cost thấp hơn</em> country khác. Opportunity cost = số lượng good khác phải hy sinh để sản xuất 1 unit X.
+  </div>
+
+  <div class="formula-box" style="margin-top: 20px;">
+    <span class="fmt-label">§ Opportunity cost</span>
+    <div class="eq"><span class="var">OC</span>(X) = <span class="var">ΔY</span> / <span class="var">ΔX</span> = số unit Y hy sinh để được 1 unit X</div>
+    <div class="note">Rule: specialize in good có OC thấp. Trade partner specialize in good kia. Cả hai gain từ trade.</div>
+  </div>
+
+  <div class="take" style="margin-top: 20px;">
+    Key insight — Comparative advantage dựa trên <em>relative</em> efficiency, không phải absolute. Mọi country LUÔN có comparative advantage ở một good nào đó (trừ khi OC ratio y hệt nhau).
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — COMP ADV</span>
+  </div>
+</section>
+
+
+<!-- 06 · COMPARATIVE ADVANTAGE WORKED EXAMPLE -->
+<section data-label="Comp adv example" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Comp adv · worked example</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">2 countries × <em class="hi">2 goods</em>.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Scenario — Output per 1 hour labor</span>
+    <b>Vietnam</b>: 20 shirts <em>hoặc</em> 4 phones. <b>Korea</b>: 30 shirts <em>hoặc</em> 12 phones. Korea có absolute advantage ở CẢ HAI goods. Should they trade?
+  </div>
+
+  <div class="formula-box" style="margin-top: 18px;">
+    <span class="fmt-label">§ Step 1 — Opportunity costs</span>
+    <div class="eq"><span class="var">VN</span>: 1 phone = 20/4 = <b>5 shirts</b>  ·  <span class="var">KR</span>: 1 phone = 30/12 = <b>2.5 shirts</b></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">VN</span>: 1 shirt = 4/20 = <b>0.2 phones</b>  ·  <span class="var">KR</span>: 1 shirt = 12/30 = <b>0.4 phones</b></div>
+    <div class="note">Korea có OC thấp hơn cho <em>phones</em> (2.5 &lt; 5). Vietnam có OC thấp hơn cho <em>shirts</em> (0.2 &lt; 0.4).</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Step 2 — Specialize &amp; trade</span>
+    <div class="eq"><span class="var">KR</span> → specialize <b>phones</b>  ·  <span class="var">VN</span> → specialize <b>shirts</b></div>
+    <div class="note">Trade ratio nằm giữa 2 OC (ví dụ 1 phone = 3.5 shirts) → cả hai gain so với autarky. Total world output tăng.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — COMP EX</span>
+  </div>
+</section>
+
+
+<!-- 07 · HECKSCHER-OHLIN -->
+<section data-label="Heckscher-Ohlin" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Trade theory · factor endowments</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Heckscher-Ohlin</em> theorem.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Ricardo giải thích <em>tại sao</em> trade. H-O (1919-1933) giải thích <em>pattern</em> của trade — country nào xuất khẩu gì — dựa trên <b>factor endowment</b>.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Theorem</span>
+    Country sẽ <b>export</b> good mà sản xuất dùng nhiều factor <em>abundant</em> của nước đó; <b>import</b> good dùng nhiều factor <em>scarce</em>.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Labor-abundant → labor-intensive exports</span>
+        <span class="step-body">Vietnam, Bangladesh nhiều lao động rẻ → xuất khẩu textile, garment, electronics assembly (labor-intensive).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Capital-abundant → capital-intensive exports</span>
+        <span class="step-body">Germany, Japan nhiều capital &amp; technology → xuất khẩu machinery, cars, precision equipment.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Land-abundant → land-intensive exports</span>
+        <span class="step-body">US, Australia nhiều đất đai → xuất khẩu agricultural products, minerals, beef.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — H-O</span>
+  </div>
+</section>
+
+
+<!-- 08 · TRADE BARRIERS OVERVIEW -->
+<section data-label="Trade barriers" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Trade barriers · overview</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">5 types of <em class="hi">barriers</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Government áp dụng trade restrictions để protect domestic industry, revenue, hoặc political goals. Mỗi công cụ có welfare impact khác nhau.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">T</span>
+      <div>
+        <div class="t"><em class="hi">Tariff</em></div>
+        <div class="d">Import tax — raises domestic price, reduces imports, tạo revenue cho government.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">Q</span>
+      <div>
+        <div class="t"><em class="hi">Quota</em></div>
+        <div class="d">Quantity limit — import không được vượt quá X units. Giá tăng tương tự tariff nhưng <em>không có revenue</em> cho govt.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">V</span>
+      <div>
+        <div class="t"><em class="hi">VER</em></div>
+        <div class="d">Voluntary Export Restraint — exporter "tự nguyện" giới hạn (thường do political pressure). Ví dụ: Japan giới hạn car xuất sang US 1980s.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">S</span>
+      <div>
+        <div class="t"><em class="hi">Export subsidy</em></div>
+        <div class="d">Government trả tiền/giảm thuế cho exporter → lower cost → dễ cạnh tranh quốc tế. Distorts trade.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 16px;">
+    § <b>Non-Tariff Barriers (NTBs)</b> — Regulations, product standards, licensing requirements, customs delays. Khó quantify nhưng rất phổ biến (EU food standards, US FDA drug approval).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — BARRIERS</span>
+  </div>
+</section>
+
+
+<!-- 09 · TARIFF vs QUOTA COMPARE -->
+<section data-label="Tariff vs quota" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Barriers · comparison</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Tariff</em> vs Quota.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Tariff — import tax</div>
+      <dl>
+        <dt>Mechanism</dt>
+        <dd>Tax mỗi unit import → giá nội địa = giá thế giới + tariff</dd>
+        <dt>Govt revenue</dt>
+        <dd>Có — tariff × số unit imported</dd>
+        <dt>Quantity</dt>
+        <dd>Imports giảm (price effect), nhưng không có hard cap</dd>
+        <dt>Transparency</dt>
+        <dd>Rõ ràng — posted rate</dd>
+        <dt>Flexibility</dt>
+        <dd>Imports tự điều chỉnh theo demand</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Quota — quantity limit</div>
+      <dl>
+        <dt>Mechanism</dt>
+        <dd>Giới hạn số unit imported ≤ Q* — scarcity đẩy giá lên</dd>
+        <dt>Govt revenue</dt>
+        <dd>KHÔNG — "quota rent" chảy về importer được cấp license</dd>
+        <dt>Quantity</dt>
+        <dd>Hard cap — imports không vượt Q* bất kể demand</dd>
+        <dt>Transparency</dt>
+        <dd>Opaque — allocation của license có thể corrupt</dd>
+        <dt>Flexibility</dt>
+        <dd>Rigid — demand shock không được đáp ứng</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Same price effect — Với cùng mức giảm imports, tariff và quota nâng domestic price giống nhau. Khác biệt: <em>ai nhận khoản chênh lệch</em>. Tariff → govt. Quota → license holder (quota rent).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — T vs Q</span>
+  </div>
+</section>
+
+
+<!-- 10 · WELFARE ANALYSIS / DWL -->
+<section data-label="Welfare DWL" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Welfare · deadweight loss</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">DWL</em> from barriers.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Như trong 03.01 — bất kỳ wedge nào giữa supply &amp; demand price đều tạo <b>deadweight loss</b>. Trade barriers là một ví dụ điển hình.
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Consumer surplus giảm</span>
+        <span class="step-body">Domestic consumer trả giá cao hơn và mua ít hơn. Loss này lớn hơn các gain khác cộng lại.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Producer surplus tăng</span>
+        <span class="step-body">Domestic producers bán với giá cao hơn → transfer từ consumer sang producer. Đây là lý do industry lobby for protection.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Govt revenue (chỉ tariff)</span>
+        <span class="step-body">Tariff: govt thu tax. Quota: revenue này biến mất (hoặc chảy về quota holders / foreign exporters).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Deadweight loss = net welfare loss</span>
+        <span class="step-body">CS loss − (PS gain + Govt revenue) = DWL &gt; 0. Society tổng thể worse off. Quota DWL &gt; Tariff DWL (vì mất luôn revenue).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — DWL</span>
+  </div>
+</section>
+
+
+<!-- 11 · TRADE AGREEMENTS / BLOCS -->
+<section data-label="Trade agreements" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Agreements · integration ladder</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Trade blocs</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CFA L1 test thứ tự integration từ thấp đến cao: FTA → Customs Union → Common Market → Monetary Union → (Full Economic Union).
+    </p>
+  </div>
+
+  <div class="flow" style="margin-top: 16px;">
+    <div class="step"><div class="lab">Level 1</div><div class="txt"><b>FTA / PTA</b><br>Free Trade Area — loại tariff giữa members. External tariffs do từng country tự quyết. Ví dụ: NAFTA/USMCA, AFTA.</div></div>
+    <div class="step"><div class="lab">Level 2</div><div class="txt"><b>Customs Union</b><br>FTA + <em>common external tariff</em>. Members áp dụng cùng tariff với non-members. Ví dụ: Mercosur.</div></div>
+    <div class="step"><div class="lab">Level 3</div><div class="txt"><b>Common Market</b><br>Customs Union + free movement of <em>labor, capital</em>. EU Single Market là ví dụ kinh điển.</div></div>
+    <div class="step"><div class="lab">Level 4</div><div class="txt"><b>Monetary Union</b><br>Common Market + <em>single currency</em> + common monetary policy. Eurozone (19 countries dùng EUR).</div></div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 16px;">
+    § <b>WTO</b> (World Trade Organization) — framework toàn cầu với 164 members. Vai trò: rules-based system, dispute resolution, MFN principle (Most-Favored-Nation). Successor của GATT (1995).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — BLOCS</span>
+  </div>
+</section>
+
+
+<!-- 12 · BoP — OVERVIEW -->
+<section data-label="BoP overview" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Balance of Payments</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">3 accounts + <em class="hi">identity</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      BoP = tất cả economic transactions giữa residents của country với rest of the world trong 1 period. Double-entry bookkeeping — mọi flow được ghi ở 2 account ngược chiều.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">CA</span>
+      <div>
+        <div class="t"><em class="hi">Current Account</em></div>
+        <div class="d">Trade in <b>goods &amp; services</b> (net exports) + primary income (wages, investment income) + secondary income (transfers: remittances, aid).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">KA</span>
+      <div>
+        <div class="t"><em class="hi">Capital Account</em></div>
+        <div class="d">Transfers of <b>capital assets</b> — debt forgiveness, transfer of ownership of fixed assets, non-produced non-financial assets (patents, brands).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">FA</span>
+      <div>
+        <div class="t"><em class="hi">Financial Account</em></div>
+        <div class="d">Cross-border <b>financial investments</b> — FDI (Foreign Direct Investment), portfolio investment (equities, bonds), reserves, other investments.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">=0</span>
+      <div>
+        <div class="t"><em class="hi">Identity</em></div>
+        <div class="d"><b>CA + KA + FA = 0</b> (với statistical discrepancy). Deficit ở CA phải được finance bằng surplus ở FA — flows balance.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — BoP</span>
+  </div>
+</section>
+
+
+<!-- 13 · BoP DEFICIT/SURPLUS + TRENDS -->
+<section data-label="BoP interpretation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>13 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">BoP · interpretation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Deficit</em> vs surplus.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Trade / CA deficit</div>
+      <dl>
+        <dt>Meaning</dt>
+        <dd>Imports &gt; exports (goods/services); country spending &gt; earning abroad</dd>
+        <dt>Financing</dt>
+        <dd>Phải borrow / attract FDI &amp; portfolio inflows → FA surplus</dd>
+        <dt>Concerns</dt>
+        <dd>Rủi ro nếu deficit persistent &amp; funded bằng short-term debt (sudden stop risk)</dd>
+        <dt>Example</dt>
+        <dd>US — chronic CA deficit financed bằng FA inflows (USD là reserve currency)</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Trade / CA surplus</div>
+      <dl>
+        <dt>Meaning</dt>
+        <dd>Exports &gt; imports; country earning &gt; spending abroad — net lender to world</dd>
+        <dt>Implication</dt>
+        <dd>FA deficit — country mua foreign assets (FX reserves, foreign bonds)</dd>
+        <dt>Concerns</dt>
+        <dd>Có thể signal weak domestic demand hoặc currency undervaluation</dd>
+        <dt>Example</dt>
+        <dd>Germany, China, Japan — persistent CA surpluses</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Global trends — Trade-to-GDP ratio tăng từ ~25% (1970) lên ~60% (2008), đi ngang sau GFC. Gần đây: re-shoring, friend-shoring, US-China decoupling, supply chain resilience. Services trade (digital, financial) tăng nhanh hơn goods.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — TRENDS</span>
+  </div>
+</section>
+
+
+<!-- 14 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 15 · Q1 EN — Comparative advantage -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>15 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Comparative</em> advantage.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      In 1 hour of labor, <strong>Country X</strong> can produce 40 units of wheat or 10 units of cloth. <strong>Country Y</strong> can produce 20 units of wheat or 8 units of cloth. Which of the following is <strong>most accurate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Country X has absolute advantage in both goods and therefore should not trade with Country Y.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Country X has comparative advantage in wheat; Country Y has comparative advantage in cloth.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Country Y has comparative advantage in wheat because wheat requires less labor per unit in Y.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 16 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>16 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    X: <mark>40 wheat</mark> or <mark>10 cloth</mark>/hr. Y: <mark>20 wheat</mark> or <mark>8 cloth</mark>/hr. Asking <mark>comparative</mark> (opportunity cost), không phải absolute.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">OC wheat ở X = 10/40 = <em>0.25 cloth</em>. OC wheat ở Y = 8/20 = <em>0.4 cloth</em>. X có OC thấp hơn cho wheat → X có comp adv về <em>wheat</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">OC cloth ở X = 40/10 = <em>4 wheat</em>. OC cloth ở Y = 20/8 = <em>2.5 wheat</em>. Y có OC thấp hơn cho cloth → Y có comp adv về <em>cloth</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Đừng chọn A — Ricardo chứng minh absolute advantage KHÔNG bar trade. Luôn có comp adv khi OC ratios khác nhau.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>17 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Trong 1 giờ lao động, <strong>Country X</strong> sản xuất 40 units wheat hoặc 10 units cloth. <strong>Country Y</strong> sản xuất 20 units wheat hoặc 8 units cloth. Phát biểu nào <strong>chính xác nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">X có absolute advantage ở cả 2 goods nên không nên trade với Y.</span></li>
+    <li><span class="lbl">B</span><span class="opt">X có comparative advantage về wheat; Y có comparative advantage về cloth.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Y có comparative advantage về wheat vì wheat cần ít labor per unit hơn ở Y.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — X wheat, Y cloth.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Tính opportunity cost: OC(wheat) = <b>0.25 cloth ở X</b> vs <b>0.4 cloth ở Y</b> → X có comp adv về wheat (OC thấp hơn). OC(cloth) = <b>4 wheat ở X</b> vs <b>2.5 wheat ở Y</b> → Y có comp adv về cloth. Specialize theo comp adv → cả hai gain từ trade.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Absolute advantage (X sản xuất nhiều hơn cả hai goods) KHÔNG ngăn cản trade. Ricardo chứng minh rằng miễn là OC ratios KHÁC NHAU giữa 2 countries, cả hai đều có comp adv ở một good và đều gain từ trade.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Sai — X cần ít labor hơn cho wheat (1/40 giờ vs 1/20 giờ ở Y). Hơn nữa, comp adv dựa trên <em>opportunity cost</em>, không phải labor input. C nhầm hai concepts.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Comp adv = <em>lowest opportunity cost</em>, KHÔNG phải lowest input use. Luôn tính OC ratio giữa 2 goods. Country specialize in good có OC thấp hơn, trade cho phần còn lại.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q2 EN — Tariff vs Quota welfare -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Tariff vs <em class="hi">Quota</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A government considers two trade barriers on imported steel that would each <strong>reduce imports by the same quantity</strong>: (1) a 20% tariff, or (2) an equivalent import quota administered by granting licenses to selected importers. Compared with the tariff, the <strong>quota is most likely</strong> to:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">produce a smaller increase in domestic price because quotas cap quantity directly.</span></li>
+    <li><span class="lbl">B</span><span class="opt">generate more government revenue because license fees replace the tariff revenue.</span></li>
+    <li><span class="lbl">C</span><span class="opt">create a larger deadweight loss to the home country because the tariff revenue is replaced by quota rents captured by license holders.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Same reduction in imports</mark> → same price effect. Tariff = <mark>govt revenue</mark>. Quota = <mark>quota rent to license holders</mark>. Compare DWL to home country.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Nếu tariff và quota tạo ra cùng mức giảm imports → giá nội địa tăng <em>y hệt nhau</em>. Loại A (price effect khác).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Quota không tự động sinh revenue cho government. Revenue đi về <em>license holders</em> (quota rent). Nếu license được cấp miễn phí (không auction) → govt revenue = 0. Loại B.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Welfare analysis: Consumer loss giống nhau. Producer gain giống nhau. Tariff: rectangle này → govt (vẫn ở home country). Quota: rectangle → license holder (nếu foreign, mất luôn).</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một chính phủ cân nhắc 2 trade barrier lên thép nhập khẩu, cả hai <strong>giảm imports cùng một lượng</strong>: (1) tariff 20%, hoặc (2) quota tương đương, cấp license cho selected importers. So với tariff, quota <strong>most likely</strong> sẽ:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">tạo mức tăng giá nội địa nhỏ hơn vì quota cap quantity trực tiếp.</span></li>
+    <li><span class="lbl">B</span><span class="opt">tạo nhiều government revenue hơn vì license fees thay thế tariff revenue.</span></li>
+    <li><span class="lbl">C</span><span class="opt">tạo deadweight loss LỚN hơn cho home country vì tariff revenue bị thay thế bằng quota rent cho license holders.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — larger DWL.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext">Với cùng mức giảm imports, tariff và quota có cùng price effect, cùng consumer loss, cùng producer gain. Khác biệt: tariff tạo <b>govt revenue</b> (vẫn ở home country). Quota: phần đó trở thành <b>quota rent</b>, cấp cho license holders. Nếu license cấp miễn phí (không auction) HOẶC đi về foreign exporter → rent mất khỏi home welfare → DWL ở home country <em>lớn hơn</em>.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Nếu hai barrier giảm imports cùng lượng, price nội địa tăng <em>y hệt nhau</em>. Đề đã giả định "same quantity reduction" → price effect phải bằng nhau.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Quota không auto sinh revenue — trừ khi govt auction licenses (ít phổ biến). Thông thường license được cấp miễn phí cho selected importer → rent về tay private, không phải govt.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Tariff ≈ Quota về price &amp; quantity effect. KHÁC ở <em>distribution of rent</em>: tariff → govt revenue (home welfare). Quota → license holder (có thể home, có thể foreign). Quota DWL ≥ Tariff DWL.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q3 EN — BoP classification -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">BoP</em> classification.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A Vietnamese pension fund purchases <strong>$50 million of US Treasury bonds</strong>. In Vietnam's Balance of Payments, this transaction is <strong>most appropriately</strong> recorded as:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">a debit in the Current Account (import of financial services).</span></li>
+    <li><span class="lbl">B</span><span class="opt">a debit in the Financial Account (outflow — acquisition of foreign financial asset).</span></li>
+    <li><span class="lbl">C</span><span class="opt">a credit in the Capital Account (transfer of capital asset).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Vietnamese fund</mark> buying <mark>US Treasury bonds</mark> = acquiring <mark>foreign financial asset</mark>. Cross-border <mark>investment flow</mark>, not goods/services.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Current Account = goods, services, primary income, transfers. Mua bond ≠ CA transaction. Loại A.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Capital Account (nghĩa hẹp của BoP hiện đại) = capital transfers (debt forgiveness, acquisition/disposal of non-produced non-financial assets như patents). KHÔNG phải portfolio investment.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Financial Account = cross-border financial investments (FDI, portfolio, reserves). Mua US bond = <em>portfolio investment outflow</em> từ VN → ghi debit (asset acquisition) trong FA.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một quỹ hưu trí Việt Nam mua <strong>$50 triệu trái phiếu US Treasury</strong>. Trong Balance of Payments của Việt Nam, transaction này được ghi <strong>most appropriately</strong> là:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">một debit trong Current Account (import of financial services).</span></li>
+    <li><span class="lbl">B</span><span class="opt">một debit trong Financial Account (outflow — acquisition of foreign financial asset).</span></li>
+    <li><span class="lbl">C</span><span class="opt">một credit trong Capital Account (transfer of capital asset).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>26 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Financial Account.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Mua foreign bond = <b>cross-border financial investment</b>, thuộc Financial Account. Cụ thể là <em>portfolio investment</em> outflow — VN resident acquires foreign asset → ghi debit trong FA (assets tăng lên). Counterpart là credit ở FA khác (USD outflow = foreign liability of VN giảm) hoặc reserves.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Current Account ghi lại trade in goods, services, primary income (wages, dividends, interest), và secondary income (transfers). Mua bond không phải "service" — là financial asset acquisition. <em>Interest earned</em> sau này trên bond mới vào CA (primary income).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Capital Account (trong BoP của IMF manual) = capital transfers (debt forgiveness, migrants' transfers) và acquisition of non-produced non-financial assets (patents, licenses, brand). Portfolio investment KHÔNG thuộc KA.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">BoP mapping nhanh: <em>Goods/services/income/transfer</em> → CA. <em>Debt forgiveness / patent transfer</em> → KA. <em>FDI / bonds / equities / reserves</em> → FA. Nhớ identity: CA + KA + FA = 0.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 27 · RECAP -->
+<section data-label="Recap" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.06</span>
+    <span class="rule"></span>
+    <span>27 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Lesson recap</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What we <em class="hi">covered</em>.</h2>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="tlabel">Core takeaways</div>
+    <div class="ttext">
+      (1) <b>Comparative advantage</b> (Ricardo) dựa trên opportunity cost — cả hai country luôn gain từ trade nếu OC ratios khác nhau.<br>
+      (2) <b>Heckscher-Ohlin</b> — country xuất khẩu good dùng nhiều factor abundant (labor/capital/land).<br>
+      (3) <b>Trade barriers</b> — Tariff tạo govt revenue; Quota tạo quota rent. Cả hai đều tạo DWL. Quota DWL ≥ Tariff DWL.<br>
+      (4) <b>Integration ladder</b> — FTA → Customs Union → Common Market → Monetary Union.<br>
+      (5) <b>BoP identity</b> — CA + KA + FA = 0. CA deficit phải financed bằng FA surplus.
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.06 — RECAP</span>
+  </div>
+</section>
+
+
+<!-- 28 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>03.06 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 03.07 — Currency Exchange Rates</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

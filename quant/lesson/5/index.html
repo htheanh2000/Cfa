@@ -1,0 +1,1057 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Quant 02.05 — Portfolio Mathematics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Portfolio<br><em>Mathematics.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 02 · Lesson 02.05 · Quantitative Methods</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 02 · Return, risk &amp; diversification math</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Quant</dd></div>
+      <div><dt>Module</dt><dd>02</dd></div>
+      <div><dt>Lesson</dt><dd>02.05</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">E(Rp) · Cov · ρ · σp² · Diversification</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">05</div>
+    <div class="lbl">Portfolio math</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How <em>portfolios</em> mix<br>return &amp; risk.</h2>
+    <ul class="toc">
+      <li class="active">01 · Portfolio expected return — weighted average</li>
+      <li>02 · Covariance &amp; correlation — how assets co-move</li>
+      <li>03 · 2-asset portfolio variance — the core formula</li>
+      <li>04 · n-asset variance &amp; covariance matrix</li>
+      <li>05 · Diversification &amp; the correlation dial</li>
+      <li>06 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · PORTFOLIO EXPECTED RETURN -->
+<section data-label="Portfolio expected return" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>03 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Return · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Portfolio <em class="hi">expected return</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Return của portfolio là <em>weighted average</em> của return từng asset. Weight = tỷ trọng giá trị đầu tư vào asset đó so với tổng portfolio.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Portfolio expected return — n assets</span>
+    <div class="eq"><span class="var">E(Rp)</span> = <span class="var">w<sub>1</sub></span>·<span class="var">E(R<sub>1</sub>)</span> + <span class="var">w<sub>2</sub></span>·<span class="var">E(R<sub>2</sub>)</span> + … + <span class="var">w<sub>n</sub></span>·<span class="var">E(R<sub>n</sub>)</span> = Σ <span class="var">w<sub>i</sub></span>·<span class="var">E(R<sub>i</sub>)</span></div>
+    <div class="note"><b>w<sub>i</sub></b> = weight of asset i · <b>E(R<sub>i</sub>)</b> = expected return của asset i. Constraint: Σw<sub>i</sub> = 1 (hoặc 100%).</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Property quan trọng — Expected return là <em>linear</em>: weighted average của expected returns KHÔNG bị ảnh hưởng bởi correlation. Khác biệt lớn với variance (sẽ thấy ở slides tiếp theo).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — E(Rp)</span>
+  </div>
+</section>
+
+
+<!-- 04 · E(Rp) EXAMPLE -->
+<section data-label="E(Rp) example" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>04 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Return · worked example</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Numeric <em class="hi">walk-through</em>.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Scenario · 3-asset portfolio</span>
+    Stock A: weight <b>50%</b>, E(R<sub>A</sub>) = <b>12%</b> · Bond B: weight <b>30%</b>, E(R<sub>B</sub>) = <b>5%</b> · Cash C: weight <b>20%</b>, E(R<sub>C</sub>) = <b>2%</b>. Tính E(Rp).
+  </div>
+
+  <div class="formula-box" style="margin-top: 20px;">
+    <span class="fmt-label">§ Apply the formula</span>
+    <div class="eq"><span class="var">E(Rp)</span> = 0.50·12% + 0.30·5% + 0.20·2%</div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">E(Rp)</span> = 6.0% + 1.5% + 0.4% = <b>7.9%</b></div>
+    <div class="note">Portfolio return "pulled" về phía asset có weight lớn nhất. Stock A (50% weight, 12% return) đóng góp chính.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Check — Σw = 0.50 + 0.30 + 0.20 = 1.00. Nếu tổng weight ≠ 1, bạn đang tính sai hoặc có leverage/cash-drag không report.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — E(Rp) EX</span>
+  </div>
+</section>
+
+
+<!-- 05 · COVARIANCE -->
+<section data-label="Covariance" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>05 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Co-movement · covariance</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Covariance</em> — how assets move together.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Covariance đo lường mức độ <em>co-movement</em> giữa 2 asset returns. Dấu của covariance cho biết hướng (cùng chiều / ngược chiều), magnitude không có đơn vị chuẩn.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Covariance — probability-weighted definition</span>
+    <div class="eq"><span class="var">Cov(R<sub>i</sub>, R<sub>j</sub>)</span> = Σ <span class="var">P(s<sub>k</sub>)</span> · [<span class="var">R<sub>i</sub>(s<sub>k</sub>)</span> − <span class="var">E(R<sub>i</sub>)</span>] · [<span class="var">R<sub>j</sub>(s<sub>k</sub>)</span> − <span class="var">E(R<sub>j</sub>)</span>]</div>
+    <div class="note"><b>P(s<sub>k</sub>)</b> = probability of state k · <b>R<sub>i</sub>(s<sub>k</sub>)</b> = return của asset i trong state k. Tổng trên tất cả state s<sub>k</sub>.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Key properties</span>
+    <div class="eq"><span class="var">Cov(R<sub>i</sub>, R<sub>i</sub>)</span> = <span class="var">σ<sub>i</sub>²</span> &nbsp; · &nbsp; <span class="var">Cov(R<sub>i</sub>, R<sub>j</sub>)</span> = <span class="var">Cov(R<sub>j</sub>, R<sub>i</sub>)</span></div>
+    <div class="note">Cov của asset với chính nó = variance. Covariance đối xứng. Dấu dương → cùng chiều, âm → ngược chiều, 0 → không liên quan tuyến tính.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — COVARIANCE</span>
+  </div>
+</section>
+
+
+<!-- 06 · CORRELATION -->
+<section data-label="Correlation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>06 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Co-movement · correlation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Correlation</em> — standardized covariance.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Correlation là covariance sau khi scale về khoảng <em>[−1, +1]</em>. Dễ so sánh giữa các cặp asset khác nhau — magnitude có ý nghĩa.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Correlation coefficient</span>
+    <div class="eq"><span class="var">ρ<sub>ij</sub></span> = <span class="var">Cov(R<sub>i</sub>, R<sub>j</sub>)</span> / (<span class="var">σ<sub>i</sub></span> · <span class="var">σ<sub>j</sub></span>)</div>
+    <div class="note">Chia covariance cho tích standard deviations → số thuần túy (dimensionless) trong range [−1, +1].</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Interpretation — the correlation dial</span>
+    <div class="eq"><span class="var">ρ</span> = +1 &nbsp; perfect positive &nbsp; · &nbsp; <span class="var">ρ</span> = 0 &nbsp; uncorrelated &nbsp; · &nbsp; <span class="var">ρ</span> = −1 &nbsp; perfect negative</div>
+    <div class="note">ρ = +1: hai asset di chuyển <em>đồng bộ hoàn hảo</em>. ρ = −1: di chuyển <em>ngược chiều hoàn hảo</em> (perfect hedge). ρ = 0: linear không liên quan (vẫn có thể nonlinear).</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Inverse transform — Cov(R<sub>i</sub>, R<sub>j</sub>) = ρ<sub>ij</sub> · σ<sub>i</sub> · σ<sub>j</sub>. Dùng nhiều trong portfolio variance formula khi đề cho ρ thay vì Cov.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — CORRELATION</span>
+  </div>
+</section>
+
+
+<!-- 07 · 2-ASSET PORTFOLIO VARIANCE -->
+<section data-label="2-asset variance" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>07 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk · 2-asset variance</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Portfolio <em class="hi">variance</em> — 2 assets.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Đây là <em>công thức quan trọng nhất</em> của CFA L1 Quant. Nhớ thuộc lòng. Khác với E(Rp), variance KHÔNG phải weighted average — covariance term quyết định lớn.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Portfolio variance — covariance form</span>
+    <div class="eq"><span class="var">σ<sub>p</sub>²</span> = <span class="var">w<sub>a</sub>²</span>·<span class="var">σ<sub>a</sub>²</span> + <span class="var">w<sub>b</sub>²</span>·<span class="var">σ<sub>b</sub>²</span> + 2·<span class="var">w<sub>a</sub></span>·<span class="var">w<sub>b</sub></span>·<span class="var">Cov(a,b)</span></div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Portfolio variance — correlation form</span>
+    <div class="eq"><span class="var">σ<sub>p</sub>²</span> = <span class="var">w<sub>a</sub>²</span>·<span class="var">σ<sub>a</sub>²</span> + <span class="var">w<sub>b</sub>²</span>·<span class="var">σ<sub>b</sub>²</span> + 2·<span class="var">w<sub>a</sub></span>·<span class="var">w<sub>b</sub></span>·<span class="var">ρ<sub>ab</sub></span>·<span class="var">σ<sub>a</sub></span>·<span class="var">σ<sub>b</sub></span></div>
+    <div class="note">Hai forms tương đương vì Cov(a,b) = ρ<sub>ab</sub>·σ<sub>a</sub>·σ<sub>b</sub>. Đề CFA có thể cho covariance hoặc correlation — chọn form phù hợp.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Portfolio standard deviation</span>
+    <div class="eq"><span class="var">σ<sub>p</sub></span> = √<span class="var">σ<sub>p</sub>²</span></div>
+    <div class="note">Luôn báo risk dưới dạng SD (đơn vị %), không phải variance (đơn vị %²).</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — 2-ASSET VAR</span>
+  </div>
+</section>
+
+
+<!-- 08 · 2-ASSET VARIANCE — WORKED EXAMPLE -->
+<section data-label="2-asset example" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>08 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk · worked example</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Calculate <em class="hi">σp</em> step-by-step.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Scenario · 2-asset portfolio</span>
+    w<sub>a</sub> = <b>60%</b>, σ<sub>a</sub> = <b>20%</b> · w<sub>b</sub> = <b>40%</b>, σ<sub>b</sub> = <b>10%</b> · ρ<sub>ab</sub> = <b>0.3</b>. Tìm σ<sub>p</sub>.
+  </div>
+
+  <div class="formula-box" style="margin-top: 20px;">
+    <span class="fmt-label">§ Step 1 — Plug into correlation form</span>
+    <div class="eq"><span class="var">σ<sub>p</sub>²</span> = (0.6)²·(0.20)² + (0.4)²·(0.10)² + 2·(0.6)·(0.4)·(0.3)·(0.20)·(0.10)</div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">σ<sub>p</sub>²</span> = 0.0144 + 0.0016 + 0.00288 = 0.01888</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Step 2 — Square root for σ<sub>p</sub></span>
+    <div class="eq"><span class="var">σ<sub>p</sub></span> = √0.01888 ≈ <b>0.1374</b> → <b>13.74%</b></div>
+    <div class="note">Weighted-average SD sẽ là 0.6·20% + 0.4·10% = 16%. Portfolio SD (13.74%) thấp hơn → <em>diversification benefit</em> nhờ ρ &lt; 1.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — σp EX</span>
+  </div>
+</section>
+
+
+<!-- 09 · N-ASSET VARIANCE -->
+<section data-label="n-asset variance" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>09 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk · n-asset generalization</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">n-asset</em> portfolio variance.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Generalize từ 2 asset lên n asset: tổng qua <em>covariance matrix</em>. Số term tăng theo n² — phần lớn là covariance terms khi n lớn.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ General n-asset portfolio variance</span>
+    <div class="eq"><span class="var">σ<sub>p</sub>²</span> = Σ<sub>i</sub> Σ<sub>j</sub> <span class="var">w<sub>i</sub></span>·<span class="var">w<sub>j</sub></span>·<span class="var">Cov(R<sub>i</sub>, R<sub>j</sub>)</span></div>
+    <div class="note">Tổng đôi — lấy mọi cặp (i, j) trong covariance matrix. Khi i = j, Cov(R<sub>i</sub>, R<sub>i</sub>) = σ<sub>i</sub>² (diagonal).</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Decomposition — variance vs covariance terms</span>
+    <div class="eq"><span class="var">σ<sub>p</sub>²</span> = Σ<sub>i</sub> <span class="var">w<sub>i</sub>²</span>·<span class="var">σ<sub>i</sub>²</span> + ΣΣ<sub>i≠j</sub> <span class="var">w<sub>i</sub></span>·<span class="var">w<sub>j</sub></span>·<span class="var">Cov(R<sub>i</sub>, R<sub>j</sub>)</span></div>
+    <div class="note">N variance terms (diagonal) + N·(N−1) covariance terms (off-diagonal). Với N = 30 → 30 variance + 870 covariance → covariance chi phối risk.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Insight — Khi portfolio lớn, individual variance "vanish" (1/N decay). Risk chủ yếu đến từ <em>average covariance</em> → đây là lý do systematic risk (market risk) không diversify được.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — N-ASSET</span>
+  </div>
+</section>
+
+
+<!-- 10 · COVARIANCE MATRIX -->
+<section data-label="Covariance matrix" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>10 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk · matrix form</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">covariance matrix</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Structure — 3-asset example</div>
+      <dl>
+        <dt>Diagonal</dt>
+        <dd>σ<sub>1</sub>², σ<sub>2</sub>², σ<sub>3</sub>² — variances</dd>
+        <dt>Off-diagonal</dt>
+        <dd>Cov(1,2), Cov(1,3), Cov(2,3) — covariances</dd>
+        <dt>Symmetry</dt>
+        <dd>Cov(i,j) = Cov(j,i) — matrix đối xứng</dd>
+        <dt>Size</dt>
+        <dd>n × n matrix cho n asset portfolio</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Counting unique entries</div>
+      <dl>
+        <dt>Variances</dt>
+        <dd>n (diagonal)</dd>
+        <dt>Unique Cov</dt>
+        <dd>n·(n−1)/2 pairs — upper triangle</dd>
+        <dt>Total inputs</dt>
+        <dd>n·(n+1)/2 unique numbers cần estimate</dd>
+        <dt>Ví dụ n=5</dt>
+        <dd>5 variances + 10 covariances = 15 inputs</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Practical — Để ước lượng covariance matrix cần lịch sử return dài (hoặc factor model). Estimation error trong Cov gây ra nhiều portfolio optimization issues thực tế (Markowitz "error-maximization").
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — COV MATRIX</span>
+  </div>
+</section>
+
+
+<!-- 11 · DIVERSIFICATION -->
+<section data-label="Diversification" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>11 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Diversification · core insight</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Risk reduction when <em class="hi">ρ &lt; 1</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Đây là <em>free lunch</em> duy nhất trong finance (Markowitz). Khi correlation &lt; 1, kết hợp assets làm giảm portfolio SD xuống dưới weighted-average SD.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ The diversification inequality</span>
+    <div class="eq"><span class="var">σ<sub>p</sub></span> &lt; <span class="var">w<sub>a</sub></span>·<span class="var">σ<sub>a</sub></span> + <span class="var">w<sub>b</sub></span>·<span class="var">σ<sub>b</sub></span> &nbsp; khi &nbsp; <span class="var">ρ<sub>ab</sub></span> &lt; 1</div>
+    <div class="note">Portfolio SD &lt; weighted-average SD chừng nào ρ &lt; 1. Equality chỉ xảy ra khi ρ = 1 (perfect correlation).</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Lower correlation → greater diversification benefit</span>
+        <span class="step-body">ρ giảm từ +1 xuống −1, portfolio SD giảm monotonic. Đây là driver của asset allocation decisions.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Expected return KHÔNG bị ảnh hưởng</span>
+        <span class="step-body">E(Rp) giữ nguyên khi ρ thay đổi. Diversification là "free" — cùng return, ít risk hơn.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — DIVERSIFY</span>
+  </div>
+</section>
+
+
+<!-- 12 · SPECIAL CASES -->
+<section data-label="Special cases" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>12 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Correlation · 3 edge cases</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Special values of <em class="hi">ρ</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">+1</span>
+      <div>
+        <div class="t"><em class="hi">Perfect positive</em></div>
+        <div class="d">σ<sub>p</sub> = w<sub>a</sub>·σ<sub>a</sub> + w<sub>b</sub>·σ<sub>b</sub>. Weighted-average SD, KHÔNG có diversification benefit. Hai asset di chuyển đồng bộ.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">0</span>
+      <div>
+        <div class="t"><em class="hi">Uncorrelated</em></div>
+        <div class="d">σ<sub>p</sub>² = w<sub>a</sub>²σ<sub>a</sub>² + w<sub>b</sub>²σ<sub>b</sub>². Covariance term biến mất. Có diversification benefit đáng kể.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">−1</span>
+      <div>
+        <div class="t"><em class="hi">Perfect negative</em></div>
+        <div class="d">σ<sub>p</sub> = |w<sub>a</sub>·σ<sub>a</sub> − w<sub>b</sub>·σ<sub>b</sub>|. Có thể chọn weights để σ<sub>p</sub> = 0 — <em>perfect hedge</em>, eliminate risk.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">mid</span>
+      <div>
+        <div class="t"><em class="hi">0 &lt; ρ &lt; 1</em></div>
+        <div class="d">Typical real-world case. Stocks trong cùng market thường có ρ ≈ 0.5–0.8. Diversification benefit vừa phải.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Hedge weight — Với ρ = −1, để eliminate risk chọn w<sub>a</sub> = σ<sub>b</sub>/(σ<sub>a</sub>+σ<sub>b</sub>). Đây là nền tảng lý thuyết của hedging với futures/forwards.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — SPECIAL ρ</span>
+  </div>
+</section>
+
+
+<!-- 13 · MIN VARIANCE FRONTIER -->
+<section data-label="Min variance frontier" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>13 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Frontier · Markowitz</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">minimum variance frontier</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Với mỗi target expected return, tồn tại một portfolio có variance thấp nhất. Tập hợp các portfolio này tạo thành <em>minimum variance frontier</em> trên mặt phẳng (σ, E(R)).
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Global Minimum Variance Portfolio (GMVP)</span>
+        <span class="step-body">Điểm trái cùng của frontier — portfolio có SD thấp nhất tuyệt đối trong tất cả combinations. Không cần target return cao.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Efficient frontier — upper half</span>
+        <span class="step-body">Phần phía trên GMVP. Với mỗi mức risk, đây là portfolio có return kỳ vọng cao nhất. Rational investor chỉ giữ portfolio trên efficient frontier.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Shape phụ thuộc correlation</span>
+        <span class="step-body">ρ càng thấp, frontier càng "cong" về trái — diversification benefit nhiều hơn. ρ = −1 → frontier chạm trục tung (zero-risk portfolio khả thi).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — FRONTIER</span>
+  </div>
+</section>
+
+
+<!-- 14 · SYSTEMATIC VS UNSYSTEMATIC -->
+<section data-label="Risk decomposition" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>14 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk · decomposition</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Diversifiable vs <em class="hi">systematic</em> risk.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Unsystematic (diversifiable)</div>
+      <dl>
+        <dt>Source</dt>
+        <dd>Firm-specific events — earnings surprises, CEO departures, lawsuits</dd>
+        <dt>Behavior</dt>
+        <dd>Giảm dần về 0 khi N tăng (1/N decay)</dd>
+        <dt>Compensation</dt>
+        <dd>Không được market bù — có thể diversify away</dd>
+        <dt>Also called</dt>
+        <dd>Idiosyncratic · specific · residual risk</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Systematic (market)</div>
+      <dl>
+        <dt>Source</dt>
+        <dd>Market-wide factors — interest rates, recessions, geopolitics</dd>
+        <dt>Behavior</dt>
+        <dd>Ảnh hưởng đồng thời mọi asset → average covariance</dd>
+        <dt>Compensation</dt>
+        <dd>Được market bù qua risk premium (CAPM β)</dd>
+        <dt>Also called</dt>
+        <dd>Non-diversifiable · market · undiversifiable risk</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Empirical rule — ~30 stocks đa dạng đã loại bỏ phần lớn unsystematic risk. Beyond 30, marginal benefit nhỏ. Systematic risk là floor — không thể giảm thêm qua diversification trong cùng market.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — RISK DECOMP</span>
+  </div>
+</section>
+
+
+<!-- 15 · EXAM TRAPS -->
+<section data-label="Exam traps" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>15 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Exam · common mistakes</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Top <em class="hi">CFA traps</em>.</h2>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Variance ≠ weighted-average of variances</span>
+        <span class="step-body">σ<sub>p</sub>² ≠ w<sub>a</sub>²σ<sub>a</sub> + w<sub>b</sub>²σ<sub>b</sub>. Phải có 2·w<sub>a</sub>·w<sub>b</sub>·Cov term. Và weight phải bình phương, không phải chỉ weight.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Nhầm Cov vs ρ</span>
+        <span class="step-body">Nếu đề cho Cov(a,b) trực tiếp, dùng form có Cov. Nếu cho ρ, dùng form có ρ·σ<sub>a</sub>·σ<sub>b</sub>. Đừng double-count bằng cách substitute sai.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Báo variance thay vì SD</span>
+        <span class="step-body">Câu hỏi thường hỏi "standard deviation of portfolio". Phải √ sau khi ra σ<sub>p</sub>². Quên sqrt → answer sai.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Weight đơn vị — decimal vs percent</span>
+        <span class="step-body">Dùng 0.6 và 0.4 (decimals) hoặc 60 và 40 — đừng trộn. Khi trộn, σ<sub>p</sub>² sẽ lệch factor 100 hoặc 10,000.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — TRAPS</span>
+  </div>
+</section>
+
+
+<!-- 16 · FORMULA RECAP -->
+<section data-label="Formula recap" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>16 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap · all formulas</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Cheat <em class="hi">sheet</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Return</span>
+    <div class="eq"><span class="var">E(Rp)</span> = Σ <span class="var">w<sub>i</sub></span>·<span class="var">E(R<sub>i</sub>)</span></div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 12px;">
+    <span class="fmt-label">§ Co-movement</span>
+    <div class="eq"><span class="var">Cov(R<sub>i</sub>, R<sub>j</sub>)</span> = Σ <span class="var">P(s<sub>k</sub>)</span>·[<span class="var">R<sub>i</sub></span>−<span class="var">E(R<sub>i</sub>)</span>]·[<span class="var">R<sub>j</sub></span>−<span class="var">E(R<sub>j</sub>)</span>]</div>
+    <div class="eq" style="margin-top: 6px;"><span class="var">ρ<sub>ij</sub></span> = <span class="var">Cov(R<sub>i</sub>, R<sub>j</sub>)</span> / (<span class="var">σ<sub>i</sub></span>·<span class="var">σ<sub>j</sub></span>) &nbsp; ∈ [−1, +1]</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 12px;">
+    <span class="fmt-label">§ 2-asset portfolio variance</span>
+    <div class="eq"><span class="var">σ<sub>p</sub>²</span> = <span class="var">w<sub>a</sub>²</span><span class="var">σ<sub>a</sub>²</span> + <span class="var">w<sub>b</sub>²</span><span class="var">σ<sub>b</sub>²</span> + 2<span class="var">w<sub>a</sub></span><span class="var">w<sub>b</sub></span><span class="var">ρ<sub>ab</sub></span><span class="var">σ<sub>a</sub></span><span class="var">σ<sub>b</sub></span></div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 12px;">
+    <span class="fmt-label">§ n-asset portfolio variance</span>
+    <div class="eq"><span class="var">σ<sub>p</sub>²</span> = Σ<sub>i</sub>Σ<sub>j</sub> <span class="var">w<sub>i</sub></span><span class="var">w<sub>j</sub></span><span class="var">Cov(R<sub>i</sub>, R<sub>j</sub>)</span></div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — RECAP</span>
+  </div>
+</section>
+
+
+<!-- 17 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 EN — Portfolio expected return -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>18 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Calculate <em class="hi">portfolio return</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An investor holds a portfolio with the following allocation: <strong>40%</strong> in equity fund with E(R) = <strong>14%</strong>, <strong>35%</strong> in bond fund with E(R) = <strong>6%</strong>, and <strong>25%</strong> in REIT fund with E(R) = <strong>9%</strong>. What is the portfolio's <strong>expected return</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">8.50%.</span></li>
+    <li><span class="lbl">B</span><span class="opt">9.67% (simple average of the three returns).</span></li>
+    <li><span class="lbl">C</span><span class="opt">9.95%.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>19 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Weights <mark>40% / 35% / 25%</mark>. Returns <mark>14% / 6% / 9%</mark>. Asking for <mark>portfolio expected return</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">E(Rp) = Σw<sub>i</sub>·E(R<sub>i</sub>). Đây là <em>weighted average</em>, KHÔNG phải simple average.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Tính từng term: 0.40·14% = 5.6% · 0.35·6% = 2.1% · 0.25·9% = 2.25%. Cộng lại.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Check weights sum = 1: 0.40 + 0.35 + 0.25 = 1.00 ✓. Simple average (9.67%) là trap B — sai vì bỏ qua weights.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>20 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một nhà đầu tư có portfolio với phân bổ: <strong>40%</strong> vào equity fund với E(R) = <strong>14%</strong>, <strong>35%</strong> vào bond fund với E(R) = <strong>6%</strong>, và <strong>25%</strong> vào REIT fund với E(R) = <strong>9%</strong>. <strong>Expected return</strong> của portfolio là bao nhiêu?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">8.50%.</span></li>
+    <li><span class="lbl">B</span><span class="opt">9.67% (simple average của 3 returns).</span></li>
+    <li><span class="lbl">C</span><span class="opt">9.95%.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>21 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — 9.95%.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext">E(Rp) = 0.40·14% + 0.35·6% + 0.25·9% = 5.60% + 2.10% + 2.25% = <b>9.95%</b>. Equity fund (weight lớn nhất + return cao nhất) đóng góp 5.6% — hơn một nửa portfolio return.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">8.50% không khớp với phép tính weighted average. Có thể là số gần với (14+6+9)/4 hoặc lỗi số học khác. Không match bất kỳ công thức đúng nào.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">9.67% = (14% + 6% + 9%) / 3 = simple average — chỉ đúng khi weights <em>bằng nhau</em> (mỗi fund 33.3%). Ở đây weights khác nhau → phải dùng weighted average.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Portfolio expected return <em>luôn</em> là weighted average của individual returns. Simple average chỉ đúng khi weights bằng nhau. Check Σw<sub>i</sub> = 1 trước khi tính.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 EN — Portfolio SD -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>22 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Calculate <em class="hi">portfolio SD</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A two-asset portfolio consists of Asset A with weight <strong>70%</strong>, σ<sub>a</sub> = <strong>25%</strong>, and Asset B with weight <strong>30%</strong>, σ<sub>b</sub> = <strong>15%</strong>. The correlation between A and B is <strong>0.40</strong>. The portfolio's <strong>standard deviation</strong> is closest to:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">18.68%.</span></li>
+    <li><span class="lbl">B</span><span class="opt">20.41%.</span></li>
+    <li><span class="lbl">C</span><span class="opt">23.00% (weighted-average SD).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>23 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    w<sub>a</sub> = <mark>0.70</mark>, σ<sub>a</sub> = <mark>0.25</mark>. w<sub>b</sub> = <mark>0.30</mark>, σ<sub>b</sub> = <mark>0.15</mark>. ρ = <mark>0.40</mark>. Asking for <mark>SD</mark>, not variance.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Dùng form có ρ: σ<sub>p</sub>² = w<sub>a</sub>²σ<sub>a</sub>² + w<sub>b</sub>²σ<sub>b</sub>² + 2·w<sub>a</sub>·w<sub>b</sub>·ρ·σ<sub>a</sub>·σ<sub>b</sub>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Tính từng term: (0.7)²(0.25)² = 0.030625 · (0.3)²(0.15)² = 0.002025 · 2·0.7·0.3·0.40·0.25·0.15 = 0.00630.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">σ<sub>p</sub>² = 0.030625 + 0.002025 + 0.00630 = 0.03895. σ<sub>p</sub> = √0.03895 ≈ 0.1974 → 19.74%. Closest option?</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>24 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một portfolio 2 asset gồm Asset A với weight <strong>70%</strong>, σ<sub>a</sub> = <strong>25%</strong>, và Asset B với weight <strong>30%</strong>, σ<sub>b</sub> = <strong>15%</strong>. Correlation giữa A và B là <strong>0.40</strong>. <strong>Standard deviation</strong> của portfolio gần nhất với:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">18.68%.</span></li>
+    <li><span class="lbl">B</span><span class="opt">20.41%.</span></li>
+    <li><span class="lbl">C</span><span class="opt">23.00% (weighted-average SD).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>25 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 20.41%.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">σ<sub>p</sub>² = (0.7)²(0.25)² + (0.3)²(0.15)² + 2(0.7)(0.3)(0.40)(0.25)(0.15) = 0.030625 + 0.002025 + 0.00630 = <b>0.03895</b>. σ<sub>p</sub> = √0.03895 ≈ <b>19.74%</b> — closest option là B (20.41%). Diversification làm giảm SD từ 23% (weighted avg) xuống ~20%.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">18.68% có thể là kết quả khi dùng ρ = 0 (uncorrelated assumption). Với ρ = 0.40 &gt; 0, covariance term dương làm σ<sub>p</sub> cao hơn case ρ = 0.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">23% = 0.7·25% + 0.3·15% = <em>weighted-average SD</em>. Đây là giá trị khi ρ = +1 (không có diversification). Với ρ = 0.40 &lt; 1, σ<sub>p</sub> phải &lt; 23%.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Khi ρ &lt; 1, σ<sub>p</sub> &lt; weighted-average SD. Always check: nếu tính ra σ<sub>p</sub> ≥ weighted avg thì bạn sai (quên covariance term hoặc signs). Diversification benefit tăng khi ρ giảm.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 EN — Diversification & correlation -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>26 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Diversification</em> benefit.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst compares four two-asset portfolios with identical weights (50/50) and identical individual SDs (σ<sub>a</sub> = σ<sub>b</sub> = 20%) but different correlations. Which correlation produces the <strong>lowest</strong> portfolio standard deviation, and which produces the <strong>highest</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Lowest: ρ = −1 (σ<sub>p</sub> = 0%); Highest: ρ = +1 (σ<sub>p</sub> = 20%).</span></li>
+    <li><span class="lbl">B</span><span class="opt">Lowest: ρ = 0 (σ<sub>p</sub> ≈ 14.1%); Highest: ρ = +1 (σ<sub>p</sub> = 20%).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Lowest: ρ = −1 (σ<sub>p</sub> = 10%); Highest: ρ = 0 (σ<sub>p</sub> = 20%).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>27 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Weights <mark>50/50</mark>, σ<sub>a</sub> = σ<sub>b</sub> = <mark>20%</mark>. Compare effect of <mark>ρ</mark> on σ<sub>p</sub>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">σ<sub>p</sub>² = 0.25·(0.20)² + 0.25·(0.20)² + 2·0.5·0.5·ρ·(0.20)·(0.20) = 0.02 + 0.02·ρ. Formula simplify do symmetry.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">ρ = +1: σ<sub>p</sub>² = 0.04 → σ<sub>p</sub> = 20%. ρ = 0: σ<sub>p</sub>² = 0.02 → σ<sub>p</sub> ≈ 14.14%. ρ = −1: σ<sub>p</sub>² = 0 → σ<sub>p</sub> = 0%.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">σ<sub>p</sub> monotonic tăng theo ρ. Min tại ρ = −1 (perfect hedge, σ<sub>p</sub> = 0), max tại ρ = +1 (no benefit, σ<sub>p</sub> = weighted avg).</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>28 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một analyst so sánh 4 portfolio 2-asset với cùng weights (50/50) và cùng individual SDs (σ<sub>a</sub> = σ<sub>b</sub> = 20%) nhưng correlation khác nhau. Correlation nào tạo ra <strong>σ<sub>p</sub> thấp nhất</strong>, và correlation nào tạo ra <strong>σ<sub>p</sub> cao nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Thấp nhất: ρ = −1 (σ<sub>p</sub> = 0%); Cao nhất: ρ = +1 (σ<sub>p</sub> = 20%).</span></li>
+    <li><span class="lbl">B</span><span class="opt">Thấp nhất: ρ = 0 (σ<sub>p</sub> ≈ 14.1%); Cao nhất: ρ = +1 (σ<sub>p</sub> = 20%).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Thấp nhất: ρ = −1 (σ<sub>p</sub> = 10%); Cao nhất: ρ = 0 (σ<sub>p</sub> = 20%).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 29 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.05</span>
+    <span class="rule"></span>
+    <span>29 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — ρ = −1 lowest, ρ = +1 highest.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">Với weights và SDs đối xứng, σ<sub>p</sub>² = 0.02·(1 + ρ). ρ = −1 → σ<sub>p</sub>² = 0 → σ<sub>p</sub> = <b>0%</b> (perfect hedge, risk eliminated). ρ = +1 → σ<sub>p</sub>² = 0.04 → σ<sub>p</sub> = <b>20%</b> (weighted-average SD, no diversification). σ<sub>p</sub> monotonic tăng theo ρ.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">ρ = 0 cho σ<sub>p</sub> ≈ 14.14%, KHÔNG phải minimum. Với ρ = −1 có thể đạt σ<sub>p</sub> = 0 (lower). Nhầm lẫn phổ biến: nghĩ "uncorrelated" là case tốt nhất — không, perfect negative correlation mới là tốt nhất.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Với σ<sub>a</sub> = σ<sub>b</sub>, ρ = −1 cho σ<sub>p</sub> = |w<sub>a</sub>σ<sub>a</sub> − w<sub>b</sub>σ<sub>b</sub>| = |0.5·20 − 0.5·20| = 0%, KHÔNG phải 10%. Và ρ = 0 cho ~14.14%, không phải 20%. Hai sai số học.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">σ<sub>p</sub> tăng monotonic theo ρ (khi weights và SDs cố định). ρ = −1 cho phép eliminate risk nếu weights chọn đúng. ρ = +1 triệt tiêu diversification benefit. Reality: most equities có ρ dương → chỉ partial benefit.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.05 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 30 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>02.05 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 02.06 — Simulation Methods</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

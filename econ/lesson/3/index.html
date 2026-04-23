@@ -1,0 +1,1242 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Econ 03.03 — Aggregate Output</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Aggregate<br>&amp; <em>Growth.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 03 · Lesson 03.03 · Economics</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 03 · Aggregate output, prices &amp; economic growth</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Econ</dd></div>
+      <div><dt>Module</dt><dd>03</dd></div>
+      <div><dt>Lesson</dt><dd>03.03</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">GDP · AD/AS · Potential output · Solow</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">03</div>
+    <div class="lbl">Macro foundations</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How economies <em>measure</em><br>and <em>grow</em>.</h2>
+    <ul class="toc">
+      <li class="active">01 · GDP — definition &amp; 3 computation methods</li>
+      <li>02 · Real vs Nominal GDP · GDP deflator · CPI</li>
+      <li>03 · Aggregate Demand &amp; Supply — SRAS vs LRAS</li>
+      <li>04 · Sources of growth — labor, capital, TFP &amp; Solow</li>
+      <li>05 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · GDP DEFINITION -->
+<section data-label="GDP definition" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">GDP · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What is <em class="hi">GDP</em>?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      <em>Gross Domestic Product</em> — thước đo tổng hợp của economic activity. Cốt lõi của macro analysis và monetary/fiscal policy.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 20px;">
+    <span class="tag">§ Definition</span>
+    GDP = <b>market value</b> of all <b>final</b> goods and services produced <b>within a country</b> during a <b>given period</b> (thường 1 quý hoặc 1 năm).
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Market value — tính theo giá thị trường</span>
+        <span class="step-body">Non-market activities (work nhà, volunteer) KHÔNG được tính. Underground economy cũng bị loại.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Final goods only — tránh double counting</span>
+        <span class="step-body">Intermediate goods (steel bán cho car maker) không tính riêng, vì giá trị đã nằm trong final good (ô tô).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Within country — geographic boundary</span>
+        <span class="step-body">Sản xuất <em>trong lãnh thổ</em>, bất kể nationality của owner. Khác GNP (đo theo citizenship).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — GDP DEF</span>
+  </div>
+</section>
+
+
+<!-- 04 · 3 METHODS OVERVIEW -->
+<section data-label="3 GDP methods" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">GDP · measurement</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Three <em class="hi">methods</em> — same GDP.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Vì mỗi đồng spending là thu nhập của ai đó, và đến từ giá trị sản xuất — <em>3 methods phải cho ra cùng một số</em> (theoretically).
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Expenditure</em> approach</div>
+        <div class="d">Cộng tổng <em>chi tiêu</em> cho final goods/services. GDP = C + I + G + (X − M).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Income</em> approach</div>
+        <div class="d">Cộng tổng <em>thu nhập</em> tạo ra trong sản xuất: wages, rents, interest, profits.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Production</em> approach</div>
+        <div class="d">Cộng <em>value added</em> tại mỗi stage of production — tránh double counting intermediate goods.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">=</span>
+      <div>
+        <div class="t"><em class="hi">Identity</em></div>
+        <div class="d">Expenditure = Income = Production. Statistical discrepancy là do measurement error, không phải lý thuyết.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — 3 METHODS</span>
+  </div>
+</section>
+
+
+<!-- 05 · EXPENDITURE APPROACH -->
+<section data-label="Expenditure approach" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Method 01 · expenditure</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">GDP = <em class="hi">C + I + G + (X − M)</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Expenditure identity</span>
+    <div class="eq"><span class="var">GDP</span> = <span class="var">C</span> + <span class="var">I</span> + <span class="var">G</span> + (<span class="var">X</span> − <span class="var">M</span>)</div>
+    <div class="note"><b>C</b> Consumption · <b>I</b> Investment · <b>G</b> Government · <b>X</b> Exports · <b>M</b> Imports. <em>(X − M) = net exports</em>.</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">C — Personal Consumption (~65-70% GDP ở Mỹ)</span>
+        <span class="step-body">Durable goods (ô tô, tủ lạnh), non-durable (thức ăn), services (healthcare, education).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">I — Gross Private Investment</span>
+        <span class="step-body">Business capex, residential construction, <em>change in inventories</em>. KHÔNG bao gồm financial investment (stock).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">G — Government Spending</span>
+        <span class="step-body">Spending trên goods/services. <em>Transfer payments</em> (social security, welfare) KHÔNG tính — chỉ là tái phân phối.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">(X − M) — Net Exports</span>
+        <span class="step-body">Hàng xuất trừ hàng nhập. Trade deficit → (X−M) âm → kéo GDP xuống. Mỹ thường âm.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — EXPENDITURE</span>
+  </div>
+</section>
+
+
+<!-- 06 · INCOME APPROACH -->
+<section data-label="Income approach" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Method 02 · income</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Sum of all <em class="hi">incomes</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Income identity (conceptual)</span>
+    <div class="eq"><span class="var">GDP</span> = <span class="var">Wages</span> + <span class="var">Rents</span> + <span class="var">Interest</span> + <span class="var">Profits</span> + <span class="var">Adj</span></div>
+    <div class="note">Cộng thu nhập từ mọi factor of production. Adjustments: indirect taxes, depreciation, net foreign factor income (để match với GDP expenditure).</div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Trực quan — Mỗi đồng công ty chi cho hàng hoá đi đâu? → thành lương cho lao động, lãi cho chủ nợ, thuê cho chủ đất, lợi nhuận cho chủ doanh nghiệp. Tổng hai bên phải bằng nhau.
+  </p>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Compensation of employees — lớn nhất (~50-60%)</span>
+        <span class="step-body">Wages, salaries, benefits. Reflect productivity và labor market dynamics.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Capital income — rents + interest + profits</span>
+        <span class="step-body">Thu nhập từ capital (nhà cho thuê, trái phiếu, lợi nhuận sau thuế). Bao gồm corporate profits + proprietors' income.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — INCOME</span>
+  </div>
+</section>
+
+
+<!-- 07 · PRODUCTION / VALUE ADDED -->
+<section data-label="Production approach" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Method 03 · production</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">value-added</em> chain.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Example — bread value chain</span>
+    Farmer bán wheat $0.50. Miller xay thành flour bán $1.20. Baker nướng bánh bán $3.00. <b>Final good price = $3.00</b>. Value added tại mỗi stage: $0.50 + $0.70 + $1.80 = <b>$3.00</b>. Cùng số!
+  </div>
+
+  <div class="flow" style="margin-top: 20px;">
+    <span class="chip">Wheat $0.50</span>
+    <span class="arr">→</span>
+    <span class="chip">Flour $1.20 (+$0.70)</span>
+    <span class="arr">→</span>
+    <span class="chip">Bread $3.00 (+$1.80)</span>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Value added = output price − cost of intermediate inputs. Nếu cộng output của mỗi stage ($0.50 + $1.20 + $3.00 = $4.70) → <em>double counting</em>. Chỉ cộng value added (hoặc chỉ final good) → avoid this.
+  </p>
+
+  <div class="take" style="margin-top: 20px;">
+    <span class="take-tag">Rule</span>
+    <div class="take-text">Production approach = sum of <em>value added</em> across all firms = market value of final goods. Ba method cho cùng kết quả.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — VALUE ADDED</span>
+  </div>
+</section>
+
+
+<!-- 08 · REAL vs NOMINAL -->
+<section data-label="Real vs Nominal" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">GDP · price adjustment</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Real</em> vs <em class="hi">Nominal</em> GDP.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Nominal GDP</div>
+      <dl>
+        <dt>Prices</dt>
+        <dd>Current-year prices (giá hiện hành)</dd>
+        <dt>Growth</dt>
+        <dd>Growth inflated bởi inflation — không phản ánh đúng "real" output change</dd>
+        <dt>Use</dt>
+        <dd>Comparisons trong cùng năm, current account measurement</dd>
+        <dt>Limitation</dt>
+        <dd>Nominal↑ có thể chỉ do giá tăng, không phải output tăng</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Real GDP</div>
+      <dl>
+        <dt>Prices</dt>
+        <dd>Base-year prices (giá cố định của năm base)</dd>
+        <dt>Growth</dt>
+        <dd>Inflation-adjusted — phản ánh đúng thay đổi về physical output</dd>
+        <dt>Use</dt>
+        <dd>Time-series growth comparison, standard of living trends</dd>
+        <dt>Benefit</dt>
+        <dd>Tách biệt <em>quantity</em> change khỏi <em>price</em> change</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Ví dụ — Nếu output không đổi nhưng mọi giá tăng 10% → Nominal GDP +10%, Real GDP 0%. Policy maker quan tâm Real GDP để đánh giá sức khoẻ kinh tế thực.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — REAL vs NOM</span>
+  </div>
+</section>
+
+
+<!-- 09 · GDP DEFLATOR -->
+<section data-label="GDP deflator" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Price index · deflator</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">GDP deflator</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ GDP deflator formula</span>
+    <div class="eq"><span class="var">GDP deflator</span> = (<span class="var">Nominal GDP</span> / <span class="var">Real GDP</span>) × 100</div>
+    <div class="note">Đo mức giá trung bình toàn nền kinh tế. Base year: deflator = 100. Deflator &gt; 100 → inflation so với base year.</div>
+  </div>
+
+  <div class="compare" style="margin-top: 20px;">
+    <div class="cc">
+      <div class="head">CPI (Consumer Price Index)</div>
+      <dl>
+        <dt>Basket</dt>
+        <dd><em>Fixed basket</em> of consumer goods (Laspeyres index)</dd>
+        <dt>Scope</dt>
+        <dd>Chỉ consumer goods & services, bao gồm cả imports</dd>
+        <dt>Bias</dt>
+        <dd>Substitution bias — overstate inflation (consumers switch khi giá tăng)</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">GDP Deflator</div>
+      <dl>
+        <dt>Basket</dt>
+        <dd><em>Changing basket</em> — reflects current year's output mix (Paasche index)</dd>
+        <dt>Scope</dt>
+        <dd>Tất cả domestically produced goods, loại trừ imports</dd>
+        <dt>Use</dt>
+        <dd>Macro-level price level; CPI dùng cho cost of living adjustments</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — DEFLATOR</span>
+  </div>
+</section>
+
+
+<!-- 10 · OTHER MEASURES -->
+<section data-label="Other measures" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Related aggregates</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Beyond GDP — <em class="hi">other measures</em>.</h2>
+  </div>
+
+  <div class="flow" style="margin-top: 16px;">
+    <span class="chip">GDP</span>
+    <span class="arr">+ NFFI →</span>
+    <span class="chip">GNP</span>
+    <span class="arr">− Depreciation →</span>
+    <span class="chip">NNP</span>
+    <span class="arr">− Indirect tax →</span>
+    <span class="chip">NI</span>
+    <span class="arr">→</span>
+    <span class="chip">PI</span>
+    <span class="arr">− Tax →</span>
+    <span class="chip">DI</span>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 24px;">
+    <li>
+      <span>
+        <span class="step-title">GNP (Gross National Product)</span>
+        <span class="step-body">GDP + net foreign factor income. Đo theo <em>citizenship</em> thay vì geography. US GNP &gt; GDP do Mỹ đầu tư nhiều ra ngoài.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">NNP (Net National Product)</span>
+        <span class="step-body">GNP − depreciation (consumption of fixed capital). Reflects "net" output sau khi thay thế capital hao mòn.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">NI (National Income) → PI (Personal Income)</span>
+        <span class="step-body">NI = NNP − indirect taxes. PI = thu nhập households <em>nhận được</em> (bao gồm transfer).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">DI (Disposable Income) — household dùng được</span>
+        <span class="step-body">DI = PI − personal taxes. <em>DI = Consumption + Saving</em>. Key driver của consumer spending.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — AGGREGATES</span>
+  </div>
+</section>
+
+
+<!-- 11 · AGGREGATE DEMAND -->
+<section data-label="Aggregate Demand" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Macro · AD</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Aggregate Demand</em> curve.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      AD = tổng lượng goods/services mà tất cả buyers (households, firms, govt, foreigners) sẵn sàng mua ở mỗi mức giá. <em>Downward sloping</em> trong không gian P-Y.
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Wealth effect — real wealth giảm khi P tăng</span>
+        <span class="step-body">Price level cao hơn → real value của money holdings giảm → households cảm thấy nghèo hơn → consumption giảm.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Interest rate effect — real balances giảm</span>
+        <span class="step-body">P↑ → money demand ↑ → interest rate ↑ → investment và consumption (durables) ↓.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Exchange rate / international effect</span>
+        <span class="step-body">Domestic P↑ → domestic goods đắt hơn foreign → exports ↓, imports ↑ → (X−M) ↓ → AD ↓.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — AD</span>
+  </div>
+</section>
+
+
+<!-- 12 · AGGREGATE SUPPLY -->
+<section data-label="Aggregate Supply" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Macro · AS</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">SRAS</em> vs <em class="hi">LRAS</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">SRAS — Short-Run Aggregate Supply</div>
+      <dl>
+        <dt>Slope</dt>
+        <dd><em>Upward sloping</em>: P↑ → Q supplied ↑</dd>
+        <dt>Why</dt>
+        <dd>Wages &amp; input prices <em>sticky</em> trong ngắn hạn → firms hưởng lợi từ output price tăng</dd>
+        <dt>Shifts from</dt>
+        <dd>Input costs, commodity prices, wage shocks, short-run tech</dd>
+        <dt>Equilibrium</dt>
+        <dd>AD = SRAS → current output có thể khác potential</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">LRAS — Long-Run Aggregate Supply</div>
+      <dl>
+        <dt>Slope</dt>
+        <dd><em>Vertical</em> tại potential GDP (Y*)</dd>
+        <dt>Why</dt>
+        <dd>Wages đã điều chỉnh theo giá → chỉ <em>real factors</em> quyết định output</dd>
+        <dt>Shifts from</dt>
+        <dd>Labor force, capital stock, technology (TFP), institutions</dd>
+        <dt>Equilibrium</dt>
+        <dd>Full employment, không có cyclical unemployment</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Mental model — Trong ngắn hạn, economy có thể "over-produce" (boom) hoặc "under-produce" (recession). Trong dài hạn, economy trở về potential output — chỉ growth từ supply-side factors mới tăng LRAS.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — SRAS/LRAS</span>
+  </div>
+</section>
+
+
+<!-- 13 · EQUILIBRIA -->
+<section data-label="Equilibria" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>13 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">AD-AS · equilibrium</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Short-run vs <em class="hi">long-run</em> equilibrium.</h2>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Short-run equilibrium — AD = SRAS</span>
+        <span class="step-body">Current output Y xác định tại giao điểm AD và SRAS. Y có thể <em>trên</em>, <em>dưới</em>, hoặc <em>bằng</em> potential GDP (Y*).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Long-run equilibrium — AD = SRAS = LRAS</span>
+        <span class="step-body">Ba đường cắt tại một điểm. Y = Y* (full employment). Đây là <em>natural resting point</em> của economy.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Recessionary gap — Y &lt; Y*</span>
+        <span class="step-body">AD yếu → output dưới potential → unemployment cao. Wages dần hạ → SRAS shift xuống → phục hồi về Y*.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Inflationary gap — Y &gt; Y*</span>
+        <span class="step-body">AD mạnh → output trên potential → labor shortage, wages tăng → SRAS shift lên → P tăng, Y về Y*.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — EQUILIBRIUM</span>
+  </div>
+</section>
+
+
+<!-- 14 · SHOCKS -->
+<section data-label="Demand vs supply shocks" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>14 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Macro · shocks</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Demand</em> vs <em class="hi">supply</em> shocks.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Demand shock (AD shift)</div>
+      <dl>
+        <dt>Positive</dt>
+        <dd>Expansionary fiscal/monetary, consumer confidence, export boom → P↑, Y↑ (cùng chiều)</dd>
+        <dt>Negative</dt>
+        <dd>Recession, credit tightening, export bust → P↓, Y↓</dd>
+        <dt>Policy</dt>
+        <dd>Dễ xử lý: monetary/fiscal counter-cyclical</dd>
+        <dt>Example</dt>
+        <dd>COVID demand collapse 2020, US stimulus 2021</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Supply shock (SRAS shift)</div>
+      <dl>
+        <dt>Negative</dt>
+        <dd>Oil price spike, natural disaster, pandemic disruption → P↑, Y↓ (<em>stagflation</em>)</dd>
+        <dt>Positive</dt>
+        <dd>Tech breakthrough, productivity gain, commodity glut → P↓, Y↑</dd>
+        <dt>Policy</dt>
+        <dd>Khó xử lý: trade-off giữa inflation và employment</dd>
+        <dt>Example</dt>
+        <dd>1970s oil crisis, 2022 energy &amp; supply chain</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — SHOCKS</span>
+  </div>
+</section>
+
+
+<!-- 15 · POTENTIAL GDP & GROWTH SOURCES -->
+<section data-label="Growth sources" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>15 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Growth · sources</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Sources of <em class="hi">economic growth</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Potential GDP = full-employment output. Grow potential GDP chỉ có 3 đường: thêm lao động, thêm capital, hoặc làm cho hai thứ đó năng suất hơn.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">L</span>
+      <div>
+        <div class="t"><em class="hi">Labor</em> force growth</div>
+        <div class="d">Population growth, participation rate, immigration, hours worked. Demographic trends quan trọng cho long-run growth.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">K</span>
+      <div>
+        <div class="t"><em class="hi">Capital</em> accumulation</div>
+        <div class="d">Physical capital (machines, buildings, infrastructure) + human capital (education, training). Saving &amp; investment drives K.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">A</span>
+      <div>
+        <div class="t"><em class="hi">Technology</em> — TFP</div>
+        <div class="d">Total factor productivity — <em>efficiency</em> của việc kết hợp L và K. R&amp;D, innovation, institutions. Engine chính của long-run growth.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">*</span>
+      <div>
+        <div class="t"><em class="hi">Natural</em> resources</div>
+        <div class="d">Land, minerals, energy. Quan trọng nhưng không đủ — "resource curse" cho nhiều nước dồi dào tài nguyên.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — GROWTH</span>
+  </div>
+</section>
+
+
+<!-- 16 · PRODUCTION FUNCTION -->
+<section data-label="Production function" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>16 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Growth · model</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">production function</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Aggregate production function</span>
+    <div class="eq"><span class="var">Y</span> = <span class="var">A</span> · <span class="var">f</span>(<span class="var">K</span>, <span class="var">L</span>)</div>
+    <div class="note"><b>Y</b> output · <b>A</b> total factor productivity (TFP / technology) · <b>K</b> capital · <b>L</b> labor. A là "multiplier" — higher A → more output với cùng K và L.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Cobb-Douglas form (common specification)</span>
+    <div class="eq"><span class="var">Y</span> = <span class="var">A</span> · <span class="var">K</span><sup>α</sup> · <span class="var">L</span><sup>1−α</sup></div>
+    <div class="note">α ∈ (0,1) là capital's share of output. Constant returns to scale. <em>Diminishing marginal returns</em> cho mỗi factor khi cố định factor kia.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Growth accounting — %ΔY ≈ %ΔA + α·%ΔK + (1−α)·%ΔL. Nếu Y tăng 3% mà K và L chỉ giải thích 1% → 2% còn lại là "Solow residual" = TFP growth.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — Y=Af(K,L)</span>
+  </div>
+</section>
+
+
+<!-- 17 · SOLOW MODEL -->
+<section data-label="Solow model" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>17 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Growth · Solow</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">Solow</em> growth model — intro.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Robert Solow (1956, Nobel 1987): long-run growth được xác định bởi <em>saving rate</em>, <em>population growth</em>, và <em>technology</em>.
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Capital deepening has diminishing returns</span>
+        <span class="step-body">Tăng K/L (capital per worker) tăng output, nhưng mỗi đơn vị K thêm mang về ít output thêm → eventually không đủ bù depreciation.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Steady state — K/L constant</span>
+        <span class="step-body">Khi investment = depreciation + population growth × K/L → capital per worker ổn định. Output per worker cũng ổn định (nếu A cố định).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Only TFP growth sustains long-run per-capita growth</span>
+        <span class="step-body">Saving rate cao chỉ nâng level, không nâng growth rate mãi. <em>Technology (A) là nguồn growth bền vững duy nhất</em>.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Convergence hypothesis</span>
+        <span class="step-body">Các nước nghèo (K thấp) có MPK cao → grow nhanh hơn nước giàu, <em>nếu</em> cùng technology. Thực tế: conditional convergence — phụ thuộc institutions, human capital.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — SOLOW</span>
+  </div>
+</section>
+
+
+<!-- 18 · KEY TAKEAWAY -->
+<section data-label="Key takeaway" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Summary</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Tying it <em class="hi">together</em>.</h2>
+  </div>
+
+  <div class="take" style="margin-top: 20px;">
+    <span class="take-tag">GDP</span>
+    <div class="take-text">Market value of final goods &amp; services within a country. 3 methods — expenditure (C+I+G+NX), income, production (value added) — cho cùng số.</div>
+  </div>
+
+  <div class="take" style="margin-top: 12px;">
+    <span class="take-tag">Price</span>
+    <div class="take-text">Real GDP dùng giá base year (tách khỏi inflation). GDP deflator = Nominal / Real × 100. CPI khác deflator: fixed basket vs changing basket.</div>
+  </div>
+
+  <div class="take" style="margin-top: 12px;">
+    <span class="take-tag">AD/AS</span>
+    <div class="take-text">AD downward (wealth, interest, exchange rate effects). SRAS upward (sticky wages). LRAS vertical at potential GDP. Shocks AD vs SRAS có policy implications khác nhau.</div>
+  </div>
+
+  <div class="take" style="margin-top: 12px;">
+    <span class="take-tag">Growth</span>
+    <div class="take-text">Y = A · f(K, L). Sources: labor, capital, TFP. Solow: chỉ TFP growth mới duy trì được per-capita growth trong dài hạn.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — SUMMARY</span>
+  </div>
+</section>
+
+
+<!-- 19 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 EN — Real vs Nominal -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Real vs <em class="hi">Nominal</em> GDP.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An economy's <strong>Nominal GDP</strong> rose from <strong>$20 trillion</strong> to <strong>$22 trillion</strong> over one year. During the same period, the <strong>GDP deflator</strong> rose from <strong>100 to 105</strong>. What is the approximate <strong>Real GDP growth rate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">10.0% — matches the nominal GDP growth rate.</span></li>
+    <li><span class="lbl">B</span><span class="opt">4.8% — approximately the nominal growth minus inflation.</span></li>
+    <li><span class="lbl">C</span><span class="opt">5.0% — approximately the inflation rate.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Nominal <mark>20 → 22T</mark>. Deflator <mark>100 → 105</mark>. Asking for <mark>Real GDP growth</mark>, not nominal.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Real GDP = Nominal GDP / Deflator × 100. Year 1: 20/100×100 = <em>20</em>. Year 2: 22/105×100 ≈ <em>20.95</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Real growth = (20.95 − 20) / 20 ≈ <em>4.76%</em>. Round to ~4.8%.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Quick approx: Nominal growth ≈ Real growth + Inflation. 10% ≈ Real + 5% → Real ≈ <em>5%</em>. Chính xác hơn là 4.8% do compound, nhưng cả A và C đều sai.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      <strong>Nominal GDP</strong> của một nền kinh tế tăng từ <strong>$20 nghìn tỷ</strong> lên <strong>$22 nghìn tỷ</strong> trong một năm. Cùng kỳ, <strong>GDP deflator</strong> tăng từ <strong>100 lên 105</strong>. <strong>Real GDP growth rate</strong> xấp xỉ bao nhiêu?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">10.0% — bằng tốc độ tăng của nominal GDP.</span></li>
+    <li><span class="lbl">B</span><span class="opt">4.8% — xấp xỉ nominal growth trừ inflation.</span></li>
+    <li><span class="lbl">C</span><span class="opt">5.0% — xấp xỉ tốc độ lạm phát.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — ≈ 4.8%.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Real GDP<sub>1</sub> = 20/100 × 100 = <b>20.00</b>. Real GDP<sub>2</sub> = 22/105 × 100 ≈ <b>20.95</b>. Growth = (20.95 − 20)/20 ≈ <b>4.76% ≈ 4.8%</b>. Về trực giác: nominal tăng 10%, nhưng 5% trong đó là do giá → real growth chỉ ~5%, chính xác hơn là 4.8% do compounding.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">10% là <em>nominal</em> growth ((22−20)/20). Không adjust cho inflation → overstate real output increase. CFA luôn yêu cầu phân biệt rõ nominal vs real.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">5% là <em>inflation rate</em> (deflator 100 → 105). Đây là mức tăng giá, không phải real output growth. Nominal growth − inflation ≈ Real growth, nhưng chính xác phải dùng công thức compound.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Real GDP = Nominal GDP / Deflator × 100. Real growth ≠ Nominal growth trừ trực tiếp inflation (chỉ approx). Luôn <em>deflate</em> từng năm rồi mới tính growth rate để chính xác.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 EN — Expenditure components -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Identify <em class="hi">GDP components</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Under the <strong>expenditure approach</strong> to GDP, which of the following transactions would be <strong>excluded</strong> from the current year's GDP calculation?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">A domestic automaker's increase in finished-vehicle inventory.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Social Security benefits paid to retirees by the government.</span></li>
+    <li><span class="lbl">C</span><span class="opt">A new commercial building constructed this year by a private firm.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Expenditure approach</mark>. Looking for item <mark>excluded</mark> from GDP. Think: is it <mark>production-based</mark> or <mark>transfer</mark>?
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">GDP = C + I + G + (X−M). G = government <em>purchases of goods and services</em>, KHÔNG bao gồm transfer payments.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Social Security, welfare, unemployment benefits = <em>transfer payments</em>. Chính phủ chỉ tái phân phối tiền, không tạo ra new production.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Option A: inventory increase là <em>investment</em> (I) — counted. Option C: new commercial building là <em>fixed investment</em> (I) — counted. Chỉ B bị loại.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>26 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Theo <strong>expenditure approach</strong> tính GDP, giao dịch nào dưới đây sẽ bị <strong>LOẠI</strong> khỏi GDP của năm hiện tại?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Một hãng ô tô nội địa tăng inventory xe thành phẩm.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Tiền Social Security chính phủ trả cho người về hưu.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Một toà nhà thương mại mới do firm tư nhân xây năm nay.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>27 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Transfer payment.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Social Security là <b>transfer payment</b>: chính phủ chuyển tiền từ taxpayers sang retirees mà <em>không đổi lấy goods/services</em>. Không có new production → không thuộc G trong GDP. Chỉ G spending on goods/services (military equipment, teachers' salaries) mới được tính.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Inventory increase = <em>investment</em> (I). Xe đã được <b>sản xuất trong năm</b>, chỉ chưa bán — vẫn là production và counted vào GDP (via inventory change). Khi bán năm sau sẽ trừ khỏi I và cộng vào C.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">New commercial building = <em>gross fixed investment</em> (I) — một component chính của I. Đây là <b>production</b> mới (construction services) → counted. Cổng câu hỏi: <em>existing</em> buildings resold không tính; <em>newly built</em> thì có.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">G chỉ bao gồm <em>government purchases</em> of goods/services. <em>Transfer payments</em> (Social Security, welfare, unemployment), interest on debt, và second-hand sales đều bị loại vì không reflect new production.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 EN — LRAS vs SRAS — COMBINED ORIGINAL + HINT shortened as single slide? Use 4 slides. Need slide numbers 28+. Total target 28. Need to fit Q3 in remaining slides. -->
+<!-- Re-count: 01 Title, 02 Agenda, 03-18 theory (16 slides), 19 transition, 20-23 Q1 (4), 24-27 Q2 (4), 28 should start Q3 but we're out. Need to extend. Use 28-31 for Q3, 32 End. Adjust NN/TOTAL accordingly. -->
+
+<!-- 28 · Q3 EN — Long-run vs Short-run AS -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>28 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">LRAS</em> behavior.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An oil-exporting economy experiences a <strong>permanent negative supply shock</strong> (major oilfield depletion). In the <strong>long-run</strong>, which statement <strong>best describes</strong> the behavior of its Long-Run Aggregate Supply (LRAS) curve compared with the Short-Run Aggregate Supply (SRAS) curve?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">LRAS stays vertical at the original potential GDP; only SRAS shifts left temporarily.</span></li>
+    <li><span class="lbl">B</span><span class="opt">LRAS shifts left (to a lower potential GDP) while SRAS also shifts left; real output falls permanently.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Both LRAS and SRAS become upward sloping as prices adjust.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 29 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>29 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Permanent</mark> supply shock. <mark>Oilfield depletion</mark> = loss of natural resource (factor of production). Asking about <mark>LRAS vs SRAS</mark> in long-run.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">LRAS is <em>vertical at potential GDP</em>. Potential GDP xác định bởi L, K, natural resources, và TFP. <em>Permanent</em> loss of resource → potential GDP giảm → LRAS shift left.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Nếu shock chỉ <em>temporary</em> (weather, short-term disruption) → chỉ SRAS shift, LRAS không. Nhưng đây là <em>permanent</em> → ảnh hưởng supply-side capacity.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">LRAS vertical = ở long-run, price không ảnh hưởng output (chỉ real factors). SRAS upward sloping. Không có trường hợp cả hai cùng upward sloping → option C sai.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 30 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>30 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một nền kinh tế xuất khẩu dầu chịu <strong>negative supply shock vĩnh viễn</strong> (mỏ dầu lớn cạn kiệt). Trong <strong>long-run</strong>, phát biểu nào <strong>mô tả đúng nhất</strong> hành vi của LRAS curve so với SRAS curve?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">LRAS vẫn vertical ở potential GDP ban đầu; chỉ SRAS shift trái tạm thời.</span></li>
+    <li><span class="lbl">B</span><span class="opt">LRAS shift trái (potential GDP thấp hơn) và SRAS cũng shift trái; real output giảm vĩnh viễn.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Cả LRAS và SRAS đều trở thành upward sloping khi giá điều chỉnh.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 31 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.03</span>
+    <span class="rule"></span>
+    <span>31 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — LRAS shifts left.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">LRAS vertical tại <em>potential GDP</em>, which is determined by real supply-side factors (L, K, natural resources, TFP). Mất một oilfield lớn <b>permanently</b> = giảm vĩnh viễn natural resource capacity → potential GDP giảm → <b>LRAS shifts left</b>. SRAS cũng shift left do input cost tăng. <em>Real output giảm vĩnh viễn, price level cao hơn</em>.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Sai vì shock là <em>permanent</em>, không phải temporary. Temporary shocks (strike, weather) chỉ di chuyển SRAS và tự phục hồi. Permanent loss of factor of production BẮT BUỘC shift LRAS.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">LRAS theo định nghĩa là <em>vertical</em>, KHÔNG bao giờ upward sloping. Long-run equilibrium: wages và input prices đã điều chỉnh đầy đủ → output phụ thuộc real factors, không phụ thuộc price level.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">SRAS <em>upward sloping</em> (sticky prices/wages). LRAS <em>vertical at potential GDP</em>. <em>Temporary</em> shocks only affect SRAS. <em>Permanent</em> changes to L, K, natural resources, or TFP shift LRAS (and thus potential GDP).</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.03 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 32 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>03.03 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 03.04 — Understanding Business Cycles</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

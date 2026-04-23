@@ -1,0 +1,1137 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Econ 03.04 — Business Cycles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Business<br><em>Cycles.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 03 · Lesson 03.04 · Economics</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 04 · Understanding business cycles</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Econ</dd></div>
+      <div><dt>Module</dt><dd>04</dd></div>
+      <div><dt>Lesson</dt><dd>03.04</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Phases · Indicators · Unemployment · Inflation</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">04</div>
+    <div class="lbl">Business cycles</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How <em>economies</em> move<br>through cycles.</h2>
+    <ul class="toc">
+      <li class="active">01 · Business cycle — definition &amp; 4 phases</li>
+      <li>02 · Economic indicators — leading, coincident, lagging</li>
+      <li>03 · Schools of thought — Classical, Keynesian, Monetarist, Austrian, RBC</li>
+      <li>04 · Unemployment &amp; inflation — types, measures, Phillips curve</li>
+      <li>05 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · BUSINESS CYCLE DEFINITION -->
+<section data-label="Definition" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Business cycle · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What is a <em class="hi">business cycle</em>?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Business cycle = <em>fluctuations in economic activity</em> (real GDP, employment, income) xoay quanh <em>long-run growth trend</em>. Không đều đặn về thời gian hay biên độ, nhưng có pattern nhận diện được.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Recurrent — lặp lại, không định kỳ</span>
+        <span class="step-body">Cycles xảy ra thường xuyên trong economy nhưng <em>duration và amplitude thay đổi</em>. Không phải 10 năm một lần như "periodic" waves.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Xung quanh long-run trend</span>
+        <span class="step-body">Economy có trend tăng trưởng dài hạn (potential GDP). Cycle là dao động ngắn/trung hạn <em>quanh trend đó</em>, không thay thế trend.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">NBER dates US recessions</span>
+        <span class="step-body">National Bureau of Economic Research là "official" body. Heuristic phổ biến: <em>≥2 quarters liên tiếp negative real GDP growth</em>, nhưng NBER xem rộng hơn (employment, income, sales).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — DEFINITION</span>
+  </div>
+</section>
+
+
+<!-- 04 · 4 PHASES -->
+<section data-label="4 phases" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Business cycle · structure</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">4 phases</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Expansion</em></div>
+        <div class="d">Output đang <em>tăng</em>. GDP, employment, income rising. Consumer confidence tăng, business invest nhiều hơn. Inflation có thể tích tụ.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Peak</em></div>
+        <div class="d">Điểm <em>cao nhất</em> của cycle. Tăng trưởng đạt tối đa rồi quay đầu. Thường kèm capacity constraint, inflation pressure, tight labor market.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Contraction</em> / Recession</div>
+        <div class="d">Output đang <em>giảm</em>. Unemployment tăng, consumer spending giảm, inventory tích tụ. ≥2 quarters âm GDP = common heuristic.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Trough</em></div>
+        <div class="d">Điểm <em>thấp nhất</em> của cycle. Economy chạm đáy rồi bắt đầu phục hồi. Unemployment cao nhất, inflation thấp, central bank thường đã cắt rates.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Flow — Expansion → Peak → Contraction → Trough → Expansion... Cycle không symmetrical: expansion thường kéo dài hơn contraction (post-WWII US: avg expansion ~65 months, contraction ~11 months).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — PHASES</span>
+  </div>
+</section>
+
+
+<!-- 05 · CYCLE FLOW -->
+<section data-label="Cycle flow" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Cycle · sequence</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">sequence</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Flow từ trough → peak → trough. Mỗi phase có characteristics riêng về GDP, employment, inflation, và policy response.
+    </p>
+  </div>
+
+  <div class="flow" style="margin-top: 30px;">
+    <div class="flow-step">
+      <div class="n">01 · EXPANSION</div>
+      <div class="t">Rising output</div>
+      <div class="d">GDP tăng trên trend. Employment cải thiện. Confidence cao. Credit expand. Inflation có thể bắt đầu tích tụ về cuối giai đoạn.</div>
+    </div>
+    <div class="flow-step">
+      <div class="n">02 · PEAK</div>
+      <div class="t">Top of cycle</div>
+      <div class="d">Growth đạt max rồi đảo chiều. Capacity utilization cao, wage pressure, inflation elevated. Central bank thường đã tighten.</div>
+    </div>
+    <div class="flow-step">
+      <div class="n">03 · CONTRACTION</div>
+      <div class="t">Falling output</div>
+      <div class="d">GDP giảm. Unemployment tăng. Consumer spending co lại. Inventory pile up ban đầu, sau đó firms cắt production để giảm inventory.</div>
+    </div>
+    <div class="flow-step">
+      <div class="n">04 · TROUGH</div>
+      <div class="t">Bottom of cycle</div>
+      <div class="d">Nền đáy. Unemployment đỉnh. Consumer/business confidence thấp nhất. Monetary easing đã ngấm. Recovery bắt đầu — quay lại expansion.</div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — CYCLE FLOW</span>
+  </div>
+</section>
+
+
+<!-- 06 · INDICATORS OVERVIEW -->
+<section data-label="Indicators overview" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Economic indicators · 3 types</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Leading, coincident, <em class="hi">lagging</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      3 categories phân loại theo <em>timing of turn</em> so với overall economy. CFA L1 test nhận diện từng indicator vào đúng group.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px; grid-template-columns: repeat(3, 1fr);">
+    <div class="tenet">
+      <span class="n">L</span>
+      <div>
+        <div class="t"><em class="hi">Leading</em></div>
+        <div class="d">Turn <em>TRƯỚC</em> economy. Dự báo tương lai. Dùng để forecast turning points. Stock market, yield curve, building permits, consumer sentiment.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">C</span>
+      <div>
+        <div class="t"><em class="hi">Coincident</em></div>
+        <div class="d">Turn <em>CÙNG LÚC</em> với economy. Xác nhận trạng thái hiện tại. Real GDP, industrial production, retail sales, non-farm payroll employment.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">G</span>
+      <div>
+        <div class="t"><em class="hi">Lagging</em></div>
+        <div class="d">Turn <em>SAU</em> economy. Xác nhận pattern đã xảy ra. Unemployment rate, inventory-to-sales ratio, average prime lending rate, labor cost per unit.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — INDICATORS</span>
+  </div>
+</section>
+
+
+<!-- 07 · INDICATORS DETAIL -->
+<section data-label="Indicators detail" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Indicators · examples</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Common <em class="hi">examples</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Leading — báo trước</div>
+      <dl>
+        <dt>Stock market</dt>
+        <dd>Equity prices phản ánh kỳ vọng future earnings, turn trước economy vài tháng</dd>
+        <dt>Yield curve</dt>
+        <dd>Spread 10Y − 2Y Treasury. Inversion thường báo trước recession 6-18 tháng</dd>
+        <dt>Building permits</dt>
+        <dd>Quyết định xây → hoạt động xây dựng thực tế sau vài tháng</dd>
+        <dt>Consumer sentiment</dt>
+        <dd>Consumer expectations (Michigan, Conference Board) báo trước spending</dd>
+        <dt>Mfg new orders</dt>
+        <dd>ISM New Orders, durable goods orders báo trước production</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Coincident &amp; Lagging</div>
+      <dl>
+        <dt>Coincident · GDP</dt>
+        <dd>Real GDP — thước đo chính của economic activity</dd>
+        <dt>Coincident · Industrial production</dt>
+        <dd>Sản lượng công nghiệp, retail sales, employment — di chuyển cùng cycle</dd>
+        <dt>Lagging · Unemployment rate</dt>
+        <dd>Firms chỉ hire/fire SAU khi tin chắc vào cycle → turn sau economy</dd>
+        <dt>Lagging · Inventories</dt>
+        <dd>Inventory-to-sales ratio tăng sau khi demand đã giảm</dd>
+        <dt>Lagging · Labor cost</dt>
+        <dd>Wage / unit labor cost điều chỉnh chậm (sticky)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Mnemonic — "Unemployment lags". Firms thường giữ lao động lâu sau khi suy thoái bắt đầu (labor hoarding) và trì hoãn tuyển sau khi hồi phục (labor slack). Đây là lý do unemployment rate là <em>lagging</em>, không phải coincident.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — INDICATORS II</span>
+  </div>
+</section>
+
+
+<!-- 08 · SCHOOLS OF THOUGHT — OVERVIEW -->
+<section data-label="Schools" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Schools of thought · what causes cycles?</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">5 <em class="hi">schools</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Economists bất đồng về <em>nguyên nhân</em> business cycle và <em>policy response</em>. CFA L1 yêu cầu nhận diện vị trí cốt lõi của từng trường phái.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Classical — self-correcting market</span>
+        <span class="step-body">Flexible prices/wages → economy tự điều chỉnh về full employment. KHÔNG cần government intervention. Say's Law: "supply creates its own demand".</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Keynesian — sticky wages, need fiscal policy</span>
+        <span class="step-body">Wages và prices <em>sticky downward</em> → economy có thể kẹt dưới full employment lâu. Cần <em>fiscal stimulus</em> (G↑, T↓) để phục hồi AD.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Monetarist — money supply drives cycles</span>
+        <span class="step-body">Milton Friedman: cycles chủ yếu do biến động money supply. Đề xuất <em>rule-based monetary policy</em> (growth money supply đều) thay vì discretion.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Austrian — malinvestment from cheap money</span>
+        <span class="step-body">Artificially low rates (central bank) → malinvestment, bubble formation → inevitable bust. Cycle là adjustment của misallocated capital.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Real Business Cycle (RBC) — productivity shocks</span>
+        <span class="step-body">Cycle là response <em>tối ưu</em> của rational agents đối với real (technology/productivity) shocks. Không cần intervention — output biến động phản ánh equilibrium.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — SCHOOLS</span>
+  </div>
+</section>
+
+
+<!-- 09 · SCHOOLS — KEYNESIAN vs MONETARIST -->
+<section data-label="Keynes vs Monetarist" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Schools · head-to-head</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Keynesian vs <em class="hi">Monetarist</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Keynesian</div>
+      <dl>
+        <dt>Cycle cause</dt>
+        <dd>Fluctuations in aggregate demand (AD), animal spirits</dd>
+        <dt>Wages/prices</dt>
+        <dd>Sticky, especially downward — slow to adjust</dd>
+        <dt>Policy</dt>
+        <dd>Active fiscal policy (G, T) — stimulate AD trong recession</dd>
+        <dt>Money</dt>
+        <dd>Monetary policy có thể ineffective ở liquidity trap (zero lower bound)</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Monetarist</div>
+      <dl>
+        <dt>Cycle cause</dt>
+        <dd>Variability of money supply growth (MV = PY)</dd>
+        <dt>Wages/prices</dt>
+        <dd>More flexible long-run; monetary shocks matter short-run</dd>
+        <dt>Policy</dt>
+        <dd>Constant money supply growth rule (k-percent rule). Skeptical of discretion.</dd>
+        <dt>Money</dt>
+        <dd>Money is central — "inflation is always and everywhere a monetary phenomenon"</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Policy takeaway — Keynesian ủng hộ active fiscal + monetary response. Monetarist ưu tiên rule-based money supply. Classical &amp; Austrian skeptical của cả hai intervention. RBC coi cycle là efficient equilibrium, intervention gây harm.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — SCHOOLS II</span>
+  </div>
+</section>
+
+
+<!-- 10 · UNEMPLOYMENT TYPES -->
+<section data-label="Unemployment types" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Unemployment · 3 types</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Types of <em class="hi">unemployment</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Natural rate of unemployment = <em>frictional + structural</em>. Khi actual = natural → full employment (không có cyclical unemployment).
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">F</span>
+      <div>
+        <div class="t"><em class="hi">Frictional</em></div>
+        <div class="d">Giữa 2 jobs (between jobs), voluntary transitions, graduates tìm việc đầu tiên. <em>Normal</em> — không tránh được trong dynamic economy.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">S</span>
+      <div>
+        <div class="t"><em class="hi">Structural</em></div>
+        <div class="d">Skills mismatch — kỹ năng lao động không match với đòi hỏi industry mới. Technology displacement, globalization. Cần retraining.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">C</span>
+      <div>
+        <div class="t"><em class="hi">Cyclical</em></div>
+        <div class="d">Do recession/contraction — <em>demand-side</em>. AD thấp → firms cắt jobs. Tạm thời — sẽ phục hồi khi economy expand trở lại.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">N</span>
+      <div>
+        <div class="t"><em class="hi">Natural rate</em></div>
+        <div class="d">= Frictional + Structural. "<em>Full employment</em>" khi actual unemployment = natural rate. Cyclical = 0 tại điểm này.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — UNEMPLOYMENT</span>
+  </div>
+</section>
+
+
+<!-- 11 · UNEMPLOYMENT MEASURES -->
+<section data-label="Unemployment measures" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Unemployment · metrics</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Measuring <em class="hi">joblessness</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Core formulas</span>
+    <div class="eq"><span class="var">Unemployment rate</span> = <span class="var">Unemployed</span> / <span class="var">Labor force</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Labor force</span> = <span class="var">Employed</span> + <span class="var">Unemployed</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Participation rate</span> = <span class="var">Labor force</span> / <span class="var">Working-age population</span></div>
+    <div class="note">Để được tính là "unemployed" phải <b>đang tìm việc tích cực</b>. <b>Discouraged workers</b> (ngừng tìm) rơi ra khỏi labor force → không tính vào unemployment rate (undercount).</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Underemployed</span>
+        <span class="step-body">Part-time nhưng muốn full-time, hoặc over-qualified cho job. Có việc nhưng không tận dụng hết capacity. Không vào unemployment rate thông thường.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Discouraged workers</span>
+        <span class="step-body">Ngừng tìm việc vì nghĩ không có việc phù hợp. Rớt ra khỏi labor force → <em>underestimate</em> real joblessness trong recession.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — U-MEASURES</span>
+  </div>
+</section>
+
+
+<!-- 12 · INFLATION TYPES -->
+<section data-label="Inflation types" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Inflation · 2 sources</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Demand-pull vs <em class="hi">cost-push</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Demand-pull</div>
+      <dl>
+        <dt>Source</dt>
+        <dd>AD shifts right → "too much money chasing too few goods"</dd>
+        <dt>Drivers</dt>
+        <dd>Fiscal stimulus, monetary easing, consumer boom, export surge</dd>
+        <dt>Output</dt>
+        <dd>Price ↑ AND real GDP ↑ (economy expanding)</dd>
+        <dt>Employment</dt>
+        <dd>Unemployment ↓ — đồng thời với inflation lên</dd>
+        <dt>Example</dt>
+        <dd>Post-stimulus demand boom, wartime spending</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Cost-push</div>
+      <dl>
+        <dt>Source</dt>
+        <dd>Supply shock — AS shifts left (cost đầu vào tăng)</dd>
+        <dt>Drivers</dt>
+        <dd>Oil shock, wage hike, supply chain disruption, nguyên liệu tăng giá</dd>
+        <dt>Output</dt>
+        <dd>Price ↑ BUT real GDP ↓ — <em>stagflation</em></dd>
+        <dt>Employment</dt>
+        <dd>Unemployment ↑ (firm cắt production) — đồng thời inflation</dd>
+        <dt>Example</dt>
+        <dd>1970s oil crisis, 2022 energy/food shock</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Distinguishing test — Inflation đi kèm GDP growth &amp; low unemployment → demand-pull. Inflation đi kèm recession/rising unemployment (stagflation) → cost-push.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — INFLATION</span>
+  </div>
+</section>
+
+
+<!-- 13 · INFLATION MEASURES -->
+<section data-label="Inflation measures" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>13 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Inflation · indices</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">CPI, PPI, <em class="hi">GDP deflator</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px; grid-template-columns: repeat(3, 1fr);">
+    <div class="tenet">
+      <span class="n">CPI</span>
+      <div>
+        <div class="t"><em class="hi">Consumer Price Index</em></div>
+        <div class="d">Giá rổ hàng hóa/dịch vụ mà household đại diện mua. <em>Fixed basket</em> (Laspeyres). Headline vs core (loại food &amp; energy).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PPI</span>
+      <div>
+        <div class="t"><em class="hi">Producer Price Index</em></div>
+        <div class="d">Giá nhà sản xuất nhận tại factory gate. <em>Leading</em> cho CPI vì cost upstream eventually passes downstream.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">DEF</span>
+      <div>
+        <div class="t"><em class="hi">GDP deflator</em></div>
+        <div class="d">(Nominal GDP / Real GDP) × 100. Bao trùm <em>mọi</em> domestic goods/services — broader than CPI (CPI chỉ consumer).</div>
+      </div>
+    </div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Expected vs Unexpected inflation</span>
+        <span class="step-body"><em>Expected</em>: đã được price vào wages, contracts, interest rates → ít disruption. <em>Unexpected</em>: wealth redistribution (debtor vs creditor), decision errors, higher volatility.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Substitution bias của CPI</span>
+        <span class="step-body">Fixed basket không capture consumer substitute sang hàng rẻ hơn khi giá thay đổi → CPI <em>overstates</em> inflation thực. GDP deflator dùng current basket → tránh bias này.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — MEASURES</span>
+  </div>
+</section>
+
+
+<!-- 14 · PHILLIPS CURVE -->
+<section data-label="Phillips curve" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>14 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Phillips curve · trade-off</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Inflation vs <em class="hi">unemployment</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Phillips curve mô tả <em>inverse relationship</em> giữa inflation và unemployment trong short-run. Long-run thì vertical tại natural rate.
+    </p>
+  </div>
+
+  <div class="take" style="margin-top: 20px;">
+    <div class="item">
+      <div class="k">Short-run · SRPC</div>
+      <div class="v">Downward-sloping — unemployment thấp đi kèm inflation cao hơn. Trade-off hiện hữu nếu expectations không đổi.</div>
+    </div>
+    <div class="item">
+      <div class="k">Long-run · LRPC</div>
+      <div class="v">Vertical tại natural rate of unemployment. Không có trade-off dài hạn — monetary policy chỉ đẩy inflation, không giảm được U bền vững.</div>
+    </div>
+    <div class="item">
+      <div class="k">Expectations augmented</div>
+      <div class="v">SRPC shift up/down theo expected inflation. "Loose" policy cuối cùng chỉ đẩy expectations → SRPC shift → inflation cao hơn cùng U.</div>
+    </div>
+    <div class="item">
+      <div class="k">Stagflation</div>
+      <div class="v">Thập niên 1970s phá vỡ simple Phillips curve — cost-push supply shock khiến cả inflation và U cùng tăng. Bắt đầu kỷ nguyên rational expectations.</div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — PHILLIPS</span>
+  </div>
+</section>
+
+
+<!-- 15 · EXPECTATIONS -->
+<section data-label="Expectations" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>15 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Expectations · how agents forecast</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Adaptive vs <em class="hi">rational</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Adaptive expectations</div>
+      <dl>
+        <dt>Formation</dt>
+        <dd>Dựa hoàn toàn vào <em>past data</em> — agents học từ sai lầm cũ</dd>
+        <dt>Accuracy</dt>
+        <dd>Systematically biased trong regime changes — slow to adjust</dd>
+        <dt>Policy implication</dt>
+        <dd>Short-run trade-off inflation/U tồn tại — central bank có thể "fool" agents tạm thời</dd>
+        <dt>Champions</dt>
+        <dd>Friedman, early Keynesians</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Rational expectations</div>
+      <dl>
+        <dt>Formation</dt>
+        <dd>Agents dùng <em>all available info</em> (bao gồm dự báo policy) — không sai systematic</dd>
+        <dt>Accuracy</dt>
+        <dd>Unbiased on average — agents anticipate policy effects</dd>
+        <dt>Policy implication</dt>
+        <dd>Anticipated policy có <em>no real effect</em> — chỉ unanticipated shocks matter</dd>
+        <dt>Champions</dt>
+        <dd>Lucas, Sargent — new classical macro</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Bài học — Trong rational expectations framework, nếu Fed announce cắt rates, agents đã price vào ngay → không có surprise effect. Credibility của central bank matters cực kỳ — lý do họ theo inflation targeting công khai.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — EXPECTATIONS</span>
+  </div>
+</section>
+
+
+<!-- 16 · KEY TAKEAWAYS -->
+<section data-label="Takeaways" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>16 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Synthesis · remember these</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
+  </div>
+
+  <div class="take" style="margin-top: 30px;">
+    <div class="item">
+      <div class="k">4 phases</div>
+      <div class="v">Expansion → Peak → Contraction → Trough. Recurrent nhưng không periodic. Expansion dài hơn contraction.</div>
+    </div>
+    <div class="item">
+      <div class="k">Indicator timing</div>
+      <div class="v">Leading (stock market, yield curve, permits) · Coincident (GDP, IP, retail, employment) · Lagging (unemployment rate, inventories).</div>
+    </div>
+    <div class="item">
+      <div class="k">Unemployment</div>
+      <div class="v">Frictional + Structural = Natural rate. Cyclical = recession-driven, temporary. Full employment khi actual = natural.</div>
+    </div>
+    <div class="item">
+      <div class="k">Inflation</div>
+      <div class="v">Demand-pull (AD shift right, GDP ↑) vs Cost-push (AS shift left, stagflation). CPI, PPI, GDP deflator khác nhau về basket.</div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — TAKEAWAYS</span>
+  </div>
+</section>
+
+
+<!-- 17 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 EN — Indicator classification -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Classify the <em class="hi">indicator</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst reviews the following three economic data series for the United States: (1) <strong>S&amp;P 500 index</strong>, (2) <strong>real GDP</strong>, and (3) <strong>unemployment rate</strong>. Classified by their timing relative to the overall business cycle, these three series are <strong>most likely</strong> characterized, respectively, as:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Leading, coincident, lagging.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Coincident, leading, lagging.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Leading, lagging, coincident.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>S&amp;P 500</mark> — equity market. <mark>Real GDP</mark> — overall output. <mark>Unemployment rate</mark> — labor market outcome.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Stock market phản ánh <em>expectations về future earnings</em> → turn TRƯỚC economy → <em>leading</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Real GDP CHÍNH LÀ thước đo overall activity — turn CÙNG LÚC với economy theo định nghĩa → <em>coincident</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Firms hire/fire SAU khi đã xác nhận cycle direction (labor hoarding, labor slack) → unemployment rate turn SAU → <em>lagging</em>.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một analyst xem xét 3 chuỗi dữ liệu kinh tế US: (1) <strong>chỉ số S&amp;P 500</strong>, (2) <strong>real GDP</strong>, (3) <strong>unemployment rate</strong>. Phân loại theo timing so với overall business cycle, ba series này <strong>most likely</strong> là, theo thứ tự:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Leading, coincident, lagging.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Coincident, leading, lagging.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Leading, lagging, coincident.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — Leading, coincident, lagging.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext"><b>S&amp;P 500</b> là <em>leading</em> — equity prices phản ánh kỳ vọng future earnings, thường peak trước economic peak 3-9 tháng. <b>Real GDP</b> là <em>coincident</em> — chính là thước đo overall activity. <b>Unemployment rate</b> là <em>lagging</em> — firms chậm thay đổi quyết định tuyển dụng so với cycle.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Đảo ngược S&amp;P 500 và real GDP. Stock market là leading (forward-looking), không phải coincident. Real GDP là thước đo hiện tại → coincident.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Đảo ngược real GDP và unemployment. Real GDP turn cùng economy (coincident). Unemployment rate điều chỉnh chậm do labor hoarding/slack → lagging.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Nhớ timing: <em>markets look forward</em> (leading), <em>GDP is now</em> (coincident), <em>employment lags</em> (lagging). Rule of thumb: nếu indicator phản ánh decision về tương lai → leading; nếu là kết quả thực tế → coincident; nếu là adjustment chậm của firm → lagging.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 EN — Unemployment type -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Classify the <em class="hi">unemployment</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A large textile mill in a town permanently closes after most of its production is outsourced overseas and automated. Many of its former workers, whose skills are specific to traditional textile manufacturing, remain unemployed for more than a year despite active job search, because open positions in the region require different technical skills. This situation is <strong>best</strong> described as which type of unemployment?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Frictional unemployment — workers are voluntarily between jobs.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Cyclical unemployment — caused by weak aggregate demand during recession.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Structural unemployment — caused by a mismatch between worker skills and available jobs.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Permanently closes</mark>, <mark>outsourced + automated</mark>. Skills <mark>specific to traditional textile</mark>. Unemployed <mark>&gt;1 year</mark> despite active search. <mark>Different technical skills</mark> required.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">"Permanently closes" + "outsourced/automated" → KHÔNG phải cyclical (cyclical là tạm thời theo recession và phục hồi khi AD tăng).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">"Skills specific" + "different technical skills required" = <em>skills mismatch</em> — dấu hiệu đặc trưng của structural unemployment.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Frictional là ngắn hạn (vài tuần/tháng) giữa 2 jobs. Ở đây &gt;1 năm vẫn không tìm được → quá dài cho frictional. Technology displacement = structural.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một nhà máy dệt lớn trong thị trấn đóng cửa <strong>vĩnh viễn</strong> sau khi hầu hết production được outsource ra nước ngoài và tự động hóa. Nhiều công nhân cũ có kỹ năng chuyên cho dệt truyền thống vẫn thất nghiệp <strong>hơn 1 năm</strong> dù tích cực tìm việc, vì công việc có sẵn ở khu vực yêu cầu kỹ năng kỹ thuật khác. Tình huống này <strong>best</strong> mô tả loại unemployment nào?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Frictional — workers đang voluntarily chuyển giữa 2 jobs.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Cyclical — do AD yếu trong recession.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Structural — do mismatch giữa kỹ năng lao động và jobs có sẵn.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — Structural.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext">Dấu hiệu structural: (1) <b>permanent change</b> in industry structure (offshoring, automation), (2) <b>skills mismatch</b> — worker skills không match requirement mới, (3) <b>prolonged unemployment</b> (&gt;1 year) mặc dù tích cực tìm việc. Đây là technology/globalization displacement — cần retraining, không tự phục hồi theo cycle.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Frictional là <em>ngắn hạn</em> và <em>voluntary</em> — giữa 2 jobs, graduates tìm việc đầu tiên. Ở đây workers bị cho nghỉ vì nhà máy đóng cửa (involuntary) và mắc &gt;1 năm — không phù hợp frictional.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Cyclical gắn với recession/weak AD — sẽ <em>tự phục hồi</em> khi economy expand trở lại. Ở đây cause là structural (outsourcing, automation), không phải demand-side. Jobs cũ không quay lại khi economy recover.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Test nhanh: <em>Cause</em> là gì? Recession/weak demand → cyclical. Skills mismatch/tech displacement/geographic → structural. Job transition ngắn/voluntary → frictional. Key signal của structural: <em>prolonged</em> unemployment + <em>permanent</em> industry change.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 EN — Inflation type -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>26 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Demand-pull</em> or cost-push?</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A news report states: "Following a major oil-producing region's supply disruption, <strong>crude oil prices have doubled</strong>. Over the same period, the country's <strong>real GDP growth has slowed sharply</strong>, the <strong>unemployment rate has risen</strong>, and <strong>headline CPI has jumped</strong> well above the central bank's target." This combination is <strong>most consistent</strong> with which type of inflation?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Demand-pull inflation — AD shifted right, output and prices both rising.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Cost-push inflation — a negative supply shock raising prices while reducing output (stagflation).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Expected inflation — gradual price increases fully anticipated by agents.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>27 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Oil supply disruption</mark>, <mark>crude doubled</mark>. Real GDP <mark>slowed sharply</mark>. Unemployment <mark>rose</mark>. CPI <mark>jumped</mark>. Inflation ↑ + GDP ↓ + U ↑ cùng lúc.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Nguyên nhân là <em>supply-side shock</em> (oil disruption) — đẩy cost đầu vào lên → AS shift trái, không phải AD shift phải.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Inflation ↑ ĐỒNG THỜI với GDP ↓ và U ↑ = <em>stagflation</em> — chữ ký của cost-push, không phải demand-pull (demand-pull: GDP ↑ và U ↓).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Option C (expected inflation) sai vì "jumped well above target" = <em>unexpected surprise</em>, không phải gradual anticipated.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 Dịch đề + EXPLANATION -->
+<section data-label="Q3 Dịch + Answer" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>28 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Question 03 · Dịch đề + Answer</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">Answer: <em class="hi">B</em> — Cost-push.</h2>
+  </div>
+
+  <div class="q-card" style="margin-bottom: 14px;">
+    <span class="q-tag">§ Dịch đề</span>
+    <div class="q-stem">
+      Một bản tin: "Sau gián đoạn nguồn cung ở một khu vực sản xuất dầu lớn, <strong>giá dầu thô tăng gấp đôi</strong>. Cùng kỳ, <strong>tăng trưởng real GDP chậm mạnh</strong>, <strong>unemployment rate tăng</strong>, <strong>headline CPI vọt lên</strong> trên target của central bank." Tình huống này phù hợp <em>nhất</em> với loại inflation nào?
+    </div>
+  </div>
+
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext"><b>Cost-push</b>: oil shock tăng input cost → AS shift trái → <em>price ↑ và real GDP ↓ cùng lúc</em> (stagflation pattern). Unemployment cũng ↑ vì firms cắt production. Ba signals (GDP slow + U up + CPI jump từ supply shock) là classic cost-push/stagflation, như 1970s oil crisis hay 2022 energy shock.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Demand-pull yêu cầu AD shift PHẢI → price ↑ ĐI KÈM GDP ↑ và U ↓. Ở đây GDP giảm và U tăng — ngược với demand-pull. Không khớp.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Expected inflation là tăng giá <em>gradual và fully anticipated</em>. Ở đây CPI "jumped well above target" do unexpected oil shock → không phải expected; agents bị bất ngờ.</div>
+    </div>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Phân biệt nhanh: <em>Demand-pull</em> = inflation ↑ + GDP ↑ + U ↓ (hot economy). <em>Cost-push</em> = inflation ↑ + GDP ↓ + U ↑ (stagflation). Từ khóa quan trọng trong vignette: "supply disruption", "oil shock", "wage hike" → cost-push. "Stimulus", "consumer boom", "export surge" → demand-pull.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — ANSWER Q3</span>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

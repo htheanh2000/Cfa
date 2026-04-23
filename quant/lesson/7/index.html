@@ -1,0 +1,1020 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Quant 02.07 — Estimation and Inference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Estimation<br>&amp; <em>Inference.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 02 · Lesson 02.07 · Quant</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 07 · Sampling &amp; statistical inference</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Quant</dd></div>
+      <div><dt>Module</dt><dd>07</dd></div>
+      <div><dt>Lesson</dt><dd>02.07</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">CLT · Standard error · Confidence intervals</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">07</div>
+    <div class="lbl">Inference</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>From <em>sample</em><br>to population.</h2>
+    <ul class="toc">
+      <li class="active">01 · Population vs sample — sampling methods</li>
+      <li>02 · Sampling distribution &amp; Central Limit Theorem</li>
+      <li>03 · Standard error &amp; Confidence intervals</li>
+      <li>04 · z vs t distribution — when to use which</li>
+      <li>05 · Point estimator properties — unbiased, efficient, consistent</li>
+      <li>06 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · POPULATION VS SAMPLE -->
+<section data-label="Population vs sample" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Foundations · definitions</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Population</em> vs sample.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Thực tế hiếm khi quan sát được toàn bộ population → phải dựa vào <em>sample</em> để suy luận (infer) về population parameters.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Population</div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>Toàn bộ members trong nhóm quan tâm</dd>
+        <dt>Parameters</dt>
+        <dd>μ (mean), σ² (variance), σ (std dev) — thường <em>unknown</em></dd>
+        <dt>Ký hiệu</dt>
+        <dd>Chữ Hy Lạp: μ, σ, π</dd>
+        <dt>Ví dụ</dt>
+        <dd>Tất cả cổ phiếu trên VN30</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Sample</div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>Tập con được rút ra từ population</dd>
+        <dt>Statistics</dt>
+        <dd>X̄ (sample mean), s² (sample variance), s — <em>known</em> từ data</dd>
+        <dt>Ký hiệu</dt>
+        <dd>Chữ Latin: X̄, s, p</dd>
+        <dt>Ví dụ</dt>
+        <dd>10 cổ phiếu rút ngẫu nhiên từ VN30</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Sampling error = <b>sample statistic − population parameter</b>. Luôn tồn tại vì sample không bao giờ mô tả chính xác population. Mục tiêu inference: kiểm soát &amp; đo lường sampling error.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — POP VS SAMPLE</span>
+  </div>
+</section>
+
+
+<!-- 04 · SAMPLING METHODS -->
+<section data-label="Sampling methods" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Sampling · methods</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Three <em class="hi">sampling</em> methods.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Simple Random</em> Sampling</div>
+        <div class="d">Mỗi member có xác suất bằng nhau được chọn. Ví dụ: rút bốc thăm. Đơn giản nhưng cần complete list of population.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Stratified</em> Sampling</div>
+        <div class="d">Chia population thành <em>strata</em> (nhóm con đồng nhất) rồi random sample trong mỗi stratum. Giảm sampling error khi có phân khúc rõ ràng.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Systematic</em> Sampling</div>
+        <div class="d">Chọn mỗi phần tử thứ <em>k</em> từ list (ví dụ: mỗi 10 observation lấy 1). Đơn giản khi có list đã sắp xếp.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SE</span>
+      <div>
+        <div class="t"><em class="hi">Sampling error</em></div>
+        <div class="d">= sample statistic − population parameter. Không thể loại bỏ, chỉ có thể <em>giảm</em> bằng cách tăng n hoặc chọn method phù hợp.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — METHODS</span>
+  </div>
+</section>
+
+
+<!-- 05 · SAMPLING DISTRIBUTION -->
+<section data-label="Sampling distribution" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Sampling distribution · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Distribution of <em class="hi">sample statistics</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Nếu lặp lại việc lấy sample <em>nhiều lần</em> từ cùng một population, mỗi sample cho một X̄ khác nhau. Tập hợp các X̄ đó tạo thành <em>sampling distribution</em>.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Key insight</span>
+    Sampling distribution <b>không phải</b> distribution của data gốc. Đó là distribution của <em>một statistic</em> (ví dụ sample mean) qua nhiều lần lấy sample. Chính distribution này cho phép ta xây dựng confidence interval và hypothesis test.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Center — Mean of sampling distribution = μ</span>
+        <span class="step-body">E[X̄] = μ. Sample mean là <em>unbiased estimator</em> của population mean, bất kể population distribution.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Spread — Variance = σ²/n</span>
+        <span class="step-body">Biến thiên của X̄ nhỏ hơn biến thiên của individual observations. n càng lớn → sampling distribution càng "chụm" quanh μ.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — SAMPLING DIST</span>
+  </div>
+</section>
+
+
+<!-- 06 · CENTRAL LIMIT THEOREM -->
+<section data-label="Central Limit Theorem" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">CLT · the workhorse</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Central Limit Theorem</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Khi sample size <em>n đủ lớn</em>, sampling distribution của X̄ xấp xỉ <em>normal</em>, <b>bất kể</b> phân phối gốc của population (skewed, uniform, bimodal đều được).
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ CLT · formal statement</span>
+    <div class="eq"><span class="var">X̄</span> ~ <span class="var">N</span>( <span class="var">μ</span> , <span class="var">σ²</span>/<span class="var">n</span> )  khi  <span class="var">n</span> → ∞</div>
+    <div class="note"><b>μ</b> population mean · <b>σ²</b> population variance · <b>n</b> sample size. Rule of thumb CFA: <em>n ≥ 30</em> thường đủ để CLT áp dụng.</div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Tại sao CLT quan trọng — Cho phép dùng <em>normal distribution</em> (và z-table) để xây confidence interval + hypothesis test, ngay cả khi data gốc không normal. Đây là foundation của hầu hết thống kê suy luận trong finance.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — CLT</span>
+  </div>
+</section>
+
+
+<!-- 07 · STANDARD ERROR -->
+<section data-label="Standard error" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Standard error · dispersion of X̄</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Standard error</em> of the mean.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Standard error (SE) là <em>standard deviation của sampling distribution</em>. Nó đo độ chính xác của sample mean như một estimate của μ.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ SE · known population σ</span>
+    <div class="eq"><span class="var">SE</span>( <span class="var">X̄</span> ) = <span class="var">σ</span> / √<span class="var">n</span></div>
+    <div class="note">Dùng khi biết population standard deviation σ. Hiếm gặp thực tế.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ SE · unknown population σ (dùng sample s)</span>
+    <div class="eq"><span class="var">SE</span>( <span class="var">X̄</span> ) = <span class="var">s</span> / √<span class="var">n</span></div>
+    <div class="note"><b>s</b> sample standard deviation. Đây là trường hợp thường gặp trong practice.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § n tăng → SE giảm theo √n — gấp 4 lần sample mới giảm SE một nửa. Diminishing returns khi tăng sample size.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — STD ERROR</span>
+  </div>
+</section>
+
+
+<!-- 08 · CONFIDENCE INTERVALS -->
+<section data-label="Confidence intervals" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Confidence interval · CI</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Building a <em class="hi">CI</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CI là khoảng mà ta <em>tin tưởng</em> (với xác suất cho trước) sẽ chứa population parameter. Cấu trúc: <em>point estimate ± reliability factor × standard error</em>.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Confidence interval · general form</span>
+    <div class="eq"><span class="var">X̄</span> ± <span class="var">z</span><sub>α/2</sub> · <span class="var">SE</span>  hoặc  <span class="var">X̄</span> ± <span class="var">t</span><sub>α/2</sub> · <span class="var">SE</span></div>
+    <div class="note"><b>X̄</b> point estimate · <b>z/t</b> reliability factor (critical value) · <b>SE</b> standard error. Độ rộng CI phụ thuộc cả 3 yếu tố.</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Interpretation — đọc cho đúng</span>
+    "95% CI" KHÔNG có nghĩa "có 95% xác suất μ nằm trong khoảng này". Interpretation chuẩn: nếu lặp lại sampling nhiều lần và tính CI mỗi lần, <b>95% các CIs đó sẽ chứa μ</b>. Parameter μ là fixed, chỉ CI là random.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — CI</span>
+  </div>
+</section>
+
+
+<!-- 09 · COMMON CRITICAL VALUES -->
+<section data-label="Critical values" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Z-table · must-memorize</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Common <em class="hi">z-values</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">90%</span>
+      <div>
+        <div class="t"><em class="hi">z = 1.65</em></div>
+        <div class="d">α = 0.10. Mỗi đuôi 5%. Một-tailed 95% cũng dùng 1.65.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">95%</span>
+      <div>
+        <div class="t"><em class="hi">z = 1.96</em></div>
+        <div class="d">α = 0.05. Mỗi đuôi 2.5%. <em>Most common</em> CFA default.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">99%</span>
+      <div>
+        <div class="t"><em class="hi">z = 2.58</em></div>
+        <div class="d">α = 0.01. Mỗi đuôi 0.5%. CI rộng hơn nhiều để tăng confidence.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">68%</span>
+      <div>
+        <div class="t"><em class="hi">z = 1.00</em></div>
+        <div class="d">Empirical rule: ~68% data nằm trong 1σ của normal distribution.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § CFA exam bắt buộc nhớ: 1.65 / 1.96 / 2.58 ứng với 90% / 95% / 99%. One-tailed 95% = 1.65. One-tailed 99% = 2.33.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — Z-VALUES</span>
+  </div>
+</section>
+
+
+<!-- 10 · Z VS T DISTRIBUTION -->
+<section data-label="Z vs t" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Distribution choice · z vs t</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Z</em> vs <em class="hi">t</em> — when.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Z-distribution</div>
+      <dl>
+        <dt>Khi dùng</dt>
+        <dd>Population σ <em>known</em> · hoặc n lớn (≥ 30) và σ unknown (CLT)</dd>
+        <dt>Shape</dt>
+        <dd>Standard normal — tails mỏng</dd>
+        <dt>Parameter</dt>
+        <dd>Không có df — shape cố định</dd>
+        <dt>Critical 95%</dt>
+        <dd>1.96 (fixed)</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">t-distribution</div>
+      <dl>
+        <dt>Khi dùng</dt>
+        <dd>σ <em>unknown</em> và n nhỏ (&lt; 30) · normal population assumed</dd>
+        <dt>Shape</dt>
+        <dd><em>Heavier tails</em> — account cho uncertainty của s</dd>
+        <dt>Parameter</dt>
+        <dd>Degrees of freedom <em>df = n − 1</em></dd>
+        <dt>Tendency</dt>
+        <dd>Khi df → ∞, t-dist → normal</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Conservative practice — Nhiều practitioners dùng t-distribution <em>bất cứ khi nào</em> σ unknown (không quan trọng n), vì t-dist an toàn hơn (tails rộng hơn → CI rộng hơn → ít sai sót). Với n lớn, t ≈ z nên không khác biệt.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — Z VS T</span>
+  </div>
+</section>
+
+
+<!-- 11 · DECISION TABLE -->
+<section data-label="Decision table" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Which distribution · decision</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">decision rule</em>.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Flowchart</span>
+    Biết σ? → <b>Có</b> → <em>z</em>. → <b>Không</b> → Population có normal? → <b>Có, n nhỏ</b> → <em>t</em>. → <b>Có, n lớn (≥ 30)</b> → <em>t</em> (preferred) hoặc <em>z</em> (acceptable). → <b>Không normal, n lớn</b> → <em>z</em> via CLT. → <b>Không normal, n nhỏ</b> → không có test tham số đáng tin cậy.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Quick memory aid</span>
+        <span class="step-body">σ known → z. σ unknown → t (luôn safe). n lớn + σ unknown → z cũng OK nhờ CLT.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">CFA exam trap</span>
+        <span class="step-body">Đọc kỹ: "population standard deviation" = σ (known → z) vs "sample standard deviation" = s (unknown σ → t).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — DECISION</span>
+  </div>
+</section>
+
+
+<!-- 12 · POINT ESTIMATOR PROPERTIES -->
+<section data-label="Estimator properties" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Point estimators · quality</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Three <em class="hi">properties</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Một estimator (như X̄, s²) được đánh giá qua 3 properties. Good estimator phải có cả 3.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Unbiasedness</em></div>
+        <div class="d">E[estimator] = parameter. Kỳ vọng của estimator = giá trị thật. X̄ unbiased cho μ. Sample variance s² (chia n−1) unbiased cho σ².</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Efficiency</em></div>
+        <div class="d">Variance nhỏ nhất trong các unbiased estimators. Giữa hai estimator unbiased, chọn cái có SE nhỏ hơn — "tight" hơn quanh parameter.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Consistency</em></div>
+        <div class="d">Khi n → ∞, estimator hội tụ về parameter (xác suất). SE → 0. Sample mean X̄ consistent cho μ (từ Law of Large Numbers).</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Priority — Unbiasedness thường được ưu tiên trước. Efficiency so sánh giữa nhiều unbiased estimators. Consistency là asymptotic property (n rất lớn).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — ESTIMATOR PROPS</span>
+  </div>
+</section>
+
+
+<!-- 13 · SAMPLE MEAN & VARIANCE FORMULAS -->
+<section data-label="Sample formulas" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>13 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Sample statistics · formulas</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Sample <em class="hi">mean</em> &amp; variance.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Sample mean</span>
+    <div class="eq"><span class="var">X̄</span> = ( 1 / <span class="var">n</span> ) · Σ <span class="var">X</span><sub>i</sub></div>
+    <div class="note">Trung bình cộng của n observations. Unbiased estimator của μ.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Sample variance (với Bessel correction)</span>
+    <div class="eq"><span class="var">s²</span> = Σ ( <span class="var">X</span><sub>i</sub> − <span class="var">X̄</span> )² / ( <span class="var">n</span> − 1 )</div>
+    <div class="note">Chia <b>n−1</b> (không phải n) để bù cho việc dùng X̄ thay μ → unbiased estimator của σ². <em>n−1</em> = degrees of freedom.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Sample standard deviation s = √s². Đơn vị giống X. Khi dùng trong SE = s/√n → đơn vị lại giống X̄.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — FORMULAS</span>
+  </div>
+</section>
+
+
+<!-- 14 · WORKED EXAMPLE — CI -->
+<section data-label="CI example" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>14 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Worked example · 95% CI</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Build a <em class="hi">95% CI</em>.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Scenario · portfolio return</span>
+    Sample <b>n = 100</b> monthly returns của một quỹ. Sample mean <b>X̄ = 1.2%</b>. Sample standard deviation <b>s = 2.0%</b>. Build 95% CI cho true mean monthly return μ.
+  </div>
+
+  <div class="formula-box" style="margin-top: 20px;">
+    <span class="fmt-label">§ Step 1 — SE</span>
+    <div class="eq"><span class="var">SE</span> = <span class="var">s</span> / √<span class="var">n</span> = 2.0% / √100 = 0.2%</div>
+    <div class="note">n = 100 lớn, σ unknown → có thể dùng z (CLT). Critical value 95% → z = 1.96.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Step 2 — Margin &amp; CI</span>
+    <div class="eq">1.2% ± 1.96 × 0.2% = 1.2% ± 0.392% → [ 0.808% , 1.592% ]</div>
+    <div class="note">Tin 95% rằng true mean monthly return nằm trong khoảng <b>[0.81%, 1.59%]</b>. Zero <em>không</em> nằm trong khoảng → strong evidence rằng mean return &gt; 0.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — CI EX</span>
+  </div>
+</section>
+
+
+<!-- 15 · TAKEAWAYS -->
+<section data-label="Takeaways" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>15 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Synthesis</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">CLT là foundation</span>
+        <span class="step-body">Với n ≥ 30, X̄ xấp xỉ normal bất kể population distribution. Mean = μ, variance = σ²/n. Cho phép dùng z-table cho inference.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">SE đo precision của X̄</span>
+        <span class="step-body">SE = σ/√n hoặc s/√n. n tăng 4 lần → SE giảm 2 lần. Luôn nhỏ hơn σ của individual data.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">z vs t — biết σ hay không</span>
+        <span class="step-body">σ known → z. σ unknown → t (hoặc z nếu n lớn nhờ CLT). Conservative: luôn dùng t khi σ unknown.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Estimator quality</span>
+        <span class="step-body">Unbiased (E = parameter), Efficient (min variance), Consistent (hội tụ khi n → ∞). X̄ đạt cả 3.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — TAKEAWAYS</span>
+  </div>
+</section>
+
+
+<!-- 16 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 EN — Construct 95% CI -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>17 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Construct a <em class="hi">95% CI</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst collects a random sample of <strong>n = 64</strong> monthly returns of a mutual fund. The sample mean is <strong>X̄ = 0.80%</strong> with sample standard deviation <strong>s = 1.60%</strong>. Assuming returns are approximately normal, the <strong>95% confidence interval</strong> for the population mean monthly return is <em>closest</em> to:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">[ 0.47% , 1.13% ].</span></li>
+    <li><span class="lbl">B</span><span class="opt">[ 0.41% , 1.19% ].</span></li>
+    <li><span class="lbl">C</span><span class="opt">[ −2.34% , 3.94% ].</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>n = 64</mark>, X̄ = <mark>0.80%</mark>, s = <mark>1.60%</mark>, CI <mark>95%</mark>. n ≥ 30 và σ unknown — có thể dùng z.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">SE = s/√n = 1.60% / √64 = 1.60% / 8 = <em>0.20%</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">95% CI → critical value z = <em>1.96</em>. Margin = 1.96 × 0.20% = 0.392%.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">CI = X̄ ± margin = 0.80% ± 0.392% = <em>[0.408%, 1.192%]</em>. Làm tròn → [0.41%, 1.19%].</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một analyst thu thập random sample <strong>n = 64</strong> monthly returns của một quỹ. Sample mean <strong>X̄ = 0.80%</strong> với sample standard deviation <strong>s = 1.60%</strong>. Giả sử returns xấp xỉ normal, <strong>95% confidence interval</strong> cho population mean monthly return <em>gần nhất</em> với:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">[ 0.47% , 1.13% ].</span></li>
+    <li><span class="lbl">B</span><span class="opt">[ 0.41% , 1.19% ].</span></li>
+    <li><span class="lbl">C</span><span class="opt">[ −2.34% , 3.94% ].</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — [0.41%, 1.19%].</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">SE = s/√n = 1.60%/8 = 0.20%. z<sub>0.025</sub> = 1.96 cho 95% CI. Margin = 1.96 × 0.20% = <b>0.392%</b>. CI = 0.80% ± 0.392% = [0.408%, 1.192%] ≈ <b>[0.41%, 1.19%]</b>.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Option A dùng z = 1.65 (90% CI) thay vì 1.96 (95% CI): 0.80% ± 1.65×0.20% ≈ [0.47%, 1.13%]. Sai confidence level.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Option C dùng s trực tiếp thay vì SE (quên chia √n): 0.80% ± 1.96×1.60% = [−2.34%, 3.94%]. Common mistake — confusing standard deviation với standard error.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">CI formula: <em>X̄ ± z × (s/√n)</em>. Nhớ chia √n (đây là SE, không phải s). Nhớ z cho 95% = 1.96, cho 90% = 1.65, cho 99% = 2.58.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 EN — When to use t vs z -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">t</em> vs <em class="hi">z</em> — choice.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst constructs a confidence interval for the population mean based on a sample of <strong>n = 18</strong> drawn from a normally distributed population with <strong>unknown</strong> population standard deviation. The <strong>most appropriate</strong> reliability factor to use is from the:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Standard normal (z) distribution, because the population is normal.</span></li>
+    <li><span class="lbl">B</span><span class="opt">t-distribution with 18 degrees of freedom.</span></li>
+    <li><span class="lbl">C</span><span class="opt">t-distribution with 17 degrees of freedom.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>n = 18</mark> (nhỏ, &lt; 30). Population <mark>normal</mark>. Population σ <mark>unknown</mark>. Cần reliability factor cho CI.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">σ unknown → phải ưu tiên <em>t-distribution</em>. z-distribution chỉ dùng khi σ known (hoặc n rất lớn).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">n &lt; 30 và σ unknown → t là <em>required</em>, không phải optional. Nếu population không normal thì cả t lẫn z đều không safe với n nhỏ.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Degrees of freedom cho one-sample CI: <em>df = n − 1 = 18 − 1 = 17</em>. Không phải n = 18.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một analyst xây dựng confidence interval cho population mean dựa trên sample <strong>n = 18</strong> lấy từ một population <strong>normal</strong> với population standard deviation <strong>unknown</strong>. Reliability factor <strong>phù hợp nhất</strong> lấy từ:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Standard normal (z) distribution, vì population normal.</span></li>
+    <li><span class="lbl">B</span><span class="opt">t-distribution với 18 degrees of freedom.</span></li>
+    <li><span class="lbl">C</span><span class="opt">t-distribution với 17 degrees of freedom.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — t(df=17).</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext">σ unknown + n nhỏ (&lt; 30) + population normal → <b>t-distribution</b>. Degrees of freedom cho one-sample mean CI: <b>df = n − 1 = 17</b>. Heavier tails của t bù cho extra uncertainty khi ước lượng σ từ s.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">z-distribution chỉ dùng khi σ <em>known</em>, hoặc khi n lớn và có thể dựa CLT. Ở đây σ unknown và n = 18 &lt; 30 → z không phù hợp. Population normal không đủ để dùng z.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Đúng distribution (t) nhưng sai degrees of freedom. Với one-sample CI, df = <em>n − 1 = 17</em>, không phải n = 18. Lỗi confusing n và df.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Decision rule: σ known → z. σ unknown + normal pop → t với df = n−1. σ unknown + n lớn → t (hoặc z via CLT). Nhớ: <em>df = n − 1</em>, không bao giờ bằng n.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 EN — CLT interpretation -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Interpret <em class="hi">CLT</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A population of daily stock returns has mean μ and variance σ². An analyst draws a random sample of size <strong>n = 50</strong> and computes the sample mean X̄. According to the <strong>Central Limit Theorem</strong>, the sampling distribution of X̄ is <em>most likely</em>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Approximately normal with mean μ and variance σ², regardless of the population distribution.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Approximately normal with mean μ and variance σ²/n, regardless of the population distribution.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Identical in shape to the population distribution, with mean μ and variance σ²/n.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>26 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>CLT</mark>, <mark>n = 50</mark> (lớn, ≥ 30), distribution of <mark>X̄</mark> (sample mean, không phải individual X).
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">CLT nói: X̄ xấp xỉ normal khi n lớn, <em>bất kể</em> population distribution. Không cần population normal.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Mean của sampling distribution = μ (same as population). Variance = <em>σ²/n</em> (nhỏ hơn σ của population theo factor n).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Điểm bẫy: variance của sampling distribution KHÔNG phải σ². Nhớ phép chia cho n — đây là cốt lõi của SE formula.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 Dịch đề + EXPLANATION combined -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.07</span>
+    <span class="rule"></span>
+    <span>27 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một population của daily stock returns có mean μ và variance σ². Analyst rút random sample kích thước <strong>n = 50</strong> và tính sample mean X̄. Theo <strong>Central Limit Theorem</strong>, sampling distribution của X̄ <em>most likely</em>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Xấp xỉ normal với mean μ và variance σ², bất kể population distribution.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Xấp xỉ normal với mean μ và variance σ²/n, bất kể population distribution.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Giống hình dạng với population distribution, mean μ và variance σ²/n.</span></li>
+  </ol>
+
+  <div class="reasoning" style="margin-top: 20px;">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">CLT: X̄ ~ N(μ, σ²/n) khi n đủ lớn (≥ 30), <b>bất kể</b> population distribution. Mean giữ nguyên μ, variance giảm thành σ²/n — reflect precision gain từ averaging.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Variance sai: σ² là variance của <em>individual observation</em>, không phải của X̄. Sampling distribution hẹp hơn population distribution theo factor 1/n.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Cốt lõi của CLT: sampling distribution của X̄ là <em>normal</em>, KHÔNG nhất thiết giống population distribution. Đây là "magic" của CLT — biến bất kỳ distribution nào thành normal qua averaging.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway · Answer B</div>
+    <div class="ttext">CLT gồm <em>3 claims</em>: (1) X̄ xấp xỉ normal, (2) mean = μ, (3) variance = σ²/n. Tất cả đều <em>bất kể</em> population distribution, với điều kiện n đủ lớn.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.07 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 28 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>02.07 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 02.08 — Hypothesis Testing</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

@@ -1,0 +1,1019 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Econ 03.07 — Capital Flows &amp; FX Market</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Capital Flows<br>&amp; <em>FX Market.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 03 · Lesson 03.07 · Economics</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 07 · Foreign exchange &amp; parity conditions</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Econ</dd></div>
+      <div><dt>Module</dt><dd>07</dd></div>
+      <div><dt>Lesson</dt><dd>03.07</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Spot · Forward · IRP · PPP · Fisher · Regimes</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">07</div>
+    <div class="lbl">FX &amp; parity</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How <em>currencies</em><br>get priced.</h2>
+    <ul class="toc">
+      <li class="active">01 · Exchange rates — quote conventions &amp; nominal vs real</li>
+      <li>02 · Spot, Forward — premium/discount mechanics</li>
+      <li>03 · Parity conditions — IRP (covered/uncovered), PPP, Fisher</li>
+      <li>04 · Currency regimes &amp; crises · BoP impact on FX</li>
+      <li>05 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · EXCHANGE RATE BASICS -->
+<section data-label="Exchange rate basics" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">FX · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What is an <em class="hi">exchange rate</em>?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Exchange rate là giá của một đồng tiền tính bằng đồng tiền khác. Một quote luôn đi theo cặp: <em>base currency</em> (mẫu số) và <em>price currency</em> (tử số).
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Reading a quote</span>
+    Ký hiệu <b>USD/VND = 24,500</b> nghĩa là cần 24,500 VND để mua 1 USD. Base = USD (denominator), Price = VND (numerator). CFA convention viết "price/base" — đọc từ trái qua là "price per unit of base".
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Direct quote</em></div>
+        <div class="d">Domestic per 1 unit foreign. Với nhà đầu tư VN: USD/VND = 24,500 (giá 1 USD tính bằng VND). Tăng = VND yếu đi.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Indirect quote</em></div>
+        <div class="d">Foreign per 1 unit domestic. VND/USD ≈ 0.0000408. Đây là <em>nghịch đảo</em> của direct quote.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — FX BASICS</span>
+  </div>
+</section>
+
+
+<!-- 04 · NOMINAL vs REAL FX -->
+<section data-label="Nominal vs Real FX" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">FX · adjustments</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Nominal</em> vs <em class="hi">Real</em> FX.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Nominal FX là giá niêm yết trên thị trường. Real FX điều chỉnh cho chênh lệch lạm phát giữa hai quốc gia — phản ánh <em>sức mua thực</em>.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Real exchange rate</span>
+    <div class="eq"><span class="var">Real FX</span> = <span class="var">Nominal FX</span> × (<span class="var">P<sub>foreign</sub></span> / <span class="var">P<sub>domestic</sub></span>)</div>
+    <div class="note">Khi lạm phát domestic cao hơn foreign → P<sub>foreign</sub>/P<sub>domestic</sub> giảm → Real FX giảm → currency đắt lên <em>về sức mua</em> dù nominal có thể yếu.</div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Real FX quan trọng cho competitiveness — nếu VND depreciate 5% nhưng lạm phát VN cao hơn US 7%, real VND thực tế <em>đắt lên</em>, hàng VN bớt cạnh tranh export.
+  </p>
+
+  <div class="take" style="margin-top: 16px;">
+    <b>Take</b> — Nominal = what you see; Real = what you can buy. Trade competitiveness follows Real, not Nominal.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — REAL FX</span>
+  </div>
+</section>
+
+
+<!-- 05 · EFFECTIVE EXCHANGE RATE -->
+<section data-label="Effective FX" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">FX · index</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Effective</em> exchange rate.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Effective FX = <em>trade-weighted index</em> đo currency so với một rổ (basket) tiền tệ của các đối tác thương mại, weighted theo tỷ trọng thương mại.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Nominal Effective Exchange Rate (NEER)</span>
+        <span class="step-body">Weighted average nominal rates so với các partners. Phản ánh "bức tranh toàn cục" của currency, không chỉ vs USD hay EUR.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Real Effective Exchange Rate (REER)</span>
+        <span class="step-body">NEER điều chỉnh thêm cho inflation differentials. REER là thước đo chính xác nhất về competitiveness thương mại.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Ứng dụng — policy &amp; macro</span>
+        <span class="step-body">IMF, BIS công bố REER. REER tăng = currency overvalued về competitiveness → pressure cho devaluation hoặc export cooling.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — EFFECTIVE FX</span>
+  </div>
+</section>
+
+
+<!-- 06 · SPOT vs FORWARD -->
+<section data-label="Spot vs Forward" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">FX · markets</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Spot</em> vs <em class="hi">Forward</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Spot market</div>
+      <dl>
+        <dt>Delivery</dt>
+        <dd>Immediate — thường T+2 business days</dd>
+        <dt>Rate</dt>
+        <dd>Spot rate (S) — giá hiện hành trên thị trường</dd>
+        <dt>Use</dt>
+        <dd>Thanh toán thương mại, remittance, tourist FX</dd>
+        <dt>Liquidity</dt>
+        <dd>Rất cao — USD/EUR spot $7.5T/ngày</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Forward market</div>
+      <dl>
+        <dt>Delivery</dt>
+        <dd>Future date — 30d, 60d, 90d, 1y...</dd>
+        <dt>Rate</dt>
+        <dd>Forward rate (F) — khóa hôm nay, chốt sau</dd>
+        <dt>Use</dt>
+        <dd>Hedging FX risk, speculation, arbitrage</dd>
+        <dt>Pricing</dt>
+        <dd>Quyết định bởi interest rate differential (IRP)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Forward không phải "dự báo" thị trường — chỉ là spot hôm nay điều chỉnh theo chênh lệch lãi suất. Nếu F &gt; S thì base currency đang trade ở <em>forward premium</em>.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — SPOT &amp; FWD</span>
+  </div>
+</section>
+
+
+<!-- 07 · FORWARD PREMIUM / DISCOUNT -->
+<section data-label="Forward premium/discount" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Forward · mechanics</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Forward <em class="hi">premium/discount</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Annualized forward premium (discount)</span>
+    <div class="eq"><span class="var">Premium</span> = [(<span class="var">F</span> − <span class="var">S</span>) / <span class="var">S</span>] × (360 / <span class="var">days</span>)</div>
+    <div class="note">F &gt; S → base currency ở <b>forward premium</b> (đắt hơn trong tương lai). F &lt; S → <b>forward discount</b>. Công thức annualize trên 360-day convention.</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Worked example</span>
+    Spot USD/VND = 24,500. 90-day forward = 24,700. Forward premium của USD = (24,700 − 24,500)/24,500 × (360/90) = 0.00816 × 4 = <b>3.27% p.a.</b> USD trade ở premium vì VND interest rate cao hơn USD.
+  </div>
+
+  <p class="fine-muted-sm">
+    § Intuition — Currency có <em>lãi suất cao hơn</em> sẽ trade ở forward <b>discount</b> (đắt ở spot, rẻ ở forward) để cân bằng return. Đây chính là basis của IRP ở slide sau.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — FWD PREMIUM</span>
+  </div>
+</section>
+
+
+<!-- 08 · COVERED vs UNCOVERED IRP -->
+<section data-label="Covered vs Uncovered IRP" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Parity · interest rates</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Covered</em> vs <em class="hi">Uncovered</em> IRP.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Covered IRP (arbitrage)</div>
+      <dl>
+        <dt>Core</dt>
+        <dd>F/S = (1 + r<sub>dom</sub>) / (1 + r<sub>for</sub>)</dd>
+        <dt>Status</dt>
+        <dd>Luôn đúng — enforced by arbitrage (no-arb)</dd>
+        <dt>Instrument</dt>
+        <dd>Forward contract "khóa" FX risk</dd>
+        <dt>Use</dt>
+        <dd>Pricing forwards, detecting mispricing</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Uncovered IRP (expectation)</div>
+      <dl>
+        <dt>Core</dt>
+        <dd>E[%ΔS] = r<sub>dom</sub> − r<sub>for</sub></dd>
+        <dt>Status</dt>
+        <dd>Theory — thường KHÔNG đúng short-run (carry trade)</dd>
+        <dt>Instrument</dt>
+        <dd>Không hedge — bear FX risk</dd>
+        <dt>Use</dt>
+        <dd>Long-run FX forecasting, macro models</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Carry trade anomaly — Empirically, high-yield currencies không depreciate đủ như UIP dự đoán. Nhà đầu tư earn positive carry → strategy phổ biến nhưng rủi ro "crash".
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — IRP</span>
+  </div>
+</section>
+
+
+<!-- 09 · COVERED IRP FORMULA -->
+<section data-label="Covered IRP formula" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Parity · IRP math</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Covered IRP — <em class="hi">the equation</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Covered interest rate parity (exact)</span>
+    <div class="eq"><span class="var">F</span> / <span class="var">S</span> = (1 + <span class="var">r<sub>domestic</sub></span>) / (1 + <span class="var">r<sub>foreign</sub></span>)</div>
+    <div class="note">Quote là price/base (domestic per 1 base). r<sub>domestic</sub> = lãi suất của price currency, r<sub>foreign</sub> = lãi suất của base currency. <b>Period-matched</b> rates (nếu forward 90 ngày → dùng 90-day rates).</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Approximation (small rates)</span>
+    <div class="eq">(<span class="var">F</span> − <span class="var">S</span>) / <span class="var">S</span> ≈ <span class="var">r<sub>domestic</sub></span> − <span class="var">r<sub>foreign</sub></span></div>
+    <div class="note">Shortcut khi rates nhỏ. Forward premium xấp xỉ interest rate differential. Nếu r<sub>dom</sub> &gt; r<sub>for</sub> → F &gt; S (base currency ở forward premium).</div>
+  </div>
+
+  <div class="take" style="margin-top: 16px;">
+    <b>Take</b> — Covered IRP là <em>no-arbitrage identity</em>. Không phải forecast, mà là pricing equation. Nếu market không hold → arbitrage cho đến khi hold lại.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — IRP FORMULA</span>
+  </div>
+</section>
+
+
+<!-- 10 · PPP -->
+<section data-label="Purchasing Power Parity" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Parity · prices</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Purchasing Power Parity</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      PPP liên kết FX với giá cả hàng hóa. Ý tưởng: trong một thế giới không có barriers, một rổ hàng phải có giá như nhau khi quy đổi về cùng currency.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">AB</span>
+      <div>
+        <div class="t"><em class="hi">Absolute PPP</em></div>
+        <div class="d">Cùng basket hàng phải có cùng giá mọi nơi khi quy đổi. S = P<sub>domestic</sub>/P<sub>foreign</sub>. Rarely holds — barriers, non-tradables, taxes.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">RE</span>
+      <div>
+        <div class="t"><em class="hi">Relative PPP</em></div>
+        <div class="d">%ΔS = π<sub>domestic</sub> − π<sub>foreign</sub>. FX thay đổi bằng chênh lệch inflation. Holds tốt hơn trong long-run (5-10 năm).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Relative PPP formula</span>
+    <div class="eq">%Δ<span class="var">S</span> ≈ <span class="var">π<sub>domestic</sub></span> − <span class="var">π<sub>foreign</sub></span></div>
+    <div class="note">Nếu VN inflation 5%, US inflation 2% → VND sẽ depreciate ~3%/năm so với USD theo PPP. Long-run anchor, không phải short-run predictor.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — PPP</span>
+  </div>
+</section>
+
+
+<!-- 11 · FISHER EFFECT -->
+<section data-label="Fisher effect" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Parity · rates &amp; inflation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Fisher</em> &amp; International Fisher.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Fisher effect (domestic)</span>
+    <div class="eq"><span class="var">Nominal rate</span> ≈ <span class="var">Real rate</span> + <span class="var">Expected inflation</span></div>
+    <div class="note">r<sub>nominal</sub> = r<sub>real</sub> + E[π]. Lãi suất danh nghĩa = lãi suất thực + kỳ vọng lạm phát. Liên kết interest rate và inflation.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ International Fisher Effect (IFE)</span>
+    <div class="eq">%Δ<span class="var">S</span> ≈ <span class="var">r<sub>dom</sub><sup>nominal</sup></span> − <span class="var">r<sub>for</sub><sup>nominal</sup></span></div>
+    <div class="note">FX change = nominal interest rate differential. Giả định real rates bằng nhau globally → nominal differential toàn bộ do inflation differential. Bản chất là Fisher + PPP + UIP ráp lại.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Chain of logic — UIP: %ΔS = Δr<sup>nominal</sup>. PPP: %ΔS = Δπ. Fisher: r<sup>nominal</sup> − r<sup>real</sup> = π. Nếu cả ba hold, các parity conditions <em>nhất quán</em>.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — FISHER</span>
+  </div>
+</section>
+
+
+<!-- 12 · CURRENCY REGIMES -->
+<section data-label="Currency regimes" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Policy · regimes</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Currency <em class="hi">regimes</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CFA L1 phân loại 5 regimes chính theo mức độ <em>flexibility</em> của FX và <em>commitment</em> của central bank.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Floating</em></div>
+        <div class="d">FX tự do cung-cầu. Ex: USD, EUR, JPY. Monetary policy độc lập, absorb shocks through FX.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Fixed peg</em></div>
+        <div class="d">CB commit giữ FX cố định với anchor currency. Cần reserves lớn để defend. Ex: HKD peg USD.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Crawling peg</em></div>
+        <div class="d">Peg điều chỉnh dần theo inflation hoặc rules. VND thời kỳ trước 2016 có đặc điểm này.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Currency board</em></div>
+        <div class="d">Fixed peg + 100% dự trữ ngoại tệ backing. Không in tiền trừ khi có reserves. Ex: HK, Bulgaria.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">05</span>
+      <div>
+        <div class="t"><em class="hi">Dollarization</em></div>
+        <div class="d">Bỏ hẳn currency riêng, dùng USD (hoặc EUR). Ex: Ecuador, El Salvador. Mất hoàn toàn monetary sovereignty.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">06</span>
+      <div>
+        <div class="t"><em class="hi">Managed float</em></div>
+        <div class="d">Float nhưng CB intervene khi cần. "Dirty float". Ex: Nhiều EM bao gồm VN hiện tại.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — REGIMES</span>
+  </div>
+</section>
+
+
+<!-- 13 · CURRENCY CRISES -->
+<section data-label="Currency crises" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>13 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Policy · crises</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Currency <em class="hi">crises</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Currency crisis xảy ra khi market mất niềm tin vào peg hoặc fundamentals. Capital flight + speculative attack → devaluation pressure vượt khả năng defend.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Capital flight — outflow đột ngột</span>
+        <span class="step-body">Nhà đầu tư rút vốn khỏi domestic assets (bonds, equities, deposits) → bán domestic currency → depreciation pressure mạnh.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Speculative attack — hedge funds short</span>
+        <span class="step-body">Traders short-sell currency trên forward/futures. CB phải bán reserves để defend peg. Ex: Soros vs BOE 1992.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Devaluation — peg break</span>
+        <span class="step-body">Reserves cạn hoặc cost defend quá lớn → CB phải thả peg hoặc reset lower. Currency rơi mạnh, import inflation spike. Ex: Asian crisis 1997, THB -50%.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § Warning signs — Rapid credit expansion, overvalued REER, declining FX reserves, high short-term external debt, widening CA deficit. CFA thường test dấu hiệu nào precede crisis.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — CRISES</span>
+  </div>
+</section>
+
+
+<!-- 14 · BoP IMPACT ON FX & INTERVENTION -->
+<section data-label="BoP &amp; drivers" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>14 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Drivers · BoP &amp; macro</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">BoP impact</em> &amp; FX drivers.</h2>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Current account logic</span>
+    <b>CA surplus</b> (export &gt; import) → foreigners cần mua domestic currency để trả cho hàng xuất → <em>appreciation pressure</em>. <b>CA deficit</b> → ngược lại → depreciation pressure. Capital account flows có thể offset short-run.
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Inflation</em> differentials</div>
+        <div class="d">High inflation → currency depreciates (PPP). Low, stable inflation → appreciation.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Interest rates</em></div>
+        <div class="d">Higher real rates → attract capital inflows → appreciation. UIP expect offsetting depreciation long-run.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Growth</em> &amp; stability</div>
+        <div class="d">Strong growth + political stability → safe haven / FDI inflows → appreciation. Instability → capital flight.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t">CB <em class="hi">intervention</em></div>
+        <div class="d">Buy domestic currency = defend / appreciate. Sell domestic = depreciate. Hiệu quả hạn chế nếu trái fundamentals.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — BoP &amp; FX</span>
+  </div>
+</section>
+
+
+<!-- 15 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 16 · Q1 EN — Covered IRP -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>16 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Price the <em class="hi">forward</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      The current spot rate is <strong>USD/CHF = 0.9000</strong> (CHF per USD). The 1-year interest rates are <strong>5.0%</strong> in USD and <strong>2.0%</strong> in CHF. Using covered interest rate parity, the 1-year forward rate USD/CHF is <em>closest</em> to:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">0.8743.</span></li>
+    <li><span class="lbl">B</span><span class="opt">0.9265.</span></li>
+    <li><span class="lbl">C</span><span class="opt">0.9270.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>17 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Quote <mark>USD/CHF = 0.9000</mark> → CHF is <mark>price</mark>, USD is <mark>base</mark>. r<sub>CHF</sub> = <mark>2%</mark>, r<sub>USD</sub> = <mark>5%</mark>. Apply <mark>covered IRP</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Covered IRP: F/S = (1 + r<sub>price</sub>) / (1 + r<sub>base</sub>). "Price" là CHF (numerator trong USD/CHF), "base" là USD.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">F = 0.9000 × (1 + 0.02) / (1 + 0.05) = 0.9000 × (1.02/1.05) = 0.9000 × 0.9714 = <em>0.8743</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Intuition check: r<sub>base</sub> (USD) &gt; r<sub>price</sub> (CHF) → base currency phải depreciate forward → F &lt; S → 0.8743 &lt; 0.9000. ✓</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Spot rate hiện tại là <strong>USD/CHF = 0.9000</strong> (CHF trên 1 USD). Lãi suất 1 năm: <strong>5.0%</strong> cho USD và <strong>2.0%</strong> cho CHF. Dùng covered interest rate parity, forward rate 1 năm USD/CHF <em>gần nhất</em> là:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">0.8743.</span></li>
+    <li><span class="lbl">B</span><span class="opt">0.9265.</span></li>
+    <li><span class="lbl">C</span><span class="opt">0.9270.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — 0.8743.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">Covered IRP: <b>F/S = (1 + r<sub>price</sub>) / (1 + r<sub>base</sub>)</b>. Với quote USD/CHF, price = CHF (r = 2%), base = USD (r = 5%). F = 0.9000 × (1.02/1.05) = 0.9000 × 0.97143 = <b>0.8743</b>. Base có rate cao hơn → base depreciate forward → F &lt; S. ✓</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">0.9265 = 0.9000 × (1.05/1.02) — <em>đảo tử số và mẫu số</em>. Common mistake: nhầm r<sub>price</sub> và r<sub>base</sub>. Luôn nhớ: rate của currency nào ở <em>numerator</em> của quote đi với <em>numerator</em> của ratio.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">0.9270 ≈ 0.9000 × (1 + 0.03) — dùng additive approximation nhưng sai dấu differential. Shortcut (F − S)/S ≈ r<sub>price</sub> − r<sub>base</sub> = 2% − 5% = −3% → F ≈ 0.9000 × 0.97 = 0.8730, giảm chứ không tăng.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Covered IRP = <em>no-arbitrage identity</em>, không phải forecast. Rule: <em>higher interest rate currency trades at forward discount</em>. Đọc quote "price/base" cẩn thận — ratio (1+r) đi theo cùng vị trí.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q2 EN — PPP -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Apply <em class="hi">PPP</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Expected inflation for the next year is <strong>6%</strong> in country X and <strong>1.5%</strong> in country Y. The current spot rate is <strong>X/Y = 10.00</strong> (X currency per 1 Y). According to <strong>relative purchasing power parity</strong>, the expected spot rate X/Y in one year is <em>closest</em> to:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">9.55 — Y depreciates vs X.</span></li>
+    <li><span class="lbl">B</span><span class="opt">10.45 — X depreciates vs Y.</span></li>
+    <li><span class="lbl">C</span><span class="opt">10.75 — X depreciates by full inflation gap.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    π<sub>X</sub> = <mark>6%</mark>, π<sub>Y</sub> = <mark>1.5%</mark>. Quote <mark>X/Y = 10.00</mark> → X is <mark>price</mark>, Y is <mark>base</mark>. Use <mark>relative PPP</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Relative PPP: %ΔS ≈ π<sub>price</sub> − π<sub>base</sub>. Với quote X/Y: %ΔS = π<sub>X</sub> − π<sub>Y</sub> = 6% − 1.5% = +4.5%.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">%ΔS &gt; 0 nghĩa là quote tăng → cần nhiều X hơn để mua 1 Y → <em>X depreciates</em> so với Y. Country có lạm phát cao hơn, currency yếu đi.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">E[S] = 10.00 × (1 + 0.045) = 10.00 × 1.045 = <em>10.45</em>. (Exact: 10 × 1.06/1.015 ≈ 10.443, làm tròn 10.45.)</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Lạm phát kỳ vọng năm tới là <strong>6%</strong> tại nước X và <strong>1.5%</strong> tại nước Y. Spot rate hiện tại <strong>X/Y = 10.00</strong> (X currency trên 1 Y). Theo <strong>relative purchasing power parity</strong>, expected spot X/Y sau 1 năm <em>gần nhất</em> là:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">9.55 — Y yếu đi so với X.</span></li>
+    <li><span class="lbl">B</span><span class="opt">10.45 — X yếu đi so với Y.</span></li>
+    <li><span class="lbl">C</span><span class="opt">10.75 — X yếu đi bằng toàn bộ inflation gap.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 10.45.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Relative PPP: <b>%ΔS ≈ π<sub>price</sub> − π<sub>base</sub></b>. Quote X/Y → price = X, base = Y. %ΔS = 6% − 1.5% = +4.5%. E[S] = 10.00 × 1.045 = <b>10.45</b>. Currency có lạm phát cao hơn (X) sẽ depreciate để giữ purchasing power parity.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">9.55 đảo ngược logic — hiểu nhầm "depreciation của X" thành quote giảm. Nhưng X/Y = X per Y, khi X yếu thì cần NHIỀU X hơn để mua 1 Y → quote TĂNG, không giảm.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">10.75 dùng gap 7.5% — có thể cộng nhầm (6 + 1.5) thay vì trừ (6 − 1.5). Relative PPP dùng <em>differential</em> (hiệu), không phải tổng.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Rule vàng: <em>higher-inflation currency depreciates</em>. Với quote price/base, %ΔS = π<sub>price</sub> − π<sub>base</sub>. Nếu π<sub>price</sub> cao hơn → quote tăng → price currency yếu đi. PPP là long-run anchor, short-run deviation nhiều.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q3 EN — BoP direction -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">BoP</em> &amp; FX direction.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Country Z experiences a <strong>persistent and widening current account surplus</strong>, driven by strong commodity exports. At the same time, <strong>foreign direct investment inflows</strong> are rising as multinationals build factories, and political stability is high. Other things equal, the <em>most likely</em> effect on country Z's currency is:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Depreciation — export surplus means capital flows out to pay for imports later.</span></li>
+    <li><span class="lbl">B</span><span class="opt">No change — current account is offset one-for-one by financial account.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Appreciation — both CA surplus and FDI inflows create net demand for the currency.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>CA surplus</mark> (exports strong). <mark>FDI inflows</mark> rising. <mark>Political stability</mark> high. Hỏi hướng của <mark>currency</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">CA surplus → foreigners cần BUY domestic currency để trả cho hàng export → demand tăng → <em>appreciation pressure</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">FDI inflows → foreigners convert sang domestic currency để xây factory → demand tăng thêm → <em>cùng chiều</em> với CA surplus.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Political stability → không có capital flight, không có risk premium đẩy currency xuống. Cả 3 yếu tố đồng hướng: <em>appreciation</em>.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>26 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Nước Z có <strong>current account surplus liên tục và mở rộng</strong>, nhờ export commodities mạnh. Đồng thời, <strong>FDI inflows</strong> tăng do multinationals xây nhà máy, và political stability cao. Other things equal, tác động <em>nhiều khả năng nhất</em> lên currency của Z là:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Depreciation — export surplus nghĩa là vốn chảy ra để trả import sau.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Không đổi — current account bù trừ hoàn toàn với financial account.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Appreciation — cả CA surplus và FDI inflows đều tạo net demand cho currency.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.07</span>
+    <span class="rule"></span>
+    <span>27 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — Appreciation.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext">Ba lực cùng chiều: (1) <b>CA surplus</b> → foreigners buy domestic currency để trả cho exports → demand up. (2) <b>FDI inflows</b> → foreigners convert sang domestic currency để đầu tư trực tiếp → demand up. (3) <b>Political stability</b> → không có capital flight offset. Kết quả: <em>net demand for currency → appreciation</em>.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Hiểu ngược — export surplus KHÔNG làm vốn "chảy ra". Ngược lại, exporters nhận foreign currency và convert về domestic → BUY domestic → demand tăng → appreciation.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">BoP identity (CA + KA + Δreserves = 0) là accounting identity, KHÔNG có nghĩa là FX không đổi. Khi CA surplus KHÔNG được offset bởi private capital outflows, áp lực FX appreciation vẫn tồn tại (hoặc CB phải buy reserves).</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">FX direction logic: <em>currency mạnh lên khi có net demand</em>. CA surplus + FDI inflows + stability → all tạo demand. Flip side: CA deficit + capital flight + instability → depreciation. Luôn tổng hợp các force trước khi conclude.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.07 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 28 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>03.07 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 03.08 — Review &amp; Integration</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

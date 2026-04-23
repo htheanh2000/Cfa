@@ -1,0 +1,1104 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Quant 02.03 — Statistical Measures of Asset Returns</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Statistical<br>Measures of <em>Returns.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 02 · Lesson 02.03 · Quantitative Methods</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 02 · Descriptive statistics for asset returns</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Quant</dd></div>
+      <div><dt>Module</dt><dd>02</dd></div>
+      <div><dt>Lesson</dt><dd>02.03</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Central tendency · Dispersion · Skewness · Kurtosis</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">03</div>
+    <div class="lbl">Return statistics</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>Describing <em>returns</em><br>with numbers.</h2>
+    <ul class="toc">
+      <li class="active">01 · Central tendency — mean, median, mode, geometric, harmonic</li>
+      <li>02 · Dispersion — range, MAD, variance, σ, downside deviation</li>
+      <li>03 · Relative risk — Coefficient of Variation (CV)</li>
+      <li>04 · Shape — skewness &amp; kurtosis</li>
+      <li>05 · Quantiles &amp; Chebyshev's inequality</li>
+      <li>06 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · CENTRAL TENDENCY OVERVIEW -->
+<section data-label="Central tendency" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Central tendency · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Where is the <em class="hi">center</em>?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Measure of central tendency mô tả vị trí "trung tâm" của distribution. Mỗi measure phù hợp với use case khác nhau — chọn sai measure dẫn đến mô tả sai về returns.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">μ</span>
+      <div>
+        <div class="t"><em class="hi">Arithmetic Mean</em></div>
+        <div class="d">Sum chia count. Dùng cho expected single-period return. Nhạy cảm với outliers.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">M</span>
+      <div>
+        <div class="t"><em class="hi">Median</em></div>
+        <div class="d">Giá trị giữa khi sort. Robust với outliers. Dùng khi distribution skewed.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">G</span>
+      <div>
+        <div class="t"><em class="hi">Geometric Mean</em></div>
+        <div class="d">Dùng cho multi-period compound returns. Luôn ≤ arithmetic mean.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">H</span>
+      <div>
+        <div class="t"><em class="hi">Harmonic Mean</em></div>
+        <div class="d">Dùng cho averages of rates/ratios (ví dụ dollar-cost averaging, P/E ratios).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — CENTER</span>
+  </div>
+</section>
+
+
+<!-- 04 · ARITHMETIC MEAN & MEDIAN -->
+<section data-label="Arithmetic mean" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Central tendency · formulas</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Arithmetic</em> mean &amp; median.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Population vs sample arithmetic mean</span>
+    <div class="eq"><span class="var">μ</span> = <span class="var">ΣX<sub>i</sub></span> / <span class="var">N</span>  ·  <span class="var">X̄</span> = <span class="var">ΣX<sub>i</sub></span> / <span class="var">n</span></div>
+    <div class="note"><b>μ</b> = population mean (toàn bộ N observations). <b>X̄</b> = sample mean (n observations từ population). Công thức giống nhau, khác tên.</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Median — positional measure</span>
+    Sort observations ascending. Nếu <b>n lẻ</b> → median = giá trị ở vị trí (n+1)/2. Nếu <b>n chẵn</b> → median = trung bình của 2 giá trị giữa (vị trí n/2 và n/2 + 1).
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Outlier sensitivity — Arithmetic mean bị pull mạnh bởi extreme values. Returns của hedge fund với 1 năm +200% sẽ có mean cao nhưng median vẫn phản ánh "typical" year. Với skewed data, median thường mô tả center tốt hơn.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — MEAN &amp; MEDIAN</span>
+  </div>
+</section>
+
+
+<!-- 05 · GEOMETRIC MEAN -->
+<section data-label="Geometric mean" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Central tendency · compounding</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Geometric</em> mean return.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Geometric mean return formula</span>
+    <div class="eq"><span class="var">R<sub>G</sub></span> = [ (1+<span class="var">R<sub>1</sub></span>)(1+<span class="var">R<sub>2</sub></span>) ⋯ (1+<span class="var">R<sub>n</sub></span>) ]<sup>1/n</sup> − 1</div>
+    <div class="note">Dùng cho <b>multi-period compounded returns</b>. Đây là CAGR — actual growth rate một đồng $1 đạt được qua n periods.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Key inequality</span>
+    <div class="eq"><span class="var">R<sub>G</sub></span> ≤ <span class="var">R<sub>A</sub></span>   (equal chỉ khi mọi R<sub>i</sub> giống nhau)</div>
+    <div class="note">Volatility càng cao, gap giữa arithmetic và geometric càng lớn. Xấp xỉ: <em>R<sub>G</sub> ≈ R<sub>A</sub> − σ²/2</em>.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Ví dụ — Year 1 = +50%, Year 2 = −50%. Arithmetic mean = 0%. Geometric mean = [(1.5)(0.5)]<sup>1/2</sup> − 1 = −13.4%. $1 → $1.50 → $0.75 thực sự MẤT 25% sau 2 năm. Arithmetic mean dối trá về returns thực.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — GEOMETRIC</span>
+  </div>
+</section>
+
+
+<!-- 06 · HARMONIC MEAN -->
+<section data-label="Harmonic mean" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Central tendency · rates &amp; ratios</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Harmonic</em> mean.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Harmonic mean formula</span>
+    <div class="eq"><span class="var">X̄<sub>H</sub></span> = <span class="var">n</span> / Σ(1/<span class="var">X<sub>i</sub></span>)</div>
+    <div class="note">Reciprocal của arithmetic mean của reciprocals. Dùng khi average <b>rates</b> hoặc <b>ratios</b> — cụ thể: dollar-cost averaging, average P/E của portfolio (equal-weighted dollar positions).</div>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Khi nào dùng harmonic</div>
+      <dl>
+        <dt>Dollar-cost avg</dt>
+        <dd>Mua cùng $ amount mỗi kỳ → avg cost/share = harmonic mean của prices</dd>
+        <dt>Portfolio P/E</dt>
+        <dd>Equal $ weight trong nhiều stocks → avg P/E = harmonic</dd>
+        <dt>Tốc độ</dt>
+        <dd>Travel cùng distance ở speeds khác nhau → avg speed = harmonic</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Thứ tự chung</div>
+      <dl>
+        <dt>Inequality</dt>
+        <dd>H ≤ G ≤ A (harmonic ≤ geometric ≤ arithmetic)</dd>
+        <dt>Equal</dt>
+        <dd>Bằng nhau khi mọi X<sub>i</sub> giống nhau</dd>
+        <dt>Sensitivity</dt>
+        <dd>Harmonic giảm nhiều nhất bởi small values (ngược với arithmetic)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — HARMONIC</span>
+  </div>
+</section>
+
+
+<!-- 07 · DISPERSION OVERVIEW -->
+<section data-label="Dispersion" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Dispersion · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">How <em class="hi">spread</em> out?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Dispersion = mức độ returns dao động quanh center. Đây chính là <em>risk</em> trong quant finance. Cùng mean, dispersion khác → risk khác.
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Range — max − min</span>
+        <span class="step-body">Đơn giản nhất, nhưng chỉ dựa 2 điểm extreme → rất nhạy với outliers, bỏ qua thông tin giữa.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Mean Absolute Deviation (MAD)</span>
+        <span class="step-body">Trung bình của |X<sub>i</sub> − X̄|. Xử lý dấu bằng absolute value. Ít dùng vì không smooth cho toán.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Variance &amp; Standard Deviation</span>
+        <span class="step-body">Dispersion measure chủ đạo của CFA. Square deviations thay vì absolute → smooth, tractable, foundation của mọi portfolio theory.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — DISPERSION</span>
+  </div>
+</section>
+
+
+<!-- 08 · MAD FORMULA -->
+<section data-label="MAD" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Dispersion · MAD</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Mean Absolute</em> Deviation.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ MAD formula</span>
+    <div class="eq"><span class="var">MAD</span> = Σ |<span class="var">X<sub>i</sub></span> − <span class="var">X̄</span>| / <span class="var">n</span></div>
+    <div class="note">Lấy absolute value để deviations không triệt tiêu nhau (tổng deviations from mean luôn = 0). Đơn vị: giống đơn vị của X.</div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Tại sao square thay vì absolute — Variance (square) cho: (a) khác biệt tract được qua calculus, (b) penalty lớn hơn cho deviations xa, phù hợp với risk aversion, (c) cộng được cho independent variables. MAD ≤ σ luôn đúng.
+  </p>
+
+  <div class="take" style="margin-top: 20px;">
+    <b>Takeaway.</b> MAD hiếm khi xuất hiện trong thực tế CFA/industry, nhưng L1 có test công thức. Hiểu rằng đây là dispersion measure "intuitive" nhưng variance/σ mới là workhorse.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — MAD</span>
+  </div>
+</section>
+
+
+<!-- 09 · VARIANCE & STD DEV -->
+<section data-label="Variance" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Dispersion · variance &amp; σ</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Variance</em> &amp; Standard Deviation.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Population variance &amp; σ</span>
+    <div class="eq"><span class="var">σ²</span> = Σ (<span class="var">X<sub>i</sub></span> − <span class="var">μ</span>)² / <span class="var">N</span>   ·   <span class="var">σ</span> = √<span class="var">σ²</span></div>
+    <div class="note">Dùng khi có data của toàn bộ population (N observations). Denominator = N.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Sample variance &amp; s</span>
+    <div class="eq"><span class="var">s²</span> = Σ (<span class="var">X<sub>i</sub></span> − <span class="var">X̄</span>)² / (<span class="var">n</span> − 1)   ·   <span class="var">s</span> = √<span class="var">s²</span></div>
+    <div class="note"><b>Bessel's correction</b>: chia cho (n−1) thay vì n để có <em>unbiased estimator</em> của σ². Dùng X̄ (estimate) thay μ tạo ra 1 degree of freedom mất mát.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Key insight — Standard deviation có cùng đơn vị với X (%/năm cho returns), variance có đơn vị bình phương (% bình phương). Σ thực tế luôn report σ, không phải σ².
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — VARIANCE</span>
+  </div>
+</section>
+
+
+<!-- 10 · DOWNSIDE DEVIATION -->
+<section data-label="Downside deviation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Dispersion · asymmetric risk</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Target <em class="hi">downside</em> deviation.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Target downside deviation (sample)</span>
+    <div class="eq"><span class="var">s<sub>TD</sub></span> = √[ Σ<sub>Xi &lt; B</sub> (<span class="var">X<sub>i</sub></span> − <span class="var">B</span>)² / (<span class="var">n</span> − 1) ]</div>
+    <div class="note"><b>B</b> = target (benchmark hoặc threshold như 0% hoặc risk-free rate). Chỉ tổng hợp observations <em>dưới</em> B. Deviations phía trên bỏ qua.</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Tại sao dùng downside deviation</span>
+    Investors quan tâm downside risk hơn upside variability. σ treat upside và downside như nhau, nhưng return +20% không "risk" như return −20%. <b>Sortino ratio</b> dùng downside deviation thay σ trong Sharpe ratio để reward asymmetric distributions.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — DOWNSIDE</span>
+  </div>
+</section>
+
+
+<!-- 11 · COEFFICIENT OF VARIATION -->
+<section data-label="CV" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Relative risk</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Coefficient</em> of Variation.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ CV — unit-free risk per unit of return</span>
+    <div class="eq"><span class="var">CV</span> = <span class="var">s</span> / <span class="var">X̄</span></div>
+    <div class="note">Standard deviation chia cho mean. Là <b>unit-free</b> measure — cho phép so sánh risk giữa các assets có means khác nhau/đơn vị khác nhau.</div>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Interpretation</div>
+      <dl>
+        <dt>CV thấp</dt>
+        <dd>Ít risk per unit return → preferred</dd>
+        <dt>CV cao</dt>
+        <dd>Nhiều risk per unit return → inferior</dd>
+        <dt>Rule</dt>
+        <dd>Pick lowest CV khi comparing same asset class</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Cảnh báo</div>
+      <dl>
+        <dt>Mean âm</dt>
+        <dd>CV mất ý nghĩa khi X̄ gần 0 hoặc âm — signal flip</dd>
+        <dt>Không phải Sharpe</dt>
+        <dd>CV không trừ risk-free rate; Sharpe dùng excess return</dd>
+        <dt>Cross-asset</dt>
+        <dd>Cẩn thận so CV giữa asset classes khác nhau</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — CV</span>
+  </div>
+</section>
+
+
+<!-- 12 · SKEWNESS -->
+<section data-label="Skewness" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Shape · asymmetry</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Skewness</em> — which tail?</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Sample skewness</span>
+    <div class="eq"><span class="var">S<sub>K</sub></span> ≈ (1/<span class="var">n</span>) · Σ (<span class="var">X<sub>i</sub></span> − <span class="var">X̄</span>)³ / <span class="var">s³</span></div>
+    <div class="note">Third standardized central moment. Bình phương không đủ — lũy thừa 3 giữ dấu, nên skewness có thể âm hoặc dương.</div>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">+</span>
+      <div>
+        <div class="t"><em class="hi">Positive skew</em> (right-skewed)</div>
+        <div class="d">Right tail dài. Thứ tự: <b>Mode &lt; Median &lt; Mean</b>. Ví dụ: venture capital, lottery tickets. Occasional big gains.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">0</span>
+      <div>
+        <div class="t"><em class="hi">Symmetric</em></div>
+        <div class="d">Mean = Median = Mode. Normal distribution là example. Skewness = 0.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">−</span>
+      <div>
+        <div class="t"><em class="hi">Negative skew</em> (left-skewed)</div>
+        <div class="d">Left tail dài. Thứ tự: <b>Mean &lt; Median &lt; Mode</b>. Ví dụ: most equity returns, covered-call strategies. Occasional big losses.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">!</span>
+      <div>
+        <div class="t"><em class="hi">Investor preference</em></div>
+        <div class="d">All else equal, investors <em>prefer positive skew</em> (upside tail) và <em>avoid negative skew</em> (crash risk).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — SKEWNESS</span>
+  </div>
+</section>
+
+
+<!-- 13 · KURTOSIS -->
+<section data-label="Kurtosis" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>13 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Shape · tail weight</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Kurtosis</em> — tail fatness.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Sample kurtosis &amp; excess kurtosis</span>
+    <div class="eq"><span class="var">K</span> ≈ (1/<span class="var">n</span>) · Σ (<span class="var">X<sub>i</sub></span> − <span class="var">X̄</span>)⁴ / <span class="var">s⁴</span>   ·   <span class="var">K<sub>E</sub></span> = <span class="var">K</span> − 3</div>
+    <div class="note">Fourth standardized central moment. Normal distribution có K = 3. <b>Excess kurtosis</b> trừ đi 3 để benchmark với normal → dễ interpret.</div>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">&gt;3</span>
+      <div>
+        <div class="t"><em class="hi">Leptokurtic</em> (fat tails)</div>
+        <div class="d">K &gt; 3 (excess &gt; 0). Tails dày hơn normal → nhiều extreme events hơn kỳ vọng. Typical cho asset returns (black swans).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">=3</span>
+      <div>
+        <div class="t"><em class="hi">Mesokurtic</em></div>
+        <div class="d">K = 3 (excess = 0). Đúng như normal distribution. Baseline reference.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">&lt;3</span>
+      <div>
+        <div class="t"><em class="hi">Platykurtic</em> (thin tails)</div>
+        <div class="d">K &lt; 3 (excess &lt; 0). Tails mỏng hơn normal → ít extreme events. Uniform distribution là ví dụ.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">$</span>
+      <div>
+        <div class="t"><em class="hi">Risk implication</em></div>
+        <div class="d">Fat tails làm VaR/σ <em>underestimate</em> true risk. 2008 crisis: events "6-sigma" theo normal lại xảy ra thường xuyên.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — KURTOSIS</span>
+  </div>
+</section>
+
+
+<!-- 14 · CHEBYSHEV -->
+<section data-label="Chebyshev" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>14 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Distribution-free bound</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Chebyshev's</em> inequality.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Chebyshev bound</span>
+    <div class="eq">P( |<span class="var">X</span> − <span class="var">μ</span>| &lt; <span class="var">k</span>·<span class="var">σ</span> ) ≥ 1 − 1/<span class="var">k²</span>    (với <span class="var">k</span> &gt; 1)</div>
+    <div class="note">Ít nhất <b>(1 − 1/k²)</b> phần trăm observations nằm trong k standard deviations quanh mean. Áp dụng cho <em>bất kỳ</em> distribution — không cần normal assumption.</div>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Common k values</div>
+      <dl>
+        <dt>k = 1.25</dt>
+        <dd>≥ 36% observations</dd>
+        <dt>k = 1.5</dt>
+        <dd>≥ 55.6% observations</dd>
+        <dt>k = 2</dt>
+        <dd>≥ 75% observations</dd>
+        <dt>k = 3</dt>
+        <dd>≥ 88.9% observations</dd>
+        <dt>k = 4</dt>
+        <dd>≥ 93.75% observations</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Compare với normal</div>
+      <dl>
+        <dt>Normal, k=2</dt>
+        <dd>≈ 95% (vs Chebyshev's 75%)</dd>
+        <dt>Normal, k=3</dt>
+        <dd>≈ 99.7% (vs 88.9%)</dd>
+        <dt>Trade-off</dt>
+        <dd>Chebyshev conservative nhưng universal</dd>
+        <dt>Use case</dt>
+        <dd>Khi không biết distribution shape</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — CHEBYSHEV</span>
+  </div>
+</section>
+
+
+<!-- 15 · QUANTILES -->
+<section data-label="Quantiles" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>15 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Position measures</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Quantiles</em>, quartiles, percentiles.</h2>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Quantile — general term</span>
+        <span class="step-body">Giá trị chia sorted distribution thành intervals với tỷ lệ observations bằng nhau. Median là quantile đặc biệt (50th percentile).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Quartile — chia 4 phần</span>
+        <span class="step-body">Q1 (25th pct), Q2 = median (50th), Q3 (75th). <em>Interquartile range</em> IQR = Q3 − Q1 là dispersion measure robust với outliers.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Quintile / Decile / Percentile</span>
+        <span class="step-body">Quintile chia 5 phần (20% mỗi), decile chia 10, percentile chia 100. Common trong fund rankings ("top decile performance").</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Position formula</span>
+        <span class="step-body">Position của y-th percentile trong n sorted observations: <em>L<sub>y</sub> = (n + 1) · y/100</em>. Nếu không nguyên → interpolate giữa 2 observations gần nhất.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — QUANTILES</span>
+  </div>
+</section>
+
+
+<!-- 16 · SUMMARY DECISION TREE -->
+<section data-label="Summary" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>16 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Decision guide</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Which measure <em class="hi">when</em>?</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Central tendency</div>
+      <dl>
+        <dt>Single-period expected</dt>
+        <dd>Arithmetic mean</dd>
+        <dt>Multi-period compound</dt>
+        <dd>Geometric mean (CAGR)</dd>
+        <dt>Skewed / outliers</dt>
+        <dd>Median</dd>
+        <dt>Rates &amp; ratios</dt>
+        <dd>Harmonic mean</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Risk / shape</div>
+      <dl>
+        <dt>Absolute dispersion</dt>
+        <dd>Standard deviation σ</dd>
+        <dt>Relative dispersion</dt>
+        <dd>CV = σ / X̄</dd>
+        <dt>Downside only</dt>
+        <dd>Target downside deviation</dd>
+        <dt>Tail risk</dt>
+        <dd>Skewness + Kurtosis (excess)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="take" style="margin-top: 20px;">
+    <b>CFA L1 mindset.</b> Đừng dùng σ đơn độc để kết luận risk — check skewness + kurtosis + downside. Một asset với σ thấp nhưng excess kurtosis cao và negative skew có thể riskier hơn asset với σ cao nhưng symmetric.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — SUMMARY</span>
+  </div>
+</section>
+
+
+<!-- 17 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 EN — Arithmetic vs Geometric -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Arithmetic</em> vs <em class="hi">geometric</em> mean.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A fund reports the following annual returns over three years: <strong>+20%</strong>, <strong>−10%</strong>, and <strong>+15%</strong>. Which pair of arithmetic mean return and geometric mean return is <strong>closest</strong> to correct?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Arithmetic 8.33%; Geometric 7.47%.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Arithmetic 8.33%; Geometric 8.33% (they are equal).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Arithmetic 7.47%; Geometric 8.33% (geometric higher).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Returns <mark>+20%, −10%, +15%</mark> over <mark>3 years</mark>. Asking for <mark>arithmetic</mark> và <mark>geometric</mark> mean. Nhớ inequality <mark>R<sub>G</sub> ≤ R<sub>A</sub></mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Arithmetic: <em>(0.20 − 0.10 + 0.15) / 3 = 0.25 / 3 ≈ 8.33%</em>. Đơn giản trung bình cộng.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Geometric: [ (1.20)(0.90)(1.15) ]<sup>1/3</sup> − 1 = (1.242)<sup>1/3</sup> − 1 ≈ <em>7.49%</em>. Nhân các (1 + R<sub>i</sub>), lấy căn bậc n, trừ 1.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Rule: với volatility &gt; 0, R<sub>G</sub> &lt; R<sub>A</sub> LUÔN LUÔN. Nếu option có geometric ≥ arithmetic (trừ khi tất cả returns giống nhau) → loại.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một quỹ báo cáo các annual returns sau trong ba năm: <strong>+20%</strong>, <strong>−10%</strong>, và <strong>+15%</strong>. Cặp giá trị arithmetic mean return và geometric mean return nào <strong>gần đúng nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Arithmetic 8,33%; Geometric 7,47%.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Arithmetic 8,33%; Geometric 8,33% (bằng nhau).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Arithmetic 7,47%; Geometric 8,33% (geometric cao hơn).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — 8.33% / 7.47%.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">Arithmetic = (20 − 10 + 15) / 3 = <b>8.33%</b>. Geometric = [(1.20)(0.90)(1.15)]<sup>1/3</sup> − 1 = (1.2420)<sup>1/3</sup> − 1 ≈ <b>7.49%</b> ≈ 7.47%. Geometric &lt; arithmetic vì returns có volatility (volatility drag ≈ σ²/2).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Arithmetic đúng nhưng geometric sai. Arithmetic = geometric CHỈ khi mọi return giống nhau (volatility = 0). Ở đây returns khác nhau → geometric phải thấp hơn.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Đảo ngược inequality. <b>Geometric LUÔN ≤ arithmetic</b> (với volatility ≥ 0). Nếu câu hỏi đưa geometric &gt; arithmetic, đây là trap phổ biến.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Arithmetic mean mô tả <em>expected single-period return</em>; geometric mean mô tả <em>actual compound growth</em>. Với multi-year performance, geometric là truthful number. Gap giữa 2 measures gần đúng <em>σ²/2</em> — volatility càng cao, gap càng lớn.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 EN — Skewness/Kurtosis -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Interpret <em class="hi">skewness</em> &amp; <em class="hi">kurtosis</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst observes the following statistics for a hedge fund's monthly returns: <strong>mean = 0.9%</strong>, <strong>median = 1.4%</strong>, <strong>mode = 1.6%</strong>, <strong>sample skewness = −1.2</strong>, <strong>sample excess kurtosis = +3.5</strong>. Which statement about the return distribution is <strong>most accurate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">The distribution is positively skewed and platykurtic (thin tails).</span></li>
+    <li><span class="lbl">B</span><span class="opt">The distribution is negatively skewed and leptokurtic (fat tails) — downside tail risk is elevated.</span></li>
+    <li><span class="lbl">C</span><span class="opt">The distribution is approximately normal because median &gt; mean by only 0.5%.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Mean <mark>0.9%</mark> &lt; Median <mark>1.4%</mark> &lt; Mode <mark>1.6%</mark>. Skewness = <mark>−1.2</mark>. Excess kurtosis = <mark>+3.5</mark> (tức K = 6.5).
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Thứ tự <em>Mean &lt; Median &lt; Mode</em> → negative skew (left tail dài). Skewness −1.2 &lt; 0 xác nhận. Negative skew = downside tail risk.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Excess kurtosis &gt; 0 → <em>leptokurtic</em> (fat tails). K &gt; 3 nghĩa là extreme events xảy ra thường xuyên hơn normal dự đoán.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Combo <em>negative skew + leptokurtic</em> = "bad tail signature" điển hình của hedge funds bán volatility / tail risk. σ thông thường sẽ underestimate true downside risk.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một nhà phân tích quan sát các thống kê sau cho monthly returns của một quỹ hedge fund: <strong>mean = 0,9%</strong>, <strong>median = 1,4%</strong>, <strong>mode = 1,6%</strong>, <strong>sample skewness = −1,2</strong>, <strong>sample excess kurtosis = +3,5</strong>. Phát biểu nào về phân phối returns là <strong>chính xác nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Phân phối positively skewed và platykurtic (thin tails).</span></li>
+    <li><span class="lbl">B</span><span class="opt">Phân phối negatively skewed và leptokurtic (fat tails) — downside tail risk cao.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Phân phối gần như normal vì median chỉ hơn mean 0,5%.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Negative skew &amp; fat tails.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Ba evidences: (1) Thứ tự <b>Mean &lt; Median &lt; Mode</b> (0.9 &lt; 1.4 &lt; 1.6) là dấu hiệu kinh điển của negative skew. (2) Skewness = −1.2 &lt; 0 xác nhận định tính. (3) Excess kurtosis +3.5 &gt; 0 → leptokurtic, tails dày hơn normal. Combined: downside tail risk đáng kể — extreme losses xảy ra thường xuyên hơn normal implies.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Sai cả 2 mệnh đề. Skewness −1.2 là negative (không positive), và excess kurtosis +3.5 là leptokurtic (không platykurtic). Lẫn lộn dấu.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Normal distribution yêu cầu skewness ≈ 0 VÀ excess kurtosis ≈ 0. Đây có skewness −1.2 (đáng kể âm) và excess kurtosis +3.5 (rất xa normal) → KHÔNG normal. So sánh "median &gt; mean 0.5%" không kết luận được normality.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Quick diagnostic: dùng <em>ordering của mean/median/mode</em> cho skewness (Mean &lt; Median &lt; Mode → negative skew), và <em>sign của excess kurtosis</em> cho tail weight (+ → fat tails, leptokurtic). Combo negative skew + leptokurtic cảnh báo σ alone underestimates risk.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 EN — CV Comparison -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>26 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Coefficient of Variation</em> comparison.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Consider two portfolios. Portfolio <strong>A</strong> has mean annual return <strong>8%</strong> with standard deviation <strong>12%</strong>. Portfolio <strong>B</strong> has mean annual return <strong>15%</strong> with standard deviation <strong>20%</strong>. On the basis of Coefficient of Variation (CV), which portfolio offers the <strong>better risk-return trade-off</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Portfolio A, because its standard deviation (12%) is lower than B's (20%).</span></li>
+    <li><span class="lbl">B</span><span class="opt">Portfolio B, because CV<sub>B</sub> ≈ 1.33 is lower than CV<sub>A</sub> = 1.50.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Portfolio A, because CV<sub>A</sub> = 1.50 is lower than CV<sub>B</sub> ≈ 1.33.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>27 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    A: mean <mark>8%</mark>, σ <mark>12%</mark>. B: mean <mark>15%</mark>, σ <mark>20%</mark>. Asking for <mark>CV</mark> comparison — <mark>lower CV = better</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Formula: <em>CV = σ / X̄</em>. CV<sub>A</sub> = 12 / 8 = 1.50. CV<sub>B</sub> = 20 / 15 ≈ 1.33.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">CV thấp hơn = ít risk hơn per unit of return. CV<sub>B</sub> (1.33) &lt; CV<sub>A</sub> (1.50) → B tốt hơn về relative risk.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Trap: đừng so σ đơn thuần (A = 12% &lt; B = 20%). CV chuẩn hóa theo mean. B có σ cao hơn nhưng mean cao hơn nhiều → risk-adjusted tốt hơn.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>28 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Xem xét hai danh mục. Portfolio <strong>A</strong> có mean annual return <strong>8%</strong> với standard deviation <strong>12%</strong>. Portfolio <strong>B</strong> có mean annual return <strong>15%</strong> với standard deviation <strong>20%</strong>. Dựa trên Coefficient of Variation (CV), danh mục nào cho <strong>risk-return trade-off tốt hơn</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Portfolio A, vì standard deviation (12%) thấp hơn của B (20%).</span></li>
+    <li><span class="lbl">B</span><span class="opt">Portfolio B, vì CV<sub>B</sub> ≈ 1,33 thấp hơn CV<sub>A</sub> = 1,50.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Portfolio A, vì CV<sub>A</sub> = 1,50 thấp hơn CV<sub>B</sub> ≈ 1,33.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 29 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Quant · 02.03</span>
+    <span class="rule"></span>
+    <span>29 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Portfolio B, CV ≈ 1.33.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">CV<sub>A</sub> = σ<sub>A</sub> / X̄<sub>A</sub> = 12 / 8 = <b>1.50</b>. CV<sub>B</sub> = 20 / 15 ≈ <b>1.333</b>. <em>Lower CV is better</em> (less risk per unit of return). B có CV thấp hơn → risk-adjusted performance tốt hơn. B chấp nhận σ cao hơn nhưng "được trả" bằng mean return cao hơn nhiều.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Chỉ so σ absolute mà bỏ qua return level. A có σ thấp hơn nhưng mean cũng thấp hơn — không đủ để kết luận "better trade-off". CV mới là relative measure câu hỏi yêu cầu.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Tính CV đúng nhưng kết luận sai. CV<sub>A</sub> = 1.50 &gt; CV<sub>B</sub> ≈ 1.33 → A có risk HIGHER per unit return, không lower. Đảo ngược rule "lower is better".</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">CV = σ / X̄ là <em>unit-free relative risk</em>. Dùng để so sánh risk giữa assets có mean khác nhau. Quy tắc: <b>lower CV = better</b> (giả định means positive). Đừng nhầm với Sharpe ratio — Sharpe trừ risk-free rate khỏi numerator, CV thì không.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>QUANT · 02.03 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 30 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>02.03 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 02.04 — Probability Trees and Conditional Expectations</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>
