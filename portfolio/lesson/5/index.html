@@ -1,0 +1,808 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Portfolio 06.05 — Intro to Risk Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 108px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+  .flow { display: flex; gap: 14px; margin-top: 18px; flex-wrap: wrap; }
+  .flow .node { flex: 1; min-width: 220px; border: 1px solid var(--ink-line); padding: 18px 20px; background: var(--paper); position: relative; }
+  .flow .node .k { font-family: var(--mono); font-size: 13px; color: var(--ink-muted); letter-spacing: 0.08em; }
+  .flow .node .t { font-family: var(--slab); font-size: 26px; font-weight: 600; margin-top: 6px; color: var(--ink); }
+  .flow .node .d { font-size: 15px; color: var(--ink-soft); margin-top: 6px; line-height: 1.35; }
+  .flow .arrow { align-self: center; color: var(--ink-muted); font-family: var(--mono); font-size: 22px; }
+  .take { border-left: 3px solid var(--accent); padding: 10px 16px; margin-top: 16px; background: var(--paper-soft); font-size: 16px; color: var(--ink-soft); }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Intro to<br>Risk <em>Management.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 06 · Lesson 06.05 · Portfolio Management</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 05 · Framework, risks, measures, mitigation</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Portfolio</dd></div>
+      <div><dt>Module</dt><dd>05</dd></div>
+      <div><dt>Lesson</dt><dd>06.05</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Framework · Governance · VaR · CVaR · Hedging</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">05</div>
+    <div class="lbl">Risk management essentials</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How institutions <em>identify</em>, <em>measure</em><br>and <em>manage</em> risk.</h2>
+    <ul class="toc">
+      <li class="active">01 · Risk management definition &amp; framework</li>
+      <li>02 · Risk governance &amp; 3 lines of defense</li>
+      <li>03 · Financial &amp; non-financial risk types</li>
+      <li>04 · Risk measures — σ, VaR, CVaR, stress</li>
+      <li>05 · Risk budgeting &amp; mitigation tools</li>
+      <li>06 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · DEFINITION -->
+<section data-label="Definition" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>03 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk management · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What is <em class="hi">risk management</em>?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Risk management KHÔNG phải <em>eliminate risk</em> — mà là process <em>identify, measure, manage, monitor</em> các rủi ro để <b>optimize risk-return trade-off</b> phù hợp với mục tiêu của tổ chức.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Core idea</span>
+    Risk is <em>unavoidable</em>; taking risk is how returns are earned. Risk management đảm bảo: (i) risks taken là <b>intentional</b>, (ii) tương xứng với <b>risk tolerance</b>, và (iii) được <b>compensated</b> bởi expected return.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 18px;">
+    <li><span><span class="step-title">Không phải risk avoidance</span><span class="step-body">Avoid risk hoàn toàn → không có return. Mục tiêu là <em>take the RIGHT risks</em> — rủi ro mà tổ chức hiểu, đo được, và được compensate.</span></span></li>
+    <li><span><span class="step-title">Là ongoing process</span><span class="step-body">Không phải one-time check. Risk exposures thay đổi theo market, portfolio, và strategy — cần continuous monitoring.</span></span></li>
+  </ol>
+
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — DEFINITION</span></div>
+</section>
+
+
+<!-- 04 · FRAMEWORK -->
+<section data-label="Framework" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>04 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk management · framework</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">4-step</em> risk management cycle.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0;">
+      Một framework chuẩn xoay vòng liên tục — output của step sau feed back vào step trước khi điều kiện thay đổi.
+    </p>
+  </div>
+
+  <div class="flow">
+    <div class="node"><div class="k">§ Step 01</div><div class="t">Identify</div><div class="d">Liệt kê mọi nguồn risk — market, credit, liquidity, operational, model, strategic…</div></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="k">§ Step 02</div><div class="t">Measure</div><div class="d">Quantify exposure — σ, VaR, CVaR, duration, beta, stress tests, scenarios.</div></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="k">§ Step 03</div><div class="t">Manage</div><div class="d">Accept · avoid · transfer · mitigate (diversify, hedge, insurance). Align với risk tolerance.</div></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="k">§ Step 04</div><div class="t">Monitor</div><div class="d">Continuous reporting, limit checking, review. Adjust khi exposure hoặc environment thay đổi.</div></div>
+  </div>
+
+  <div class="take">Key · framework lặp lại — không bao giờ "done". Output monitor → trigger identify mới.</div>
+
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — FRAMEWORK</span></div>
+</section>
+
+
+<!-- 05 · GOVERNANCE -->
+<section data-label="Governance" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>05 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk governance · top-down</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Who owns <em class="hi">risk</em>?</h2>
+    <p class="small body--soft" style="max-width: 1440px;">
+      Risk governance định nghĩa <em>rõ ràng</em> ai chịu trách nhiệm về risk-taking và oversight. Bắt đầu từ <b>Board of Directors</b> xuống tới business lines.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li><span><span class="step-title">Board of Directors — ultimate oversight</span><span class="step-body">Approve <em>risk appetite statement</em>, risk tolerance, và risk policy. Accountable cuối cùng với shareholders và regulators.</span></span></li>
+    <li><span><span class="step-title">Risk Committee</span><span class="step-body">Sub-committee của board hoặc management committee. Review risk reports, set limits, escalate issues.</span></span></li>
+    <li><span><span class="step-title">Chief Risk Officer (CRO)</span><span class="step-body">Executive chịu trách nhiệm thi hành risk management function. Reports trực tiếp cho CEO hoặc board — <em>independence</em> từ business units.</span></span></li>
+    <li><span><span class="step-title">Enterprise Risk Management (ERM)</span><span class="step-body">Holistic view — risks phải được aggregate across enterprise, không silo từng business unit.</span></span></li>
+  </ol>
+
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — GOVERNANCE</span></div>
+</section>
+
+
+<!-- 06 · 3 LINES OF DEFENSE -->
+<section data-label="3 Lines of Defense" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>06 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Governance · 3 lines of defense</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Three <em class="hi">lines</em> of defense.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 10px;">
+    <div class="tenet"><span class="n">1st</span>
+      <div><div class="t"><em class="hi">Business lines</em></div>
+      <div class="d">Front-office — traders, PMs, originators. <b>Own &amp; manage risks</b> they take day-to-day. First responsibility.</div></div>
+    </div>
+    <div class="tenet"><span class="n">2nd</span>
+      <div><div class="t"><em class="hi">Risk &amp; compliance</em></div>
+      <div class="d">CRO, risk management, compliance. <b>Oversight &amp; challenge</b> — set limits, monitor, report. Independent từ 1st line.</div></div>
+    </div>
+    <div class="tenet"><span class="n">3rd</span>
+      <div><div class="t"><em class="hi">Internal audit</em></div>
+      <div class="d">Independent assurance — audit both 1st và 2nd lines. Reports to board/audit committee.</div></div>
+    </div>
+    <div class="tenet"><span class="n">Key</span>
+      <div><div class="t">Independence</div>
+      <div class="d">Mỗi line phải <em>độc lập</em> với lines dưới. 2nd không report cho 1st; 3rd không report cho 2nd.</div></div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">§ Model này được Basel Committee &amp; IIA promote. Áp dụng cho banks, insurers, asset managers — giúp tránh conflict of interest giữa risk-takers và risk-controllers.</p>
+
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — 3 LINES</span></div>
+</section>
+
+
+<!-- 07 · FINANCIAL RISK TYPES -->
+<section data-label="Financial risks" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>07 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk taxonomy · financial</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Financial</em> risks.</h2>
+    <p class="small body--soft" style="max-width: 1440px;">Financial risks trực tiếp ảnh hưởng giá trị tài sản/nghĩa vụ tài chính. Đây là nhóm được <em>quantify</em> nhiều nhất trong CFA.</p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 10px;">
+    <div class="tenet"><span class="n">M</span>
+      <div><div class="t"><em class="hi">Market risk</em></div>
+      <div class="d">Loss từ biến động giá thị trường — <b>equity, interest rate, currency (FX), commodity</b>. Đo bằng σ, VaR, duration, beta.</div></div>
+    </div>
+    <div class="tenet"><span class="n">C</span>
+      <div><div class="t"><em class="hi">Credit risk</em></div>
+      <div class="d">Counterparty <b>default</b> hoặc downgrade. Expected loss = PD × LGD × EAD. Áp dụng cho bonds, loans, OTC derivatives.</div></div>
+    </div>
+    <div class="tenet"><span class="n">L</span>
+      <div><div class="t"><em class="hi">Liquidity risk</em></div>
+      <div class="d">Không thể unload asset với giá fair mà không bị <b>price impact</b>. Lớn với thinly-traded securities, large positions, stressed markets.</div></div>
+    </div>
+    <div class="tenet"><span class="n">O</span>
+      <div><div class="t"><em class="hi">Operational risk</em></div>
+      <div class="d">Fraud, system failures, human error, legal disputes, cyber attacks. <em>Internal</em> thay vì market.</div></div>
+    </div>
+    <div class="tenet"><span class="n">S</span>
+      <div><div class="t"><em class="hi">Solvency risk</em></div>
+      <div class="d">Institutional — rủi ro không đủ capital/cash để meet long-term obligations. Quan trọng với banks &amp; insurers.</div></div>
+    </div>
+    <div class="tenet"><span class="n">Mo</span>
+      <div><div class="t"><em class="hi">Model risk</em></div>
+      <div class="d">Model assumptions sai, parameter mis-estimation, mis-specification. VaR-based models đặc biệt vulnerable khi tail events.</div></div>
+    </div>
+  </div>
+
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — FIN RISKS</span></div>
+</section>
+
+
+<!-- 08 · NON-FINANCIAL RISKS -->
+<section data-label="Non-financial risks" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>08 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk taxonomy · non-financial</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Non-financial</em> risks.</h2>
+    <p class="small body--soft" style="max-width: 1440px;">Không trực tiếp market/credit nhưng có thể gây ra thiệt hại tài chính <em>nghiêm trọng</em>. Khó quantify — thường dùng scenario analysis, qualitative assessment.</p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li><span><span class="step-title">Reputation risk</span><span class="step-body">Thiệt hại từ mất <em>trust</em> của clients, regulators, public. Kéo theo outflows, valuation discount. Khó fix, khó đo.</span></span></li>
+    <li><span><span class="step-title">Strategic risk</span><span class="step-body">Sai lầm trong business model, M&amp;A, disruption từ competitors. Long-horizon, high-impact.</span></span></li>
+    <li><span><span class="step-title">Regulatory / legal / compliance risk</span><span class="step-body">Thay đổi luật, fines, lawsuits, licensing issues. Đặc biệt mạnh với financial services trong post-2008 environment.</span></span></li>
+    <li><span><span class="step-title">Tax &amp; accounting risk</span><span class="step-body">Tax law changes, accounting restatements. Ảnh hưởng after-tax returns và reported earnings.</span></span></li>
+  </ol>
+
+  <div class="take">Key · Non-financial risks có thể <em>dwarf</em> financial risks. Một scandal reputation duy nhất có thể xóa sổ decades of returns.</div>
+
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — NON-FIN</span></div>
+</section>
+
+
+<!-- 09 · STD DEV -->
+<section data-label="Std Dev" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>09 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk measures · baseline</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Standard Deviation <em class="hi">σ</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px;">Dispersion quanh mean return. Classical measure từ Markowitz (1952) — dễ tính, linear, symmetric (treat gain và loss equally).</p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Standard Deviation</span>
+    <div class="eq"><span class="var">σ</span> = √(Σ <span class="var">p<sub>i</sub></span> · (<span class="var">R<sub>i</sub></span> − <span class="var">E(R)</span>)<sup>2</sup>)</div>
+    <div class="note">Pros: đơn giản, basis cho CAPM, Sharpe. Cons: symmetric (upside cũng bị "phạt"), assume normal distribution, không capture tail risk.</div>
+  </div>
+
+  <p class="fine-muted-sm">§ Dưới normal distribution, σ đủ để mô tả toàn bộ risk. Trong thực tế, returns fat-tailed → σ <em>underestimates</em> tail losses. Đây là lý do VaR/CVaR xuất hiện.</p>
+
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — SIGMA</span></div>
+</section>
+
+
+<!-- 10 · VAR -->
+<section data-label="VaR" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>10 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk measures · downside</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Value at Risk</em> (VaR).</h2>
+    <p class="small body--soft" style="max-width: 1440px;">
+      VaR = <em>maximum loss</em> dự kiến tại một <b>confidence level</b> nhất định, trong một <b>time period</b> nhất định, với <b>normal market conditions</b>.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ VaR — chuẩn phát biểu</span>
+    <div class="eq">P(Loss &gt; <span class="var">VaR</span>) = 1 − <span class="var">α</span></div>
+    <div class="note">Ví dụ: 95% 1-day VaR = <b>$1M</b> nghĩa là: chỉ có <em>5% xác suất</em> daily loss vượt quá $1M. Tương đương: 95% ngày loss ≤ $1M.</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ 3 tham số bắt buộc</span>
+    (1) Confidence level (vd. 95%, 99%) · (2) Time horizon (1-day, 10-day) · (3) Loss amount (USD hoặc %). Thiếu 1 trong 3 → VaR statement vô nghĩa.
+  </div>
+
+  <p class="fine-muted-sm">§ Warning — VaR <em>không nói gì</em> về size of loss khi vượt VaR. 95% VaR = $1M không có nghĩa loss tối đa là $1M; 5% trường hợp còn lại có thể là $5M hoặc $50M.</p>
+
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — VAR</span></div>
+</section>
+
+
+<!-- 11 · VAR METHODS -->
+<section data-label="VaR Methods" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>11 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">VaR · 3 approaches</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Cách tính <em class="hi">VaR</em> — 3 methods.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Parametric (variance-covariance)</div>
+      <dl>
+        <dt>How</dt><dd>Assume normal distribution · VaR = μ − z·σ</dd>
+        <dt>Pros</dt><dd>Analytical, fast, ít data</dd>
+        <dt>Cons</dt><dd>Normality assumption — miss fat tails, options</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Historical simulation</div>
+      <dl>
+        <dt>How</dt><dd>Dùng actual historical returns · sort &amp; pick percentile</dd>
+        <dt>Pros</dt><dd>Không assume distribution · capture fat tails historical</dd>
+        <dt>Cons</dt><dd>Past ≠ future · dataset window dependent</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Monte Carlo simulation</div>
+      <dl>
+        <dt>How</dt><dd>Simulate thousands of scenarios · fit distribution</dd>
+        <dt>Pros</dt><dd>Flexible — handle non-linear (options), custom distrib.</dd>
+        <dt>Cons</dt><dd>Computationally heavy · model risk cao</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">§ Trong practice, banks thường dùng <em>historical</em> cho regulatory VaR (Basel) và <em>Monte Carlo</em> cho complex portfolios có options/path-dependent payoffs.</p>
+
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — VAR METHODS</span></div>
+</section>
+
+
+<!-- 12 · CVAR -->
+<section data-label="CVaR" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>12 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk measures · tail</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Expected Shortfall</em> (CVaR).</h2>
+    <p class="small body--soft" style="max-width: 1440px;">
+      CVaR (còn gọi là Expected Shortfall, Conditional VaR) = <em>expected loss GIVEN</em> loss exceeds VaR. Trả lời câu hỏi VaR không trả lời: "nếu tệ thật, tệ đến mức nào?"
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Conditional VaR</span>
+    <div class="eq"><span class="var">CVaR</span> = E[ Loss | Loss &gt; VaR ]</div>
+    <div class="note">Average loss <em>trong vùng đuôi</em> vượt quá VaR threshold. Luôn ≥ VaR về magnitude.</div>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">VaR</div>
+      <dl>
+        <dt>Nghĩa</dt><dd>Threshold loss tại confidence level</dd>
+        <dt>Câu hỏi</dt><dd>"Tệ đến mức nào 95% thời gian?"</dd>
+        <dt>Ignore</dt><dd>Magnitude of tail (5% worst cases)</dd>
+        <dt>Coherent?</dt><dd>KHÔNG sub-additive → KHÔNG coherent</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">CVaR / ES</div>
+      <dl>
+        <dt>Nghĩa</dt><dd>Average loss <em>trong</em> tail beyond VaR</dd>
+        <dt>Câu hỏi</dt><dd>"Khi tệ thật, trung bình mất bao nhiêu?"</dd>
+        <dt>Capture</dt><dd>Magnitude of tail losses</dd>
+        <dt>Coherent?</dt><dd>CÓ — Basel III khuyến nghị thay VaR bằng ES</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — CVAR</span></div>
+</section>
+
+
+<!-- 13 · STRESS & SCENARIO -->
+<section data-label="Stress Testing" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>13 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk measures · beyond statistics</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Stress testing</em> &amp; scenario analysis.</h2>
+    <p class="small body--soft" style="max-width: 1440px;">
+      VaR/CVaR dựa trên historical/statistical distributions — unhelpful khi <em>regime breaks</em>. Stress &amp; scenario analysis là tools bổ sung để đánh giá <b>extreme but plausible</b> events.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li><span><span class="step-title">Stress testing — extreme shocks</span><span class="step-body">Apply <em>extreme but historically observed</em> shocks: 1987 crash, 2008 GFC, COVID 2020. Question: portfolio mất bao nhiêu NẾU event đó lặp lại?</span></span></li>
+    <li><span><span class="step-title">Scenario analysis — what-if</span><span class="step-body">Define hypothetical scenarios (Fed hike 300bps + USD +10% + oil crash) và tính P&amp;L. Forward-looking, narrative-driven.</span></span></li>
+    <li><span><span class="step-title">Reverse stress test</span><span class="step-body">Ngược lại — bắt đầu từ "unacceptable loss" rồi tìm scenario tạo ra loss đó. Giúp phát hiện hidden vulnerabilities.</span></span></li>
+  </ol>
+
+  <div class="take">Key · Stress &amp; scenario bổ sung cho VaR — chúng <em>không thay thế</em>. Dùng song song để cover cả normal và extreme regimes.</div>
+
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — STRESS</span></div>
+</section>
+
+
+<!-- 14 · RISK BUDGETING -->
+<section data-label="Risk Budgeting" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>14 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk allocation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Risk budgeting</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px;">
+      Thay vì allocate <em>capital</em> (dollars), risk budgeting allocate <em>risk</em> (contribution to portfolio volatility/VaR) across strategies, asset classes, hoặc managers.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Core idea</span>
+    Mỗi strategy/asset nhận một "risk budget" — maximum contribution tới tổng portfolio risk. Monitor usage against budget; re-allocate khi một strategy chiếm quá nhiều risk budget.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li><span><span class="step-title">Tại sao capital budget không đủ</span><span class="step-body">$100M vào equity ≠ $100M vào T-bills về risk. Capital allocation không reflect actual risk contribution.</span></span></li>
+    <li><span><span class="step-title">Marginal contribution to risk</span><span class="step-body">Mỗi asset có MCTR = đóng góp biên tới portfolio σ (hoặc VaR). Sum MCTR × weight = total portfolio risk.</span></span></li>
+    <li><span><span class="step-title">Active risk budget</span><span class="step-body">Với active management — allocate tracking error budget across managers/strategies thay vì return expectations.</span></span></li>
+  </ol>
+
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — RISK BUDGET</span></div>
+</section>
+
+
+<!-- 15 · RISK MITIGATION -->
+<section data-label="Mitigation" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>15 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Manage · 4 responses to risk</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Risk <em class="hi">mitigation</em> tools.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 10px;">
+    <div class="tenet"><span class="n">1</span>
+      <div><div class="t"><em class="hi">Diversification</em></div>
+      <div class="d">Combine assets có ρ &lt; 1 → giảm unsystematic risk mà không sacrifice E(R). Free lunch của Markowitz.</div></div>
+    </div>
+    <div class="tenet"><span class="n">2</span>
+      <div><div class="t"><em class="hi">Hedging</em></div>
+      <div class="d">Dùng <b>derivatives</b> (futures, options, swaps) để offset specific exposures — FX, IR, commodity, equity. Cost: premium/basis risk.</div></div>
+    </div>
+    <div class="tenet"><span class="n">3</span>
+      <div><div class="t"><em class="hi">Insurance</em></div>
+      <div class="d">Transfer risk to insurer qua premium. Dùng cho low-frequency-high-severity events (fire, lawsuit, cyber).</div></div>
+    </div>
+    <div class="tenet"><span class="n">4</span>
+      <div><div class="t"><em class="hi">Transfer / outsource</em></div>
+      <div class="d">Outsource operational functions (custody, IT) — transfer operational risk to specialist với economies of scale.</div></div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">§ 4 responses chung: <b>Accept</b> (nếu trong tolerance) · <b>Avoid</b> (exit business line) · <b>Mitigate</b> (giảm qua 4 tools trên) · <b>Transfer</b> (insurance/hedging).</p>
+
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — MITIGATE</span></div>
+</section>
+
+
+<!-- 16 · CAPACITY vs TOLERANCE + RESIDUAL -->
+<section data-label="Capacity vs Tolerance" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>16 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk appetite · 2 concepts</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Risk <em class="hi">capacity</em> vs tolerance.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 14px;">
+    <div class="cc">
+      <div class="head">Risk capacity</div>
+      <dl>
+        <dt>Nghĩa</dt><dd><em>Ability</em> to bear loss — objective</dd>
+        <dt>Dựa trên</dt><dd>Wealth, income stability, time horizon, liabilities</dd>
+        <dt>Ví dụ</dt><dd>25-tuổi có 40 năm tích lũy → capacity cao dù thu nhập thấp</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Risk tolerance</div>
+      <dl>
+        <dt>Nghĩa</dt><dd><em>Willingness</em> to bear loss — subjective, behavioral</dd>
+        <dt>Dựa trên</dt><dd>Personality, past experience, loss aversion</dd>
+        <dt>Ví dụ</dt><dd>Investor vừa thua 2008 → tolerance thấp dù capacity cao</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Residual risk</span>
+    Sau khi applied mitigation (diversify + hedge + insurance), risk còn lại = <em>residual risk</em>. Phải ≤ risk tolerance. Nếu residual &gt; tolerance → cần thêm mitigation hoặc giảm exposure.
+  </div>
+
+  <p class="fine-muted-sm">§ Nguyên tắc: <b>risk taken ≤ min(capacity, tolerance)</b>. Một investor có capacity cao nhưng tolerance thấp vẫn nên invest conservative — tolerance là binding constraint.</p>
+
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — CAP/TOL</span></div>
+</section>
+
+
+<!-- 17 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 EN -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>18 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Identify the <em class="hi">risk type</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A global macro hedge fund holds a long position in a 10-year Brazilian sovereign bond. The government announces an unexpected <strong>debt moratorium</strong>, failing to make the scheduled coupon payment. The fund's loss on this position is <strong>most accurately</strong> classified as:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Market risk (interest rate risk).</span></li>
+    <li><span class="lbl">B</span><span class="opt">Credit risk (sovereign default / counterparty risk).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Operational risk (settlement failure).</span></li>
+  </ol>
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — Q1 ORIGINAL</span></div>
+</section>
+
+
+<!-- 19 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>19 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Debt moratorium</mark>, <mark>failing to make coupon payment</mark>. Đây là câu chuyện về <em>default</em>, không phải biến động giá.
+  </div>
+  <ol class="hint-list">
+    <li><span class="hnum">Hint 1</span><span class="htxt">Phân biệt: market risk = giá di chuyển do thay đổi yield/spread; credit risk = counterparty <em>không thể hoặc không chịu</em> trả nợ.</span></li>
+    <li><span class="hnum">Hint 2</span><span class="htxt">"Moratorium" = government tuyên bố ngưng trả nợ. Đây là classic sovereign default event — chính xác là credit risk.</span></li>
+    <li><span class="hnum">Hint 3</span><span class="htxt">Operational risk = internal failures (hệ thống, fraud). Settlement failure do government action ≠ operational risk của quỹ.</span></li>
+  </ol>
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — Q1 HINT</span></div>
+</section>
+
+
+<!-- 20 · Q1 VN -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>20 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một global macro hedge fund đang nắm long position trong trái phiếu chính phủ Brazil kỳ hạn 10 năm. Chính phủ bất ngờ tuyên bố <strong>hoãn trả nợ (debt moratorium)</strong>, không thanh toán coupon theo kế hoạch. Loss của quỹ trên position này được phân loại <strong>chính xác nhất</strong> là:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Market risk (interest rate risk).</span></li>
+    <li><span class="lbl">B</span><span class="opt">Credit risk (sovereign default / counterparty risk).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Operational risk (settlement failure).</span></li>
+  </ol>
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — Q1 VIỆT</span></div>
+</section>
+
+
+<!-- 21 · Q1 EXPLAIN -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>21 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — credit risk.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Debt moratorium = sovereign <em>default</em>. Counterparty (Brazil government) không thực hiện nghĩa vụ thanh toán. Đây là định nghĩa kinh điển của credit risk — risk of loss from counterparty failing to meet obligations.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Market risk là biến động giá do thay đổi yield/spread trong <em>normal market conditions</em>. Default là discrete event — credit, không phải market.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Operational risk = internal failures của chính quỹ (hệ thống, human error, fraud). Government default là external counterparty event — không thuộc operational.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Classify risk theo <em>nguyên nhân gốc</em>: market = price movement, credit = counterparty default, operational = internal process failure. Từ khoá "default", "moratorium", "bankruptcy", "downgrade" → luôn là <b>credit risk</b>.</div>
+  </div>
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — ANSWER Q1</span></div>
+</section>
+
+
+<!-- 22 · Q2 EN -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>22 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Interpret a <em class="hi">VaR</em> statement.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A risk report states: "The portfolio's <strong>5% one-day VaR is $2 million</strong>." Which of the following interpretations is <strong>most accurate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">The portfolio is expected to lose exactly $2 million on any given day.</span></li>
+    <li><span class="lbl">B</span><span class="opt">There is a 5% probability that the portfolio will lose more than $2 million over a one-day horizon.</span></li>
+    <li><span class="lbl">C</span><span class="opt">The maximum possible one-day loss is $2 million.</span></li>
+  </ol>
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — Q2 ORIGINAL</span></div>
+</section>
+
+
+<!-- 23 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>23 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>5%</mark> = tail probability · <mark>one-day</mark> = horizon · <mark>$2M</mark> = threshold. VaR statement = "có X% xác suất mất HƠN Y trong Z thời gian".
+  </div>
+  <ol class="hint-list">
+    <li><span class="hnum">Hint 1</span><span class="htxt">Phân biệt: "5% VaR" ≡ tail probability 5% ≡ confidence 95%. Cả hai cách phát biểu đều chỉ cùng một ngưỡng.</span></li>
+    <li><span class="hnum">Hint 2</span><span class="htxt">VaR KHÔNG phải <em>expected loss</em> — A sai vì VaR là threshold, không phải giá trị kỳ vọng.</span></li>
+    <li><span class="hnum">Hint 3</span><span class="htxt">VaR KHÔNG phải <em>maximum loss</em> — C sai. Maximum loss có thể vô cùng lớn trong tail 5%. VaR chỉ nói về threshold, không phải cap.</span></li>
+  </ol>
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — Q2 HINT</span></div>
+</section>
+
+
+<!-- 24 · Q2 VN + ANSWER -->
+<section data-label="Q2 Dịch đề &amp; Answer" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>24 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt &amp; Answer</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch đề &amp; <em class="hi">Answer</em>: B.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette — Tiếng Việt</span>
+    <div class="q-stem">
+      Report rủi ro ghi: "Portfolio có <strong>5% one-day VaR là $2 triệu</strong>." Cách hiểu nào <strong>chính xác nhất</strong>?
+    </div>
+  </div>
+  <div class="reasoning" style="margin-top: 16px;">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">5% 1-day VaR = $2M nghĩa là: có 5% xác suất loss 1-day <em>vượt quá</em> $2M. Tương đương, 95% ngày loss ≤ $2M. Đây là definition chuẩn của VaR — threshold tại tail probability cho trước.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">VaR là <em>threshold</em>, không phải expected loss. Expected loss (mean of distribution) thường gần zero với daily returns. "Expected to lose exactly $2M" hoàn toàn sai nghĩa.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">VaR KHÔNG phải maximum possible loss. Trong 5% trường hợp tail, loss có thể nhỏ hơn hoặc LỚN HƠN $2M rất nhiều. Đây chính là lý do cần CVaR để capture magnitude of tail.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">VaR statement = "có α% xác suất loss vượt VaR trong horizon T". VaR KHÔNG phải expected loss, KHÔNG phải max loss. Để biết magnitude khi vượt VaR, cần <em>CVaR/Expected Shortfall</em>.</div>
+  </div>
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — Q2 V &amp; ANSWER</span></div>
+</section>
+
+
+<!-- 25 · Q3 (combined) -->
+<section data-label="Q3 VaR vs CVaR" class="slide">
+  <div class="run-header">
+    <span>Portfolio · 06.05</span>
+    <span class="rule"></span>
+    <span>25 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · VaR vs CVaR</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">VaR vs <em class="hi">CVaR</em> — key difference.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette — EN</span>
+    <div class="q-stem">
+      Compared to VaR, Expected Shortfall (CVaR) is <strong>best described</strong> as: (A) the probability of a loss exceeding a given threshold; (B) the average loss <strong>given that</strong> the loss exceeds VaR; (C) the loss under the worst historical scenario in the data set.
+    </div>
+  </div>
+  <div class="q-card" style="margin-top: 12px;">
+    <span class="q-tag">§ Vignette — Tiếng Việt</span>
+    <div class="q-stem">
+      So với VaR, Expected Shortfall (CVaR) được mô tả <strong>chính xác nhất</strong> là: (A) xác suất loss vượt ngưỡng cho trước; (B) loss trung bình <strong>với điều kiện</strong> loss vượt VaR; (C) loss theo kịch bản historical tệ nhất trong dataset.
+    </div>
+  </div>
+  <div class="reasoning" style="margin-top: 14px;">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">CVaR = E[Loss | Loss &gt; VaR] — <em>expected loss conditional on</em> vượt VaR threshold. Nó trả lời "nếu tệ, trung bình tệ đến đâu", capture magnitude of tail mà VaR bỏ qua.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A &amp; C</div>
+      <div class="rtext">(A) mô tả <em>tail probability</em>, không phải CVaR. (C) là worst historical loss — một single observation, không phải expected value over the tail region.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">VaR trả lời "threshold tại tail probability α". CVaR trả lời "average loss trong vùng đuôi beyond VaR". CVaR luôn ≥ VaR về magnitude và là <em>coherent</em> risk measure (sub-additive) — lý do Basel III khuyến nghị thay VaR.</div>
+  </div>
+  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>PORTFOLIO · 06.05 — Q3 &amp; ANSWER</span></div>
+</section>
+
+
+<!-- 26 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>06.05 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Hoàn tất Module 06 · Portfolio Management<br>Tiếp theo · Topic 07 — Fixed Income</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

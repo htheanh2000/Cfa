@@ -1,0 +1,1108 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Corporate 05.05 — Capital Structure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 120px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Capital<br><em>Structure.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 05 · Lesson 05.05 · Corporate Issuers</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 05 · WACC, MM propositions &amp; theory of capital structure</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Corporate</dd></div>
+      <div><dt>Module</dt><dd>05</dd></div>
+      <div><dt>Lesson</dt><dd>05.05</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">WACC · MM · Trade-off · Pecking order · Target D/E</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">05</div>
+    <div class="lbl">Capital structure</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How firms <em>finance</em><br>themselves.</h2>
+    <ul class="toc">
+      <li class="active">01 · Capital structure — mix of debt &amp; equity</li>
+      <li>02 · WACC — weighted average cost of capital</li>
+      <li>03 · Cost of equity &amp; cost of debt</li>
+      <li>04 · Modigliani-Miller propositions — no tax &amp; with tax</li>
+      <li>05 · Trade-off &amp; pecking order theories — target D/E</li>
+      <li>06 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · CAPITAL STRUCTURE OVERVIEW -->
+<section data-label="Capital structure" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Definition · overview</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">capital mix</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      <b>Capital structure</b> = tỷ lệ <em>debt</em> và <em>equity</em> mà firm sử dụng để finance hoạt động và đầu tư. Quyết định trực tiếp <em>cost of capital</em>, <em>financial risk</em>, và <em>firm value</em>.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Core identity</span>
+    <div class="eq"><span class="var">V</span> = <span class="var">D</span> + <span class="var">E</span></div>
+    <div class="note"><b>V</b> — firm value (enterprise value) · <b>D</b> — market value of debt · <b>E</b> — market value of equity. Dùng <em>market value</em>, KHÔNG phải book value.</div>
+  </div>
+
+  <div class="compare" style="margin-top: 24px;">
+    <div class="cc">
+      <div class="head"><em>Debt</em> — D</div>
+      <dl>
+        <dt>Obligation</dt>
+        <dd>Fixed interest + principal — <b>contractual</b></dd>
+        <dt>Tax</dt>
+        <dd>Interest <em>tax-deductible</em> → tax shield</dd>
+        <dt>Claim</dt>
+        <dd>Senior — trả trước equity khi default</dd>
+        <dt>Risk</dt>
+        <dd>Thấp hơn → cost of debt (rd) thấp hơn</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Equity</em> — E</div>
+      <dl>
+        <dt>Obligation</dt>
+        <dd>Residual — không fixed, dividend optional</dd>
+        <dt>Tax</dt>
+        <dd>Dividend KHÔNG deductible — corp đã trả tax</dd>
+        <dt>Claim</dt>
+        <dd>Last — cuối cùng trong liquidation</dd>
+        <dt>Risk</dt>
+        <dd>Cao hơn → cost of equity (re) cao hơn</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — DEFINITION</span>
+  </div>
+</section>
+
+
+<!-- 04 · WACC FORMULA -->
+<section data-label="WACC formula" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">WACC · master formula</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Weighted average</em> cost of capital.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      WACC = chi phí vốn trung bình có trọng số theo tỷ lệ debt và equity. Là <em>discount rate</em> dùng để định giá dự án và firm.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ WACC — after-tax</span>
+    <div class="eq"><span class="var">WACC</span> = (<span class="var">D/V</span>) · <span class="var">r<sub>d</sub></span> · (1 − <span class="var">t</span>) + (<span class="var">E/V</span>) · <span class="var">r<sub>e</sub></span></div>
+    <div class="note">
+      <b>D/V, E/V</b> — weights dựa trên <em>market value</em> · <b>r<sub>d</sub></b> — pre-tax cost of debt (YTM) · <b>t</b> — marginal tax rate · <b>r<sub>e</sub></b> — cost of equity.
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Tax shield — why (1 − t) applies</span>
+    <div class="eq">After-tax r<sub>d</sub> = <span class="var">r<sub>d</sub></span> · (1 − <span class="var">t</span>)</div>
+    <div class="note">Interest expense giảm taxable income → firm "save" <em>t × interest</em>. Equity KHÔNG có shield vì dividend trả sau tax.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Nếu có preferred stock: WACC = (D/V)·r<sub>d</sub>·(1−t) + (P/V)·r<sub>p</sub> + (E/V)·r<sub>e</sub>, với V = D + P + E.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — WACC</span>
+  </div>
+</section>
+
+
+<!-- 05 · WACC WORKED EXAMPLE -->
+<section data-label="WACC example" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">WACC · numerical example</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Worked <em class="hi">WACC</em>.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Data</span>
+    Firm có <b>Debt $400M</b>, <b>Equity $600M</b> (market values). Pre-tax cost of debt <b>r<sub>d</sub> = 6%</b>. Cost of equity <b>r<sub>e</sub> = 12%</b>. Tax rate <b>t = 25%</b>.
+  </div>
+
+  <div class="formula-box" style="margin-top: 20px;">
+    <span class="fmt-label">§ Step 1 — Weights</span>
+    <div class="eq">V = 400 + 600 = <span class="var">1000</span></div>
+    <div class="eq" style="margin-top: 6px;">D/V = 400/1000 = <span class="var">0.40</span> · E/V = 600/1000 = <span class="var">0.60</span></div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 12px;">
+    <span class="fmt-label">§ Step 2 — After-tax cost of debt</span>
+    <div class="eq">r<sub>d</sub>(1 − t) = 0.06 · (1 − 0.25) = <span class="var">0.045</span> = 4.5%</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 12px;">
+    <span class="fmt-label">§ Step 3 — WACC</span>
+    <div class="eq">WACC = 0.40 · 4.5% + 0.60 · 12% = <span class="var">1.8% + 7.2% = 9.0%</span></div>
+    <div class="note">Ý nghĩa: firm cần earn ít nhất 9% trên các dự án mới để tạo giá trị cho cả debt + equity holders.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — WACC CALC</span>
+  </div>
+</section>
+
+
+<!-- 06 · COST OF EQUITY -->
+<section data-label="Cost of equity" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Cost of equity · r<sub>e</sub></div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Two ways to estimate <em class="hi">r<sub>e</sub></em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Equity KHÔNG có lãi suất niêm yết — phải estimate qua <em>CAPM</em> (dựa rủi ro hệ thống) hoặc <em>DDM</em> (dựa dividend growth).
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Method 1 — CAPM (Capital Asset Pricing Model)</span>
+    <div class="eq"><span class="var">r<sub>e</sub></span> = <span class="var">R<sub>f</sub></span> + <span class="var">β</span> · (<span class="var">R<sub>m</sub></span> − <span class="var">R<sub>f</sub></span>)</div>
+    <div class="note"><b>R<sub>f</sub></b> — risk-free rate (10Y Treasury) · <b>β</b> — equity beta · <b>(R<sub>m</sub> − R<sub>f</sub>)</b> — equity risk premium (ERP).</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Method 2 — Dividend Discount Model (Gordon)</span>
+    <div class="eq"><span class="var">r<sub>e</sub></span> = <span class="var">D<sub>1</sub> / P<sub>0</sub></span> + <span class="var">g</span></div>
+    <div class="note"><b>D<sub>1</sub></b> — expected dividend next year · <b>P<sub>0</sub></b> — current price · <b>g</b> — sustainable dividend growth rate. Chỉ dùng khi firm pay stable dividend.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Pick-a-method — CAPM phổ biến hơn, áp dụng cho mọi firm (kể cả non-dividend). DDM đơn giản nhưng sensitive với input g.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — COST OF EQUITY</span>
+  </div>
+</section>
+
+
+<!-- 07 · COST OF DEBT -->
+<section data-label="Cost of debt" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Cost of debt · r<sub>d</sub></div>
+    <h2 class="h-section" style="margin-bottom: 18px;">How to measure <em class="hi">r<sub>d</sub></em>.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">YTM approach — preferred method</span>
+        <span class="step-body">r<sub>d</sub> = <em>yield to maturity</em> của outstanding bonds của firm. Phản ánh rate nhà đầu tư hiện tại yêu cầu (market-based).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Debt rating approach — nếu không có traded bond</span>
+        <span class="step-body">Dùng yield của bond có rating tương đương (Moody's, S&amp;P). Ví dụ: firm rating BBB → dùng BBB corporate yield.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Synthetic rating — dựa interest coverage ratio</span>
+        <span class="step-body">Nếu firm private hoặc chưa có rating: map EBIT/Interest → synthetic rating → yield. Damodaran-style approach.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">After-tax adjustment — bắt buộc trong WACC</span>
+        <span class="step-body">After-tax r<sub>d</sub> = r<sub>d</sub> · (1 − t). Chỉ áp dụng nếu firm có taxable income — loss-making firms không có tax shield.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § Trap — KHÔNG dùng coupon rate (lãi suất danh nghĩa trên trái phiếu) thay cho YTM. Coupon chỉ đúng khi bond trade at par.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — COST OF DEBT</span>
+  </div>
+</section>
+
+
+<!-- 08 · MM PROPOSITIONS — NO TAX -->
+<section data-label="MM no tax" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Modigliani-Miller · no tax</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">MM 1958</em> — irrelevance.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Trong thế giới <em>perfect capital markets</em> (no tax, no bankruptcy cost, no info asymmetry): capital structure <b>không ảnh hưởng</b> đến firm value.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Proposition I (no tax) — value invariance</span>
+    <div class="eq"><span class="var">V<sub>L</sub></span> = <span class="var">V<sub>U</sub></span></div>
+    <div class="note">Firm value của levered firm (V<sub>L</sub>) = firm value của unlevered firm (V<sub>U</sub>). Cấu trúc vốn <b>không tạo giá trị</b>.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Proposition II (no tax) — cost of equity rises linearly</span>
+    <div class="eq"><span class="var">r<sub>e</sub></span> = <span class="var">r<sub>0</sub></span> + (<span class="var">r<sub>0</sub></span> − <span class="var">r<sub>d</sub></span>) · (<span class="var">D/E</span>)</div>
+    <div class="note"><b>r<sub>0</sub></b> — cost of capital của unlevered firm. Càng vay nhiều (D/E ↑), equity càng rủi ro → r<sub>e</sub> ↑ theo đường thẳng. WACC giữ nguyên = r<sub>0</sub>.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Intuition — Thêm debt "cheap" (r<sub>d</sub> thấp) nhưng remaining equity rủi ro hơn (r<sub>e</sub> tăng). Hai tác động triệt tiêu → WACC constant.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — MM NO TAX</span>
+  </div>
+</section>
+
+
+<!-- 09 · MM WITH TAX -->
+<section data-label="MM with tax" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">MM · với tax</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">MM 1963 — <em class="hi">tax shield</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Khi đưa corporate tax vào model: interest deductibility tạo ra <em>tax shield</em>, làm firm value tăng theo debt. Optimal = 100% debt (không thực tế).
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Proposition I (with tax) — value of tax shield</span>
+    <div class="eq"><span class="var">V<sub>L</sub></span> = <span class="var">V<sub>U</sub></span> + <span class="var">t · D</span></div>
+    <div class="note"><b>t · D</b> — PV của tax shield vĩnh viễn. Firm value tăng <em>tuyến tính</em> với mức debt.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Proposition II (with tax) — adjusted</span>
+    <div class="eq"><span class="var">r<sub>e</sub></span> = <span class="var">r<sub>0</sub></span> + (<span class="var">r<sub>0</sub></span> − <span class="var">r<sub>d</sub></span>) · (1 − <span class="var">t</span>) · (<span class="var">D/E</span>)</div>
+    <div class="note">Cost of equity vẫn tăng theo leverage, nhưng chậm hơn (vì (1 − t) &lt; 1). WACC <em>giảm</em> khi D tăng → optimal = max debt.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Paradox — MM with tax dự đoán 100% debt là optimal. Nhưng không firm nào làm vậy → phải có cost nào đó của debt → trade-off theory.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — MM WITH TAX</span>
+  </div>
+</section>
+
+
+<!-- 10 · TRADE-OFF THEORY -->
+<section data-label="Trade-off theory" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Trade-off theory</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Tax shield <em class="hi">vs</em> distress cost.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Trade-off theory bổ sung <em>financial distress cost</em> vào MM. Tồn tại <b>optimal D/E</b> — nơi marginal benefit của tax shield = marginal cost của distress.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Levered firm value — with distress</span>
+    <div class="eq"><span class="var">V<sub>L</sub></span> = <span class="var">V<sub>U</sub></span> + <span class="var">PV(tax shield)</span> − <span class="var">PV(financial distress)</span></div>
+    <div class="note">Khi D tăng: tax shield tăng tuyến tính, nhưng distress cost tăng phi tuyến (exponential) → tồn tại điểm tối ưu.</div>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 20px;">
+    <div class="tenet">
+      <span class="n">DC</span>
+      <div>
+        <div class="t"><em class="hi">Direct costs</em></div>
+        <div class="d">Legal fees, court costs, bankruptcy proceedings. Tương đối nhỏ — thường 3-5% firm value.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">IC</span>
+      <div>
+        <div class="t"><em class="hi">Indirect costs</em></div>
+        <div class="d">Mất customers, suppliers demand cash, nhân tài nghỉ, underinvestment problem. Lớn hơn nhiều — 10-20%.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Optimal D/E tùy industry — công ty tangible asset cao (airlines, utilities) → distress cost thấp hơn → debt nhiều hơn. Tech/pharma → nhiều equity.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — TRADE-OFF</span>
+  </div>
+</section>
+
+
+<!-- 11 · PECKING ORDER THEORY -->
+<section data-label="Pecking order" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Pecking order · Myers &amp; Majluf 1984</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Financing <em class="hi">hierarchy</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Thay vì target D/E, managers chọn nguồn vốn theo thứ tự ưu tiên, driven bởi <em>asymmetric information</em> và <em>signaling</em>.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Order of preference</span>
+    <b>(1) Retained earnings</b> → <b>(2) Debt</b> → <b>(3) External equity</b>. Cheap signal → medium signal → worst signal.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 18px;">
+    <li>
+      <span>
+        <span class="step-title">Retained earnings — first choice</span>
+        <span class="step-body">Không có issuance cost, không pha loãng, không signal gì xấu. Managers prefer tuyệt đối.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Debt — second choice</span>
+        <span class="step-body">Ít asymmetric info hơn equity (debt có senior claim, less sensitive to firm value). Signal vừa phải — "firm có confidence trả được".</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">External equity — last resort</span>
+        <span class="step-body">Signal xấu — "management nghĩ stock overvalued nên mới issue". Market thường react tiêu cực khi announce SEO → stock giảm.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § Key difference — Trade-off theory: firm có <em>target D/E</em>. Pecking order: firm KHÔNG có target, D/E là kết quả tích lũy của các quyết định funding qua thời gian.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — PECKING ORDER</span>
+  </div>
+</section>
+
+
+<!-- 12 · THEORY COMPARISON -->
+<section data-label="Theory compare" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Compare · three theories</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">MM · Trade-off · Pecking</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>MM</em> (baseline)</div>
+      <dl>
+        <dt>Assumption</dt>
+        <dd>Perfect markets — no tax or tax only</dd>
+        <dt>Prediction</dt>
+        <dd>Irrelevance (no tax) / 100% debt (with tax)</dd>
+        <dt>Target D/E?</dt>
+        <dd>Không có ý nghĩa — hoặc maximize</dd>
+        <dt>Use</dt>
+        <dd>Theoretical benchmark</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Trade-off</em></div>
+      <dl>
+        <dt>Assumption</dt>
+        <dd>Tax shield + financial distress cost</dd>
+        <dt>Prediction</dt>
+        <dd><b>Optimal D/E</b> tồn tại · interior solution</dd>
+        <dt>Target D/E?</dt>
+        <dd><b>Có</b> — firm rebalance về target</dd>
+        <dt>Use</dt>
+        <dd>Giải thích cross-industry variation</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Pecking order</em></div>
+      <dl>
+        <dt>Assumption</dt>
+        <dd>Asymmetric info · signaling</dd>
+        <dt>Prediction</dt>
+        <dd>Hierarchy: RE → D → E · no optimal D/E</dd>
+        <dt>Target D/E?</dt>
+        <dd><b>Không</b> — D/E là path-dependent</dd>
+        <dt>Use</dt>
+        <dd>Giải thích profitable firms có ít debt</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Empirical reality — Firms hybrid cả hai: có target nhưng cũng tuân pecking order khi deviating từ target không quá costly.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — THEORY COMPARE</span>
+  </div>
+</section>
+
+
+<!-- 13 · STATIC VS DYNAMIC -->
+<section data-label="Static vs dynamic" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>13 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Target · static vs dynamic</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Target</em> capital structure.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      <b>Target capital structure</b> = long-run D/E mà management hướng đến. Actual D/E dao động quanh target do market fluctuations và funding needs.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Static</em> view</div>
+      <dl>
+        <dt>Assumption</dt>
+        <dd>Target D/E cố định, adjust liên tục về target</dd>
+        <dt>Behavior</dt>
+        <dd>Issue debt/equity để rebalance mỗi deviation</dd>
+        <dt>Cost</dt>
+        <dd>Bỏ qua adjustment costs (issuance fees, timing)</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Dynamic</em> view</div>
+      <dl>
+        <dt>Assumption</dt>
+        <dd>Adjustment có cost → deviate trong range acceptable</dd>
+        <dt>Behavior</dt>
+        <dd>Chỉ rebalance khi deviation lớn, time the market</dd>
+        <dt>Cost</dt>
+        <dd>Considers issuance cost, tax timing, market conditions</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — STATIC/DYNAMIC</span>
+  </div>
+</section>
+
+
+<!-- 14 · FACTORS AFFECTING -->
+<section data-label="Factors" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>14 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Determinants · six factors</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What <em class="hi">shapes</em> D/E.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Business risk</em></div>
+        <div class="d">Operating volatility cao → dùng ít debt (EBIT dao động mạnh tăng default risk). Ví dụ: tech vs utilities.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Tax rate</em></div>
+        <div class="d">Tax rate cao → tax shield valuable hơn → dùng nhiều debt hơn. VN CIT 20% vs US 21%.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Financial flexibility</em></div>
+        <div class="d">Giữ "dry powder" để nắm bắt opportunities — mature firms cẩn trọng dùng ít debt hơn possible.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Profitability</em></div>
+        <div class="d">Profitable firm → retained earnings dồi dào → pecking order dự đoán DÙNG ÍT debt hơn (nghịch lý với trade-off).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">05</span>
+      <div>
+        <div class="t"><em class="hi">Asset tangibility</em></div>
+        <div class="d">Tangible assets (nhà máy, BĐS) làm collateral → dễ vay → dùng nhiều debt hơn. Intangibles (R&amp;D, brand) → ít debt.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">06</span>
+      <div>
+        <div class="t"><em class="hi">Life cycle stage</em></div>
+        <div class="d">Startup → 0 debt. Growth → VC equity. Mature → debt + retained. Decline → high debt, returning capital.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — FACTORS</span>
+  </div>
+</section>
+
+
+<!-- 15 · KEY TAKEAWAYS -->
+<section data-label="Takeaways" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>15 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Synthesis · before practice</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Five <em class="hi">takeaways</em>.</h2>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">WACC = (D/V)·r<sub>d</sub>·(1−t) + (E/V)·r<sub>e</sub> — master formula</span>
+        <span class="step-body">Sử dụng market-value weights. After-tax cost of debt cho tax shield. Là discount rate cho NPV analysis.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">MM no tax → irrelevance · MM with tax → 100% debt</span>
+        <span class="step-body">Prop I: V<sub>L</sub> = V<sub>U</sub> (không tax) hoặc V<sub>U</sub> + tD (có tax). Prop II: r<sub>e</sub> rises linearly với D/E.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Trade-off theory → optimal D/E tồn tại</span>
+        <span class="step-body">V<sub>L</sub> = V<sub>U</sub> + PV(tax shield) − PV(distress). Balance tại đỉnh curve — firm có target.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Pecking order → RE &gt; Debt &gt; Equity</span>
+        <span class="step-body">Driven by asymmetric info. Profitable firms dùng ít debt (nghịch trade-off prediction).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Factors: business risk, tax, flexibility, profitability, tangibility, life cycle</span>
+        <span class="step-body">Cross-industry D/E variation chủ yếu driven bởi business risk và asset tangibility.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — TAKEAWAYS</span>
+  </div>
+</section>
+
+
+<!-- 16 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 EN — WACC CALC -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>17 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Compute the <em class="hi">WACC</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Delta Manufacturing has market-value debt of <strong>$300 million</strong> and market-value equity of <strong>$700 million</strong>. Pre-tax cost of debt is <strong>7%</strong>, cost of equity is <strong>13%</strong>, and the marginal tax rate is <strong>30%</strong>. What is Delta's WACC?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">10.57% — equal-weighted blend of the two costs.</span></li>
+    <li><span class="lbl">B</span><span class="opt">10.57% — using pre-tax cost of debt without tax shield.</span></li>
+    <li><span class="lbl">C</span><span class="opt">10.57% — applying after-tax cost of debt and market weights.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>D = 300</mark>, <mark>E = 700</mark>, <mark>r<sub>d</sub> = 7%</mark>, <mark>r<sub>e</sub> = 13%</mark>, <mark>t = 30%</mark>. Formula?
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">V = D + E = 1000 → D/V = 0.30, E/V = 0.70. Dùng <em>market values</em>, không book.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">After-tax r<sub>d</sub> = 7% × (1 − 0.30) = <em>4.9%</em>. Tax shield giảm effective cost of debt.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">WACC = 0.30 × 4.9% + 0.70 × 13% = 1.47% + 9.10% = <em>10.57%</em>. Note: 3 options đều "10.57%" — phải chọn option có <em>reasoning</em> đúng.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Delta Manufacturing có debt market value <strong>$300 triệu</strong> và equity market value <strong>$700 triệu</strong>. Pre-tax cost of debt là <strong>7%</strong>, cost of equity là <strong>13%</strong>, và marginal tax rate là <strong>30%</strong>. WACC của Delta là bao nhiêu?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">10.57% — blend có trọng số bằng nhau của hai costs.</span></li>
+    <li><span class="lbl">B</span><span class="opt">10.57% — dùng pre-tax cost of debt không có tax shield.</span></li>
+    <li><span class="lbl">C</span><span class="opt">10.57% — áp dụng after-tax cost of debt và market weights.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — 10.57%.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext">WACC = (D/V)·r<sub>d</sub>·(1−t) + (E/V)·r<sub>e</sub> = (300/1000)·7%·(1−0.30) + (700/1000)·13% = 0.30·4.9% + 0.70·13% = <b>1.47% + 9.10% = 10.57%</b>. Đáp án C đúng vì nó reasoning chuẩn: market-value weights + after-tax cost of debt.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">"Equal-weighted blend" sai — phải dùng weights dựa trên market values (D/V = 0.30, E/V = 0.70), KHÔNG phải 50/50. Ở đây bằng con số 10.57% là coincidence, reasoning sai.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Không áp dụng tax shield = sai theo CFA. Nếu dùng pre-tax r<sub>d</sub>: 0.30·7% + 0.70·13% = 11.20% ≠ 10.57%. Đáp án B có số trùng nhưng logic sai.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">WACC exam mechanics: (1) Dùng <em>market values</em>, không book. (2) After-tax cost of debt = r<sub>d</sub>·(1−t). (3) Đọc kỹ wording — option có cùng số nhưng <em>reasoning</em> khác nhau. CFA hay test concept hiểu đúng.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 EN — MM PROP II -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">MM Proposition II</em> implication.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Under Modigliani-Miller <strong>Proposition II with no taxes</strong>, a firm increases its debt-to-equity ratio from 0.5 to 1.0. Which of the following most accurately describes the impact on the firm's cost of equity (r<sub>e</sub>) and WACC?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">r<sub>e</sub> stays the same; WACC decreases because cheap debt replaces expensive equity.</span></li>
+    <li><span class="lbl">B</span><span class="opt">r<sub>e</sub> increases linearly; WACC remains unchanged at r<sub>0</sub>.</span></li>
+    <li><span class="lbl">C</span><span class="opt">r<sub>e</sub> decreases; WACC increases because of higher bankruptcy risk.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>MM Prop II</mark>. <mark>No taxes</mark>. <mark>D/E ↑</mark>. r<sub>e</sub> và WACC thay đổi thế nào?
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Công thức Prop II no tax: r<sub>e</sub> = r<sub>0</sub> + (r<sub>0</sub> − r<sub>d</sub>) · (D/E). D/E ↑ → r<sub>e</sub> ↑ <em>linearly</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Prop I no tax: V<sub>L</sub> = V<sub>U</sub> → cấu trúc vốn <em>không</em> ảnh hưởng firm value → WACC phải <em>không đổi</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Intuition: debt "rẻ" tăng, nhưng equity risk tăng làm r<sub>e</sub> tăng đúng để offset → WACC = r<sub>0</sub> không đổi. "No tax" → không có bankruptcy cost trong model.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Theo Modigliani-Miller <strong>Proposition II không có thuế</strong>, một firm tăng debt-to-equity ratio từ 0.5 lên 1.0. Phát biểu nào mô tả chính xác nhất tác động đến cost of equity (r<sub>e</sub>) và WACC của firm?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">r<sub>e</sub> giữ nguyên; WACC giảm vì debt rẻ thay thế equity đắt.</span></li>
+    <li><span class="lbl">B</span><span class="opt">r<sub>e</sub> tăng tuyến tính; WACC không đổi bằng r<sub>0</sub>.</span></li>
+    <li><span class="lbl">C</span><span class="opt">r<sub>e</sub> giảm; WACC tăng vì bankruptcy risk cao hơn.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — r<sub>e</sub> ↑ · WACC unchanged.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Prop II no tax: <b>r<sub>e</sub> = r<sub>0</sub> + (r<sub>0</sub> − r<sub>d</sub>)·(D/E)</b> → r<sub>e</sub> tăng <em>linearly</em> khi D/E tăng. Prop I no tax: V<sub>L</sub> = V<sub>U</sub> → firm value không đổi → <b>WACC = r<sub>0</sub> constant</b>. Hai effects (debt cheap + equity risk up) offset chính xác.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">r<sub>e</sub> KHÔNG giữ nguyên — phải tăng theo Prop II. WACC cũng KHÔNG giảm — đây là ảo tưởng "debt là cheap money". Trong MM no tax, tăng leverage chỉ transfer risk giữa debt và equity, không tạo giá trị.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">r<sub>e</sub> KHÔNG giảm — ngược lại, tăng vì equity holders gánh leverage risk. Bankruptcy risk KHÔNG trong model MM no tax (perfect markets assumption). Bankruptcy cost chỉ vào trong trade-off theory.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">MM no tax = <em>irrelevance result</em>: capital structure không tạo giá trị. Khi D/E ↑, r<sub>e</sub> tăng đúng mức để WACC không đổi. Khi thêm tax → MM with tax → optimal = max debt. Khi thêm distress cost → trade-off → optimal D/E nội bộ.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 EN — PECKING ORDER -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Pecking order</em> prediction.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      According to the <strong>pecking order theory</strong> (Myers &amp; Majluf, 1984), a highly profitable firm with substantial retained earnings that needs to finance a new positive-NPV project would most likely prefer:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Issue new equity to maintain its target debt-to-equity ratio.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Use retained earnings first, then debt, and issue equity only as a last resort.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Issue new debt to maximize the tax shield and lower WACC.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>26 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Pecking order theory</mark>. <mark>Highly profitable</mark>. <mark>Substantial retained earnings</mark>. <mark>Myers &amp; Majluf 1984</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Pecking order KHÔNG có target D/E — đó là trade-off theory. Loại đáp án nào nhắc "target D/E".</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Order: <em>retained earnings → debt → equity</em>. Firm có substantial RE → dùng RE trước, đúng thứ tự hierarchy.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">"Maximize tax shield" là logic trade-off (MM with tax), KHÔNG phải pecking order. Pecking order driven bởi <em>asymmetric info + signaling</em>, không tax.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>27 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Theo <strong>pecking order theory</strong> (Myers &amp; Majluf, 1984), một firm có profitability cao và retained earnings dồi dào cần finance một positive-NPV project sẽ có xu hướng:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Issue equity mới để giữ target debt-to-equity ratio.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Dùng retained earnings trước, sau đó debt, và issue equity chỉ là last resort.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Issue debt mới để maximize tax shield và giảm WACC.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.05</span>
+    <span class="rule"></span>
+    <span>28 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — RE → D → E.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Pecking order hierarchy: <b>(1) Retained earnings</b> → <b>(2) Debt</b> → <b>(3) External equity</b>. Firm có RE dồi dào → dùng RE đầu tiên (không issuance cost, không signal xấu). Chỉ khi RE không đủ mới chuyển sang debt, và equity là last resort vì signal "stock overvalued".</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Pecking order <em>không có target D/E</em> — đó là khái niệm của trade-off theory. Issuing equity đầu tiên mâu thuẫn với hierarchy (equity = last resort). Đáp án trộn lẫn hai theory.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">"Maximize tax shield" là logic trade-off theory (MM with tax). Pecking order KHÔNG driven bởi tax — mà bởi asymmetric info. Ngoài ra, issue debt trước RE vi phạm hierarchy.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Pecking order giải thích <em>paradox empirical</em>: profitable firms có D/E thấp hơn (RE dồi dào → ít vay). Trade-off dự đoán ngược lại (profit cao → tax shield lớn → nên vay nhiều). Real firms hybrid — có target nhưng cũng tuân hierarchy khi deviation không quá costly.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.05 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 29 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>05.05 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 05.06 — Business Models &amp; Risk Analysis</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>
+</content>
+</invoke>

@@ -1,0 +1,1058 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Alt Investments 10.04 — Hedge Funds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Hedge<br><em>Funds.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 10 · Lesson 10.04 · Alternative Investments</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 04 · Strategies, fees &amp; HF index biases</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Alt Inv</dd></div>
+      <div><dt>Module</dt><dd>04</dd></div>
+      <div><dt>Lesson</dt><dd>10.04</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">4 strategies · 2-and-20 · survivorship bias</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">04</div>
+    <div class="lbl">Hedge Funds</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>Inside the <em>hedge fund</em><br>universe.</h2>
+    <ul class="toc">
+      <li class="active">01 · Định nghĩa &amp; đặc điểm — pooled, flexible, lightly-regulated</li>
+      <li>02 · 4 strategy categories — Equity / Event / Relative Value / Macro</li>
+      <li>03 · Fee structure — 2-and-20, high-water, hurdle</li>
+      <li>04 · Leverage, lockups, funds-of-funds</li>
+      <li>05 · Benchmarks &amp; biases — survivorship, backfill, self-report</li>
+      <li>06 · Risks &amp; due diligence</li>
+      <li>07 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · DEFINITION -->
+<section data-label="Definition" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>03 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hedge fund · definition</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What <em class="hi">is</em> a hedge fund?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Hedge fund = <em>privately pooled investment vehicle</em> dùng broad strategies (long/short, leverage, derivatives) để tạo absolute return, ít bị ràng buộc regulation so với mutual fund.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Định nghĩa cốt lõi</span>
+    <b>Privately pooled</b> capital + <b>accredited investors only</b> + <b>flexible mandate</b> (có thể long, short, leverage, derivatives, cross-asset). Manager charge <b>performance fee</b> → alignment nhưng cũng risk-taking incentive. Mục tiêu: absolute return, không phải beat benchmark.
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Misnomer — Tên "hedge" nghe như risk-reducing, nhưng nhiều HF thực tế dùng leverage cao và chiến lược directional. "Hedge" chỉ là lịch sử (Alfred W. Jones 1949 long/short fund) — ngày nay HF = <em>unconstrained active</em>.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — DEFINITION</span>
+  </div>
+</section>
+
+
+<!-- 04 · CHARACTERISTICS -->
+<section data-label="Characteristics" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>04 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Features · what makes HF different</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Shared <em class="hi">characteristics</em>.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Limited regulation — accredited / QP only</span>
+        <span class="step-body">3(c)(1) hoặc 3(c)(7) exemption khỏi Investment Company Act. Ít disclosure, ít leverage cap, ít position limit. Đổi lại: retail bị cấm.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Flexible strategies — long, short, leverage, derivatives</span>
+        <span class="step-body">Mutual fund bị giới hạn (long-only, limited leverage, no naked short). HF được phép short, dùng futures/options, leverage nhiều lần equity — broad investment mandate.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Performance fees — carried interest model</span>
+        <span class="step-body">Thường 2% mgmt + 20% performance. Alignment GP với LP, nhưng tạo asymmetric payoff → incentive cho GP take risk.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Lockup periods + redemption gates</span>
+        <span class="step-body">Lockup 1–3 năm (không rút được). Sau lockup: quarterly redemption với notice 30–90 ngày. Gates: giới hạn % AUM có thể rút trong một period (protect fund khi stressed).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Absolute return target</span>
+        <span class="step-body">Mục tiêu positive return mọi market environment, không phải beat S&amp;P 500. Benchmark-agnostic → freedom to invest nhưng cũng khó evaluate.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — CHARACTERISTICS</span>
+  </div>
+</section>
+
+
+<!-- 05 · 4 STRATEGIES OVERVIEW -->
+<section data-label="4 strategies" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>05 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Strategies · CFA taxonomy</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">4 strategy categories</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CFA L1 phân loại HF thành 4 categories chính. Mỗi category có sub-strategies cụ thể với risk profile khác nhau.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">EH</span>
+      <div>
+        <div class="t"><em class="hi">Equity Hedge</em></div>
+        <div class="d">Long/short equity, market-neutral (β≈0), short-biased, 130/30. Equity-focused, stock-picking.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">ED</span>
+      <div>
+        <div class="t"><em class="hi">Event-Driven</em></div>
+        <div class="d">Merger arb, distressed, activist, special situations. Exploit corporate events.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">RV</span>
+      <div>
+        <div class="t"><em class="hi">Relative Value</em></div>
+        <div class="d">Fixed-income arb, convertible arb, stat arb. Exploit mispricing giữa related securities.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">MA</span>
+      <div>
+        <div class="t"><em class="hi">Macro &amp; CTA</em></div>
+        <div class="d">Global macro (discretionary), managed futures (systematic trend). Top-down across asset classes.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 16px;">
+    § Multi-strategy funds — Kết hợp nhiều categories trong 1 fund (vd Millennium, Citadel). Diversify manager-level risk nhưng complexity cao hơn.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — STRATEGIES</span>
+  </div>
+</section>
+
+
+<!-- 06 · EQUITY HEDGE -->
+<section data-label="Equity hedge" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>06 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Strategy 1 · Equity Hedge (long/short)</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Long the <em class="hi">good</em>, short the bad.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Long/Short Equity — classic</span>
+        <span class="step-body">Buy undervalued stocks, short overvalued. Net exposure thường net-long (vd 60% net) → vẫn có equity beta nhưng giảm so với long-only.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Market-Neutral — beta ≈ 0</span>
+        <span class="step-body">Long và short balanced để net market exposure = 0. Return thuần từ stock selection (alpha). Low vol nhưng thấp return kỳ vọng hơn long-only.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Short-Biased — net short</span>
+        <span class="step-body">Net short exposure. Bet vào decline của stocks cụ thể hoặc market. Rare, high-conviction short sellers (vd Jim Chanos).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">130/30 — long-enhanced</span>
+        <span class="step-body">130% long + 30% short, net 100% market exposure. Gain extra alpha từ short side trong khi vẫn full market participation.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Gross vs Net exposure — Gross = |long| + |short|. Net = long − short. Market-neutral có gross cao (vd 200%) nhưng net ≈ 0. Leverage → gross &gt; 100%.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — EQUITY HEDGE</span>
+  </div>
+</section>
+
+
+<!-- 07 · EVENT-DRIVEN -->
+<section data-label="Event-driven" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>07 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Strategy 2 · Event-Driven</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Bet on <em class="hi">corporate events</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">M&amp;A</span>
+      <div>
+        <div class="t"><em class="hi">Merger Arbitrage</em></div>
+        <div class="d">Long target, short acquirer (stock deal). Capture deal spread. Risk: deal fail → spread blow out.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">DS</span>
+      <div>
+        <div class="t"><em class="hi">Distressed Securities</em></div>
+        <div class="d">Buy debt/equity của companies near/trong bankruptcy. Profit từ restructuring, reorg, recovery.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">AC</span>
+      <div>
+        <div class="t"><em class="hi">Activist</em></div>
+        <div class="d">Take large stake, force management change: split, buyback, board seat. Vd Elliott, Icahn, Third Point.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SS</span>
+      <div>
+        <div class="t"><em class="hi">Special Situations</em></div>
+        <div class="d">Spin-offs, recapitalizations, regulatory events, index additions/deletions. Catalyst-driven mispricing.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 16px;">
+    § Merger arb mechanics — Khi A announce acquire B tại $50, B stock trade $48. Spread $2 = merger arb profit nếu deal close. Risk: antitrust block → B drop về $35.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — EVENT-DRIVEN</span>
+  </div>
+</section>
+
+
+<!-- 08 · RELATIVE VALUE -->
+<section data-label="Relative value" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>08 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Strategy 3 · Relative Value</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Exploit <em class="hi">mispricing</em> between related securities.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Fixed-Income Arbitrage</span>
+        <span class="step-body">Yield curve trades (2s vs 10s steepener/flattener), swap spreads, on-the-run vs off-the-run Treasuries. Leverage cao vì spreads nhỏ. LTCM 1998 là cautionary tale.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Convertible Arbitrage</span>
+        <span class="step-body">Long convertible bond + short underlying stock. Capture mispricing implied vol giữa convert và options market. Gamma scalping + coupon carry.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Statistical Arbitrage (stat arb)</span>
+        <span class="step-body">Quant models identify relative mispricing qua hàng trăm cặp stocks (pairs trading, factor neutralized). High-frequency adjacent, very short holding period.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Volatility Arbitrage</span>
+        <span class="step-body">Trade implied vol vs realized vol. Vd long VIX futures khi implied &lt; realized forecast. Vega-focused.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § RV characteristic — Small edge per trade → phải dùng leverage để amplify. Crisis risk: spreads widen đột ngột, leverage magnify loss (LTCM 1998, Aug 2007 quant quake).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — RELATIVE VALUE</span>
+  </div>
+</section>
+
+
+<!-- 09 · MACRO & CTA -->
+<section data-label="Macro & CTA" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>09 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Strategy 4 · Macro &amp; Managed Futures</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Top-down <em class="hi">macro bets</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Global Macro (Discretionary)</div>
+      <dl>
+        <dt>Method</dt>
+        <dd>Manager's view on macro: rates, FX, commodities, equity indices</dd>
+        <dt>Style</dt>
+        <dd>Discretionary, concentrated, thematic. Soros breaking BoE 1992.</dd>
+        <dt>Instruments</dt>
+        <dd>Futures, FX spot/forward, rates swaps, options — across asset classes</dd>
+        <dt>Example</dt>
+        <dd>Bridgewater, Brevan Howard, Caxton</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Managed Futures / CTA (Systematic)</div>
+      <dl>
+        <dt>Method</dt>
+        <dd>Systematic trend-following, diversified across 50+ futures markets</dd>
+        <dt>Style</dt>
+        <dd>Rules-based, quantitative. Time-series momentum</dd>
+        <dt>Instruments</dt>
+        <dd>Exchange-traded futures (grains, metals, rates, equity indices, FX)</dd>
+        <dt>Example</dt>
+        <dd>Man AHL, Winton, Campbell, Aspect</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 16px;">
+    § CTA = Commodity Trading Advisor — Regulatory term (CFTC), thường dùng đồng nghĩa với systematic managed futures. Lợi ích: crisis alpha (perform tốt khi equity crash), nhưng chuỗi years of drawdown sideways.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — MACRO/CTA</span>
+  </div>
+</section>
+
+
+<!-- 10 · FEES & LEVERAGE -->
+<section data-label="Fees & leverage" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>10 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Economics · fees + leverage</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">2-and-20 <em class="hi">recap</em> + leverage.</h2>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ HF fee structure</span>
+    <div class="eq"><span class="var">Mgmt fee</span> = 2% × <span class="var">AUM</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Perf fee</span> = 20% × max(0, <span class="var">Gross return</span> − <span class="var">Hurdle</span>)</div>
+    <div class="note">Apply high-water mark: chỉ charge perf fee nếu NAV vượt previous peak. Hard hurdle: chỉ phần vượt; Soft hurdle: toàn bộ return (một khi vượt).</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">High-water mark — protect investor</span>
+        <span class="step-body">Nếu fund lỗ 10% năm 1, manager phải recover về peak trước khi được charge perf fee lại. Tránh "double dipping" sau drawdown.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Leverage — gross exposure &gt; NAV</span>
+        <span class="step-body">HF điển hình dùng 2–4× leverage qua prime broker financing, repo, futures margin, swaps. RV và macro/CTA leverage cao hơn equity L/S.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Tail risk của leverage</span>
+        <span class="step-body">Leverage amplify cả gain và loss. Khi crisis → margin call → forced liquidation → phá vỡ fund (LTCM 1998, Amaranth 2006, Melvin 2021).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — FEES/LEV</span>
+  </div>
+</section>
+
+
+<!-- 11 · LOCKUPS & FUND-OF-FUNDS -->
+<section data-label="Lockups & FoF" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>11 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Liquidity · terms + FoF</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Lockups</em>, gates &amp; FoF.</h2>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Liquidity terms</span>
+    <b>Lockup period:</b> 1–3 năm — không rút được dưới mọi hình thức.<br>
+    <b>Redemption notice:</b> 30–90 ngày — phải báo trước khi rút.<br>
+    <b>Gates:</b> max % AUM có thể redeem trong 1 quý (vd 25%). Protect fund khỏi fire-sale khi nhiều LP cùng redeem.<br>
+    <b>Side pockets:</b> cách ly illiquid positions, chỉ rút khi positions được realized.
+  </div>
+
+  <div class="compare" style="margin-top: 20px;">
+    <div class="cc">
+      <div class="head">Fund of Funds — Benefits</div>
+      <dl>
+        <dt>Diversification</dt>
+        <dd>Exposure đến 15–30 underlying HFs thay vì 1</dd>
+        <dt>Due diligence</dt>
+        <dd>FoF manager chọn + monitor → retail không phải tự làm</dd>
+        <dt>Access</dt>
+        <dd>Lower minimum ($100K vs $5M) → access closed funds</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">FoF — Drawbacks</div>
+      <dl>
+        <dt>Double fee</dt>
+        <dd>FoF charge 1-and-10 trên top của 2-and-20 → tổng fee drag lớn</dd>
+        <dt>Over-diversification</dt>
+        <dd>30 HFs → effective beta giống index, alpha dilute</dd>
+        <dt>Liquidity</dt>
+        <dd>FoF inherit lockup từ underlying funds</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — LOCKUPS/FOF</span>
+  </div>
+</section>
+
+
+<!-- 12 · BENCHMARKS & BIASES -->
+<section data-label="Benchmarks & biases" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>12 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Benchmarks · HF indices</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Index <em class="hi">biases</em> inflate returns.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      HFR, Credit Suisse HF Index, Eurekahedge là benchmark phổ biến. Nhưng vì HF không mandatory report, các index mang 3 biases quan trọng.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Survivorship bias</span>
+        <span class="step-body">Index chỉ tính fund <em>còn tồn tại</em>. Fund thất bại bị loại khỏi database → reported returns OVERSTATE true HF returns. Bias ước tính +2–4% mỗi năm.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Backfill bias (instant history)</span>
+        <span class="step-body">Khi fund gia nhập database, họ backfill historical returns — nhưng chỉ fund performer tốt mới join. Past performance của poor funds không được include.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Self-reporting bias</span>
+        <span class="step-body">HF tự quyết định có report hay không. Funds losing → stop reporting. Funds booming → report để attract capital. Bias toàn hệ thống lên upside.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Thực tế — Historical performance HF index &lt; S&amp;P 500 trong last decade (2010–2020), nhưng với lower volatility. Một số strategies (macro, CTA) vẫn có Sharpe OK dù return thấp. Aggregate "HF outperform" claim bị biases inflation.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — BIASES</span>
+  </div>
+</section>
+
+
+<!-- 13 · RISKS -->
+<section data-label="Risks" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>13 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risks · beyond market</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">HF <em class="hi">risk factors</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">MR</span>
+      <div>
+        <div class="t"><em class="hi">Market risk</em></div>
+        <div class="d">Correlations spike trong crisis — market-neutral thực ra không neutral khi liquidity dry up (Aug 2007, Mar 2020).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">LR</span>
+      <div>
+        <div class="t"><em class="hi">Liquidity risk</em></div>
+        <div class="d">Illiquid positions không unwind được nhanh. Lockups protect fund nhưng không protect underlying asset liquidity.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">LV</span>
+      <div>
+        <div class="t"><em class="hi">Leverage risk</em></div>
+        <div class="d">Margin call chain reaction: mark-to-market loss → broker demand more margin → forced liquidation → further loss.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CP</span>
+      <div>
+        <div class="t"><em class="hi">Counterparty risk</em></div>
+        <div class="d">Prime broker, swap counterparty có thể fail (Lehman 2008 → HFs lose collateral). Concentration risk với 1–2 prime brokers.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 16px;">
+    § Concentration risk — Nhiều HF position size lớn → exit khó. Activist funds giữ 5–10% company equity; RV funds có basis risk concentrate; CTA có trend-follower crowding. Tail events = correlated blowup.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — RISKS</span>
+  </div>
+</section>
+
+
+<!-- 14 · DUE DILIGENCE -->
+<section data-label="Due diligence" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>14 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Process · HF due diligence</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Before you <em class="hi">wire the money</em>.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Track record — net of fees, across regimes</span>
+        <span class="step-body">Ít nhất 5 năm returns net of fees. Performance qua bull + bear + sideways. Attribution: bao nhiêu alpha vs beta vs factor exposures?</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Strategy capacity</span>
+        <span class="step-body">Strategy scale được đến bao nhiêu AUM? Stat arb thường capped &lt; $5B; macro có thể &gt; $50B. Over-AUM → alpha decay.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Team &amp; key-person risk</span>
+        <span class="step-body">Lead PM có leave không? Depth of team? Alignment (GP co-invest bao nhiêu own money)?</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Operations — back-office, auditor, custody</span>
+        <span class="step-body">Big 4 auditor? Third-party administrator? Independent valuation? Madoff fraud là operational failure, không phải investment failure.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Tax structure</span>
+        <span class="step-body">Onshore (LP, UBTI issues cho tax-exempt) vs offshore (Cayman corp cho non-US LP). Master-feeder structure phổ biến.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — DD</span>
+  </div>
+</section>
+
+
+<!-- 15 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 16 · Q1 EN — CLASSIFY -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>16 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Classify the <em class="hi">strategy</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A hedge fund simultaneously takes a <strong>long position in a convertible bond</strong> issued by Company X and a <strong>short position in the common stock</strong> of Company X. The manager aims to profit from a perceived mispricing of the convert's embedded option relative to listed options on X. This strategy is <strong>most accurately</strong> classified as:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Equity hedge — market-neutral.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Event-driven — special situations.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Relative value — convertible arbitrage.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>17 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Long convertible bond + short common stock</mark> của cùng một issuer. <mark>Mispricing</mark> giữa embedded option vs listed options — classic signature of một sub-strategy trong RV.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Không phải equity hedge — đây không phải long/short <em>stocks</em> khác nhau; long là <em>bond</em> (convert).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Không có corporate event (merger, bankruptcy, spin-off) — loại event-driven.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Exploit mispricing giữa 2 <em>related securities</em> của cùng issuer → Relative Value. Specifically: <b>convertible arbitrage</b>.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 VIỆT -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>18 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một hedge fund đồng thời <strong>long convertible bond</strong> phát hành bởi Company X và <strong>short common stock</strong> của Company X. Manager muốn kiếm lời từ mispricing của embedded option trong convert so với listed options trên X. Strategy này được phân loại <strong>chính xác nhất</strong> là:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Equity hedge — market-neutral.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Event-driven — special situations.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Relative value — convertible arbitrage.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>19 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — convertible arbitrage.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext">Long convert + short underlying stock = <b>convertible arbitrage</b>, sub-strategy của Relative Value. Manager isolate mispricing của embedded option. Gamma scalping + coupon carry là return sources điển hình.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Market-neutral là sub-strategy của <em>equity hedge</em>: long stocks + short stocks khác. Ở đây long là <em>bond</em> (convertible), không phải stock → không fit equity hedge.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Event-driven cần <em>corporate event</em>: merger, bankruptcy, spin-off, activist campaign. Đề không có catalyst event — chỉ exploit pricing difference giữa 2 securities related.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">RV signature: long một security + short một related security của cùng issuer (hoặc highly correlated). Sub-strategies: fixed-income arb, convertible arb, stat arb, volatility arb. Luôn hỏi: "cái gì mispriced relative to cái gì?"</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q2 EN — FEE CALC -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>20 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Net return after <em class="hi">2-and-20</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A hedge fund begins the year with <strong>$500 million</strong> AUM. Fee structure: <strong>2% management fee on beginning-of-year AUM</strong>, <strong>20% performance fee</strong> on returns <strong>above a 6% soft hurdle</strong>, with high-water mark in place (current NAV is at high-water). Gross return for the year is <strong>16%</strong>. The investor's <strong>net return</strong> is <em>closest to</em>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">10.8%</span></li>
+    <li><span class="lbl">B</span><span class="opt">10.2%</span></li>
+    <li><span class="lbl">C</span><span class="opt">12.0%</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>21 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Decompose the <em class="hi">fees</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    AUM <mark>$500M</mark>, gross <mark>16%</mark>. Mgmt <mark>2%</mark>. Perf <mark>20% above 6% soft hurdle</mark>. <mark>Soft hurdle</mark> ≠ hard hurdle!
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Mgmt fee = 2% × $500M = $10M → <em>drag 2.0%</em> trên return.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt"><b>Soft hurdle</b>: một khi return &gt; 6%, perf fee charge trên <em>TOÀN BỘ</em> gross return (không phải chỉ phần vượt). Perf = 20% × 16% × $500M = $16M → <em>drag 3.2%</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Net return = 16% − 2% − 3.2% = <b>10.8%</b>. → Answer A. Note: nếu là hard hurdle thì perf fee = 20% × (16%−6%) = 2% → net = 12% (answer C trap).</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 VIỆT -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>22 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một hedge fund bắt đầu năm với AUM <strong>$500 triệu</strong>. Fee: <strong>2% management fee</strong> trên AUM đầu năm, <strong>20% performance fee</strong> trên return <strong>vượt 6% soft hurdle</strong>, có high-water mark (NAV hiện ở high-water). Gross return cả năm <strong>16%</strong>. <strong>Net return</strong> của investor <em>gần nhất</em> với:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">10.8%</span></li>
+    <li><span class="lbl">B</span><span class="opt">10.2%</span></li>
+    <li><span class="lbl">C</span><span class="opt">12.0%</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>23 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — 10.8%.</h2>
+  </div>
+  <div class="formula-box" style="margin-top: 12px;">
+    <span class="fmt-label">§ Calculation</span>
+    <div class="eq"><span class="var">Gross $</span> = 16% × $500M = $80M</div>
+    <div class="eq" style="margin-top: 6px;"><span class="var">Mgmt fee</span> = 2% × $500M = $10M</div>
+    <div class="eq" style="margin-top: 6px;"><span class="var">Perf fee</span> (soft) = 20% × $80M = $16M</div>
+    <div class="eq" style="margin-top: 6px;"><span class="var">Net $</span> = $80M − $10M − $16M = $54M → <span class="var">10.8%</span></div>
+  </div>
+  <div class="reasoning" style="margin-top: 14px;">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">Soft hurdle: 16% &gt; 6% → perf fee charge trên <b>toàn bộ</b> 16%, không phải chỉ phần vượt. Total fee drag = 2% + 3.2% = 5.2%. Net = 16% − 5.2% = <b>10.8%</b>.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B (10.2%)</div>
+      <div class="rtext">10.2% có thể đến từ nhầm base của perf fee (tính trên AUM end-of-year thay vì beginning, hoặc nhầm compound order). Không match setup đề.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C (12.0%)</div>
+      <div class="rtext">12.0% là kết quả nếu treat là <em>hard hurdle</em>: perf fee = 20% × (16%−6%) = 2%. Total drag = 2%+2% = 4%, net = 12%. Trap: đề nói rõ <b>soft</b> hurdle.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Soft vs hard hurdle khác biệt lớn: trên cùng $500M fund với 16% gross, soft hurdle fee = $16M, hard hurdle fee = $10M. Delta $6M = 1.2% net return. CFA thường trap ở soft/hard distinction.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q3 EN — SURVIVORSHIP BIAS -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>24 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">HF index <em class="hi">biases</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst reviewing a hedge fund database notes that the reported aggregate return of the HF universe is <strong>9.5% annually</strong> over the past 10 years. The analyst is concerned about index biases. Which statement about <strong>survivorship bias</strong> in hedge fund indices is <strong>most accurate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Survivorship bias causes reported returns to understate true HF universe returns because winning funds close to new investors.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Survivorship bias causes reported returns to overstate true HF universe returns because failed funds drop from the database.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Survivorship bias only affects HF indices during bull markets; in bear markets the bias is negligible.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>25 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Understand the <em class="hi">mechanism</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Survivorship bias</mark> — cơ chế: fund thất bại bị <em>loại khỏi database</em>, chỉ fund survived được count. Hướng bias: luôn <mark>OVERSTATE</mark> (phóng đại lên) returns.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">A nói "understate" — sai hướng. Survivorship bias làm reported returns CAO hơn thực tế, không phải thấp hơn.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">B đúng — failed funds bị loại → reported sample skew toward winners → overstate.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">C sai — bias tồn tại mọi market regime. Thậm chí bias có thể LỚN HƠN trong bear market (nhiều fund thất bại, bị loại).</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 VIỆT + EXPLANATION -->
+<section data-label="Q3 Answer" class="slide">
+  <div class="run-header">
+    <span>Alt Inv · 10.04</span>
+    <span class="rule"></span>
+    <span>26 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — overstate.</h2>
+  </div>
+  <div class="q-card" style="margin-top: 10px;">
+    <span class="q-tag">§ Dịch đề</span>
+    <div class="q-stem">
+      Analyst review HF database thấy aggregate return báo cáo là <strong>9.5% annually</strong> suốt 10 năm. Analyst lo về index biases. Statement nào về <strong>survivorship bias</strong> trong HF indices <strong>chính xác nhất</strong>? Option B: Survivorship bias làm reported returns <em>overstate</em> (phóng đại) true HF returns vì failed funds bị loại khỏi database.
+    </div>
+  </div>
+  <div class="reasoning" style="margin-top: 14px;">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Failed / liquidated funds bị drop khỏi database → surviving sample skew toward winners → reported return OVERSTATE true universe return. Empirical estimate: bias +2–4% mỗi năm. "True" HF return gần S&amp;P 500 long-term hơn là reported indices.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Sai hướng bias. Winning funds có thể close to new investors nhưng vẫn report returns → không tạo downward bias. Mechanism của survivorship là ngược lại — loại losers, giữ winners.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Bias tồn tại trong mọi regime. Thực tế bear market còn làm bias WORSE vì tỷ lệ fund thất bại + stop reporting cao hơn. Claim bias "negligible trong bear" hoàn toàn trái ngược reality.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">3 biases của HF indices đều cùng hướng UPWARD: (1) <em>survivorship</em> — failed drop; (2) <em>backfill</em> — new entrants backfill only winning history; (3) <em>self-reporting</em> — losers stop reporting. Aggregate reported HF return luôn overstate true universe return. Khi CFA hỏi: luôn chọn "overstate".</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ALT INV · 10.04 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>10.04 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 10.05 — Digital Assets</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

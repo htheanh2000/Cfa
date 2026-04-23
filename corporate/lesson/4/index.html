@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Corporate 05.04 — Capital Investments</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 120px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Capital<br><em>Investments.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 05 · Lesson 05.04 · Corporate Issuers</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 04 · Capital budgeting &amp; NPV/IRR</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Corporate</dd></div>
+      <div><dt>Module</dt><dd>04</dd></div>
+      <div><dt>Lesson</dt><dd>05.04</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">NPV · IRR · Payback · PI · Real options</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">04</div>
+    <div class="lbl">Capital investments</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How firms <em>allocate</em><br>capital.</h2>
+    <ul class="toc">
+      <li class="active">01 · Capital budgeting process &amp; project types</li>
+      <li>02 · Cash flow principles — incremental, after-tax</li>
+      <li>03 · NPV, IRR, Payback, Discounted Payback, PI</li>
+      <li>04 · NPV vs IRR — conflict &amp; resolution</li>
+      <li>05 · Real options &amp; risk adjustments</li>
+      <li>06 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · CAPITAL BUDGETING OVERVIEW -->
+<section data-label="Capital budgeting" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>03 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Process · overview</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What is <em class="hi">capital budgeting</em>?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      <em>Capital budgeting</em> = quy trình lựa chọn long-term investments tạo ra <em>shareholder value</em>. Mỗi đồng vốn phải earn &gt; <em>cost of capital</em>.
+    </p>
+  </div>
+
+  <div class="flow" style="margin-top: 16px;">
+    <div class="step"><span class="k">01</span><span class="t">Generate ideas</span><span class="d">Employees, R&amp;D, strategic planning, market signals</span></div>
+    <div class="step"><span class="k">02</span><span class="t">Analyze projects</span><span class="d">Forecast incremental CF, discount, apply decision rules</span></div>
+    <div class="step"><span class="k">03</span><span class="t">Allocate capital</span><span class="d">Select positive-NPV projects trong budget constraint</span></div>
+    <div class="step"><span class="k">04</span><span class="t">Monitor &amp; post-audit</span><span class="d">Track actual vs forecast, feedback loop vào future forecasts</span></div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — PROCESS</span>
+  </div>
+</section>
+
+
+<!-- 04 · PROJECT TYPES -->
+<section data-label="Project types" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>04 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Types · 4 categories</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Four <em class="hi">project types</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Replacement</em></div>
+        <div class="d">Thay thiết bị cũ/hỏng. Phân tích đơn giản — so sánh CF cũ vs mới. Ví dụ: thay máy CNC worn-out.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Expansion</em></div>
+        <div class="d">Mở rộng capacity sản phẩm hiện tại. Rủi ro trung bình — đã hiểu market. Ví dụ: thêm dây chuyền sản xuất.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">New products / markets</em></div>
+        <div class="d">Sản phẩm mới hoặc market mới. Rủi ro cao nhất — cần detailed analysis, scenario/sensitivity.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Mandatory</em> (regulatory/safety)</div>
+        <div class="d">Bắt buộc theo luật hoặc safety. NPV có thể âm nhưng vẫn phải làm. Ví dụ: scrubber khí thải.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — PROJECT TYPES</span>
+  </div>
+</section>
+
+
+<!-- 05 · CASH FLOW PRINCIPLES -->
+<section data-label="Cash flow principles" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>05 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Cash flow · 5 principles</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Rules for <em class="hi">cash flows</em>.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Incremental CF only — ∆CF <em>with vs without</em> project</span>
+        <span class="step-body">Chỉ tính CF phát sinh <em>thêm</em> do project. KHÔNG tính CF của hoạt động hiện hữu nếu project không ảnh hưởng.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">After-tax basis — dùng (1 − t) × CF</span>
+        <span class="step-body">Shareholders chỉ nhận phần sau thuế. Depreciation tạo <em>tax shield</em> = depreciation × t.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Ignore sunk costs — chi phí đã chi không thể thu hồi</span>
+        <span class="step-body">Market research $2M đã chi năm ngoái → KHÔNG đưa vào CF0. Quyết định go/no-go dựa trên future CF.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Include opportunity costs — giá trị của best alternative use</span>
+        <span class="step-body">Đất công ty đang sở hữu dùng cho project: phải tính market value đất làm cost (nếu không thì có thể bán/cho thuê).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Include externalities — cannibalization &amp; synergy</span>
+        <span class="step-body"><em>Cannibalization</em>: sản phẩm mới ăn doanh thu sản phẩm cũ → trừ. <em>Synergy</em>: boost doanh thu sản phẩm khác → cộng.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — CF RULES</span>
+  </div>
+</section>
+
+
+<!-- 06 · NPV -->
+<section data-label="NPV" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>06 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Net Present Value</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">NPV</em> rule.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Net Present Value</span>
+    <div class="eq"><span class="var">NPV</span> = &sum;<sub>t=1..n</sub> <span class="var">CF<sub>t</sub></span> / (1 + <span class="var">r</span>)<sup>t</sup> − <span class="var">CF<sub>0</sub></span></div>
+    <div class="note"><b>r</b> = cost of capital (WACC thường). <b>CF<sub>0</sub></b> = initial investment (âm). Unit: đồng tiền hôm nay.</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 20px;">
+    <span class="tag">§ Decision rule</span>
+    <b>Accept</b> nếu <em>NPV &gt; 0</em> — project tạo giá trị sau khi trả đủ cost of capital. <b>Reject</b> nếu NPV &lt; 0. Với <em>mutually exclusive</em> projects → chọn NPV lớn nhất.
+  </div>
+
+  <p class="fine-muted-sm">
+    § Why NPV is king — Đo trực tiếp <em>đồng đô la giá trị</em> tạo ra cho shareholder. Consistent với mục tiêu maximize firm value. Dùng cost of capital làm reinvestment assumption (realistic).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — NPV</span>
+  </div>
+</section>
+
+
+<!-- 07 · IRR -->
+<section data-label="IRR" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>07 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Internal Rate of Return</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">IRR</em> rule.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ IRR definition</span>
+    <div class="eq">0 = &sum;<sub>t=1..n</sub> <span class="var">CF<sub>t</sub></span> / (1 + <span class="var">IRR</span>)<sup>t</sup> − <span class="var">CF<sub>0</sub></span></div>
+    <div class="note">IRR = discount rate tại đó NPV = 0. Giải bằng iteration/calculator (Solver). Unit: % per period.</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 20px;">
+    <span class="tag">§ Decision rule</span>
+    <b>Accept</b> nếu <em>IRR &gt; required rate</em> (cost of capital). Intuitive: project earn rate cao hơn cost of financing.
+  </div>
+
+  <div class="rule-box" style="margin-top: 12px;">
+    <span class="tag">§ Warning · multiple IRRs</span>
+    Xảy ra khi cash flow <em>unconventional</em> (dấu CF đổi &gt; 1 lần). Mỗi sign change có thể tạo 1 IRR solution. Khi đó IRR rule <em>không reliable</em> — phải dùng NPV.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — IRR</span>
+  </div>
+</section>
+
+
+<!-- 08 · NPV vs IRR CONFLICT -->
+<section data-label="NPV vs IRR" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>08 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Conflict · mutually exclusive</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">NPV</em> vs <em class="hi">IRR</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Với <em>independent projects</em>: NPV và IRR luôn cho cùng kết luận. Với <em>mutually exclusive</em>: có thể conflict do khác biệt về scale hoặc timing.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>NPV</em></div>
+      <dl>
+        <dt>Unit</dt>
+        <dd>$ — dollar value added</dd>
+        <dt>Reinvestment</dt>
+        <dd>CF tái đầu tư ở <em>cost of capital</em> (realistic)</dd>
+        <dt>Scale</dt>
+        <dd>Phản ánh absolute size của value creation</dd>
+        <dt>Multiple solutions?</dt>
+        <dd>KHÔNG — chỉ 1 NPV cho 1 rate</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>IRR</em></div>
+      <dl>
+        <dt>Unit</dt>
+        <dd>% — rate of return</dd>
+        <dt>Reinvestment</dt>
+        <dd>CF tái đầu tư ở <em>IRR</em> (unrealistic nếu IRR cao)</dd>
+        <dt>Scale</dt>
+        <dd>KHÔNG phản ánh size — 100% trên $1 thua 20% trên $1M</dd>
+        <dt>Multiple solutions?</dt>
+        <dd>CÓ thể — khi sign changes &gt; 1</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 20px;">
+    <span class="tag">§ Resolution rule</span>
+    Khi conflict giữa mutually exclusive projects → <b>follow NPV</b>. NPV gắn trực tiếp với mục tiêu maximize shareholder wealth.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — NPV vs IRR</span>
+  </div>
+</section>
+
+
+<!-- 09 · PAYBACK & DISCOUNTED PAYBACK -->
+<section data-label="Payback" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>09 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Payback methods</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Payback</em> &amp; discounted payback.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Payback period</span>
+    <div class="eq"><span class="var">Payback</span> = years to recover <span class="var">CF<sub>0</sub></span> from <em>undiscounted</em> CF</div>
+    <div class="note">Ví dụ: CF<sub>0</sub> = 100, CF<sub>1</sub>..CF<sub>4</sub> = 40, 40, 40, 40 → payback = 2.5 năm.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 12px;">
+    <span class="fmt-label">§ Discounted payback</span>
+    <div class="eq"><span class="var">DPB</span> = years to recover <span class="var">CF<sub>0</sub></span> from <em>PV</em> of CF</div>
+    <div class="note">Dùng <em>discounted</em> CF<sub>t</sub>/(1+r)<sup>t</sup>. Luôn &gt; payback thường vì mỗi CF nhỏ hơn sau discount.</div>
+  </div>
+
+  <div class="compare" style="margin-top: 20px;">
+    <div class="cc">
+      <div class="head"><em>Payback</em> — pros</div>
+      <dl>
+        <dt>+</dt><dd>Đơn giản, trực quan, measure liquidity</dd>
+        <dt>+</dt><dd>Useful cho firm cần tiền gấp / rủi ro cao</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Payback</em> — cons</div>
+      <dl>
+        <dt>−</dt><dd>Ignore TVM (payback thường)</dd>
+        <dt>−</dt><dd>Ignore CF <em>sau</em> payback point</dd>
+        <dt>−</dt><dd>KHÔNG có cutoff dựa trên economic theory</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — PAYBACK</span>
+  </div>
+</section>
+
+
+<!-- 10 · PROFITABILITY INDEX -->
+<section data-label="Profitability Index" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>10 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Profitability Index (PI)</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">PI</em> rule.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Profitability Index</span>
+    <div class="eq"><span class="var">PI</span> = <span class="var">PV of future CF</span> / <span class="var">Initial investment</span></div>
+    <div class="eq" style="margin-top: 8px;">equivalently: <span class="var">PI</span> = 1 + <span class="var">NPV</span> / <span class="var">|CF<sub>0</sub>|</span></div>
+    <div class="note">Measure "value per dollar invested". Dimensionless ratio.</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 20px;">
+    <span class="tag">§ Decision rule</span>
+    <b>Accept</b> nếu <em>PI &gt; 1</em>. Equivalent với NPV &gt; 0. Với <em>capital rationing</em> (budget constraint), rank projects theo PI để maximize NPV per $ budget.
+  </div>
+
+  <p class="fine-muted-sm">
+    § PI use case — Khi firm có budget hạn chế và nhiều projects NPV &gt; 0, PI giúp chọn combination đạt max total NPV. Ví dụ: budget $10M, 5 projects — pick set với highest sum NPV under constraint.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — PI</span>
+  </div>
+</section>
+
+
+<!-- 11 · WORKED EXAMPLE -->
+<section data-label="Worked example" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>11 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Worked · NPV &amp; IRR</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Worked <em class="hi">example</em>.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Scenario</span>
+    Project: CF<sub>0</sub> = <b>−$1,000</b>, CF<sub>1</sub> = <b>$500</b>, CF<sub>2</sub> = <b>$400</b>, CF<sub>3</sub> = <b>$300</b>, CF<sub>4</sub> = <b>$100</b>. Cost of capital = <b>10%</b>. Tính NPV, IRR, payback.
+  </div>
+
+  <div class="formula-box" style="margin-top: 20px;">
+    <span class="fmt-label">§ NPV @ 10%</span>
+    <div class="eq">NPV = 500/1.10 + 400/1.21 + 300/1.331 + 100/1.4641 − 1000</div>
+    <div class="eq" style="margin-top: 6px;">= 454.5 + 330.6 + 225.4 + 68.3 − 1000 = <span class="var">+78.8</span></div>
+    <div class="note">NPV &gt; 0 → <b>Accept</b>. Project tạo $78.8 giá trị hôm nay.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 12px;">
+    <span class="fmt-label">§ IRR (Solver)</span>
+    <div class="eq">Solve 0 = &sum; CF<sub>t</sub>/(1+IRR)<sup>t</sup> → <span class="var">IRR &asymp; 14.5%</span></div>
+    <div class="note">IRR 14.5% &gt; required 10% → Accept. Consistent với NPV rule (independent project).</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 12px;">
+    <span class="fmt-label">§ Payback (undiscounted)</span>
+    <div class="eq">Cumulative: 500, 900, 1200 → Payback = 2 + 100/300 = <span class="var">2.33 năm</span></div>
+    <div class="note">Discounted payback sẽ &gt; 2.33 năm vì mỗi CF shrink sau discount.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — EXAMPLE</span>
+  </div>
+</section>
+
+
+<!-- 12 · REAL OPTIONS & RISK -->
+<section data-label="Real options & risk" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>12 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Real options &amp; risk</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Beyond <em class="hi">static NPV</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Static NPV bỏ qua flexibility. <em>Real options</em> thêm giá trị cho khả năng <em>adjust</em> project khi thông tin mới xuất hiện.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">EXP</span>
+      <div>
+        <div class="t"><em class="hi">Expansion option</em></div>
+        <div class="d">Scale up nếu demand mạnh. Pilot project nhỏ, mở rộng khi chứng minh concept.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">ABN</span>
+      <div>
+        <div class="t"><em class="hi">Abandonment option</em></div>
+        <div class="d">Bán/dừng project nếu performance tệ. Giảm downside, tăng expected NPV.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">DEL</span>
+      <div>
+        <div class="t"><em class="hi">Timing / delay option</em></div>
+        <div class="d">Hoãn project chờ thông tin (giá, policy). Giống American call trên underlying value.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">RSK</span>
+      <div>
+        <div class="t"><em class="hi">Risk adjustments</em></div>
+        <div class="d">Sensitivity · scenario analysis · Monte Carlo simulation để test robustness của NPV.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Rule — <em>Expanded NPV</em> = Static NPV + Value of real options − Option cost. Projects với NPV ≈ 0 nhưng option lớn có thể đáng làm.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — REAL OPTIONS</span>
+  </div>
+</section>
+
+
+<!-- 13 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 14 · Q1 EN — NPV CALC -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>14 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Compute the <em class="hi">NPV</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A project requires an initial investment of <strong>$10,000</strong> and generates after-tax cash flows of <strong>$4,000</strong> in Year 1, <strong>$4,000</strong> in Year 2, and <strong>$5,000</strong> in Year 3. The required rate of return is <strong>10%</strong>. The project's NPV is <em>closest to</em>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$628.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$3,000.</span></li>
+    <li><span class="lbl">C</span><span class="opt">−$1,000.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 15 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>15 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Initial $10,000</mark>. CF <mark>4k · 4k · 5k</mark>. <mark>r = 10%</mark>. → NPV = ?
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Công thức: NPV = &sum; CF<sub>t</sub>/(1.10)<sup>t</sup> − 10,000. Tính PV từng CF rồi cộng.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">PV<sub>1</sub> = 4000/1.10 = 3,636.4. PV<sub>2</sub> = 4000/1.21 = 3,305.8. PV<sub>3</sub> = 5000/1.331 = 3,756.6.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">&sum; PV = 10,698.8. NPV = 10,698.8 − 10,000 = <em>+$698.8</em>. Closest → A ($628) nếu rounding khác; check rounding.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 16 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>16 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một project cần initial investment <strong>$10,000</strong> và tạo ra after-tax cash flows <strong>$4,000</strong> năm 1, <strong>$4,000</strong> năm 2, và <strong>$5,000</strong> năm 3. Required rate of return = <strong>10%</strong>. NPV của project <em>gần nhất với</em>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$628.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$3,000.</span></li>
+    <li><span class="lbl">C</span><span class="opt">−$1,000.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>17 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — ≈ $628.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">NPV = 4000/1.10 + 4000/1.10<sup>2</sup> + 5000/1.10<sup>3</sup> − 10,000. Tính: 3,636.36 + 3,305.79 + 3,756.57 − 10,000 = <b>+698.72</b>. Trong các lựa chọn, <em>A ($628)</em> gần nhất. NPV &gt; 0 → accept project.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">$3,000 là <em>undiscounted sum</em> (4k+4k+5k−10k = 3k). Bỏ qua TVM — đây chính là sai lầm payback method mắc phải. NPV luôn yêu cầu discount.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">−$1,000 phản ánh discount quá aggressive hoặc lỗi dấu. Ở r = 10% project vẫn tạo value dương (+$699). Chỉ sai nếu r &gt; IRR (khoảng 14.5%).</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">NPV luôn phải <em>discount</em> future CF về PV. CFA L1 hay dùng closest-to wording — không cần khớp chính xác, chọn gần nhất. NPV &gt; 0 → accept (independent project).</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q2 EN — NPV vs IRR -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>18 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">NPV vs IRR</em> conflict.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst evaluates two <strong>mutually exclusive</strong> projects with the same required rate of return of <strong>8%</strong>. <strong>Project X</strong>: NPV = $500, IRR = 20%. <strong>Project Y</strong>: NPV = $800, IRR = 12%. Which project should the firm accept, and what is the <strong>primary reason</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Project X — higher IRR means higher return on invested capital.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Project Y — NPV directly measures shareholder value added.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Either — both have IRR &gt; required rate, so both create value.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>19 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Mutually exclusive</mark>. X: NPV $500, IRR 20%. Y: NPV $800, IRR 12%. → Conflict!
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">"Mutually exclusive" = chỉ được chọn 1. Không thể "chọn cả hai" → loại C.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">NPV và IRR conflict: IRR pick X (20% &gt; 12%), NPV pick Y ($800 &gt; $500). Rule: <em>follow NPV</em> khi conflict.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Lý do: NPV đo <em>absolute dollar value</em> added cho shareholders. IRR là %, không phản ánh scale. Reinvestment assumption của NPV (cost of capital) cũng realistic hơn IRR.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>20 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Analyst đánh giá 2 project <strong>mutually exclusive</strong> cùng required rate <strong>8%</strong>. <strong>Project X</strong>: NPV = $500, IRR = 20%. <strong>Project Y</strong>: NPV = $800, IRR = 12%. Firm nên chọn project nào, và <strong>lý do chính</strong> là gì?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Project X — IRR cao hơn nghĩa là return on capital cao hơn.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Project Y — NPV đo trực tiếp giá trị shareholder added.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Cả hai — cả hai đều IRR &gt; required, nên đều tạo value.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>21 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Project Y.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Với <em>mutually exclusive</em> projects có conflict giữa NPV và IRR, <b>rule là follow NPV</b>. Y có NPV $800 &gt; X có NPV $500 → Y thêm nhiều dollar value hơn cho shareholders. NPV consistent với mục tiêu firm (maximize value) và dùng realistic reinvestment rate (cost of capital), trong khi IRR giả định tái đầu tư ở chính IRR (thường unrealistic).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">IRR cao không có nghĩa value thêm nhiều. IRR là <em>rate (%)</em>, không phản ánh scale. Project X 20% trên vốn nhỏ thua Project Y 12% trên vốn lớn về mặt $ added. "Return on capital" không phải mục tiêu cuối — giá trị dollar mới là.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Sai ngay ở "mutually exclusive" — chỉ được chọn 1. Cả hai có NPV &gt; 0 nhưng phải pick 1. "Either" không phải lựa chọn hợp lệ.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Conflict NPV vs IRR → <em>always follow NPV</em> cho mutually exclusive. Nguyên nhân conflict: (1) khác scale, (2) khác timing CF, (3) khác reinvestment assumption. NPV thắng vì đo trực tiếp dollar value.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q3 EN — PAYBACK vs DISCOUNTED PAYBACK -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>22 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Payback</em> vs discounted payback.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A project has CF<sub>0</sub> = <strong>−$600</strong>, CF<sub>1</sub> = <strong>$300</strong>, CF<sub>2</sub> = <strong>$300</strong>, CF<sub>3</sub> = <strong>$300</strong>. The required rate of return is <strong>10%</strong>. Which statement about its payback period and discounted payback period is <strong>most accurate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Payback = 2 years; discounted payback &gt; 2 years.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Payback = discounted payback because CF are equal each year.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Discounted payback &lt; payback because discounting accelerates recovery.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>23 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    CF<sub>0</sub> <mark>−600</mark>, CF<sub>1-3</sub> <mark>300/yr</mark>. <mark>r = 10%</mark>. → Payback vs DPB?
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Payback thường (undiscounted): cumulative 300 (Y1), 600 (Y2) → payback đúng = <em>2 năm</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Discounted CF: 300/1.10 = 272.7; 300/1.21 = 247.9; 300/1.331 = 225.4. Cumulative: 272.7, 520.6, 746.0.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">DPB: sau 2 năm mới thu 520.6 &lt; 600. Cần phần của năm 3: (600−520.6)/225.4 ≈ 0.35. DPB ≈ <em>2.35 năm &gt; 2</em>.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>24 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Project có CF<sub>0</sub> = <strong>−$600</strong>, CF<sub>1</sub> = <strong>$300</strong>, CF<sub>2</sub> = <strong>$300</strong>, CF<sub>3</sub> = <strong>$300</strong>. Required rate = <strong>10%</strong>. Phát biểu nào về payback và discounted payback <strong>chính xác nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Payback = 2 năm; discounted payback &gt; 2 năm.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Payback = discounted payback vì CF mỗi năm bằng nhau.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Discounted payback &lt; payback vì discount rút ngắn thời gian recover.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Corporate · 05.04</span>
+    <span class="rule"></span>
+    <span>25 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em>.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext"><b>Payback thường</b>: cumulative undiscounted CF = 300 (Y1), 600 (Y2) → payback = <b>2 năm</b>. <b>Discounted payback</b>: PV = 272.7, 247.9, 225.4 → cumulative 272.7, 520.6, 746.0. Sau Y2 mới recover 520.6 &lt; 600 → DPB = 2 + (600−520.6)/225.4 ≈ <b>2.35 năm &gt; 2</b>. DPB luôn ≥ payback (strict &gt; khi r &gt; 0).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Sai. CF bằng nhau KHÔNG khiến payback = DPB. Mỗi CF vẫn bị discount theo năm khác nhau (1.10, 1.21, 1.331) → PV nhỏ dần → cần nhiều năm hơn để recover. Chỉ bằng khi r = 0.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Sai hoàn toàn hướng. Discount làm <em>giảm</em> PV của mỗi CF → cần <em>nhiều</em> CF hơn để bù initial outlay. DPB luôn &gt; payback khi r &gt; 0, không bao giờ nhỏ hơn.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Relationship cố định: <em>Discounted payback ≥ Payback</em>. Cả 2 vẫn ignore CF sau recovery point → không phải decision rule lý tưởng. Chỉ dùng bổ trợ cho NPV/IRR, đặc biệt khi cần đánh giá liquidity hoặc early-recovery risk.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>CORPORATE · 05.04 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 26 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>05.04 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 05.05 — Cost of Capital &amp; WACC</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

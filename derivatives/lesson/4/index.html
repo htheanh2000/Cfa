@@ -1,0 +1,1035 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Derivatives 09.04 — Arbitrage &amp; Cost of Carry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Arbitrage<br><em>&amp; Carry.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 09 · Lesson 09.04 · Derivatives</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 04 · Replication &amp; pricing by no-arbitrage</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Derivatives</dd></div>
+      <div><dt>Module</dt><dd>04</dd></div>
+      <div><dt>Lesson</dt><dd>09.04</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Law of One Price · F = S·(1+r)<sup>T</sup> · Contango / Backwardation</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">04</div>
+    <div class="lbl">Derivatives</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How do we <em>price</em> a forward<br>without forecasting anything?</h2>
+    <ul class="toc">
+      <li class="active">01 · Law of One Price &amp; arbitrage mechanics</li>
+      <li>02 · Three types of arbitrage</li>
+      <li>03 · Replication — build the same payoff two ways</li>
+      <li>04 · Cost of Carry — F<sub>0</sub> = S<sub>0</sub>(1+r)<sup>T</sup></li>
+      <li>05 · Income, storage, convenience yield</li>
+      <li>06 · Contango vs Backwardation</li>
+      <li>07 · Risk-neutral valuation &amp; option bounds</li>
+      <li>08 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · LAW OF ONE PRICE -->
+<section data-label="Law of One Price" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Concept · foundation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">Law of One Price</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Hai tài sản <em>identical</em> (cùng cash flow, cùng risk) phải có <em>cùng giá</em>. Nếu không → tồn tại arbitrage opportunity, và arbitrageurs sẽ ép giá về equilibrium.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 20px;">
+    <span class="tag">§ Working principle</span>
+    If two portfolios produce the <b>same payoffs</b> in <b>every future state of the world</b>, they must sell for the <b>same price today</b>. Equivalently: <em>no-arbitrage pricing</em> derives F<sub>0</sub>, option bounds, and swap rates — không cần forecast spot tương lai.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Pricing by replication — không cần probability</span>
+        <span class="step-body">Xây dựng replicating portfolio match payoff của derivative. Giá derivative = giá của replicating portfolio, bất kể xác suất thực sự của các outcomes.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Arbitrage là cơ chế enforcement</span>
+        <span class="step-body">Nếu giá lệch, arbitrageurs buy cheap + sell rich → áp lực giá push về fair value. Market liquid = small mispricings tồn tại rất ngắn.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Assumptions — frictionless market</span>
+        <span class="step-body">No transaction cost, no short-sale constraints, borrow/lend cùng r<sub>f</sub>, divisible assets. Thế giới thực có friction → bounds rộng hơn, nhưng logic vẫn giữ.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — LAW OF ONE PRICE</span>
+  </div>
+</section>
+
+
+<!-- 04 · ARBITRAGE DEFINITION -->
+<section data-label="Arbitrage" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Concept · arbitrage</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Arbitrage</em> — riskless profit, zero cost.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Một arbitrage opportunity phải thoả 3 điều kiện đồng thời — thiếu 1 cái là không còn "pure" arbitrage nữa.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Arbitrage — three conditions</span>
+    <b>(1) Zero initial investment</b> — tự tài trợ (long rẻ, short đắt, net cash 0). <b>(2) No risk</b> — payoff tương lai ≥ 0 trong mọi state. <b>(3) Positive expected profit</b> — có ít nhất một state có payoff &gt; 0. "Free lunch" — nếu tồn tại, arbitrageurs sẽ scale up và đóng gap.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Simultaneous buy + sell — lock-in profit tức thì</span>
+        <span class="step-body">Không phải "bet" — không cần giá di chuyển. Profit locked tại thời điểm t=0 khi cả hai leg match được.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Self-financing — dùng short leg tài trợ long leg</span>
+        <span class="step-body">Proceeds của short leg ≥ cost của long leg. Khoản chênh = arbitrage profit (discount về present value).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Absence of arbitrage ⇒ pricing formulas</span>
+        <span class="step-body">Tất cả forward pricing, put-call parity, swap valuation đều là hệ quả của "if no arb, then price must equal...".</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — ARBITRAGE</span>
+  </div>
+</section>
+
+
+<!-- 05 · TYPES OF ARBITRAGE -->
+<section data-label="Types of arbitrage" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Classification · 3 families</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Three types of <em class="hi">arbitrage</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Pure arbitrage</em></div>
+        <div class="d">Cùng một asset niêm yết ở hai market khác giá. Mua ở market rẻ, bán ở market đắt — instantaneous lock-in. Ví dụ: dual-listed stock HK/US.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Replication arbitrage</em></div>
+        <div class="d">Synthetic portfolio (combination derivatives + cash) có payoff giống underlying, nhưng giá lệch → trade pair. Ví dụ: synthetic long stock vs actual stock.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Regulatory arbitrage</em></div>
+        <div class="d">Khai thác chênh lệch regulation/tax giữa các khu vực/entity types. Ví dụ: dùng derivative structure né capital requirements của banking regulation.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Statistical arbitrage</em> <span style="font-size: 0.7em; opacity: 0.7;">(aside)</span></div>
+        <div class="d">Không phải pure — dựa trên mean-reversion của spreads, có <em>risk</em>. CFA L1 không coi là arbitrage theo nghĩa strict nhưng phổ biến trên thị trường.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Chỉ <em>pure</em> và <em>replication</em> arbitrage được dùng để derive pricing formulas. Regulatory &amp; statistical không tạo ra no-arb bounds.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — TYPES</span>
+  </div>
+</section>
+
+
+<!-- 06 · REPLICATION -->
+<section data-label="Replication" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Concept · replication</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Replication</em> — build same payoff from parts.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Replication = tạo synthetic position bằng combination của cash + derivatives có cùng payoff với một position actual. Nếu hai thứ có cùng payoff → phải cùng giá (LOOP).
+    </p>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">Put–Call Parity · synthetic long stock</span>
+    <span class="eq">Long <span class="var">Call</span> &nbsp;+&nbsp; Short <span class="var">Put</span> &nbsp;+&nbsp; Long <span class="var">Bond(K)</span> &nbsp;=&nbsp; Long <span class="var">Stock</span></span>
+    <span class="eq">c<sub>0</sub> &minus; p<sub>0</sub> &nbsp;+&nbsp; K·e<sup>&minus;rT</sup> &nbsp;=&nbsp; S<sub>0</sub></span>
+    <div class="note">
+      <b>Đọc:</b> mua call + bán put cùng strike K cùng maturity T, cộng với một zero-coupon bond payoff K tại T, replicates holding the stock. Vì hai portfolio cùng payoff tại T → present value phải bằng nhau → parity equation.
+    </div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Synthetic = actual — chọn cái nào rẻ hơn</span>
+        <span class="step-body">Nếu synthetic stock (call − put + bond) rẻ hơn actual stock → buy synthetic + short stock = arbitrage. Trader ép giá về parity.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Mọi derivative có thể replicated (in theory)</span>
+        <span class="step-body">Forwards replicated bằng spot + borrowing. Options replicated bằng dynamic delta-hedging. Swaps replicated bằng series of forwards. Đây là foundation của pricing.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — REPLICATION</span>
+  </div>
+</section>
+
+
+<!-- 07 · COST OF CARRY (basic) -->
+<section data-label="Cost of Carry" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Pricing · no-income asset</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">Cost of Carry</em> model.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Forward price = spot price <em>compounded forward</em> tại risk-free rate. Intuition: nếu bạn muốn "có underlying tại T", có 2 cách — (1) mua forward, (2) mua spot + giữ tới T. Hai cách cùng kết quả → phải cùng cost.
+    </p>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">No-income asset · discrete compounding</span>
+    <span class="eq"><span class="var">F<sub>0</sub></span> &nbsp;=&nbsp; <span class="var">S<sub>0</sub></span> · (1 + <span class="var">r</span>)<sup><span class="var">T</span></sup></span>
+    <span class="eq"><span class="var">F<sub>0</sub></span> &nbsp;=&nbsp; <span class="var">S<sub>0</sub></span> · e<sup><span class="var">r</span>·<span class="var">T</span></sup> &nbsp;&nbsp;<span style="opacity:0.6; font-size: 0.7em;">(continuous compounding)</span></span>
+    <div class="note">
+      <b>Biến số:</b> F<sub>0</sub> = forward price hôm nay · S<sub>0</sub> = spot price · r = risk-free rate · T = time to maturity (years). <b>Logic:</b> cost of carry = financing cost của việc giữ spot từ 0 đến T.
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Replication proof</span>
+    Portfolio A: <em>long forward</em> → trả F<sub>0</sub> tại T, nhận asset. Portfolio B: <em>borrow S<sub>0</sub>, buy spot</em> → tại T trả S<sub>0</sub>(1+r)<sup>T</sup>, có asset. Cùng asset tại T → borrowed amount (=F<sub>0</sub>) phải = S<sub>0</sub>(1+r)<sup>T</sup>.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — COST OF CARRY</span>
+  </div>
+</section>
+
+
+<!-- 08 · WITH INCOME -->
+<section data-label="With income" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Pricing · income-paying asset</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">With <em class="hi">dividends</em> or coupons.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Nếu giữ spot thì nhận income (dividend, coupon) trong (0, T). Người long forward KHÔNG nhận income đó → forward price phải <em>thấp hơn</em> để bù.
+    </p>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">Discrete income · FV của income</span>
+    <span class="eq"><span class="var">F<sub>0</sub></span> &nbsp;=&nbsp; <span class="var">S<sub>0</sub></span> · (1 + r)<sup>T</sup> &nbsp;&minus;&nbsp; <span class="var">FV(Income)</span></span>
+    <span class="fmt-label" style="margin-top: 8px;">Continuous dividend yield q</span>
+    <span class="eq"><span class="var">F<sub>0</sub></span> &nbsp;=&nbsp; <span class="var">S<sub>0</sub></span> · e<sup>(<span class="var">r</span> &minus; <span class="var">q</span>)·T</sup> &nbsp;≈&nbsp; <span class="var">S<sub>0</sub></span> · (1 + r &minus; q)<sup>T</sup></span>
+    <div class="note">
+      <b>q</b> = continuous dividend yield (ví dụ: chỉ số S&amp;P 500 trả ~1.5% dividend yield). Với index futures (VN30F, ES, NK225), công thức e<sup>(r−q)T</sup> được dùng rộng rãi.
+    </div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 14px;">
+    <li>
+      <span>
+        <span class="step-title">Nếu q &gt; r → F<sub>0</sub> &lt; S<sub>0</sub></span>
+        <span class="step-body">High-dividend index có thể có futures thấp hơn spot ngay cả khi không backwardation thực sự — chỉ là cost-of-carry phản ánh dividend.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Coupon bonds — subtract FV(coupon)</span>
+        <span class="step-body">T-bond futures: F<sub>0</sub> = (S<sub>0</sub> − PV(coupons))·(1+r)<sup>T</sup>. Đổi cách viết nhưng cùng logic — net cost of carry.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — INCOME ASSETS</span>
+  </div>
+</section>
+
+
+<!-- 09 · COMMODITIES -->
+<section data-label="Commodities" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Pricing · commodities</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Storage</em> &amp; <em class="hi">convenience yield</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Commodities thêm 2 adjustment: <em>storage cost</em> c (kho, insurance, spoilage) ép forward lên cao, và <em>convenience yield</em> y (benefit của việc giữ physical — đảm bảo supply, flexibility) kéo forward xuống.
+    </p>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">Commodities · full cost-of-carry</span>
+    <span class="eq"><span class="var">F<sub>0</sub></span> &nbsp;=&nbsp; <span class="var">S<sub>0</sub></span> · (1 + <span class="var">r</span> + <span class="var">c</span> &minus; <span class="var">y</span>)<sup><span class="var">T</span></sup></span>
+    <span class="eq"><span class="var">F<sub>0</sub></span> &nbsp;=&nbsp; <span class="var">S<sub>0</sub></span> · e<sup>(<span class="var">r</span> + <span class="var">c</span> &minus; <span class="var">y</span>)·T</sup></span>
+    <div class="note">
+      <b>r</b> = risk-free rate · <b>c</b> = storage cost rate · <b>y</b> = convenience yield. Dấu: r và c đẩy F lên (phải pay financing + storage), y kéo F xuống (mất benefit khi giữ futures thay vì physical).
+    </div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 14px;">
+    <li>
+      <span>
+        <span class="step-title">Convenience yield — intangible nhưng quan trọng</span>
+        <span class="step-body">Refinery cần crude physical (không thể chạy máy bằng futures). Paper buyer giữ inventory để production không ngắt. Benefit này KHÔNG available cho forward holder.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Net cost of carry (r + c − y) có thể dương hoặc âm</span>
+        <span class="step-body">Dương → contango (F &gt; S). Âm → backwardation (F &lt; S). Shortage commodity thường có y cao → backwardation.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — COMMODITIES</span>
+  </div>
+</section>
+
+
+<!-- 10 · CONTANGO VS BACKWARDATION -->
+<section data-label="Contango vs Backwardation" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Term structure · shape</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Contango</em> vs <em class="hi">Backwardation</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Contango</em></div>
+      <dl>
+        <dt>Shape</dt>
+        <dd><b>F<sub>0</sub> &gt; S<sub>0</sub></b> — futures curve dốc lên</dd>
+        <dt>Dominant force</dt>
+        <dd>Storage cost <b>c</b> + financing <b>r</b> &gt; convenience <b>y</b></dd>
+        <dt>Thị trường</dt>
+        <dd>Normal — commodity dồi dào, kho đầy</dd>
+        <dt>Long-position roll</dt>
+        <dd>Roll-yield <b>âm</b> — bán near đắt, mua far đắt hơn → bleed</dd>
+        <dt>Ví dụ</dt>
+        <dd>Oil 2020 Q2 siêu-contango khi kho Cushing gần đầy</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Backwardation</em></div>
+      <dl>
+        <dt>Shape</dt>
+        <dd><b>F<sub>0</sub> &lt; S<sub>0</sub></b> — futures curve dốc xuống</dd>
+        <dt>Dominant force</dt>
+        <dd>Convenience <b>y</b> &gt; storage <b>c</b> + financing <b>r</b></dd>
+        <dt>Thị trường</dt>
+        <dd>Shortage / stress — physical demand cao</dd>
+        <dt>Long-position roll</dt>
+        <dd>Roll-yield <b>dương</b> — bán near rẻ, mua far rẻ hơn → gain</dd>
+        <dt>Ví dụ</dt>
+        <dd>Nat gas winter, oil 2022 post-Ukraine, copper squeezes</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Mnemonic — <em>ContanGO up</em> (curve lên), <em>backwardation = back down</em> (curve xuống). Shape của futures curve = market consensus về net carry.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — CONTANGO/BACKWARDATION</span>
+  </div>
+</section>
+
+
+<!-- 11 · RISK-NEUTRAL VALUATION -->
+<section data-label="Risk-neutral" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Concept · valuation technique</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Risk-neutral</em> valuation.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Trong thế giới no-arbitrage, derivative price = <em>expected payoff discounted at risk-free rate</em> — nhưng expectation dưới <em>risk-neutral probability</em> (không phải xác suất thực).
+    </p>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">Risk-neutral pricing formula</span>
+    <span class="eq"><span class="var">Price<sub>0</sub></span> &nbsp;=&nbsp; e<sup>&minus;<span class="var">r</span>·<span class="var">T</span></sup> · E<sup><span class="var">Q</span></sup>[ <span class="var">Payoff<sub>T</sub></span> ]</span>
+    <div class="note">
+      <b>E<sup>Q</sup></b> = expectation under risk-neutral measure Q (không phải physical measure P). Risk-neutral probability làm cho expected return của mọi asset = r<sub>f</sub>. Trick mạnh: ta không cần biết risk premium thực sự.
+    </div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 14px;">
+    <li>
+      <span>
+        <span class="step-title">Không phải "investors are risk-neutral"</span>
+        <span class="step-body">Chỉ là mathematical device. Trong thực tế investors risk-averse, nhưng khi giá đã bao hàm risk premium, chúng ta "rescale" probability để tính bằng r<sub>f</sub> discount.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Foundation của Black-Scholes &amp; binomial tree</span>
+        <span class="step-body">Cả hai đều là risk-neutral pricing. Binomial: p = (e<sup>rΔt</sup> − d)/(u − d). Black-Scholes: expected payoff dưới Q, discount tại r.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — RISK-NEUTRAL</span>
+  </div>
+</section>
+
+
+<!-- 12 · OPTION BOUNDS -->
+<section data-label="Option bounds" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">No-arbitrage · option bounds</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Arbitrage <em class="hi">bounds</em> on options.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Option price phải nằm trong bounds nhất định — nếu không, tồn tại arbitrage. Đây là European options, underlying không trả dividend.
+    </p>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">Lower bounds · European, no dividend</span>
+    <span class="eq">Call: &nbsp; <span class="var">c<sub>0</sub></span> &nbsp;≥&nbsp; max( <span class="var">S<sub>0</sub></span> &minus; <span class="var">K</span>·e<sup>&minus;rT</sup>, &nbsp; 0 )</span>
+    <span class="eq">Put: &nbsp;&nbsp; <span class="var">p<sub>0</sub></span> &nbsp;≥&nbsp; max( <span class="var">K</span>·e<sup>&minus;rT</sup> &minus; <span class="var">S<sub>0</sub></span>, &nbsp; 0 )</span>
+    <div class="note">
+      <b>Upper bounds:</b> c<sub>0</sub> ≤ S<sub>0</sub> (call không thể đắt hơn stock); p<sub>0</sub> ≤ K·e<sup>−rT</sup> (put không thể đắt hơn PV của strike). Intuition: option không thể trả nhiều hơn tài sản tối đa mà nó có thể deliver.
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Why the lower bound for calls?</span>
+    Xét portfolio: <em>long call + K·e<sup>−rT</sup> trong bond</em> vs <em>long stock</em>. Tại T: portfolio 1 có max(S<sub>T</sub>, K) ≥ S<sub>T</sub> = portfolio 2 payoff. PV của 1 ≥ PV của 2 → c<sub>0</sub> + K·e<sup>−rT</sup> ≥ S<sub>0</sub> → c<sub>0</sub> ≥ S<sub>0</sub> − K·e<sup>−rT</sup>.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — OPTION BOUNDS</span>
+  </div>
+</section>
+
+
+<!-- 13 · TAKEAWAY SUMMARY -->
+<section data-label="Takeaway" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>13 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Summary · key equations</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">carry ladder</em>.</h2>
+  </div>
+
+  <div class="take" style="margin-top: 24px;">
+    <div class="item">
+      <div class="k">No income</div>
+      <div class="v">F<sub>0</sub> = S<sub>0</sub>·(1+r)<sup>T</sup></div>
+    </div>
+    <div class="item">
+      <div class="k">Discrete income</div>
+      <div class="v">F<sub>0</sub> = S<sub>0</sub>·(1+r)<sup>T</sup> − FV(I)</div>
+    </div>
+    <div class="item">
+      <div class="k">Dividend yield q</div>
+      <div class="v">F<sub>0</sub> = S<sub>0</sub>·e<sup>(r−q)T</sup></div>
+    </div>
+    <div class="item">
+      <div class="k">Commodities</div>
+      <div class="v">F<sub>0</sub> = S<sub>0</sub>·e<sup>(r+c−y)T</sup></div>
+    </div>
+    <div class="item">
+      <div class="k">Put–Call Parity</div>
+      <div class="v">c<sub>0</sub> + K·e<sup>−rT</sup> = p<sub>0</sub> + S<sub>0</sub></div>
+    </div>
+    <div class="item">
+      <div class="k">Call lower bound</div>
+      <div class="v">c<sub>0</sub> ≥ max(S<sub>0</sub> − K·e<sup>−rT</sup>, 0)</div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Một câu gói lesson — <em>forward price = spot grown at net cost of carry</em>. Mọi biến thể chỉ thêm/bớt một term trong exponent.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — SUMMARY</span>
+  </div>
+</section>
+
+
+<!-- 14 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 15 · Q1 EN -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>15 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Compute the <em class="hi">forward price</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A non-dividend-paying stock is currently trading at <strong>S<sub>0</sub> = $100</strong>. The <strong>risk-free rate</strong> is <strong>5%</strong> per year (discrete, annually compounded). A forward contract on this stock matures in <strong>T = 2 years</strong>. Assuming no arbitrage, the forward price <strong>F<sub>0</sub></strong> is <em>closest</em> to:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$105.00</span></li>
+    <li><span class="lbl">B</span><span class="opt">$110.25</span></li>
+    <li><span class="lbl">C</span><span class="opt">$115.76</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 16 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>16 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Non-dividend</mark>, <mark>S<sub>0</sub> = 100</mark>, <mark>r = 5%</mark> discrete, <mark>T = 2</mark>. No-arb → dùng basic cost-of-carry.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Không có income → công thức đơn giản nhất: F<sub>0</sub> = S<sub>0</sub>·(1 + r)<sup>T</sup>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Plug số: F<sub>0</sub> = 100 · (1.05)<sup>2</sup>. Tính (1.05)<sup>2</sup> = 1.1025.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">F<sub>0</sub> = 100 · 1.1025 = <em>110.25</em>. Đáp án A là chỉ compound 1 năm, C là 3 năm → bẫy thời gian.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 DỊCH ĐỀ -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>17 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một cổ phiếu <strong>không trả cổ tức</strong> đang giao dịch ở <strong>S<sub>0</sub> = $100</strong>. <strong>Risk-free rate</strong> là <strong>5%/năm</strong> (lãi kép rời rạc, annually). Một forward contract trên cổ phiếu này đáo hạn trong <strong>T = 2 năm</strong>. Giả định no-arbitrage, forward price <strong>F<sub>0</sub></strong> gần nhất với:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$105.00</span></li>
+    <li><span class="lbl">B</span><span class="opt">$110.25</span></li>
+    <li><span class="lbl">C</span><span class="opt">$115.76</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $110.25.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Công thức: F<sub>0</sub> = S<sub>0</sub>·(1+r)<sup>T</sup> = 100·(1.05)<sup>2</sup> = 100·<b>1.1025</b> = <b>$110.25</b>. Đây là basic cost-of-carry cho non-dividend asset. Replication proof: borrow $100 @5%, mua stock; tại T=2 trả 100·(1.05)<sup>2</sup> = 110.25 và có stock → F<sub>0</sub> phải = 110.25.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">$105 = 100·(1.05)<sup>1</sup> — chỉ compound 1 năm. Đây là bẫy thời gian: đọc kỹ "T = 2 years" và compound đủ 2 kỳ.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">$115.76 = 100·(1.05)<sup>3</sup> — over-compound sang 3 năm. Hoặc nhầm T = 3. Cẩn thận số mũ — T phải match maturity đúng.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Cost-of-carry cơ bản: F<sub>0</sub> = S<sub>0</sub>·(1+r)<sup>T</sup>. Luôn kiểm tra (1) có income không? (2) T tính bằng năm? (3) r là discrete hay continuous? Ba câu hỏi này quyết định công thức chuẩn.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q2 EN — Arbitrage identification -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Identify the <em class="hi">arbitrage</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A non-dividend stock trades at <strong>S<sub>0</sub> = $50</strong>. The risk-free rate is <strong>4%</strong> (continuous). The observed <strong>1-year forward price is F<sub>0</sub> = $54</strong>. The no-arbitrage forward price should be approximately <strong>$52.04</strong>. An arbitrageur would <em>most likely</em>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Short the forward, borrow $50, and buy the stock — lock in ~$1.96 per share at maturity.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Long the forward, short the stock, and invest $50 at the risk-free rate.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Do nothing — the $1.96 gap is within typical bid-ask spread and not actionable.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">mispricing direction</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Observed F = $54</mark>, <mark>fair F = $52.04</mark>. Forward market is <mark>rich</mark> (observed &gt; fair). Direction?
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Arbitrage rule: <em>sell rich, buy cheap</em>. Forward rich → <b>short forward</b>. Spot fair/cheap relative → <b>long spot</b> (fund bằng borrowing).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Cash-and-carry arbitrage: (1) borrow S<sub>0</sub> = $50 @ 4%; (2) buy stock ở spot; (3) short forward ở $54. Tại T=1: deliver stock, nhận $54, trả nợ 50·e<sup>0.04</sup> ≈ $52.04. Lock-in profit ≈ $1.96.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">B là <em>reverse cash-and-carry</em> — dùng khi forward <em>cheap</em> (F &lt; fair). Ở đây forward <em>rich</em> → đi theo A. C sai vì $1.96 trên $50 ≈ 4% — rất actionable.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 DỊCH ĐỀ -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một cổ phiếu không trả cổ tức đang giao dịch ở <strong>S<sub>0</sub> = $50</strong>. Risk-free rate là <strong>4%</strong> (continuous). Forward price quan sát được cho <strong>kỳ hạn 1 năm là F<sub>0</sub> = $54</strong>. Fair forward price theo no-arbitrage ≈ <strong>$52.04</strong>. Arbitrageur <em>most likely</em> sẽ:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Short forward, vay $50, mua cổ phiếu — lock-in khoảng $1.96/share tại maturity.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Long forward, short cổ phiếu, đầu tư $50 ở risk-free rate.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Không làm gì — gap $1.96 nằm trong bid-ask spread thường, không actionable.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — Cash-and-carry.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">Forward market đang <b>rich</b> (F<sub>observed</sub> $54 &gt; F<sub>fair</sub> $52.04). <b>Cash-and-carry</b>: (1) borrow $50 @4%; (2) buy 1 share ở spot; (3) short forward @$54. Tại T=1: deliver share, nhận $54, trả nợ 50·e<sup>0.04</sup> = $52.04 → lock-in $54 − $52.04 = <b>$1.96</b>/share. Zero initial investment, zero risk, positive profit = arbitrage.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Chiến thuật B là <em>reverse cash-and-carry</em> — áp dụng khi forward <em>cheap</em> (F<sub>observed</sub> &lt; F<sub>fair</sub>). Ở đây thì ngược: forward rich, không phải cheap. B sẽ tạo ra lỗ $1.96.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Gap $1.96 trên $50 = 3.9%, cao hơn bid-ask spread thông thường (&lt;0.1% cho large-cap). Trong CFA framework, bất kỳ positive mispricing nào cũng là arbitrage — không có khái niệm "too small to bother".</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Decision rule — <em>Forward rich</em> (F &gt; fair) → <em>cash-and-carry</em> (short forward + long spot funded by borrowing). <em>Forward cheap</em> (F &lt; fair) → <em>reverse cash-and-carry</em> (long forward + short spot + lend cash). Luôn sell expensive, buy cheap.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q3 EN — Contango vs Backwardation -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Contango</em> or backwardation?</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Crude oil is currently trading at <strong>S<sub>0</sub> = $80/bbl</strong>. The <strong>6-month futures price is $75/bbl</strong>. Industry reports indicate physical inventories are at multi-year lows due to geopolitical supply disruption, while storage capacity is readily available at moderate cost. This market is <em>best</em> described as:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">In contango — storage cost dominates net carry, so futures trade above spot.</span></li>
+    <li><span class="lbl">B</span><span class="opt">In backwardation — convenience yield exceeds r + storage cost due to supply shortage.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Mispriced — arbitrageurs would buy the $75 future and short the $80 spot for risk-free $5/bbl.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">curve shape</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>S<sub>0</sub> = $80</mark>, <mark>F<sub>6M</sub> = $75</mark> → F &lt; S. <mark>Inventories multi-year low</mark>, <mark>geopolitical disruption</mark>, <mark>storage available</mark>. Which regime?
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">F<sub>0</sub> = $75 &lt; S<sub>0</sub> = $80 → curve dốc <em>xuống</em> → <b>backwardation</b> theo định nghĩa shape. Loại A ngay.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Economic cause: shortage + physical tightness → <b>convenience yield cao</b> (giữ physical là rất quý). Với y lớn, (r + c − y) có thể âm → F &lt; S. Match với đề.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">C sai: không phải mispriced — backwardation là <em>fair</em> equilibrium khi y dominates. Arbitrage C đề xuất đòi short physical oil, vốn khó thực hiện vì convenience yield của physical holder.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 DỊCH ĐỀ -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Dầu thô đang giao dịch ở <strong>S<sub>0</sub> = $80/thùng</strong>. <strong>Futures 6 tháng = $75/thùng</strong>. Báo cáo ngành cho biết inventory physical đang ở <strong>mức thấp nhiều năm</strong> do <strong>disruption địa chính trị</strong>, trong khi storage capacity vẫn available với chi phí moderate. Thị trường này <em>best</em> mô tả là:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Contango — storage cost dominate net carry, futures cao hơn spot.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Backwardation — convenience yield lớn hơn r + storage cost do shortage.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Mispriced — arbitrageurs sẽ buy futures $75 và short spot $80 → lock $5/thùng riskless.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>26 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Backwardation.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">F<sub>0</sub> $75 &lt; S<sub>0</sub> $80 → curve dốc xuống → <b>backwardation</b>. Economic driver: inventory shortage + geopolitical disruption → holders của physical crude có <b>convenience yield</b> rất cao (đảm bảo supply cho refinery). Khi y &gt; r + c, cost of carry net <em>âm</em> → F &lt; S. Đây là <em>equilibrium</em>, không phải mispricing.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Contango yêu cầu F &gt; S, ngược với data. Contango điển hình khi inventory <em>cao</em> + storage đắt (như oil April 2020 khi Cushing gần đầy). Ở đây inventory thấp → ngược với contango.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Không phải arbitrage — backwardation không vi phạm no-arb. Cash-and-carry "buy future + short spot" đòi <em>short physical oil</em>, vốn (1) khó làm cho commodity, (2) bỏ qua convenience yield đang rất cao với physical holders. Arbitrage lý thuyết không thực hiện được.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Mnemonic + economic intuition — <em>ContanGO up</em> (storage-rich, surplus inventory). <em>Backwardation = back down</em> (shortage, high convenience yield). Shape của futures curve kể câu chuyện về physical supply/demand mà spot price đơn lẻ không thể.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 27 · BRIDGE -->
+<section data-label="Bridge" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.04</span>
+    <span class="rule"></span>
+    <span>27 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap · three layers</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">From <em class="hi">principle</em> to <em class="hi">price</em>.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Law of One Price — identical payoff, identical price</span>
+        <span class="step-body">Foundation. Arbitrage là enforcement mechanism. Không cần probability để pricing.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Replication — build synthetic, compare với actual</span>
+        <span class="step-body">Put-call parity, forward replication, swap decomposition — tất cả đều là replication logic.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Cost of carry — net term (r ± income ± storage ± convenience)</span>
+        <span class="step-body">F<sub>0</sub> = S<sub>0</sub> · (net carry growth factor)<sup>T</sup>. Shape curve phản ánh sign của net carry.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Risk-neutral valuation — powerful shortcut</span>
+        <span class="step-body">Price = e<sup>−rT</sup> · E<sup>Q</sup>[payoff]. Underpin Black-Scholes &amp; binomial — sẽ gặp kỹ ở Lesson 09.05+.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.04 — RECAP</span>
+  </div>
+</section>
+
+
+<!-- 28 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>09.04 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 09.05 — Pricing &amp; Valuation of Forward Commitments</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Derivatives 09.05 — Forwards &amp; Futures Pricing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Pricing<br><em>Forwards.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 09 · Lesson 09.05 · Derivatives</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 05 · Pricing &amp; valuation of forwards and futures</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Derivatives</dd></div>
+      <div><dt>Module</dt><dd>05</dd></div>
+      <div><dt>Lesson</dt><dd>09.05</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">F₀(T) · Vt · IRP · convergence · basis</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">05</div>
+    <div class="lbl">Pricing forwards</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How to <em>price</em> &amp;<br><em>value</em> a forward.</h2>
+    <ul class="toc">
+      <li class="active">01 · Pricing vs valuation — hai khái niệm khác nhau</li>
+      <li>02 · Forward price at inception — cost of carry</li>
+      <li>03 · Income, dividend yield, continuous compounding</li>
+      <li>04 · Value of an existing forward (Vt)</li>
+      <li>05 · Futures vs forwards — mark-to-market, margin</li>
+      <li>06 · Convergence &amp; basis at expiry</li>
+      <li>07 · FX forwards &amp; interest rate parity</li>
+      <li>08 · Commodity forwards &amp; swap pricing</li>
+      <li>09 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · PRICING vs VALUATION -->
+<section data-label="Pricing vs Valuation" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>03 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Concept · hai thao tác khác nhau</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Pricing</em> vs <em class="hi">Valuation</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Ở derivatives, hai từ này KHÔNG đồng nghĩa. Pricing = xác định <em>fair forward price</em> tại inception. Valuation = xác định <em>value</em> của một forward đã ký, ở một thời điểm sau.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Pricing</em> — F₀(T)</div>
+      <dl>
+        <dt>Câu hỏi</dt>
+        <dd>Giá forward công bằng hôm nay là bao nhiêu để no-arbitrage?</dd>
+        <dt>Thời điểm</dt>
+        <dd>Inception (t = 0) — lúc ký hợp đồng</dd>
+        <dt>Nguyên lý</dt>
+        <dd><b>Cost of carry</b> — spot + funding − income</dd>
+        <dt>Kết quả</dt>
+        <dd>Một con số F₀(T) ghi vào contract</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Valuation</em> — Vt</div>
+      <dl>
+        <dt>Câu hỏi</dt>
+        <dd>Hợp đồng đã ký đáng giá bao nhiêu ở thời điểm t?</dd>
+        <dt>Thời điểm</dt>
+        <dd>Interim (0 &lt; t &lt; T) — hoặc at maturity (t = T)</dd>
+        <dt>Nguyên lý</dt>
+        <dd><b>Mark-to-market</b> — so sánh new F với old F₀</dd>
+        <dt>Kết quả</dt>
+        <dd>P&amp;L của long (gain) vs short (loss) — zero-sum</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Value at inception = 0 — forward được design để cost nothing to enter. F₀(T) vừa đúng để cả long và short đều không trả premium.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — PRICING VS VALUATION</span>
+  </div>
+</section>
+
+
+<!-- 04 · NO-ARB PRICING LOGIC -->
+<section data-label="No-arb logic" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>04 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">No-arbitrage · cost of carry</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Forward price từ <em class="hi">replication</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Ý tưởng: mua underlying bây giờ + giữ tới T = nhận underlying tại T, giống long forward. Hai chiến lược trả cùng payoff phải có cùng cost → F₀(T) được pin down.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Replication argument</span>
+    Strategy A — <b>Long forward</b>: ký hôm nay, trả F₀(T) tại T, nhận 1 unit underlying.
+    Strategy B — <b>Cash-and-carry</b>: vay S₀ ở rate r, mua 1 unit underlying hôm nay, giữ tới T. Tại T, nợ = S₀·(1+r)^T, có 1 unit underlying.
+    No-arbitrage ⇒ F₀(T) = S₀·(1+r)^T.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 18px;">
+    <li><span><span class="step-title">Nếu F₀(T) &gt; S₀·(1+r)^T → short forward + cash-and-carry = riskless profit</span><span class="step-body">Arbitrageur bán forward ở giá cao, mua spot với tiền vay, deliver tại T, profit = F − S·(1+r)^T.</span></span></li>
+    <li><span><span class="step-title">Nếu F₀(T) &lt; S₀·(1+r)^T → long forward + reverse cash-and-carry</span><span class="step-body">Bán short underlying, invest proceeds, long forward. Tại T: nhận underlying, return short. Profit = S·(1+r)^T − F.</span></span></li>
+    <li><span><span class="step-title">Equilibrium: F₀(T) = S₀·(1+r)^T — đây là fair forward price</span><span class="step-body">Đây là công thức "non-income asset". Sẽ điều chỉnh khi underlying trả dividend/coupon/yield.</span></span></li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — NO-ARB LOGIC</span>
+  </div>
+</section>
+
+
+<!-- 05 · FORWARD PRICE FORMULAS -->
+<section data-label="Forward price formulas" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>05 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Formulas · pricing at inception</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Ba công thức <em class="hi">F₀(T)</em> cần nhớ.</h2>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <div class="fmt-label">§ Non-income asset — base case</div>
+    <div class="eq">F<sub>0</sub>(T) = S<sub>0</sub> · (1 + r)<sup>T</sup></div>
+    <div class="note">
+      <b>S₀</b> = spot price hôm nay · <b>r</b> = risk-free rate (periodic) · <b>T</b> = time to maturity (periods). Dùng cho assets không trả income (ví dụ: non-dividend stock, gold bar storage-free).
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <div class="fmt-label">§ Discrete income — equity with dividends, bond with coupons</div>
+    <div class="eq">F<sub>0</sub>(T) = [ S<sub>0</sub> − PV<sub>0</sub>(Income) ] · (1 + r)<sup>T</sup></div>
+    <div class="note">
+      <b>PV₀(Income)</b> = present value của tất cả dividends/coupons trong [0, T], discount ở r. Income làm <em>giảm</em> forward price — người long không nhận dividend trong thời gian hold.
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <div class="fmt-label">§ Continuous dividend yield — equity index, FX</div>
+    <div class="eq">F<sub>0</sub>(T) = S<sub>0</sub> · e<sup>(r − q)T</sup></div>
+    <div class="note">
+      <b>q</b> = continuous dividend yield. Với FX, <b>q = r<sub>foreign</sub></b>. Nếu q &gt; r → F &lt; S (forward discount). Nếu q &lt; r → F &gt; S (forward premium).
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — F₀(T) FORMULAS</span>
+  </div>
+</section>
+
+
+<!-- 06 · VALUE OF FORWARD -->
+<section data-label="Value of forward" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>06 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Valuation · value of existing long forward</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Giá trị <em class="hi">Vt</em> của forward đã ký.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Ở thời điểm t ∈ [0, T], forward đã ký ở F₀(T) có value = PV của expected settlement (S<sub>T</sub> − F₀). Logic: so spot hiện tại với locked-in price, rồi discount back.
+    </p>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <div class="fmt-label">§ Value of long forward at time t — non-income asset</div>
+    <div class="eq">V<sub>t</sub>(long) = S<sub>t</sub> − F<sub>0</sub>(T) / (1 + r)<sup>(T − t)</sup></div>
+    <div class="note">
+      Intuition: nếu hôm nay (time t) spot rally cao hơn discounted F₀ → long đang có unrealized gain. Short có value = −V<sub>t</sub>(long). Zero-sum.
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <div class="fmt-label">§ Equivalent form — so sánh với new forward price</div>
+    <div class="eq">V<sub>t</sub>(long) = [ F<sub>t</sub>(T) − F<sub>0</sub>(T) ] / (1 + r)<sup>(T − t)</sup></div>
+    <div class="note">
+      <b>F<sub>t</sub>(T)</b> = forward price <em>ký mới hôm nay</em> với cùng maturity T. Nếu market ký mới cao hơn giá anh đã lock → anh gain (PV của difference).
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Key milestones</span>
+    <b>At inception</b> (t = 0): V<sub>0</sub> = 0 by design. <b>At maturity</b> (t = T): V<sub>T</sub>(long) = S<sub>T</sub> − F<sub>0</sub>(T) — no discounting. <b>Interim</b>: PV của expected payoff.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — Vt FORMULAS</span>
+  </div>
+</section>
+
+
+<!-- 07 · INCOME ADJUSTMENT WORKED -->
+<section data-label="Income adjustment" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>07 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Worked mechanics · dividend adjustment</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Tại sao <em class="hi">income</em> làm giảm F₀?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Khi anh long forward, anh <em>không</em> nhận dividend trong thời gian [0, T] — counter-party là người giữ cổ phiếu mới nhận. Để fair, forward price phải được discount bằng PV của mọi income lost.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Example · equity forward với dividend</span>
+    S₀ = $100, r = 5% p.a., T = 1 năm. Stock trả dividend $2 sau 6 tháng.
+    <br>PV(Div) = 2 / (1.05)^0.5 ≈ $1.952.
+    <br>F₀(T) = (100 − 1.952) · (1.05)^1 ≈ <b>$102.95</b>.
+    <br>So với không-dividend: F₀ = 100·1.05 = $105. Dividend "ăn" $2.05 của forward price.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 18px;">
+    <li><span><span class="step-title">Discrete income → dùng PV(Income) subtract từ S₀</span><span class="step-body">Mỗi dividend/coupon discount về t=0 ở risk-free rate, rồi tổng lại trước khi compound up tới T.</span></span></li>
+    <li><span><span class="step-title">Continuous yield q → công thức exponential e^((r−q)T)</span><span class="step-body">Dùng cho equity indices (S&amp;P 500 dividend yield ≈ 1.5%) hoặc FX forwards (q = foreign rate).</span></span></li>
+    <li><span><span class="step-title">Forward premium vs discount phụ thuộc dấu (r − q)</span><span class="step-body">r &gt; q → F &gt; S (contango-like). r &lt; q → F &lt; S (backwardation-like).</span></span></li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — INCOME ADJ</span>
+  </div>
+</section>
+
+
+<!-- 08 · FUTURES VS FORWARDS -->
+<section data-label="Futures vs Forwards" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>08 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Futures vs Forwards · pricing differences</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Tại sao pricing gần giống, <em class="hi">cash flow</em> khác?</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Forward</em></div>
+      <dl>
+        <dt>Value path</dt>
+        <dd>V<sub>t</sub> tích lũy từ 0 đến T, settle <b>once</b> tại T</dd>
+        <dt>Cash flow</dt>
+        <dd>Một payment duy nhất tại maturity</dd>
+        <dt>Counterparty</dt>
+        <dd>Bilateral — default risk của đối tác</dd>
+        <dt>Margin</dt>
+        <dd>Không (có thể có collateral theo CSA post-2010)</dd>
+        <dt>Settlement</dt>
+        <dd>Physical hoặc cash, tuỳ contract</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Future</em></div>
+      <dl>
+        <dt>Value path</dt>
+        <dd>Daily <b>mark-to-market</b> → value reset về 0 mỗi ngày</dd>
+        <dt>Cash flow</dt>
+        <dd>Variation margin settled daily qua clearinghouse</dd>
+        <dt>Counterparty</dt>
+        <dd>Clearinghouse — near-zero credit risk</dd>
+        <dt>Margin</dt>
+        <dd>Initial · maintenance · variation — enforced daily</dd>
+        <dt>Settlement</dt>
+        <dd>Mostly cash-settled (VN30F, S&amp;P 500 futures)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Daily MTM khiến futures có 0 value tại cuối mỗi ngày. Nếu rates không correlate với underlying → forward price ≈ futures price. Khi rates correlate → hai giá có thể khác nhẹ (CFA L1 coi là bằng nhau cho mục đích tính toán).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — FUT VS FWD</span>
+  </div>
+</section>
+
+
+<!-- 09 · MARGIN MECHANICS -->
+<section data-label="Margin mechanics" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>09 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Futures · margin architecture</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Initial · maintenance · <em class="hi">variation</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Clearinghouse yêu cầu trader nộp collateral gọi là <em>margin</em> để đảm bảo performance. Đây là lý do futures có gần-0 credit risk.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">IM</span>
+      <div>
+        <div class="t"><em class="hi">Initial margin</em></div>
+        <div class="d">Đặt khi mở position — typically 5–15% notional. Đủ để cover ≥ 99% daily move của underlying.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">MM</span>
+      <div>
+        <div class="t"><em class="hi">Maintenance margin</em></div>
+        <div class="d">Ngưỡng dưới initial (~75–80%). Nếu equity rơi dưới → <em>margin call</em> phải nạp về initial.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">VM</span>
+      <div>
+        <div class="t"><em class="hi">Variation margin</em></div>
+        <div class="d">Daily P&amp;L chuyển giữa long/short qua clearinghouse. Settle bằng tiền mặt cuối ngày.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">MTM</span>
+      <div>
+        <div class="t"><em class="hi">Mark-to-market</em></div>
+        <div class="d">Mỗi ngày position được "refreshed" ở settlement price. Gain/loss realized ngay — value reset về 0.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Effect — futures P&amp;L realize mỗi ngày (khác forward realize once at maturity). Khi rates correlate positive với futures P&amp;L, long futures có mini-edge (reinvest gains ở high rate, borrow losses ở low rate) → futures price ≥ forward price. Effect rất nhỏ cho short-dated.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — MARGIN</span>
+  </div>
+</section>
+
+
+<!-- 10 · CONVERGENCE & BASIS -->
+<section data-label="Convergence &amp; basis" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>10 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Convergence · basis dynamics</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">F<sub>T</sub> → S<sub>T</sub> khi <em class="hi">time to expiry → 0</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Tại expiry, không còn thời gian để carry cost tích lũy → forward phải bằng spot. Nếu không, arbitrage tức thời. Đây là "convergence property" của futures.
+    </p>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <div class="fmt-label">§ Basis · định nghĩa &amp; convergence</div>
+    <div class="eq">Basis = F<sub>t</sub>(T) − S<sub>t</sub></div>
+    <div class="eq">Basis → 0 khi t → T</div>
+    <div class="note">
+      <b>Contango</b>: F &gt; S (basis &gt; 0) — typical khi r &gt; q hoặc storage cost cao. <b>Backwardation</b>: F &lt; S (basis &lt; 0) — convenience yield cao hoặc scarcity expected. Basis converges về 0 deterministic tại expiry.
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Intuition — no-arb at expiry</span>
+    Nếu F<sub>T</sub> ≠ S<sub>T</sub> tại T, arbitrageur long cái rẻ + short cái đắt + settle ngay = riskless profit với zero carrying time. Vì vậy basis <em>phải</em> về 0 tại maturity.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — CONVERGENCE</span>
+  </div>
+</section>
+
+
+<!-- 11 · FX FORWARD & IRP -->
+<section data-label="FX forward &amp; IRP" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>11 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">FX forward · interest rate parity</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Covered IRP</em> — FX forward pricing.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Với FX, "underlying" là ngoại tệ — mà ngoại tệ "trả" interest rate r<sub>for</sub>. Áp dụng công thức dividend yield với q = r<sub>for</sub> → ra Interest Rate Parity.
+    </p>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <div class="fmt-label">§ Discrete compounding — IRP</div>
+    <div class="eq">F(dom/for) = S(dom/for) · (1 + r<sub>dom</sub>) / (1 + r<sub>for</sub>)</div>
+    <div class="note">
+      S và F quote theo quy ước <b>domestic per unit foreign</b> (ví dụ VND/USD, JPY/USD). <b>r<sub>dom</sub></b> và <b>r<sub>for</sub></b> là periodic rates cho cùng horizon T.
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <div class="fmt-label">§ Continuous compounding — academic form</div>
+    <div class="eq">F = S · e<sup>(r<sub>dom</sub> − r<sub>for</sub>)T</sup></div>
+    <div class="note">
+      Nếu r<sub>dom</sub> &gt; r<sub>for</sub> → F &gt; S → foreign currency "forward premium" (ngược intuition đời thường, nhưng đúng về carry). Arbitrage: borrow dom → convert → invest foreign → lock back qua F.
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — FX IRP</span>
+  </div>
+</section>
+
+
+<!-- 12 · COMMODITY FORWARDS -->
+<section data-label="Commodity forwards" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>12 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Commodities · cost of carry expanded</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Storage cost + <em class="hi">convenience yield</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Commodity khác financial asset: tốn tiền lưu trữ + insurance, nhưng giữ physical cho phép "sản xuất ngay" (convenience yield). Hai term này đi vào forward price.
+    </p>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <div class="fmt-label">§ Commodity forward · full cost of carry</div>
+    <div class="eq">F<sub>0</sub>(T) = S<sub>0</sub> · e<sup>(r + u − y)T</sup></div>
+    <div class="note">
+      <b>u</b> = storage cost rate (continuous) · <b>y</b> = convenience yield (continuous). Nếu u &gt; y và r &gt; 0 → strong contango (oil futures 2020 kho đầy). Nếu y &gt;&gt; u+r → backwardation (oil crisis, supply scarce).
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Contango vs backwardation recap</span>
+    <b>Contango</b>: upward-sloping futures curve — F(longer) &gt; F(shorter) &gt; S. Xảy ra khi carry cost dominates. <b>Backwardation</b>: downward-sloping — F &lt; S. Xảy ra khi convenience yield dominates (scarcity, immediate demand).
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — COMMODITY</span>
+  </div>
+</section>
+
+
+<!-- 13 · SWAP PRICING -->
+<section data-label="Swap pricing" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>13 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Swap pricing · brief</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Fixed rate để <em class="hi">V(swap) = 0</em> at inception.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Swap pricing = tìm fixed rate C sao cho PV(fixed leg) = PV(floating leg). Nguyên lý y hệt forward: value at inception phải bằng 0 để cả hai bên đều sẵn sàng ký.
+    </p>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <div class="fmt-label">§ Par swap rate · fixed-for-floating IRS</div>
+    <div class="eq">C = (1 − Z<sub>n</sub>) / (Z<sub>1</sub> + Z<sub>2</sub> + ... + Z<sub>n</sub>)</div>
+    <div class="note">
+      <b>Z<sub>i</sub></b> = discount factor (zero-coupon bond price) cho period i. C là fixed rate mỗi period. Lưu ý: swap có thể được phân tích như chuỗi FRAs (forward rate agreements) liên tiếp.
+    </div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 14px;">
+    <li><span><span class="step-title">Pricing: tìm C sao cho PV(fixed) = PV(floating)</span><span class="step-body">PV(floating) = 1 − Z<sub>n</sub> tại inception (floating bond trades at par). PV(fixed) = C·Σ Z<sub>i</sub> + Z<sub>n</sub>.</span></span></li>
+    <li><span><span class="step-title">Valuation sau inception: rates thay đổi → V ≠ 0</span><span class="step-body">Nếu rates tăng, fixed-payer (nhận floating) gain. Mark-to-market tính bằng PV(new floating leg) − PV(original fixed leg).</span></span></li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — SWAP PRICING</span>
+  </div>
+</section>
+
+
+<!-- 14 · SUMMARY TAKE -->
+<section data-label="Summary" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>14 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Summary · cheat sheet</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Những công thức <em class="hi">phải thuộc</em>.</h2>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <div class="fmt-label">§ Pricing (at inception) — tổng hợp</div>
+    <div class="eq">F<sub>0</sub>(T) = S<sub>0</sub> · (1+r)<sup>T</sup> · · · <span class="var">no income</span></div>
+    <div class="eq">F<sub>0</sub>(T) = [S<sub>0</sub> − PV(Inc)] · (1+r)<sup>T</sup> · · · <span class="var">discrete income</span></div>
+    <div class="eq">F<sub>0</sub>(T) = S<sub>0</sub> · e<sup>(r−q)T</sup> · · · <span class="var">continuous yield</span></div>
+    <div class="eq">F = S · (1+r<sub>dom</sub>) / (1+r<sub>for</sub>) · · · <span class="var">FX IRP</span></div>
+    <div class="eq">F<sub>0</sub>(T) = S<sub>0</sub> · e<sup>(r+u−y)T</sup> · · · <span class="var">commodity</span></div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <div class="fmt-label">§ Valuation (interim &amp; at maturity)</div>
+    <div class="eq">V<sub>t</sub>(long) = S<sub>t</sub> − F<sub>0</sub>(T) / (1+r)<sup>(T−t)</sup></div>
+    <div class="eq">V<sub>T</sub>(long) = S<sub>T</sub> − F<sub>0</sub>(T) · · · <span class="var">at expiry</span></div>
+    <div class="eq">V<sub>0</sub> = 0 · · · <span class="var">at inception — by design</span></div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — SUMMARY</span>
+  </div>
+</section>
+
+
+<!-- 15 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 16 · Q1 EN -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>16 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Equity index forward with <em class="hi">dividend yield</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An equity index is currently quoted at <strong>S₀ = 4,000</strong>. The continuously compounded risk-free rate is <strong>r = 5%</strong> and the index dividend yield is <strong>q = 2%</strong>, both annualized. A forward on the index expires in <strong>T = 6 months</strong>. The no-arbitrage forward price F₀(T) is <em>closest to</em>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">4,030</span></li>
+    <li><span class="lbl">B</span><span class="opt">4,060</span></li>
+    <li><span class="lbl">C</span><span class="opt">4,101</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>17 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Continuously compounded</mark>, <mark>dividend yield q = 2%</mark>, <mark>T = 0.5 năm</mark>. Công thức phù hợp: <mark>F = S·e^((r−q)T)</mark>.
+  </div>
+  <ol class="hint-list">
+    <li><span class="hnum">Hint 1</span><span class="htxt">"Continuously compounded" + "yield" → dùng công thức exponential, không dùng discrete (1+r)^T.</span></li>
+    <li><span class="hnum">Hint 2</span><span class="htxt">(r − q) = 5% − 2% = 3%. T = 0.5. Exponent = 0.03 · 0.5 = 0.015.</span></li>
+    <li><span class="hnum">Hint 3</span><span class="htxt">e^0.015 ≈ 1.01511. F ≈ 4,000 · 1.01511 ≈ 4,060.4.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 DỊCH ĐỀ -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>18 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một equity index đang được quote ở <strong>S₀ = 4,000</strong>. Continuously compounded risk-free rate <strong>r = 5%</strong>, dividend yield <strong>q = 2%</strong>, cả hai annualized. Forward trên index expire sau <strong>T = 6 tháng</strong>. No-arbitrage forward price F₀(T) <em>gần nhất</em> với giá trị nào?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">4,030</span></li>
+    <li><span class="lbl">B</span><span class="opt">4,060</span></li>
+    <li><span class="lbl">C</span><span class="opt">4,101</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>19 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — ≈ 4,060.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">F₀(T) = S₀ · e<sup>(r−q)T</sup> = 4,000 · e<sup>(0.05−0.02)·0.5</sup> = 4,000 · e<sup>0.015</sup> ≈ 4,000 · 1.01511 ≈ <b>4,060.4</b>. Vì r &gt; q, forward ở <em>premium</em> nhẹ so với spot.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">4,030 ≈ 4,000·(1 + 0.015) tính theo simple interest, nhưng phải dùng <em>exponential</em>. Cũng có thể rơi vào bẫy dùng (r − q)/2 linear approximation.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">4,101 ≈ 4,000·e<sup>0.025</sup> — quên subtract dividend yield. Đây là bẫy "no-income" formula. Khi có dividend/yield, phải discount F về (r − q), không phải r.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Với equity index / FX / continuous yield → luôn dùng <em>e^((r−q)T)</em>. Đừng bao giờ quên q — nó <em>giảm</em> forward price vì người long không nhận dividend trong thời gian hold.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q2 EN — Value at interim date -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>20 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Value of a <em class="hi">long forward</em> 3 months in.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Six months ago, an investor entered a <strong>9-month long forward</strong> on a non-dividend-paying stock at a forward price <strong>F₀(T) = $105</strong>. Today, with <strong>3 months (0.25 year)</strong> remaining, the spot is <strong>S<sub>t</sub> = $110</strong> and the annual risk-free rate is <strong>r = 4%</strong> (discrete). The value of the long forward today is <em>closest to</em>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$5.00</span></li>
+    <li><span class="lbl">B</span><span class="opt">$6.03</span></li>
+    <li><span class="lbl">C</span><span class="opt">$10.00</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>21 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Non-dividend stock</mark>, <mark>F₀ = $105</mark>, <mark>S<sub>t</sub> = $110</mark>, <mark>T − t = 0.25</mark>, <mark>r = 4% discrete</mark>. Tính V<sub>t</sub>(long).
+  </div>
+  <ol class="hint-list">
+    <li><span class="hnum">Hint 1</span><span class="htxt">Công thức: V<sub>t</sub>(long) = S<sub>t</sub> − F<sub>0</sub>(T) / (1+r)<sup>(T−t)</sup>. Đây là "spot trừ PV của locked-in price".</span></li>
+    <li><span class="hnum">Hint 2</span><span class="htxt">(1.04)<sup>0.25</sup> ≈ 1.00985. 105 / 1.00985 ≈ 103.97.</span></li>
+    <li><span class="hnum">Hint 3</span><span class="htxt">V<sub>t</sub> ≈ 110 − 103.97 ≈ <em>6.03</em>. Không dùng V = S − F₀ = $5 (đó là V tại expiry, không phải interim).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 DỊCH + EXPLANATION COMBINED -->
+<section data-label="Q2 Dịch + Answer" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>22 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt + Answer</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $6.03.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Dịch đề</span>
+    <div class="q-stem">
+      6 tháng trước, một investor ký <strong>long forward 9-tháng</strong> trên stock không trả dividend, ở forward price <strong>F₀(T) = $105</strong>. Hôm nay còn <strong>3 tháng</strong> tới expiry, spot <strong>S<sub>t</sub> = $110</strong>, risk-free <strong>r = 4%</strong> (discrete). Giá trị long forward hôm nay gần nhất với?
+    </div>
+  </div>
+  <div class="reasoning" style="margin-top: 14px;">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">V<sub>t</sub>(long) = S<sub>t</sub> − F<sub>0</sub>/(1+r)<sup>T−t</sup> = 110 − 105/(1.04)<sup>0.25</sup> ≈ 110 − 103.97 ≈ <b>$6.03</b>. Long có unrealized gain vì spot vượt discounted locked-in price.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">$5.00 = S<sub>t</sub> − F<sub>0</sub> = 110 − 105, dùng khi <em>t = T</em> (at expiry). Đề hỏi tại interim → phải discount F<sub>0</sub> về hôm nay.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">$10 không match công thức nào. Có thể là bẫy nếu tính S<sub>t</sub>·(1+r)<sup>T−t</sup> − F<sub>0</sub>: 110·1.00985 − 105 ≈ 6.08 — vẫn không ra 10. $10 là distractor thuần.</div>
+    </div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q3 EN — FX forward via IRP -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>23 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">FX forward</em> via interest rate parity.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      The current spot exchange rate is <strong>S = 25,000 VND/USD</strong>. The 1-year VND risk-free rate is <strong>r<sub>VND</sub> = 6%</strong> and the 1-year USD risk-free rate is <strong>r<sub>USD</sub> = 4%</strong>, both discretely compounded. The no-arbitrage <strong>1-year forward rate F (VND/USD)</strong> is <em>closest to</em>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">24,510 VND/USD</span></li>
+    <li><span class="lbl">B</span><span class="opt">25,481 VND/USD</span></li>
+    <li><span class="lbl">C</span><span class="opt">26,500 VND/USD</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>24 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>VND/USD quote</mark> → domestic = VND, foreign = USD. <mark>r<sub>dom</sub> = 6%</mark>, <mark>r<sub>for</sub> = 4%</mark>, <mark>T = 1 năm</mark>, discrete. Áp dụng IRP.
+  </div>
+  <ol class="hint-list">
+    <li><span class="hnum">Hint 1</span><span class="htxt">IRP (discrete): F = S · (1 + r<sub>dom</sub>) / (1 + r<sub>for</sub>).</span></li>
+    <li><span class="hnum">Hint 2</span><span class="htxt">Tỷ số (1.06)/(1.04) ≈ 1.01923. F ≈ 25,000 · 1.01923 ≈ 25,481 VND/USD.</span></li>
+    <li><span class="hnum">Hint 3</span><span class="htxt">Vì r<sub>dom</sub> (VND) &gt; r<sub>for</sub> (USD) → USD <em>forward premium</em> (F &gt; S). Đây là carry-trade logic: vay VND rẻ… không, vay USD rẻ, invest VND cao → phải lock F cao hơn S để no-arb.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 DỊCH + EXPLANATION -->
+<section data-label="Q3 Dịch + Answer" class="slide">
+  <div class="run-header">
+    <span>Derivatives · 09.05</span>
+    <span class="rule"></span>
+    <span>25 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt + Answer</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 25,481 VND/USD.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Dịch đề</span>
+    <div class="q-stem">
+      Spot rate hiện tại <strong>S = 25,000 VND/USD</strong>. 1-year risk-free rates: <strong>r<sub>VND</sub> = 6%</strong>, <strong>r<sub>USD</sub> = 4%</strong>, discrete. No-arbitrage <strong>1-year forward F (VND/USD)</strong> gần nhất với?
+    </div>
+  </div>
+  <div class="reasoning" style="margin-top: 14px;">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">F = S · (1+r<sub>dom</sub>)/(1+r<sub>for</sub>) = 25,000 · (1.06/1.04) ≈ 25,000 · 1.01923 ≈ <b>25,481 VND/USD</b>. USD ở forward premium so với spot vì lãi suất VND cao hơn.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">24,510 ≈ 25,000 · (1.04/1.06) — <em>đảo</em> numerator và denominator. Bẫy cổ điển khi nhầm ai là domestic, ai là foreign trong quote VND/USD.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">26,500 = 25,000·(1 + 0.06) — dùng chỉ VND rate, quên chia cho (1+r<sub>USD</sub>). Đây là no-income formula, không đúng cho FX forward.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">FX IRP — <em>(1+r<sub>dom</sub>)/(1+r<sub>for</sub>)</em>. Currency với <em>higher rate</em> trade ở <em>forward discount</em>; currency với lower rate ở forward premium. Quote quy ước: F cùng format với S (domestic/foreign).</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>DERIVATIVES · 09.05 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 26 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>09.05 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 09.06 — Pricing &amp; Valuation of Swaps</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>
