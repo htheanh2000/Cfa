@@ -375,3 +375,32 @@
   color: var(--ink);
 }
 .hint-list .htxt em { font-style: italic; color: var(--accent); font-weight: 600; }
+
+/* Chart box — SVG visualization frame */
+.chart-box {
+  background: #FFFFFF;
+  border: 1px solid var(--rule-soft);
+  border-left: 6px solid var(--accent);
+  padding: 22px 32px 24px;
+  margin: 14px 0;
+  max-width: 1600px;
+}
+.chart-box .chart-label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 17px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.chart-box svg { width: 100%; max-width: 100%; height: auto; display: block; }
+.chart-box .caption {
+  font-family: var(--sans);
+  font-size: 17px;
+  color: var(--ink-soft);
+  margin-top: 14px;
+  line-height: 1.5;
+}
+.chart-box .caption b { color: var(--ink); font-weight: 600; }
