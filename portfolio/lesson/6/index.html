@@ -1,0 +1,1196 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Portfolio 06.06 — Introduction to FinTech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Introduction <em>to FinTech.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 06 · Lesson 06.06 · Portfolio Management</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 06 · Data · AI · Blockchain · Regulation</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Portfolio</dd></div>
+      <div><dt>Module</dt><dd>06</dd></div>
+      <div><dt>Lesson</dt><dd>06.06</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Big Data · AI/ML · Robo · Algo · DLT · Crypto · DeFi</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">06</div>
+    <div class="lbl">Introduction to FinTech</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How <em>technology</em> reshapes<br>investment <em>management</em>.</h2>
+    <ul class="toc">
+      <li class="active">01 · Định nghĩa FinTech + 4 key drivers</li>
+      <li>02 · Big Data + AI/ML — NLP, image recognition</li>
+      <li>03 · Robo-advisors + Risk analysis tools</li>
+      <li>04 · Algorithmic trading — HFT, stat arb, execution</li>
+      <li>05 · DLT, blockchain, crypto, smart contracts, DeFi, tokenization</li>
+      <li>06 · Regtech, cybersecurity, regulatory implications</li>
+      <li>07 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · FINTECH DEFINITION -->
+<section data-label="FinTech definition" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>03 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Definition · what is FinTech</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">FinTech <em class="hi">defined</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      FinTech = <em>Financial Technology</em> — việc ứng dụng tech (data, software, networks, AI) để cung cấp hoặc cải thiện financial services. Trong CFA L1, focus là tác động đến <em>investment management</em>.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Core idea</span>
+    FinTech không phải là một loại sản phẩm — nó là <em>cách thức</em> mà tech được nhúng vào finance. Phạm vi từ retail apps (Robinhood, payment) đến institutional infrastructure (BlackRock Aladdin, exchange matching engines).
+  </div>
+
+  <p class="fine-muted-sm">
+    § Investment-management context — CFA Institute liệt kê 6 vùng tác động chính: (1) data analytics, (2) AI/ML, (3) automated advice, (4) risk analysis, (5) algorithmic trading, (6) distributed ledger technology.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — DEFINITION</span>
+  </div>
+</section>
+
+
+<!-- 04 · 4 KEY DRIVERS -->
+<section data-label="4 drivers" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>04 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Drivers · what enabled FinTech</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">4 key drivers</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">D</span>
+      <div>
+        <div class="t"><em class="hi">Data</em> volume + velocity</div>
+        <div class="d">Khối lượng data tăng exponential — transaction logs, clickstreams, satellite imagery, social posts. Dữ liệu mới đến real-time, không còn batch hàng đêm.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">A</span>
+      <div>
+        <div class="t"><em class="hi">Analytics</em> &amp; compute</div>
+        <div class="d">Cloud (AWS, GCP) + GPUs + open-source ML (PyTorch, TensorFlow) làm cho việc xử lý big data trở nên <em>feasible &amp; affordable</em>. Cost storage giảm ~30%/yr.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">C</span>
+      <div>
+        <div class="t"><em class="hi">Connectivity</em> &amp; networks</div>
+        <div class="d">Internet ubiquity, API economy, low-latency fiber + 5G. Kết nối giữa investor – broker – exchange – custodian gần như instant. Cross-border flows lớn lên.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">M</span>
+      <div>
+        <div class="t"><em class="hi">Mobile</em> + always-on</div>
+        <div class="d">Smartphone &gt; 6 tỷ users globally. Retail có thể trade, monitor portfolio, deposit funds 24/7 từ thiết bị cầm tay. Hạ rào cản tiếp cận thị trường.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Hệ quả — 4 drivers cộng hưởng tạo điều kiện cho big data analytics, AI, robo-advisor, mobile trading, real-time risk monitoring và blockchain infrastructure.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — DRIVERS</span>
+  </div>
+</section>
+
+
+<!-- 05 · BIG DATA ANALYTICS -->
+<section data-label="Big Data" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>05 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Big data · investment management</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Big data <em class="hi">analytics</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      "Big data" trong finance = traditional + <em>alternative</em> data: credit-card transactions, web traffic, satellite imagery, mobile geolocation, social media. Đặc trưng <b>3V</b>: <em>Volume, Velocity, Variety</em> (đôi khi thêm Veracity).
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Traditional data — structured, slow, expensive</span>
+        <span class="step-body">Financial statements, prices, earnings — đã được khai thác hết. Khó tạo edge thuần từ dữ liệu này vì ai cũng có.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Alternative data — unstructured, real-time, lợi thế cạnh tranh</span>
+        <span class="step-body">Satellite ảnh đếm xe ở parking lot Walmart → dự báo doanh thu trước earnings. Credit-card receipts → revenue nowcasting. Web scraping job postings → company growth signal.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Challenges — quality, ethics, decay</span>
+        <span class="step-body">Data có thể biased, mislabeled, hoặc bị "discovered" và mất alpha sau khi nhiều fund cùng dùng. Privacy + regulatory concerns ngày càng nặng.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § Use cases — sentiment scoring từ Twitter, Reddit; ESG signals từ news flow; supply-chain tracking từ shipping data; real-estate valuation từ satellite + listings.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — BIG DATA</span>
+  </div>
+</section>
+
+
+<!-- 06 · AI/ML — NLP + IMAGE RECOGNITION -->
+<section data-label="AI/ML applications" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>06 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">AI / Machine Learning</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">NLP</em> + image recognition.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">SL</span>
+      <div>
+        <div class="t"><em class="hi">Supervised</em> learning</div>
+        <div class="d">Học từ labeled data — predict default risk, classify transactions, forecast returns. Cần training dataset chất lượng cao.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">UL</span>
+      <div>
+        <div class="t"><em class="hi">Unsupervised</em> learning</div>
+        <div class="d">Cluster, dimensionality reduction (PCA), anomaly detection. Không cần label — phù hợp cho fraud detection, regime identification.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">NLP</span>
+      <div>
+        <div class="t"><em class="hi">Natural Language</em> Processing</div>
+        <div class="d">Sentiment analysis từ news, earnings calls transcripts, social media. Topic modeling 10-K filings. LLM (GPT, Claude) tóm tắt research, extract data.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CV</span>
+      <div>
+        <div class="t"><em class="hi">Computer Vision</em> · image recognition</div>
+        <div class="d">Đếm xe trong parking lot từ satellite, đo độ tích trữ dầu từ ảnh tank, theo dõi shipping container. Geospatial signal cho commodity + retail.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Risks — overfitting (model học noise), data leakage, black-box models khó audit. CFA tests yêu cầu hiểu giới hạn ML, không phải implementation chi tiết.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — AI/ML</span>
+  </div>
+</section>
+
+
+<!-- 07 · ROBO-ADVISORS — PASSIVE VS HYBRID -->
+<section data-label="Robo-advisors" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>07 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Automated advice · robo</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Robo-advisors — <em class="hi">passive</em> vs <em class="hi">hybrid</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Robo-advisor = digital platform tự động hóa <em>onboarding → IPS lite → asset allocation → execution → rebalancing → tax-loss harvesting</em>. Hạ phí, mở rộng access cho mass-affluent.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Fully <em>automated</em> · passive</div>
+      <dl>
+        <dt>Workflow</dt>
+        <dd>100% digital — questionnaire, algorithmic allocation, ETF-only portfolios</dd>
+        <dt>Examples</dt>
+        <dd><b>Betterment</b>, <b>Wealthfront</b>, Vanguard Digital</dd>
+        <dt>Fees</dt>
+        <dd>0.25% – 0.40%/yr · minimum thấp ($0 – $500)</dd>
+        <dt>Best for</dt>
+        <dd>Mass-market, đơn giản hoá, cost-sensitive, long-horizon</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Hybrid</em> — robo + human</div>
+      <dl>
+        <dt>Workflow</dt>
+        <dd>Algorithm + human advisor cho complex topics (estate, tax, life events)</dd>
+        <dt>Examples</dt>
+        <dd>Vanguard Personal Advisor, Schwab Intelligent, Personal Capital</dd>
+        <dt>Fees</dt>
+        <dd>0.30% – 0.89%/yr · minimum cao hơn ($25k – $50k+)</dd>
+        <dt>Best for</dt>
+        <dd>Mass-affluent, tình huống phức tạp, muốn touchpoint con người</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Vietnam — <b>VNDirect Robo</b> + Finhay (micro-investing app cho retail VN) là robo-advisor sơ khai trong khu vực. Giới hạn bởi sản phẩm investable nội địa và regulatory framework đang phát triển.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — ROBO</span>
+  </div>
+</section>
+
+
+<!-- 08 · ROBO STRENGTHS + LIMITS -->
+<section data-label="Robo · strengths" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>08 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Robo · strengths and limits</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Robo — <em class="hi">khi nào</em> phù hợp.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Strengths — low cost, consistent, scalable</span>
+        <span class="step-body">Không cảm xúc, rebalance đúng kỷ luật, tax-loss harvesting tự động. Hạ phí mở rộng access đến segment trước đây không có advisor (mass-affluent).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Limits — onboarding nông, edge cases khó</span>
+        <span class="step-body">Questionnaire 10-15 câu không capture đầy đủ behavioral biases, life events, tax planning đa quốc gia, hay legacy planning. Hybrid model sinh ra để vá.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Regulatory — fiduciary duty vẫn áp dụng</span>
+        <span class="step-body">Robo platform vẫn là <em>investment advisor</em>, phải comply với SEC (US) hoặc tương đương. Algorithm bias, suitability mismatch là rủi ro pháp lý.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ When robo wins</span>
+    Client (1) <em>cost-sensitive</em>, (2) <em>long-horizon</em>, (3) tài chính <em>không quá phức tạp</em>, (4) ưu tiên <em>discipline &gt; customization</em>. Đây là default choice cho phần lớn retail accumulation phase.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — ROBO LIMITS</span>
+  </div>
+</section>
+
+
+<!-- 09 · RISK ANALYSIS TOOLS -->
+<section data-label="Risk analysis tools" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>09 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk analysis · institutional</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Real-time <em class="hi">risk</em> tools.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      FinTech cho phép risk monitoring chuyển từ <em>end-of-day batch</em> sang <em>real-time / intra-day</em>. Stress test + scenario simulation chạy trên cloud trong vài phút thay vì hàng giờ.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">RT</span>
+      <div>
+        <div class="t"><em class="hi">Real-time</em> monitoring</div>
+        <div class="d">Tracking exposure (beta, factor, geography), VaR, liquidity, concentration intra-day. Trader/PM được alert khi limit bị vi phạm — không chờ EOD.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SC</span>
+      <div>
+        <div class="t"><em class="hi">Scenario</em> simulation</div>
+        <div class="d">Monte Carlo, historical replay (2008, 2020 COVID), reverse stress test. Trả lời "nếu rate +200bps + USD +10%, portfolio sao?".</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">AL</span>
+      <div>
+        <div class="t"><em class="hi">BlackRock Aladdin</em></div>
+        <div class="d">Platform risk + portfolio mgmt phổ biến nhất institutional, manage hơn $20T AUM. Tích hợp data, analytics, trading, compliance trên 1 stack.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">BW</span>
+      <div>
+        <div class="t"><em class="hi">Bridgewater AI</em></div>
+        <div class="d">Bridgewater AIA Labs (2024) launch fund AI-native, dùng LLM để thay thế discretionary research. Test thesis: "machine reasoning &gt; human PM" trong macro investing.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — RISK TOOLS</span>
+  </div>
+</section>
+
+
+<!-- 10 · ALGORITHMIC TRADING -->
+<section data-label="Algo trading" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>10 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Algorithmic trading</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Algo</em> trading types.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Algorithmic trading = computer programs gửi orders theo rules pre-defined về timing, price, quantity. Chiếm ~70-80% volume ở US equity, ~50% FX. Spectrum từ slow execution algo đến HFT.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">High-Frequency Trading (HFT) — sub-millisecond</span>
+        <span class="step-body">Market making, latency arbitrage, news reaction. Co-location server cạnh exchange matching engine. Profit per trade nhỏ, volume khổng lồ. Citadel Securities, Virtu, Jump.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Statistical arbitrage — minutes to days</span>
+        <span class="step-body">Khai thác mean-reversion / pattern giữa correlated securities (pairs trading), hoặc factor-based long/short. ML signals + portfolio optimization.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Execution algorithms — VWAP, TWAP, IS, POV</span>
+        <span class="step-body">Mục tiêu: minimize <em>market impact</em> khi trade large size. Slice một order $100M ra hàng ngàn child orders theo benchmark (volume-weighted, time-weighted, implementation shortfall).</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § Concerns — flash crash (2010), market fragmentation, fairness debate (HFT có "unfair speed advantage"?). Regulatory: SEC Reg NMS, EU MiFID II có nhiều quy định kiểm soát.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — ALGO</span>
+  </div>
+</section>
+
+
+<!-- 11 · DLT — CENTRALIZED VS DLT -->
+<section data-label="DLT vs centralized" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>11 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Distributed ledger technology</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Centralized</em> vs <em class="hi">DLT</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      DLT = ledger được chia sẻ + replicated giữa nhiều nodes, đồng thuận qua consensus protocol (PoW, PoS). Blockchain là dạng phổ biến nhất của DLT, lưu data thành chuỗi blocks liên kết bằng cryptographic hash.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Centralized ledger (truyền thống)</div>
+      <dl>
+        <dt>Trust</dt>
+        <dd>Phụ thuộc vào trusted intermediary (bank, depository, registrar)</dd>
+        <dt>Single source</dt>
+        <dd>Một authoritative copy — central party kiểm soát</dd>
+        <dt>Reconciliation</dt>
+        <dd>Bên A và B đối chiếu sổ riêng → tốn thời gian, error</dd>
+        <dt>Resilience</dt>
+        <dd>Single point of failure — server down = system down</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Distributed ledger (DLT)</div>
+      <dl>
+        <dt>Trust</dt>
+        <dd>Trust distributed qua consensus protocol — không cần intermediary</dd>
+        <dt>Replication</dt>
+        <dd>Nhiều nodes giữ identical copy — bất kỳ node nào cũng verify được</dd>
+        <dt>Immutability</dt>
+        <dd>Hash-chained → khó thay đổi lịch sử mà không bị phát hiện</dd>
+        <dt>Resilience</dt>
+        <dd>Không có single point — tấn công cần &gt; 51% nodes</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — DLT VS CEN</span>
+  </div>
+</section>
+
+
+<!-- 12 · WHEN DLT ADDS VALUE -->
+<section data-label="When DLT adds value" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>12 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Use case fit</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">When <em class="hi">DLT</em> adds value.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      DLT không phải silver bullet — chậm, tốn năng lượng (PoW), khó thay đổi sau khi viết. Nó <em>thắng centralized</em> chỉ khi có những điều kiện cụ thể.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Rule — DLT fits when</span>
+    (1) <em>Multiple parties</em> không tin nhau đầy đủ — cần shared truth.
+    (2) Cần <em>auditability</em> + immutable history (compliance, supply chain).
+    (3) Trung gian truyền thống <em>chậm hoặc đắt</em> — cross-border payments, securities settlement (T+2 → T+0).
+    (4) Cần <em>programmable</em> assets (smart contracts) — escrow tự thực thi, conditional payments.
+    (5) Resilience yêu cầu cao — không chấp nhận single point of failure.
+  </div>
+
+  <p class="fine-muted-sm">
+    § Khi DLT KHÔNG fit — single party data, low-latency cao yêu cầu (HFT), khi luật buộc một authority duy nhất quản lý record. Nhiều "blockchain projects" thực ra chỉ cần một database thông thường.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — DLT VALUE</span>
+  </div>
+</section>
+
+
+<!-- 13 · CRYPTOCURRENCIES -->
+<section data-label="Cryptocurrencies" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>13 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Cryptocurrencies</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Bitcoin</em>, Ethereum, stablecoins.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">BTC</span>
+      <div>
+        <div class="t"><em class="hi">Bitcoin</em> · digital scarcity</div>
+        <div class="d">Supply cap 21M coins, PoW consensus. "Digital gold" narrative — store of value, không phải medium of exchange chính. Volatility cao, correlation với risk assets tăng từ 2020.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">ETH</span>
+      <div>
+        <div class="t"><em class="hi">Ethereum</em> · programmable</div>
+        <div class="d">Smart contract platform, hỗ trợ tokens (ERC-20), NFTs (ERC-721), DeFi. Chuyển sang PoS (2022 Merge) — energy-efficient hơn. Layer-2 (Arbitrum, Optimism) scale throughput.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SC</span>
+      <div>
+        <div class="t"><em class="hi">Stablecoins</em></div>
+        <div class="d">USDT (Tether), USDC peg với USD bằng reserves (fiat, T-bills). Là "rails" cho crypto trading + cross-border payments. Algorithmic stablecoin (UST/Luna 2022) đã collapse → regulator nhắm vào.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CB</span>
+      <div>
+        <div class="t"><em class="hi">CBDC</em> · trên đường tới</div>
+        <div class="d">Central Bank Digital Currency — DCEP (China) live, eEuro pilot, FedNow (US, không phải CBDC nhưng instant payment). Vietnam SBV nghiên cứu CBDC, chưa launch.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § CFA L1 view — crypto là <em>asset class mới</em>, được CFA Institute thừa nhận trong curriculum. Vẫn highlight rủi ro: volatility, regulatory uncertainty, custody risk, energy concerns (BTC PoW).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — CRYPTO</span>
+  </div>
+</section>
+
+
+<!-- 14 · SMART CONTRACTS + DEFI -->
+<section data-label="Smart contracts · DeFi" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>14 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Programmable finance</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Smart contracts</em> + DeFi.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Smart contract = code deploy lên blockchain, tự động thực thi khi điều kiện thỏa mãn. DeFi = financial primitives (lending, exchange, derivatives) được build từ smart contracts — không cần intermediary truyền thống.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Rule — Smart contract requirements</span>
+    Để smart contract chạy reliably, cần (1) input <em>deterministic</em> &amp; <em>verifiable on-chain</em> (oracle bridge cho off-chain data), (2) logic <em>không cần discretion</em> (rule-based, không subjective), (3) <em>audit code</em> trước khi deploy — bug = mất tiền vĩnh viễn (DAO hack 2016: $60M), (4) <em>economic alignment</em> — incentives chống manipulation.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Use cases — escrow, lending, derivatives, DAO governance</span>
+        <span class="step-body">Aave, Compound (lending). Uniswap (DEX, AMM). dYdX (perps). MakerDAO (DAI stablecoin). Tất cả non-custodial — user giữ key.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Pros — 24/7, transparent, composable ("money lego")</span>
+        <span class="step-body">Permissionless access globally, mọi giao dịch on-chain visible. Smart contracts có thể call lẫn nhau → product mới build trên product cũ.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Cons — exploits, oracle risk, regulation, UX</span>
+        <span class="step-body">Hack &gt; $5B/yr trong DeFi. Oracle manipulation (Mango Markets 2022). Compliance KYC/AML khó. UX rườm rà cho retail.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — SMART/DEFI</span>
+  </div>
+</section>
+
+
+<!-- 15 · TOKENIZATION -->
+<section data-label="Tokenization" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>15 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Tokenization of assets</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Tokenize</em> the world.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Tokenization = đại diện cho asset (real-world hoặc digital-native) bằng <em>token</em> trên blockchain. Cho phép fractional ownership, 24/7 trading, programmable transfer rules.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Real estate — fractional ownership</span>
+        <span class="step-body">Một toà nhà $100M chia thành 1M tokens × $100. Retail tiếp cận asset class trước đây chỉ institutional. Liquidity tăng, ticket size giảm. Pilot: RealT, Lofty AI, Securitize.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Art &amp; collectibles — provable ownership</span>
+        <span class="step-body">NFT cho fine art (Beeple), luxury goods (Hermès), music royalties. Provenance + royalty enforcement on-chain. Speculative bubble 2021 đã xẹp, use case institutional vẫn tiếp tục.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Securities — Treasuries, equity, fund shares</span>
+        <span class="step-body"><b>BlackRock BUIDL</b> (2024) — tokenized money market fund. JPMorgan Onyx, Franklin Templeton FOBXX. Settlement T+0, on-chain composability. Đây là vùng mainstream nhất tới 2026.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § Lưu ý — tokenize không tự động giải quyết legal ownership. Cần legal wrapper (SPV, trust) để token = enforceable claim trên asset thật. Regulatory clarity (US SEC, EU MiCA) là blocker chính.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — TOKENIZE</span>
+  </div>
+</section>
+
+
+<!-- 16 · REGTECH + PRIVACY + REGULATION -->
+<section data-label="Regtech · regulation" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>16 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Regtech · cybersecurity · regulation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Regtech</em> &amp; the rulebook.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">RT</span>
+      <div>
+        <div class="t"><em class="hi">Regtech</em></div>
+        <div class="d">Tech giúp comply: KYC/AML automation, transaction monitoring, regulatory reporting (MiFID II, EMIR). NLP đọc rules, ML detect suspicious patterns.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CS</span>
+      <div>
+        <div class="t"><em class="hi">Cybersecurity</em></div>
+        <div class="d">Surface attack tăng (cloud, mobile, API). Ransomware vào exchange (Bybit Feb 2025 $1.5B), broker. Investment cybersecurity = chi phí infrastructure mới.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PR</span>
+      <div>
+        <div class="t"><em class="hi">Privacy</em></div>
+        <div class="d">GDPR (EU), CCPA (California), Vietnam PDPL 2023. Data minimization, consent, right-to-be-forgotten — conflict với "store everything" của big data analytics.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">RG</span>
+      <div>
+        <div class="t"><em class="hi">Regulators</em> — SEC, MiFID II, SBV</div>
+        <div class="d"><b>SEC</b> (US) — robo as RIA, crypto as security. <b>EU MiFID II</b> — best execution, algo trading controls. <b>Vietnam SBV</b> — crypto chưa được công nhận, sandbox FinTech 2024.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Recurring tension</span>
+    FinTech nhanh hơn regulation. Innovators dùng "regulatory arbitrage" giữa jurisdictions (Singapore, UAE, Switzerland thân thiện hơn US). Hệ quả: arbitrage có thể mất đi khi luật catch up — mô hình kinh doanh phải <em>regulation-resilient</em>.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — REGTECH</span>
+  </div>
+</section>
+
+
+<!-- 17 · KEY TAKEAWAYS -->
+<section data-label="Recap" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>17 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap · before practice</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
+  </div>
+
+  <div class="takeaway-box" style="margin-top: 20px;">
+    <div class="tlabel">1 · 4 drivers</div>
+    <div class="ttext"><em>Data + Analytics + Connectivity + Mobile</em> cộng hưởng → big data, AI, robo, real-time risk, blockchain.</div>
+  </div>
+
+  <div class="takeaway-box" style="margin-top: 14px;">
+    <div class="tlabel">2 · AI/ML &amp; automation</div>
+    <div class="ttext">NLP cho sentiment, image recognition cho satellite/inventory. Robo-advisor passive (Betterment, Wealthfront, VNDirect) vs hybrid. <em>Aladdin</em>, <em>Bridgewater AI</em> đại diện institutional.</div>
+  </div>
+
+  <div class="takeaway-box" style="margin-top: 14px;">
+    <div class="tlabel">3 · Algo trading</div>
+    <div class="ttext">HFT (sub-ms market making) · stat arb (mean-reversion) · execution algo (VWAP/TWAP/IS) — minimize market impact.</div>
+  </div>
+
+  <div class="takeaway-box" style="margin-top: 14px;">
+    <div class="tlabel">4 · DLT, crypto, smart contracts, tokenization</div>
+    <div class="ttext">DLT thắng khi multi-party + auditability + programmable. Smart contracts power DeFi. Tokenization mở rộng access (BlackRock BUIDL, real estate fractional).</div>
+  </div>
+
+  <div class="takeaway-box" style="margin-top: 14px;">
+    <div class="tlabel">5 · Regulation</div>
+    <div class="ttext">Regtech automation comply. Privacy (GDPR, PDPL VN). Regulators (SEC, MiFID II, SBV) đuổi theo innovation — model phải regulation-resilient.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — RECAP</span>
+  </div>
+</section>
+
+
+<!-- 18 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 EN — FinTech driver / use case -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>19 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Identify the <em class="hi">FinTech</em> use case.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A hedge fund analyst uses <strong>satellite images</strong> of major retailer parking lots, combined with <strong>credit-card transaction feeds</strong>, to <em>nowcast</em> quarterly revenue ahead of company earnings releases. The signals feed an <strong>ML model</strong> that scores stocks systematically. This activity is <em>best</em> described as an application of:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Robo-advisory.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Big data &amp; alternative data analytics.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Distributed ledger technology.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>20 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Satellite images</mark>, <mark>credit-card feeds</mark>, <mark>nowcast</mark>, <mark>ML model</mark>. Đây là dữ liệu <em>non-traditional</em>, scale lớn, real-time.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">"Satellite images" + "credit-card transactions" là signature của <em>alternative data</em> — cốt lõi của big data analytics trong investment management.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Robo-advisor là về <em>portfolio construction cho retail clients</em> — không phải hedge fund signal generation. Loại A.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">DLT là về shared ledger / blockchain. Vignette không nhắc tới ledger, consensus, hay token. Loại C.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q1 DỊCH ĐỀ -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>21 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một hedge fund analyst dùng <strong>ảnh vệ tinh</strong> của parking lot các retailer lớn, kết hợp với <strong>credit-card transaction feeds</strong>, để <em>nowcast</em> quarterly revenue trước khi công ty công bố earnings. Các signal này feed vào một <strong>ML model</strong> để score cổ phiếu một cách systematic. Hoạt động này được mô tả <em>đúng nhất</em> là ứng dụng của:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Robo-advisory.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Big data &amp; alternative data analytics.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Distributed ledger technology.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>22 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Big data &amp; alternative data.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Satellite imagery + credit-card transactions là <b>alternative data</b> kinh điển. Kết hợp với ML để nowcast revenue → đúng định nghĩa <em>big data analytics trong investment management</em>. Đây là alpha source cho hedge fund quant + fundamental discretionary.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Robo-advisor = digital platform tự động <em>portfolio construction</em> cho retail (Betterment, Wealthfront). Vignette nói về hedge fund signal generation cho stock picking, không phải client-facing portfolio service.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">DLT/blockchain liên quan đến shared ledger, consensus, token, smart contract. Vignette không có yếu tố nào trong số này — không có ledger, không có on-chain transfer, chỉ có data analytics.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Phân biệt 3 lĩnh vực FinTech: <em>data analytics</em> (input → signal), <em>robo-advisor</em> (advice/portfolio cho client), <em>DLT</em> (infrastructure ghi nhận sở hữu). CFA L1 hay test conceptual mapping kiểu này.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 EN — Robo-advisor characteristics -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>23 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Robo-advisor <em class="hi">fit</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A 32-year-old engineer with <strong>$60,000</strong> in savings, no dependents, <strong>no complex tax situation</strong>, and a <strong>30-year</strong> investment horizon is choosing between (i) a <em>fully-automated robo-advisor</em> charging 0.25%/yr that uses ETFs, and (ii) a <em>traditional financial advisor</em> charging 1.20%/yr with quarterly meetings. Which statement <strong>best</strong> describes the suitability?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">The traditional advisor is preferable because human advisors always outperform algorithms after fees.</span></li>
+    <li><span class="lbl">B</span><span class="opt">The robo-advisor is well-suited: low fees, long horizon, simple situation — fee gap of 95 bps is a major drag over 30 years.</span></li>
+    <li><span class="lbl">C</span><span class="opt">A robo-advisor cannot legally manage assets in this jurisdiction without a human advisor.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>24 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>32-year-old</mark>, <mark>no dependents</mark>, <mark>no complex tax</mark>, <mark>30-year horizon</mark>. Phí <mark>0.25%</mark> vs <mark>1.20%</mark> = 95 bps gap.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Robo "wins" khi: cost-sensitive + long horizon + simple situation. Đây đúng là profile vignette mô tả.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">95 bps fee drag × 30 năm = compounding lớn. Không có evidence "human always outperform" — empirics ngược lại (đa số underperform sau fees).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Robo-advisor là <em>registered investment advisor</em> với SEC (US) hoặc tương đương. Hoàn toàn legal, không bắt buộc human. Loại C.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q2 DỊCH ĐỀ -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>25 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một engineer 32 tuổi với <strong>$60,000</strong> tiết kiệm, không có người phụ thuộc, <strong>tình huống thuế đơn giản</strong>, và <strong>horizon 30 năm</strong> đang chọn giữa (i) <em>robo-advisor fully-automated</em> phí 0.25%/yr dùng ETFs, và (ii) <em>traditional advisor</em> phí 1.20%/yr với quarterly meetings. Câu nào mô tả suitability <strong>đúng nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Traditional advisor tốt hơn vì human advisors luôn outperform algorithms sau phí.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Robo-advisor phù hợp: phí thấp, horizon dài, situation đơn giản — fee gap 95 bps là drag lớn qua 30 năm.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Robo-advisor không được phép quản lý tài sản theo luật khi không có human advisor.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>26 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Robo well-suited.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Profile <em>cost-sensitive + long-horizon + simple</em> khớp lý tưởng với robo-advisor. Fee gap 95 bps qua 30 năm compound thành <b>~25-30% terminal wealth khác biệt</b> (rule of thumb). Robo cung cấp đủ: ETF allocation, rebalance kỷ luật, tax-loss harvesting tự động.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">"Human luôn outperform" là sai. Empirics SPIVA cho thấy đa số active human-managed strategies underperform benchmark sau fees. Human advisor có giá trị ở behavioral coaching và edge cases — không phải security selection.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Robo-advisor là Registered Investment Advisor (US SEC) hoặc tương đương ở các nước. Hoàn toàn được phép quản lý tài sản — chỉ cần comply với fiduciary duty + suitability rules. Vietnam SBV đang sandbox, framework đang xây.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Robo "fit" khi (1) cost-sensitive, (2) long-horizon, (3) simple situation, (4) ưu tiên discipline &gt; customization. <em>Hybrid</em> cần khi có complex tax, estate planning, behavioral coaching nặng.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 EN — DLT vs centralized -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>27 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">When does <em class="hi">DLT</em> fit?</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A consortium of <strong>five custodian banks</strong> in different jurisdictions wants to settle <strong>cross-border securities transfers</strong> with <strong>auditable history</strong> and reduce <strong>reconciliation costs</strong>. None of the banks fully trusts the others to maintain a single golden record. Which statement <strong>best</strong> evaluates whether DLT adds value?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">DLT adds little value because a traditional centralized database is always faster and cheaper.</span></li>
+    <li><span class="lbl">B</span><span class="opt">DLT is a strong fit: multiple parties without full mutual trust, need for shared truth, immutable audit trail, and programmable settlement logic.</span></li>
+    <li><span class="lbl">C</span><span class="opt">DLT is unsuitable for any regulated financial activity because regulators do not allow distributed ledgers.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>28 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Five custodian banks</mark>, <mark>cross-border</mark>, <mark>auditable history</mark>, <mark>reconciliation costs</mark>, <mark>none fully trusts the others</mark>. Đây là 5/5 conditions ưa thích cho DLT.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Multi-party + low mutual trust → DLT shared ledger thắng centralized database (vì không bên nào muốn đối tác giữ "golden record").</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Cross-border settlement = T+2 truyền thống do hội tụ nhiều intermediary. DLT có thể settle T+0, giảm settlement risk + working capital.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Regulators thực ra <em>khuyến khích</em> DLT trong nhiều jurisdiction (HKMA mBridge, EU DLT pilot regime, Singapore Project Guardian). Loại C.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 29 · Q3 DỊCH ĐỀ -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>29 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một consortium gồm <strong>5 custodian banks</strong> ở các jurisdictions khác nhau muốn settle <strong>cross-border securities transfers</strong> với <strong>auditable history</strong> và giảm <strong>chi phí reconciliation</strong>. Không bank nào fully trust các bên khác giữ một golden record duy nhất. Câu nào <strong>đúng nhất</strong> đánh giá DLT có thêm giá trị hay không?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">DLT giá trị thấp vì traditional centralized database luôn nhanh hơn và rẻ hơn.</span></li>
+    <li><span class="lbl">B</span><span class="opt">DLT phù hợp: nhiều bên không tin nhau hoàn toàn, cần shared truth, immutable audit trail, và programmable settlement logic.</span></li>
+    <li><span class="lbl">C</span><span class="opt">DLT không phù hợp cho bất kỳ regulated financial activity nào vì regulators không cho phép distributed ledger.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 30 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>06.06 — FinTech</span>
+    <span class="rule"></span>
+    <span>30 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Strong DLT fit.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Vignette hits đủ điều kiện: <b>multiple parties</b> (5 banks), <b>low mutual trust</b>, <b>cross-border</b> (chậm + đắt qua intermediary truyền thống), <b>audit trail</b>, <b>reconciliation cost</b> cao. DLT shared ledger giải quyết cả 5 vấn đề. Use case này đúng là project SDX (Swiss), HKMA mBridge.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">"Centralized luôn nhanh+rẻ" sai về tổng thể: với multi-party low-trust, centralized buộc một bên giữ golden record → các bên khác phải reconcile (tốn). DLT loại bỏ reconciliation. Centralized chỉ thắng khi single party hoặc full trust.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Sai về fact. Regulators chủ động sandbox DLT: EU DLT Pilot Regime, MAS Project Guardian, HKMA mBridge, Swiss SDX, BaFin tokenized securities. Vietnam SBV cũng có sandbox FinTech. DLT regulated được — không bị cấm.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Decision rule cho DLT: multi-party + low trust + auditability + cross-jurisdiction + programmable → <em>fit</em>. Single party hoặc full trust hoặc latency-critical → centralized DB tốt hơn. Đừng dùng DLT vì hype.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Portfolio · 06.06 — Introduction to FinTech</span>
+    <span>06.06 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 31 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>06.06 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Hết Module 06 · Topic Portfolio Management — Introduction to FinTech<br>Tiếp theo · Topic 07 — Equity Investments</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

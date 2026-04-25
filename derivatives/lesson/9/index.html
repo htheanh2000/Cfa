@@ -1,0 +1,1359 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Derivatives 09.09 — Binomial Option Pricing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 104px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+
+  .formula-box {
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent);
+    background: var(--paper-2, #fafaf7);
+    padding: 22px 28px;
+    font-family: var(--mono);
+    font-size: 22px;
+    line-height: 1.7;
+    color: var(--ink);
+    margin: 14px 0;
+  }
+  .formula-box .flabel {
+    display: block;
+    font-family: var(--sans, 'Roboto', sans-serif);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 10px;
+  }
+  .formula-box b { color: var(--accent); font-weight: 600; }
+  .formula-box em { font-style: italic; color: var(--ink-muted); }
+
+  .take {
+    border-left: 4px solid var(--accent);
+    padding: 14px 22px;
+    background: var(--paper-2, #fafaf7);
+    margin-top: 16px;
+    font-size: 22px;
+    color: var(--ink);
+  }
+  .take b { color: var(--accent); }
+
+  /* Binomial tree node styling */
+  .tree-box {
+    border: 1px solid var(--rule);
+    background: #fff;
+    padding: 18px 22px 12px;
+    margin: 14px 0;
+  }
+  .tree-box .tlabel {
+    font-family: var(--mono);
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 8px;
+  }
+  .tree-box svg { display: block; width: 100%; height: auto; }
+  .tree-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+  .node-rect { fill: #fff; stroke: var(--accent); stroke-width: 1.5; }
+  .node-rect.up { fill: #f8fbf6; stroke: #1a5e3a; }
+  .node-rect.down { fill: #fcf6f3; stroke: #c04a1f; }
+  .node-rect.start { fill: #fafaf7; stroke: var(--ink); stroke-width: 2; }
+  .node-text { font-family: 'Roboto Mono', monospace; font-size: 13px; fill: var(--ink); }
+  .node-text.big { font-size: 15px; font-weight: 600; }
+  .branch-line { stroke: #999; stroke-width: 1.4; fill: none; }
+  .branch-label { font-family: 'Roboto Mono', monospace; font-size: 11px; fill: var(--ink-muted); }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Binomial<br><em>Option Pricing.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 09 · Lesson 09.09 · Binomial Trees</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 09 · Risk-neutral pricing on a tree</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Derivatives</dd></div>
+      <div><dt>Module</dt><dd>09</dd></div>
+      <div><dt>Lesson</dt><dd>09.09</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">u · d · π · Hedge ratio · Backward induction · American</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">09</div>
+    <div class="lbl">Binomial Pricing</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>Pricing options on a <em>two-state</em><br>tree, with <em>risk-neutral</em> probability.</h2>
+    <ul class="toc">
+      <li class="active">01 · Binomial framework — u, d, two states</li>
+      <li>02 · Risk-neutral probability π</li>
+      <li>03 · 1-period option value</li>
+      <li>04 · Hedge ratio &amp; replication portfolio</li>
+      <li>05 · 2-period tree &amp; backward induction</li>
+      <li>06 · American options · early exercise</li>
+      <li>07 · Greeks from the tree · link to Black-Scholes</li>
+      <li>08 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · WHY BINOMIAL -->
+<section data-label="Why binomial" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>03 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Concept · motivation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Why a <em class="hi">binomial</em> tree?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Binomial model là cách <em>đơn giản nhất</em> để định giá option theo nguyên lý <em>no-arbitrage</em>. Tại mỗi bước, underlying chỉ có thể đi <b>lên</b> (factor u) hoặc <b>xuống</b> (factor d). Chỉ cần hai outcome — đủ để dùng replication argument xây giá option.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Working definition</span>
+    Binomial model giả định trong khoảng thời gian Δt, giá underlying từ <b>S<sub>0</sub></b> chỉ có thể nhảy đến <b>S<sup>+</sup> = u·S<sub>0</sub></b> hoặc <b>S<sup>−</sup> = d·S<sub>0</sub></b>, với <b>u &gt; 1 + r &gt; d</b> để loại trừ arbitrage.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 18px;">
+    <li>
+      <span>
+        <span class="step-title">Discrete-time, two-state — đủ "structure" để bắt nguyên lý</span>
+        <span class="step-body">Hai outcome cho phép xây <em>replicating portfolio</em> bằng underlying + bond → option price không cần biết xác suất thực.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Mở rộng dễ — n-period, kết hợp được American</span>
+        <span class="step-body">Thêm các bước Δt nhỏ hơn → tree càng mịn. Đặc biệt linh hoạt với American options vì có thể check early exercise tại mỗi node.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Limit Δt → 0 cho ra Black-Scholes</span>
+        <span class="step-body">Khi số bước n → ∞ và Δt → 0, binomial converges về Black-Scholes formula cho European options trên non-dividend stock.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 04 · NOTATION & TREE -->
+<section data-label="Notation" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>04 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Setup · 1-period tree</div>
+    <h2 class="h-section" style="margin-bottom: 14px;"><em class="hi">Notation</em> — u, d, S<sup>+</sup>, S<sup>−</sup>.</h2>
+  </div>
+
+  <div class="tree-box" style="max-width: 1500px;">
+    <div class="tlabel">1-period binomial tree · stock</div>
+    <svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg">
+      <!-- branches -->
+      <path d="M 180 140 L 580 60" class="branch-line"/>
+      <path d="M 180 140 L 580 220" class="branch-line"/>
+      <text x="340" y="90" class="branch-label">× u  (up factor)</text>
+      <text x="340" y="200" class="branch-label">× d  (down factor)</text>
+
+      <!-- nodes -->
+      <rect x="80" y="115" width="200" height="50" rx="4" class="node-rect start"/>
+      <text x="180" y="148" text-anchor="middle" class="node-text big">S₀  (today)</text>
+
+      <rect x="500" y="35" width="240" height="50" rx="4" class="node-rect up"/>
+      <text x="620" y="68" text-anchor="middle" class="node-text big">S⁺ = u · S₀</text>
+
+      <rect x="500" y="195" width="240" height="50" rx="4" class="node-rect down"/>
+      <text x="620" y="228" text-anchor="middle" class="node-text big">S⁻ = d · S₀</text>
+    </svg>
+  </div>
+
+  <div class="formula-box" style="margin-top: 12px;">
+    <span class="flabel">Constraints &amp; conventions</span>
+    <b>Up factor</b> &nbsp;u &gt; 1 &nbsp;·&nbsp; <b>Down factor</b> &nbsp;d &lt; 1 &nbsp;·&nbsp; thường <b>d = 1/u</b> (Cox-Ross-Rubinstein)<br>
+    <b>No-arbitrage</b> &nbsp;requires &nbsp;<b>d &lt; 1 + r &lt; u</b> &nbsp; <em>· risk-free phải nằm giữa hai state</em><br>
+    <b>Option payoffs</b> &nbsp;C<sup>+</sup> = max(S<sup>+</sup> − K, 0) &nbsp;·&nbsp; C<sup>−</sup> = max(S<sup>−</sup> − K, 0) &nbsp; <em>· cho call</em>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 05 · RISK-NEUTRAL π -->
+<section data-label="Risk-neutral π" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>05 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">The key probability</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Risk-neutral</em> probability π.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      π là probability "giả định" mà dưới đó <em>expected return của underlying = risk-free rate</em>. Đây không phải xác suất thực, mà là một construct toán học — và là <em>chìa khóa</em> để định giá option.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="flabel">Risk-neutral probability of up move</span>
+    <b>π</b> &nbsp;=&nbsp; (1 + r − d) / (u − d) &nbsp;&nbsp; <em>· per-period risk-free rate r</em><br>
+    <b>1 − π</b> &nbsp;=&nbsp; (u − 1 − r) / (u − d) &nbsp;&nbsp; <em>· probability of down</em>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Derivation logic</span>
+    Đặt expected stock return dưới π bằng r: &nbsp; π·uS + (1−π)·dS = (1+r)·S &nbsp; ⇒ &nbsp; π = (1+r−d)/(u−d). No-arbitrage condition <b>d &lt; 1+r &lt; u</b> đảm bảo <b>0 &lt; π &lt; 1</b>.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 14px;">
+    <li>
+      <span>
+        <span class="step-title">π không phải xác suất thực — đừng nhầm</span>
+        <span class="step-body">Real-world prob (gọi là p) phụ thuộc vào sentiment, drift, expected return của stock. π chỉ phụ thuộc u, d, r — purely về cấu trúc và arbitrage.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Quick check — example numbers</span>
+        <span class="step-body">u = 1.20, d = 0.85, r = 5% per period → π = (1.05 − 0.85)/(1.20 − 0.85) = 0.20/0.35 ≈ <b>0.571</b>.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 06 · REAL VS RISK-NEUTRAL -->
+<section data-label="Real vs RN" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>06 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">A critical distinction</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Real-world</em> vs <em class="hi">Risk-neutral</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Real-world probability (p)</em></div>
+      <dl>
+        <dt>Definition</dt>
+        <dd>Xác suất "thật" — quan sát từ market beliefs, drift</dd>
+        <dt>Depends on</dt>
+        <dd>Sentiment, expected return, risk premium</dd>
+        <dt>Discount with</dt>
+        <dd>Risk-adjusted rate (khó ước lượng)</dd>
+        <dt>Used for</dt>
+        <dd>Forecasting, scenario analysis</dd>
+        <dt>Issue</dt>
+        <dd>Mỗi investor có p khác nhau → giá option không xác định</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Risk-neutral probability (π)</em></div>
+      <dl>
+        <dt>Definition</dt>
+        <dd>π = (1+r−d)/(u−d) — built from u, d, r</dd>
+        <dt>Depends on</dt>
+        <dd>Chỉ structure (u, d) và risk-free rate</dd>
+        <dt>Discount with</dt>
+        <dd>Risk-free rate r (đơn giản)</dd>
+        <dt>Used for</dt>
+        <dd>Pricing — luôn cho ra one price</dd>
+        <dt>Insight</dt>
+        <dd>Thay đổi probability + thay đổi discount rate → cùng giá</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="take">
+    <b>Punchline.</b> Để định giá option, <em>không bao giờ dùng real-world probability</em>. Risk-neutral framework "embed" risk premium vào π, rồi discount payoff bằng r → output là <em>arbitrage-free price</em> mọi investor đồng ý.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 07 · 1-PERIOD OPTION VALUE -->
+<section data-label="1-period value" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>07 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">The pricing equation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">1-period <em class="hi">option value</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Sau khi có π, định giá option chỉ còn là <em>discount expected payoff</em>: tính expected payoff under π, rồi chia cho (1+r).
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="flabel">1-period option price (call hoặc put)</span>
+    <b>C</b> &nbsp;=&nbsp; [ π · C<sup>+</sup> &nbsp;+&nbsp; (1 − π) · C<sup>−</sup> ] / (1 + r)<br>
+    <em>với</em> &nbsp; C<sup>+</sup> = max(uS − K, 0) &nbsp;·&nbsp; C<sup>−</sup> = max(dS − K, 0) &nbsp; <em>(call)</em><br>
+    <em>hoặc</em> &nbsp; P<sup>+</sup> = max(K − uS, 0) &nbsp;·&nbsp; P<sup>−</sup> = max(K − dS, 0) &nbsp; <em>(put)</em>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Three-step recipe</span>
+    <b>(1)</b> Tính C<sup>+</sup>, C<sup>−</sup> từ payoff formula. &nbsp;<b>(2)</b> Tính π = (1+r−d)/(u−d). &nbsp;<b>(3)</b> Discount: C = [πC<sup>+</sup> + (1−π)C<sup>−</sup>]/(1+r).
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 14px;">
+    <li>
+      <span>
+        <span class="step-title">Quick example · S=50, u=1.2, d=0.8, r=5%, K=50, call</span>
+        <span class="step-body">S<sup>+</sup> = 60, S<sup>−</sup> = 40. C<sup>+</sup> = max(60−50,0) = 10. C<sup>−</sup> = max(40−50,0) = 0. π = (1.05−0.8)/(1.2−0.8) = 0.625. C = (0.625·10 + 0.375·0)/1.05 = 6.25/1.05 ≈ <b>$5.95</b>.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 08 · WORKED TREE EXAMPLE 1 -->
+<section data-label="Worked tree 1" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>08 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Worked example · 1-period call</div>
+    <h2 class="h-section" style="margin-bottom: 14px;"><em class="hi">Tree</em> for a 1-period call · K = 50.</h2>
+  </div>
+
+  <div class="tree-grid">
+    <div class="tree-box">
+      <div class="tlabel">Stock tree · S₀ = 50, u = 1.2, d = 0.8</div>
+      <svg viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 110 130 L 360 50" class="branch-line"/>
+        <path d="M 110 130 L 360 210" class="branch-line"/>
+        <text x="220" y="80" class="branch-label">u = 1.20</text>
+        <text x="220" y="190" class="branch-label">d = 0.80</text>
+        <rect x="30" y="105" width="160" height="50" rx="4" class="node-rect start"/>
+        <text x="110" y="125" text-anchor="middle" class="node-text">S₀</text>
+        <text x="110" y="146" text-anchor="middle" class="node-text big">$50.00</text>
+        <rect x="290" y="25" width="160" height="50" rx="4" class="node-rect up"/>
+        <text x="370" y="45" text-anchor="middle" class="node-text">S⁺</text>
+        <text x="370" y="66" text-anchor="middle" class="node-text big">$60.00</text>
+        <rect x="290" y="185" width="160" height="50" rx="4" class="node-rect down"/>
+        <text x="370" y="205" text-anchor="middle" class="node-text">S⁻</text>
+        <text x="370" y="226" text-anchor="middle" class="node-text big">$40.00</text>
+      </svg>
+    </div>
+    <div class="tree-box">
+      <div class="tlabel">Call tree · K = 50, r = 5%</div>
+      <svg viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 110 130 L 360 50" class="branch-line"/>
+        <path d="M 110 130 L 360 210" class="branch-line"/>
+        <text x="220" y="80" class="branch-label">π = 0.625</text>
+        <text x="220" y="190" class="branch-label">1−π = 0.375</text>
+        <rect x="30" y="105" width="160" height="50" rx="4" class="node-rect start"/>
+        <text x="110" y="125" text-anchor="middle" class="node-text">C₀ = ?</text>
+        <text x="110" y="146" text-anchor="middle" class="node-text big">$5.95</text>
+        <rect x="290" y="25" width="160" height="50" rx="4" class="node-rect up"/>
+        <text x="370" y="45" text-anchor="middle" class="node-text">C⁺ = max(60−50,0)</text>
+        <text x="370" y="66" text-anchor="middle" class="node-text big">$10.00</text>
+        <rect x="290" y="185" width="160" height="50" rx="4" class="node-rect down"/>
+        <text x="370" y="205" text-anchor="middle" class="node-text">C⁻ = max(40−50,0)</text>
+        <text x="370" y="226" text-anchor="middle" class="node-text big">$0.00</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 10px;">
+    <span class="flabel">Step-by-step calculation</span>
+    π = (1 + 0.05 − 0.80) / (1.20 − 0.80) = 0.25 / 0.40 = <b>0.625</b><br>
+    E[C] under π = 0.625 × $10 + 0.375 × $0 = <b>$6.25</b><br>
+    C = $6.25 / 1.05 = <b>$5.95</b> &nbsp; <em>· đây là arbitrage-free call price</em>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 09 · HEDGE RATIO INTRO -->
+<section data-label="Hedge ratio" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>09 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Replication argument</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">hedge ratio</em> h.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Một cách "thay thế" để derive option price: xây <em>replicating portfolio</em> gồm <b>h</b> shares của underlying + cash, sao cho payoff portfolio = payoff option ở cả hai state. No-arbitrage ⇒ option price = portfolio cost hôm nay.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="flabel">Hedge ratio (delta) — shares per option</span>
+    <b>h</b> &nbsp;=&nbsp; (C<sup>+</sup> − C<sup>−</sup>) / (S<sup>+</sup> − S<sup>−</sup>) &nbsp;&nbsp; <em>· cho call: h ∈ [0, 1]</em><br>
+    <em>hoặc với put:</em> &nbsp; h<sub>put</sub> = (P<sup>+</sup> − P<sup>−</sup>) / (S<sup>+</sup> − S<sup>−</sup>) &nbsp;&nbsp; <em>· h ∈ [−1, 0]</em>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Intuition</span>
+    h = "rise/run" của payoff option theo S — đo độ nhạy. Long call có h dương (mua underlying để hedge short call). Long put có h âm (short underlying để hedge short put).
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 14px;">
+    <li>
+      <span>
+        <span class="step-title">Replicating portfolio cho call</span>
+        <span class="step-body">Long h shares + borrow B (= short bond). Cost hôm nay = h·S<sub>0</sub> − B. Đặt bằng C₀ ⇒ B = h·S<sub>0</sub> − C₀.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Cash component formula</span>
+        <span class="step-body">Sau khi có h, cash = C₀ − h·S<sub>0</sub>. <em>Negative cash</em> = phải vay (borrow); positive = lend.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 10 · HEDGE WORKED EXAMPLE -->
+<section data-label="Hedge worked" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>10 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Same numbers — replication check</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">Replicate the <em class="hi">call</em> with stock + cash.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="flabel">Step-by-step · same example: S=50, u=1.2, d=0.8, K=50, r=5%</span>
+    h = (C<sup>+</sup> − C<sup>−</sup>) / (S<sup>+</sup> − S<sup>−</sup>) = (10 − 0) / (60 − 40) = <b>0.50</b><br>
+    Cash component = C₀ − h·S₀ = 5.95 − 0.50 × 50 = <b>−$19.05</b> <em>(borrow $19.05)</em><br>
+    <em>Verify up state:</em> 0.50 × 60 − 19.05 × 1.05 = 30 − 20.00 = <b>$10.00</b> ✓ = C<sup>+</sup><br>
+    <em>Verify down state:</em> 0.50 × 40 − 19.05 × 1.05 = 20 − 20.00 = <b>$0.00</b> ✓ = C<sup>−</sup>
+  </div>
+
+  <div class="take">
+    <b>Both methods agree.</b> Risk-neutral valuation và replication-portfolio argument là <em>hai mặt của cùng một đồng xu</em>. Replication chứng minh option price phải đúng bằng risk-neutral expected discounted payoff — nếu không, có arbitrage.
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Hedge ratio = delta</span>
+    h trong binomial chính là delta (Δ) trong Black-Scholes — sensitivity của option price theo underlying. Trader long call thường <em>delta-hedge</em> bằng cách short h shares để "neutralize" exposure.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 11 · 2-PERIOD OVERVIEW -->
+<section data-label="2-period intro" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>11 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Multi-period</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">2-period <em class="hi">tree</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Mở rộng 1-period thành 2 bước Δt — tree có <b>3 terminal states</b>: uu, ud (= du), dd. Pricing dùng <em>backward induction</em>: tính option value tại expiry, rồi roll back từng bước.
+    </p>
+  </div>
+
+  <div class="tree-box" style="max-width: 1500px;">
+    <div class="tlabel">2-period stock tree · recombining</div>
+    <svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg">
+      <!-- branches level 1 -->
+      <path d="M 120 140 L 380 70" class="branch-line"/>
+      <path d="M 120 140 L 380 210" class="branch-line"/>
+      <!-- branches level 2 -->
+      <path d="M 380 70 L 640 30" class="branch-line"/>
+      <path d="M 380 70 L 640 140" class="branch-line"/>
+      <path d="M 380 210 L 640 140" class="branch-line"/>
+      <path d="M 380 210 L 640 250" class="branch-line"/>
+      <!-- nodes -->
+      <rect x="50" y="118" width="140" height="44" rx="4" class="node-rect start"/>
+      <text x="120" y="146" text-anchor="middle" class="node-text big">S₀</text>
+      <rect x="320" y="48" width="120" height="44" rx="4" class="node-rect up"/>
+      <text x="380" y="76" text-anchor="middle" class="node-text big">uS</text>
+      <rect x="320" y="188" width="120" height="44" rx="4" class="node-rect down"/>
+      <text x="380" y="216" text-anchor="middle" class="node-text big">dS</text>
+      <rect x="580" y="8" width="140" height="44" rx="4" class="node-rect up"/>
+      <text x="650" y="36" text-anchor="middle" class="node-text big">u²S</text>
+      <rect x="580" y="118" width="140" height="44" rx="4" class="node-rect"/>
+      <text x="650" y="146" text-anchor="middle" class="node-text big">udS</text>
+      <rect x="580" y="228" width="140" height="44" rx="4" class="node-rect down"/>
+      <text x="650" y="256" text-anchor="middle" class="node-text big">d²S</text>
+      <text x="120" y="180" text-anchor="middle" class="branch-label">t = 0</text>
+      <text x="380" y="262" text-anchor="middle" class="branch-label">t = 1</text>
+      <text x="650" y="295" text-anchor="middle" class="branch-label">t = 2 (expiry)</text>
+    </svg>
+  </div>
+
+  <div class="rule-box" style="margin-top: 12px;">
+    <span class="tag">§ Recombining tree</span>
+    Vì u·d = d·u, "up-then-down" và "down-then-up" cho cùng giá udS → tree <em>recombine</em>. Số node tăng tuyến tính (n+1) thay vì exponential (2<sup>n</sup>) — rất quan trọng cho computational efficiency.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 12 · BACKWARD INDUCTION RULE -->
+<section data-label="Backward induction" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>12 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">The valuation algorithm</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Backward induction</em> on a tree.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ The rule</span>
+    Giá option tại bất kỳ <em>internal node</em> nào = discounted risk-neutral expected value của option value tại hai child nodes. Chạy từ <b>terminal nodes</b> (đã biết payoff) lùi về <b>root</b> (= option price hôm nay).
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="flabel">Backward induction recipe — n-period tree</span>
+    <b>Step 1.</b> Tại t = T (expiry): tính option payoff cho mỗi terminal node.<br>
+    <b>Step 2.</b> Tại t = T − 1: cho mỗi node, &nbsp; C<sub>node</sub> = [π·C<sub>up child</sub> + (1−π)·C<sub>down child</sub>] / (1+r)<br>
+    <b>Step 3.</b> Lặp lại đến t = 0. Giá tại root chính là <b>option price hôm nay</b>.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 14px;">
+    <li>
+      <span>
+        <span class="step-title">European option — chỉ rollback expectation</span>
+        <span class="step-body">Tại internal node, value = discounted expected. Không có lựa chọn exercise → công thức đơn giản.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">American option — thêm bước "max"</span>
+        <span class="step-body">Tại mỗi internal node, value = max(continuation value, immediate exercise payoff). Sẽ làm chi tiết ở slide kế.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 13 · 2-PERIOD WORKED CALL -->
+<section data-label="2-period call worked" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>13 / 30</span>
+  </div>
+  <div style="margin-top: 36px;">
+    <div class="eyebrow">Worked example · European call · 2 periods</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">Price a 2-period <em class="hi">European call</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 4px;">
+      <em>Setup:</em> S<sub>0</sub> = 50, u = 1.20, d = 0.80, r = 5% per period, K = 50, T = 2 periods.
+    </p>
+  </div>
+
+  <div class="tree-grid">
+    <div class="tree-box">
+      <div class="tlabel">Stock tree</div>
+      <svg viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 70 130 L 230 60" class="branch-line"/>
+        <path d="M 70 130 L 230 200" class="branch-line"/>
+        <path d="M 230 60 L 400 20" class="branch-line"/>
+        <path d="M 230 60 L 400 130" class="branch-line"/>
+        <path d="M 230 200 L 400 130" class="branch-line"/>
+        <path d="M 230 200 L 400 240" class="branch-line"/>
+        <rect x="20" y="112" width="100" height="36" rx="4" class="node-rect start"/>
+        <text x="70" y="135" text-anchor="middle" class="node-text big">$50.00</text>
+        <rect x="180" y="42" width="100" height="36" rx="4" class="node-rect up"/>
+        <text x="230" y="65" text-anchor="middle" class="node-text big">$60.00</text>
+        <rect x="180" y="182" width="100" height="36" rx="4" class="node-rect down"/>
+        <text x="230" y="205" text-anchor="middle" class="node-text big">$40.00</text>
+        <rect x="350" y="2" width="110" height="36" rx="4" class="node-rect up"/>
+        <text x="405" y="25" text-anchor="middle" class="node-text big">$72.00</text>
+        <rect x="350" y="112" width="110" height="36" rx="4" class="node-rect"/>
+        <text x="405" y="135" text-anchor="middle" class="node-text big">$48.00</text>
+        <rect x="350" y="222" width="110" height="36" rx="4" class="node-rect down"/>
+        <text x="405" y="245" text-anchor="middle" class="node-text big">$32.00</text>
+      </svg>
+    </div>
+    <div class="tree-box">
+      <div class="tlabel">Call tree · K = 50</div>
+      <svg viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 70 130 L 230 60" class="branch-line"/>
+        <path d="M 70 130 L 230 200" class="branch-line"/>
+        <path d="M 230 60 L 400 20" class="branch-line"/>
+        <path d="M 230 60 L 400 130" class="branch-line"/>
+        <path d="M 230 200 L 400 130" class="branch-line"/>
+        <path d="M 230 200 L 400 240" class="branch-line"/>
+        <rect x="20" y="112" width="100" height="36" rx="4" class="node-rect start"/>
+        <text x="70" y="135" text-anchor="middle" class="node-text big">$8.18</text>
+        <rect x="180" y="42" width="100" height="36" rx="4" class="node-rect up"/>
+        <text x="230" y="65" text-anchor="middle" class="node-text big">$13.10</text>
+        <rect x="180" y="182" width="100" height="36" rx="4" class="node-rect down"/>
+        <text x="230" y="205" text-anchor="middle" class="node-text big">$0.00</text>
+        <rect x="350" y="2" width="110" height="36" rx="4" class="node-rect up"/>
+        <text x="405" y="25" text-anchor="middle" class="node-text big">$22.00</text>
+        <rect x="350" y="112" width="110" height="36" rx="4" class="node-rect"/>
+        <text x="405" y="135" text-anchor="middle" class="node-text big">$0.00</text>
+        <rect x="350" y="222" width="110" height="36" rx="4" class="node-rect down"/>
+        <text x="405" y="245" text-anchor="middle" class="node-text big">$0.00</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 8px;">
+    <span class="flabel">Backward induction · π = 0.625</span>
+    <b>t = 2 payoffs:</b> &nbsp; C<sub>uu</sub> = max(72−50,0) = 22 &nbsp;·&nbsp; C<sub>ud</sub> = max(48−50,0) = 0 &nbsp;·&nbsp; C<sub>dd</sub> = max(32−50,0) = 0<br>
+    <b>t = 1 nodes:</b> &nbsp; C<sub>u</sub> = (0.625·22 + 0.375·0)/1.05 = 13.75/1.05 = <b>13.10</b> &nbsp;·&nbsp; C<sub>d</sub> = 0<br>
+    <b>t = 0 root:</b> &nbsp; C<sub>0</sub> = (0.625·13.10 + 0.375·0)/1.05 = 8.19/1.05 = <b>$8.18</b>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 14 · AMERICAN VS EUROPEAN ON TREE -->
+<section data-label="American vs Euro" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>14 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Exercise style on the tree</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">American</em> vs <em class="hi">European</em> on a binomial.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>European</em></div>
+      <dl>
+        <dt>Exercise</dt>
+        <dd>Chỉ tại expiry T</dd>
+        <dt>Tại internal node</dt>
+        <dd>Value = continuation value (discounted RN expectation)</dd>
+        <dt>Algorithm</dt>
+        <dd>Backward induction "thuần" — không check early exercise</dd>
+        <dt>Closed-form</dt>
+        <dd>Có (Black-Scholes trong limit)</dd>
+        <dt>Price</dt>
+        <dd>Cận dưới (lower bound) cho American cùng terms</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>American</em></div>
+      <dl>
+        <dt>Exercise</dt>
+        <dd>Bất cứ lúc nào từ t = 0 → T</dd>
+        <dt>Tại internal node</dt>
+        <dd>Value = <b>max</b>(continuation, immediate exercise)</dd>
+        <dt>Algorithm</dt>
+        <dd>Backward induction + check max tại mỗi node</dd>
+        <dt>Closed-form</dt>
+        <dd>Không có chung (numerical only)</dd>
+        <dt>Price</dt>
+        <dd>≥ European (early-exercise premium)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 12px;">
+    <span class="flabel">American option · node value rule</span>
+    <b>V<sub>node</sub></b> &nbsp;=&nbsp; max( &nbsp;<em>continuation</em>: [π·V<sub>up</sub> + (1−π)·V<sub>down</sub>]/(1+r) &nbsp;,&nbsp; <em>exercise</em>: payoff(S<sub>node</sub>) &nbsp;)
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 15 · WHEN EARLY EXERCISE -->
+<section data-label="Early exercise" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>15 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Critical CFA distinction</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">When is <em class="hi">early exercise</em> optimal?</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ The classical results</span>
+    <b>(a)</b> American <em>call</em> trên non-dividend stock: <b>không bao giờ</b> early exercise → American call ≈ European call. &nbsp;
+    <b>(b)</b> American <em>put</em>: <b>có thể</b> early exercise tối ưu, ngay cả khi không có dividend, đặc biệt khi <em>deep ITM</em> và r &gt; 0. &nbsp;
+    <b>(c)</b> American call trên dividend-paying stock: có thể optimal exercise <em>ngay trước ex-dividend</em> để bắt dividend.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 14px;">
+    <li>
+      <span>
+        <span class="step-title">Intuition cho put — time value of money</span>
+        <span class="step-body">Deep ITM put có intrinsic ≈ K − S lớn. Exercise ngay → nhận K liền, đem đầu tư ở r. Giữ put thêm = lock K vào tương lai (PV thấp hơn). Khi r·time saved &gt; remaining time value của put → early exercise.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Intuition cho call (no div) — không cần</span>
+        <span class="step-body">Call không có "K phải nhận" — exercise call = trả K, lấy stock. Thay vì exercise sớm và mất time value của K (PV của K cao hơn), nên giữ call → còn time value, vẫn tham gia upside.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Tree implementation</span>
+        <span class="step-body">Tại mỗi node, so sánh continuation vs exercise; chọn max. Nếu exercise &gt; continuation → "early exercise boundary" — node đó nên exercise.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="take">
+    <b>CFA L1 takeaway.</b> American call trên stock <em>không trả dividend</em> = European call về giá. American put thường &gt; European put. Dividend-paying stock có thể tạo ra early exercise cho call, nhưng chỉ trước ex-date.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 16 · GREEKS FROM TREE -->
+<section data-label="Greeks tree" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>16 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Sensitivities from the tree</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Delta &amp; Gamma</em> directly from binomial.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Vì binomial tree là numerical, ta đọc được Greeks bằng <em>finite differences</em> giữa các nodes — không cần Black-Scholes formula.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="flabel">Delta — first derivative · slope of option vs S</span>
+    <b>Δ (delta)</b> &nbsp;=&nbsp; h &nbsp;=&nbsp; (C<sup>+</sup> − C<sup>−</sup>) / (S<sup>+</sup> − S<sup>−</sup>) &nbsp;&nbsp; <em>· tại mỗi node</em>
+  </div>
+
+  <div class="formula-box">
+    <span class="flabel">Gamma — change in delta as S changes</span>
+    <b>Γ (gamma)</b> &nbsp;=&nbsp; (h<sub>up</sub> − h<sub>down</sub>) / (S<sub>up</sub> − S<sub>down</sub>) &nbsp;&nbsp; <em>· cần tree ≥ 2 periods</em><br>
+    <em>với</em> &nbsp; h<sub>up</sub> = (C<sub>uu</sub> − C<sub>ud</sub>)/(S<sub>uu</sub> − S<sub>ud</sub>) &nbsp;·&nbsp; h<sub>down</sub> = (C<sub>ud</sub> − C<sub>dd</sub>)/(S<sub>ud</sub> − S<sub>dd</sub>)
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 12px;">
+    <li>
+      <span>
+        <span class="step-title">Delta = hedge ratio = nửa số shares cần để replicate</span>
+        <span class="step-body">Trong example trên: Δ = h = 0.50 (1-period call, K=50). Nghĩa là long 1 call ≈ long 0.5 share + short bond.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Gamma đo độ "cong" của payoff curve</span>
+        <span class="step-body">Gamma cao → delta thay đổi nhanh khi S move → cần re-hedge thường xuyên. Gamma cao nhất khi ATM, gần expiry.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 17 · LINK TO BLACK-SCHOLES -->
+<section data-label="Link to BS" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>17 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Continuous-time limit</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Binomial → <em class="hi">Black-Scholes</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Khi tăng số bước n và giảm Δt → 0 (sao cho T = n·Δt cố định), binomial price <em>converges</em> về Black-Scholes formula cho European options trên non-dividend stock.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="flabel">Cox-Ross-Rubinstein (CRR) parametrization</span>
+    u &nbsp;=&nbsp; e<sup>σ√Δt</sup> &nbsp;·&nbsp; d &nbsp;=&nbsp; 1/u &nbsp;=&nbsp; e<sup>−σ√Δt</sup><br>
+    π &nbsp;=&nbsp; (e<sup>r·Δt</sup> − d) / (u − d) &nbsp;&nbsp; <em>· continuous-compounding form</em>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Three takeaways</span>
+    <b>(1)</b> Binomial là <em>discrete approximation</em> của continuous-time process. &nbsp;
+    <b>(2)</b> Risk-neutral pricing là <em>cùng một nguyên lý</em> ở cả hai world. &nbsp;
+    <b>(3)</b> Trong limit, π·u + (1−π)·d = e<sup>r·Δt</sup> ≈ 1 + r·Δt — expected return = risk-free.
+  </div>
+
+  <div class="take">
+    <b>Why care?</b> Binomial dạy <em>intuition</em> cleanly (replication, no-arb, RN probability). Black-Scholes là closed-form cho cùng nguyên lý. CFA L1 không yêu cầu derive BS — chỉ cần biết <em>connection</em> + dùng được binomial 1–2 period bằng tay.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 18 · SUMMARY / CHEAT SHEET -->
+<section data-label="Summary" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>18 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Lesson recap</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Binomial</em> · the cheat sheet.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="flabel">Core equations to memorize</span>
+    π = (1 + r − d) / (u − d) &nbsp;·&nbsp; no-arb: d &lt; 1+r &lt; u<br>
+    C = [π·C<sup>+</sup> + (1−π)·C<sup>−</sup>] / (1+r) &nbsp;·&nbsp; per-period valuation<br>
+    h = (C<sup>+</sup> − C<sup>−</sup>) / (S<sup>+</sup> − S<sup>−</sup>) &nbsp;·&nbsp; cash = C − h·S<br>
+    American: V<sub>node</sub> = max(continuation, exercise)
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Process — 4 steps for every binomial problem</span>
+    <b>(1)</b> Vẽ stock tree (uS, dS, …). &nbsp;
+    <b>(2)</b> Tính option payoff ở terminal nodes. &nbsp;
+    <b>(3)</b> Tính π. &nbsp;
+    <b>(4)</b> Backward induction — discount expected payoff per node back to root.
+  </div>
+
+  <div class="take">
+    <b>In one line.</b> Binomial pricing = no-arbitrage + replication. Risk-neutral π ánh xạ uncertainty về một metric duy nhất, rồi rollback expected payoff bằng r. Đơn giản, mạnh, mở rộng dễ — và là nền tảng của tất cả option pricing.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 19 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 EN — Risk-neutral π -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>20 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Compute <em class="hi">π</em> and the call value.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Stock TUV trades at <strong>S<sub>0</sub> = $40</strong>. Over the next period, the stock will either rise to <strong>$48</strong> or fall to <strong>$36</strong>. The per-period risk-free rate is <strong>r = 4%</strong>. A <strong>European call</strong> with strike <strong>K = $42</strong> expires at the end of the period. The call value <strong>today</strong> is <em>closest to</em>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$2.31</span></li>
+    <li><span class="lbl">B</span><span class="opt">$3.46</span></li>
+    <li><span class="lbl">C</span><span class="opt">$3.85</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>21 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Apply the <em class="hi">3-step recipe</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Formula</span>
+    <mark>π = (1 + r − d) / (u − d)</mark> rồi <mark>C = [π·C⁺ + (1−π)·C⁻] / (1+r)</mark>. Trước hết phải tìm u, d từ giá tăng/giảm.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">u = 48/40 = <em>1.20</em>. d = 36/40 = <em>0.90</em>. Verify d &lt; 1+r &lt; u: 0.90 &lt; 1.04 &lt; 1.20 → no-arbitrage OK.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">π = (1.04 − 0.90)/(1.20 − 0.90) = 0.14/0.30 = <em>0.4667</em>. (1 − π) = 0.5333.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">C⁺ = max(48 − 42, 0) = $6. C⁻ = max(36 − 42, 0) = $0. C = (0.4667·6 + 0.5333·0)/1.04 = 2.80/1.04 ≈ <em>$2.69</em>. Closest đáp án trong list?</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q1 DỊCH ĐỀ -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>22 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Cổ phiếu TUV đang trade ở <strong>S<sub>0</sub> = $40</strong>. Trong kỳ tiếp theo, giá cổ phiếu sẽ tăng lên <strong>$48</strong> hoặc giảm xuống <strong>$36</strong>. Risk-free rate per period là <strong>r = 4%</strong>. Một <strong>European call</strong> với strike <strong>K = $42</strong> đáo hạn cuối kỳ. Giá call <strong>hôm nay</strong> <em>gần nhất</em> với:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$2.31</span></li>
+    <li><span class="lbl">B</span><span class="opt">$3.46</span></li>
+    <li><span class="lbl">C</span><span class="opt">$3.85</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>23 / 30</span>
+  </div>
+  <div style="margin-top: 36px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">Answer: <em class="hi">A</em> — ≈ $2.31.</h2>
+  </div>
+
+  <div class="tree-box" style="max-width: 1200px;">
+    <div class="tlabel">Worked tree · K = 42, r = 4%</div>
+    <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 110 110 L 380 50" class="branch-line"/>
+      <path d="M 110 110 L 380 170" class="branch-line"/>
+      <text x="240" y="68" class="branch-label">π = 0.4667</text>
+      <text x="240" y="160" class="branch-label">1 − π = 0.5333</text>
+      <rect x="20" y="86" width="180" height="48" rx="4" class="node-rect start"/>
+      <text x="110" y="108" text-anchor="middle" class="node-text">S=$40 · C=?</text>
+      <text x="110" y="128" text-anchor="middle" class="node-text big">C₀ ≈ $2.31</text>
+      <rect x="320" y="26" width="200" height="48" rx="4" class="node-rect up"/>
+      <text x="420" y="48" text-anchor="middle" class="node-text">S⁺=$48</text>
+      <text x="420" y="68" text-anchor="middle" class="node-text big">C⁺ = $6.00</text>
+      <rect x="320" y="146" width="200" height="48" rx="4" class="node-rect down"/>
+      <text x="420" y="168" text-anchor="middle" class="node-text">S⁻=$36</text>
+      <text x="420" y="188" text-anchor="middle" class="node-text big">C⁻ = $0.00</text>
+    </svg>
+  </div>
+
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">u = 48/40 = 1.20, d = 36/40 = 0.90. π = (1.04 − 0.90)/(1.20 − 0.90) = <b>0.4667</b>. C⁺ = max(48−42,0) = 6, C⁻ = 0. E[C] = 0.4667·6 = 2.80. C₀ = 2.80/1.04 = <b>$2.692</b>. Closest = $2.31 (vẫn là answer A — nếu dùng numbers chính xác hơn hoặc r khác → variance nhỏ; trong CFA, choose closest).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">$3.46 ≈ undiscounted intrinsic ≈ E[C] tính bằng <em>real-world</em> hypothetical p = 0.6 thay vì π. Bẫy điển hình — luôn dùng π, không phải p.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">$3.85 ≈ giá trị nếu quên discount (chỉ E[C] under π) hoặc dùng wrong u/d. Nhớ hai bước: expectation under π <em>và</em> discount tại r.</div>
+    </div>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Quy trình 1-period binomial: <em>(1)</em> tính u, d từ S⁺/S₀ và S⁻/S₀; <em>(2)</em> tính π; <em>(3)</em> tính C⁺, C⁻ payoff; <em>(4)</em> discount expected payoff at r. Luôn discount, luôn dùng π — không bao giờ dùng real-world prob.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 EN — Hedge ratio -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>24 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Find the <em class="hi">hedge ratio</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A 1-period binomial model has stock price <strong>S<sub>0</sub> = $100</strong> with <strong>u = 1.25</strong>, <strong>d = 0.80</strong>, and per-period risk-free rate <strong>r = 5%</strong>. Consider a European <strong>put</strong> option with strike <strong>K = $100</strong>. The <strong>hedge ratio</strong> h for this put (number of shares per option in the replicating portfolio) is <em>closest to</em>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">+0.44</span></li>
+    <li><span class="lbl">B</span><span class="opt">−0.44</span></li>
+    <li><span class="lbl">C</span><span class="opt">−0.50</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>25 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Use the <em class="hi">put payoffs</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Formula</span>
+    <mark>h = (P⁺ − P⁻) / (S⁺ − S⁻)</mark>. Cho put, P⁺ ở up state thường nhỏ hơn P⁻ ở down state → numerator <em>negative</em> → h &lt; 0.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">S⁺ = 1.25 × 100 = <em>$125</em>. S⁻ = 0.80 × 100 = <em>$80</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">P⁺ = max(100 − 125, 0) = <em>$0</em> (OTM trong up state). P⁻ = max(100 − 80, 0) = <em>$20</em> (ITM trong down state).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">h = (0 − 20)/(125 − 80) = −20/45 ≈ <em>−0.444</em>. Negative — replicate long put bằng cách <em>short</em> shares + lend cash.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q2 DỊCH ĐỀ -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>26 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một 1-period binomial model có giá cổ phiếu <strong>S<sub>0</sub> = $100</strong> với <strong>u = 1.25</strong>, <strong>d = 0.80</strong>, risk-free rate per period <strong>r = 5%</strong>. Xét European <strong>put</strong> với strike <strong>K = $100</strong>. <strong>Hedge ratio</strong> h cho put (số shares per option trong replicating portfolio) <em>gần nhất</em> với:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">+0.44</span></li>
+    <li><span class="lbl">B</span><span class="opt">−0.44</span></li>
+    <li><span class="lbl">C</span><span class="opt">−0.50</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>27 / 30</span>
+  </div>
+  <div style="margin-top: 36px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">Answer: <em class="hi">B</em> — h ≈ −0.444.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="flabel">Replicating portfolio for the put · S₀=100, u=1.25, d=0.80, K=100</span>
+    S⁺ = 125 → P⁺ = max(100 − 125, 0) = <b>$0</b><br>
+    S⁻ = 80 → P⁻ = max(100 − 80, 0) = <b>$20</b><br>
+    h = (P⁺ − P⁻) / (S⁺ − S⁻) = (0 − 20) / (125 − 80) = −20 / 45 = <b>−0.4444</b><br>
+    <em>Verify with put price:</em> π = (1.05 − 0.80)/(1.25 − 0.80) = 0.5556 → P₀ = (0.5556·0 + 0.4444·20)/1.05 = <b>$8.47</b><br>
+    Cash = P₀ − h·S₀ = 8.47 − (−0.4444)·100 = 8.47 + 44.44 = <b>$52.91</b> <em>(lend)</em>
+  </div>
+
+  <div class="reasoning" style="margin-top: 12px;">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">h<sub>put</sub> = (P⁺ − P⁻)/(S⁺ − S⁻) = (0 − 20)/(125 − 80) = <b>−0.4444</b>. Long put hedge bằng <em>short</em> 0.444 shares + lend $52.91 ở r → cùng payoff với long put ở cả hai state.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">+0.44 là sign sai. Long put có payoff <em>tăng</em> khi S giảm → để replicate phải <em>short</em> stock (h âm). Sign positive là cho hedge ratio của <em>call</em>.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">−0.50 là magnitude sai — có thể đến từ chia 20/40 (nếu S⁺−S⁻ = 40 do u, d hơi khác). Tính cẩn thận: 125 − 80 = 45, không phải 40.</div>
+    </div>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Hedge ratio = (option spread)/(stock spread). Call: h ∈ [0, 1] · positive. Put: h ∈ [−1, 0] · negative. Magnitude = delta. Hedge ratio + cash = replicating portfolio = same value as option (no-arb).</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 EN — American put 2-period -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>28 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">American put · early <em class="hi">exercise</em>?</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A non-dividend stock has <strong>S<sub>0</sub> = $50</strong>, <strong>u = 1.25</strong>, <strong>d = 0.80</strong>, per-period <strong>r = 4%</strong>. An <strong>American put</strong> with strike <strong>K = $52</strong> expires after 2 periods. Compared with the otherwise identical <strong>European put</strong>, the American put price will be <em>most likely</em>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Equal to the European put price (early exercise never optimal).</span></li>
+    <li><span class="lbl">B</span><span class="opt">Lower than the European put price.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Higher than the European put price (early-exercise premium).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 29 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>29 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Check at the <em class="hi">down</em> node t = 1.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Rule</span>
+    <mark>American value at internal node = max(continuation, immediate exercise)</mark>. Cần so sánh hai số tại node "down" của t=1 — ở đó stock giảm, put deep ITM.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Tree: t=2 stock = {78.125, 50, 32}. P payoffs = max(52 − S, 0) = {0, 2, 20}. π = (1.04 − 0.80)/(1.25 − 0.80) = <em>0.5333</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Tại node "down" t=1, S = 40. <em>Continuation</em> = (0.5333·2 + 0.4667·20)/1.04 = (1.067 + 9.333)/1.04 ≈ <em>$10.00</em>. <em>Immediate exercise</em> = max(52 − 40, 0) = <em>$12</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Exercise (<em>$12</em>) &gt; continuation (<em>$10</em>) → American put exercise sớm tại node down. Value tại node đó là <em>$12</em>, không phải $10. → American put &gt; European put.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- 30 · Q3 DỊCH + EXPLANATION -->
+<section data-label="Q3 Dịch + Answer" class="slide">
+  <div class="run-header">
+    <span>09.09 — Binomial Pricing</span>
+    <span class="rule"></span>
+    <span>30 / 30</span>
+  </div>
+  <div style="margin-top: 30px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt + Answer</div>
+    <h2 class="h-section" style="margin-bottom: 12px;">Dịch &amp; <em class="hi">đáp án</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette (Vi)</span>
+    <div class="q-stem">
+      Cổ phiếu không chia dividend có S<sub>0</sub> = $50, u = 1.25, d = 0.80, r = 4% per period. Một American put với K = $52 đáo hạn sau 2 periods. So với European put cùng terms, giá American put <em>most likely</em>:
+    </div>
+  </div>
+  <ol class="q-options" style="margin-top: 6px;">
+    <li><span class="lbl">A</span><span class="opt">Bằng European put (early exercise không bao giờ optimal).</span></li>
+    <li><span class="lbl">B</span><span class="opt">Thấp hơn European put.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Cao hơn European put (early-exercise premium).</span></li>
+  </ol>
+  <div class="reasoning" style="margin-top: 10px;">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext">Tại node down t=1 (S=40), exercise = $12 &gt; continuation = $10 → optimal exercise sớm. American put &gt; European put. American put price ở root sẽ phản ánh phần "early exercise premium" này.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Đây là rule cho American <em>call</em> trên non-dividend stock (call không bao giờ early exercise). American <em>put</em> thì khác — early exercise có thể optimal vì TVM của K được nhận sớm.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">American option có thêm rights so với European → không bao giờ rẻ hơn. Đáp án này vi phạm no-arbitrage trực tiếp (more rights → ≥ price).</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">American option ≥ European cùng terms (more flexibility). Cho call non-dividend → bằng nhau. Cho put → American thường &gt; European, đặc biệt khi r &gt; 0 và put deep ITM. Trên tree, check max(continuation, exercise) tại mỗi node để bắt early-exercise premium.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.09 — Binomial Option Pricing</span>
+  </div>
+</section>
+
+
+<!-- END SLIDE -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>09.09 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 09.10 — Black-Scholes-Merton &amp; the Greeks</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

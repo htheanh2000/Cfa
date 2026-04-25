@@ -1,0 +1,1229 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Fixed Income 08.08 — Credit Risk &amp; Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+
+  /* Rating ladder — compact 3-column scale */
+  .rating-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 36px; margin-top: 16px; }
+  .rating-grid .col { border-top: 4px solid var(--accent); padding-top: 18px; }
+  .rating-grid .col h4 {
+    font-family: var(--mono); font-size: 18px; color: var(--accent);
+    letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 10px;
+  }
+  .rating-grid .col table { width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: 19px; }
+  .rating-grid .col td { padding: 6px 8px; border-bottom: 1px solid var(--rule-soft); }
+  .rating-grid .col td.r { font-family: var(--mono); font-weight: 700; color: var(--accent); width: 40%; }
+  .rating-grid .col td.d { color: var(--ink-soft); }
+  .rating-grid .col.junk td.r { color: #B23A3A; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Credit Risk<br>&amp; <em>Analysis.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 08 · Lesson 08.08 · Fixed Income</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 08 · Default · Spreads · 4 C's</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Fixed Income</dd></div>
+      <div><dt>Module</dt><dd>08</dd></div>
+      <div><dt>Lesson</dt><dd>08.08</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Default · LGD · Spreads · Ratings · Covenants</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">08</div>
+    <div class="lbl">Credit risk &amp; analysis</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How analysts <em>price</em><br>and <em>rate</em> credit.</h2>
+    <ul class="toc">
+      <li class="active">01 · Credit risk — default probability · loss severity · expected loss</li>
+      <li>02 · Credit spreads — G-spread · I-spread · Z-spread · OAS</li>
+      <li>03 · Rating agencies — Moody's · S&amp;P · Fitch · IG vs HY · notching</li>
+      <li>04 · Credit analysis — the 4 C's · capacity ratios · collateral · covenants</li>
+      <li>05 · Sovereign · high yield · distressed · spread duration</li>
+      <li>06 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · CREDIT RISK OVERVIEW -->
+<section data-label="Credit risk" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>03 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Credit · risk</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What is <em class="hi">credit risk</em>?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Credit risk = rủi ro issuer <em>không trả được</em> coupon hoặc principal đúng hạn. Hai thành phần độc lập: <em>default risk</em> (xác suất default) và <em>loss severity</em> (mất bao nhiêu khi default xảy ra).
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Default risk</em></div>
+      <dl>
+        <dt>Definition</dt>
+        <dd>Xác suất (PD) issuer <b>không meet</b> nghĩa vụ contractual</dd>
+        <dt>Drivers</dt>
+        <dd>Leverage, profitability, cash flow, ngành, macro cycle</dd>
+        <dt>Measure</dt>
+        <dd>Probability of default — historical, structural, hoặc reduced-form models</dd>
+        <dt>Time horizon</dt>
+        <dd>1 năm, 5 năm, hay đến maturity</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Loss severity</em></div>
+      <dl>
+        <dt>Definition</dt>
+        <dd>Phần trăm mất khi default đã xảy ra (LGD)</dd>
+        <dt>Drivers</dt>
+        <dd>Seniority, collateral, ngành, jurisdiction (bankruptcy law)</dd>
+        <dt>Measure</dt>
+        <dd>LGD = 1 − Recovery Rate. Recovery thường 30-60% cho senior unsecured</dd>
+        <dt>Variance</dt>
+        <dd>Senior secured cao hơn → loss thấp hơn; subordinated thấp hơn → loss cao hơn</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 04 · EXPECTED LOSS -->
+<section data-label="Expected Loss" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>04 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Expected · loss</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Expected Loss</em> formula.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Expected Loss (EL)</span>
+    <div class="eq"><span class="var">EL</span> = <span class="var">PD</span> × <span class="var">LGD</span> × <span class="var">EAD</span></div>
+    <div class="note"><b>PD</b> = Probability of Default (xác suất default trong horizon) · <b>LGD</b> = Loss Given Default = 1 − Recovery Rate · <b>EAD</b> = Exposure at Default (notional + accrued lúc default).</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 18px;">
+    <span class="fmt-label">§ Recovery rate</span>
+    <div class="eq"><span class="var">Recovery Rate</span> = 1 − <span class="var">LGD</span></div>
+    <div class="note">Ví dụ: bond default, holders thu được $40 trên mỗi $100 par → recovery = 40%, LGD = 60%. Recovery khác nhau theo seniority &amp; collateral.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Numerical example — Bond $1,000 par, PD 5%/yr, recovery 40% → LGD 60% → EL = 0.05 × 0.60 × $1,000 = <b>$30 per year</b>. Investor đòi spread bù tối thiểu cho EL này.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 05 · YIELD SPREAD COMPONENTS -->
+<section data-label="Yield spread" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>05 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Spread · decomposition</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What's inside a <em class="hi">yield spread</em>?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Corporate bond yield = benchmark (risk-free) + spread. Spread không chỉ là credit — phải decompose thành 3 phần để hiểu compensation thực sự.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Spread decomposition</span>
+    <div class="eq"><span class="var">Yield Spread</span> = <span class="var">Credit premium</span> + <span class="var">Liquidity premium</span> + <span class="var">Tax effects</span></div>
+    <div class="note"><b>Credit premium</b> bù cho expected loss + uncertainty. <b>Liquidity premium</b> bù cho khó bán quickly without price concession. <b>Tax effects</b> — munis ở US tax-exempt nên có yield thấp hơn comparable corporate.</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 18px;">
+    <li><span><span class="step-title">Credit premium</span><span class="step-body">Phần lớn nhất với HY. Reflects PD × LGD + risk premium cho uncertainty. Tăng mạnh trong recession.</span></span></li>
+    <li><span><span class="step-title">Liquidity premium</span><span class="step-body">Off-the-run Treasury, small issue size, junk → wide bid-ask, khó exit. Investor đòi yield bù.</span></span></li>
+    <li><span><span class="step-title">Tax effects</span><span class="step-body">US municipals miễn federal tax → yield thấp. Cross-jurisdiction comparison phải tax-adjust.</span></span></li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 06 · CREDIT SPREADS — G/I -->
+<section data-label="G-spread &amp; I-spread" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>06 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Spread · measures · I</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">G-spread</em> vs <em class="hi">I-spread</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Hai cách đơn giản nhất để đo credit spread: lấy YTM của bond <em>trừ đi</em> một benchmark yield. Khác benchmark → khác tên.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>G-spread</em></div>
+      <dl>
+        <dt>Benchmark</dt>
+        <dd><b>Government bond</b> (Treasury) cùng maturity</dd>
+        <dt>Formula</dt>
+        <dd>YTM<sub>corp</sub> − YTM<sub>govt</sub></dd>
+        <dt>Use</dt>
+        <dd>Standard credit spread quote, dễ hiểu, retail-friendly</dd>
+        <dt>Limit</dt>
+        <dd>Phụ thuộc Treasury yield curve — không phù hợp với non-USD market thiếu deep govt curve</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>I-spread</em> (interpolated)</div>
+      <dl>
+        <dt>Benchmark</dt>
+        <dd><b>Swap rate</b> cùng maturity (interpolate giữa 2 swap tenors)</dd>
+        <dt>Formula</dt>
+        <dd>YTM<sub>corp</sub> − Swap rate<sub>same tenor</sub></dd>
+        <dt>Use</dt>
+        <dd>Phổ biến với institutional, EUR/GBP market dùng swap curve làm benchmark</dd>
+        <dt>Limit</dt>
+        <dd>Bao gồm cả LIBOR/swap basis risk — không thuần credit</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Cả 2 đều là <em>nominal spread</em> — single number, không tính đến shape của yield curve. Chỉ chính xác khi term structure flat.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 07 · Z-SPREAD vs OAS -->
+<section data-label="Z-spread &amp; OAS" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>07 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Spread · measures · II</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Z-spread</em> vs <em class="hi">OAS</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Khi yield curve <em>không flat</em> hoặc bond có embedded option (callable, putable), nominal spread sai. Z-spread và OAS xử lý từng vấn đề.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Z-spread</em> (zero-volatility)</div>
+      <dl>
+        <dt>Concept</dt>
+        <dd>Constant spread cộng đều vào <b>mỗi spot rate</b> trên Treasury curve để PV cash flows = market price</dd>
+        <dt>Handles</dt>
+        <dd>Yield curve <em>shape</em> — chính xác cho option-free bonds</dd>
+        <dt>Ignores</dt>
+        <dd>Volatility &amp; embedded options — overstate spread cho callable bonds</dd>
+        <dt>Other name</dt>
+        <dd>Static spread, ZVS</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>OAS</em> (option-adjusted)</div>
+      <dl>
+        <dt>Concept</dt>
+        <dd>Z-spread <b>sau khi</b> remove giá trị embedded option (callable, putable)</dd>
+        <dt>Formula</dt>
+        <dd>OAS = Z-spread − <em>option cost</em></dd>
+        <dt>Handles</dt>
+        <dd>Cả curve shape và optionality — apples-to-apples comparison</dd>
+        <dt>Use</dt>
+        <dd>So sánh callable corp với option-free corp; mortgage MBS</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Hierarchy precision: <b>Nominal &lt; G-spread ≈ I-spread &lt; Z-spread &lt; OAS</b>. Càng phải tay càng chính xác cho complex bonds.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 08 · RATING AGENCIES + SCALE -->
+<section data-label="Rating agencies" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>08 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">NRSROs · rating scale</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">three</em> big agencies.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      <b>Moody's</b>, <b>Standard &amp; Poor's (S&amp;P)</b>, và <b>Fitch</b> chiếm ~95% market share global. Notation hơi khác nhau nhưng map 1-1.
+    </p>
+  </div>
+
+  <div class="rating-grid">
+    <div class="col">
+      <h4>Investment Grade · IG</h4>
+      <table>
+        <tr><td class="r">Aaa / AAA</td><td class="d">Highest quality, minimal credit risk</td></tr>
+        <tr><td class="r">Aa / AA</td><td class="d">High quality, very low credit risk</td></tr>
+        <tr><td class="r">A / A</td><td class="d">Upper-medium grade, low credit risk</td></tr>
+        <tr><td class="r">Baa / BBB</td><td class="d">Medium grade, moderate risk — <em>floor of IG</em></td></tr>
+      </table>
+    </div>
+    <div class="col junk">
+      <h4>High Yield · Junk</h4>
+      <table>
+        <tr><td class="r">Ba / BB</td><td class="d">Speculative, substantial credit risk</td></tr>
+        <tr><td class="r">B / B</td><td class="d">Highly speculative</td></tr>
+        <tr><td class="r">Caa / CCC</td><td class="d">Substantial risk, poor standing</td></tr>
+        <tr><td class="r">Ca / CC</td><td class="d">Highly speculative, near default</td></tr>
+        <tr><td class="r">C / C</td><td class="d">Lowest, default imminent</td></tr>
+        <tr><td class="r">D</td><td class="d">In default (S&amp;P / Fitch only)</td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <h4>Notation notes</h4>
+      <table>
+        <tr><td class="r">Moody's</td><td class="d">Aaa, Aa1, Aa2, Aa3, A1, A2, A3…</td></tr>
+        <tr><td class="r">S&amp;P / Fitch</td><td class="d">AAA, AA+, AA, AA−, A+, A, A−…</td></tr>
+        <tr><td class="r">Modifiers</td><td class="d">1/2/3 (Moody's) ≡ +/blank/− (S&amp;P)</td></tr>
+        <tr><td class="r">Watch</td><td class="d">"on watch" = pending review · outlook stable/positive/negative</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 09 · IG vs HIGH YIELD -->
+<section data-label="IG vs HY" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>09 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">IG vs HY · markets</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Investment grade</em> vs <em class="hi">high yield</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Cutoff: <b>BBB−/Baa3</b> là rating <em>thấp nhất</em> còn IG. Một nấc xuống (BB+/Ba1) là junk. Sự khác biệt giữa 2 nhóm là tách biệt — nhiều quỹ pension/insurer bị forbidden từ HY.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Investment Grade</em></div>
+      <dl>
+        <dt>Range</dt>
+        <dd>AAA → BBB− (S&amp;P/Fitch) · Aaa → Baa3 (Moody's)</dd>
+        <dt>Default rate</dt>
+        <dd>Cumulative 10-yr ~3-5% (long-term avg)</dd>
+        <dt>Spread</dt>
+        <dd>50-250 bps over Treasury</dd>
+        <dt>Buyers</dt>
+        <dd>Insurance, pension, central banks, money market funds</dd>
+        <dt>Volatility</dt>
+        <dd>Driven chủ yếu bởi <em>interest rate</em> (rate-sensitive)</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>High Yield / Junk</em></div>
+      <dl>
+        <dt>Range</dt>
+        <dd>BB+ trở xuống · Ba1 trở xuống</dd>
+        <dt>Default rate</dt>
+        <dd>Cumulative 10-yr ~25-35% (much higher)</dd>
+        <dt>Spread</dt>
+        <dd>300-1500+ bps; CCC widens to 2000+ in stress</dd>
+        <dt>Buyers</dt>
+        <dd>HY mutual funds, hedge funds, distressed specialists</dd>
+        <dt>Volatility</dt>
+        <dd>Driven chủ yếu bởi <em>credit / equity</em> sentiment</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § "Fallen angel" = bond từng IG bị downgrade xuống HY. "Rising star" = ngược lại. Crossover funds chuyên trade quanh BBB/BB boundary.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 10 · NOTCHING -->
+<section data-label="Notching" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>10 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Issuer vs issue · ratings</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Notching</em> rules.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Issuer (corporate) có <em>issuer credit rating</em> tổng. Mỗi issue (bond cụ thể) có thể có rating <em>khác</em> tùy seniority + collateral. Adjustment này gọi là <em>notching</em>.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Notching principle</span>
+    <em>Issue rating</em> = Issuer rating ± notches, tùy theo <b>seniority of debt</b> trong capital structure và <b>collateral</b>. Senior secured có thể notch <em>up</em>, subordinated notch <em>down</em>. Standard cho IG: ±1 notch; HY: notching wider vì recovery variance lớn hơn.
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 18px;">
+    <div class="tenet">
+      <span class="n">+1</span>
+      <div>
+        <div class="t"><em class="hi">Senior secured</em></div>
+        <div class="d">Có collateral specific (asset, mortgage, equipment). Recovery cao → notch <em>up</em> 1 nấc so với issuer rating. Vd: issuer BBB → senior secured BBB+.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">0</span>
+      <div>
+        <div class="t">Senior unsecured</div>
+        <div class="d">Default = pari passu với general creditors. Thường <em>same</em> như issuer rating. Đa số corporate bonds rơi vào nhóm này.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">−1</span>
+      <div>
+        <div class="t"><em class="hi">Subordinated</em></div>
+        <div class="d">Trả sau senior khi liquidation. Recovery thấp → notch <em>down</em> 1-2 nấc. Vd: issuer BBB → sub BBB−.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">−2+</span>
+      <div>
+        <div class="t">Junior subordinated · hybrid</div>
+        <div class="d">Trust preferred, perpetual, deeply junior — notch xuống 2+. HY structure thường có gap rộng giữa các tranches.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 11 · 4 C's FRAMEWORK -->
+<section data-label="4 C's" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>11 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Credit · framework</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">4 C's</em> of credit analysis.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Framework</span>
+    Khi phân tích corporate credit, analyst đi qua 4 trụ — <b>Capacity</b>, <b>Collateral</b>, <b>Covenants</b>, <b>Character</b>. Mỗi C trả lời một câu hỏi khác nhau về khả năng và willingness trả nợ.
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 18px;">
+    <div class="tenet">
+      <span class="n">C1</span>
+      <div>
+        <div class="t"><em class="hi">Capacity</em></div>
+        <div class="d">Có <em>khả năng</em> trả nợ không? Phân tích industry, competitive position, financial ratios (leverage, coverage, profitability). Quan trọng nhất.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">C2</span>
+      <div>
+        <div class="t"><em class="hi">Collateral</em></div>
+        <div class="d">Có tài sản đảm bảo gì khi default? Quality &amp; valuation của asset. Ảnh hưởng <em>recovery rate</em> (LGD).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">C3</span>
+      <div>
+        <div class="t"><em class="hi">Covenants</em></div>
+        <div class="d">Bond indenture có những điều khoản gì? Affirmative (must do) và negative (must not). Bảo vệ creditor khỏi action có hại.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">C4</span>
+      <div>
+        <div class="t"><em class="hi">Character</em></div>
+        <div class="d">Quality của <em>management</em>: track record, governance, corporate strategy, willingness trả. Mềm hơn 3 C kia, nhưng critical cho HY.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 12 · CAPACITY RATIOS -->
+<section data-label="Capacity ratios" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>12 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Capacity · ratios</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">credit ratios</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Coverage ratios — higher is better</span>
+    <div class="eq"><span class="var">EBIT interest coverage</span> = <span class="var">EBIT</span> / <span class="var">Interest expense</span></div>
+    <div class="eq"><span class="var">EBITDA interest coverage</span> = <span class="var">EBITDA</span> / <span class="var">Interest expense</span></div>
+    <div class="note">Đo khả năng trả lãi từ operating earnings. EBITDA cao hơn EBIT (thêm D&amp;A back). IG thường có EBIT coverage &gt; 4x; HY có thể &lt; 2x.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Leverage ratios — lower is better</span>
+    <div class="eq"><span class="var">Debt / EBITDA</span> = <span class="var">Total debt</span> / <span class="var">EBITDA</span></div>
+    <div class="eq"><span class="var">FFO / Total debt</span> = <span class="var">Funds from operations</span> / <span class="var">Total debt</span></div>
+    <div class="note"><b>Debt/EBITDA</b> đo "bao nhiêu năm earnings để trả hết nợ"; IG thường &lt; 2x, HY thường &gt; 4x. <b>FFO/Debt</b> đo cash-flow-to-debt; IG &gt; 30%, HY &lt; 15%.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 13 · COLLATERAL TYPES -->
+<section data-label="Collateral" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>13 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Collateral · seniority</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Senior</em> vs <em class="hi">subordinated</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Capital structure hierarchy quyết định ai được trả trước trong bankruptcy. Thứ tự thường: senior secured → senior unsecured → subordinated → preferred equity → common equity.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Senior secured</em></div>
+      <dl>
+        <dt>Position</dt>
+        <dd><b>Top</b> của waterfall — trả đầu tiên</dd>
+        <dt>Collateral</dt>
+        <dd>Specific asset (real estate, equipment, receivables) hoặc all assets</dd>
+        <dt>Recovery</dt>
+        <dd>~60-80% historical avg cho senior secured</dd>
+        <dt>Examples</dt>
+        <dd>Mortgage bonds, equipment trust certificates, leveraged loans, ABS</dd>
+        <dt>Yield</dt>
+        <dd>Lowest (within issuer's stack) — protection trade-off</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Subordinated</em></div>
+      <dl>
+        <dt>Position</dt>
+        <dd>Trả <em>sau</em> senior trong liquidation waterfall</dd>
+        <dt>Collateral</dt>
+        <dd>Thường unsecured — chỉ general claim</dd>
+        <dt>Recovery</dt>
+        <dd>~10-30% historical avg cho subordinated</dd>
+        <dt>Examples</dt>
+        <dd>Subordinated debentures, junior subordinated, hybrid Tier 2 bank capital</dd>
+        <dt>Yield</dt>
+        <dd>Higher để compensate cho recovery thấp</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Senior unsecured (giữa) — không có specific collateral nhưng cùng waterfall priority như other senior creditors. Là phần lớn của corporate bond market.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 14 · COVENANTS -->
+<section data-label="Covenants" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>14 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Bond · indenture</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Affirmative</em> vs <em class="hi">negative</em> covenants.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Covenants = ràng buộc ghi trong bond indenture, bảo vệ creditor. Vi phạm = <em>technical default</em>, có thể trigger acceleration clause.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Affirmative</em> ("must do")</div>
+      <dl>
+        <dt>Nature</dt>
+        <dd>Issuer <b>phải</b> thực hiện hành động</dd>
+        <dt>Examples</dt>
+        <dd>Pay interest &amp; principal đúng hạn · maintain corporate existence · file financial statements · keep insurance · pay taxes</dd>
+        <dt>Cost</dt>
+        <dd>Thấp — đa số là routine business practice</dd>
+        <dt>Trigger</dt>
+        <dd>Failure → event of default, có grace period</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Negative</em> ("must not")</div>
+      <dl>
+        <dt>Nature</dt>
+        <dd>Issuer <b>không được</b> làm hành động harmful</dd>
+        <dt>Examples</dt>
+        <dd><em>Restrict additional debt</em> · <em>limit dividends/buybacks</em> · no asset sales above threshold · negative pledge (no new senior liens) · maintain financial ratios</dd>
+        <dt>Cost</dt>
+        <dd>Cao — có thể constrain operating flexibility</dd>
+        <dt>Trigger</dt>
+        <dd>HY bonds covenant tighter; "covenant-lite" leveraged loans = ít restriction</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Tighter covenants → higher protection cho creditor → lower yield. Trade-off classic: yield vs control. HY thường có "incurrence test" (chỉ check khi issuer làm action) thay vì "maintenance test" (check liên tục).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 15 · SOVEREIGN + DISTRESSED -->
+<section data-label="Sovereign &amp; HY" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>15 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Special · segments</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Sovereign</em> &amp; <em class="hi">distressed</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">SOV</span>
+      <div>
+        <div class="t"><em class="hi">Sovereign credit risk</em></div>
+        <div class="d">Khác corporate: không có bankruptcy court. Phân tích <b>ability</b> (fiscal balance, debt/GDP, FX reserves, growth) + <b>willingness</b> (political stability, history of default). Local-currency debt thường rated cao hơn FX-denominated.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CORP</span>
+      <div>
+        <div class="t">Corporate credit risk</div>
+        <div class="d">Có bankruptcy law, court-supervised restructuring. Recovery clear hơn. Focus vào 4 C's, financial statements, industry cycle.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">HY</span>
+      <div>
+        <div class="t"><em class="hi">High yield analysis</em></div>
+        <div class="d">Beyond 4 C's: <b>liquidity</b> (cash on hand, revolver capacity), <b>capital structure</b> (where in waterfall), <b>equity cushion</b> (market cap vs debt). Look-through to assets in worst case.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">DIST</span>
+      <div>
+        <div class="t"><em class="hi">Distressed debt</em></div>
+        <div class="d">Bond trade &lt; 60% of par hoặc spread &gt; 1000 bps. Strategy: estimate recovery → compare với current price. Specialty funds chuyên phân tích bankruptcy waterfall &amp; legal claims.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § VN bond market — VGB (sovereign) rated BB+ (S&amp;P, 2025). Corporate bond domestic chủ yếu unrated, private placement; market depth còn shallow.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 16 · SPREAD DURATION -->
+<section data-label="Spread duration" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>16 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Spread · sensitivity</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Spread duration</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Modified duration đo sensitivity đến yield curve shift. <em>Spread duration</em> isolate sensitivity đến credit spread changes (giữ Treasury constant).
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Spread duration</span>
+    <div class="eq">%Δ Price ≈ −<span class="var">Spread Duration</span> × Δ<span class="var">Spread</span></div>
+    <div class="note">Với fixed-rate bond, spread duration thường ≈ modified duration. Nhưng với <b>floating rate notes</b>, modified duration ≈ 0 (rate reset ngắn) nhưng spread duration ≠ 0 (credit spread vẫn fixed). Spread duration quan trọng cho FRN credit risk.</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li><span><span class="step-title">Numerical example</span><span class="step-body">Bond spread duration 6.0; spread widens 50 bps → %Δ Price ≈ −6.0 × 0.50% = <b>−3.0%</b>. Investor mất 3% giá.</span></span></li>
+    <li><span><span class="step-title">FRN special case</span><span class="step-body">FRN modified duration ≈ 0.25 (next reset), spread duration ≈ 5 (full maturity). Cùng FRN có thể tăng giá khi rates rise (no IR risk) nhưng giảm mạnh khi credit widens.</span></span></li>
+    <li><span><span class="step-title">Portfolio use</span><span class="step-body">Risk manager track <em>spread duration × dollar exposure</em> = "spread DV01" — sensitivity to 1 bp credit move. Hedge với CDS hoặc IG/HY ETF futures.</span></span></li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 17 · TAKEAWAYS -->
+<section data-label="Takeaways" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>17 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap · big picture</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">α</span>
+      <div>
+        <div class="t">EL = PD × LGD × EAD</div>
+        <div class="d">Credit risk = default risk × loss severity. LGD = 1 − Recovery. Yield spread = credit + liquidity + tax. Investor đòi spread bù tối thiểu cho expected loss.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">β</span>
+      <div>
+        <div class="t">Spreads: G &lt; Z &lt; OAS</div>
+        <div class="d">G/I-spread = nominal (curve-naive). Z-spread = curve-aware nhưng ignore option. OAS = Z − option cost (apples-to-apples cho callable). Càng phải tay càng chính xác.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">γ</span>
+      <div>
+        <div class="t">Ratings: BBB− = IG floor</div>
+        <div class="d">3 NRSROs: Moody's, S&amp;P, Fitch. IG (AAA→BBB−) vs HY (BB+ trở xuống). Issue rating notch ± vs issuer rating tùy seniority + collateral.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">δ</span>
+      <div>
+        <div class="t">4 C's + ratios</div>
+        <div class="d">Capacity (EBIT cov, Debt/EBITDA, FFO/Debt), Collateral (senior secured → sub), Covenants (affirmative + negative), Character (management). Spread duration đo sensitivity to credit moves.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 18 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 EN — Expected Loss -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>19 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Expected loss</em> calc.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst evaluates a senior unsecured corporate bond with par <strong>$10,000,000</strong> and a 1-year horizon. The estimated <strong>probability of default is 4%</strong>, and the expected <strong>recovery rate is 35%</strong> on the par exposure. Assuming <strong>EAD ≈ par</strong>, what is the bond's <strong>1-year expected loss</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$140,000 — applying PD only (4% × $10m × 35%).</span></li>
+    <li><span class="lbl">B</span><span class="opt">$260,000 — applying PD × LGD × EAD = 4% × 65% × $10m.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$400,000 — applying PD × EAD only, ignoring recovery.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>20 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Par <mark>$10m</mark> · <mark>PD 4%</mark> · <mark>Recovery 35%</mark> → LGD = 1 − 0.35 = <mark>65%</mark>. EAD ≈ par. Công thức cốt lõi: <mark>EL = PD × LGD × EAD</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">LGD = 1 − Recovery Rate = 1 − 0.35 = <em>0.65 (65%)</em>. Nếu default xảy ra, lose 65 cents trên mỗi dollar exposure.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">EL = PD × LGD × EAD = 0.04 × 0.65 × $10,000,000 = <em>$260,000</em>. Đây là expected loss thường niên.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Bẫy: option C ($400,000) bỏ recovery hoàn toàn (assume LGD = 100%). Option A nhân nhầm Recovery thay vì LGD. Luôn kiểm tra: dùng <em>LGD</em> chứ không phải Recovery.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>21 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một analyst đánh giá senior unsecured corporate bond par <strong>$10,000,000</strong> với horizon 1 năm. Ước tính <strong>probability of default 4%</strong>, <strong>recovery rate 35%</strong> trên par exposure. Giả sử <strong>EAD ≈ par</strong>, <strong>expected loss</strong> 1 năm của bond bằng bao nhiêu?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$140,000 — chỉ áp PD (4% × $10m × 35%).</span></li>
+    <li><span class="lbl">B</span><span class="opt">$260,000 — áp PD × LGD × EAD = 4% × 65% × $10m.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$400,000 — áp PD × EAD, bỏ qua recovery.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>22 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $260,000.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Step 1: <b>LGD</b> = 1 − Recovery = 1 − 0.35 = <b>0.65</b>. Step 2: EAD = par = $10,000,000. Step 3: <b>EL = PD × LGD × EAD = 0.04 × 0.65 × $10,000,000 = $260,000</b>. Đây là expected loss kỳ vọng — investor đòi spread bù tối thiểu ~260 bps × duration để compensate (cộng risk premium).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">$140,000 = 0.04 × 0.35 × $10m — nhân với <em>Recovery</em> thay vì LGD. Sai logic: nếu bond default, investor MẤT (1 − Recovery), không phải Recovery. Recovery là phần thu hồi được, LGD là phần mất đi.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">$400,000 = 0.04 × $10m — assume LGD = 100% (no recovery). Đúng cho <em>worst case</em> nhưng không phải expected loss. EL phải tính kỳ vọng trên Recovery Rate, không assume zero recovery.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Công thức core: <em>EL = PD × LGD × EAD</em>, với <em>LGD = 1 − Recovery</em>. Trap thường gặp trong CFA: nhầm Recovery với LGD, hoặc bỏ qua recovery khi tính EL. Kiểm tra units: PD và LGD là %, EAD là $.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 EN — Z-spread vs OAS -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>23 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">OAS</em> calculation.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A 10-year <strong>callable corporate bond</strong> trades at a Z-spread of <strong>180 bps</strong> over the Treasury spot curve. The estimated <strong>option cost</strong> embedded in the call provision is <strong>40 bps</strong>. A comparable <strong>option-free</strong> corporate bond from the same issuer trades at a Z-spread of <strong>150 bps</strong>. Which statement is <strong>most accurate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">The callable bond is rich because its OAS (140 bps) is below the option-free bond's spread (150 bps).</span></li>
+    <li><span class="lbl">B</span><span class="opt">The callable bond is cheap because its Z-spread (180 bps) exceeds the option-free spread (150 bps).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Both bonds offer identical risk-adjusted compensation since OAS = Z-spread for option-free bonds.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>24 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Callable</mark> Z-spread <mark>180 bps</mark>, option cost <mark>40 bps</mark>. Option-free Z-spread <mark>150 bps</mark>. Công thức: <mark>OAS = Z-spread − option cost</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">OAS callable = Z-spread − option cost = 180 − 40 = <em>140 bps</em>. Đây là pure credit spread sau khi remove option value.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Option-free bond: OAS = Z-spread (vì không có option) = <em>150 bps</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">So sánh apples-to-apples là <em>OAS vs OAS</em>, không phải Z-spread. Callable OAS 140 bps &lt; option-free 150 bps → callable đang trả ít credit compensation hơn → <em>rich</em> (overpriced).</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>25 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một <strong>callable corporate bond</strong> 10 năm trade tại Z-spread <strong>180 bps</strong> trên Treasury spot curve. <strong>Option cost</strong> nhúng trong call provision ước tính <strong>40 bps</strong>. Một corporate bond <strong>option-free</strong> tương đương cùng issuer trade tại Z-spread <strong>150 bps</strong>. Nhận định nào <strong>chính xác nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Callable bond đắt (rich) vì OAS (140 bps) thấp hơn spread của bond option-free (150 bps).</span></li>
+    <li><span class="lbl">B</span><span class="opt">Callable bond rẻ (cheap) vì Z-spread (180 bps) cao hơn spread option-free (150 bps).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Cả 2 bond cùng risk-adjusted compensation vì OAS = Z-spread cho option-free bonds.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>26 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — Callable rich.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">Step 1: <b>OAS callable = Z-spread − option cost = 180 − 40 = 140 bps</b>. Step 2: OAS option-free = Z-spread = <b>150 bps</b> (vì không có option). Step 3: So sánh OAS-to-OAS: 140 &lt; 150 → callable cho ít credit compensation hơn → <b>rich (overpriced)</b>. Investor nên prefer option-free bond cùng issuer.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">So sánh Z-spread (180 vs 150) là <em>misleading</em>. Z-spread của callable include cả option value (issuer có thể call → investor mất upside). Phải remove option cost để có pure credit spread (OAS), rồi mới so sánh.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Đúng phần "OAS = Z-spread cho option-free", nhưng kết luận sai. OAS callable (140) ≠ OAS option-free (150) → 2 bond <em>không</em> cùng risk-adjusted compensation. Callable thiếu 10 bps credit compensation cho cùng credit risk.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Công thức: <em>OAS = Z-spread − option cost</em>. Callable bond: option cost &gt; 0 (issuer benefit) → OAS &lt; Z-spread. Putable: option cost &lt; 0 (investor benefit) → OAS &gt; Z-spread. Luôn so sánh OAS-to-OAS giữa các bonds — đó là pure credit spread.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 EN — 4 C's / Notching -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>27 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Notching</em> &amp; coverage.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Issuer XYZ has a senior unsecured rating of <strong>BBB</strong>, EBIT of $400m, EBITDA of $500m, total debt of $1,500m, and interest expense of $100m. Two new bonds are being issued: <strong>Bond α — senior secured</strong> backed by real estate; <strong>Bond β — subordinated debenture</strong>. Which combination of <strong>EBIT interest coverage</strong> and <strong>likely issue ratings</strong> is <strong>most accurate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">EBIT coverage = 4.0×; Bond α likely BBB+; Bond β likely BBB−.</span></li>
+    <li><span class="lbl">B</span><span class="opt">EBIT coverage = 5.0×; Bond α likely BBB; Bond β likely BBB.</span></li>
+    <li><span class="lbl">C</span><span class="opt">EBIT coverage = 3.0×; Bond α likely AA; Bond β likely A.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>28 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Issuer rating <mark>BBB</mark> · EBIT <mark>$400m</mark> · Interest <mark>$100m</mark>. Bond α = <mark>senior secured</mark> (notch up); Bond β = <mark>subordinated</mark> (notch down). EBIT coverage = EBIT / Interest.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">EBIT interest coverage = $400m / $100m = <em>4.0×</em>. Đo khả năng trả lãi từ operating earnings — typical IG corporate.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Senior secured bond α: notch <em>up</em> 1 nấc so với issuer rating BBB → <em>BBB+</em>. Collateral (real estate) tăng recovery.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Subordinated debenture β: notch <em>down</em> 1 nấc so với BBB → <em>BBB−</em>. Trả sau senior trong waterfall, recovery thấp hơn.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 29 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>29 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Issuer XYZ có senior unsecured rating <strong>BBB</strong>, EBIT $400m, EBITDA $500m, total debt $1,500m, interest expense $100m. 2 bond mới phát hành: <strong>Bond α — senior secured</strong> đảm bảo bằng real estate; <strong>Bond β — subordinated debenture</strong>. Combination nào của <strong>EBIT interest coverage</strong> và <strong>issue ratings dự kiến</strong> <strong>chính xác nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">EBIT coverage = 4.0×; Bond α likely BBB+; Bond β likely BBB−.</span></li>
+    <li><span class="lbl">B</span><span class="opt">EBIT coverage = 5.0×; Bond α likely BBB; Bond β likely BBB.</span></li>
+    <li><span class="lbl">C</span><span class="opt">EBIT coverage = 3.0×; Bond α likely AA; Bond β likely A.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 30 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.08 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>30 / 31</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — 4.0×, BBB+ / BBB−.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">Step 1: <b>EBIT coverage = EBIT / Interest = $400m / $100m = 4.0×</b>. Step 2: Bond α là senior secured (collateral = real estate) → notch <em>up</em> 1 nấc → <b>BBB+</b>. Step 3: Bond β là subordinated → notch <em>down</em> 1 nấc → <b>BBB−</b>. Issuer BBB ở giữa làm anchor cho 2 issue ratings.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">5.0× sai math (5.0× = EBITDA/Interest, không phải EBIT/Interest). Issue rating cùng issuer rating BBB cho cả 2 → bỏ qua nguyên tắc notching. Senior secured và subordinated phải có rating <em>khác nhau</em> để reflect recovery khác nhau.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">3.0× sai math. AA và A là rating quá cao — không thể notch <em>vượt</em> issuer rating bằng 4-5 bậc. Notching thường ±1 (đôi khi ±2 cho HY). Issuer BBB không thể có issue rating AA/A trừ khi có guarantee từ parent rating cao hơn.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Notching: <em>senior secured = +1, senior unsecured = 0, subordinated = −1</em> so với issuer rating. Capacity ratios: <em>EBIT coverage = EBIT/Int</em>, <em>EBITDA coverage = EBITDA/Int</em>, <em>Debt/EBITDA</em>, <em>FFO/Debt</em>. IG có coverage &gt; 4x và Debt/EBITDA &lt; 2x; HY ngược lại.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+  </div>
+</section>
+
+
+<!-- 31 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>08.08 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 08.09 — Credit Default Swaps &amp; Structured Credit</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

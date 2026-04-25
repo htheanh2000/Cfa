@@ -1,0 +1,1287 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · FSA 04.10 — Financial Reporting Quality</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+  .spectrum {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    margin-top: 16px;
+    max-width: 1700px;
+    border-top: 4px solid var(--accent);
+  }
+  .spectrum .lvl {
+    padding: 22px 18px;
+    border-right: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+    background: var(--paper);
+  }
+  .spectrum .lvl:last-child { border-right: none; }
+  .spectrum .lvl .nm {
+    font-family: var(--mono);
+    font-size: 16px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .spectrum .lvl .ttl {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .spectrum .lvl .dsc {
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.4;
+    color: var(--ink-soft);
+  }
+  .spectrum .lvl.high { background: rgba(20, 54, 95, 0.10); }
+  .spectrum .lvl.low  { background: rgba(178, 34, 34, 0.06); }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Reporting<br><em>Quality.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 04 · Lesson 04.10 · FSA</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 10 · Financial Reporting Quality</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>FSA</dd></div>
+      <div><dt>Module</dt><dd>10</dd></div>
+      <div><dt>Lesson</dt><dd>04.10</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Quality spectrum · Earnings management · Beneish M-score · Red flags · Famous frauds</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">10</div>
+    <div class="lbl">Reporting quality</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>Are the numbers <em>real</em>,<br>or just <em>reported</em>?</h2>
+    <ul class="toc">
+      <li class="active">01 · Quality spectrum — GAAP-compliant đến fraudulent</li>
+      <li>02 · Conservative vs Aggressive bias</li>
+      <li>03 · Earnings quality — persistent · sustainable · cash-backed</li>
+      <li>04 · Accruals · Sloan ratio · Beneish M-score</li>
+      <li>05 · Earnings management techniques + famous cases (Enron · WorldCom)</li>
+      <li>06 · Cash flow &amp; BS quality · Red flags · Audit opinions</li>
+      <li>07 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · QUALITY SPECTRUM -->
+<section data-label="Quality spectrum" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>03 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Reporting quality · framework</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">quality spectrum</em>.</h2>
+    <p class="small body--soft" style="max-width: 1500px; margin: 0 0 8px;">
+      CFA framework xếp financial reports trên một spectrum 5 cấp — từ <em>GAAP-compliant + decision-useful</em> (cao nhất) xuống <em>fictitious / fraudulent</em> (thấp nhất). Reporting quality khác với <em>earnings quality</em>: cái đầu nói về báo cáo, cái sau nói về kết quả kinh tế thực sự.
+    </p>
+  </div>
+
+  <div class="spectrum">
+    <div class="lvl high">
+      <div class="nm">§ 1 · TOP</div>
+      <div class="ttl">GAAP &amp; Decision-useful</div>
+      <div class="dsc">Tuân thủ chuẩn mực + earnings <em>sustainable, adequate, persistent</em>. Báo cáo phục vụ phân tích.</div>
+    </div>
+    <div class="lvl">
+      <div class="nm">§ 2</div>
+      <div class="ttl">GAAP, low-quality earnings</div>
+      <div class="dsc">Tuân thủ chuẩn nhưng lợi nhuận từ <em>non-recurring</em>, one-time gains, hoặc unsustainable activities.</div>
+    </div>
+    <div class="lvl">
+      <div class="nm">§ 3</div>
+      <div class="ttl">Within GAAP, biased choices</div>
+      <div class="dsc"><em>Aggressive</em> hay <em>conservative</em> bias. Earnings smoothing. Vẫn legal nhưng kém tin cậy.</div>
+    </div>
+    <div class="lvl">
+      <div class="nm">§ 4</div>
+      <div class="ttl">Departures from GAAP</div>
+      <div class="dsc">Non-compliant accounting nhưng số liệu vẫn dựa trên giao dịch thực. Thường được auditor flag.</div>
+    </div>
+    <div class="lvl low">
+      <div class="nm">§ 5 · BOTTOM</div>
+      <div class="ttl">Fictitious transactions</div>
+      <div class="dsc">Fraud — giao dịch không có thật, fabricated. Enron, WorldCom, Wirecard.</div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Hai trục độc lập — <b>Reporting quality</b> (GAAP-compliant + decision-useful?) và <b>Earnings quality</b> (kết quả có sustainable + cash-backed?). Một firm có thể GAAP-perfect nhưng earnings rỗng (one-time gain), hoặc earnings tốt nhưng disclosure kém.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 04 · CONSERVATIVE VS AGGRESSIVE -->
+<section data-label="Bias" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>04 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Bias in accounting choices</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Conservative</em> vs aggressive.</h2>
+    <p class="small body--soft" style="max-width: 1500px; margin: 0 0 8px;">
+      Bias đẩy báo cáo theo hướng <em>understate</em> hay <em>overstate</em> performance. Cả hai đều giảm decision-usefulness, dù conservative ít rủi ro fraud hơn.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Conservative</div>
+      <dl>
+        <dt>Direction</dt>
+        <dd><em>Understate</em> assets, revenue, earnings; <em>overstate</em> liabilities, expenses</dd>
+        <dt>Ví dụ</dt>
+        <dd>Delay revenue, accelerate expense, big reserves, immediate impairment</dd>
+        <dt>Hậu quả</dt>
+        <dd>Earnings hôm nay thấp → tương lai dễ "beat" → <em>dịch chuyển</em> earnings sang quý sau</dd>
+        <dt>Vì sao</dt>
+        <dd>"Big bath" sau bad year, cookie jar reserves, smooth income trong hard times</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Aggressive</div>
+      <dl>
+        <dt>Direction</dt>
+        <dd><em>Overstate</em> assets, revenue, earnings; <em>understate</em> liabilities, expenses</dd>
+        <dt>Ví dụ</dt>
+        <dd>Channel stuffing, bill-and-hold, capitalize expense, lengthen useful life</dd>
+        <dt>Hậu quả</dt>
+        <dd>Earnings hôm nay cao → áp lực phải <em>"beat"</em> kỳ sau → escalate gian lận</dd>
+        <dt>Vì sao</dt>
+        <dd>Bonus targets, debt covenant, IPO, M&amp;A consideration, market expectations</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Nhớ: <b>conservative ≠ better</b>. Cả hai đều bias — đều méo bức tranh kinh tế. CFA framework yêu cầu <em>neutrality</em>: thông tin trung lập, không thiên về phía nào.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 05 · GAAP-COMPLIANT VS EARNINGS MGMT -->
+<section data-label="GAAP vs EM" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>05 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Lằn ranh mong manh</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">GAAP-compliant vs <em class="hi">earnings management</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">GAAP-compliant</div>
+      <dl>
+        <dt>Bản chất</dt>
+        <dd>Tuân thủ chuẩn mực, giả định + estimate <em>reasonable</em>, disclosure đầy đủ</dd>
+        <dt>Ý định</dt>
+        <dd>Phản ánh trung thực kinh tế giao dịch</dd>
+        <dt>Tín hiệu</dt>
+        <dd>Estimate ổn định qua thời gian, footnote rõ ràng, accruals match cash flow</dd>
+        <dt>Ví dụ</dt>
+        <dd>Useful life PP&amp;E giữ nguyên 10 năm; bad-debt provision = 2% qua nhiều kỳ</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Earnings management</div>
+      <dl>
+        <dt>Bản chất</dt>
+        <dd>Tận dụng <em>linh hoạt</em> trong GAAP để đạt target — vẫn có thể "compliant" về kỹ thuật</dd>
+        <dt>Ý định</dt>
+        <dd>Manipulate earnings — meet expectations, hit bonus, đạt covenant</dd>
+        <dt>Tín hiệu</dt>
+        <dd>Estimate thay đổi đột ngột, accrual cao, CFO &lt;&lt; NI, "smooth" earnings</dd>
+        <dt>Ví dụ</dt>
+        <dd>Đột nhiên kéo dài useful life PP&amp;E từ 10 → 20 năm để giảm depreciation</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Earnings management <em>không nhất thiết</em> illegal. Nó nằm giữa "biased choices within GAAP" và "departures from GAAP" trên spectrum. Khi vượt qua thành <em>fictitious transactions</em> → fraud.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 06 · EARNINGS QUALITY -->
+<section data-label="Earnings quality" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>06 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">High-quality earnings · 3 trụ cột</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Earnings quality</em>.</h2>
+    <p class="small body--soft" style="max-width: 1500px; margin: 0 0 8px;">
+      Earnings quality đánh giá mức độ "thật" và "lặp lại" của lợi nhuận. CFA L1 yêu cầu nhớ 3 đặc tính cốt lõi của high-quality earnings.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">P</span>
+      <div>
+        <div class="t"><em class="hi">Persistent</em></div>
+        <div class="d">Earnings có thể lặp lại trong tương lai. Recurring operating income > non-recurring gains. Special items cao = quality thấp.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">S</span>
+      <div>
+        <div class="t"><em class="hi">Sustainable</em></div>
+        <div class="d">Đến từ core operations, không phải accounting tricks hay one-time events (sell asset, tax credit, lawsuit settlement).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">$</span>
+      <div>
+        <div class="t"><em class="hi">Cash-backed</em></div>
+        <div class="d">CFO theo sát NI qua thời gian. Gap CFO − NI lớn → accrual cao → earnings dễ bị manipulate qua estimates.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">A</span>
+      <div>
+        <div class="t"><em class="hi">Adequate return</em></div>
+        <div class="d">Bonus criterion — ROIC vượt cost of capital. Earnings dương nhưng dưới WACC = giá trị bị hủy.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Mean reversion</span>
+    Cả high &amp; low earnings có xu hướng <em>mean-revert</em> theo thời gian. Earnings cực cao thường không kéo dài — đây là nền tảng cho việc dùng accruals để dự báo earnings tương lai.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 07 · ACCRUALS & SLOAN -->
+<section data-label="Accruals" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>07 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Quantitative red flag</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Accruals &amp; <em class="hi">Sloan ratio</em>.</h2>
+    <p class="small body--soft" style="max-width: 1500px; margin: 0 0 8px;">
+      Accrual = chênh lệch giữa earnings (báo cáo) và cash flow (thực thu/chi). High accrual = earnings dựa vào estimate hơn là cash → quality thấp.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Total accruals &amp; Sloan ratio</span>
+    <div class="eq"><span class="var">Aggregate Accruals</span> = <span class="var">NI</span> − (<span class="var">CFO</span> + <span class="var">CFI</span>)</div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Sloan Ratio</span> = <span class="var">Aggregate Accruals</span> / <span class="var">Avg Total Assets</span></div>
+    <div class="note"><b>Sloan ratio</b> &gt; 10% (positive) hoặc &lt; −10% → red flag. Sloan (1996) chứng minh firms có accrual cao thường <em>underperform</em> trong các kỳ tiếp theo do mean-reversion.</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Working capital accruals (narrow)</span>
+        <span class="step-body">Δ AR + Δ Inventory − Δ AP − Δ Accrued expenses. Manipulate qua revenue recognition và inventory valuation.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Total accruals (broad)</span>
+        <span class="step-body">Bao gồm depreciation, amortization, deferred tax, impairment — toàn bộ non-cash items đi qua IS.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § Mặc định: lower accruals (gần 0) = higher earnings quality. Một số accruals là <em>natural</em> (working capital growth khi firm scale up) — phải so với revenue growth và industry peers.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 08 · BENEISH M-SCORE -->
+<section data-label="Beneish M-score" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>08 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Forensic accounting model</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Beneish <em class="hi">M-score</em>.</h2>
+    <p class="small body--soft" style="max-width: 1500px; margin: 0 0 8px;">
+      Beneish (1999) — probit model dùng 8 financial ratios để estimate xác suất một firm đang manipulate earnings. Famous: Cornell students dùng M-score flag Enron năm 1998, 3 năm trước collapse.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ M-score thresholds</span>
+    <b>M &gt; −1.78</b> → high probability of manipulation (red flag). <br>
+    <b>M &lt; −1.78</b> → low probability of manipulation. <br>
+    Càng cao (gần 0 hoặc dương) → càng khả nghi.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">8 inputs — DSRI, GMI, AQI, SGI, DEPI, SGAI, Accruals, LVGI</span>
+        <span class="step-body">Days-sales receivables, gross margin, asset quality, sales growth, depreciation, SG&amp;A, total accruals to TA, leverage. Mỗi index = year-on-year ratio.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">DSRI &amp; SGI — most predictive</span>
+        <span class="step-body">Receivables tăng nhanh hơn revenue (DSRI ↑) + sales growth bất thường (SGI ↑) → kết hợp = aggressive revenue recognition.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Limitations</span>
+        <span class="step-body">Calibrated trên US firms 1982-1992. Service firms, banks, IPO phù hợp kém. M-score là <em>screening tool</em>, không phải proof — cần investigation thêm.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 09 · REVENUE RECOGNITION MANIPULATION -->
+<section data-label="Revenue manipulation" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>09 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Earnings management technique #1</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Revenue recognition</em> manipulation.</h2>
+    <p class="small body--soft" style="max-width: 1500px; margin: 0 0 8px;">
+      "Top-line" gian lận — đẩy revenue lên kỳ hiện tại bằng cách bóp méo timing hoặc fabricate giao dịch. Phổ biến nhất, dễ phát hiện qua DSO và CFO − NI gap.
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Channel stuffing</span>
+        <span class="step-body">Push hàng vào distributor cuối quý vượt nhu cầu thực — ghi nhận revenue ngay nhưng distributor sẽ trả lại quý sau. Receivables nhảy vọt; sale return quý sau cao.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Bill-and-hold</span>
+        <span class="step-body">Bán + invoice nhưng giữ hàng tại kho seller. Hợp lệ chỉ khi buyer chính thức yêu cầu (theo SEC). Lạm dụng = ghi nhận revenue trước khi delivery thực sự xảy ra.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Premature recognition — long-term contracts</span>
+        <span class="step-body">Percentage-of-completion lạm dụng — overstate % completed để pull-forward revenue. Hoặc multi-element bundle (hàng + service) gán quá nhiều giá trị cho phần đã giao.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Fictitious revenue</span>
+        <span class="step-body">Round-trip transactions, sham sales với related party, fake customer. Đây là fraud — không còn earnings management.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § Detection — DSO (Days Sales Outstanding) tăng đột biến, receivables growth &gt; revenue growth, cuối quý revenue tập trung &quot;hockey stick&quot;, CFO không theo NI.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 10 · EXPENSE CAPITALIZATION + WORLDCOM -->
+<section data-label="WorldCom case" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>10 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Case study · Earnings management technique #2</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Expense capitalization</em> — WorldCom.</h2>
+    <p class="small body--soft" style="max-width: 1500px; margin: 0 0 8px;">
+      Thay vì ghi expense (giảm NI ngay), firm <em>capitalize</em> chi phí thành asset → trải đều qua nhiều năm dưới dạng depreciation. Boost earnings hôm nay, đẩy chi phí về tương lai.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ WorldCom — $11 billion fraud (2002)</span>
+    Telecom giant capitalize <em>line costs</em> (phí sử dụng mạng của telco khác) — đáng lẽ phải expense. Chuyển ~$3.8B operating expense thành "capital investment" trong 2001-2002. Khi exposed: largest accounting fraud thời điểm đó (vượt Enron). CEO Bernard Ebbers nhận 25 năm tù; firm phá sản 2002.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">BS effect — assets ↑ giả tạo</span>
+        <span class="step-body">PP&amp;E hoặc intangible tăng so với reality. Depreciation kỳ sau cũng tăng, nhưng spread mỏng → effect on NI nhỏ mỗi năm.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">IS effect — earnings ↑ ngay lập tức</span>
+        <span class="step-body">Operating expense ↓ → operating income ↑. Margin và ROA bị inflate.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">CF effect — quan trọng cho detection</span>
+        <span class="step-body">Cash outflow chuyển từ <em>CFO</em> (operating expense) sang <em>CFI</em> (capex). CFO inflate; CFI deflate. Free cash flow không đổi — đây là red flag chính.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § Detection — capex / revenue tăng đột biến, gross PP&amp;E growth &gt; industry, CFO − NI gap nới rộng. Compare CFO với CFO + CFI để bypass game.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 11 · COOKIE JAR + BIG BATH -->
+<section data-label="Cookie jar &amp; Big bath" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>11 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Earnings management techniques #3-4</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Cookie jar</em> reserves &amp; Big bath.</h2>
+    <p class="small body--soft" style="max-width: 1500px; margin: 0 0 8px;">
+      Hai techniques sử dụng <em>reserves</em> để smooth earnings qua thời gian. Đều dùng linh hoạt trong GAAP estimates — khó detect nếu không nhìn nhiều kỳ liên tiếp.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Cookie jar reserves</div>
+      <dl>
+        <dt>Cơ chế</dt>
+        <dd>Trong "good year", over-reserve (bad debt, warranty, restructuring) → giấu earnings; "bad year" reverse → boost</dd>
+        <dt>Ví dụ</dt>
+        <dd>Microsoft 1990s — SEC settlement 2002 vì over-reserving để smooth quarterly earnings</dd>
+        <dt>Effect</dt>
+        <dd>Earnings <em>volatility</em> giảm artificial → P/E "deserve" cao hơn → market value lệch</dd>
+        <dt>Detection</dt>
+        <dd>Reserve ratio dao động bất thường, allowance for doubtful accounts không tỷ lệ với AR</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Big bath accounting</div>
+      <dl>
+        <dt>Cơ chế</dt>
+        <dd>Trong "bad year" hoặc khi CEO mới về, write off thật nhiều — &quot;everything but the kitchen sink&quot;</dd>
+        <dt>Ví dụ</dt>
+        <dd>New CEO impairment $5B goodwill ngay năm đầu — đổ lỗi cho người tiền nhiệm</dd>
+        <dt>Effect</dt>
+        <dd>Năm sau base thấp → growth %% trông khủng khiếp. CEO mới "anh hùng".</dd>
+        <dt>Detection</dt>
+        <dd>One-time charges lớn tập trung 1 quý/năm; restructuring reserves reverse vào quarters sau</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Cả hai đều bend GAAP qua estimates (provisions, useful life, impairment) — kỹ thuật khó kết tội fraud nhưng làm méo earnings persistence.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 12 · OFF-BS + ENRON SPE -->
+<section data-label="Enron case" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>12 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Case study · Earnings management technique #5</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Off-balance-sheet</em> — Enron's SPEs.</h2>
+    <p class="small body--soft" style="max-width: 1500px; margin: 0 0 8px;">
+      Special Purpose Entities (SPEs) — tách debt và underperforming assets sang shell companies để giấu khỏi BS hợp nhất. Khi rule consolidation lỏng, đây là cách "ưa thích" để fake leverage.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Enron — $74 billion collapse (2001)</span>
+    Energy trader Houston tạo &gt; 3,000 SPE (LJM, Raptors, Chewco, JEDI). Off-load debt + underperforming assets sang SPE; ghi nhận revenue từ "selling" assets cho chính SPE của mình. CFO Andrew Fastow personally control nhiều SPE → conflict of interest bị giấu. Khi Powers Report (2002) phơi bày: bankruptcy lớn nhất lịch sử thời điểm đó. Auditor Arthur Andersen sụp luôn → Sarbanes-Oxley Act 2002 ra đời.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Trick — &quot;3% rule&quot;</span>
+        <span class="step-body">Pre-2003 GAAP: nếu external party góp ≥ 3% equity và bear "control", SPE không cần consolidate. Enron lách bằng equity từ <em>related party</em>.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Reform — FIN 46(R) &amp; IFRS 10</span>
+        <span class="step-body">Sau Enron, US GAAP (FIN 46) và IFRS 10 chuyển sang test &quot;control&quot; thực chất: nếu sponsor chịu phần lớn risk/reward → must consolidate, bất kể equity %%.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Modern check</span>
+        <span class="step-body">Đọc footnote &quot;Variable Interest Entities&quot; (US GAAP) hay &quot;Structured Entities&quot; (IFRS). Banks, leasing, securitization vẫn dùng SPE rộng rãi — nay với disclosure nghiêm ngặt hơn.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 13 · CASH FLOW QUALITY -->
+<section data-label="CF quality" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>13 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Validation lens</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Cash flow</em> quality.</h2>
+    <p class="small body--soft" style="max-width: 1500px; margin: 0 0 8px;">
+      Cash là ground truth — khó manipulate hơn earnings. CFO theo sát NI qua nhiều kỳ là dấu hiệu mạnh nhất của earnings quality.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Earnings ↔ Cash relationship</span>
+    <div class="eq"><span class="var">CFO / NI</span> ratio — gần 1.0 và ổn định = high quality</div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Earnings persistence</span> = α + β₁·(Cash component) + β₂·(Accrual component)</div>
+    <div class="note"><b>Sloan finding</b> — β₁ &gt; β₂ rõ rệt. Cash earnings persist tốt hơn accrual earnings. Investors thường <em>ignore</em> phân biệt này → mispricing &quot;accruals anomaly&quot;.</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Red flag — CFO &lt;&lt; NI consistently</span>
+        <span class="step-body">Earnings không convert thành cash → accruals đang inflate NI. Worldcom, Enron, Lehman đều có gap này trong giai đoạn cuối.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Red flag — CFO classification game</span>
+        <span class="step-body">Push outflows từ CFO sang CFI/CFF (capitalize, factor receivables, classify lease payment as financing). Inflate operating cash flow.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Quick check — FCF = CFO − Capex</span>
+        <span class="step-body">FCF khó game hơn CFO riêng vì capex shift sẽ lộ. Kiểm tra capex / depreciation: &gt;&gt; 1 kéo dài → có thể đang capitalize.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 14 · BS QUALITY -->
+<section data-label="BS quality" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>14 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Stock view</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Balance sheet</em> quality.</h2>
+    <p class="small body--soft" style="max-width: 1500px; margin: 0 0 8px;">
+      BS quality = (1) <em>completeness</em> — mọi obligation và asset được ghi nhận; (2) <em>unbiased measurement</em> — fair value, impairment timely; (3) <em>clear presentation</em>.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">CMP</span>
+      <div>
+        <div class="t"><em class="hi">Completeness</em></div>
+        <div class="d">Off-BS items (operating leases pre-2019, SPE, contingent liabilities) làm giảm completeness. Adjust by capitalizing OL, consolidate SPE.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">VAL</span>
+      <div>
+        <div class="t"><em class="hi">Unbiased valuation</em></div>
+        <div class="d">Inventory at LCM, AR allowance đủ, PP&amp;E impairment kịp thời, goodwill tested annually. Aggressive estimates inflate equity.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CLR</span>
+      <div>
+        <div class="t"><em class="hi">Clarity</em></div>
+        <div class="d">Footnote disclosures rõ; segment data đầy đủ; fair-value hierarchy (Level 1/2/3) tách bạch; related-party transactions tiết lộ.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CONS</span>
+      <div>
+        <div class="t"><em class="hi">Consistency</em></div>
+        <div class="d">Accounting choice giữ ổn định qua kỳ; thay đổi policy disclose lý do và quantify ảnh hưởng. Frequent change = red flag.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Analyst adjustments thường gặp — capitalize operating leases (pre-IFRS 16), include unfunded pension obligations, deduct overstated goodwill, mark-to-market AFS securities.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 15 · RED FLAGS CHECKLIST -->
+<section data-label="Red flags" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>15 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Detection toolkit</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Red flags</em> checklist.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Quantitative red flags — CFA L1 must-know</span>
+    <b>1.</b> Receivables turnover ↓ (DSO ↑) without business reason — premature revenue recognition. <br>
+    <b>2.</b> CFO − NI gap nới rộng kéo dài — accruals inflate earnings. <br>
+    <b>3.</b> Inventory growth &gt; revenue growth — stuffing channel hoặc obsolete stock. <br>
+    <b>4.</b> Capex / Depreciation &gt;&gt; 1 trong nhiều năm — possible expense capitalization. <br>
+    <b>5.</b> Gross margin volatile hoặc đi ngược industry — cost manipulation. <br>
+    <b>6.</b> Frequent non-recurring &quot;one-time&quot; items — systematic earnings management. <br>
+    <b>7.</b> Beneish M-score &gt; −1.78 hoặc Sloan ratio &gt; 10%. <br>
+    <b>8.</b> Reserves &amp; allowances dao động bất thường vs revenue/AR.
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Qualitative red flags</span>
+    <b>1.</b> Aggressive management style + bonus tied tightly to short-term earnings. <br>
+    <b>2.</b> CFO/CEO turnover dồn dập, hoặc auditor change theo hướng &quot;dễ&quot; hơn. <br>
+    <b>3.</b> Related-party transactions complex, opaque footnote disclosure. <br>
+    <b>4.</b> Last-minute changes in accounting estimates ngay trước reporting deadline. <br>
+    <b>5.</b> Lawsuits, SEC investigation, restatement history.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 16 · AUDIT OPINIONS -->
+<section data-label="Audit opinions" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>16 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">External validation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Audit opinion</em> types.</h2>
+    <p class="small body--soft" style="max-width: 1500px; margin: 0 0 8px;">
+      Auditor's report là tín hiệu đầu tiên về reporting quality. CFA L1 yêu cầu nhớ 4 loại opinions theo thứ tự &quot;clean → bad&quot;.
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Unqualified (clean) — wanted outcome</span>
+        <span class="step-body">Auditor confirm BCTC fair presented theo GAAP/IFRS, không có exception. ~95% public firms nhận unqualified mỗi năm.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Qualified — &quot;except for&quot;</span>
+        <span class="step-body">Có một vấn đề cụ thể (specific item misstated hoặc scope limitation) — phần còn lại OK. Auditor nêu rõ &quot;except for [item], the statements present fairly...&quot;.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Adverse — toàn bộ unreliable</span>
+        <span class="step-body">Misstatement <em>pervasive</em> và material — BCTC không thể tin. Cực kỳ hiếm cho public company; nếu xảy ra → equity phá giá tức thì.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Disclaimer of opinion — auditor từ chối</span>
+        <span class="step-body">Scope quá hạn chế (auditor không có đủ evidence) → từ chối ý kiến. Thường đi kèm management blocking access hoặc going-concern doubt nghiêm trọng.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § Going-concern paragraph — không phải qualification riêng nhưng auditor có thể thêm <em>emphasis-of-matter</em>. Nếu doubt nặng → ảnh hưởng equity và credit ratings ngay lập tức.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 17 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 EN -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>18 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Identify the <em class="hi">earnings management</em> technique.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A telecommunications firm reports a sharp decline in operating expenses while gross PP&amp;E increases by 35% year-over-year. Operating cash flow rises significantly, but cash flow from investing turns sharply more negative. Net income hits a record high. The reporting pattern is <strong>most consistent</strong> with which earnings management technique?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Channel stuffing — pulling forward future revenue.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Capitalization of operating expenses as PP&amp;E.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Cookie jar reserves released into income.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>19 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Telecommunications firm</mark>. <mark>Operating expenses giảm</mark> + <mark>gross PP&amp;E tăng 35%</mark>. <mark>CFO ↑</mark> nhưng <mark>CFI ↓ negative</mark>. Mẫu hình quen thuộc — đã thấy ở case nào?
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Telecom + capitalize operating expense → liên hệ <em>WorldCom 2002</em>. Line costs đáng lẽ là expense bị chuyển thành PP&amp;E.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Cash flow signature: cash outflow chuyển từ <em>CFO</em> (operating) sang <em>CFI</em> (capex) → CFO ↑, CFI ↓ — exactly khớp pattern trong vignette.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Channel stuffing → receivables tăng, không phải PP&amp;E. Cookie jar → reserves giảm, không liên quan PP&amp;E. Chỉ B khớp.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 VN -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>20 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một công ty viễn thông báo cáo operating expenses giảm mạnh trong khi gross PP&amp;E tăng 35% so với cùng kỳ năm trước. Operating cash flow tăng đáng kể, nhưng cash flow from investing trở nên âm sâu hơn nhiều. Net income đạt mức cao kỷ lục. Mẫu hình báo cáo này <strong>phù hợp nhất</strong> với kỹ thuật earnings management nào?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Channel stuffing — kéo revenue tương lai về kỳ hiện tại.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Capitalization operating expenses thành PP&amp;E.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Cookie jar reserves được giải phóng vào income.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>21 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Expense capitalization.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Cả ba dấu hiệu đều khớp: <b>(1)</b> opex giảm + PP&amp;E tăng → chi phí được capitalize thành asset. <b>(2)</b> CFO ↑ + CFI ↓ → cash outflow di chuyển từ operating sang investing section. <b>(3)</b> NI cao do chi phí bị spread qua depreciation. Đây chính xác là pattern của <em>WorldCom 2002</em> — line costs ($3.8B) bị capitalize thành PP&amp;E.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Channel stuffing tăng <em>revenue và receivables</em>, không tác động trực tiếp đến PP&amp;E hay opex. Vignette không nhắc revenue hay AR.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Cookie jar reserve release làm giảm <em>provisions</em> (e.g., bad debt allowance, warranty reserve) — affect IS qua reversal nhưng không tác động đến PP&amp;E hay tăng capex outflow.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Expense capitalization signature — opex ↓, PP&amp;E ↑, CFO ↑, CFI ↓, NI ↑. <em>FCF không đổi</em> nhưng từng cấu phần CF bị méo. Detection: theo dõi capex / depreciation và CFO − NI gap qua thời gian.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 EN -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>22 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Beneish <em class="hi">M-score</em> interpretation.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst computes the Beneish M-score for three firms in the same industry: Firm X = <strong>−2.50</strong>, Firm Y = <strong>−1.50</strong>, Firm Z = <strong>−0.80</strong>. Based <strong>solely</strong> on the Beneish model, the firm <strong>most likely</strong> to be manipulating earnings is:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Firm X, because it has the most negative score.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Firm Y, because it is closest to the −1.78 threshold.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Firm Z, because its score is the highest (least negative) and exceeds the −1.78 threshold.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>23 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Beneish M-score</mark>. Threshold quan trọng nhất: <mark>−1.78</mark>. Score càng <mark>cao (gần 0 hoặc dương)</mark> → khả năng manipulate càng <mark>cao</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Quy ước Beneish: <em>M &gt; −1.78 = high probability of manipulation</em>. Nhớ chiều — số càng cao càng &quot;xấu&quot;.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">So sánh: X = −2.50 (rất âm, an toàn). Y = −1.50 (đã vượt threshold −1.78 vì −1.50 &gt; −1.78). Z = −0.80 (vượt xa nhất).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Cả Y và Z đều &gt; −1.78 → đều flagged. Nhưng Z = −0.80 cao hơn Y = −1.50 → Z có xác suất manipulate <em>cao nhất</em>.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 VN -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>24 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một analyst tính Beneish M-score cho 3 firms cùng ngành: Firm X = <strong>−2.50</strong>, Firm Y = <strong>−1.50</strong>, Firm Z = <strong>−0.80</strong>. <strong>Chỉ dựa</strong> vào Beneish model, firm <strong>most likely</strong> đang manipulate earnings là:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Firm X, vì có score âm nhiều nhất.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Firm Y, vì gần threshold −1.78 nhất.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Firm Z, vì score cao nhất (ít âm nhất) và vượt threshold −1.78.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>25 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — Firm Z.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext">Beneish threshold: <b>M &gt; −1.78</b> → high probability of manipulation. Firm Z (−0.80) vượt threshold xa nhất, gần 0 → xác suất manipulation cao nhất. Firm Y (−1.50) cũng vượt threshold (−1.50 &gt; −1.78) nhưng ít cảnh báo hơn Z. Logic: score càng cao (gần 0/dương), DSRI/SGI/Accruals indices càng aggressive.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Sai chiều. Firm X (−2.50) là <em>âm nhất</em> → far below −1.78 → low probability of manipulation. Đây là kết quả &quot;sạch&quot; nhất trong 3 firms.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Y (−1.50) đã vượt threshold (vì −1.50 &gt; −1.78), nhưng &quot;gần threshold&quot; không có nghĩa là manipulation cao nhất. Firm Z xa threshold hơn theo hướng &quot;xấu&quot; → Z risk cao hơn Y.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Beneish M-score: <em>M &gt; −1.78</em> = red flag. Score <em>càng cao càng xấu</em> (về phía 0 hoặc dương). −2.50 sạch, −0.80 nguy hiểm. Nhớ chiều dấu trừ này — sai một dấu là sai cả câu.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 EN -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>26 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">High-quality</em> earnings characteristic.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Which of the following best describes the characteristics of <strong>high-quality earnings</strong> as defined by the CFA framework?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Earnings that are smooth and consistent across reporting periods, with low volatility.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Earnings that are persistent, sustainable, and supported by operating cash flow.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Earnings that are conservative, with assets understated and liabilities overstated.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>27 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>High-quality earnings</mark>. Nhớ 3 trụ cột: <mark>persistent</mark>, <mark>sustainable</mark>, <mark>cash-backed</mark>. &quot;Smooth&quot; ≠ high quality. &quot;Conservative&quot; cũng không phải neutral.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">A — &quot;smooth&quot; earnings là dấu hiệu của <em>earnings management</em> (cookie jar reserves), không phải high quality. Smoothing là red flag.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">B — đúng định nghĩa CFA: <em>persistent</em> + <em>sustainable</em> + <em>cash-backed</em> (CFO theo NI). Đây là 3 trụ cột chính được test trên CFA L1.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">C — conservative bias VẪN là bias. CFA framework yêu cầu <em>neutrality</em>, không thiên về understate hay overstate. Conservative ≠ high quality.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 VN -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>28 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Phương án nào mô tả đúng nhất đặc điểm của <strong>high-quality earnings</strong> theo định nghĩa của CFA framework?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Earnings smooth và ổn định qua các kỳ, volatility thấp.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Earnings persistent, sustainable, và được hỗ trợ bởi operating cash flow.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Earnings conservative, với assets understate và liabilities overstate.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 29 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>29 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Persistent + Sustainable + Cash-backed.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">CFA định nghĩa high-quality earnings = <b>persistent</b> (lặp lại được), <b>sustainable</b> (từ core operations, không one-time), <b>cash-backed</b> (CFO theo sát NI). Đây là 3 trụ cột chính. Một số textbook thêm <em>adequate return</em> (vượt cost of capital) làm tiêu chí thứ 4.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Smooth earnings <em>không phải</em> high quality. Earnings smoothing thường là dấu hiệu của <b>cookie jar reserves</b> — over-reserve trong good years, release trong bad years. Smooth artificially → reporting quality thấp.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Conservative bias (understate assets, overstate liabilities) <em>vẫn là bias</em>. CFA framework yêu cầu <b>neutrality</b> — không thiên về phía nào. Conservative không &quot;an toàn&quot; hơn aggressive về mặt reporting quality; cả hai đều méo bức tranh kinh tế.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">High-quality earnings = <em>P · S · $</em> — Persistent + Sustainable + Cash-backed. Smoothing và conservatism đều là <em>bias</em> — giảm reporting quality dù không phải fraud. Nhớ: neutrality, không phải conservatism.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- 30 · WRAP + END -->
+<section data-label="Wrap" class="slide">
+  <div class="run-header">
+    <span>04.10 — Reporting Quality</span>
+    <span class="rule"></span>
+    <span>30 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What to <em class="hi">remember</em>.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Quality spectrum — 5 cấp từ GAAP+decision-useful đến fraudulent</span>
+        <span class="step-body">Phân biệt reporting quality (báo cáo) và earnings quality (kết quả kinh tế). Conservative ≠ better — cả hai bias đều giảm quality.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Earnings quality = Persistent + Sustainable + Cash-backed</span>
+        <span class="step-body">CFO theo sát NI là validation mạnh nhất. Sloan ratio và Beneish M-score (&gt; −1.78 = red flag) là screening tools.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">5 EM techniques — và 2 famous cases</span>
+        <span class="step-body">Revenue (channel stuffing, bill-and-hold) · Expense capitalization (<em>WorldCom</em> $11B) · Cookie jar · Big bath · SPE off-BS (<em>Enron</em> $74B → SOX, FIN 46(R), IFRS 10).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Red flags + Audit opinion ladder</span>
+        <span class="step-body">DSO ↑, CFO−NI gap ↑, capex/dep ↑↑, accruals ↑, smoothed earnings, frequent estimate changes. Audit: unqualified → qualified → adverse → disclaimer.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.10 — Financial Reporting Quality</span>
+  </div>
+</section>
+
+
+<!-- END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>04.10 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 04.11 — Applications of Financial Statement Analysis</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

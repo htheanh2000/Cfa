@@ -1,0 +1,1147 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · FSA 04.08 — Long-Term Liabilities &amp; Equity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 104px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Long-Term<br><em>Liabilities</em><br>&amp; Equity.</h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 04 · Lesson 04.08 · FSA</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 08 · Bonds, Leases, Pensions &amp; Equity</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>FSA</dd></div>
+      <div><dt>Module</dt><dd>08</dd></div>
+      <div><dt>Lesson</dt><dd>04.08</dd></div>
+      <div><dt>Thời lượng</dt><dd>120 min</dd></div>
+    </dl>
+    <div class="mark">Bond amortization · IFRS 16 vs ASC 842 · DB pensions · Stock-based comp</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">08</div>
+    <div class="lbl">LT Liabilities &amp; Equity</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>Funding the firm —<br><em>debt</em>, <em>leases</em>, <em>pensions</em>, <em>equity</em>.</h2>
+    <ul class="toc">
+      <li class="active">01 · Bond issuance — par, premium, discount</li>
+      <li>02 · Effective interest method &amp; carrying value</li>
+      <li>03 · Bond derecognition — early extinguishment</li>
+      <li>04 · Lease accounting — lessee &amp; lessor</li>
+      <li>05 · Pensions — DB vs DC, OCI for actuarial G/L</li>
+      <li>06 · Equity components &amp; stock-based comp</li>
+      <li>07 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · BOND ISSUANCE -->
+<section data-label="Bond issuance" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>03 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Long-term debt · foundation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Bond <em class="hi">issuance</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Khi firm phát hành bond, issue price phụ thuộc vào tương quan giữa <em>coupon rate</em> (cố định trong indenture) và <em>market yield</em> tại ngày phát hành. Ba kịch bản cơ bản:
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Issue price = PV of cash flows discounted at market yield</span>
+    <div class="eq"><span class="var">Issue Price</span> = Σ <span class="var">Coupon</span> / (1+<span class="var">y</span>)<sup>t</sup> + <span class="var">Face</span> / (1+<span class="var">y</span>)<sup>n</sup></div>
+    <div class="note"><b>Coupon = market yield</b> → bond at <em>par</em>. <b>Coupon &gt; market yield</b> → bond at <em>premium</em> (issue price &gt; face). <b>Coupon &lt; market yield</b> → bond at <em>discount</em> (issue price &lt; face).</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Tại issuance, BS ghi <b>Bond payable</b> = issue price (KHÔNG phải face value). Premium/discount được embed trong carrying value và amortize dần qua effective interest method đến đáo hạn → carrying value hội tụ về face value.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 04 · PREMIUM VS DISCOUNT -->
+<section data-label="Premium vs Discount" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>04 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Bond mechanics</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Premium</em> vs <em class="hi">Discount</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Premium bond</div>
+      <dl>
+        <dt>Điều kiện</dt>
+        <dd>Coupon rate <b>&gt;</b> market yield tại issuance</dd>
+        <dt>Issue price</dt>
+        <dd>Issue price <b>&gt;</b> face value (e.g. $1,050 vs $1,000 face)</dd>
+        <dt>Carrying value</dt>
+        <dd>Bắt đầu cao hơn face → <em>giảm dần</em> về face khi đáo hạn</dd>
+        <dt>Interest expense</dt>
+        <dd>Coupon paid &gt; interest expense → premium <em>amortize giảm</em> liability mỗi kỳ</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Discount bond</div>
+      <dl>
+        <dt>Điều kiện</dt>
+        <dd>Coupon rate <b>&lt;</b> market yield tại issuance</dd>
+        <dt>Issue price</dt>
+        <dd>Issue price <b>&lt;</b> face value (e.g. $950 vs $1,000 face)</dd>
+        <dt>Carrying value</dt>
+        <dd>Bắt đầu thấp hơn face → <em>tăng dần</em> về face khi đáo hạn</dd>
+        <dt>Interest expense</dt>
+        <dd>Interest expense &gt; coupon paid → discount <em>amortize tăng</em> liability mỗi kỳ</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Cả hai trường hợp, <b>total interest expense over life</b> = total coupons paid ± premium/discount amortization. Premium giảm interest expense tổng; discount tăng.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 05 · EFFECTIVE INTEREST METHOD -->
+<section data-label="Effective interest" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>05 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Amortization · the rule</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Effective interest</em> method.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Cả IFRS lẫn US GAAP đều yêu cầu effective interest method cho bond amortization. Straight-line chỉ allowed dưới US GAAP nếu kết quả không materially different.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Effective interest rule</span>
+    <b>Interest expense<sub>t</sub> = Carrying value<sub>t-1</sub> × Market yield at issuance</b>. Coupon paid là cash outflow cố định. Difference giữa interest expense và coupon paid = premium/discount amortization, cộng/trừ vào carrying value.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Step 1 — Tính interest expense</span>
+        <span class="step-body">Interest expense = beginning carrying value × market yield (locked tại issuance, không thay đổi khi market rate biến động sau đó).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Step 2 — Tính amortization</span>
+        <span class="step-body">Premium: amortization = coupon − interest expense (giảm carrying value). Discount: amortization = interest expense − coupon (tăng carrying value).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Step 3 — Update carrying value</span>
+        <span class="step-body">Premium: CV<sub>t</sub> = CV<sub>t-1</sub> − amortization. Discount: CV<sub>t</sub> = CV<sub>t-1</sub> + amortization. Tại maturity, CV = face value.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 06 · CARRYING VALUE FORMULA -->
+<section data-label="Carrying value" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>06 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Bond carrying value</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Bond <em class="hi">carrying value</em> over life.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Carrying value evolution</span>
+    <div class="eq"><span class="var">CV<sub>t</sub></span> = <span class="var">CV<sub>t-1</sub></span> + <span class="var">Interest Expense<sub>t</sub></span> − <span class="var">Coupon<sub>t</sub></span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Interest Expense<sub>t</sub></span> = <span class="var">CV<sub>t-1</sub></span> × <span class="var">y<sub>0</sub></span></div>
+    <div class="note"><b>y<sub>0</sub></b> = market yield at issuance (effective rate). Premium bond → CV ↓ over time (interest exp &lt; coupon). Discount bond → CV ↑ over time (interest exp &gt; coupon). Par bond → CV constant = face.</div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 18px;">
+    § <b>Important</b> — carrying value KHÔNG bằng market value của bond sau issuance. Market value reflect biến động interest rate; carrying value chỉ amortize theo y<sub>0</sub>. Analyst đôi khi adjust BS bằng fair value của debt khi compute leverage ratios.
+  </p>
+
+  <div class="take" style="margin-top: 16px;">
+    <b>Cash flow impact</b> — Coupon payment cash outflow chia làm 2 phần trên CFS: <em>interest portion</em> (CFO under US GAAP, có thể CFO/CFF under IFRS) + <em>principal at maturity</em> (CFF). Issuance proceeds là CFF inflow.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 07 · BOND DERECOGNITION -->
+<section data-label="Derecognition" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>07 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">End of life</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Bond <em class="hi">derecognition</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Bond có thể được derecognize tại maturity (paid in full) hoặc <em>early extinguishment</em> — firm mua lại bond từ market hoặc call option. Early extinguishment tạo ra gain/loss trên IS.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Gain/loss on early extinguishment</span>
+    <div class="eq"><span class="var">Gain (Loss)</span> = <span class="var">Carrying Value</span> − <span class="var">Repurchase Price</span></div>
+    <div class="note"><b>Carrying value &gt; repurchase price</b> → <em>gain</em> (firm trả ít hơn book debt). <b>Carrying value &lt; repurchase price</b> → <em>loss</em>. Gain/loss ghi nhận trên Income Statement, thường ở "other income/expense" hoặc separate line nếu material.</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 18px;">
+    <li>
+      <span>
+        <span class="step-title">Common trigger — interest rate giảm</span>
+        <span class="step-body">Khi market rate giảm sau issuance, market price bond tăng → repurchase tốn nhiều hơn → loss. Ngược lại, rate tăng → repurchase rẻ → gain.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Disclosure — footnote bắt buộc</span>
+        <span class="step-body">Firm phải disclose nature, amount, và lý do của early retirement. Analyst quan tâm vì nó signal về interest rate strategy hoặc capital restructuring.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Cash flow classification</span>
+        <span class="step-body">Repurchase price ghi nhận đầy đủ là <em>CFF outflow</em>. Gain/loss là non-cash adjustment cho CFO (indirect method).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 08 · LEASE OVERVIEW -->
+<section data-label="Lease overview" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>08 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Lease accounting · post-reform</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">When to <em class="hi">capitalize</em> a lease.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      IFRS 16 (2019) và ASC 842 (2019) reform định nghĩa lease accounting. Hầu hết operating lease cũ (off-BS) nay phải capitalize → right-of-use asset + lease liability.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ IFRS 16 · single lessee model</span>
+    Mọi lease có term <b>&gt; 12 months</b> và underlying asset <b>không low-value</b> đều capitalize. Lessee ghi nhận: (1) <em>Right-of-use asset</em> (asset side) + (2) <em>Lease liability</em> = PV of lease payments. KHÔNG còn distinction operating vs finance dưới IFRS.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Initial recognition</span>
+        <span class="step-body">ROU asset = PV(lease payments) + initial direct costs + estimated dismantling. Lease liability = PV(lease payments) discounted at implicit rate hoặc lessee incremental borrowing rate.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Subsequent measurement</span>
+        <span class="step-body">ROU asset depreciate (thường straight-line). Lease liability amortize qua effective interest method. Total expense front-loaded vs operating cũ.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">IS impact</span>
+        <span class="step-body">2 lines: <em>Depreciation</em> (operating) + <em>Interest expense</em> (financing/operating). EBITDA, EBIT tăng vs operating lease cũ; interest expense tăng → coverage ratios xấu hơn.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 09 · FINANCE VS OPERATING (US GAAP) -->
+<section data-label="Lessee dual model" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>09 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">US GAAP · ASC 842 dual model</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Finance</em> vs <em class="hi">Operating</em> lease (lessee).</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      US GAAP giữ dual model. Cả 2 loại đều capitalize on BS, nhưng IS &amp; CFS treatment khác nhau.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Finance lease</div>
+      <dl>
+        <dt>Bản chất</dt>
+        <dd>Substantively transfer ownership/control — tương đương mua tài sản bằng debt</dd>
+        <dt>IS expense</dt>
+        <dd>2 lines: <em>Depreciation</em> (asset) + <em>Interest expense</em> (liability) — front-loaded</dd>
+        <dt>CFS</dt>
+        <dd>Interest portion: CFO. Principal portion: CFF</dd>
+        <dt>Triggers</dt>
+        <dd>Title transfer, bargain purchase option, term &gt; 75% useful life, PV ≥ 90% fair value, specialized asset</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Operating lease</div>
+      <dl>
+        <dt>Bản chất</dt>
+        <dd>Pure rental — lessee không "own" risk &amp; rewards</dd>
+        <dt>IS expense</dt>
+        <dd>1 line: <em>Lease expense</em> straight-line over term</dd>
+        <dt>CFS</dt>
+        <dd>Toàn bộ payment: <em>CFO outflow</em></dd>
+        <dt>Triggers</dt>
+        <dd>KHÔNG meet bất kỳ trigger finance lease nào → default operating</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Cả 2 loại đều có ROU asset + lease liability on BS dưới ASC 842. Khác biệt nằm ở IS và CFS classification, ảnh hưởng EBITDA, coverage ratios, và operating CF metrics.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 10 · LESSOR ACCOUNTING -->
+<section data-label="Lessor" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>10 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Lessor side</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Lessor</em> classification — 3 types.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">SLT</span>
+      <div>
+        <div class="t"><em class="hi">Sales-type lease</em></div>
+        <div class="d">Manufacturer/dealer dùng lease như sales channel. Recognize <em>gross profit upfront</em> (sales revenue − COGS) + interest income over term. Asset removed khỏi BS lessor.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">DFL</span>
+      <div>
+        <div class="t"><em class="hi">Direct-financing lease</em></div>
+        <div class="d">Lessor là financial intermediary, không có dealer profit. KHÔNG recognize gross profit upfront — chỉ <em>interest income</em> over term. Asset thay bằng net investment in lease.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">OPL</span>
+      <div>
+        <div class="t"><em class="hi">Operating lease</em></div>
+        <div class="d">Asset ở lại BS lessor, depreciate normally. Recognize <em>lease income</em> straight-line. Tương tự rental business.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">⊕</span>
+      <div>
+        <div class="t"><em class="hi">Triggers</em> for sales-type / DFL</div>
+        <div class="d">Tương tự finance lease cho lessee: transfer ownership, bargain purchase option, term ≥ 75% useful life, PV ≥ 90% fair value, specialized asset.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § <b>IFRS 16</b> kept dual model on lessor side: finance lease vs operating lease. Sales-type và direct-financing là phân khúc của finance lease dưới US GAAP.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 11 · PENSIONS DB VS DC -->
+<section data-label="Pensions" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>11 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Post-employment benefits</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Defined Benefit</em> vs <em class="hi">Defined Contribution</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Defined Contribution (DC)</div>
+      <dl>
+        <dt>Risk bearer</dt>
+        <dd>Employee chịu investment risk &amp; longevity risk</dd>
+        <dt>Employer obligation</dt>
+        <dd>Limited to <em>contribution amount</em> trong kỳ — sau khi pay, hết nghĩa vụ</dd>
+        <dt>BS impact</dt>
+        <dd>Không có long-term liability. Chỉ accrued contribution payable nếu chưa pay</dd>
+        <dt>IS expense</dt>
+        <dd>Pension expense = contribution của kỳ. Đơn giản, predictable</dd>
+        <dt>Ví dụ</dt>
+        <dd>401(k), Vietnamese voluntary pension fund</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Defined Benefit (DB)</div>
+      <dl>
+        <dt>Risk bearer</dt>
+        <dd>Employer chịu investment + longevity + actuarial risk</dd>
+        <dt>Employer obligation</dt>
+        <dd>Promise <em>specific future benefit</em> (e.g. % salary × years of service)</dd>
+        <dt>BS impact</dt>
+        <dd>Net pension liability/asset = PBO − fair value plan assets</dd>
+        <dt>IS expense</dt>
+        <dd>Multi-component: service cost, interest cost, expected return on assets, amortization</dd>
+        <dt>Ví dụ</dt>
+        <dd>Traditional corporate pension, public sector schemes</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Trend toàn cầu: shift từ DB → DC vì DB tạo huge balance sheet liabilities và earnings volatility từ actuarial assumptions.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 12 · PENSION EXPENSE FORMULA -->
+<section data-label="Pension expense" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>12 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">DB pension components</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Pension expense</em> components.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ DB periodic pension cost (US GAAP)</span>
+    <div class="eq"><span class="var">Pension Expense</span> = <span class="var">SC</span> + <span class="var">IC</span> − <span class="var">ER</span> ± <span class="var">Amort</span></div>
+    <div class="note"><b>SC</b> Service cost — PV of benefits earned trong kỳ hiện tại (operating). <b>IC</b> Interest cost — PBO × discount rate (non-operating). <b>ER</b> Expected return on plan assets (non-operating, smoothed). <b>Amort</b> Amortization of past service cost &amp; actuarial G/L.</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ IFRS vs US GAAP — actuarial G/L treatment</span>
+    <b>IFRS (IAS 19)</b> — service cost (P&amp;L) + net interest on net pension liability (P&amp;L) + remeasurements (<em>OCI, no recycling</em>). <b>US GAAP</b> — full expense aggregated on IS, actuarial G/L initially in OCI then amortized to IS qua corridor method.
+  </div>
+
+  <p class="fine-muted-sm">
+    § <b>Total periodic pension cost</b> (TPPC) = change in net pension liability + employer contributions = expense (IS) + remeasurement (OCI). Analyst dùng TPPC để compare across firms vì nó capture full economic cost regardless of where it's reported.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 13 · EQUITY COMPONENTS -->
+<section data-label="Equity components" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>13 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Shareholders' equity</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Equity</em> components.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">CS</span>
+      <div>
+        <div class="t"><em class="hi">Share capital (Common Stock)</em></div>
+        <div class="d">Par value × shares issued. Par chỉ là nominal accounting figure (thường $0.01). Một số jurisdiction dùng "no-par stock" — toàn bộ proceeds vào common stock account.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">APIC</span>
+      <div>
+        <div class="t"><em class="hi">Additional Paid-in Capital</em></div>
+        <div class="d">Issue price − par value, × shares. Nếu IPO $20/share, par $0.01 → APIC = $19.99/share. Cũng include premium từ stock option exercise và conversion features.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">RE</span>
+      <div>
+        <div class="t"><em class="hi">Retained Earnings</em></div>
+        <div class="d">Cumulative net income − cumulative dividends − cumulative treasury stock retired. Internal funding source quan trọng nhất; reflect lifetime profitability.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">TS</span>
+      <div>
+        <div class="t"><em class="hi">Treasury Stock (contra)</em></div>
+        <div class="d">Buyback shares ghi tại cost, <em>trừ</em> khỏi total equity. Buyback giảm shares outstanding → tăng EPS, signal undervaluation. KHÔNG tạo gain/loss khi tái phát hành.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">AOCI</span>
+      <div>
+        <div class="t"><em class="hi">AOCI</em></div>
+        <div class="d">Accumulated Other Comprehensive Income — cumulative OCI items: FX translation, unrealized gains/losses AFS/FVOCI, pension remeasurements, cash flow hedges.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">NCI</span>
+      <div>
+        <div class="t"><em class="hi">Non-controlling Interest</em></div>
+        <div class="d">Equity của minority shareholders trong subsidiaries consolidated. Trên consolidated BS, ghi tách riêng dưới equity (post-2009 reform).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 14 · STOCK-BASED COMPENSATION -->
+<section data-label="Stock-based comp" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>14 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Equity-linked compensation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Stock-based</em> compensation.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Cả IFRS (IFRS 2) và US GAAP (ASC 718) đều require expense recognition over <em>vesting period</em> dựa trên fair value tại grant date. Compensation expense hit IS, contra entry vào equity (APIC).
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Stock options — Black-Scholes valuation</span>
+        <span class="step-body">Fair value tại grant date (Black-Scholes hoặc binomial model) → expense ratably over vesting period (e.g. 4 năm). Khi exercise, nhân viên trả strike price → cash inflow + APIC tăng.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">RSUs (Restricted Stock Units)</span>
+        <span class="step-body">Fair value = stock price tại grant date × units. Đơn giản hơn options. Expense over vesting period. Khi vest, shares phát hành (hoặc cash equivalent), APIC tăng.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">ESOPs (Employee Stock Ownership Plans)</span>
+        <span class="step-body">Trust mua shares cho employees (often leveraged). Compensation expense = contribution to ESOP trust mỗi kỳ. Diluted EPS tính included shares.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Dilution effect — analyst adjustment</span>
+        <span class="step-body">Diluted EPS dùng treasury stock method (options) hoặc if-converted (convertibles). Heavy SBC firms (tech) nên adjust EPS bằng cách add back SBC vào CFO khi compute "core" cash earnings.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § <b>CFS treatment</b> — SBC là non-cash expense → add back vào Net Income trong CFO (indirect method). Khi options exercise, cash từ employee ghi CFF inflow; tax benefit từ exercise được reform 2017 chuyển vào CFO (US GAAP).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 15 · WHY THIS MATTERS -->
+<section data-label="Why this matters" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>15 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Analyst lens</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Why this <em class="hi">matters</em>.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Bond carrying value ≠ market value</span>
+        <span class="step-body">Khi rate biến động, fair value debt lệch carrying value. Adjust BS toward fair value để có true economic leverage trước khi compute D/E, D/A.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Lease capitalization changed everything</span>
+        <span class="step-body">Pre-2019, off-BS operating lease che giấu leverage. Post-IFRS 16/ASC 842, nhiều firms (retailers, airlines) thấy debt jump 30-100% on BS. Cross-period comparison cần adjust.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">DB pensions — hidden risk</span>
+        <span class="step-body">Underfunded pension = effectively long-term debt. Discount rate assumption sensitive: giảm 1% có thể tăng PBO 10-20%. Always check footnote actuarial assumptions.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">SBC dilution — equity story</span>
+        <span class="step-body">Tech firms thường có SBC = 10-20% revenue. Excluded từ "adjusted EBITDA" but is real shareholder cost. Watch dilution trend trong shares outstanding.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 16 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 EN -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>17 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Bond <em class="hi">carrying value</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A company issues a 5-year, $1,000,000 face-value bond with a <strong>4% annual coupon</strong> when the market yield is <strong>6%</strong>. The bond is issued at a discount of approximately $915,750. Using the effective interest method, the bond's <strong>carrying value at the end of Year 1</strong> is <em>closest to</em>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$915,750 — carrying value remains constant until maturity.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$930,895 — carrying value increases as the discount amortizes.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$901,500 — carrying value decreases as coupon exceeds interest expense.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>18 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Discount bond</mark> (coupon 4% &lt; yield 6%). <mark>Effective interest method</mark>. <mark>End of Year 1</mark> carrying value.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Discount bond → carrying value <em>tăng dần</em> đến face value tại maturity. Loại option A (constant) và C (giảm).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Interest expense<sub>1</sub> = beginning CV × market yield = 915,750 × 6% = <em>$54,945</em>. Coupon paid = 1,000,000 × 4% = $40,000.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Discount amortization = interest expense − coupon = 54,945 − 40,000 = $14,945. CV<sub>1</sub> = 915,750 + 14,945 = <em>$930,695</em> (≈ $930,895 cho rounding option B).</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 VN -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>19 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một công ty phát hành bond 5 năm, face value $1,000,000, <strong>coupon 4% annual</strong> khi market yield là <strong>6%</strong>. Bond phát hành tại discount, issue price $915,750. Dùng effective interest method, <strong>carrying value cuối Year 1</strong> gần nhất là:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$915,750 — carrying value không đổi cho đến maturity.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$930,895 — carrying value tăng khi discount amortize.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$901,500 — carrying value giảm khi coupon vượt interest expense.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>20 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $930,895.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Discount bond → CV tăng dần. <b>Interest expense<sub>1</sub></b> = 915,750 × 6% = $54,945. <b>Coupon</b> = 1,000,000 × 4% = $40,000. <b>Discount amortization</b> = 54,945 − 40,000 = $14,945. <b>CV<sub>1</sub></b> = 915,750 + 14,945 ≈ $930,695 (option B rounded).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Carrying value KHÔNG constant — đó là common misconception. Effective interest method đảm bảo CV hội tụ về face value tại maturity. Constant CV chỉ xảy ra với par bond.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">CV giảm khi coupon &gt; interest expense — điều đó chỉ đúng cho <em>premium bond</em>. Đây là discount bond (coupon 4% &lt; yield 6%) → CV phải tăng, không giảm.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Discount bond → <em>CV tăng</em> over life. Premium bond → <em>CV giảm</em> over life. Cả 2 hội tụ về face value tại maturity. Interest expense luôn = beginning CV × <em>original</em> market yield.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 EN -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>21 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Lease classification</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Under <strong>IFRS 16</strong>, a lessee enters into a 5-year lease for office equipment with annual payments of $50,000. The equipment has a useful life of 7 years and a fair value of $220,000. The PV of lease payments is $210,000. Which of the following <strong>most accurately</strong> describes the lessee's accounting?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Operating lease — full $50,000 expense recognized as a single line on the income statement each year.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Capitalize as ROU asset $210,000 + lease liability $210,000; recognize depreciation + interest expense.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Off-balance-sheet — disclose only in footnotes since lease term &lt; useful life.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>22 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>IFRS 16</mark> single lessee model. <mark>5-year lease</mark> &gt; 12 months. Equipment <mark>not low-value</mark>. PV lease payments = $210,000.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">IFRS 16 LOẠI BỎ distinction operating vs finance ở lessee side. Mọi lease &gt; 12 months &amp; not low-value đều capitalize → loại option A.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Off-BS treatment đã KHÔNG còn dưới IFRS 16 (post-2019). Loại option C.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Đúng treatment: ROU asset = PV(payments) = $210,000. Lease liability = PV(payments) = $210,000. IS expense = depreciation (ROU) + interest expense (liability).</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 VN -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>23 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Dưới <strong>IFRS 16</strong>, một lessee ký hợp đồng thuê office equipment 5 năm với annual payment $50,000. Equipment có useful life 7 năm và fair value $220,000. PV của lease payments là $210,000. Điều nào mô tả <strong>chính xác nhất</strong> kế toán của lessee?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Operating lease — full $50,000 expense ghi nhận thành 1 line trên IS mỗi năm.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Capitalize ROU asset $210,000 + lease liability $210,000; ghi nhận depreciation + interest expense.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Off-balance-sheet — chỉ disclose footnote vì lease term &lt; useful life.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>24 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Capitalize ROU + liability.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">IFRS 16 single lessee model: lease &gt; 12 months &amp; not low-value → capitalize. <b>ROU asset</b> = PV(lease payments) = $210,000. <b>Lease liability</b> = PV(lease payments) = $210,000. IS: <em>depreciation</em> (straight-line over lease term) + <em>interest expense</em> (effective interest on liability). Total expense front-loaded.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Single-line operating lease treatment đã bị IFRS 16 LOẠI BỎ (effective 2019). Đây là US GAAP (ASC 842) treatment cho operating leases. IFRS không còn distinction này ở lessee side.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Off-BS lease là pre-2019 treatment. IFRS 16 yêu cầu hầu như mọi lease lên BS. Chỉ exception: short-term (&lt; 12 months) hoặc low-value asset (e.g. computer dưới $5,000) — không applicable ở đây.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">IFRS 16 = <em>single lessee model</em>, mọi lease &gt; 12 months &amp; not low-value đều capitalize. ROU asset + lease liability lên BS. IS có 2 expense lines: depreciation + interest. US GAAP (ASC 842) giữ dual model nhưng cả 2 loại đều capitalize on BS.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 EN -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>25 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Treasury stock</em> effect.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A company repurchases <strong>1 million of its own common shares</strong> at $25 per share. The shares had a par value of $0.01. Which of the following <strong>most accurately</strong> describes the effect on the company's balance sheet?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Total assets unchanged; treasury stock recorded at par ($10,000) reduces common stock.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Cash decreases by $25 million; total equity decreases by $25 million via contra-equity treasury stock.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Cash decreases by $25 million; gain of $24,990,000 recognized in retained earnings (excess over par).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>26 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Treasury stock</mark> = <mark>contra-equity</mark>. <mark>Repurchase at cost</mark>, không tạo gain/loss. <mark>Total cost</mark> = 1M × $25 = $25M.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Treasury stock ghi tại <em>cost</em>, không phải par. Loại option A (par-only treatment).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Buyback KHÔNG tạo gain/loss trong RE. Đây là transaction giữa firm và shareholders, không phải income statement event. Loại option C.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Đúng: Cash ↓ $25M (asset side). Treasury stock contra-equity +$25M (deducted from equity) → Total equity ↓ $25M. A = L + E vẫn balance.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 VN -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>27 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một công ty mua lại <strong>1 triệu shares common stock của chính mình</strong> với giá $25/share. Shares có par value $0.01. Điều nào mô tả <strong>chính xác nhất</strong> ảnh hưởng lên balance sheet của công ty?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Total assets không đổi; treasury stock ghi tại par ($10,000) giảm common stock.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Cash giảm $25 triệu; total equity giảm $25 triệu qua contra-equity treasury stock.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Cash giảm $25 triệu; gain $24,990,000 ghi nhận trong retained earnings (excess trên par).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>28 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Cash ↓ $25M, Equity ↓ $25M.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Buyback 1M × $25 = $25M. <b>Asset side</b>: Cash ↓ $25M. <b>Equity side</b>: Treasury stock (contra-equity) +$25M → Total equity ↓ $25M. Treasury stock ghi tại <em>cost method</em> (most common). A = L + E vẫn balance. CFS: $25M outflow trong CFF.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Treasury stock KHÔNG ghi tại par. Cost method ghi tại repurchase price (full $25M). Par value method (rare) cũng cần allocate phần excess vào APIC/RE — không chỉ par alone. Total assets phải giảm vì cash outflow.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Buyback KHÔNG tạo gain/loss. Đây là transaction giữa firm và shareholders (capital transaction), không phải income event. Tương tự, tái phát hành treasury stock cũng không tạo gain/loss — chỉ adjust APIC.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Treasury stock = <em>contra-equity</em> ghi tại <em>cost</em>. Buyback: Cash ↓, Treasury stock ↑ (deduction from equity), Total equity ↓. KHÔNG tạo gain/loss. Tái phát hành: nếu giá &gt; cost → APIC ↑; nếu &lt; cost → APIC ↓ then RE ↓ if APIC depleted.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 29 · WRAP -->
+<section data-label="Wrap" class="slide">
+  <div class="run-header">
+    <span>04.08 — LT Liabilities &amp; Equity</span>
+    <span class="rule"></span>
+    <span>29 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What to <em class="hi">remember</em>.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Bond carrying value evolves toward face</span>
+        <span class="step-body">Premium → CV ↓; discount → CV ↑. Effective interest = beginning CV × original yield. Early extinguishment: gain/loss = CV − repurchase price.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">IFRS 16 single model vs ASC 842 dual</span>
+        <span class="step-body">IFRS: mọi lease &gt; 12mo capitalize, 2 expense lines. US GAAP: finance vs operating, cả 2 đều on BS, expense pattern khác.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">DB pension expense = SC + IC − ER ± Amort</span>
+        <span class="step-body">IFRS đẩy actuarial G/L vào OCI no recycling. US GAAP qua corridor amortization. TPPC capture full economic cost.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Equity = CS + APIC + RE + AOCI − Treasury</span>
+        <span class="step-body">Treasury stock = contra-equity tại cost, không gain/loss. SBC qua APIC, expense over vesting. Watch dilution.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.08 — LT Liabilities &amp; Equity</span>
+  </div>
+</section>
+
+
+<!-- 30 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>04.08 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 04.09 — Income Taxes</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

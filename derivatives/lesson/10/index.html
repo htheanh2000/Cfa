@@ -1,0 +1,1315 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Derivatives 09.10 — Uses &amp; Strategies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+
+  .formula-box {
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent);
+    background: var(--paper-2, #fafaf7);
+    padding: 22px 28px;
+    font-family: var(--mono);
+    font-size: 22px;
+    line-height: 1.7;
+    color: var(--ink);
+    margin: 14px 0;
+  }
+  .formula-box .flabel {
+    display: block;
+    font-family: var(--sans, 'Roboto', sans-serif);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 10px;
+  }
+  .formula-box b { color: var(--accent); font-weight: 600; }
+  .formula-box em { font-style: italic; color: var(--ink-muted); }
+
+  .chart-box {
+    border: 1px solid var(--rule);
+    background: #fff;
+    padding: 18px 22px 8px;
+    margin: 14px 0;
+  }
+  .chart-box .clabel {
+    font-family: var(--mono);
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 6px;
+  }
+  .chart-box svg { display: block; width: 100%; height: auto; }
+  .chart-grid { grid-template-columns: 1fr 1fr; display: grid; gap: 18px; }
+
+  .take {
+    border-left: 4px solid var(--accent);
+    padding: 14px 22px;
+    background: var(--paper-2, #fafaf7);
+    margin-top: 16px;
+    font-size: 22px;
+    color: var(--ink);
+  }
+  .take b { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Strategy<br><em>Toolkit.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 09 · Lesson 09.10 · Uses &amp; Strategies</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 10 · Hedging · speculation · spreads · combinations</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Derivatives</dd></div>
+      <div><dt>Module</dt><dd>10</dd></div>
+      <div><dt>Lesson</dt><dd>09.10</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Covered call · Protective put · Spreads · Straddle · Collar · Futures · Swaps</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">10</div>
+    <div class="lbl">Strategies</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How are <em>derivatives</em><br>actually <em>used</em>?</h2>
+    <ul class="toc">
+      <li class="active">01 · Hedging · Speculation · Arbitrage</li>
+      <li>02 · Single-position option strategies (CC · PP)</li>
+      <li>03 · Spreads (Bull · Bear · Calendar)</li>
+      <li>04 · Combinations (Straddle · Strangle · Collar)</li>
+      <li>05 · Futures hedging — long hedge vs short hedge</li>
+      <li>06 · Swap hedging — convert floating ↔ fixed</li>
+      <li>07 · Tail risk · leverage · cost-benefit</li>
+      <li>08 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · HEDGE / SPEC / ARB -->
+<section data-label="Hedge vs Spec vs Arb" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>03 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Three motivations</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Hedging</em> · <em class="hi">Speculation</em> · <em class="hi">Arbitrage</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Cùng một derivative — ba mục đích khác nhau. CFA L1 yêu cầu phân biệt rõ <em>intent</em> đứng sau giao dịch.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 14px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Hedging</em> — giảm risk</div>
+        <div class="d">Đã có exposure (cổ phiếu, FX, hàng hoá, lãi suất). Dùng derivative để <b>offset</b> biến động — đổi unknown payoff lấy known cost (premium / forward).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Speculation</em> — đặt cược</div>
+        <div class="d">Không có exposure trước. Dùng derivative <b>tạo</b> exposure để bet on direction / volatility. Leverage cao → upside lớn nhưng dễ wipe-out.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Arbitrage</em> — riskless profit</div>
+        <div class="d">Lock-in lợi nhuận từ chênh lệch giá tạm thời (spot vs futures, put-call parity). Position market-neutral, gần như zero net risk.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">§</span>
+      <div>
+        <div class="t"><em class="hi">Risk → Return</em> trade-off</div>
+        <div class="d">Hedger trả phí để bỏ risk. Speculator nhận risk để có expected return. Arbitrageur kiếm lời từ market inefficiency, giúp giá hội tụ.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Tip — Cùng một trade (long futures), người này hedge (đã short physical), người kia speculate (no underlying). Intent quyết định loại.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 04 · COVERED CALL -->
+<section data-label="Covered Call" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>04 / 30</span>
+  </div>
+  <div style="margin-top: 36px;">
+    <div class="eyebrow">Single-position strategy · income</div>
+    <h2 class="h-section" style="margin-bottom: 14px;"><em class="hi">Covered call</em> — long stock + short call.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Giữ cổ phiếu sẵn có và <b>bán</b> call OTM trên cổ phiếu đó. Thu premium làm "tăng yield"; đổi lại bị <em>capped upside</em>.
+    </p>
+  </div>
+
+  <div class="chart-grid" style="margin-top: 10px;">
+    <div class="chart-box">
+      <div class="clabel">Covered Call · profit vs S<sub>T</sub></div>
+      <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+        <line x1="30" y1="140" x2="380" y2="140" stroke="#999" stroke-width="1"/>
+        <line x1="30" y1="20" x2="30" y2="200" stroke="#999" stroke-width="1"/>
+        <text x="5" y="144" font-size="11" fill="#666">0</text>
+        <line x1="120" y1="20" x2="120" y2="200" stroke="#bbb" stroke-dasharray="3 3"/>
+        <text x="100" y="214" font-size="11" fill="#666">S₀</text>
+        <line x1="260" y1="20" x2="260" y2="200" stroke="#bbb" stroke-dasharray="3 3"/>
+        <text x="252" y="214" font-size="11" fill="#666">K</text>
+        <path d="M 30 200 L 120 130 L 260 60 L 370 60" stroke="#c04a1f" stroke-width="3" fill="none"/>
+        <text x="270" y="50" font-size="11" fill="#c04a1f">Capped at K − S₀ + c</text>
+        <text x="40" y="195" font-size="10" fill="#c04a1f">Loss = S₀ − c (if S→0)</text>
+        <text x="355" y="214" font-size="11" fill="#666">S<tspan font-size="8" dy="3">T</tspan></text>
+      </svg>
+    </div>
+    <div>
+      <div class="formula-box">
+        <span class="flabel">Payoff &amp; metrics</span>
+        <b>Profit</b> = (S<sub>T</sub> − S<sub>0</sub>) − max(S<sub>T</sub> − K, 0) + c<br>
+        <b>Max profit</b> = (K − S<sub>0</sub>) + c &nbsp; <em>· nếu S<sub>T</sub> ≥ K</em><br>
+        <b>Max loss</b> = S<sub>0</sub> − c &nbsp; <em>· nếu S<sub>T</sub> = 0</em><br>
+        <b>Breakeven</b> = S<sub>0</sub> − c
+      </div>
+      <div class="rule-box" style="margin-top: 12px;">
+        <span class="tag">§ When to use</span>
+        Outlook <b>neutral → mildly bullish</b>. Sẵn sàng "exit" stock tại K. Muốn <em>income</em> từ premium. KHÔNG dùng nếu kỳ vọng rally mạnh.
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 05 · PROTECTIVE PUT -->
+<section data-label="Protective Put" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>05 / 30</span>
+  </div>
+  <div style="margin-top: 36px;">
+    <div class="eyebrow">Single-position strategy · insurance</div>
+    <h2 class="h-section" style="margin-bottom: 14px;"><em class="hi">Protective put</em> — long stock + long put.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Mua put trên stock đã giữ → tạo <em>floor</em> tại K. Vẫn full upside; cost = put premium p.
+    </p>
+  </div>
+
+  <div class="chart-grid" style="margin-top: 10px;">
+    <div class="chart-box">
+      <div class="clabel">Protective Put · profit vs S<sub>T</sub></div>
+      <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+        <line x1="30" y1="140" x2="380" y2="140" stroke="#999" stroke-width="1"/>
+        <line x1="30" y1="20" x2="30" y2="200" stroke="#999" stroke-width="1"/>
+        <text x="5" y="144" font-size="11" fill="#666">0</text>
+        <line x1="160" y1="20" x2="160" y2="200" stroke="#bbb" stroke-dasharray="3 3"/>
+        <text x="148" y="214" font-size="11" fill="#666">K</text>
+        <line x1="220" y1="20" x2="220" y2="200" stroke="#bbb" stroke-dasharray="3 3"/>
+        <text x="200" y="214" font-size="11" fill="#666">S₀</text>
+        <path d="M 30 175 L 160 175 L 370 30" stroke="#c04a1f" stroke-width="3" fill="none"/>
+        <text x="40" y="170" font-size="10" fill="#c04a1f">Floor: −(S₀ − K + p)</text>
+        <text x="285" y="40" font-size="11" fill="#c04a1f">Unlimited ↑</text>
+        <text x="355" y="214" font-size="11" fill="#666">S<tspan font-size="8" dy="3">T</tspan></text>
+      </svg>
+    </div>
+    <div>
+      <div class="formula-box">
+        <span class="flabel">Payoff &amp; metrics</span>
+        <b>Profit</b> = (S<sub>T</sub> − S<sub>0</sub>) + max(K − S<sub>T</sub>, 0) − p<br>
+        <b>Max profit</b> = unlimited (theo stock)<br>
+        <b>Max loss</b> = (S<sub>0</sub> − K) + p &nbsp; <em>· nếu S<sub>T</sub> ≤ K</em><br>
+        <b>Breakeven</b> = S<sub>0</sub> + p
+      </div>
+      <div class="rule-box" style="margin-top: 12px;">
+        <span class="tag">§ When to use</span>
+        Outlook <b>bullish nhưng cần insurance</b>. Lo earnings / event risk. Sẵn sàng trả premium p để có "sleep-at-night" floor.
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 06 · COMPARE CC vs PP -->
+<section data-label="CC vs PP" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>06 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Income vs Insurance</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Covered call</em> vs <em class="hi">Protective put</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Covered call</em></div>
+      <dl>
+        <dt>Construction</dt>
+        <dd>Long stock + <b>short</b> call (K &gt; S<sub>0</sub>)</dd>
+        <dt>Cash flow t=0</dt>
+        <dd>Receive premium c</dd>
+        <dt>Upside</dt>
+        <dd><b>Capped</b> at K − S<sub>0</sub> + c</dd>
+        <dt>Downside</dt>
+        <dd>Almost full (đệm bởi c)</dd>
+        <dt>Best when</dt>
+        <dd>Neutral → mildly bullish · low vol</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Protective put</em></div>
+      <dl>
+        <dt>Construction</dt>
+        <dd>Long stock + <b>long</b> put (K &lt; S<sub>0</sub>)</dd>
+        <dt>Cash flow t=0</dt>
+        <dd>Pay premium p</dd>
+        <dt>Upside</dt>
+        <dd><b>Unlimited</b> (giảm bởi p)</dd>
+        <dt>Downside</dt>
+        <dd>Floor tại K − p</dd>
+        <dt>Best when</dt>
+        <dd>Bullish nhưng cần hedge tail event</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Mnemonic — Covered call = "rent out" upside để lấy income. Protective put = "buy insurance" trả premium để cap downside.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 07 · BULL CALL SPREAD -->
+<section data-label="Bull call spread" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>07 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Vertical spread · bullish</div>
+    <h2 class="h-section" style="margin-bottom: 14px;"><em class="hi">Bull call spread</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Long call <b>K<sub>L</sub></b> (low strike) + Short call <b>K<sub>H</sub></b> (high strike), cùng expiry. Giảm cost (premium thu bớt) — đổi lại cap upside ở K<sub>H</sub>.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="flabel">Bull call spread payoff (net cost = c<sub>L</sub> − c<sub>H</sub> &gt; 0)</span>
+    <b>Profit</b> = max(S<sub>T</sub> − K<sub>L</sub>, 0) − max(S<sub>T</sub> − K<sub>H</sub>, 0) − (c<sub>L</sub> − c<sub>H</sub>)<br>
+    <b>Max profit</b> = (K<sub>H</sub> − K<sub>L</sub>) − (c<sub>L</sub> − c<sub>H</sub>) &nbsp; <em>· nếu S<sub>T</sub> ≥ K<sub>H</sub></em><br>
+    <b>Max loss</b> = c<sub>L</sub> − c<sub>H</sub> &nbsp; <em>· nếu S<sub>T</sub> ≤ K<sub>L</sub></em><br>
+    <b>Breakeven</b> = K<sub>L</sub> + (c<sub>L</sub> − c<sub>H</sub>)
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ When to use</span>
+    Outlook <b>moderately bullish</b> — kỳ vọng S move từ K<sub>L</sub> đến K<sub>H</sub>. Muốn bullish exposure rẻ hơn long call thuần. Sẵn sàng từ bỏ phần upside trên K<sub>H</sub>.
+  </div>
+
+  <div class="take">
+    <b>Intuition.</b> Trừ đi short call OTM tài trợ một phần long call. Giảm net cost từ c<sub>L</sub> xuống (c<sub>L</sub> − c<sub>H</sub>) → breakeven gần hơn. Đây là "thrift" version của long call.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 08 · BEAR PUT SPREAD -->
+<section data-label="Bear put spread" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>08 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Vertical spread · bearish</div>
+    <h2 class="h-section" style="margin-bottom: 14px;"><em class="hi">Bear put spread</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Long put <b>K<sub>H</sub></b> (high strike) + Short put <b>K<sub>L</sub></b> (low strike), cùng expiry. Net cost = p<sub>H</sub> − p<sub>L</sub> &gt; 0.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="flabel">Bear put spread payoff</span>
+    <b>Profit</b> = max(K<sub>H</sub> − S<sub>T</sub>, 0) − max(K<sub>L</sub> − S<sub>T</sub>, 0) − (p<sub>H</sub> − p<sub>L</sub>)<br>
+    <b>Max profit</b> = (K<sub>H</sub> − K<sub>L</sub>) − (p<sub>H</sub> − p<sub>L</sub>) &nbsp; <em>· nếu S<sub>T</sub> ≤ K<sub>L</sub></em><br>
+    <b>Max loss</b> = p<sub>H</sub> − p<sub>L</sub> &nbsp; <em>· nếu S<sub>T</sub> ≥ K<sub>H</sub></em><br>
+    <b>Breakeven</b> = K<sub>H</sub> − (p<sub>H</sub> − p<sub>L</sub>)
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ When to use</span>
+    Outlook <b>moderately bearish</b> — kỳ vọng S giảm từ K<sub>H</sub> xuống K<sub>L</sub>. Cheaper than long put alone; nhưng giới hạn payoff khi S sụp mạnh dưới K<sub>L</sub>.
+  </div>
+
+  <div class="take">
+    <b>Symmetric mirror.</b> Bear put spread là phản chiếu của bull call spread qua trục x. Cùng max loss = net premium, max gain = spread − net premium.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 09 · COMPARE BULL vs BEAR -->
+<section data-label="Bull vs Bear" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>09 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Vertical spread family</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Bull call</em> vs <em class="hi">Bear put</em> spread.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Bull call spread</em></div>
+      <dl>
+        <dt>Direction</dt>
+        <dd>Bullish — bet S ↑</dd>
+        <dt>Construction</dt>
+        <dd>Long call K<sub>L</sub> + short call K<sub>H</sub></dd>
+        <dt>Net cost</dt>
+        <dd>Debit (pay c<sub>L</sub> − c<sub>H</sub>)</dd>
+        <dt>Max profit</dt>
+        <dd>(K<sub>H</sub> − K<sub>L</sub>) − net debit</dd>
+        <dt>Max loss</dt>
+        <dd>Net debit</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Bear put spread</em></div>
+      <dl>
+        <dt>Direction</dt>
+        <dd>Bearish — bet S ↓</dd>
+        <dt>Construction</dt>
+        <dd>Long put K<sub>H</sub> + short put K<sub>L</sub></dd>
+        <dt>Net cost</dt>
+        <dd>Debit (pay p<sub>H</sub> − p<sub>L</sub>)</dd>
+        <dt>Max profit</dt>
+        <dd>(K<sub>H</sub> − K<sub>L</sub>) − net debit</dd>
+        <dt>Max loss</dt>
+        <dd>Net debit</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Pattern — vertical spreads luôn cap cả profit và loss → tự nhiên defined-risk. Trade-off: capped upside để có cheap entry.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 10 · CALENDAR SPREAD -->
+<section data-label="Calendar spread" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>10 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Horizontal spread · time</div>
+    <h2 class="h-section" style="margin-bottom: 14px;"><em class="hi">Calendar spread</em> (time spread).</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Same strike K, hai expiry khác nhau. Long option <em>far-dated</em> + short option <em>near-dated</em>. Bet on theta (time decay) hoặc vol term-structure.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 14px;">
+    <li>
+      <span>
+        <span class="step-title">Long calendar — long far + short near</span>
+        <span class="step-body">Net debit. Profit khi short option (near-dated) decay nhanh hơn long option. Best khi S ≈ K tại near expiry → short hết theta nhưng long còn nguyên TV.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Vol term-structure play</span>
+        <span class="step-body">Mua vol dài hạn rẻ + bán vol ngắn hạn đắt (khi front-month IV inflated bởi event). Khi event qua → near IV giảm mạnh hơn far → spread expand.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Max loss = net debit; profit cap khó tính analytically</span>
+        <span class="step-body">Vì hai option có expiry khác nhau, không có "expiry chung". Payoff đánh giá tại near expiry — dùng option pricing cho long leg residual.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="rule-box" style="margin-top: 12px;">
+    <span class="tag">§ When to use</span>
+    Outlook <b>S sẽ pin tại K trong short-term</b> nhưng có vol potential trong dài hạn. Hoặc trade implied vol term-structure. Nâng cao — CFA L1 chỉ cần biết khái niệm.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 11 · STRADDLE -->
+<section data-label="Straddle" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>11 / 30</span>
+  </div>
+  <div style="margin-top: 36px;">
+    <div class="eyebrow">Combination · long volatility</div>
+    <h2 class="h-section" style="margin-bottom: 14px;"><em class="hi">Long straddle</em> — long call + long put · same K, same T.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Bet on <b>volatility</b>, KHÔNG direction. Profit khi S<sub>T</sub> move xa K cả hai chiều. Loss tối đa = c + p (cả hai premium).
+    </p>
+  </div>
+
+  <div class="chart-grid" style="margin-top: 8px;">
+    <div class="chart-box">
+      <div class="clabel">Long Straddle · profit vs S<sub>T</sub></div>
+      <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+        <line x1="30" y1="140" x2="380" y2="140" stroke="#999" stroke-width="1"/>
+        <line x1="30" y1="20" x2="30" y2="200" stroke="#999" stroke-width="1"/>
+        <text x="5" y="144" font-size="11" fill="#666">0</text>
+        <line x1="200" y1="20" x2="200" y2="200" stroke="#bbb" stroke-dasharray="3 3"/>
+        <text x="192" y="214" font-size="11" fill="#666">K</text>
+        <path d="M 30 30 L 200 180 L 370 30" stroke="#c04a1f" stroke-width="3" fill="none"/>
+        <text x="50" y="40" font-size="10" fill="#c04a1f">Profit if S far from K</text>
+        <text x="210" y="195" font-size="10" fill="#c04a1f">Max loss = c + p</text>
+        <text x="355" y="214" font-size="11" fill="#666">S<tspan font-size="8" dy="3">T</tspan></text>
+      </svg>
+    </div>
+    <div>
+      <div class="formula-box">
+        <span class="flabel">Long straddle payoff</span>
+        <b>Profit</b> = max(S<sub>T</sub> − K, 0) + max(K − S<sub>T</sub>, 0) − (c + p)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;= |S<sub>T</sub> − K| − (c + p)<br>
+        <b>Max loss</b> = c + p &nbsp; <em>· nếu S<sub>T</sub> = K</em><br>
+        <b>Max profit</b> = unlimited (upside)<br>
+        <b>Breakeven up</b> = K + (c + p)<br>
+        <b>Breakeven down</b> = K − (c + p)
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 12 · STRANGLE -->
+<section data-label="Strangle" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>12 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Combination · cheaper vol play</div>
+    <h2 class="h-section" style="margin-bottom: 14px;"><em class="hi">Long strangle</em> — long call K<sub>H</sub> + long put K<sub>L</sub>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Strikes <em>khác nhau</em> (K<sub>L</sub> &lt; S<sub>0</sub> &lt; K<sub>H</sub>), cả hai OTM. Cheaper than straddle nhưng cần move <b>lớn hơn</b> để break even.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="flabel">Long strangle payoff</span>
+    <b>Profit</b> = max(S<sub>T</sub> − K<sub>H</sub>, 0) + max(K<sub>L</sub> − S<sub>T</sub>, 0) − (c + p)<br>
+    <b>Max loss</b> = c + p &nbsp; <em>· nếu K<sub>L</sub> ≤ S<sub>T</sub> ≤ K<sub>H</sub></em><br>
+    <b>Max profit</b> = unlimited<br>
+    <b>Breakeven up</b> = K<sub>H</sub> + (c + p) &nbsp;·&nbsp; <b>Breakeven down</b> = K<sub>L</sub> − (c + p)
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ When to use</span>
+    Như straddle — bet on big move. Strangle <b>rẻ hơn</b> (cả hai OTM → premium thấp) nhưng đòi move <b>xa hơn</b>. "Flat zone" chịu max loss rộng hơn.
+  </div>
+
+  <div class="take">
+    <b>Volatility view.</b> Cả straddle và strangle là <em>long vega</em> trades. Lợi khi IV ↑ (trước khi expiry). Hai biến số quan trọng: realized move của S và path của IV.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 13 · STRADDLE vs STRANGLE -->
+<section data-label="Straddle vs Strangle" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>13 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Two long-vol shapes</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Straddle</em> vs <em class="hi">Strangle</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Straddle</em></div>
+      <dl>
+        <dt>Strikes</dt>
+        <dd>Same K (thường ATM)</dd>
+        <dt>Premium</dt>
+        <dd>Higher (cả call và put gần ATM)</dd>
+        <dt>Breakeven</dt>
+        <dd>K ± (c + p) · narrower band</dd>
+        <dt>Move cần</dt>
+        <dd>Nhỏ hơn để profit</dd>
+        <dt>Best when</dt>
+        <dd>Expect <b>large move</b>, direction unclear</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Strangle</em></div>
+      <dl>
+        <dt>Strikes</dt>
+        <dd>Different K<sub>L</sub> &lt; K<sub>H</sub> (cả hai OTM)</dd>
+        <dt>Premium</dt>
+        <dd>Lower (OTM cheaper)</dd>
+        <dt>Breakeven</dt>
+        <dd>K<sub>L</sub> − (c+p) &amp; K<sub>H</sub> + (c+p) · wider</dd>
+        <dt>Move cần</dt>
+        <dd>Lớn hơn để profit</dd>
+        <dt>Best when</dt>
+        <dd>Expect <b>very large move</b> · cheaper bet</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Trade-off — Strangle cheaper nhưng xác suất profit thấp hơn. Cùng vega exposure shape, khác cost-vs-probability profile.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 14 · COLLAR -->
+<section data-label="Collar" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>14 / 30</span>
+  </div>
+  <div style="margin-top: 36px;">
+    <div class="eyebrow">Combination · bounded payoff</div>
+    <h2 class="h-section" style="margin-bottom: 14px;"><em class="hi">Collar</em> — long stock + long put + short call.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Mua put OTM (K<sub>P</sub> &lt; S<sub>0</sub>) tạo floor + bán call OTM (K<sub>C</sub> &gt; S<sub>0</sub>) tài trợ premium → "zero-cost collar" nếu p = c. Kết quả: payoff bounded cả hai phía.
+    </p>
+  </div>
+
+  <div class="chart-grid" style="margin-top: 8px;">
+    <div class="chart-box">
+      <div class="clabel">Collar · profit vs S<sub>T</sub></div>
+      <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+        <line x1="30" y1="110" x2="380" y2="110" stroke="#999" stroke-width="1"/>
+        <line x1="30" y1="20" x2="30" y2="200" stroke="#999" stroke-width="1"/>
+        <text x="5" y="114" font-size="11" fill="#666">0</text>
+        <line x1="120" y1="20" x2="120" y2="200" stroke="#bbb" stroke-dasharray="3 3"/>
+        <text x="100" y="214" font-size="11" fill="#666">K<tspan font-size="8" dy="3">P</tspan></text>
+        <line x1="200" y1="20" x2="200" y2="200" stroke="#bbb" stroke-dasharray="3 3"/>
+        <text x="190" y="214" font-size="11" fill="#666">S₀</text>
+        <line x1="290" y1="20" x2="290" y2="200" stroke="#bbb" stroke-dasharray="3 3"/>
+        <text x="278" y="214" font-size="11" fill="#666">K<tspan font-size="8" dy="3">C</tspan></text>
+        <path d="M 30 160 L 120 160 L 290 60 L 370 60" stroke="#c04a1f" stroke-width="3" fill="none"/>
+        <text x="40" y="155" font-size="10" fill="#c04a1f">Floor</text>
+        <text x="305" y="55" font-size="10" fill="#c04a1f">Cap</text>
+        <text x="355" y="214" font-size="11" fill="#666">S<tspan font-size="8" dy="3">T</tspan></text>
+      </svg>
+    </div>
+    <div>
+      <div class="formula-box">
+        <span class="flabel">Collar payoff (zero-cost: p = c)</span>
+        <b>Profit</b> = (S<sub>T</sub> − S<sub>0</sub>) + max(K<sub>P</sub> − S<sub>T</sub>, 0) − max(S<sub>T</sub> − K<sub>C</sub>, 0) + (c − p)<br>
+        <b>Max profit</b> = K<sub>C</sub> − S<sub>0</sub> + (c − p)<br>
+        <b>Max loss</b> = S<sub>0</sub> − K<sub>P</sub> − (c − p)<br>
+        <b>Use case</b> — corporate hedging concentrated stock position
+      </div>
+      <div class="rule-box" style="margin-top: 12px;">
+        <span class="tag">§ When to use</span>
+        Holder concentrated stock (insider, ESOP) muốn lock-in gain mà chưa muốn sell (tax). Collar = hedge gần như miễn phí, đổi cap upside lấy floor downside.
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 15 · FUTURES HEDGING -->
+<section data-label="Futures hedging" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>15 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk management with futures</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Long hedge</em> vs <em class="hi">Short hedge</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Long hedge</em> — input cost</div>
+      <dl>
+        <dt>Who</dt>
+        <dd>Buyer của underlying trong tương lai</dd>
+        <dt>Risk</dt>
+        <dd>Giá underlying TĂNG (tăng cost)</dd>
+        <dt>Action</dt>
+        <dd><b>Buy futures</b> — lock-in giá mua</dd>
+        <dt>Example</dt>
+        <dd>Airline lock giá jet fuel · baker lock giá lúa mì</dd>
+        <dt>Result</dt>
+        <dd>Spot ↑ → futures gain offset cost ↑</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Short hedge</em> — output revenue</div>
+      <dl>
+        <dt>Who</dt>
+        <dd>Seller của underlying trong tương lai</dd>
+        <dt>Risk</dt>
+        <dd>Giá underlying GIẢM (giảm revenue)</dd>
+        <dt>Action</dt>
+        <dd><b>Sell futures</b> — lock-in giá bán</dd>
+        <dt>Example</dt>
+        <dd>Farmer hedge corn · oil producer hedge crude</dd>
+        <dt>Result</dt>
+        <dd>Spot ↓ → futures gain offset revenue ↓</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="take">
+    <b>Basis risk.</b> Hedge không hoàn hảo vì futures price ≠ spot price (basis = S − F). Khi unwind, basis không zero → hedge không offset 100%. Đó là lý do hedge "reduce" risk chứ không "eliminate".
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 16 · SWAP HEDGING -->
+<section data-label="Swap hedging" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>16 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk management with swaps</div>
+    <h2 class="h-section" style="margin-bottom: 14px;"><em class="hi">Convert</em> floating ↔ fixed exposure.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Interest rate swap = exchange floating CF cho fixed CF (hoặc ngược lại) trên notional N. Không exchange notional. Phổ biến nhất cho corporate liability management.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 14px;">
+    <li>
+      <span>
+        <span class="step-title">Pay-fixed swap — floating-rate borrower hedge rising rates</span>
+        <span class="step-body">Công ty vay floating (e.g., SOFR + 200). Lo SOFR tăng. Vào swap pay-fixed/receive-floating. Net: pay fixed (locked-in) + spread. Convert floating debt → synthetic fixed.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Pay-floating swap — fixed-rate borrower benefit từ falling rates</span>
+        <span class="step-body">Công ty đã vay fixed. Tin rate sẽ giảm. Vào swap receive-fixed/pay-floating. Net: pay floating thực tế (lower nếu rate giảm). Convert fixed debt → synthetic floating.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Currency swap — hedge FX cho cross-border financing</span>
+        <span class="step-body">Vay USD (rẻ hơn) nhưng cần EUR. Swap exchange interest + principal hai currencies → eliminate FX risk trong suốt life of debt.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="rule-box" style="margin-top: 12px;">
+    <span class="tag">§ Net effect</span>
+    Swap không thay đổi original debt; thêm <b>synthetic overlay</b>. Cost = bid-ask spread + counterparty risk. Hiệu quả hơn refinancing thực sự.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 17 · TAIL RISK + LEVERAGE + COST-BENEFIT -->
+<section data-label="Tail risk · leverage" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>17 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Tail hedging · speculation · cost</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Three <em class="hi">advanced themes</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 14px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Tail risk hedging</em></div>
+        <div class="d">Mua deep OTM puts (e.g., S&amp;P 500 K = 80% spot). Cheap individually nhưng decay đều — chỉ pay off trong crash. "Insurance against fat tails" phổ biến với risk-parity / endowment funds.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Speculative leverage benefit</em></div>
+        <div class="d">$1 premium control nhiều dollar of underlying. Long call có embedded leverage cao — small move trong S → large % move trong option price. Capital-efficient directional bet.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Speculative leverage danger</em></div>
+        <div class="d">Same leverage có thể wipe-out 100% premium nhanh chóng. Time decay làm OTM long options dễ về 0. Short options có unlimited downside risk → margin call risk.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Cost-benefit hedging</em></div>
+        <div class="d">Hedging = drag on return (premium / opportunity cost). Tradeoff: lower expected return ↔ lower variance. Dùng <b>khi</b> tail loss đe doạ solvency / fiduciary duty, KHÔNG cho mọi position.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Buffett — "Derivatives are weapons of mass destruction" áp dụng cho speculation/leverage; còn hedging legitimate là risk management cốt lõi của doanh nghiệp.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 18 · STRATEGY SELECTION -->
+<section data-label="Strategy selection" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>18 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Decision framework</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">When to <em class="hi">use which</em>?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Chọn strategy theo hai trục: <b>directional view</b> (bullish / neutral / bearish) × <b>volatility view</b> (high / low).
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 12px;">
+    <span class="tag">§ Bullish view</span>
+    <b>Strong bullish, high vol expected</b> → long call. <b>Moderate bullish</b> → bull call spread (cheaper). <b>Mildly bullish, low vol</b> → covered call (income). <b>Bullish + need insurance</b> → protective put.
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Bearish view</span>
+    <b>Strong bearish, high vol</b> → long put. <b>Moderate bearish</b> → bear put spread. <b>Slight bearish + already long</b> → covered call hoặc collar.
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Volatility view (no direction)</span>
+    <b>Long vol — expect big move</b> → long straddle (ATM) hoặc strangle (cheaper, OTM). <b>Short vol — expect range-bound</b> → short straddle / strangle (high risk!) hoặc collar nếu đã long stock.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 19 · SUMMARY -->
+<section data-label="Summary" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>19 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Lesson recap</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Strategy <em class="hi">cheat sheet</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="flabel">Single-position breakevens</span>
+    Covered call BE = S<sub>0</sub> − c &nbsp;·&nbsp; Max profit = (K − S<sub>0</sub>) + c · Max loss = S<sub>0</sub> − c<br>
+    Protective put BE = S<sub>0</sub> + p &nbsp;·&nbsp; Max profit = unlimited · Max loss = (S<sub>0</sub> − K) + p
+  </div>
+
+  <div class="formula-box">
+    <span class="flabel">Spreads &amp; combinations</span>
+    Bull call spread max profit = (K<sub>H</sub> − K<sub>L</sub>) − net debit · max loss = net debit<br>
+    Long straddle BE = K ± (c + p) · max loss = c + p · max profit unlimited<br>
+    Strangle BE = K<sub>L</sub> − (c+p) &amp; K<sub>H</sub> + (c+p) · "wider, cheaper"
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Use case map</span>
+    Hedging = transfer risk · Speculation = create exposure · Arbitrage = riskless profit. Futures cho linear hedge · Options cho asymmetric · Swaps cho convert exposure type.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 20 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 21 · Q1 EN — Covered call payoff -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>21 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Compute the <em class="hi">covered call</em> max profit and breakeven.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An investor owns 100 shares of XYZ purchased at <strong>S<sub>0</sub> = $50</strong> per share. She <strong>writes</strong> one call option with strike <strong>K = $55</strong> for a premium of <strong>c = $2</strong>. What are her <strong>maximum profit</strong> and <strong>breakeven price</strong> per share at expiry?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Max profit = $5; Breakeven = $48</span></li>
+    <li><span class="lbl">B</span><span class="opt">Max profit = $7; Breakeven = $48</span></li>
+    <li><span class="lbl">C</span><span class="opt">Max profit = $7; Breakeven = $52</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>22 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Apply the <em class="hi">covered call formulas</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Formulas</span>
+    <mark>Max profit = (K − S<sub>0</sub>) + c</mark> &nbsp;·&nbsp; <mark>Breakeven = S<sub>0</sub> − c</mark>. Premium thu được làm giảm cost basis.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">S<sub>0</sub> = 50, K = 55, c = 2. Max profit khi S<sub>T</sub> ≥ K = 55 (bị called away): (55 − 50) + 2 = <em>$7</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Breakeven = giá S<sub>T</sub> mà profit = 0. Stock loss bù bởi premium thu: (S<sub>T</sub> − 50) + 2 = 0 → S<sub>T</sub> = <em>$48</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Lưu ý: covered call KHÔNG có upside trên K. Nếu S<sub>T</sub> = 60, vẫn chỉ thu $7 — phần upside trên 55 bị "called away".</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q1 DỊCH ĐỀ -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>23 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một nhà đầu tư đang sở hữu 100 cổ phiếu XYZ với giá mua <strong>S<sub>0</sub> = $50</strong>/cổ phiếu. Cô ấy <strong>bán (write)</strong> một call option với strike <strong>K = $55</strong>, premium <strong>c = $2</strong>. Tính <strong>maximum profit</strong> và <strong>breakeven price</strong> per share tại expiry.
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Max profit = $5; Breakeven = $48</span></li>
+    <li><span class="lbl">B</span><span class="opt">Max profit = $7; Breakeven = $48</span></li>
+    <li><span class="lbl">C</span><span class="opt">Max profit = $7; Breakeven = $52</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>24 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $7 / $48.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Max profit = (K − S<sub>0</sub>) + c = (55 − 50) + 2 = <b>$7</b> · đạt khi S<sub>T</sub> ≥ K = 55. Breakeven khi profit = (S<sub>T</sub> − 50) + 2 = 0 → S<sub>T</sub> = <b>$48</b>. Premium $2 cushion downside.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Max profit = $5 = K − S<sub>0</sub> nhưng <em>quên cộng premium</em>. Premium luôn thuộc về writer ngay từ đầu — nó là phần income làm tăng max profit và giảm breakeven.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Tính breakeven = S<sub>0</sub> + c = $52 (nhầm hướng). Đó là breakeven cho <em>protective put</em> (long position with cost). Covered call writer <em>nhận</em> premium → BE thấp hơn S<sub>0</sub>.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Covered call cheat-sheet: <em>Max profit = (K − S<sub>0</sub>) + c · Max loss = S<sub>0</sub> − c (S→0) · Breakeven = S<sub>0</sub> − c</em>. Premium ALWAYS giảm cost basis của writer.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q2 EN — Long Straddle profit -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>25 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Compute <em class="hi">long straddle</em> breakevens and profit.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A trader establishes a long straddle on stock ABC by buying a call and a put both with strike <strong>K = $100</strong>, paying <strong>c = $4</strong> for the call and <strong>p = $3</strong> for the put. What are the <strong>two breakeven prices</strong>, and what is the <strong>profit</strong> if S<sub>T</sub> = $115?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">BE = $96 and $104; Profit at $115 = +$8</span></li>
+    <li><span class="lbl">B</span><span class="opt">BE = $93 and $107; Profit at $115 = +$8</span></li>
+    <li><span class="lbl">C</span><span class="opt">BE = $93 and $107; Profit at $115 = +$15</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>26 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Apply <em class="hi">straddle</em> formulas.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Formulas</span>
+    <mark>BE = K ± (c + p)</mark> &nbsp;·&nbsp; <mark>Profit = |S<sub>T</sub> − K| − (c + p)</mark>. Total premium = c + p = max loss tại S<sub>T</sub> = K.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Total premium = 4 + 3 = $7. BE up = K + (c+p) = 100 + 7 = <em>$107</em>. BE down = K − 7 = <em>$93</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Tại S<sub>T</sub> = 115 &gt; K: chỉ call ITM. Gross payoff = 115 − 100 = 15. Profit = 15 − 7 = <em>+$8</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Verify: 115 vượt BE up ($107) → đã profitable. Profit = 115 − 107 = $8 ✓ (cùng kết quả qua hai cách).</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q2 DỊCH ĐỀ -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>27 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một trader thiết lập long straddle trên cổ phiếu ABC bằng cách mua một call và một put cùng strike <strong>K = $100</strong>, trả <strong>c = $4</strong> cho call và <strong>p = $3</strong> cho put. Tính <strong>hai breakeven prices</strong> và <strong>profit</strong> nếu S<sub>T</sub> = $115.
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">BE = $96 và $104; Profit tại $115 = +$8</span></li>
+    <li><span class="lbl">B</span><span class="opt">BE = $93 và $107; Profit tại $115 = +$8</span></li>
+    <li><span class="lbl">C</span><span class="opt">BE = $93 và $107; Profit tại $115 = +$15</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>28 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $93/$107, +$8.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Total premium = c + p = 4 + 3 = $7. BE down = K − 7 = <b>$93</b>; BE up = K + 7 = <b>$107</b>. Tại S<sub>T</sub> = 115: profit = max(115 − 100, 0) + max(100 − 115, 0) − 7 = 15 + 0 − 7 = <b>+$8</b>.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">BE = $96/$104 sai — chỉ trừ premium của <em>một</em> option (giả sử c−p hoặc p alone). Long straddle pay <em>cả hai</em> premiums → BE phải ± (c + p) = ± $7.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">BE đúng nhưng profit = $15 quên trừ total premium $7. "Net profit" luôn trừ <em>cả</em> c và p. Gross payoff $15 trừ cost $7 = net $8.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Long straddle: <em>BE = K ± (c + p) · Max loss = c + p tại S<sub>T</sub> = K · Max profit unlimited (upside) hoặc K − (c+p) (downside)</em>. Profit shape là V quanh K.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 29 · Q3 EN — Hedge selection -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>29 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">Identify the appropriate <em class="hi">hedge</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An <strong>airline</strong> expects to purchase <strong>1 million gallons of jet fuel</strong> in three months. The CFO is worried about rising fuel prices and wants to lock in costs using futures. Which hedging position is <strong>most appropriate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Short jet fuel futures (short hedge) — sells futures to lock in selling price.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Long jet fuel futures (long hedge) — buys futures to lock in purchase price.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Buy a call on jet fuel — protective put equivalent for input costs.</span></li>
+  </ol>
+
+  <div class="hint-card" style="margin-top: 16px;">
+    <span class="h-tag">§ Hint</span>
+    Airline là <mark>buyer trong tương lai</mark> → risk là giá <mark>tăng</mark>. Long hedge dùng futures để cố định giá mua. Phân biệt với short hedge (seller).
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 30 · Q3 DỊCH + EXPLANATION -->
+<section data-label="Q3 Dịch + Answer" class="slide">
+  <div class="run-header">
+    <span>09.10 — Strategies</span>
+    <span class="rule"></span>
+    <span>30 / 30</span>
+  </div>
+  <div style="margin-top: 36px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt + Answer</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">Dịch &amp; <em class="hi">đáp án</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette (Vi)</span>
+    <div class="q-stem">
+      Một <strong>hãng hàng không</strong> dự kiến mua <strong>1 triệu gallons jet fuel</strong> trong 3 tháng tới. CFO lo giá nhiên liệu tăng và muốn lock-in cost bằng futures. Vị thế hedge nào <strong>phù hợp nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options" style="margin-top: 8px;">
+    <li><span class="lbl">A</span><span class="opt">Short jet fuel futures (short hedge) — bán futures để lock giá bán.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Long jet fuel futures (long hedge) — mua futures để lock giá mua.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Mua call trên jet fuel — tương đương protective put cho input cost.</span></li>
+  </ol>
+  <div class="reasoning" style="margin-top: 14px;">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Airline là <b>buyer</b> tương lai → exposure là giá <b>tăng</b>. <b>Long hedge</b> = buy futures hôm nay khoá price. Spot ↑ → futures gain bù cost ↑. Đây là long hedge classic — buyer hedge input cost.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Short hedge dành cho <em>seller</em> tương lai (farmer, oil producer) lo giá <em>giảm</em>. Airline là buyer — short futures sẽ <em>tăng</em> exposure (lose nếu fuel ↑) thay vì hedge.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Mua call cũng hedge được rising prices, nhưng câu hỏi cụ thể yêu cầu "using futures" — và mô tả "protective put equivalent" sai về mặt thuật ngữ. Long call = hedge input cost, KHÔNG gọi là protective put (PP là long stock + long put).</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Hedge rule: <em>Future BUYER → long hedge (buy futures). Future SELLER → short hedge (sell futures)</em>. Logic: hedge position phải <em>gain</em> khi spot move <em>against</em> bạn. Always match exposure direction.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.10 — Uses &amp; Strategies</span>
+  </div>
+</section>
+
+
+<!-- 31 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>09.10 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Hết Topic 09 — Derivatives ✓<br>Tiếp theo · Topic 10 — Alternative Investments</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

@@ -1,0 +1,1324 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Alt Investments 10.07 — Digital Assets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Digital<br><em>Assets.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 10 · Lesson 10.07 · Alternative Investments</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 07 · DLT · crypto · stablecoin · NFT · DeFi · ETF</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Alt Inv</dd></div>
+      <div><dt>Module</dt><dd>07</dd></div>
+      <div><dt>Lesson</dt><dd>10.07</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">PoW · PoS · tokenization · custody · regulation</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">07</div>
+    <div class="lbl">Digital assets</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How <em>digital assets</em><br>fit alt portfolios.</h2>
+    <ul class="toc">
+      <li class="active">01 · Digital assets &amp; DLT — định nghĩa và cấu trúc</li>
+      <li>02 · Public vs Private blockchain · PoW vs PoS</li>
+      <li>03 · Bitcoin · Ethereum · Stablecoin · TerraUSD failure</li>
+      <li>04 · NFTs · tokenization · DeFi</li>
+      <li>05 · Investment vehicles — direct, ETF, futures</li>
+      <li>06 · Risks · valuation · regulation · ESG</li>
+      <li>07 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · DIGITAL ASSETS DEFINED -->
+<section data-label="Defined" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>03 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Definition · scope</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Digital asset = <em class="hi">value or rights on DLT</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CFA định nghĩa digital asset là <em>any digital representation of value or rights</em> được phát hành / lưu trữ trên Distributed Ledger Technology (DLT). Bao gồm cryptocurrencies, stablecoins, security tokens, utility tokens, NFTs — không chỉ Bitcoin.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Cryptocurrencies</em></div>
+        <div class="d">Native coins của blockchain. Bitcoin (store of value), Ether (gas + smart contract platform). Không có claim trên cash flow của entity nào.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Stablecoins</em></div>
+        <div class="d">Token pegged 1:1 với fiat hoặc asset khác. USDT, USDC, DAI. Dùng làm cầu giữa fiat và crypto, settlement layer cho DeFi.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Security &amp; utility tokens</em></div>
+        <div class="d">Security token = đại diện equity/debt claim (regulated như chứng khoán). Utility token = quyền truy cập service trên platform.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">NFTs</em></div>
+        <div class="d">Non-fungible tokens — mỗi token unique, đại diện collectible / art / real estate ownership / IP rights. Không thay thế lẫn nhau.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 04 · DLT + BLOCKCHAIN -->
+<section data-label="DLT" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>04 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Underlying technology</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">DLT</em> &amp; blockchain — how it works.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Distributed Ledger Technology = database được replicate qua nhiều nodes, đồng bộ qua consensus. Blockchain là một dạng DLT — transactions group thành <em>blocks</em>, link bằng cryptographic hash thành chain immutable.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Distributed nodes — không có single point of failure</span>
+        <span class="step-body">Mỗi node giữ full copy của ledger. Không có central authority. Trust đến từ consensus algorithm chứ không phải từ intermediary.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Cryptographic hashing — immutability</span>
+        <span class="step-body">Mỗi block chứa hash của block trước. Sửa 1 block → toàn bộ chain sau đó invalid. Tampering yêu cầu re-mine toàn chain — kinh tế bất khả thi.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Consensus mechanism — agree on truth</span>
+        <span class="step-body">Nodes phải đồng ý đâu là valid chain. PoW (Bitcoin) dùng compute power; PoS (Ethereum) dùng staked capital. Đây là core innovation của blockchain.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Smart contracts — programmable money</span>
+        <span class="step-body">Code self-execute khi conditions met. Ethereum tiên phong. Là nền tảng của DeFi, NFTs, tokenization.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 05 · PUBLIC vs PRIVATE BLOCKCHAIN -->
+<section data-label="Public vs Private" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>05 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Blockchain architecture</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Public vs <em class="hi">Private</em> blockchain.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Public — permissionless</div>
+      <dl>
+        <dt>Access</dt>
+        <dd>Bất kỳ ai cũng có thể tham gia validate &amp; transact</dd>
+        <dt>Examples</dt>
+        <dd>Bitcoin, Ethereum, Solana</dd>
+        <dt>Trust</dt>
+        <dd>Trust-less — security từ economic incentives + crypto</dd>
+        <dt>Speed</dt>
+        <dd>Chậm hơn (Bitcoin ~7 tx/s, Ethereum ~30 tx/s)</dd>
+        <dt>Use case</dt>
+        <dd>Cryptocurrency, DeFi, NFTs — open ecosystems</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Private — permissioned</div>
+      <dl>
+        <dt>Access</dt>
+        <dd>Chỉ approved entities mới được tham gia</dd>
+        <dt>Examples</dt>
+        <dd>Hyperledger Fabric, R3 Corda, JPM Onyx</dd>
+        <dt>Trust</dt>
+        <dd>Trust-based — known participants, governance rule</dd>
+        <dt>Speed</dt>
+        <dd>Cao hơn (1000s tx/s) — ít node consensus hơn</dd>
+        <dt>Use case</dt>
+        <dd>Trade finance, supply chain, interbank settlement</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Hybrid &amp; consortium chains tồn tại — kết hợp permissioned validators với public read access. Công nghệ ngân hàng (Onyx của JPM) thường đi hướng này để giữ compliance + audit trail.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 06 · POW vs POS -->
+<section data-label="PoW vs PoS" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>06 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Consensus mechanisms</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">PoW</em> vs PoS — securing the chain.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Proof-of-Work</div>
+      <dl>
+        <dt>Cơ chế</dt>
+        <dd>Miner cạnh tranh giải hash puzzle, ai trước thì add block</dd>
+        <dt>Cost</dt>
+        <dd>Electricity + ASIC hardware — sunk cost vật lý</dd>
+        <dt>Security</dt>
+        <dd>51% attack cần chiếm &gt;50% global hashrate (rất đắt)</dd>
+        <dt>Example</dt>
+        <dd>Bitcoin (block 10 phút) · Litecoin · Dogecoin</dd>
+        <dt>Drawback</dt>
+        <dd>Energy-intensive — ESG concern hàng đầu</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Proof-of-Stake</div>
+      <dl>
+        <dt>Cơ chế</dt>
+        <dd>Validator stake coin, được chọn ngẫu nhiên proportional to stake</dd>
+        <dt>Cost</dt>
+        <dd>Capital lockup — slashing nếu validator gian lận</dd>
+        <dt>Security</dt>
+        <dd>51% attack cần mua &gt;50% supply — destroy giá trị</dd>
+        <dt>Example</dt>
+        <dd>Ethereum (sau Merge 2022) · Cardano · Solana · Avalanche</dd>
+        <dt>Drawback</dt>
+        <dd>"Rich get richer" — validator lớn dominate rewards</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Ethereum Merge (Sep 2022) chuyển từ PoW sang PoS, giảm ~99.95% energy consumption. Đây là milestone lớn cho narrative ESG-friendly crypto.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 07 · BITCOIN vs ETHEREUM -->
+<section data-label="BTC vs ETH" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>07 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Two flagship cryptocurrencies</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Bitcoin</em> vs Ethereum.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Bitcoin — digital gold</div>
+      <dl>
+        <dt>Narrative</dt>
+        <dd>Store of value, hedge chống lạm phát fiat</dd>
+        <dt>Supply</dt>
+        <dd>Hard cap <b>21 triệu BTC</b>, halving mỗi 4 năm</dd>
+        <dt>Consensus</dt>
+        <dd>Proof-of-Work (SHA-256)</dd>
+        <dt>Smart contracts</dt>
+        <dd>Limited (Bitcoin Script chỉ basic logic)</dd>
+        <dt>Genesis</dt>
+        <dd>Jan 2009 — Satoshi Nakamoto</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Ethereum — programmable money</div>
+      <dl>
+        <dt>Narrative</dt>
+        <dd>Smart contract platform, "world computer"</dd>
+        <dt>Supply</dt>
+        <dd>Không cap cứng — EIP-1559 burn cơ chế deflationary</dd>
+        <dt>Consensus</dt>
+        <dd>Proof-of-Stake (post-Merge 2022)</dd>
+        <dt>Smart contracts</dt>
+        <dd>Turing-complete (Solidity) — DeFi, NFT, DAO chạy ở đây</dd>
+        <dt>Genesis</dt>
+        <dd>Jul 2015 — Vitalik Buterin et al.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Investment thesis khác biệt — BTC là "digital gold" macro hedge; ETH là "tech platform" với cash-flow-like staking yield (~3-5% APY) + L2 ecosystem (Optimism, Arbitrum, Base).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 08 · STABLECOINS -->
+<section data-label="Stablecoins" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>08 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Stable value tokens</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Stablecoins</em> — three flavors.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Stablecoin pegged 1:1 với USD (chủ yếu) — đóng vai trò "cash" trong crypto ecosystem. Total supply ~$160B (2024), settlement volume cạnh tranh với Visa.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t">Fiat-backed — <em class="hi">USDT, USDC</em></div>
+        <div class="d">1 token = 1 USD trong reserve (cash + T-bills). USDC (Circle) audited monthly. USDT (Tether) audit thiếu transparency. Trust dựa vào issuer + custodian.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t">Crypto-backed — <em class="hi">DAI</em></div>
+        <div class="d">Over-collateralized bằng ETH/BTC trong smart contract (MakerDAO). Nếu collateral &lt; 150% giá trị token → liquidation. Decentralized hơn nhưng capital inefficient.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t">Algorithmic — <em class="hi">TerraUSD (failed)</em></div>
+        <div class="d">Dùng arbitrage giữa stablecoin và sister token (LUNA) để giữ peg. Không có hard collateral. Death spiral khi confidence sụp — May 2022 mất $40B trong 1 tuần.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Use cases</em></div>
+        <div class="d">Trading pairs, DeFi collateral, cross-border remittance, on/off-ramp fiat ↔ crypto. Yield trên USDC (Aave, Compound) ~3-8% APY thay cho savings account.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 09 · STABLECOIN REDEMPTION RULE -->
+<section data-label="Redemption" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>09 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Peg mechanics</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Redemption</em> — cách giữ peg 1:1.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Peg chỉ stable nếu thị trường tin có thể redeem 1 token = 1 USD bất cứ lúc nào. Nếu giá lệch peg → arbitrageurs buy cheap / redeem at par → đẩy giá về 1.00.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Redemption rule — fiat-backed</span>
+    Nếu USDC trade $0.99 → arbitrageur mua trên thị trường, redeem trực tiếp với Circle để nhận $1.00 tiền mặt. Profit $0.01/token, đẩy giá về peg. Cơ chế chỉ work khi <b>reserves đủ + redemption channel mở</b>. Khi ngân hàng SVB sụp 2023, USDC mất peg về $0.87 vì reserves bị frozen.
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Redemption rule — algorithmic (Terra)</span>
+    1 UST burn → mint $1 worth LUNA. Nếu UST &lt; $1, arbitrageur burn UST nhận LUNA &gt; $1, sell LUNA. Cơ chế <b>dựa hoàn toàn vào market cap LUNA &gt; UST</b>. Khi LUNA sụp → mint vô hạn LUNA → hyperinflation → death spiral.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 10 · TERRAUSD CASE -->
+<section data-label="TerraUSD case" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>10 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Case study · stablecoin failure</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">TerraUSD — <em class="hi">$40B vapor</em>.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">May 7-8, 2022 — depeg ban đầu</span>
+        <span class="step-body">Large UST sells trên Curve (~$285M) đẩy peg xuống $0.985. Anchor Protocol cung cấp 20% APY cho UST — không sustainable, đã thu hút "hot" deposits dễ tháo chạy.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">May 9-10 — death spiral kích hoạt</span>
+        <span class="step-body">Arbitrage burn UST → mint LUNA → sell LUNA. LUNA giá lao xuống &gt;90% trong 24h. Càng UST burn, càng nhiều LUNA mint → hyperinflation. Supply LUNA tăng từ 350M lên 6.5 nghìn tỷ.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">May 11-12 — collapse hoàn toàn</span>
+        <span class="step-body">UST về $0.10. LUNA về &lt;$0.0001 (giảm 99.99%). $40B market cap bay hơi trong 1 tuần. Three Arrows Capital, Celsius, Voyager phá sản theo. Founder Do Kwon bị truy nã quốc tế.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Lesson — algorithmic stablecoin = reflexive Ponzi</span>
+        <span class="step-body">Không có collateral thật → peg chỉ là confidence game. Yield 20% là red flag rõ ràng. CFA exam có thể test: phân biệt algo stablecoin vs over-collateralized vs fiat-backed risk profile.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 11 · NFTs + TOKENIZATION -->
+<section data-label="NFT + Tokenization" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>11 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Non-fungible &amp; tokenized assets</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">NFTs + <em class="hi">tokenization</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      NFT = unique token đại diện ownership của asset cụ thể. Tokenization = chia nhỏ asset truyền thống (BĐS, art, equity) thành tokens fractional có thể trade on-chain.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t">NFT — <em class="hi">digital collectibles</em></div>
+        <div class="d">CryptoPunks, Bored Ape Yacht Club. Đỉnh 2021-22 floor $200K+, đã giảm &gt;90%. Use case bền vững: digital identity, ticketing, music royalties, gaming items.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t">Real estate tokens</div>
+        <div class="d">RealT, Lofty.ai chia 1 căn nhà thành 10K tokens, mỗi token nhận pro-rata rental income. Lower minimum vào BĐS từ $250K xuống $50.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t">Art &amp; commodity tokens</div>
+        <div class="d">Masterworks (art), Paxos Gold (PAXG = 1 oz vàng vault London). Liquidity tăng, custody outsource cho specialist.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t">Equity / debt tokens</div>
+        <div class="d">Security tokens — regulated như chứng khoán. Tokenized US Treasuries (Ondo, BlackRock BUIDL fund $500M+). Settlement T+0 thay vì T+2.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 12 · TOKENIZATION ADDS VALUE -->
+<section data-label="Tokenization value" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>12 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">When does tokenization help?</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Khi nào tokenization <em class="hi">tạo giá trị</em>?</h2>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Rule — value-add conditions</span>
+    Tokenization tạo giá trị thật khi underlying asset có ít nhất một đặc điểm: <b>(1)</b> illiquid (BĐS, art) → fractional ownership giảm minimum entry. <b>(2)</b> high settlement cost (cross-border equity, T+2 clearing) → on-chain T+0. <b>(3)</b> opaque ownership chain (private equity cap table) → transparent on-chain registry. <b>(4)</b> needs programmability (auto-distribution dividends, royalties). Nếu underlying đã liquid + cheap to trade (large-cap stocks), tokenization chỉ là <em>technology re-wrap</em> không tạo value.
+  </div>
+
+  <p class="fine-muted-sm">
+    § Counter-examples — tokenize Apple stock không thêm gì (đã liquid). Tokenize Manhattan apartment thật sự thêm: chia nhỏ $5M lot thành $50 lots, settle 24/7, automated rent distribution qua smart contract.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 13 · DeFi -->
+<section data-label="DeFi" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>13 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Decentralized finance</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">DeFi</em> — financial primitives on-chain.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      DeFi rebuild traditional finance services bằng smart contracts, không qua intermediary. TVL (Total Value Locked) đỉnh $180B (Nov 2021), hiện ~$80-100B. Open-source, composable, 24/7.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t">Lending — <em class="hi">Aave, Compound</em></div>
+        <div class="d">Deposit USDC nhận yield + borrow against crypto collateral. Over-collateralized (150%+), auto-liquidation. Không credit check, không KYC ở base layer.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t">AMM — <em class="hi">Uniswap, Curve</em></div>
+        <div class="d">Automated Market Makers thay order book bằng liquidity pool x*y=k. LP earn swap fees, chịu impermanent loss. Uniswap V3 concentrated liquidity giảm IL.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t">Yield farming + staking</div>
+        <div class="d">Provide liquidity → nhận governance tokens. APYs 5-50%+ nhưng kèm smart contract risk + token price volatility. Nhiều "yield" chỉ là token emission inflation.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t">Derivatives + perps — <em class="hi">dYdX, GMX</em></div>
+        <div class="d">Perpetual futures on-chain với leverage 50-100×. Funding rate giữ price gần spot. $50-100B daily volume — cạnh tranh với centralized exchanges.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 14 · DIRECT vs ETF -->
+<section data-label="Direct vs ETF" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>14 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Investment vehicles</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Direct holding vs <em class="hi">spot ETF</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Direct holding</div>
+      <dl>
+        <dt>Custody</dt>
+        <dd>Self (hardware wallet) hoặc exchange (Coinbase, Binance)</dd>
+        <dt>Fees</dt>
+        <dd>Trading fee ~0.1-0.5%, no annual fee</dd>
+        <dt>Access</dt>
+        <dd>24/7, on-chain transfers, DeFi, staking yield</dd>
+        <dt>Risk</dt>
+        <dd>Private key loss = mất vĩnh viễn; exchange fail (FTX) = mất</dd>
+        <dt>Tax</dt>
+        <dd>Mỗi swap là taxable event ở US</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Spot Bitcoin ETF</div>
+      <dl>
+        <dt>Custody</dt>
+        <dd>Qualified custodian (Coinbase Custody, BNY)</dd>
+        <dt>Fees</dt>
+        <dd>Expense ratio 0.20-0.25% (BlackRock IBIT, Fidelity FBTC)</dd>
+        <dt>Access</dt>
+        <dd>Brokerage account, market hours, 401(k) eligible</dd>
+        <dt>Risk</dt>
+        <dd>Tracking error, no on-chain utility, no staking</dd>
+        <dt>Approval</dt>
+        <dd>SEC approved <b>Jan 10, 2024</b> — 11 spot BTC ETFs cùng lúc</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Spot ETH ETF approved May 2024, trading từ Jul 2024 — không có staking. Futures-based ETFs (BITO, từ 2021) khác spot ETF: hold CME futures, contango drag ~5-10%/năm.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 15 · BITCOIN ETF CASE -->
+<section data-label="BTC ETF case" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>15 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Case study · institutional adoption</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot BTC ETF — <em class="hi">Jan 10, 2024</em>.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">10-year SEC battle — Winklevoss 2013 → Grayscale lawsuit</span>
+        <span class="step-body">SEC reject 20+ applications từ 2013, lý do "market manipulation". Aug 2023, Grayscale thắng D.C. Circuit Court → SEC buộc phải reconsider. Approval cho 11 issuers cùng lúc Jan 10, 2024.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Inflows record-breaking</span>
+        <span class="step-body">$1B trong ngày đầu giao dịch. 6 tháng đầu hút net $17B — fastest ETF launch trong lịch sử. BlackRock IBIT vượt $20B AUM trong &lt;1 năm (gold ETF mất 5 năm để đạt mốc đó).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Price impact + legitimization</span>
+        <span class="step-body">BTC từ $46K (Jan 10) → $73K (Mar 14, ATH 2024). Mở khóa wirehouse channels (Morgan Stanley, Wells Fargo) cho retail clients. 401(k) plans bắt đầu add BTC ETF.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">CFA implication</span>
+        <span class="step-body">Crypto chính thức trở thành asset class trong portfolio allocation discussions. Thường recommend 1-5% allocation cho high-risk sleeve. Correlation với equities tăng từ ~0 (2017) lên 0.4-0.6 (2024).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 16 · FTX CASE -->
+<section data-label="FTX case" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>16 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Case study · custody &amp; counterparty risk</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">FTX — <em class="hi">Nov 2022 collapse</em>.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Setup — 2nd largest crypto exchange, $32B valuation</span>
+        <span class="step-body">FTX (Sam Bankman-Fried) sister hedge fund Alameda Research. Endorsed by Tom Brady, Larry David, naming rights Miami Heat arena. "Most regulated exchange" narrative.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Trigger — CoinDesk leak Alameda balance sheet</span>
+        <span class="step-body">Nov 2, 2022 — leak cho thấy Alameda hold lượng lớn FTT (FTX native token, illiquid). Nov 6, Binance CEO CZ tweet sẽ liquidate FTT holdings. Bank run xảy ra.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Collapse — $8B customer funds missing</span>
+        <span class="step-body">Withdrawal ngừng Nov 8. Bankruptcy chapter 11 Nov 11. Customer deposits đã được chuyển cho Alameda fund prop trading + SBF personal expenses (mansion Bahamas, political donations). SBF sentenced 25 years 2024.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Lesson — "not your keys, not your coins"</span>
+        <span class="step-body">Custodial risk = counterparty risk. CEX không tách biệt customer assets như broker-dealer. Bài học: self-custody hoặc qualified custodian regulated (Coinbase Custody, Anchorage). CFA exam có thể test: phân biệt custody risk vs market risk.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 17 · RISKS -->
+<section data-label="Risks" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>17 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk inventory</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Six <em class="hi">risk categories</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Volatility</em> extreme</div>
+        <div class="d">BTC realized vol 60-80%/năm — gấp 4-5× S&amp;P 500. Drawdown −80% từ ATH là chuyện thường (2018, 2022). Position sizing phải tính max loss.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Regulatory</em> uncertainty</div>
+        <div class="d">SEC vs CFTC tranh chấp jurisdiction. Mỗi quốc gia khác — China cấm, US partial allow, EU MiCA, VN gray. Rule có thể thay đổi qua đêm.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Custody</em> risk</div>
+        <div class="d">Lose private key = mất vĩnh viễn (~20% BTC supply ước tính lost). Exchange hack: Mt.Gox, Bitfinex, FTX — billions stolen.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Smart contract</em> bugs</div>
+        <div class="d">DAO hack 2016 ($60M), Ronin bridge 2022 ($625M), Wormhole 2022 ($320M). Code bugs immutable on-chain → exploit có thể xảy ra bất kỳ lúc nào.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">05</span>
+      <div>
+        <div class="t">Exchange / counterparty</div>
+        <div class="d">FTX, Celsius, Voyager, BlockFi đều fail 2022. CEX không có FDIC insurance, không có SIPC. Counterparty risk pricing kém transparent.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">06</span>
+      <div>
+        <div class="t">Market manipulation</div>
+        <div class="d">Wash trading, pump-and-dump (Bitfinex'ed thesis về Tether), front-running MEV trên Ethereum. Smaller cap coins đặc biệt vulnerable.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 18 · VALUATION + CORRELATION -->
+<section data-label="Valuation" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>18 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Valuation challenges</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Định giá <em class="hi">không có cash flow</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Cryptocurrencies (đặc biệt BTC) không có dividend, không có earning, không có discount-able cash flow. DCF không áp dụng được. Cần frameworks thay thế.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Network effects + Metcalfe's law</span>
+        <span class="step-body">Value ∝ N² (số active addresses bình phương). Empirical fit khá tốt cho BTC, ETH trong 2010-2018. Phái sinh: NVT ratio (Network Value to Transactions) — analog của P/E.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Stock-to-flow (BTC specific)</span>
+        <span class="step-body">Tỷ lệ existing supply / annual issuance. BTC halving tăng S2F → narrative scarcity. Model PlanB phổ biến nhưng forecast 2021 sai lệch lớn → controversial.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">ETH-as-platform — fee revenue / staking yield</span>
+        <span class="step-body">Post-Merge ETH có cash-flow-like staking yield (~3-5%) + fee burn. Có thể tính P/E-equivalent. Đây là valuation framework "quasi-equity".</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Correlation với traditional — tăng dần</span>
+        <span class="step-body">2017: ~0 correlation với S&amp;P. 2022-24: 0.4-0.6 trong risk-off periods. Diversification benefit giảm khi institutional adoption tăng. CFA exam có thể test: correlation thấp historical ≠ thấp forward.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 19 · ESG + REGULATORY -->
+<section data-label="ESG + Reg" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>19 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">ESG &amp; regulatory landscape</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">ESG concerns + <em class="hi">regulation</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">ESG — environmental focus</div>
+      <dl>
+        <dt>BTC energy</dt>
+        <dd>~150 TWh/năm (≈ Argentina). PoW consumption argument chính chống BTC trong ESG portfolios</dd>
+        <dt>ETH post-Merge</dt>
+        <dd>Giảm 99.95% energy → ETH eligible cho ESG funds; BTC vẫn excluded</dd>
+        <dt>Mining mix</dt>
+        <dd>~50% renewable (Cambridge CCAF) — mining migrate theo cheap power</dd>
+        <dt>Social / Governance</dt>
+        <dd>Decentralization vs concentration của large holders ("whales")</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Regulatory landscape</div>
+      <dl>
+        <dt>US — SEC vs CFTC</dt>
+        <dd>SEC: securities (most tokens). CFTC: commodities (BTC, ETH). Howey test áp dụng cho ICO</dd>
+        <dt>EU — MiCA</dt>
+        <dd>Markets in Crypto-Assets, có hiệu lực Dec 2024. Comprehensive: stablecoins, CASP licensing, market abuse</dd>
+        <dt>Asia</dt>
+        <dd>HK + SG license-based (cho institutions). China total ban (2021). Japan early adopter</dd>
+        <dt>Vietnam</dt>
+        <dd>Chưa công nhận crypto là tiền hợp pháp; trading retail gray area; VBSP đang draft framework</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Trump admin 2025 — pro-crypto stance, SEC chair Gensler thay thế. Strategic Bitcoin Reserve được bàn ở Senate. Regulatory tone shift mạnh sau election Nov 2024.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 20 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 21 · Q1 EN — POW vs POS -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>21 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Identify <em class="hi">consensus mechanism</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst is comparing two public blockchains. <strong>Chain A</strong> requires miners to expend electricity solving cryptographic hash puzzles, with the first miner to find a valid hash adding the next block and earning a block reward. <strong>Chain B</strong> requires validators to lock up native tokens as collateral, with validators selected pseudo-randomly in proportion to their staked amount; malicious validators have their stake "slashed". Which statement <strong>best</strong> describes these mechanisms?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Both chains use Proof-of-Work; only the reward distribution differs.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Chain A is Proof-of-Work (Bitcoin-style); Chain B is Proof-of-Stake (post-Merge Ethereum-style).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Chain A is Proof-of-Stake; Chain B is Proof-of-Work because slashing destroys capital.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>22 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Chain A: <mark>electricity</mark> + <mark>hash puzzles</mark> + <mark>first miner</mark>. Chain B: <mark>locked tokens</mark> + <mark>staked amount</mark> + <mark>slashing</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">"Electricity" + "hash puzzles" = <em>Proof-of-Work</em>. Đây là Bitcoin/Litecoin signature. Compute power là cost.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">"Locked tokens" + "slashing" = <em>Proof-of-Stake</em>. Capital lockup là cost. Ethereum sau Merge 2022 dùng cơ chế này.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Slashing không biến PoS thành PoW. Slashing là penalty mechanism của PoS để align incentives — không liên quan đến hashing.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>23 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một analyst đang so sánh hai public blockchains. <strong>Chain A</strong> yêu cầu miners tiêu hao điện để giải các hash puzzles cryptographic; miner đầu tiên tìm ra valid hash sẽ add block tiếp theo và nhận block reward. <strong>Chain B</strong> yêu cầu validators lock native tokens làm collateral; validators được chọn pseudo-random theo tỷ lệ số token đã stake; validator gian lận sẽ bị "slashed" (mất stake). Statement nào <strong>đúng nhất</strong> mô tả các cơ chế này?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Cả hai chains dùng Proof-of-Work; chỉ khác cách phân phối reward.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Chain A là Proof-of-Work (Bitcoin-style); Chain B là Proof-of-Stake (Ethereum post-Merge).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Chain A là Proof-of-Stake; Chain B là Proof-of-Work vì slashing destroy capital.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>24 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — PoW vs PoS.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Chain A's signature features — <b>electricity expenditure + hash-puzzle racing + block reward to fastest</b> — đều là Proof-of-Work mechanics, dùng bởi Bitcoin từ 2009. Chain B's features — <b>token staking + pseudo-random selection proportional to stake + slashing penalty</b> — là Proof-of-Stake, dùng bởi Ethereum sau Merge (Sep 2022), Cardano, Solana, Avalanche.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Hai cơ chế khác nhau căn bản về <em>cost basis</em>: PoW dùng external resource (electricity + ASIC), PoS dùng internal resource (locked tokens). Reward distribution là consequence, không phải essence của consensus type.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Đảo ngược nhãn. Slashing là feature của PoS — penalty cho validator gian lận. Không liên quan đến hashing. Capital destruction qua slashing khác hoàn toàn với compute work của PoW.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">PoW = <em>compute work</em> (electricity + hardware) bảo mật chain. PoS = <em>capital at stake</em> (locked tokens + slashing) bảo mật chain. Bitcoin = PoW. Ethereum sau Merge 2022 = PoS. Ethereum Merge giảm 99.95% energy → ESG-friendlier.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q2 EN — STABLECOIN TYPES -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>25 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Classify <em class="hi">stablecoins</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      <strong>Stablecoin X</strong> maintains its $1 peg by allowing holders to burn the token in exchange for newly-minted units of a sister token; if peg deviates, arbitrageurs profit by burning/minting. <strong>Stablecoin Y</strong> maintains its peg by holding $1.00 of cash and short-dated US Treasury bills in segregated reserves for every token issued, with monthly attestations. In May 2022, Stablecoin X's market cap collapsed from $18B to near zero in one week. Which statement is <strong>most accurate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">X is fiat-backed and Y is algorithmic; X failed because reserves were insufficient.</span></li>
+    <li><span class="lbl">B</span><span class="opt">X is algorithmic (TerraUSD-style) and Y is fiat-backed (USDC-style); X failed via a reflexive death-spiral when confidence collapsed.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Both are crypto-backed; X failed because its over-collateralization ratio dropped below 100%.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>26 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    X: <mark>burn → mint sister token</mark> + <mark>collapse $18B → 0</mark> + <mark>May 2022</mark>. Y: <mark>cash + T-bills reserves</mark> + <mark>monthly attestations</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">"Burn token để mint sister token" = <em>algorithmic stablecoin</em>. Không có hard collateral. Đây là cơ chế Terra/UST + LUNA.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">"Cash + T-bills reserves + attestations" = <em>fiat-backed</em>. USDC (Circle) là ví dụ chuẩn. Trust dựa vào issuer + auditor.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">May 2022 + collapse $18B = TerraUSD. Death spiral: peg lệch → arb burn UST mint LUNA → LUNA hyperinflation → confidence sụp → vòng luẩn quẩn.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>27 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      <strong>Stablecoin X</strong> giữ peg $1 bằng cách cho phép holders burn token để đổi lấy sister token mới mint; nếu peg lệch, arbitrageurs profit bằng burn/mint. <strong>Stablecoin Y</strong> giữ peg bằng cách hold $1.00 cash + short-dated US Treasury bills trong segregated reserves cho mỗi token issued, với monthly attestations. Tháng 5/2022, market cap của Stablecoin X sụp từ $18B về gần 0 trong 1 tuần. Statement nào <strong>chính xác nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">X là fiat-backed và Y là algorithmic; X fail vì reserves không đủ.</span></li>
+    <li><span class="lbl">B</span><span class="opt">X là algorithmic (TerraUSD-style) và Y là fiat-backed (USDC-style); X fail qua reflexive death-spiral khi confidence sụp.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Cả hai là crypto-backed; X fail vì tỷ lệ over-collateralization rớt dưới 100%.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>28 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — algo vs fiat.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">X = <b>algorithmic stablecoin</b> (Terra/UST). Cơ chế burn-mint với sister token (LUNA) — không có collateral thật, chỉ dựa vào market cap LUNA &gt; UST. Sụp tháng 5/2022 vì <b>reflexive death spiral</b>: peg lệch → arb burn UST mint LUNA → LUNA hyperinflation (350M → 6.5T tokens) → market cap LUNA về 0 → UST vô giá trị. Y = <b>fiat-backed</b> (USDC pattern). Cash + T-bills 1:1, audited.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Đảo ngược labels. "Cash + T-bills + attestations" rõ ràng là fiat-backed, không phải algorithmic. "Burn-mint sister token" là algo. Cũng sai về failure mode — algo stablecoin không có "reserves insufficient" vì nó không có reserves ngay từ đầu.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Crypto-backed (DAI-style) cần explicit over-collateralization 150%+ với crypto trong smart contract (ETH, BTC). Cả X và Y đều không match: X dùng burn-mint không collateral; Y dùng fiat reserves. Crypto-backed liquidation triggers ở ngưỡng cụ thể, khác cơ chế cả hai.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">3 stablecoin types: <em>fiat-backed</em> (USDT, USDC) — cash reserves; <em>crypto-backed</em> (DAI) — over-collateralized crypto trong smart contract; <em>algorithmic</em> (TerraUSD failed) — burn-mint với sister token, no collateral. Algo có rủi ro reflexive death-spiral cao nhất. CFA exam có thể test phân loại + risk profile.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 29 · Q3 EN — DIRECT vs ETF -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>29 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Investment <em class="hi">vehicle choice</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A US-based pension fund's investment policy statement permits Bitcoin exposure only via SEC-registered, custody-based vehicles within standard brokerage accounts. The trustees evaluate three options: <strong>(i)</strong> direct purchase of BTC on a centralized exchange with self-custody in a hardware wallet; <strong>(ii)</strong> a spot Bitcoin ETF approved by the SEC in January 2024 (e.g., IBIT, FBTC); <strong>(iii)</strong> a Bitcoin futures-based ETF holding CME contracts. Which option <strong>best</strong> fits the IPS, and why?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Option (i) — direct holding minimizes fees and gives 24/7 access.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Option (ii) — spot BTC ETF holds underlying BTC at qualified custodian, trades on regulated exchange via brokerage; eliminates self-custody risk while providing direct price tracking.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Option (iii) — futures-based ETF avoids spot custody entirely and provides cleaner tracking of BTC price.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 30 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>30 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    IPS yêu cầu: <mark>SEC-registered</mark> + <mark>custody-based</mark> + <mark>standard brokerage account</mark>. Loại nào match cả 3?
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Self-custody hardware wallet KHÔNG fit "standard brokerage account" + KHÔNG SEC-registered. Loại (i).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Spot BTC ETF (IBIT, FBTC) approved Jan 2024 — SEC-registered, hold BTC tại qualified custodian (Coinbase Custody), trade trên NYSE/Nasdaq qua brokerage. Match cả 3.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Futures ETF (BITO) bị contango drag — tracking error 5-10%/năm. Spot ETF tracking nhỏ hơn nhiều (chỉ expense ratio).</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 31 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>31 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một US pension fund có IPS chỉ cho phép BTC exposure qua các vehicles <em>SEC-registered, custody-based, trong standard brokerage account</em>. Trustees đánh giá 3 options: <strong>(i)</strong> mua BTC trực tiếp trên CEX và self-custody trong hardware wallet; <strong>(ii)</strong> spot Bitcoin ETF được SEC approve tháng 1/2024 (vd IBIT, FBTC); <strong>(iii)</strong> futures-based BTC ETF hold CME contracts. Option nào <strong>fit IPS nhất</strong>, và vì sao?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Option (i) — direct holding minimize fees và cho 24/7 access.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Option (ii) — spot BTC ETF hold underlying BTC tại qualified custodian, trade trên regulated exchange qua brokerage; loại self-custody risk + tracking giá direct.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Option (iii) — futures-based ETF tránh spot custody hoàn toàn và tracking BTC price sạch hơn.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 32 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>10.07 — Digital Assets</span>
+    <span class="rule"></span>
+    <span>32 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Spot BTC ETF.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Spot BTC ETF (BlackRock IBIT, Fidelity FBTC) approved Jan 10, 2024 thoả cả 3 IPS constraints: <b>(1) SEC-registered</b> dưới '40 Act framework; <b>(2) custody-based</b> — underlying BTC hold tại Coinbase Custody (qualified custodian); <b>(3) brokerage-accessible</b> — trade trên NYSE/Nasdaq như cổ phiếu thường. Expense ratio 0.20-0.25%, tracking error nhỏ chỉ bằng fee + cash drag. Pension funds tap được mà không lo private-key risk.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Direct holding với self-custody KHÔNG fit IPS: (a) không SEC-registered, (b) không qua brokerage, (c) carry private-key risk + counterparty risk (FTX-style). Pension fiduciary thường cấm vì lý do governance + custody.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Futures-based BTC ETF (BITO từ 2021) đã SEC-registered và brokerage-accessible — đáp ứng phần nào IPS. NHƯNG <b>tracking error lớn</b> do contango drag trên CME futures curve (~5-10%/năm). Spot ETF tracking sạch hơn nhiều khi spot có sẵn từ Jan 2024. Lập luận "tracking sạch hơn" sai — futures-based tracking tệ hơn spot.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Spot BTC ETF (Jan 2024) là <em>institutional bridge</em> chính cho regulated capital. Direct = best access nhưng worst governance. Futures ETF = wrap đầu tiên nhưng contango drag. Spot ETF = sweet spot. CFA exam có thể test mapping IPS constraints → vehicle. Inflows $17B trong 6 tháng đầu chứng minh demand institutional.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Alternatives · 10.07 — Digital Assets</span>
+  </div>
+</section>
+
+
+<!-- 33 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>10.07 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Hết series Alternative Investments · Bạn đã hoàn thành Topic 10<br>Tiếp theo · Quantitative Methods hoặc Fixed Income</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

@@ -1,0 +1,1262 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Fixed Income 08.09 — Securitization &amp; ABS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+
+  /* Securitization deal-structure diagram */
+  .sec-diagram { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 14px; max-width: 1700px; }
+  .sec-node {
+    background: var(--paper);
+    border: 2px solid var(--accent);
+    border-left: 6px solid var(--accent);
+    padding: 18px 22px;
+    text-align: left;
+  }
+  .sec-node .lbl {
+    font-family: var(--mono); font-size: 15px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 8px;
+  }
+  .sec-node .name { font-family: var(--display); font-size: 26px; font-weight: 700; color: var(--ink); line-height: 1.15; }
+  .sec-node .desc { font-family: var(--sans); font-size: 16px; color: var(--ink-soft); margin-top: 6px; line-height: 1.4; }
+  .sec-arrow {
+    text-align: center; font-family: var(--mono); font-size: 14px;
+    color: var(--accent); letter-spacing: 0.1em; padding: 6px 0; font-weight: 600;
+  }
+
+  /* Tranche waterfall stack */
+  .waterfall { display: grid; gap: 8px; max-width: 1700px; margin-top: 12px; }
+  .tier {
+    display: grid; grid-template-columns: 220px 1fr 240px;
+    gap: 24px; padding: 16px 22px; align-items: center;
+    border-left: 6px solid var(--accent);
+    background: var(--paper);
+  }
+  .tier.senior { background: rgba(20, 54, 95, 0.10); }
+  .tier.mezz { background: var(--paper); }
+  .tier.equity { background: #FFFFFF; border-left-color: var(--ink-muted); }
+  .tier .role {
+    font-family: var(--display); font-size: 26px; font-weight: 700; color: var(--accent);
+  }
+  .tier.equity .role { color: var(--ink-muted); }
+  .tier .body { font-family: var(--sans); font-size: 19px; line-height: 1.4; color: var(--ink); }
+  .tier .meta { font-family: var(--mono); font-size: 15px; color: var(--ink-muted); letter-spacing: 0.06em; text-align: right; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Securitization<br>&amp; <em>ABS.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 08 · Lesson 08.09 · Fixed Income</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 09 · Pooling · SPE · Tranching · Credit enhancement</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Fixed Income</dd></div>
+      <div><dt>Module</dt><dd>09</dd></div>
+      <div><dt>Lesson</dt><dd>08.09</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">ABS · MBS · CDO · Tranches · Waterfall</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">09</div>
+    <div class="lbl">Structured finance</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How illiquid loans become <em>tradable bonds</em>.</h2>
+    <ul class="toc">
+      <li class="active">01 · Securitization process — pool · SPE · ABS issuance</li>
+      <li>02 · Benefits — liquidity · capital relief · bankruptcy remoteness</li>
+      <li>03 · ABS vs MBS — collateral types · auto · card · student · equipment</li>
+      <li>04 · Tranching — Senior / Mezzanine / Equity · time vs credit</li>
+      <li>05 · Credit enhancement — internal vs external</li>
+      <li>06 · Cash flow waterfall — interest &amp; principal priority</li>
+      <li>07 · CDOs — cash · synthetic · CDO-squared · 2008 lessons</li>
+      <li>08 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · WHAT IS SECURITIZATION -->
+<section data-label="What is securitization" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>03 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Securitization · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What is <em class="hi">securitization</em>?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Securitization = quá trình <em>pool</em> các financial assets có cash flow (loans, receivables) và <em>repackage</em> thành securities có thể bán cho investors. Biến tài sản <em>illiquid</em> trên balance sheet thành <em>tradable bond</em> trên thị trường.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Core idea</span>
+    Một mortgage hay auto loan đơn lẻ rất khó bán — small size, opaque credit, không standardized. Nhưng khi <em>gộp 5,000 mortgages</em> giống nhau và phát hành securities backed by pool đó, ta có <b>asset-backed bonds</b> standardized, rated, và liquid trên capital markets.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 18px;">
+    <li>
+      <span>
+        <span class="step-title">Originator (bank, finance company)</span>
+        <span class="step-body">Tạo loans với borrowers (mortgage, auto, credit card). Originally giữ trên balance sheet — chịu credit risk + funding cost.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Pool of assets</span>
+        <span class="step-body">Gom hàng nghìn loans tương đồng (cùng asset class, term, credit profile) thành một <em>pool</em> với expected cash flows.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Issue securities backed by pool</span>
+        <span class="step-body">Special Purpose Entity (SPE) phát hành ABS — investors mua bond, nhận cash flow từ underlying loans (principal + interest).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 04 · DEAL STRUCTURE DIAGRAM -->
+<section data-label="Deal structure" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>04 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Securitization · structure</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">The <em class="hi">deal structure</em> map.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Ba parties cốt lõi: <em>Originator/Seller</em> tạo loans → bán cho <em>SPE/SPV</em> → SPE issue ABS cho <em>Investors</em>. Servicer thu nợ từ borrowers, trustee bảo vệ investors.
+    </p>
+  </div>
+
+  <div class="sec-diagram">
+    <div class="sec-node">
+      <div class="lbl">§ Step 1 — Origination</div>
+      <div class="name">Originator / Seller</div>
+      <div class="desc">Bank, mortgage co., auto finance — tạo loans với borrowers. Bán pool loans cho SPE để lấy cash &amp; remove off balance sheet.</div>
+    </div>
+    <div class="sec-node">
+      <div class="lbl">§ Step 2 — Repackage</div>
+      <div class="name">SPE / SPV (Trust)</div>
+      <div class="desc">Special Purpose Entity. Mua loans từ originator, holds them as collateral, issue securities (tranches) ngược lại cho investors. <em>Bankruptcy-remote.</em></div>
+    </div>
+    <div class="sec-node">
+      <div class="lbl">§ Step 3 — Distribution</div>
+      <div class="name">Investors</div>
+      <div class="desc">Pension funds, insurers, mutual funds, hedge funds — mua tranches phù hợp risk appetite (Senior AAA → Equity unrated).</div>
+    </div>
+  </div>
+
+  <div class="sec-arrow" style="margin-top: 14px;">▼ &nbsp; Cash flow: borrowers pay servicer → trust collects → distributes to tranches per waterfall &nbsp; ▼</div>
+
+  <div class="sec-diagram" style="grid-template-columns: 1fr 1fr 1fr 1fr; gap: 18px;">
+    <div class="sec-node">
+      <div class="lbl">Borrowers</div>
+      <div class="desc">Pay P+I monthly</div>
+    </div>
+    <div class="sec-node">
+      <div class="lbl">Servicer</div>
+      <div class="desc">Collect, advance, modify loans · Earns servicing fee</div>
+    </div>
+    <div class="sec-node">
+      <div class="lbl">Trustee</div>
+      <div class="desc">Holds collateral · Enforces waterfall · Acts cho investors</div>
+    </div>
+    <div class="sec-node">
+      <div class="lbl">Rating Agency</div>
+      <div class="desc">Rate tranches (AAA · AA · BBB · NR) based on enhancement</div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 05 · BENEFITS -->
+<section data-label="Benefits" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>05 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Why securitize</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Benefits — <em class="hi">all sides</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Securitization lan rộng vì lợi ích cho cả 3 phía: originator (capital, funding), investor (diversification, customized risk), economy (lower borrowing cost, broader credit availability).
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 14px;">
+    <div class="tenet">
+      <span class="n">L</span>
+      <div>
+        <div class="t"><em class="hi">Liquidity</em></div>
+        <div class="d">Loans <em>illiquid</em> trở thành bond <em>tradable</em>. Originator nhận cash ngay thay vì chờ 30 năm thu nợ; investor có exit qua secondary market.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">C</span>
+      <div>
+        <div class="t"><em class="hi">Regulatory capital relief</em></div>
+        <div class="d">Bank dùng Basel risk-weighted assets — sell loans giảm RWA → free up capital để lend more. Off-balance-sheet treatment quan trọng.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">F</span>
+      <div>
+        <div class="t"><em class="hi">Lower funding cost</em></div>
+        <div class="d">ABS senior tranche thường rated AAA — borrowing cost &lt; corporate bond của originator. Originator pass savings cho borrowers (mortgage rate thấp hơn).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">D</span>
+      <div>
+        <div class="t"><em class="hi">Diversification cho investor</em></div>
+        <div class="d">Một bond exposure đến 5,000 mortgages khắp US — idiosyncratic risk được pool, chỉ còn systemic + structural risk.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">R</span>
+      <div>
+        <div class="t">Risk customization</div>
+        <div class="d">Tranching cho phép investor pick risk-return: Senior (low risk, low yield) hoặc Equity (high risk, high yield). Match liability của insurers, pension funds.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">E</span>
+      <div>
+        <div class="t">Economy-wide credit</div>
+        <div class="d">Credit availability tăng — banks có thể originate nhiều hơn vì không phải fund toàn bộ. Tuy nhiên đây cũng là nguồn gốc 2008 GFC.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 06 · BANKRUPTCY REMOTENESS -->
+<section data-label="Bankruptcy remoteness" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>06 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">SPE · legal structure</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Bankruptcy remoteness</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Lý do tồn tại của SPE: tách credit risk của <em>pool</em> khỏi credit risk của <em>originator</em>. Nếu originator phá sản, creditors của họ <em>không thể</em> claim assets trong SPE.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Rule 1 — True sale</span>
+    Việc bán loans từ originator sang SPE phải là <em>true sale</em> (chuyển nhượng pháp lý hoàn chỉnh), không phải secured loan trá hình. Pool assets <b>không còn</b> trên balance sheet originator.
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Rule 2 — Separate legal entity</span>
+    SPE là pháp nhân riêng (trust hoặc LLC), <em>independent directors</em>, <em>limited purpose</em> (chỉ holds pool + issue ABS). Không được engage trong activities khác.
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Rule 3 — Non-consolidation opinion</span>
+    Lawyers issue opinion rằng SPE sẽ <em>không bị consolidated</em> với originator trong bankruptcy proceedings. Investors trong ABS chỉ chịu credit risk của <em>pool</em>, không phải của originator.
+  </div>
+
+  <p class="fine-muted-sm">
+    § Hệ quả — Một AAA-rated ABS có thể được issued bởi originator BB-rated, vì rating dựa trên collateral pool + credit enhancement, không phải originator's balance sheet. Đây là magic của structured finance.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 07 · ABS vs MBS -->
+<section data-label="ABS vs MBS" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>07 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Asset class · taxonomy</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">ABS</em> vs <em class="hi">MBS</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Cả hai đều là <em>asset-backed</em>. Phân biệt theo collateral: MBS backed by <em>mortgages</em>, ABS backed bởi mọi thứ <em>khác</em>. Trong CFA curriculum, "ABS" thường ám chỉ non-mortgage ABS.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 14px;">
+    <div class="cc">
+      <div class="head"><em>MBS</em> — Mortgage-Backed</div>
+      <dl>
+        <dt>Collateral</dt>
+        <dd>Residential (RMBS) hoặc commercial (CMBS) <b>mortgages</b></dd>
+        <dt>Issuers</dt>
+        <dd>Agency: Ginnie Mae, Fannie Mae, Freddie Mac · Non-agency (private label)</dd>
+        <dt>Key risk</dt>
+        <dd><em>Prepayment risk</em> — borrower refinance khi rate giảm → early principal return</dd>
+        <dt>Size</dt>
+        <dd>Largest segment of US bond market — &gt;$11T outstanding</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>ABS</em> — Asset-Backed (non-mortgage)</div>
+      <dl>
+        <dt>Collateral</dt>
+        <dd>Auto loans · credit card · student loans · equipment lease · royalties</dd>
+        <dt>Issuers</dt>
+        <dd>Banks, finance companies, captives (Ford Motor Credit, GM Financial)</dd>
+        <dt>Key risk</dt>
+        <dd><em>Credit risk</em> dominates — prepayment ít quan trọng hơn (term ngắn 3-5 năm)</dd>
+        <dt>Size</dt>
+        <dd>Smaller than MBS — ~$1.5T outstanding · Auto + card chiếm phần lớn</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Tip CFA — Khi đề nói "ABS", thường ngụ ý <em>non-mortgage</em> (auto, card, student). MBS được tách riêng thành topic. Cả hai chia sẻ structure: SPE, tranching, credit enhancement, waterfall.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 08 · COLLATERAL TYPES -->
+<section data-label="Collateral types" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>08 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">ABS · collateral universe</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">4 main <em class="hi">ABS collaterals</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 12px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Auto loan ABS</em></div>
+        <div class="d">Pool of car loans (prime + subprime). <b>Amortizing</b> — principal trả dần. Term 3-5 năm. Prepayment thấp (penalties + xe có giá trị giảm). Credit risk visible — default rate biến động theo unemployment.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Credit card ABS</em></div>
+        <div class="d"><b>Non-amortizing / revolving</b> — borrower có thể borrow lại sau khi pay. Có <em>lockout period</em> (interest only) rồi <em>amortization period</em>. Master trust structure cho phép multiple issuances từ cùng pool.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Student loan ABS</em> (SLABS)</div>
+        <div class="d">Federal (FFELP, government-guaranteed) hoặc private. Long maturity (10-25 năm). Risk: deferment, forbearance, IBR. Prepayment thấp vì student không thường refinance.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Equipment lease ABS</em></div>
+        <div class="d">Pool of leases trên trucks, aircraft, medical equipment, IT. Amortizing. Residual value risk — equipment có giá trị resale lúc lease end. Concentration risk nếu lessee tập trung industry.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">05</span>
+      <div>
+        <div class="t">Other niche ABS</div>
+        <div class="d">Solar loans, timeshare, franchise royalties, music catalog (Bowie bonds 1997), aircraft lease, container lease — bất cứ asset có cash flow predictable đều có thể securitize.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">06</span>
+      <div>
+        <div class="t">CLOs — Collateralized Loan Obligations</div>
+        <div class="d">Pool of <em>leveraged corporate loans</em> (broadly syndicated). $1T+ market. Actively managed by CLO manager (vs static ABS pool). Equity tranche owned by manager.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 09 · TRANCHING OVERVIEW -->
+<section data-label="Tranching" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>09 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Tranching · capital structure</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">The <em class="hi">tranche</em> stack.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Pool cash flow được <em>chia tầng</em> theo seniority. Senior nhận trước (an toàn nhất), Equity nhận cuối (rủi ro nhất). <b>Subordination</b> = Mezz + Equity stand <em>between</em> losses và Senior.
+    </p>
+  </div>
+
+  <div class="waterfall">
+    <div class="tier senior">
+      <div class="role">Senior</div>
+      <div class="body">Top of capital stack. Nhận P+I <em>trước</em> các tranche khác. Rated <b>AAA / AA</b>. ~70-85% deal size. Loss absorbed only sau khi Equity + Mezz wiped out.</div>
+      <div class="meta">YIELD: LOW · RATING: AAA</div>
+    </div>
+    <div class="tier mezz">
+      <div class="role">Mezzanine</div>
+      <div class="body">Middle layers. Multiple sub-tranches (BBB, BB, B). Nhận sau Senior. Hấp thụ losses sau Equity. ~10-25% deal size. Yield premium đáng kể vs Senior.</div>
+      <div class="meta">YIELD: MID · RATING: BBB-B</div>
+    </div>
+    <div class="tier equity">
+      <div class="role">Equity / Residual</div>
+      <div class="body">Bottom — first-loss piece. Nhận cash flow <em>còn lại</em> sau khi tất cả tranche khác paid. Unrated. ~3-10% deal. High expected return nếu pool perform; wiped out đầu tiên khi defaults.</div>
+      <div class="meta">YIELD: HIGH · UNRATED</div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Phép màu — Tranching biến một pool có credit BBB thành Senior tranche AAA. Có thể vì losses pool tập trung ở Equity + Mezz, để Senior <em>insulated</em>. Đây là core của credit enhancement nội bộ.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 10 · TIME vs CREDIT TRANCHING -->
+<section data-label="Time vs Credit tranching" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>10 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Tranching · two dimensions</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Time</em> vs <em class="hi">Credit</em> tranching.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Tranches có thể được tạo dọc theo 2 trục: <em>credit risk</em> (default loss priority) và <em>time</em> (prepayment / maturity profile). Một deal thường kết hợp cả hai.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 14px;">
+    <div class="cc">
+      <div class="head"><em>Credit</em> tranching</div>
+      <dl>
+        <dt>Mục đích</dt>
+        <dd>Phân bổ <em>credit losses</em> theo seniority — Senior protected, Equity absorbs</dd>
+        <dt>Cấu trúc</dt>
+        <dd>Senior → Mezzanine → Equity (waterfall theo loss)</dd>
+        <dt>Rating tác động</dt>
+        <dd>Tạo <b>multiple ratings</b> từ một pool — AAA, AA, BBB, NR</dd>
+        <dt>Use case</dt>
+        <dd>Mọi ABS / MBS — phổ biến nhất, tạo credit-enhanced senior</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Time</em> tranching</div>
+      <dl>
+        <dt>Mục đích</dt>
+        <dd>Phân bổ <em>prepayment / maturity risk</em> — short tranche vs long tranche</dd>
+        <dt>Cấu trúc</dt>
+        <dd>Sequential-pay: Class A nhận principal trước, rồi B, rồi C (CMO PAC/companion)</dd>
+        <dt>Rating tác động</dt>
+        <dd>Tất cả classes có thể cùng rating — chỉ khác duration</dd>
+        <dt>Use case</dt>
+        <dd>RMBS / CMOs — match investor liability duration (insurer ngắn vs pension dài)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Combined deal — RMBS điển hình có 5+ classes: Senior PAC (AAA, ngắn), Senior support (AAA, dài), Mezz AA, Mezz BBB, Equity. Time + credit tranching cùng lúc → maximum customization cho investors.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 11 · CREDIT ENHANCEMENT — Internal vs External -->
+<section data-label="Credit enhancement" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>11 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Credit enhancement</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Internal</em> vs <em class="hi">External</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Credit enhancement = mechanisms tăng credit quality của Senior tranche để đạt rating cao (thường AAA) từ pool có credit thấp hơn. Hai loại: <em>internal</em> (trong cấu trúc deal) và <em>external</em> (từ third party).
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 14px;">
+    <div class="cc">
+      <div class="head"><em>Internal</em> enhancement</div>
+      <dl>
+        <dt>Subordination</dt>
+        <dd>Mezz + Equity tranche absorb losses trước Senior — basic mechanism</dd>
+        <dt>Over-collateralization</dt>
+        <dd>Pool value <b>&gt;</b> ABS issued (e.g., $110M loans backing $100M ABS)</dd>
+        <dt>Excess spread</dt>
+        <dd>Pool yield &gt; coupon paid trên ABS — surplus dùng để absorb losses</dd>
+        <dt>Reserve account</dt>
+        <dd>Cash hoặc liquid assets giữ lại trong trust để cover shortfalls</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>External</em> enhancement</div>
+      <dl>
+        <dt>Monoline insurance</dt>
+        <dd>Bond insurer (MBIA, Ambac) <em>guarantee</em> P+I của Senior tranche</dd>
+        <dt>Surety bond</dt>
+        <dd>Insurance company underwrite specific losses tranche</dd>
+        <dt>Letter of credit</dt>
+        <dd>Bank LOC backstop — pay if pool shortfall</dd>
+        <dt>Weakness</dt>
+        <dd><em>Counterparty risk</em> — nếu insurer downgrade (2008: monolines BB), enhancement mất giá. Wrong-way risk.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Trend post-2008 — Internal enhancement dominate. External (monoline) gần như biến mất sau khi MBIA, Ambac mất AAA rating trong GFC. Investors prefer self-contained structure.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 12 · INTERNAL ENHANCEMENT DEEP DIVE -->
+<section data-label="Internal enhancement detail" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>12 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Internal · deep dive</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">4 <em class="hi">internal</em> mechanisms.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 12px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Subordination</em> (credit tranching)</div>
+        <div class="d">Junior tranches absorb losses trước. Vd: pool $100M, deal có $80M Senior + $15M Mezz + $5M Equity. First $5M loss → Equity wiped. Next $15M → Mezz. Senior chỉ chịu loss khi pool mất &gt;$20M (20% loss).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Over-collateralization</em> (OC)</div>
+        <div class="d">Pool collateral &gt; ABS face value. Vd: $110M loans backing $100M ABS — extra $10M là first-loss buffer trước khi tranche nào bị hit. OC ratio = (Pool − ABS) / ABS.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Excess spread</em></div>
+        <div class="d">Pool weighted yield (vd 7%) − ABS weighted coupon (5%) − servicing fee (0.5%) = 1.5% excess. Spread này dùng để cover defaults trước khi đụng OC. <em>First line of defense</em>.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Reserve account</em></div>
+        <div class="d">Cash reserve fund kept trong SPE trust. Cash reserve (initial deposit) hoặc spread account (built up từ excess spread). Tap khi pool shortfall, refill từ excess spread sau đó.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Loss absorption order — defense in depth</span>
+    Excess spread (in-period) → Reserve account → Over-collateralization → Subordination (Equity → Mezz) → Senior. Senior chỉ bị hit khi <em>tất cả</em> các layer dưới wiped out. Đây là cách deal Senior đạt AAA từ pool BBB.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 13 · WATERFALL -->
+<section data-label="Cash flow waterfall" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>13 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Cash flow · waterfall</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">payment waterfall</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Mỗi period (thường monthly), cash từ pool được phân bổ theo thứ tự strict — interest waterfall và principal waterfall, mỗi cái có priority riêng. Trustee enforce.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Interest waterfall — every payment date</span>
+    1) Trustee + servicer fees · 2) Senior tranche interest · 3) Mezzanine interest (theo seniority) · 4) Reserve account top-up nếu shortfall · 5) Excess spread → Equity tranche
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Principal waterfall — sequential pay</span>
+    1) Senior principal đầy đủ trước · 2) Sau Senior fully retired, Mezz nhận principal · 3) Sau cùng, Equity nhận residual. <em>Sequential</em>: A class trả hết rồi mới đến B class. Variant khác: <em>pro-rata</em> (chia tỉ lệ) hoặc PAC schedule.
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Triggers — protective mechanisms</span>
+    Performance triggers (delinquency rate &gt; threshold, OC test fails) sẽ <em>redirect cash</em>: ngừng pay Equity, tăng tốc paydown Senior. Ví dụ: nếu cumulative loss &gt; 5%, all excess spread chuyển từ Equity sang Senior principal. Bảo vệ Senior khi pool deteriorate.
+  </div>
+
+  <p class="fine-muted-sm">
+    § Câu hỏi CFA điển hình — Cho 1 pool có loss rate X%, cash flow Y, hỏi tranche nào nhận gì. Nhớ: <em>Interest sequential top-down, principal sequential, equity nhận residual (= zero in stressed scenarios)</em>.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 14 · CDOs -->
+<section data-label="CDOs" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>14 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">CDOs · structured credit</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">CDO</em> family.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Collateralized Debt Obligation — pool và tranche <em>debt instruments</em> (corporate bonds, loans, ABS, MBS) thay vì consumer loans. CDO managed actively bởi <em>CDO manager</em>, có thể trade collateral.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 12px;">
+    <div class="tenet">
+      <span class="n">CB</span>
+      <div>
+        <div class="t"><em class="hi">Cash CDO</em></div>
+        <div class="d">Pool of <em>actual debt instruments</em> — corporate bonds (CBO), leveraged loans (CLO), ABS/MBS (ABS CDO). Cash flow từ underlying coupons + principal. Same waterfall, tranching, enhancement như ABS.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SY</span>
+      <div>
+        <div class="t"><em class="hi">Synthetic CDO</em></div>
+        <div class="d">Không own debt — thay vào đó <em>sell credit protection</em> via CDS trên reference debts. Investor effectively nhận CDS premium, lose nếu reference defaults. Highly leveraged, no cash funding required.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SQ</span>
+      <div>
+        <div class="t"><em class="hi">CDO-squared</em> (CDO²)</div>
+        <div class="d">CDO mà collateral là <em>tranches của other CDOs</em> (esp. ABS CDOs). Layer thêm tranching → Senior CDO² rated AAA dù underlying là BBB ABS tranches. Nguồn gốc systemic risk 2008.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CL</span>
+      <div>
+        <div class="t">CLO — Collateralized Loan Obligation</div>
+        <div class="d">Loại cash CDO phổ biến nhất hiện nay. Pool of senior secured leveraged loans. $1T+ market post-2010. Active manager rebalance pool trong reinvestment period (5 years).</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Phân biệt — ABS pool là consumer/retail loans (granular, thousands). CDO pool là wholesale debt (chunky, dozens). Cả hai dùng SPE, tranching, waterfall — chỉ khác collateral.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 15 · 2008 GFC LESSONS -->
+<section data-label="2008 GFC lessons" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>15 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">2008 · lessons learned</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">When <em class="hi">AAA</em> meant nothing.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Subprime mortgage securitization sụp đổ 2007-2009 — bài học cho mọi structured finance investor và cho CFA candidates về <em>limits</em> của tranching và rating.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 14px;">
+    <li>
+      <span>
+        <span class="step-title">Originate-to-distribute moral hazard</span>
+        <span class="step-body">Originators (Countrywide, New Century) không giữ skin in the game — bán toàn bộ cho SPE. Underwriting standards collapse: NINJA loans (no income, no job, no asset). Rủi ro pass-through cho ABS investors.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Rating agency conflict of interest</span>
+        <span class="step-body">S&amp;P, Moody's paid by issuers ("issuer-pays" model) → incentive AAA rate rộng rãi. Models giả định historical default rates trong benign environment, không stress-test crisis scenarios. CDO² rated AAA dù underlying là BBB subprime tranches.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Correlation risk underestimated</span>
+        <span class="step-body">Tranching giả định defaults <em>diversified</em> across pool. Nhưng khi housing nationwide crashed 2007, defaults <em>highly correlated</em> — pool-wide losses overwhelmed enhancement layers. Mezz tranches AAA mất hơn 90% value.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Liquidity evaporated</span>
+        <span class="step-body">ABS market depend trên dealer balance sheet + repo funding. Khi crisis hit, dealers withdrew, prices collapsed, mark-to-market triggers force-sells. Self-reinforcing downward spiral.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Investor takeaway — due diligence rules</span>
+    Don't outsource credit analysis to rating agencies. <em>Look through to collateral</em>: underwriting standards, geographic concentration, vintage. Stress-test correlation assumptions. Understand waterfall &amp; triggers. Rating là <em>opinion</em>, không phải guarantee.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 16 · TAKEAWAYS -->
+<section data-label="Takeaways" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>16 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap · big picture</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 14px;">
+    <div class="tenet">
+      <span class="n">α</span>
+      <div>
+        <div class="t">Pool · SPE · ABS — three steps</div>
+        <div class="d">Originator pool loans → bán cho SPE (bankruptcy-remote) → SPE issue ABS. Investors chịu credit risk của <em>pool</em>, không phải originator. True sale + non-consolidation opinion là legal foundation.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">β</span>
+      <div>
+        <div class="t">Tranching = senior protected, equity first-loss</div>
+        <div class="d">Senior (~80%, AAA) → Mezz (BBB-B) → Equity (first-loss, unrated). Subordination biến pool BBB thành Senior AAA. Time tranching tách prepayment risk; credit tranching tách default risk.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">γ</span>
+      <div>
+        <div class="t">Enhancement: internal beats external</div>
+        <div class="d">Internal: subordination + OC + excess spread + reserve. External: monoline + LOC (counterparty risk). Loss absorption: spread → reserve → OC → sub → senior.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">δ</span>
+      <div>
+        <div class="t">CDO ≠ ABS — and 2008 lessons</div>
+        <div class="d">ABS = retail loans pool · CDO = wholesale debt pool · Synthetic = CDS-based · CDO² = tranches của tranches. 2008: rating agency conflicts + correlation underestimation + liquidity collapse. Always do collateral due diligence.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 17 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 EN — Bankruptcy remoteness -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>18 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">SPE</em> &amp; bankruptcy.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Acme Auto Finance, a BB-rated finance company, securitizes a $500M pool of prime auto loans through a special purpose entity (SPE). The senior tranche of the resulting ABS receives an <strong>AAA rating</strong> from a major rating agency. Three months after issuance, Acme Auto Finance files for Chapter 11 bankruptcy. Which statement <strong>most accurately</strong> describes the impact on holders of the AAA senior ABS tranche?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">The senior tranche is downgraded to BB along with Acme; ABS holders become unsecured creditors of Acme in bankruptcy proceedings.</span></li>
+    <li><span class="lbl">B</span><span class="opt">The senior tranche rating is unaffected by Acme's bankruptcy because the SPE is a separate legal entity; cash flows continue from the auto loan pool to ABS holders.</span></li>
+    <li><span class="lbl">C</span><span class="opt">All ABS payments halt during bankruptcy proceedings; ABS holders must wait for court approval before receiving any further distributions.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>19 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Originator <mark>BB-rated</mark>, ABS senior <mark>AAA</mark>, qua <mark>SPE</mark>. Originator <mark>Chapter 11</mark>. Hỏi impact lên ABS investors.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Tại sao senior AAA dù originator BB? Vì <em>true sale</em> + bankruptcy-remote SPE — pool tách khỏi originator's balance sheet.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Tài sản trong SPE <em>không thuộc</em> Acme bankruptcy estate. Acme creditors không thể claim chúng. ABS holders chỉ exposure đến credit của <em>auto loan pool</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Servicer có thể là Acme — nhưng servicing function có thể chuyển sang back-up servicer. Cash flow từ borrowers → trustee → ABS holders, độc lập với Acme.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>20 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Acme Auto Finance, một finance company rating <strong>BB</strong>, securitize pool $500M auto loans prime qua một special purpose entity (SPE). Senior tranche của ABS này nhận rating <strong>AAA</strong> từ rating agency lớn. Ba tháng sau issuance, Acme Auto Finance nộp đơn phá sản Chapter 11. Nhận định nào <strong>chính xác nhất</strong> về impact lên holders của AAA senior ABS tranche?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Senior tranche bị downgrade về BB cùng Acme; ABS holders trở thành unsecured creditors của Acme trong bankruptcy proceedings.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Rating senior tranche không ảnh hưởng bởi bankruptcy của Acme vì SPE là pháp nhân riêng biệt; cash flow tiếp tục chảy từ auto loan pool đến ABS holders.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Tất cả ABS payments tạm dừng trong bankruptcy proceedings; ABS holders phải chờ court approval trước khi nhận distributions tiếp theo.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>21 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — SPE bankruptcy-remote.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Đây chính là <em>raison d'être</em> của SPE structure. <b>True sale</b> + <b>non-consolidation opinion</b> đảm bảo auto loans pool đã được transfer hoàn toàn từ Acme sang SPE — assets không còn trên balance sheet của Acme, không thuộc bankruptcy estate. ABS holders tiếp tục nhận P+I từ borrowers paying through trustee. Senior rating dựa trên pool credit + enhancement, không phải Acme — bankruptcy của Acme <em>không trigger</em> downgrade tự động.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Đây chính là điều SPE thiết kế để <em>tránh</em>. Nếu ABS holders trở thành unsecured creditors của Acme, securitization sẽ không có lý do tồn tại — investors sẽ chỉ mua corporate bond của Acme với rating BB. Bankruptcy remoteness phá vỡ link giữa originator credit và ABS credit.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Sai vì cash flows trong SPE độc lập với Acme. Nếu servicer là Acme và Acme phá sản, deal có <em>back-up servicer</em> được chỉ định trong indenture — servicing chuyển sang ngay, không ngắt cash flow. Chỉ có thể có short delay nếu transfer chưa smooth.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">SPE = <em>bankruptcy-remote vehicle</em>. Three legal pillars: (1) <em>true sale</em> của assets, (2) <em>separate legal entity</em> với independent directors, (3) <em>non-consolidation opinion</em>. Hệ quả: ABS rating decoupled from originator rating — đây là magic của structured finance.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 EN — Credit enhancement -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>22 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Internal</em> vs <em class="hi">External</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An auto loan ABS deal has the following credit enhancement features: (1) a $30M Equity tranche that absorbs first losses; (2) a pool of $510M auto loans backing $500M of issued ABS; (3) a $5M cash reserve account funded at closing; (4) a financial guarantee from a bond insurer covering principal and interest on the senior tranche. Which feature is the <strong>only example of external credit enhancement</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Feature 2 — over-collateralization, because the extra $10M of collateral comes from outside the deal.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Feature 3 — the cash reserve account, because cash is held outside the loan pool.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Feature 4 — the financial guarantee from the bond insurer, because the protection comes from a third party.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>23 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    4 features: <mark>Equity tranche</mark> (subordination) · <mark>$510M pool / $500M ABS</mark> (OC) · <mark>$5M reserve</mark> · <mark>bond insurer guarantee</mark>. Hỏi đâu là <em>external</em>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt"><em>Internal</em> = trong deal: subordination, OC, excess spread, reserve account. <em>External</em> = từ third party: monoline insurance, surety bond, LOC, parental guarantee.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Equity tranche = subordination → internal. Pool 510 / ABS 500 = OC → internal. Cash reserve = internal (funded từ deal cash, kept trong trust).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Bond insurer guarantee = third-party (insurance company ngoài deal commit pay) → <em>external</em>. Đây là kiểu monoline insurance — phổ biến pre-2008, nay rare.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>24 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một auto loan ABS deal có các credit enhancement features sau: (1) Equity tranche $30M absorb first losses; (2) pool $510M auto loans backing $500M ABS đã issue; (3) cash reserve account $5M funded khi closing; (4) financial guarantee từ bond insurer cover principal và interest của senior tranche. Feature nào là <strong>ví dụ duy nhất về external credit enhancement</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Feature 2 — over-collateralization, vì $10M collateral thừa đến từ bên ngoài deal.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Feature 3 — cash reserve account, vì cash được giữ ngoài loan pool.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Feature 4 — financial guarantee từ bond insurer, vì protection đến từ third party.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>25 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — Bond insurer guarantee.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext">External credit enhancement = protection từ <b>third party</b> ngoài deal structure. Bond insurer (vd MBIA, Ambac) là một insurance company độc lập commit pay P+I của senior nếu pool shortfall. Investor chịu thêm <em>counterparty risk</em>: nếu insurer downgrade, value của enhancement giảm. Sau 2008, monolines mất AAA → external enhancement gần như biến mất.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Over-collateralization (OC) là <em>internal</em> enhancement. Extra $10M loans nằm trong cùng pool/SPE — không phải từ bên ngoài. OC tạo first-loss buffer trong cấu trúc deal, không depend on third party. Originator over-collateralize để đạt AAA cho Senior.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Cash reserve account là <em>internal</em>. Cash được giữ <b>trong</b> trust (SPE) — funded từ initial deal proceeds hoặc excess spread tích lũy. Không depend trên third party performance. Trustee control reserve, dùng cover shortfall, refill từ excess spread.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Phân biệt nhanh: <em>Internal</em> = subordination, OC, excess spread, reserve account (mọi thứ <b>trong</b> deal). <em>External</em> = monoline insurance, surety bond, LOC, parent guarantee (từ <b>third party</b>). External đem theo <em>counterparty risk</em> — chính xác lý do post-2008 thị trường thích internal enhancement hơn.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 EN — Waterfall / loss allocation -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>26 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Loss</em> allocation.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An ABS deal has a $1,000M pool with the following capital structure: <strong>Senior tranche $800M</strong>, <strong>Mezzanine tranche $150M</strong>, <strong>Equity tranche $50M</strong>. The deal also has $20M of over-collateralization and $10M cumulative excess spread retained. After three years, the pool has experienced cumulative defaults causing <strong>$120M of losses</strong>. Assuming standard sequential loss absorption (excess spread → OC → Equity → Mezz → Senior), what is the <strong>remaining principal balance</strong> of the Mezzanine tranche?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$150M — the Mezzanine tranche is fully protected because losses ($120M) are less than the combined enhancement of excess spread + OC + Equity ($80M).</span></li>
+    <li><span class="lbl">B</span><span class="opt">$110M — Mezzanine absorbs $40M of losses after excess spread ($10M), OC ($20M), and Equity ($50M) are exhausted.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$30M — Mezzanine absorbs $120M of losses entirely because losses bypass internal enhancement layers.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>27 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">numbers</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords &amp; numbers</span>
+    Senior <mark>$800M</mark> · Mezz <mark>$150M</mark> · Equity <mark>$50M</mark>. OC <mark>$20M</mark>, excess spread <mark>$10M</mark>. Cumulative losses <mark>$120M</mark>. Hỏi Mezz remaining.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Loss absorption order: <em>excess spread → OC → Equity → Mezz → Senior</em>. Apply theo thứ tự, mỗi layer hấp thụ đến hết capacity rồi tràn xuống layer kế.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Loss = $120M. Step 1: Excess spread $10M absorbed → còn $110M. Step 2: OC $20M absorbed → còn $90M. Step 3: Equity $50M absorbed → còn $40M.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Step 4: Còn $40M tràn vào Mezz. Mezz $150M − $40M = <em>$110M remaining</em>. Senior intact ở $800M.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>28 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một ABS deal có pool $1,000M với cấu trúc capital: <strong>Senior tranche $800M</strong>, <strong>Mezzanine tranche $150M</strong>, <strong>Equity tranche $50M</strong>. Deal có thêm $20M over-collateralization và $10M cumulative excess spread đã retain. Sau 3 năm, pool đã bị cumulative defaults gây <strong>$120M losses</strong>. Giả sử loss absorption sequential chuẩn (excess spread → OC → Equity → Mezz → Senior), <strong>remaining principal balance</strong> của Mezzanine tranche là bao nhiêu?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$150M — Mezzanine fully protected vì losses ($120M) thấp hơn tổng enhancement của excess spread + OC + Equity ($80M).</span></li>
+    <li><span class="lbl">B</span><span class="opt">$110M — Mezzanine hấp thụ $40M losses sau khi excess spread ($10M), OC ($20M), và Equity ($50M) đã cạn.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$30M — Mezzanine hấp thụ toàn bộ $120M losses vì losses bypass internal enhancement layers.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- 29 · Q3 EXPLANATION + END -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.09 — Securitization</span>
+    <span class="rule"></span>
+    <span>29 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $110M Mezz remaining.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Apply waterfall theo thứ tự: <b>Excess spread $10M</b> absorbed → loss còn $110M. <b>OC $20M</b> absorbed → loss còn $90M. <b>Equity $50M</b> hoàn toàn wiped → loss còn $40M. <b>Mezz</b> chịu $40M loss còn lại → Mezz remaining = $150M − $40M = <b>$110M</b>. Senior $800M intact (chưa bị hit). Tổng enhancement layer trước Mezz = $80M, không đủ cover $120M, nên Mezz bị đụng $40M.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Sai math. Excess spread + OC + Equity = $10M + $20M + $50M = <em>$80M</em>, không đủ cover $120M loss. Mezz không "fully protected" — bị đụng $40M overflow. Đây là common trap: tính tổng enhancement nhưng không so với loss đúng cách.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Sai logic — losses không bypass enhancement layers. Đó chính là mục đích của subordination + OC + reserve: hấp thụ loss <em>trước</em> khi đụng tranche cao hơn. Mezz chỉ chịu phần loss <em>vượt</em> các layer dưới. Nếu losses bypass thì cấu trúc tranching vô nghĩa.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Loss waterfall <em>defense in depth</em>: Excess spread (in-period) → Reserve / OC → Equity → Mezz (sub-tranches từ thấp lên) → Senior. Mỗi layer hấp thụ <em>đến hết capacity</em> rồi tràn xuống layer kế. Câu hỏi loại này phổ biến trong CFA — luôn vẽ stack và apply sequential. Senior chỉ bị hit khi tất cả layer dưới wiped out.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+  </div>
+</section>
+
+
+<!-- END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>08.09 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 08.10 — Mortgage-Backed Securities (MBS) deep dive</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

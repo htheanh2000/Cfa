@@ -1,0 +1,1176 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Derivatives 09.08 — Put-Call Parity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 108px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+
+  .take {
+    border-left: 4px solid var(--accent);
+    padding: 14px 22px;
+    background: var(--paper-2, #fafaf7);
+    margin-top: 16px;
+    font-size: 22px;
+    color: var(--ink);
+  }
+  .take b { color: var(--accent); }
+
+  .portfolio-grid { display: grid; grid-template-columns: 1fr 24px 1fr; gap: 0; margin-top: 18px; align-items: stretch; }
+  .portfolio-grid .pcol {
+    border-left: 6px solid var(--accent);
+    background: var(--paper);
+    padding: 22px 28px;
+  }
+  .portfolio-grid .pcol .ptitle {
+    font-family: var(--mono);
+    font-size: 17px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .portfolio-grid .pcol .pname {
+    font-family: var(--display);
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .portfolio-grid .pcol .pname em { font-style: italic; color: var(--accent); font-weight: 700; }
+  .portfolio-grid .pcol ul { margin: 0; padding-left: 20px; font-size: 21px; line-height: 1.5; color: var(--ink); }
+  .portfolio-grid .pcol ul li { margin-bottom: 6px; }
+  .portfolio-grid .pcol ul li b { color: var(--accent); }
+  .portfolio-grid .eq {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Put-Call<br><em>Parity.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 09 · Lesson 09.08 · Put-Call Parity</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 08 · No-arbitrage relationships</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Derivatives</dd></div>
+      <div><dt>Module</dt><dd>08</dd></div>
+      <div><dt>Lesson</dt><dd>09.08</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Parity · Synthetic · Arbitrage · Conversion · Forward parity</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">08</div>
+    <div class="lbl">Put-Call Parity</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How are <em>calls</em> &amp; <em>puts</em><br>locked together by <em>arbitrage</em>?</h2>
+    <ul class="toc">
+      <li class="active">01 · Put-Call Parity — the master equation</li>
+      <li>02 · Fiduciary call vs Protective put</li>
+      <li>03 · Synthetic positions — derive any leg</li>
+      <li>04 · Arbitrage khi parity bị violated</li>
+      <li>05 · Conversion vs Reverse-conversion</li>
+      <li>06 · Put-Call-Forward Parity</li>
+      <li>07 · Adjustments cho dividends · American</li>
+      <li>08 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · DEFINITION -->
+<section data-label="Definition" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>03 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Concept · the iron law of options</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">A <em class="hi">no-arbitrage</em> relationship.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      <em>Put-Call Parity</em> trói chặt giá European call <b>c</b>, European put <b>p</b>, underlying <b>S₀</b> và risk-free bond <b>K/(1+r)<sup>T</sup></b> — cùng strike, cùng expiry. Nếu bốn instrument này <em>không</em> tuân theo công thức, có arbitrage <em>chắc chắn</em>.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Working definition</span>
+    Hai portfolio cho ra <b>cùng payoff tại expiry</b> bất kể S<sub>T</sub> → bằng <em>Law of One Price</em>, chúng phải có <b>cùng giá hôm nay</b>. Đó là tất cả những gì parity nói.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 18px;">
+    <li>
+      <span>
+        <span class="step-title">Áp dụng cho <em>European</em> options, cùng K, cùng T</span>
+        <span class="step-body">Không có early exercise → payoff chỉ realized tại T → so sánh portfolio sạch sẽ. American sẽ thành <em>inequality</em>.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Underlying không trả dividend (baseline)</span>
+        <span class="step-body">Dividend làm S drop ex-date → cần adjust S → S − PV(D). Nhưng intuition giữ nguyên.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Tradable bond zero-coupon, face = K, đáo hạn T</span>
+        <span class="step-body">PV(K) = K/(1+r)<sup>T</sup>. Đây là cash-leg "lock" giá K của strike.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 04 · THE PARITY EQUATION -->
+<section data-label="Parity equation" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>04 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Master equation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">Put-Call Parity</em> formula.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">Put-Call Parity · European, no dividends</span>
+    <span class="eq"><span class="var">c</span> + <span class="var">K</span>/(1+r)<sup>T</sup> &nbsp;=&nbsp; <span class="var">p</span> + <span class="var">S<sub>0</sub></span></span>
+    <div class="note">
+      <b>LHS · Fiduciary call</b> = long European call + lend PV(K) ở risk-free rate.<br>
+      <b>RHS · Protective put</b> = long European put + long underlying stock.<br>
+      Hai vế <em>luôn</em> bằng nhau ở thị trường không có arbitrage. Bất kỳ deviation nào → trade tới khi parity được restore.
+    </div>
+  </div>
+
+  <div class="take">
+    <b>Mnemonic.</b> "Call + Cash = Put + Stock". Bốn legs này hoán đổi được — biết ba, suy ra cái thứ tư.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 05 · TWO PORTFOLIOS PAYOFF -->
+<section data-label="Two portfolios" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>05 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Why parity holds — payoff identity at T</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">Two portfolios, <em class="hi">same payoff</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Tại expiry T, cả hai portfolio đều cho payoff <b>max(S<sub>T</sub>, K)</b> — sàn tại K, không cap. Dùng cùng tiền hôm nay → parity.
+    </p>
+  </div>
+
+  <div class="portfolio-grid">
+    <div class="pcol">
+      <div class="ptitle">§ LHS · Fiduciary call</div>
+      <div class="pname">c + <em>PV(K)</em></div>
+      <ul>
+        <li>Long European call, strike K</li>
+        <li>Lend PV(K) ở risk-free → tới T nhận đúng K</li>
+        <li>Payoff: max(S<sub>T</sub>−K, 0) + K = <b>max(S<sub>T</sub>, K)</b></li>
+        <li>Floor tại K · upside = S<sub>T</sub> nếu &gt; K</li>
+      </ul>
+    </div>
+    <div class="eq">=</div>
+    <div class="pcol">
+      <div class="ptitle">§ RHS · Protective put</div>
+      <div class="pname">p + <em>S<sub>0</sub></em></div>
+      <ul>
+        <li>Long European put, strike K</li>
+        <li>Long stock (cost S<sub>0</sub> hôm nay)</li>
+        <li>Payoff: S<sub>T</sub> + max(K−S<sub>T</sub>, 0) = <b>max(S<sub>T</sub>, K)</b></li>
+        <li>Floor tại K · upside = S<sub>T</sub> nếu &gt; K</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Same payoff at every S<sub>T</sub> → by Law of One Price, same cost today: c + K/(1+r)<sup>T</sup> = p + S<sub>0</sub>.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 06 · FIDUCIARY VS PROTECTIVE -->
+<section data-label="Fiduciary vs Protective" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>06 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Two equivalent strategies</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Fiduciary call</em> vs <em class="hi">Protective put</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Fiduciary call</em></div>
+      <dl>
+        <dt>Construction</dt>
+        <dd>Long call + Lend PV(K)</dd>
+        <dt>Cost today</dt>
+        <dd>c + K/(1+r)<sup>T</sup></dd>
+        <dt>Payoff @ T</dt>
+        <dd>max(S<sub>T</sub>, K)</dd>
+        <dt>Intuition</dt>
+        <dd>Cash đảm bảo có K để mua nếu call ITM, hoặc giữ K nếu OTM</dd>
+        <dt>Use case</dt>
+        <dd>Investor muốn upside nhưng cần cash floor</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Protective put</em></div>
+      <dl>
+        <dt>Construction</dt>
+        <dd>Long stock + Long put</dd>
+        <dt>Cost today</dt>
+        <dd>S<sub>0</sub> + p</dd>
+        <dt>Payoff @ T</dt>
+        <dd>max(S<sub>T</sub>, K)</dd>
+        <dt>Intuition</dt>
+        <dd>Đã giữ stock, mua put như "insurance" sàn tại K</dd>
+        <dt>Use case</dt>
+        <dd>Holder muốn hedge downside risk của portfolio</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="take">
+    <b>Equivalent — không phải tương tự, mà <em>identical</em>.</b> Same payoff state-by-state ⇒ same fair value. Chọn cái nào tuỳ liquidity, transaction cost, tax. Về mặt risk-return, hai cái không phân biệt được.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 07 · NO-ARBITRAGE LOGIC -->
+<section data-label="No-arbitrage logic" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>07 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Why must they be equal?</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">Law of One Price</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Nếu hai portfolio có <em>payoff giống hệt nhau ở mọi state</em>, chúng phải có cùng giá hôm nay — nếu không, một arbitrageur có thể short cái đắt + long cái rẻ → profit chắc chắn không rủi ro.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ The arbitrage trade in one breath</span>
+    Nếu LHS &gt; RHS → <b>short fiduciary call</b> (sell call + borrow PV(K)) + <b>long protective put</b> (buy put + buy stock). Cash-positive entry; portfolio payoff zeros at T → riskless profit = LHS − RHS hôm nay. Ngược lại nếu LHS &lt; RHS.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">"Riskless" theo nghĩa nào?</span>
+        <span class="step-body">Combined position có payoff = 0 ở <em>mọi</em> S<sub>T</sub> tại T. Không có cash-flow rủi ro nào còn sót lại.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Tại sao parity restored nhanh chóng?</span>
+        <span class="step-body">Quants/HFT scan cross-instrument constantly. Mispricing sống &lt; vài giây trên major venues.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Frictions thật sự — bid/ask, borrow cost</span>
+        <span class="step-body">Trong textbook parity tuyệt đối; thực tế parity được giữ trong bid/ask spread. Mispricing &gt; cost of trade mới có arb.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 08 · SYNTHETIC INTRO -->
+<section data-label="Synthetic intro" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>08 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Algebra of parity — solving for any leg</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Synthetic positions</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Parity là một equation với 4 biến — <b>c</b>, <b>p</b>, <b>S</b>, <b>B = K/(1+r)<sup>T</sup></b>. Biết ba cái, ta dựng được cái thứ tư <em>synthetic</em> chỉ bằng combo trade. Đây là nền móng của "financial engineering".
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Rule</span>
+    Đứng từ <b>c + B = p + S</b> · move bất kỳ leg nào sang vế kia kèm <em>đảo dấu</em> → cấu trúc replication. Long bên này = short bên kia + tổng các leg còn lại.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Synthetic call — replicate long call</span>
+        <span class="step-body">Long put + Long stock + Borrow PV(K). Same payoff as long call.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Synthetic put — replicate long put</span>
+        <span class="step-body">Long call − Long stock + Lend PV(K). Same payoff as long put.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Synthetic stock — replicate long S</span>
+        <span class="step-body">Long call − Long put + Lend PV(K). Useful khi shorting stock khó/đắt.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Synthetic bond — replicate riskless lending</span>
+        <span class="step-body">Long put + Long stock − Long call. Lock in K at T regardless of S<sub>T</sub>.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 09 · SYNTHETIC CALL & PUT -->
+<section data-label="Synthetic call/put" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>09 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Solve the parity for c and p</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Synthetic call</em> &amp; <em class="hi">synthetic put</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">Synthetic call · isolate c</span>
+    <span class="eq"><span class="var">c</span> &nbsp;=&nbsp; <span class="var">p</span> + <span class="var">S<sub>0</sub></span> − <span class="var">K</span>/(1+r)<sup>T</sup></span>
+    <div class="note">
+      Long put + Long stock + <b>Borrow</b> PV(K). Đảo dấu của K/(1+r)<sup>T</sup> nghĩa là <em>vay</em> thay vì <em>cho vay</em>. Payoff = max(S<sub>T</sub>, K) − K = max(S<sub>T</sub>−K, 0) → đúng long call payoff.
+    </div>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">Synthetic put · isolate p</span>
+    <span class="eq"><span class="var">p</span> &nbsp;=&nbsp; <span class="var">c</span> − <span class="var">S<sub>0</sub></span> + <span class="var">K</span>/(1+r)<sup>T</sup></span>
+    <div class="note">
+      Long call + <b>Short stock</b> + Lend PV(K). Dấu trừ trước S<sub>0</sub> = short stock. Payoff = max(S<sub>T</sub>−K, 0) − S<sub>T</sub> + K = max(K−S<sub>T</sub>, 0) → đúng long put payoff.
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 10 · SYNTHETIC STOCK & BOND -->
+<section data-label="Synthetic stock/bond" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>10 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Solve the parity for S and B</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Synthetic stock</em> &amp; <em class="hi">synthetic bond</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">Synthetic stock · isolate S<sub>0</sub></span>
+    <span class="eq"><span class="var">S<sub>0</sub></span> &nbsp;=&nbsp; <span class="var">c</span> − <span class="var">p</span> + <span class="var">K</span>/(1+r)<sup>T</sup></span>
+    <div class="note">
+      Long call + <b>Short put</b> + Lend PV(K). Tổ hợp này có cùng payoff S<sub>T</sub> như giữ một share. Hữu dụng khi short stock bị restricted hoặc cost cao (hard-to-borrow).
+    </div>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">Synthetic bond · isolate K/(1+r)<sup>T</sup></span>
+    <span class="eq"><span class="var">K</span>/(1+r)<sup>T</sup> &nbsp;=&nbsp; <span class="var">p</span> + <span class="var">S<sub>0</sub></span> − <span class="var">c</span></span>
+    <div class="note">
+      Long put + Long stock + <b>Short call</b>. Đây thực sự là một <em>covered call</em> + <em>protective put</em> = riskless cash flow K tại T. Implied risk-free rate từ option market có thể derive từ đây.
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 11 · ARBITRAGE WHEN VIOLATED -->
+<section data-label="Arbitrage rules" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>11 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">When parity is violated · arbitrage exists</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">How to <em class="hi">construct the riskless trade</em>.</h2>
+  </div>
+
+  <div class="rule-box" style="margin-top: 12px;">
+    <span class="tag">§ Rule of thumb — "sell the rich, buy the cheap"</span>
+    So sánh <b>LHS = c + PV(K)</b> với <b>RHS = p + S<sub>0</sub></b>. Vế nào lớn hơn → đang <em>overpriced</em> → <b>short</b> nó (sell các leg cấu thành). Vế nhỏ hơn → underpriced → <b>long</b> nó. Net cash inflow hôm nay = mispricing; payoff tại T = 0.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Step 1 · Identify leg overpriced</span>
+        <span class="step-body">Tính cả hai vế. LHS &gt; RHS → fiduciary call expensive. LHS &lt; RHS → protective put expensive.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Step 2 · Short overpriced, long underpriced</span>
+        <span class="step-body">Sell call &amp; borrow PV(K), đồng thời buy put &amp; buy stock — hoặc đảo lại. Đây là "conversion" / "reverse-conversion".</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Step 3 · Pocket the spread today</span>
+        <span class="step-body">Cash inflow ngay = |LHS − RHS|. Hold tới T → tất cả cash flows triệt tiêu. Profit = mispricing × no-arb.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 12 · REVERSE CONVERSION (LHS > RHS) -->
+<section data-label="Reverse conversion" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>12 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Case A · LHS &gt; RHS</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Reverse conversion</em> — fiduciary call expensive.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Khi <b>c + K/(1+r)<sup>T</sup> &gt; p + S<sub>0</sub></b>: short bên đắt, long bên rẻ. Bên đắt = fiduciary call → short call + borrow PV(K). Bên rẻ = protective put → long put + long stock.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Trade construction · time 0</span>
+    <b>Sell call</b> (+c) · <b>Borrow PV(K)</b> (+K/(1+r)<sup>T</sup>) · <b>Buy put</b> (−p) · <b>Buy stock</b> (−S<sub>0</sub>). Net cash today = (c + K/(1+r)<sup>T</sup>) − (p + S<sub>0</sub>) &gt; 0 — keep it.
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">Payoff at T · reconciles to zero</span>
+    <span class="eq">−max(<span class="var">S<sub>T</sub></span>−K,0) − K + max(K−<span class="var">S<sub>T</sub></span>,0) + <span class="var">S<sub>T</sub></span> &nbsp;=&nbsp; 0</span>
+    <div class="note">
+      Short call payoff + repay loan + long put payoff + sell stock = 0 cho mọi S<sub>T</sub>. Vốn không có rủi ro tại T → profit hôm nay là <em>riskless</em>.
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 13 · CONVERSION (LHS < RHS) -->
+<section data-label="Conversion" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>13 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Case B · LHS &lt; RHS</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Conversion</em> — protective put expensive.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Khi <b>c + K/(1+r)<sup>T</sup> &lt; p + S<sub>0</sub></b>: short protective put (sell put + short stock), long fiduciary call (buy call + lend PV(K)).
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Trade construction · time 0</span>
+    <b>Buy call</b> (−c) · <b>Lend PV(K)</b> (−K/(1+r)<sup>T</sup>) · <b>Sell put</b> (+p) · <b>Short stock</b> (+S<sub>0</sub>). Net cash today = (p + S<sub>0</sub>) − (c + K/(1+r)<sup>T</sup>) &gt; 0 — keep it.
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">Payoff at T · reconciles to zero</span>
+    <span class="eq">max(<span class="var">S<sub>T</sub></span>−K,0) + K − max(K−<span class="var">S<sub>T</sub></span>,0) − <span class="var">S<sub>T</sub></span> &nbsp;=&nbsp; 0</span>
+    <div class="note">
+      Long call payoff + bond matures + short put payoff + cover short stock = 0. Riskless profit captured tại t=0 chính bằng |LHS − RHS|.
+    </div>
+  </div>
+
+  <div class="take">
+    <b>Memory hook.</b> "Con<em>version</em>" = bên RHS (S, p) đắt → đảo về c, B. "<em>Re</em>verse" = LHS đắt → đảo lại. Nhớ vế nào đắt thì <em>short</em> vế đó.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 14 · PUT-CALL-FORWARD PARITY -->
+<section data-label="Forward parity" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>14 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Sister relationship</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Put-Call-Forward</em> Parity.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Thay <b>S<sub>0</sub></b> bằng <b>F<sub>0</sub>(T)/(1+r)<sup>T</sup></b> — vì F<sub>0</sub>(T) = S<sub>0</sub>(1+r)<sup>T</sup> ở thị trường no-arb (cost-of-carry). Hữu dụng khi quote forward dễ hơn spot (commodity, FX).
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">Put-Call-Forward Parity</span>
+    <span class="eq"><span class="var">c</span> + <span class="var">K</span>/(1+r)<sup>T</sup> &nbsp;=&nbsp; <span class="var">p</span> + <span class="var">F<sub>0</sub>(T)</span>/(1+r)<sup>T</sup></span>
+    <div class="note">
+      Multiply both sides bằng (1+r)<sup>T</sup>: <b>c·(1+r)<sup>T</sup> + K = p·(1+r)<sup>T</sup> + F<sub>0</sub>(T)</b>. Một dạng tương đương — quote tất cả ở giá trị T (future value).
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Special case — F<sub>0</sub> = K</span>
+    Nếu forward rate đúng bằng strike thì <b>c = p</b>. Đó là tại sao "ATM forward" call &amp; put có cùng giá — một fact rất hay test trên CFA L1.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 15 · DIVIDEND ADJUSTMENT -->
+<section data-label="Dividends" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>15 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Real-world adjustment</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Adjusting for <em class="hi">dividends</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Nếu underlying trả discrete dividends D giữa 0 và T, holder của <em>protective put</em> nhận thêm dividends — nhưng holder của <em>fiduciary call</em> thì không. Phải trừ PV(D) từ S<sub>0</sub>.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">Parity with dividends · replace S → S − PV(D)</span>
+    <span class="eq"><span class="var">c</span> + <span class="var">K</span>/(1+r)<sup>T</sup> &nbsp;=&nbsp; <span class="var">p</span> + (<span class="var">S<sub>0</sub></span> − PV(D))</span>
+    <div class="note">
+      <b>PV(D)</b> = present value của tất cả dividends nhận giữa 0 và T. Có thể viết tương đương <b>c + K/(1+r)<sup>T</sup> + PV(D) = p + S<sub>0</sub></b> tuỳ cách rearrange.
+    </div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 14px;">
+    <li>
+      <span>
+        <span class="step-title">Continuous dividend yield q (index, FX)</span>
+        <span class="step-body">Thay S<sub>0</sub> bằng S<sub>0</sub>·e<sup>−qT</sup>. Áp dụng phổ biến cho SPX options — ETF/index trả dividends gần như liên tục.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Foreign currency option</span>
+        <span class="step-body">"Dividend" = foreign risk-free rate r<sub>f</sub>. Discount S<sub>0</sub> bằng (1+r<sub>f</sub>)<sup>T</sup> hoặc e<sup>−r<sub>f</sub>T</sup>.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 16 · EUROPEAN VS AMERICAN PARITY -->
+<section data-label="Eu vs Am parity" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>16 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Equality vs inequality</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">European</em> vs <em class="hi">American</em> parity.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>European</em></div>
+      <dl>
+        <dt>Form</dt>
+        <dd>Strict <b>equality</b>: c + PV(K) = p + S<sub>0</sub></dd>
+        <dt>Why</dt>
+        <dd>Cả call &amp; put chỉ exercise tại T → portfolio comparison sạch sẽ</dd>
+        <dt>Arbitrage</dt>
+        <dd>Có thể construct trade riskless chính xác</dd>
+        <dt>Use</dt>
+        <dd>Index options (SPX), most FX options</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>American</em></div>
+      <dl>
+        <dt>Form</dt>
+        <dd>Inequality: S<sub>0</sub> − K ≤ C − P ≤ S<sub>0</sub> − K/(1+r)<sup>T</sup></dd>
+        <dt>Why</dt>
+        <dd>Early exercise của put có thể optimal → upper/lower bound chỉ</dd>
+        <dt>Arbitrage</dt>
+        <dd>Chỉ có khi vi phạm <em>bound</em> chứ không phải equality</dd>
+        <dt>Use</dt>
+        <dd>Most US listed equity options</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="take">
+    <b>Why the inequality?</b> American put có thể có giá trị early-exercise (lock in K khi S rất thấp) → P ≥ p (European put). Điều này phá equality nhưng cho ra <em>two-sided bound</em> ở trên. Call không-dividend thì American = European → equality giữ.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 17 · APPLICATIONS -->
+<section data-label="Applications" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>17 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Why practitioners care</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Practical <em class="hi">applications</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 14px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Portfolio replication</em></div>
+        <div class="d">Tạo exposure long-stock mà không động vào underlying — synthetic stock dùng options khi short hard-to-borrow hoặc tax preference khác nhau.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Structured products</em></div>
+        <div class="d">"Principal-protected note" = zero-coupon bond + call. "Reverse convertible" = bond − put. Parity là khung pricing chuẩn.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Convertible bonds</em></div>
+        <div class="d">Convertible = bond + call on stock. Parity dùng để extract implied call value từ giá convertible quote.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Implied risk-free rate</em></div>
+        <div class="d">Solve r từ c, p, S, K observed → "implied rate" của option market, đôi khi lệch khỏi T-bill rate (special-financing arb).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">05</span>
+      <div>
+        <div class="t"><em class="hi">Pricing illiquid leg</em></div>
+        <div class="d">Nếu put illiquid và call liquid (hoặc ngược lại), parity cho fair value để mark-to-model.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">06</span>
+      <div>
+        <div class="t"><em class="hi">Risk reversal trades</em></div>
+        <div class="d">Long call − Short put = synthetic forward. Position duy trì delta = 1 với chi phí gần 0 — phổ biến trong FX hedging.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 18 · SUMMARY -->
+<section data-label="Summary" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>18 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Lesson recap</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Put-Call Parity</em> · the cheat sheet.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">Core equations to memorize</span>
+    <span class="eq"><span class="var">c</span> + <span class="var">K</span>/(1+r)<sup>T</sup> = <span class="var">p</span> + <span class="var">S<sub>0</sub></span></span>
+    <span class="eq"><span class="var">c</span> = <span class="var">p</span> + <span class="var">S<sub>0</sub></span> − <span class="var">K</span>/(1+r)<sup>T</sup> &nbsp;·&nbsp; <span class="var">p</span> = <span class="var">c</span> − <span class="var">S<sub>0</sub></span> + <span class="var">K</span>/(1+r)<sup>T</sup></span>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Decision tree — arbitrage</span>
+    Tính LHS = c + PV(K) và RHS = p + S<sub>0</sub>. <b>LHS &gt; RHS</b> → reverse-conv (short call, borrow, long put, long stock). <b>LHS &lt; RHS</b> → conversion (long call, lend, short put, short stock). Profit = |LHS − RHS|.
+  </div>
+
+  <div class="take">
+    <b>In one line.</b> Put-Call Parity là Law of One Price áp dụng cho options · ràng buộc c, p, S, B với cùng K, cùng T · biết 3, suy ra cái thứ 4 · vi phạm = arbitrage chắc chắn · thay S bằng F/(1+r)<sup>T</sup> hoặc S − PV(D) khi cần.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 19 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 EN — Compute call from parity -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>20 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Find <em class="hi">c</em> from parity.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A non-dividend-paying stock trades at <strong>S<sub>0</sub> = $100</strong>. A European <strong>put</strong> with strike <strong>K = $100</strong> and 1-year maturity (<strong>T = 1</strong>) is priced at <strong>p = $5</strong>. The annual risk-free rate is <strong>r = 4%</strong>. Using <strong>put-call parity</strong>, what is the no-arbitrage price of the European call (same K, same T)?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$5.00</span></li>
+    <li><span class="lbl">B</span><span class="opt">$8.85</span></li>
+    <li><span class="lbl">C</span><span class="opt">$1.15</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>21 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Apply <em class="hi">synthetic call</em> formula.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Formula</span>
+    <mark>c = p + S<sub>0</sub> − K/(1+r)<sup>T</sup></mark>. Tính PV(K) trước, rồi cộng/trừ thẳng.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">PV(K) = 100 / (1.04)<sup>1</sup> = 100 / 1.04 ≈ <em>$96.15</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">c = p + S<sub>0</sub> − PV(K) = 5 + 100 − 96.15 = <em>$8.85</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Sanity check: K = S<sub>0</sub> nên ATM spot. Vì r &gt; 0, F<sub>0</sub> &gt; K → call &gt; put. Kết quả $8.85 &gt; $5 = put → consistent.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q1 DỊCH ĐỀ -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>22 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một cổ phiếu không trả cổ tức đang trade ở <strong>S<sub>0</sub> = $100</strong>. Một European <strong>put</strong> với strike <strong>K = $100</strong>, kỳ hạn 1 năm (<strong>T = 1</strong>) có giá <strong>p = $5</strong>. Lãi suất phi rủi ro năm là <strong>r = 4%</strong>. Sử dụng <strong>put-call parity</strong>, giá no-arbitrage của European call (cùng K, cùng T) là bao nhiêu?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$5.00</span></li>
+    <li><span class="lbl">B</span><span class="opt">$8.85</span></li>
+    <li><span class="lbl">C</span><span class="opt">$1.15</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>23 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $8.85.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Áp dụng synthetic call: <b>c = p + S<sub>0</sub> − K/(1+r)<sup>T</sup></b>. PV(K) = 100/1.04 = 96.1538. c = 5 + 100 − 96.1538 = <b>$8.85</b>. Vì F<sub>0</sub> = S<sub>0</sub>(1+r) = 104 &gt; K = 100, call đáng giá hơn put — kết quả phù hợp intuition.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Giả định c = p khi K = S<sub>0</sub>. Sai — c = p chỉ khi <em>F<sub>0</sub> = K</em>, tức K phải bằng forward price (= S<sub>0</sub>(1+r)<sup>T</sup>) chứ không phải spot. Ở đây F<sub>0</sub> = 104 ≠ 100.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Đảo dấu — tính p − S<sub>0</sub> + K/(1+r)<sup>T</sup> thay vì + S<sub>0</sub> − K/(1+r)<sup>T</sup>. Lỗi rất phổ biến: nhớ <em>synthetic call thì cộng stock và trừ bond</em>, không ngược lại.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Synthetic call <em>c = p + S − K/(1+r)<sup>T</sup></em>. Khi r &gt; 0 và K = S<sub>0</sub>, call &gt; put. Khi K = F<sub>0</sub>, call = put. Khi K &gt; F<sub>0</sub>, put &gt; call. Nhớ logic này để sanity-check kết quả.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 EN — Arbitrage construction -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>24 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Detect &amp; <em class="hi">trade the arbitrage</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A non-dividend-paying stock trades at <strong>S<sub>0</sub> = $50</strong>. European <strong>call</strong> and <strong>put</strong> options with strike <strong>K = $50</strong> and <strong>T = 1</strong> year are quoted at <strong>c = $4</strong> and <strong>p = $3</strong> respectively. The risk-free rate is <strong>r = 5%</strong>. Identify the riskless arbitrage trade and the riskless profit at t = 0.
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">No arbitrage; parity holds.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Reverse conversion (short call + borrow, long put + long stock); profit ≈ $1.38.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Conversion (long call + lend, short put + short stock); profit ≈ $1.38.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>25 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Compare <em class="hi">LHS vs RHS</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Formula</span>
+    <mark>LHS = c + K/(1+r)<sup>T</sup></mark> &nbsp; vs &nbsp; <mark>RHS = p + S<sub>0</sub></mark>. Vế lớn hơn = bên đắt → <em>short</em> bên đó.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">PV(K) = 50 / 1.05 ≈ <em>$47.62</em>. LHS = 4 + 47.62 = <em>$51.62</em>. RHS = 3 + 50 = <em>$53.00</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">RHS &gt; LHS (53 &gt; 51.62) → protective put đắt → <em>short protective put</em> (sell put + short stock) + <em>long fiduciary call</em> (buy call + lend PV(K)). Đó là <em>conversion</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Riskless profit hôm nay = RHS − LHS = 53 − 51.62 = <em>$1.38</em>. Tại T tất cả cash flows triệt tiêu.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q2 DỊCH ĐỀ -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>26 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một cổ phiếu không trả cổ tức trade ở <strong>S<sub>0</sub> = $50</strong>. European <strong>call</strong> và <strong>put</strong> với strike <strong>K = $50</strong>, kỳ hạn <strong>T = 1</strong> năm có giá <strong>c = $4</strong> và <strong>p = $3</strong>. Risk-free rate <strong>r = 5%</strong>. Xác định riskless arbitrage trade và lợi nhuận tại t = 0.
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Không có arbitrage; parity giữ nguyên.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Reverse conversion (short call + vay, long put + long stock); profit ≈ $1.38.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Conversion (long call + cho vay, short put + short stock); profit ≈ $1.38.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>27 / 30</span>
+  </div>
+  <div style="margin-top: 36px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">Answer: <em class="hi">C</em> — Conversion, profit ≈ $1.38.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext">LHS = c + PV(K) = 4 + 50/1.05 = 4 + 47.62 = <b>51.62</b>. RHS = p + S<sub>0</sub> = 3 + 50 = <b>53.00</b>. RHS &gt; LHS → protective put overpriced → <b>short RHS, long LHS</b> = <em>conversion</em>: buy call (−4), lend 47.62, sell put (+3), short stock (+50) → net cash today = 50 + 3 − 4 − 47.62 = <b>+$1.38</b>. Tại T mọi leg triệt tiêu (long call − short put = S<sub>T</sub>−K, plus +K từ bond, minus S<sub>T</sub> trả lại stock loan = 0).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Tin parity giữ vì K = S<sub>0</sub>. Phải <em>tính</em> hai vế với PV(K), không assume bằng nhau. Spread $1.38 đủ lớn để arb sau khi tính transaction cost giả định khiêm tốn.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Đảo chiều — chọn reverse conversion (short call) trong khi LHS đang <em>thấp hơn</em> RHS. Quy tắc: vế nào đắt thì SHORT vế đó. Đây là LHS rẻ → long LHS = long call + lend = "fiduciary call". Reverse conv chỉ áp dụng khi LHS &gt; RHS.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Quy trình arb: (1) tính LHS, RHS. (2) Vế lớn = đắt → short. (3) Vế nhỏ = rẻ → long. (4) Profit hôm nay = |LHS − RHS|; payoff tại T = 0. <em>Conversion</em> = long LHS, short RHS · <em>Reverse</em> = ngược lại.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 EN — Forward parity / dividends -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>28 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Forward parity</em> &amp; ATM forward.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A non-dividend-paying stock has a 6-month forward price of <strong>F<sub>0</sub>(0.5) = $80</strong>. European call and put options on the stock have strike <strong>K = $80</strong>, expiry <strong>T = 0.5</strong> years, and the 6-month risk-free rate is 2% effective. Using <strong>put-call-forward parity</strong>, which statement is <strong>most accurate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">The call must be more expensive than the put because of positive interest rates.</span></li>
+    <li><span class="lbl">B</span><span class="opt">The call and put must have equal prices (c = p).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Cannot determine without knowing volatility.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 29 · Q3 HINT + DỊCH + ANSWER -->
+<section data-label="Q3 Hint+Dịch+Answer" class="slide">
+  <div class="run-header">
+    <span>09.08 — Put-Call Parity</span>
+    <span class="rule"></span>
+    <span>29 / 30</span>
+  </div>
+  <div style="margin-top: 32px;">
+    <div class="eyebrow">Hint · Dịch · Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 12px;">Hint, dịch &amp; <em class="hi">đáp án</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Hint</span>
+    Forward parity: <mark>c + K/(1+r)<sup>T</sup> = p + F<sub>0</sub>(T)/(1+r)<sup>T</sup></mark>. Khi <mark>K = F<sub>0</sub></mark> thì hai vế chỉ khác ở c và p → bắt buộc c = p.
+  </div>
+  <div class="q-card" style="margin-top: 12px;">
+    <span class="q-tag">§ Vignette (Vi)</span>
+    <div class="q-stem">
+      Cổ phiếu không trả cổ tức có forward 6 tháng F<sub>0</sub>(0.5) = $80. European call &amp; put có strike K = $80, T = 0.5, lãi suất 6 tháng = 2%. Theo <strong>put-call-forward parity</strong>, statement nào <strong>most accurate</strong>?
+    </div>
+  </div>
+  <div class="reasoning" style="margin-top: 12px;">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Với K = F<sub>0</sub> = 80, parity rút gọn: c + K/(1+r)<sup>T</sup> = p + K/(1+r)<sup>T</sup> → <b>c = p</b>. Đây là kết quả "ATM-forward" — khi strike đặt ngay tại forward price, call và put có cùng giá <em>bất kể</em> volatility, time, hay rate. Một fact rất hay test trên CFA.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Đúng khi K = S<sub>0</sub> và r &gt; 0 (call &gt; put), nhưng ở đây K = F<sub>0</sub> chứ không phải S<sub>0</sub>. Khi strike = forward, lãi suất đã được "absorb" vào F<sub>0</sub> → no asymmetry còn lại.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Volatility ảnh hưởng <em>mức</em> giá c và p (cả hai cùng tăng theo σ) nhưng không ảnh hưởng <em>quan hệ</em> c vs p. Parity là constraint pricing không cần biết σ.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">"<em>ATM forward</em>" → c = p. Đó là lý do tại sao practitioners dùng F-strike thay vì S-strike khi quote vol smile — strike at forward symmetric. Nhớ: K = S<sub>0</sub> → c &gt; p (nếu r &gt; 0); K = F<sub>0</sub> → c = p; K &gt; F<sub>0</sub> → put &gt; call.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Derivatives · 09.08 — Put-Call Parity</span>
+  </div>
+</section>
+
+
+<!-- 30 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>09.08 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 09.09 — Binomial &amp; option valuation</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>
