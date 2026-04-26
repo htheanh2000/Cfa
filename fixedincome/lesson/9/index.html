@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>CFA L1 · Fixed Income 08.09 — Securitization &amp; ABS</title>
+<title>CFA L1 · Fixed Income 08.09 — The Term Structure of Interest Rates</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -11,47 +11,41 @@
 <link rel="stylesheet" href="/assets/cfa-theme.css">
 <style>
   .title-slide .left { background: var(--accent); }
-  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main { font-size: 96px; line-height: 0.98; }
   .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
   .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
 
-  /* Securitization deal-structure diagram */
-  .sec-diagram { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 14px; max-width: 1700px; }
-  .sec-node {
+  /* Yield curve shape diagram */
+  .curve-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 14px; max-width: 1700px; }
+  .curve-card {
     background: var(--paper);
     border: 2px solid var(--accent);
     border-left: 6px solid var(--accent);
     padding: 18px 22px;
-    text-align: left;
   }
-  .sec-node .lbl {
-    font-family: var(--mono); font-size: 15px; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 8px;
+  .curve-card .shape-lbl {
+    font-family: var(--mono); font-size: 14px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 6px;
   }
-  .sec-node .name { font-family: var(--display); font-size: 26px; font-weight: 700; color: var(--ink); line-height: 1.15; }
-  .sec-node .desc { font-family: var(--sans); font-size: 16px; color: var(--ink-soft); margin-top: 6px; line-height: 1.4; }
-  .sec-arrow {
-    text-align: center; font-family: var(--mono); font-size: 14px;
-    color: var(--accent); letter-spacing: 0.1em; padding: 6px 0; font-weight: 600;
+  .curve-card .shape-name {
+    font-family: var(--display); font-size: 24px; font-weight: 700; color: var(--ink); margin-bottom: 6px;
+  }
+  .curve-card .shape-desc {
+    font-family: var(--sans); font-size: 15px; color: var(--ink-soft); line-height: 1.45;
   }
 
-  /* Tranche waterfall stack */
-  .waterfall { display: grid; gap: 8px; max-width: 1700px; margin-top: 12px; }
-  .tier {
-    display: grid; grid-template-columns: 220px 1fr 240px;
-    gap: 24px; padding: 16px 22px; align-items: center;
-    border-left: 6px solid var(--accent);
-    background: var(--paper);
-  }
-  .tier.senior { background: rgba(20, 54, 95, 0.10); }
-  .tier.mezz { background: var(--paper); }
-  .tier.equity { background: #FFFFFF; border-left-color: var(--ink-muted); }
-  .tier .role {
-    font-family: var(--display); font-size: 26px; font-weight: 700; color: var(--accent);
-  }
-  .tier.equity .role { color: var(--ink-muted); }
-  .tier .body { font-family: var(--sans); font-size: 19px; line-height: 1.4; color: var(--ink); }
-  .tier .meta { font-family: var(--mono); font-size: 15px; color: var(--ink-muted); letter-spacing: 0.06em; text-align: right; }
+  /* Bootstrap table */
+  .boot-table { width: 100%; border-collapse: collapse; margin-top: 14px; font-family: var(--mono); font-size: 16px; }
+  .boot-table th { background: var(--accent); color: #fff; padding: 10px 16px; text-align: left; font-weight: 600; }
+  .boot-table td { padding: 9px 16px; border-bottom: 1px solid rgba(0,0,0,0.08); }
+  .boot-table tr:nth-child(even) td { background: rgba(20,54,95,0.05); }
+  .boot-table .hi-cell { color: var(--accent); font-weight: 700; }
+
+  /* Forward rate calc box */
+  .fwd-calc { background: var(--paper); border-left: 6px solid var(--accent); padding: 20px 26px; margin-top: 14px; max-width: 1700px; }
+  .fwd-calc .step { margin-bottom: 10px; font-family: var(--sans); font-size: 16px; line-height: 1.5; }
+  .fwd-calc .step .num { font-family: var(--mono); color: var(--accent); font-weight: 700; margin-right: 8px; }
+  .fwd-calc .result { font-family: var(--mono); font-size: 20px; color: var(--accent); font-weight: 700; margin-top: 10px; }
 </style>
 </head>
 <body>
@@ -62,18 +56,18 @@
 <section data-label="Title" class="slide title-slide">
   <div class="left">
     <div class="mark">CFA Institute · Level I</div>
-    <h1 class="main">Securitization<br>&amp; <em>ABS.</em></h1>
+    <h1 class="main">Term Structure<br><em>of Rates.</em></h1>
     <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 08 · Lesson 08.09 · Fixed Income</div>
   </div>
   <div class="right">
-    <div class="mark">Module 09 · Pooling · SPE · Tranching · Credit enhancement</div>
+    <div class="mark">Module 09 · Spot · Forward · Par · Theories · Vietnam</div>
     <dl class="meta-grid">
       <div><dt>Môn</dt><dd>Fixed Income</dd></div>
       <div><dt>Module</dt><dd>09</dd></div>
       <div><dt>Lesson</dt><dd>08.09</dd></div>
       <div><dt>Thời lượng</dt><dd>90 min</dd></div>
     </dl>
-    <div class="mark">ABS · MBS · CDO · Tranches · Waterfall</div>
+    <div class="mark">Spot Rate · Forward Rate · Par Rate · Yield Curve · Term Structure Theories</div>
   </div>
 </section>
 
@@ -83,773 +77,824 @@
   <div class="band">
     <div class="lbl">PART</div>
     <div class="n">09</div>
-    <div class="lbl">Structured finance</div>
+    <div class="lbl">Term structure &amp; yield curves</div>
   </div>
   <div class="content">
     <div class="eyebrow">Today's lesson</div>
-    <h2>How illiquid loans become <em>tradable bonds</em>.</h2>
+    <h2>How <em>rates</em> relate<br>across <em>time</em>.</h2>
     <ul class="toc">
-      <li class="active">01 · Securitization process — pool · SPE · ABS issuance</li>
-      <li>02 · Benefits — liquidity · capital relief · bankruptcy remoteness</li>
-      <li>03 · ABS vs MBS — collateral types · auto · card · student · equipment</li>
-      <li>04 · Tranching — Senior / Mezzanine / Equity · time vs credit</li>
-      <li>05 · Credit enhancement — internal vs external</li>
-      <li>06 · Cash flow waterfall — interest &amp; principal priority</li>
-      <li>07 · CDOs — cash · synthetic · CDO-squared · 2008 lessons</li>
-      <li>08 · Practice — 3 CFA-style questions</li>
+      <li class="active">01 · Spot rate curve — zero rates &amp; bootstrapping</li>
+      <li>02 · Forward rate curve — definition &amp; formula</li>
+      <li>03 · Par rate curve — coupon bonds priced at par</li>
+      <li>04 · Worked example — bootstrapping từ coupon bonds</li>
+      <li>05 · Forward rate calculation — worked example (2yr → 3yr)</li>
+      <li>06 · Yield curve shapes — normal, flat, inverted, humped</li>
+      <li>07 · Term structure theories — 4 theories</li>
+      <li>08 · Investment implications &amp; forecasting</li>
+      <li>09 · Vietnam yield curve context (VGB, SBV)</li>
+      <li>10 · Practice — 3 CFA-style questions</li>
     </ul>
   </div>
 </section>
 
 
-<!-- 03 · WHAT IS SECURITIZATION -->
-<section data-label="What is securitization" class="slide">
+<!-- 03 · SPOT RATE DEFINITION -->
+<section data-label="Spot rate curve" class="slide">
   <div class="run-header">
-    <span>08.09 — Securitization</span>
+    <span>08.09 — Term Structure of Interest Rates</span>
     <span class="rule"></span>
-    <span>03 / 29</span>
+    <span>03 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Securitization · concept</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">What is <em class="hi">securitization</em>?</h2>
+    <div class="eyebrow">Spot rate · definition</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Spot rate</em> (zero rate) curve.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Securitization = quá trình <em>pool</em> các financial assets có cash flow (loans, receivables) và <em>repackage</em> thành securities có thể bán cho investors. Biến tài sản <em>illiquid</em> trên balance sheet thành <em>tradable bond</em> trên thị trường.
+      <b>Spot rate</b> (còn gọi là <em>zero rate</em> hoặc <em>zero-coupon rate</em>) là lãi suất áp dụng cho một khoản thanh toán <em>duy nhất</em> tại thời điểm n trong tương lai — không có coupon trung gian. Đây là building block cơ bản nhất của term structure.
     </p>
   </div>
 
-  <div class="rule-box" style="margin-top: 16px;">
-    <span class="tag">§ Core idea</span>
-    Một mortgage hay auto loan đơn lẻ rất khó bán — small size, opaque credit, không standardized. Nhưng khi <em>gộp 5,000 mortgages</em> giống nhau và phát hành securities backed by pool đó, ta có <b>asset-backed bonds</b> standardized, rated, và liquid trên capital markets.
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">DEF</span>
+      <div>
+        <div class="t"><em class="hi">Spot rate S<sub>n</sub></em> — định nghĩa</div>
+        <div class="d">S<sub>n</sub> là yield của zero-coupon bond kỳ hạn n năm. Nếu bạn đầu tư PV hôm nay và nhận FV sau n năm (không có cash flow trung gian), thì S<sub>n</sub> là rate discount cho single payment đó. Ví dụ: S<sub>2</sub> = 4% → $1 hôm nay tăng thành $1 × (1.04)² = $1.0816 sau 2 năm.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">ZCB</span>
+      <div>
+        <div class="t">Zero-coupon bond vs coupon bond</div>
+        <div class="d">Zero-coupon bond trả <em>một lần duy nhất</em> tại maturity — không có coupon. Coupon bond trả nhiều cash flows → yield của coupon bond là <em>blend</em> của nhiều spot rates. Do đó không thể dùng YTM của coupon bond trực tiếp làm spot rate.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CURVE</span>
+      <div>
+        <div class="t">Spot rate curve = term structure</div>
+        <div class="d">Vẽ S<sub>1</sub>, S<sub>2</sub>, S<sub>3</sub>, ... S<sub>n</sub> theo trục ngang là kỳ hạn → ta có <em>spot rate curve</em>. Đây là "đường cong lãi suất thuần" — không bị ảnh hưởng bởi coupon structure. Còn gọi là <em>zero curve</em> hoặc <em>strip curve</em>.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PV</span>
+      <div>
+        <div class="t">Định giá bond bằng spot rates</div>
+        <div class="d">Bond value = PV của mỗi cash flow chiết khấu bằng spot rate tương ứng kỳ hạn của cash flow đó. PV = C/(1+S<sub>1</sub>) + C/(1+S<sub>2</sub>)² + ... + (C+F)/(1+S<sub>n</sub>)<sup>n</sup>. Đây là <em>no-arbitrage pricing</em> — chính xác hơn dùng YTM flat.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
+  </div>
+</section>
+
+
+<!-- 04 · BOOTSTRAPPING CONCEPT -->
+<section data-label="Bootstrapping" class="slide">
+  <div class="run-header">
+    <span>08.09 — Term Structure of Interest Rates</span>
+    <span class="rule"></span>
+    <span>04 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Spot rate · extraction</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Bootstrapping</em> — trích xuất spot rates.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Thực tế, zero-coupon bonds chỉ tồn tại cho một số kỳ hạn (T-bills, STRIPS). Với coupon bonds, ta dùng kỹ thuật <em>bootstrapping</em> để tính lần lượt từng spot rate từ giá thị trường.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Bootstrapping principle</span>
+    Biết S<sub>1</sub> từ 1-year bond. Dùng S<sub>1</sub> + giá 2-year coupon bond → suy ra S<sub>2</sub>. Dùng S<sub>1</sub>, S<sub>2</sub> + giá 3-year coupon bond → suy ra S<sub>3</sub>. Cứ thế <em>tuần tự</em> (sequentially) từng kỳ hạn một — không cần zero-coupon bonds cho mỗi maturity.
   </div>
 
   <ol class="num-list tight" style="margin-top: 18px;">
     <li>
       <span>
-        <span class="step-title">Originator (bank, finance company)</span>
-        <span class="step-body">Tạo loans với borrowers (mortgage, auto, credit card). Originally giữ trên balance sheet — chịu credit risk + funding cost.</span>
+        <span class="step-title">Bước 1 — Spot rate 1 năm</span>
+        <span class="step-body">1-year bond (coupon hoặc discount) cho S<sub>1</sub> trực tiếp. Nếu bond 1 năm par = 100, coupon 5%, giá 100 → YTM = S<sub>1</sub> = 5%. (Bond 1 năm chỉ có 1 cash flow ở năm 1 nên YTM = spot rate.)</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Pool of assets</span>
-        <span class="step-body">Gom hàng nghìn loans tương đồng (cùng asset class, term, credit profile) thành một <em>pool</em> với expected cash flows.</span>
+        <span class="step-title">Bước 2 — Spot rate 2 năm từ coupon bond 2 năm</span>
+        <span class="step-body">Bond 2 năm, par 100, coupon 6%, giá 100.50. Cash flows: C₁ = 6 tại năm 1, C₂ = 106 tại năm 2. Giải phương trình: 100.50 = 6/(1+S₁) + 106/(1+S₂)². Biết S₁, giải ra S₂. Đây là bootstrapping step cơ bản nhất.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Issue securities backed by pool</span>
-        <span class="step-body">Special Purpose Entity (SPE) phát hành ABS — investors mua bond, nhận cash flow từ underlying loans (principal + interest).</span>
+        <span class="step-title">Bước 3 — Tiếp tục cho S₃, S₄, ...</span>
+        <span class="step-body">Dùng S₁, S₂ đã có + giá bond 3 năm → giải S₃. Quá trình này gọi là "bootstrapping the spot curve" — rất phổ biến trong thực tế (traders dùng swap curve, OIS curve, bond prices).</span>
       </span>
     </li>
   </ol>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
   </div>
 </section>
 
 
-<!-- 04 · DEAL STRUCTURE DIAGRAM -->
-<section data-label="Deal structure" class="slide">
+<!-- 05 · BOOTSTRAPPING WORKED EXAMPLE -->
+<section data-label="Bootstrapping example" class="slide">
   <div class="run-header">
-    <span>08.09 — Securitization</span>
+    <span>08.09 — Term Structure of Interest Rates</span>
     <span class="rule"></span>
-    <span>04 / 29</span>
+    <span>05 / 30</span>
+  </div>
+  <div style="margin-top: 36px;">
+    <div class="eyebrow">Numerical example 1 · Bootstrapping</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">Tính <em class="hi">S₁, S₂, S₃</em> từ coupon bonds.</h2>
+  </div>
+
+  <table class="boot-table">
+    <thead>
+      <tr>
+        <th>Bond</th>
+        <th>Maturity</th>
+        <th>Coupon (annual)</th>
+        <th>Price (par = 100)</th>
+        <th>Spot rate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>A</td>
+        <td>1 năm</td>
+        <td>4%</td>
+        <td>100.00</td>
+        <td class="hi-cell">S₁ = 4.00%</td>
+      </tr>
+      <tr>
+        <td>B</td>
+        <td>2 năm</td>
+        <td>5%</td>
+        <td>100.93</td>
+        <td class="hi-cell">S₂ = ?</td>
+      </tr>
+      <tr>
+        <td>C</td>
+        <td>3 năm</td>
+        <td>6%</td>
+        <td>102.10</td>
+        <td class="hi-cell">S₃ = ?</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="fwd-calc" style="margin-top: 14px;">
+    <div class="step"><span class="num">S₁:</span> Bond A: 1 cash flow duy nhất. 100 = 104/(1+S₁) → <strong>S₁ = 4.00%</strong></div>
+    <div class="step"><span class="num">S₂:</span> Bond B: 100.93 = 5/1.04 + 105/(1+S₂)² → 105/(1+S₂)² = 100.93 − 4.808 = 96.122 → (1+S₂)² = 1.0924 → <strong>S₂ ≈ 4.51%</strong></div>
+    <div class="step"><span class="num">S₃:</span> Bond C: 102.10 = 6/1.04 + 6/1.0451² + 106/(1+S₃)³ = 5.769 + 5.495 + 106/(1+S₃)³ → 106/(1+S₃)³ = 90.836 → (1+S₃)³ = 1.1669 → <strong>S₃ ≈ 5.27%</strong></div>
+    <div class="result">Spot curve: S₁ = 4.00% · S₂ = 4.51% · S₃ = 5.27% → đường cong dốc lên (normal)</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
+  </div>
+</section>
+
+
+<!-- 06 · FORWARD RATE DEFINITION -->
+<section data-label="Forward rate" class="slide">
+  <div class="run-header">
+    <span>08.09 — Term Structure of Interest Rates</span>
+    <span class="rule"></span>
+    <span>06 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Securitization · structure</div>
-    <h2 class="h-section" style="margin-bottom: 14px;">The <em class="hi">deal structure</em> map.</h2>
+    <div class="eyebrow">Forward rate · definition</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Forward rate</em> — lãi suất kỳ hạn.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Ba parties cốt lõi: <em>Originator/Seller</em> tạo loans → bán cho <em>SPE/SPV</em> → SPE issue ABS cho <em>Investors</em>. Servicer thu nợ từ borrowers, trustee bảo vệ investors.
+      <b>Forward rate</b> f(m, n−m) là lãi suất thoả thuận hôm nay cho một khoản vay/đầu tư bắt đầu tại năm m và kết thúc tại năm n. Không phải lãi suất hiện tại — là lãi suất <em>trong tương lai, nhưng xác định ngay hôm nay</em>.
     </p>
   </div>
 
-  <div class="sec-diagram">
-    <div class="sec-node">
-      <div class="lbl">§ Step 1 — Origination</div>
-      <div class="name">Originator / Seller</div>
-      <div class="desc">Bank, mortgage co., auto finance — tạo loans với borrowers. Bán pool loans cho SPE để lấy cash &amp; remove off balance sheet.</div>
+  <div class="formula-box">
+    <span class="fmt-label">§ No-arbitrage forward rate formula</span>
+    <div class="eq">
+      (1 + S<sub>n</sub>)<sup>n</sup> = (1 + S<sub>m</sub>)<sup>m</sup> × (1 + f<sub>m,n−m</sub>)<sup>n−m</sup>
     </div>
-    <div class="sec-node">
-      <div class="lbl">§ Step 2 — Repackage</div>
-      <div class="name">SPE / SPV (Trust)</div>
-      <div class="desc">Special Purpose Entity. Mua loans từ originator, holds them as collateral, issue securities (tranches) ngược lại cho investors. <em>Bankruptcy-remote.</em></div>
-    </div>
-    <div class="sec-node">
-      <div class="lbl">§ Step 3 — Distribution</div>
-      <div class="name">Investors</div>
-      <div class="desc">Pension funds, insurers, mutual funds, hedge funds — mua tranches phù hợp risk appetite (Senior AAA → Equity unrated).</div>
+    <div class="note">
+      Trong đó: S<sub>n</sub> = spot rate kỳ hạn n; S<sub>m</sub> = spot rate kỳ hạn m; f<sub>m,n−m</sub> = forward rate bắt đầu năm m, kỳ hạn (n−m) năm. Ký hiệu thông dụng: <b>₁f₁</b> = 1-year forward rate starting in 1 year; <b>₂f₁</b> = 1-year forward rate starting in 2 years.
     </div>
   </div>
 
-  <div class="sec-arrow" style="margin-top: 14px;">▼ &nbsp; Cash flow: borrowers pay servicer → trust collects → distributes to tranches per waterfall &nbsp; ▼</div>
-
-  <div class="sec-diagram" style="grid-template-columns: 1fr 1fr 1fr 1fr; gap: 18px;">
-    <div class="sec-node">
-      <div class="lbl">Borrowers</div>
-      <div class="desc">Pay P+I monthly</div>
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">ARBI</span>
+      <div>
+        <div class="t">Cơ sở no-arbitrage</div>
+        <div class="d">Nếu đầu tư 2 năm bằng cách: (a) đầu tư thẳng vào S₂ suốt 2 năm, hoặc (b) đầu tư S₁ năm đầu rồi roll over theo forward rate ₁f₁ — hai phương án phải cho <em>cùng kết quả</em>, nếu không có cơ hội kinh doanh chênh lệch giá.</div>
+      </div>
     </div>
-    <div class="sec-node">
-      <div class="lbl">Servicer</div>
-      <div class="desc">Collect, advance, modify loans · Earns servicing fee</div>
-    </div>
-    <div class="sec-node">
-      <div class="lbl">Trustee</div>
-      <div class="desc">Holds collateral · Enforces waterfall · Acts cho investors</div>
-    </div>
-    <div class="sec-node">
-      <div class="lbl">Rating Agency</div>
-      <div class="desc">Rate tranches (AAA · AA · BBB · NR) based on enhancement</div>
+    <div class="tenet">
+      <span class="n">NOTE</span>
+      <div>
+        <div class="t">Forward rate ≠ expected future spot rate (trừ khi pure expectations)</div>
+        <div class="d">Forward rate là implied rate — thị trường lock in hôm nay. Có thể cao hơn expected spot vì <em>risk premium</em> (liquidity, uncertainty). Các theory khác nhau giải thích điều này khác nhau.</div>
+      </div>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
   </div>
 </section>
 
 
-<!-- 05 · BENEFITS -->
-<section data-label="Benefits" class="slide">
+<!-- 07 · FORWARD RATE WORKED EXAMPLE -->
+<section data-label="Forward rate example" class="slide">
   <div class="run-header">
-    <span>08.09 — Securitization</span>
+    <span>08.09 — Term Structure of Interest Rates</span>
     <span class="rule"></span>
-    <span>05 / 29</span>
+    <span>07 / 30</span>
   </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Why securitize</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Benefits — <em class="hi">all sides</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Securitization lan rộng vì lợi ích cho cả 3 phía: originator (capital, funding), investor (diversification, customized risk), economy (lower borrowing cost, broader credit availability).
+  <div style="margin-top: 36px;">
+    <div class="eyebrow">Numerical example 2 · Forward rate</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">Tính <em class="hi">₂f₁</em> — 1-year forward rate starting in 2 years.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 10px;">
+      <strong>Đề bài:</strong> Spot rate 2 năm S₂ = 4.00%; Spot rate 3 năm S₃ = 4.50%. Tính 1-year forward rate bắt đầu tại năm 2 (ký hiệu ₂f₁ hoặc f(2,1)).
     </p>
   </div>
 
-  <div class="tenets-grid" style="margin-top: 14px;">
-    <div class="tenet">
-      <span class="n">L</span>
-      <div>
-        <div class="t"><em class="hi">Liquidity</em></div>
-        <div class="d">Loans <em>illiquid</em> trở thành bond <em>tradable</em>. Originator nhận cash ngay thay vì chờ 30 năm thu nợ; investor có exit qua secondary market.</div>
-      </div>
+  <div class="fwd-calc">
+    <div class="step"><span class="num">Bước 1 — Công thức:</span> (1 + S₃)³ = (1 + S₂)² × (1 + ₂f₁)¹</div>
+    <div class="step"><span class="num">Bước 2 — Thay số:</span> (1.045)³ = (1.04)² × (1 + ₂f₁)</div>
+    <div class="step"><span class="num">Bước 3 — Tính vế trái:</span> (1.045)³ = 1.14117</div>
+    <div class="step"><span class="num">Bước 4 — Tính (1.04)²:</span> (1.04)² = 1.08160</div>
+    <div class="step"><span class="num">Bước 5 — Giải ₂f₁:</span> (1 + ₂f₁) = 1.14117 / 1.08160 = 1.05507</div>
+    <div class="result">₂f₁ ≈ 5.51% — 1-year forward rate bắt đầu tại năm 2</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Interpretation</span>
+    Thị trường hiện tại <em>implied</em> rằng lãi suất 1 năm, tại thời điểm 2 năm nữa, sẽ là 5.51%. Nếu đường cong dốc lên (S₃ &gt; S₂), forward rate luôn cao hơn cả hai spot rates — điều này đẩy term structure lên dốc. Lưu ý: S₃ (4.5%) &lt; ₂f₁ (5.51%) — forward rate kéo dài đường cong lên phía trước.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
+  </div>
+</section>
+
+
+<!-- 08 · PAR RATE CURVE -->
+<section data-label="Par rate curve" class="slide">
+  <div class="run-header">
+    <span>08.09 — Term Structure of Interest Rates</span>
+    <span class="rule"></span>
+    <span>08 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Par rate · definition</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Par rate</em> curve — coupon tại par.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      <b>Par rate</b> cho kỳ hạn n là mức coupon rate mà nếu bond n-năm trả coupon đó với par = 100, thì bond sẽ có giá đúng bằng 100 (tức là bond priced at par). Par curve chính là <em>đường YTM của on-the-run coupon bonds</em> được priced at par.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Par rate vs Spot rate</em></div>
+      <dl>
+        <dt>Khi yield curve dốc lên</dt>
+        <dd>Par rate &lt; Spot rate cùng kỳ hạn. Vì: coupon trung gian được chiết khấu bằng spot rates thấp hơn (kỳ hạn ngắn) → làm tăng giá, để về par thì coupon phải thấp hơn spot rate cuối.</dd>
+        <dt>Khi yield curve phẳng</dt>
+        <dd>Par rate = Spot rate = Forward rate. Cả ba đường trùng nhau.</dd>
+        <dt>Khi yield curve dốc xuống (inverted)</dt>
+        <dd>Par rate &gt; Spot rate. Chiều ngược lại với trường hợp dốc lên.</dd>
+        <dt>Ứng dụng</dt>
+        <dd>Par curve = benchmark để quote swap rates, corporate bond spreads (spread over par rate cho kỳ hạn tương ứng). Rất thông dụng trong fixed income derivatives.</dd>
+      </dl>
     </div>
+    <div class="cc">
+      <div class="head"><em>Ba đường quan hệ tổng quát</em></div>
+      <dl>
+        <dt>Upward sloping curve</dt>
+        <dd>Par rate &lt; Spot rate &lt; Forward rate (for same maturity). Forward rate luôn "kéo lên" cao nhất vì nó tính phần cuối của đường cong.</dd>
+        <dt>Flat curve</dt>
+        <dd>Par = Spot = Forward — tất cả bằng nhau. Đây là trường hợp đặc biệt đơn giản nhất.</dd>
+        <dt>Inverted curve</dt>
+        <dd>Forward rate &lt; Spot rate &lt; Par rate — đảo ngược hoàn toàn. Forward rate kéo xuống thấp nhất.</dd>
+        <dt>Công dụng trong CFA exam</dt>
+        <dd>Thứ tự ba đường là topic hay xuất hiện trong exam. Nhớ: <em>forward rate luôn cực đoan nhất</em> — cao nhất khi curve dốc lên, thấp nhất khi inverted.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
+  </div>
+</section>
+
+
+<!-- 09 · THREE CURVES SUMMARY -->
+<section data-label="Three curves" class="slide">
+  <div class="run-header">
+    <span>08.09 — Term Structure of Interest Rates</span>
+    <span class="rule"></span>
+    <span>09 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Term structure · summary</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Ba đường cong: <em class="hi">Spot · Forward · Par</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
     <div class="tenet">
-      <span class="n">C</span>
+      <span class="n">S</span>
       <div>
-        <div class="t"><em class="hi">Regulatory capital relief</em></div>
-        <div class="d">Bank dùng Basel risk-weighted assets — sell loans giảm RWA → free up capital để lend more. Off-balance-sheet treatment quan trọng.</div>
+        <div class="t"><em class="hi">Spot curve</em> — zero rates</div>
+        <div class="d">Sₙ = yield của zero-coupon bond kỳ hạn n. Mỗi điểm discount <em>một cash flow duy nhất</em> tại thời điểm n. Được trích xuất từ coupon bonds bằng bootstrapping. Là đường cơ bản nhất — dùng để định giá bond chính xác theo no-arbitrage.</div>
       </div>
     </div>
     <div class="tenet">
       <span class="n">F</span>
       <div>
-        <div class="t"><em class="hi">Lower funding cost</em></div>
-        <div class="d">ABS senior tranche thường rated AAA — borrowing cost &lt; corporate bond của originator. Originator pass savings cho borrowers (mortgage rate thấp hơn).</div>
+        <div class="t"><em class="hi">Forward curve</em> — implied future rates</div>
+        <div class="d">f(m, n−m) = rate implied cho khoảng thời gian (m → n). Tính được từ spot rates bằng công thức: (1+Sₙ)ⁿ = (1+Sₘ)ᵐ × (1+f)ⁿ⁻ᵐ. Forward curve phản ánh market expectations (có hoặc không có risk premium) về lãi suất tương lai.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">D</span>
+      <span class="n">P</span>
       <div>
-        <div class="t"><em class="hi">Diversification cho investor</em></div>
-        <div class="d">Một bond exposure đến 5,000 mortgages khắp US — idiosyncratic risk được pool, chỉ còn systemic + structural risk.</div>
+        <div class="t"><em class="hi">Par curve</em> — coupon-at-par rates</div>
+        <div class="d">Coupon rate mà tại đó coupon bond kỳ hạn n có giá đúng par (= 100). Equivalent với YTM của on-the-run coupon bonds. Dùng làm benchmark cho swap rates và corporate spreads trong thực tế.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">R</span>
+      <span class="n">ORDER</span>
       <div>
-        <div class="t">Risk customization</div>
-        <div class="d">Tranching cho phép investor pick risk-return: Senior (low risk, low yield) hoặc Equity (high risk, high yield). Match liability của insurers, pension funds.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">E</span>
-      <div>
-        <div class="t">Economy-wide credit</div>
-        <div class="d">Credit availability tăng — banks có thể originate nhiều hơn vì không phải fund toàn bộ. Tuy nhiên đây cũng là nguồn gốc 2008 GFC.</div>
+        <div class="t">Thứ tự khi curve dốc lên</div>
+        <div class="d">Par &lt; Spot &lt; Forward (cùng maturity n). <em>Mnemonic</em>: "PSF going up" — Par, Spot, Forward tăng dần. Khi inverted: đảo ngược hoàn toàn → Forward &lt; Spot &lt; Par. Khi flat: tất cả bằng nhau.</div>
       </div>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
   </div>
 </section>
 
 
-<!-- 06 · BANKRUPTCY REMOTENESS -->
-<section data-label="Bankruptcy remoteness" class="slide">
+<!-- 10 · YIELD CURVE SHAPES -->
+<section data-label="Yield curve shapes" class="slide">
   <div class="run-header">
-    <span>08.09 — Securitization</span>
+    <span>08.09 — Term Structure of Interest Rates</span>
     <span class="rule"></span>
-    <span>06 / 29</span>
+    <span>10 / 30</span>
+  </div>
+  <div style="margin-top: 36px;">
+    <div class="eyebrow">Yield curve · morphology</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">Các hình dạng <em class="hi">đường cong lãi suất</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 10px;">
+      Yield curve (thường là par curve hoặc on-the-run Treasury curve) có thể mang nhiều hình dạng khác nhau, phản ánh kỳ vọng về kinh tế, lạm phát, và chính sách tiền tệ.
+    </p>
+  </div>
+
+  <div class="curve-grid">
+    <div class="curve-card">
+      <div class="shape-lbl">Normal / Upward sloping</div>
+      <div class="shape-name">Dốc lên thông thường</div>
+      <div class="shape-desc">Long-term yields &gt; Short-term yields. Phổ biến nhất trong lịch sử. Phản ánh: (1) lãi suất ngắn hạn thấp hiện tại, (2) kỳ vọng lãi suất tăng trong tương lai, và/hoặc (3) liquidity/risk premium cho kỳ hạn dài. <em>Tín hiệu:</em> kinh tế đang phát triển bình thường.</div>
+    </div>
+    <div class="curve-card">
+      <div class="shape-lbl">Flat</div>
+      <div class="shape-name">Phẳng</div>
+      <div class="shape-desc">Short và long-term yields xấp xỉ bằng nhau. Thường xuất hiện trong giai đoạn <em>chuyển tiếp</em> — từ normal sang inverted (central bank đang tăng lãi suất) hoặc ngược lại. Yield spread giữa 2Y và 10Y ≈ 0. <em>Tín hiệu:</em> bất định về hướng kinh tế.</div>
+    </div>
+    <div class="curve-card">
+      <div class="shape-lbl">Inverted / Downward sloping</div>
+      <div class="shape-name">Đảo ngược (âm)</div>
+      <div class="shape-desc">Short-term yields &gt; Long-term yields. Hiếm nhưng quan trọng. Nguyên nhân: central bank tăng lãi suất mạnh (short end cao) trong khi thị trường kỳ vọng lạm phát/lãi suất dài hạn thấp. <em>Tín hiệu mạnh nhất:</em> dự báo suy thoái kinh tế (recession predictor). Inversion 2Y-10Y UST từng đi trước mọi recession Mỹ từ 1970.</div>
+    </div>
+    <div class="curve-card">
+      <div class="shape-lbl">Humped</div>
+      <div class="shape-name">Bướu (lồi ở giữa)</div>
+      <div class="shape-desc">Mid-term yields cao nhất, short và long yields thấp hơn. Ví dụ: 6-month yield 3%, 2-year yield 4.5%, 10-year yield 3.8%. Thường xuất hiện khi thị trường kỳ vọng lãi suất tăng trong ngắn-trung hạn rồi giảm trở lại dài hạn (easing cycle sẽ đến). Không phổ biến nhưng có xảy ra.</div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
+  </div>
+</section>
+
+
+<!-- 11 · PURE EXPECTATIONS THEORY -->
+<section data-label="Pure expectations theory" class="slide">
+  <div class="run-header">
+    <span>08.09 — Term Structure of Interest Rates</span>
+    <span class="rule"></span>
+    <span>11 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">SPE · legal structure</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Bankruptcy remoteness</em>.</h2>
+    <div class="eyebrow">Term structure theories · 1/4</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Pure Expectations Theory</em>.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Lý do tồn tại của SPE: tách credit risk của <em>pool</em> khỏi credit risk của <em>originator</em>. Nếu originator phá sản, creditors của họ <em>không thể</em> claim assets trong SPE.
+      Còn gọi là <em>Unbiased Expectations Theory</em>. Lý thuyết cơ bản nhất — không thừa nhận bất kỳ risk premium nào.
     </p>
   </div>
 
   <div class="rule-box">
-    <span class="tag">§ Rule 1 — True sale</span>
-    Việc bán loans từ originator sang SPE phải là <em>true sale</em> (chuyển nhượng pháp lý hoàn chỉnh), không phải secured loan trá hình. Pool assets <b>không còn</b> trên balance sheet originator.
+    <span class="tag">§ Core claim</span>
+    Forward rates = <em>unbiased estimates</em> của expected future spot rates. Nếu thị trường kỳ vọng lãi suất 1 năm sau 2 năm nữa là 6%, thì forward rate ₂f₁ sẽ bằng đúng 6%. Curve dốc lên → thị trường kỳ vọng lãi suất tăng. Curve inverted → thị trường kỳ vọng lãi suất giảm.
   </div>
 
-  <div class="rule-box" style="margin-top: 14px;">
-    <span class="tag">§ Rule 2 — Separate legal entity</span>
-    SPE là pháp nhân riêng (trust hoặc LLC), <em>independent directors</em>, <em>limited purpose</em> (chỉ holds pool + issue ABS). Không được engage trong activities khác.
-  </div>
-
-  <div class="rule-box" style="margin-top: 14px;">
-    <span class="tag">§ Rule 3 — Non-consolidation opinion</span>
-    Lawyers issue opinion rằng SPE sẽ <em>không bị consolidated</em> với originator trong bankruptcy proceedings. Investors trong ABS chỉ chịu credit risk của <em>pool</em>, không phải của originator.
-  </div>
-
-  <p class="fine-muted-sm">
-    § Hệ quả — Một AAA-rated ABS có thể được issued bởi originator BB-rated, vì rating dựa trên collateral pool + credit enhancement, không phải originator's balance sheet. Đây là magic của structured finance.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
-  </div>
-</section>
-
-
-<!-- 07 · ABS vs MBS -->
-<section data-label="ABS vs MBS" class="slide">
-  <div class="run-header">
-    <span>08.09 — Securitization</span>
-    <span class="rule"></span>
-    <span>07 / 29</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Asset class · taxonomy</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">ABS</em> vs <em class="hi">MBS</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Cả hai đều là <em>asset-backed</em>. Phân biệt theo collateral: MBS backed by <em>mortgages</em>, ABS backed bởi mọi thứ <em>khác</em>. Trong CFA curriculum, "ABS" thường ám chỉ non-mortgage ABS.
-    </p>
-  </div>
-
-  <div class="compare" style="margin-top: 14px;">
-    <div class="cc">
-      <div class="head"><em>MBS</em> — Mortgage-Backed</div>
-      <dl>
-        <dt>Collateral</dt>
-        <dd>Residential (RMBS) hoặc commercial (CMBS) <b>mortgages</b></dd>
-        <dt>Issuers</dt>
-        <dd>Agency: Ginnie Mae, Fannie Mae, Freddie Mac · Non-agency (private label)</dd>
-        <dt>Key risk</dt>
-        <dd><em>Prepayment risk</em> — borrower refinance khi rate giảm → early principal return</dd>
-        <dt>Size</dt>
-        <dd>Largest segment of US bond market — &gt;$11T outstanding</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head"><em>ABS</em> — Asset-Backed (non-mortgage)</div>
-      <dl>
-        <dt>Collateral</dt>
-        <dd>Auto loans · credit card · student loans · equipment lease · royalties</dd>
-        <dt>Issuers</dt>
-        <dd>Banks, finance companies, captives (Ford Motor Credit, GM Financial)</dd>
-        <dt>Key risk</dt>
-        <dd><em>Credit risk</em> dominates — prepayment ít quan trọng hơn (term ngắn 3-5 năm)</dd>
-        <dt>Size</dt>
-        <dd>Smaller than MBS — ~$1.5T outstanding · Auto + card chiếm phần lớn</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Tip CFA — Khi đề nói "ABS", thường ngụ ý <em>non-mortgage</em> (auto, card, student). MBS được tách riêng thành topic. Cả hai chia sẻ structure: SPE, tranching, credit enhancement, waterfall.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
-  </div>
-</section>
-
-
-<!-- 08 · COLLATERAL TYPES -->
-<section data-label="Collateral types" class="slide">
-  <div class="run-header">
-    <span>08.09 — Securitization</span>
-    <span class="rule"></span>
-    <span>08 / 29</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">ABS · collateral universe</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">4 main <em class="hi">ABS collaterals</em>.</h2>
-  </div>
-
-  <div class="tenets-grid" style="margin-top: 12px;">
-    <div class="tenet">
-      <span class="n">01</span>
-      <div>
-        <div class="t"><em class="hi">Auto loan ABS</em></div>
-        <div class="d">Pool of car loans (prime + subprime). <b>Amortizing</b> — principal trả dần. Term 3-5 năm. Prepayment thấp (penalties + xe có giá trị giảm). Credit risk visible — default rate biến động theo unemployment.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">02</span>
-      <div>
-        <div class="t"><em class="hi">Credit card ABS</em></div>
-        <div class="d"><b>Non-amortizing / revolving</b> — borrower có thể borrow lại sau khi pay. Có <em>lockout period</em> (interest only) rồi <em>amortization period</em>. Master trust structure cho phép multiple issuances từ cùng pool.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">03</span>
-      <div>
-        <div class="t"><em class="hi">Student loan ABS</em> (SLABS)</div>
-        <div class="d">Federal (FFELP, government-guaranteed) hoặc private. Long maturity (10-25 năm). Risk: deferment, forbearance, IBR. Prepayment thấp vì student không thường refinance.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">04</span>
-      <div>
-        <div class="t"><em class="hi">Equipment lease ABS</em></div>
-        <div class="d">Pool of leases trên trucks, aircraft, medical equipment, IT. Amortizing. Residual value risk — equipment có giá trị resale lúc lease end. Concentration risk nếu lessee tập trung industry.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">05</span>
-      <div>
-        <div class="t">Other niche ABS</div>
-        <div class="d">Solar loans, timeshare, franchise royalties, music catalog (Bowie bonds 1997), aircraft lease, container lease — bất cứ asset có cash flow predictable đều có thể securitize.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">06</span>
-      <div>
-        <div class="t">CLOs — Collateralized Loan Obligations</div>
-        <div class="d">Pool of <em>leveraged corporate loans</em> (broadly syndicated). $1T+ market. Actively managed by CLO manager (vs static ABS pool). Equity tranche owned by manager.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
-  </div>
-</section>
-
-
-<!-- 09 · TRANCHING OVERVIEW -->
-<section data-label="Tranching" class="slide">
-  <div class="run-header">
-    <span>08.09 — Securitization</span>
-    <span class="rule"></span>
-    <span>09 / 29</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Tranching · capital structure</div>
-    <h2 class="h-section" style="margin-bottom: 14px;">The <em class="hi">tranche</em> stack.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Pool cash flow được <em>chia tầng</em> theo seniority. Senior nhận trước (an toàn nhất), Equity nhận cuối (rủi ro nhất). <b>Subordination</b> = Mezz + Equity stand <em>between</em> losses và Senior.
-    </p>
-  </div>
-
-  <div class="waterfall">
-    <div class="tier senior">
-      <div class="role">Senior</div>
-      <div class="body">Top of capital stack. Nhận P+I <em>trước</em> các tranche khác. Rated <b>AAA / AA</b>. ~70-85% deal size. Loss absorbed only sau khi Equity + Mezz wiped out.</div>
-      <div class="meta">YIELD: LOW · RATING: AAA</div>
-    </div>
-    <div class="tier mezz">
-      <div class="role">Mezzanine</div>
-      <div class="body">Middle layers. Multiple sub-tranches (BBB, BB, B). Nhận sau Senior. Hấp thụ losses sau Equity. ~10-25% deal size. Yield premium đáng kể vs Senior.</div>
-      <div class="meta">YIELD: MID · RATING: BBB-B</div>
-    </div>
-    <div class="tier equity">
-      <div class="role">Equity / Residual</div>
-      <div class="body">Bottom — first-loss piece. Nhận cash flow <em>còn lại</em> sau khi tất cả tranche khác paid. Unrated. ~3-10% deal. High expected return nếu pool perform; wiped out đầu tiên khi defaults.</div>
-      <div class="meta">YIELD: HIGH · UNRATED</div>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Phép màu — Tranching biến một pool có credit BBB thành Senior tranche AAA. Có thể vì losses pool tập trung ở Equity + Mezz, để Senior <em>insulated</em>. Đây là core của credit enhancement nội bộ.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
-  </div>
-</section>
-
-
-<!-- 10 · TIME vs CREDIT TRANCHING -->
-<section data-label="Time vs Credit tranching" class="slide">
-  <div class="run-header">
-    <span>08.09 — Securitization</span>
-    <span class="rule"></span>
-    <span>10 / 29</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Tranching · two dimensions</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Time</em> vs <em class="hi">Credit</em> tranching.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Tranches có thể được tạo dọc theo 2 trục: <em>credit risk</em> (default loss priority) và <em>time</em> (prepayment / maturity profile). Một deal thường kết hợp cả hai.
-    </p>
-  </div>
-
-  <div class="compare" style="margin-top: 14px;">
-    <div class="cc">
-      <div class="head"><em>Credit</em> tranching</div>
-      <dl>
-        <dt>Mục đích</dt>
-        <dd>Phân bổ <em>credit losses</em> theo seniority — Senior protected, Equity absorbs</dd>
-        <dt>Cấu trúc</dt>
-        <dd>Senior → Mezzanine → Equity (waterfall theo loss)</dd>
-        <dt>Rating tác động</dt>
-        <dd>Tạo <b>multiple ratings</b> từ một pool — AAA, AA, BBB, NR</dd>
-        <dt>Use case</dt>
-        <dd>Mọi ABS / MBS — phổ biến nhất, tạo credit-enhanced senior</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head"><em>Time</em> tranching</div>
-      <dl>
-        <dt>Mục đích</dt>
-        <dd>Phân bổ <em>prepayment / maturity risk</em> — short tranche vs long tranche</dd>
-        <dt>Cấu trúc</dt>
-        <dd>Sequential-pay: Class A nhận principal trước, rồi B, rồi C (CMO PAC/companion)</dd>
-        <dt>Rating tác động</dt>
-        <dd>Tất cả classes có thể cùng rating — chỉ khác duration</dd>
-        <dt>Use case</dt>
-        <dd>RMBS / CMOs — match investor liability duration (insurer ngắn vs pension dài)</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Combined deal — RMBS điển hình có 5+ classes: Senior PAC (AAA, ngắn), Senior support (AAA, dài), Mezz AA, Mezz BBB, Equity. Time + credit tranching cùng lúc → maximum customization cho investors.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
-  </div>
-</section>
-
-
-<!-- 11 · CREDIT ENHANCEMENT — Internal vs External -->
-<section data-label="Credit enhancement" class="slide">
-  <div class="run-header">
-    <span>08.09 — Securitization</span>
-    <span class="rule"></span>
-    <span>11 / 29</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Credit enhancement</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Internal</em> vs <em class="hi">External</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Credit enhancement = mechanisms tăng credit quality của Senior tranche để đạt rating cao (thường AAA) từ pool có credit thấp hơn. Hai loại: <em>internal</em> (trong cấu trúc deal) và <em>external</em> (từ third party).
-    </p>
-  </div>
-
-  <div class="compare" style="margin-top: 14px;">
-    <div class="cc">
-      <div class="head"><em>Internal</em> enhancement</div>
-      <dl>
-        <dt>Subordination</dt>
-        <dd>Mezz + Equity tranche absorb losses trước Senior — basic mechanism</dd>
-        <dt>Over-collateralization</dt>
-        <dd>Pool value <b>&gt;</b> ABS issued (e.g., $110M loans backing $100M ABS)</dd>
-        <dt>Excess spread</dt>
-        <dd>Pool yield &gt; coupon paid trên ABS — surplus dùng để absorb losses</dd>
-        <dt>Reserve account</dt>
-        <dd>Cash hoặc liquid assets giữ lại trong trust để cover shortfalls</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head"><em>External</em> enhancement</div>
-      <dl>
-        <dt>Monoline insurance</dt>
-        <dd>Bond insurer (MBIA, Ambac) <em>guarantee</em> P+I của Senior tranche</dd>
-        <dt>Surety bond</dt>
-        <dd>Insurance company underwrite specific losses tranche</dd>
-        <dt>Letter of credit</dt>
-        <dd>Bank LOC backstop — pay if pool shortfall</dd>
-        <dt>Weakness</dt>
-        <dd><em>Counterparty risk</em> — nếu insurer downgrade (2008: monolines BB), enhancement mất giá. Wrong-way risk.</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Trend post-2008 — Internal enhancement dominate. External (monoline) gần như biến mất sau khi MBIA, Ambac mất AAA rating trong GFC. Investors prefer self-contained structure.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
-  </div>
-</section>
-
-
-<!-- 12 · INTERNAL ENHANCEMENT DEEP DIVE -->
-<section data-label="Internal enhancement detail" class="slide">
-  <div class="run-header">
-    <span>08.09 — Securitization</span>
-    <span class="rule"></span>
-    <span>12 / 29</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Internal · deep dive</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">4 <em class="hi">internal</em> mechanisms.</h2>
-  </div>
-
-  <div class="tenets-grid" style="margin-top: 12px;">
-    <div class="tenet">
-      <span class="n">01</span>
-      <div>
-        <div class="t"><em class="hi">Subordination</em> (credit tranching)</div>
-        <div class="d">Junior tranches absorb losses trước. Vd: pool $100M, deal có $80M Senior + $15M Mezz + $5M Equity. First $5M loss → Equity wiped. Next $15M → Mezz. Senior chỉ chịu loss khi pool mất &gt;$20M (20% loss).</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">02</span>
-      <div>
-        <div class="t"><em class="hi">Over-collateralization</em> (OC)</div>
-        <div class="d">Pool collateral &gt; ABS face value. Vd: $110M loans backing $100M ABS — extra $10M là first-loss buffer trước khi tranche nào bị hit. OC ratio = (Pool − ABS) / ABS.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">03</span>
-      <div>
-        <div class="t"><em class="hi">Excess spread</em></div>
-        <div class="d">Pool weighted yield (vd 7%) − ABS weighted coupon (5%) − servicing fee (0.5%) = 1.5% excess. Spread này dùng để cover defaults trước khi đụng OC. <em>First line of defense</em>.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">04</span>
-      <div>
-        <div class="t"><em class="hi">Reserve account</em></div>
-        <div class="d">Cash reserve fund kept trong SPE trust. Cash reserve (initial deposit) hoặc spread account (built up từ excess spread). Tap khi pool shortfall, refill từ excess spread sau đó.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="rule-box" style="margin-top: 14px;">
-    <span class="tag">§ Loss absorption order — defense in depth</span>
-    Excess spread (in-period) → Reserve account → Over-collateralization → Subordination (Equity → Mezz) → Senior. Senior chỉ bị hit khi <em>tất cả</em> các layer dưới wiped out. Đây là cách deal Senior đạt AAA từ pool BBB.
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
-  </div>
-</section>
-
-
-<!-- 13 · WATERFALL -->
-<section data-label="Cash flow waterfall" class="slide">
-  <div class="run-header">
-    <span>08.09 — Securitization</span>
-    <span class="rule"></span>
-    <span>13 / 29</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Cash flow · waterfall</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">payment waterfall</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Mỗi period (thường monthly), cash từ pool được phân bổ theo thứ tự strict — interest waterfall và principal waterfall, mỗi cái có priority riêng. Trustee enforce.
-    </p>
-  </div>
-
-  <div class="rule-box">
-    <span class="tag">§ Interest waterfall — every payment date</span>
-    1) Trustee + servicer fees · 2) Senior tranche interest · 3) Mezzanine interest (theo seniority) · 4) Reserve account top-up nếu shortfall · 5) Excess spread → Equity tranche
-  </div>
-
-  <div class="rule-box" style="margin-top: 14px;">
-    <span class="tag">§ Principal waterfall — sequential pay</span>
-    1) Senior principal đầy đủ trước · 2) Sau Senior fully retired, Mezz nhận principal · 3) Sau cùng, Equity nhận residual. <em>Sequential</em>: A class trả hết rồi mới đến B class. Variant khác: <em>pro-rata</em> (chia tỉ lệ) hoặc PAC schedule.
-  </div>
-
-  <div class="rule-box" style="margin-top: 14px;">
-    <span class="tag">§ Triggers — protective mechanisms</span>
-    Performance triggers (delinquency rate &gt; threshold, OC test fails) sẽ <em>redirect cash</em>: ngừng pay Equity, tăng tốc paydown Senior. Ví dụ: nếu cumulative loss &gt; 5%, all excess spread chuyển từ Equity sang Senior principal. Bảo vệ Senior khi pool deteriorate.
-  </div>
-
-  <p class="fine-muted-sm">
-    § Câu hỏi CFA điển hình — Cho 1 pool có loss rate X%, cash flow Y, hỏi tranche nào nhận gì. Nhớ: <em>Interest sequential top-down, principal sequential, equity nhận residual (= zero in stressed scenarios)</em>.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
-  </div>
-</section>
-
-
-<!-- 14 · CDOs -->
-<section data-label="CDOs" class="slide">
-  <div class="run-header">
-    <span>08.09 — Securitization</span>
-    <span class="rule"></span>
-    <span>14 / 29</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">CDOs · structured credit</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">CDO</em> family.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Collateralized Debt Obligation — pool và tranche <em>debt instruments</em> (corporate bonds, loans, ABS, MBS) thay vì consumer loans. CDO managed actively bởi <em>CDO manager</em>, có thể trade collateral.
-    </p>
-  </div>
-
-  <div class="tenets-grid" style="margin-top: 12px;">
-    <div class="tenet">
-      <span class="n">CB</span>
-      <div>
-        <div class="t"><em class="hi">Cash CDO</em></div>
-        <div class="d">Pool of <em>actual debt instruments</em> — corporate bonds (CBO), leveraged loans (CLO), ABS/MBS (ABS CDO). Cash flow từ underlying coupons + principal. Same waterfall, tranching, enhancement như ABS.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">SY</span>
-      <div>
-        <div class="t"><em class="hi">Synthetic CDO</em></div>
-        <div class="d">Không own debt — thay vào đó <em>sell credit protection</em> via CDS trên reference debts. Investor effectively nhận CDS premium, lose nếu reference defaults. Highly leveraged, no cash funding required.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">SQ</span>
-      <div>
-        <div class="t"><em class="hi">CDO-squared</em> (CDO²)</div>
-        <div class="d">CDO mà collateral là <em>tranches của other CDOs</em> (esp. ABS CDOs). Layer thêm tranching → Senior CDO² rated AAA dù underlying là BBB ABS tranches. Nguồn gốc systemic risk 2008.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">CL</span>
-      <div>
-        <div class="t">CLO — Collateralized Loan Obligation</div>
-        <div class="d">Loại cash CDO phổ biến nhất hiện nay. Pool of senior secured leveraged loans. $1T+ market post-2010. Active manager rebalance pool trong reinvestment period (5 years).</div>
-      </div>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Phân biệt — ABS pool là consumer/retail loans (granular, thousands). CDO pool là wholesale debt (chunky, dozens). Cả hai dùng SPE, tranching, waterfall — chỉ khác collateral.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
-  </div>
-</section>
-
-
-<!-- 15 · 2008 GFC LESSONS -->
-<section data-label="2008 GFC lessons" class="slide">
-  <div class="run-header">
-    <span>08.09 — Securitization</span>
-    <span class="rule"></span>
-    <span>15 / 29</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">2008 · lessons learned</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">When <em class="hi">AAA</em> meant nothing.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Subprime mortgage securitization sụp đổ 2007-2009 — bài học cho mọi structured finance investor và cho CFA candidates về <em>limits</em> của tranching và rating.
-    </p>
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 14px;">
+  <ol class="num-list tight" style="margin-top: 18px;">
     <li>
       <span>
-        <span class="step-title">Originate-to-distribute moral hazard</span>
-        <span class="step-body">Originators (Countrywide, New Century) không giữ skin in the game — bán toàn bộ cho SPE. Underwriting standards collapse: NINJA loans (no income, no job, no asset). Rủi ro pass-through cho ABS investors.</span>
+        <span class="step-title">Implication 1 — Arbitrage-free trong perfect market</span>
+        <span class="step-body">Investor thờ ơ giữa đầu tư dài hạn hay rolling ngắn hạn. Lý do: expected return của cả hai chiến lược đều bằng nhau. Không có systematic preference cho kỳ hạn nào.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Rating agency conflict of interest</span>
-        <span class="step-body">S&amp;P, Moody's paid by issuers ("issuer-pays" model) → incentive AAA rate rộng rãi. Models giả định historical default rates trong benign environment, không stress-test crisis scenarios. CDO² rated AAA dù underlying là BBB subprime tranches.</span>
+        <span class="step-title">Implication 2 — Shape of yield curve = market forecast</span>
+        <span class="step-body">Normal upward curve → thị trường expect rates tăng. Inverted curve → expect rates giảm. Flat curve → expect rates ổn định. Theory biến yield curve thành "economic forecast tool".</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Correlation risk underestimated</span>
-        <span class="step-body">Tranching giả định defaults <em>diversified</em> across pool. Nhưng khi housing nationwide crashed 2007, defaults <em>highly correlated</em> — pool-wide losses overwhelmed enhancement layers. Mezz tranches AAA mất hơn 90% value.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Liquidity evaporated</span>
-        <span class="step-body">ABS market depend trên dealer balance sheet + repo funding. Khi crisis hit, dealers withdrew, prices collapsed, mark-to-market triggers force-sells. Self-reinforcing downward spiral.</span>
+        <span class="step-title">Weakness — Không giải thích được term premium</span>
+        <span class="step-body">Empirically, normal curve phổ biến hơn mức kỳ vọng của rates tăng. Điều này gợi ý có <em>term premium</em> (compensation cho risk khi hold dài hạn) — không được giải thích bởi Pure Expectations. Liquidity Preference Theory bổ sung điểm này.</span>
       </span>
     </li>
   </ol>
 
-  <div class="rule-box" style="margin-top: 14px;">
-    <span class="tag">§ Investor takeaway — due diligence rules</span>
-    Don't outsource credit analysis to rating agencies. <em>Look through to collateral</em>: underwriting standards, geographic concentration, vintage. Stress-test correlation assumptions. Understand waterfall &amp; triggers. Rating là <em>opinion</em>, không phải guarantee.
-  </div>
-
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
   </div>
 </section>
 
 
-<!-- 16 · TAKEAWAYS -->
+<!-- 12 · LIQUIDITY PREFERENCE THEORY -->
+<section data-label="Liquidity preference theory" class="slide">
+  <div class="run-header">
+    <span>08.09 — Term Structure of Interest Rates</span>
+    <span class="rule"></span>
+    <span>12 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Term structure theories · 2/4</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Liquidity Preference Theory</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Đề xuất bởi John Hicks (1946). Bổ sung risk premium vào Pure Expectations — giải thích tại sao curve thường dốc lên ngay cả khi rates không được kỳ vọng tăng.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Core argument</em></div>
+      <dl>
+        <dt>Term premium</dt>
+        <dd>Investors prefer <em>liquidity</em> — thích bonds ngắn hạn vì dễ sell, ít price risk. Để hold bonds dài hạn, investors cần được bù đắp bằng <em>liquidity premium (term premium)</em> cao hơn expected future rates.</dd>
+        <dt>Forward rate decomposition</dt>
+        <dd>Forward rate = Expected future spot rate + <em>Liquidity premium</em>. Premium tăng theo kỳ hạn → curve có xu hướng dốc lên ngay cả khi market expects rates stable.</dd>
+        <dt>Normal upward slope</dt>
+        <dd>Normal upward-sloping curve không nhất thiết có nghĩa là rates sẽ tăng — có thể chỉ phản ánh liquidity premium tự nhiên. Điều này khắc phục weakness của Pure Expectations.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Implications &amp; evidence</em></div>
+      <dl>
+        <dt>Curve biased upward</dt>
+        <dd>Yield curve theo lý thuyết này có <em>upward bias</em> — nếu expect rates stable, curve vẫn dốc lên một chút do premium. Investor cần ít nhất bằng short-term rolling returns khi hold long bonds.</dd>
+        <dt>Issuers prefer short term</dt>
+        <dd>Issuer (borrower) thích vay dài hạn để lock in rates. Investor thích short. Hai preference trái chiều → cần premium để khuyến khích investors lock dài hạn.</dd>
+        <dt>Empirical support</dt>
+        <dd>Nghiên cứu thực nghiệm (Fama-Bliss, Campbell-Shiller) cho thấy forward rates dự báo future spot rates một phần nhưng có systematic over-estimation → consistent với liquidity premium.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
+  </div>
+</section>
+
+
+<!-- 13 · SEGMENTED MARKETS THEORY -->
+<section data-label="Segmented markets theory" class="slide">
+  <div class="run-header">
+    <span>08.09 — Term Structure of Interest Rates</span>
+    <span class="rule"></span>
+    <span>13 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Term structure theories · 3/4</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Segmented Markets Theory</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Đề xuất cực đoan nhất trong bốn lý thuyết — cho rằng thị trường bond ở các kỳ hạn khác nhau là <em>hoàn toàn riêng biệt</em>, không liên thông.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Core claim</span>
+    Mỗi maturity segment (short, medium, long) có supply-demand riêng biệt, được quyết định bởi đặc thù của từng loại investor và issuer trong segment đó. Không có substitution giữa các segments — investors không chuyển dịch từ segment này sang segment khác dù lãi suất khác nhau nhiều.
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">SHT</span>
+      <div>
+        <div class="t">Short-term segment</div>
+        <div class="d">Demand từ: money market funds, corporate treasurers (working capital), banks (liquidity management). Supply từ: T-bills, commercial paper, CDs. Rates xác định bởi short-term supply-demand riêng, không liên quan đến long-term.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">LNG</span>
+      <div>
+        <div class="t">Long-term segment</div>
+        <div class="d">Demand từ: pension funds, insurance companies (liability matching), endowments. Supply từ: long-term corporate bonds, sovereign bonds 10-30Y, infrastructure. Rates xác định bởi long-term supply-demand.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">IMPL</span>
+      <div>
+        <div class="t">Implication — shape driven by segments</div>
+        <div class="d">Curve shape phụ thuộc balance supply-demand của từng segment. Nếu demand cho long bonds cao (pension đang mua nhiều) → long rates thấp → inverted curve. Không cần có gì xảy ra với short rates. Mỗi segment độc lập.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CRIT</span>
+      <div>
+        <div class="t">Criticism — too extreme</dt>
+        <div class="d">Thực tế, investors <em>đôi khi</em> chuyển dịch giữa segments nếu lãi suất chênh lệch đủ lớn. Hedge funds, asset managers không bị ràng buộc cứng nhắc vào một segment. Preferred Habitat Theory giải quyết điểm này.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
+  </div>
+</section>
+
+
+<!-- 14 · PREFERRED HABITAT THEORY -->
+<section data-label="Preferred habitat theory" class="slide">
+  <div class="run-header">
+    <span>08.09 — Term Structure of Interest Rates</span>
+    <span class="rule"></span>
+    <span>14 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Term structure theories · 4/4</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Preferred Habitat Theory</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Đề xuất bởi Modigliani &amp; Sutch (1966). Compromise giữa Segmented Markets (cứng nhắc) và Pure Expectations (hoàn toàn linh hoạt). Được coi là lý thuyết <em>thực tế nhất</em> trong 4 lý thuyết.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Core argument</em></div>
+      <dl>
+        <dt>Preferred habitat</dt>
+        <dd>Investors có <em>preferred maturity segment</em> (habitat) — thích một kỳ hạn nhất định phù hợp với liability duration, investment mandate, hoặc risk preference. Ví dụ: pension fund thích 20-30Y bonds để match liabilities.</dd>
+        <dt>Willingness to switch</dt>
+        <dd>Khác với Segmented Markets, investors <em>sẵn sàng chuyển sang kỳ hạn khác</em> nếu có đủ incentive (premium). Premium phải đủ lớn để bù đắp discomfort khi rời habitat ưa thích.</dd>
+        <dt>Asymmetric premium</dt>
+        <dd>Premium không nhất thiết tăng đều theo kỳ hạn (như Liquidity Preference). Premium cao nhất ở những segment mà supply-demand mất cân bằng nhất.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Implications</em></div>
+      <dl>
+        <dt>Humped curve explained</dt>
+        <dd>Lý thuyết giải thích tại sao curve có thể <em>humped</em> — segment trung hạn có thể yêu cầu premium cao nhất nếu supply nhiều nhưng demand từ "natural buyers" ít hơn.</dd>
+        <dt>Central bank operations</dt>
+        <dd>QE (Quantitative Easing) hoạt động qua preferred habitat channel — Fed mua long bonds → giảm supply → làm giảm long yields → investors shift to riskier/shorter assets. "Portfolio balance channel" là preferred habitat mechanism.</dd>
+        <dt>Best supported by data</dt>
+        <dd>Cả term premium lẫn expected rates đều quan trọng. Empirical evidence: long rates contain both expected path + premium, consistent với preferred habitat.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
+  </div>
+</section>
+
+
+<!-- 15 · FOUR THEORIES COMPARISON -->
+<section data-label="Theories comparison" class="slide">
+  <div class="run-header">
+    <span>08.09 — Term Structure of Interest Rates</span>
+    <span class="rule"></span>
+    <span>15 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Term structure theories · recap</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">So sánh <em class="hi">4 lý thuyết</em> — bảng tóm tắt.</h2>
+  </div>
+
+  <table class="boot-table">
+    <thead>
+      <tr>
+        <th>Lý thuyết</th>
+        <th>Forward rate =</th>
+        <th>Investor switch?</th>
+        <th>Normal upward curve vì...</th>
+        <th>Weakness</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Pure Expectations</strong></td>
+        <td class="hi-cell">Expected future spot rate</td>
+        <td>Hoàn toàn tự do</td>
+        <td>Kỳ vọng rates tăng</td>
+        <td>Không giải thích được term premium</td>
+      </tr>
+      <tr>
+        <td><strong>Liquidity Preference</strong></td>
+        <td class="hi-cell">Expected spot + Liquidity premium</td>
+        <td>Tự do, nhưng cần premium</td>
+        <td>Premium cho kỳ hạn dài</td>
+        <td>Premium giả sử luôn tăng theo maturity</td>
+      </tr>
+      <tr>
+        <td><strong>Segmented Markets</strong></td>
+        <td>Không liên quan</td>
+        <td>Không switch</td>
+        <td>Supply-demand từng segment</td>
+        <td>Quá cứng nhắc, không giải thích được cross-segment arbitrage</td>
+      </tr>
+      <tr>
+        <td><strong>Preferred Habitat</strong></td>
+        <td class="hi-cell">Expected spot + Segment premium</td>
+        <td>Switch nếu premium đủ lớn</td>
+        <td>Combination of expectations + premium</td>
+        <td>Khó đo lường premium chính xác</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="fine-muted-sm">
+    § CFA exam thường hỏi phân biệt 4 lý thuyết qua câu hỏi: "Lý thuyết nào cho rằng investor sẵn sàng rời preferred maturity với sufficient incentive?" → Preferred Habitat. "Lý thuyết nào cho rằng forward rate = unbiased expectation?" → Pure Expectations.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
+  </div>
+</section>
+
+
+<!-- 16 · INVESTMENT IMPLICATIONS -->
+<section data-label="Investment implications" class="slide">
+  <div class="run-header">
+    <span>08.09 — Term Structure of Interest Rates</span>
+    <span class="rule"></span>
+    <span>16 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Applications · portfolio management</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Ứng dụng</em> — forecasting &amp; strategy.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Term structure không chỉ là lý thuyết hàn lâm — nó drive nhiều quyết định đầu tư thực tế, từ portfolio duration đến relative value trades.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">DUR</span>
+      <div>
+        <div class="t">Duration positioning theo curve shape</div>
+        <div class="d"><b>Normal curve + expect flattening:</b> long duration — benefiting từ giá bond dài hạn tăng khi spread thu hẹp. <b>Inverted curve + expect steepening:</b> short duration — avoid loss khi short rates giảm mạnh. Duration positioning là core tool của fixed income PMs.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">ROLL</span>
+      <div>
+        <div class="t">Roll-down return (riding the curve)</div>
+        <div class="d">Nếu curve dốc lên và không thay đổi, bond với kỳ hạn còn lại ngắn đi → yield giảm → giá tăng. PM "ride the curve" bằng cách mua bond ở kỳ hạn dốc nhất, hold đến khi maturity ngắn lại, capture price gain. Chiến lược phổ biến khi curve stable.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">BULL</span>
+      <div>
+        <div class="t">Bull steepener vs Bear flattener</div>
+        <div class="d"><b>Bull steepener:</b> short rates giảm mạnh hơn long rates → curve dốc lên (thường khi CB cắt rates). <b>Bear flattener:</b> short rates tăng mạnh hơn long rates → curve phẳng (thường khi CB tăng rates). PM dùng curve trades (long short vs long long) để exploit expectations.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">FCST</span>
+      <div>
+        <div class="t">Forecasting từ yield curve</div>
+        <div class="d">Yield curve là <em>leading economic indicator</em> quan trọng nhất. <b>Inversion:</b> historically precedes recession (lag 6-24 months). <b>Steepening:</b> precedes economic expansion. NY Fed recession probability model dùng 3M-10Y spread. Cũng dùng để forecast CB policy (Fed funds futures).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
+  </div>
+</section>
+
+
+<!-- 17 · VIETNAM YIELD CURVE CONTEXT -->
+<section data-label="Vietnam yield curve" class="slide">
+  <div class="run-header">
+    <span>08.09 — Term Structure of Interest Rates</span>
+    <span class="rule"></span>
+    <span>17 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Vietnam context · VGB term structure</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Đường cong lãi suất <em class="hi">Việt Nam</em> — VGB &amp; SBV.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Việt Nam có thị trường trái phiếu chính phủ (VGB — Vietnam Government Bond) đang phát triển nhanh. Hiểu term structure VN giúp liên hệ lý thuyết vào thực tế thị trường local.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Cấu trúc thị trường VGB</em></div>
+      <dl>
+        <dt>Issuer &amp; manager</dt>
+        <dd>Bộ Tài chính (MoF) phát hành VGB. State Treasury Vietnam (Kho bạc Nhà nước) quản lý. Đấu thầu qua HNX (Hanoi Stock Exchange).</dd>
+        <dt>Maturities</dt>
+        <dd>VGB có kỳ hạn 2, 3, 5, 7, 10, 15, 20, 30 năm. Benchmark thường là 5Y và 10Y. Thị trường đang phát triển phần kỳ hạn dài (15-30Y) để phục vụ pension, insurance.</dd>
+        <dt>SBV policy rate</dt>
+        <dd>Ngân hàng Nhà nước (SBV — State Bank of Vietnam) điều hành lãi suất chính sách (refinancing rate, OMO rate). SBV rate ảnh hưởng trực tiếp đến đầu ngắn của yield curve VGB.</dd>
+        <dt>Typical shape</dt>
+        <dd>VGB curve thường upward sloping — normal shape phù hợp với emerging market có growth premium. Spread 1Y→10Y thường 100-200 bps trong giai đoạn bình thường.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Đặc thù &amp; risks</em></div>
+      <dl>
+        <dt>Liquidity</dt>
+        <dd>Liquidity VGB thấp hơn UST nhiều — bid-ask spread rộng, đặc biệt cho off-the-run và kỳ hạn dài. Benchmark bonds (5Y, 10Y) liquid hơn off-benchmark.</dd>
+        <dt>Primary buyers</dt>
+        <dd>Banks (BIDV, Vietcombank) là primary buyers lớn nhất — hold đến maturity để match deposit liabilities. Insurance companies, pension (BHXH) buy long end. Foreign investors có giới hạn (30% room).</dd>
+        <dt>FX risk</dt>
+        <dd>Foreign investors chịu thêm USD/VND FX risk. VND thường depreciate từ từ → forward rate VND cao hơn spot (interest rate parity). Ảnh hưởng cost of hedging cho foreign holders.</dd>
+        <dt>SBV vs term structure</dt>
+        <dd>Khi SBV cắt lãi suất chính sách (như 2023), short end giảm mạnh → curve steepen. Khi inflation tăng → SBV hikes → short end tăng → curve flatten hoặc invert. Dynamics tương tự các EM khác.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
+  </div>
+</section>
+
+
+<!-- 18 · TAKEAWAYS -->
 <section data-label="Takeaways" class="slide">
   <div class="run-header">
-    <span>08.09 — Securitization</span>
+    <span>08.09 — Term Structure of Interest Rates</span>
     <span class="rule"></span>
-    <span>16 / 29</span>
+    <span>18 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Recap · big picture</div>
     <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
   </div>
 
-  <div class="tenets-grid" style="margin-top: 14px;">
+  <div class="tenets-grid" style="margin-top: 16px;">
     <div class="tenet">
       <span class="n">α</span>
       <div>
-        <div class="t">Pool · SPE · ABS — three steps</div>
-        <div class="d">Originator pool loans → bán cho SPE (bankruptcy-remote) → SPE issue ABS. Investors chịu credit risk của <em>pool</em>, không phải originator. True sale + non-consolidation opinion là legal foundation.</div>
+        <div class="t">Ba đường cong cốt lõi</div>
+        <div class="d"><b>Spot curve</b>: zero rates, extracted by bootstrapping. <b>Forward curve</b>: implied future rates, (1+Sₙ)ⁿ = (1+Sₘ)ᵐ × (1+f)ⁿ⁻ᵐ. <b>Par curve</b>: coupon-at-par rates = YTM của on-the-run bonds. Khi curve dốc lên: Par &lt; Spot &lt; Forward (PSF going up).</div>
       </div>
     </div>
     <div class="tenet">
       <span class="n">β</span>
       <div>
-        <div class="t">Tranching = senior protected, equity first-loss</div>
-        <div class="d">Senior (~80%, AAA) → Mezz (BBB-B) → Equity (first-loss, unrated). Subordination biến pool BBB thành Senior AAA. Time tranching tách prepayment risk; credit tranching tách default risk.</div>
+        <div class="t">Bootstrapping &amp; forward calculation</div>
+        <div class="d">Bootstrapping: dùng coupon bond prices + known spot rates → giải tuần tự từng spot rate. Forward rate: ₂f₁ = [(1+S₃)³/(1+S₂)²] − 1. Với S₂=4%, S₃=4.5% → ₂f₁ ≈ 5.51%. Forward rate luôn cao hơn Spot khi curve dốc lên.</div>
       </div>
     </div>
     <div class="tenet">
       <span class="n">γ</span>
       <div>
-        <div class="t">Enhancement: internal beats external</div>
-        <div class="d">Internal: subordination + OC + excess spread + reserve. External: monoline + LOC (counterparty risk). Loss absorption: spread → reserve → OC → sub → senior.</div>
+        <div class="t">4 lý thuyết term structure</div>
+        <div class="d"><b>Pure Expectations</b>: forward = unbiased expected spot. <b>Liquidity Preference</b>: forward = expected spot + term premium. <b>Segmented Markets</b>: no substitution between segments. <b>Preferred Habitat</b>: có preferences nhưng switch nếu premium đủ lớn — thực tế nhất.</div>
       </div>
     </div>
     <div class="tenet">
       <span class="n">δ</span>
       <div>
-        <div class="t">CDO ≠ ABS — and 2008 lessons</div>
-        <div class="d">ABS = retail loans pool · CDO = wholesale debt pool · Synthetic = CDS-based · CDO² = tranches của tranches. 2008: rating agency conflicts + correlation underestimation + liquidity collapse. Always do collateral due diligence.</div>
+        <div class="t">Yield curve shapes &amp; implications</div>
+        <div class="d">Normal → expansion/rates expected to rise. Flat → transition. Inverted → recession signal (strongest predictor). Humped → rates rise then fall (Preferred Habitat). Riding the curve (roll-down) &amp; duration positioning là core strategies dựa trên term structure.</div>
       </div>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
   </div>
 </section>
 
 
-<!-- 17 · TRANSITION -->
+<!-- 19 · TRANSITION TO PRACTICE -->
 <section data-label="Practice begins" class="slide end-slide">
   <div>
     <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
@@ -858,77 +903,75 @@
 </section>
 
 
-<!-- 18 · Q1 EN — Bankruptcy remoteness -->
+<!-- 20 · Q1 EN — Forward rate calculation -->
 <section data-label="Q1 Original" class="slide">
   <div class="run-header">
-    <span>08.09 — Securitization</span>
+    <span>08.09 — Term Structure of Interest Rates</span>
     <span class="rule"></span>
-    <span>18 / 29</span>
+    <span>20 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">SPE</em> &amp; bankruptcy.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Forward rate</em> calculation.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Acme Auto Finance, a BB-rated finance company, securitizes a $500M pool of prime auto loans through a special purpose entity (SPE). The senior tranche of the resulting ABS receives an <strong>AAA rating</strong> from a major rating agency. Three months after issuance, Acme Auto Finance files for Chapter 11 bankruptcy. Which statement <strong>most accurately</strong> describes the impact on holders of the AAA senior ABS tranche?
+      An analyst observes the following annual spot rates derived from the government bond market: the 2-year spot rate (S₂) is 4.00% and the 3-year spot rate (S₃) is 4.50%. The analyst wants to calculate the <strong>1-year forward rate two years from now</strong> (denoted ₂f₁) implied by the current spot curve. Which of the following is <em>closest</em> to the correct answer?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">The senior tranche is downgraded to BB along with Acme; ABS holders become unsecured creditors of Acme in bankruptcy proceedings.</span></li>
-    <li><span class="lbl">B</span><span class="opt">The senior tranche rating is unaffected by Acme's bankruptcy because the SPE is a separate legal entity; cash flows continue from the auto loan pool to ABS holders.</span></li>
-    <li><span class="lbl">C</span><span class="opt">All ABS payments halt during bankruptcy proceedings; ABS holders must wait for court approval before receiving any further distributions.</span></li>
+    <li><span class="lbl">A</span><span class="opt">₂f₁ ≈ 4.25% — the simple average of the 2-year and 3-year spot rates.</span></li>
+    <li><span class="lbl">B</span><span class="opt">₂f₁ ≈ 5.51% — derived from the no-arbitrage condition (1+S₃)³ = (1+S₂)² × (1+₂f₁).</span></li>
+    <li><span class="lbl">C</span><span class="opt">₂f₁ ≈ 5.00% — equal to the difference between S₃ and S₂ multiplied by 3.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
   </div>
 </section>
 
 
-<!-- 19 · Q1 HINT -->
+<!-- 21 · Q1 HINT -->
 <section data-label="Q1 Hint" class="slide">
   <div class="run-header">
-    <span>08.09 — Securitization</span>
+    <span>08.09 — Term Structure of Interest Rates</span>
     <span class="rule"></span>
-    <span>19 / 29</span>
+    <span>21 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">formula</em>.</h2>
   </div>
   <div class="hint-card">
-    <span class="h-tag">§ Keywords</span>
-    Originator <mark>BB-rated</mark>, ABS senior <mark>AAA</mark>, qua <mark>SPE</mark>. Originator <mark>Chapter 11</mark>. Hỏi impact lên ABS investors.
+    <span class="h-tag">§ Key formula</span>
+    Forward rate không phải average — phải dùng <mark>no-arbitrage condition</mark>: (1 + S₃)³ = (1 + S₂)² × (1 + ₂f₁).
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">Tại sao senior AAA dù originator BB? Vì <em>true sale</em> + bankruptcy-remote SPE — pool tách khỏi originator's balance sheet.</span>
+      <span class="htxt">Tính (1+S₃)³ = (1.045)³ = 1.14117. Tính (1+S₂)² = (1.04)² = 1.08160.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Tài sản trong SPE <em>không thuộc</em> Acme bankruptcy estate. Acme creditors không thể claim chúng. ABS holders chỉ exposure đến credit của <em>auto loan pool</em>.</span>
+      <span class="htxt">Giải: (1+₂f₁) = 1.14117 / 1.08160 = 1.05507 → ₂f₁ = 5.507% ≈ <em>5.51%</em>. Forward rate cao hơn cả S₂ (4%) và S₃ (4.5%) vì curve dốc lên.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Servicer có thể là Acme — nhưng servicing function có thể chuyển sang back-up servicer. Cash flow từ borrowers → trustee → ABS holders, độc lập với Acme.</span>
+      <span class="htxt">Loại A: average là sai phương pháp — không dùng trong fixed income. Loại C: nhân difference × 3 cũng sai hoàn toàn — không có basis toán học.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
   </div>
 </section>
 
 
-<!-- 20 · Q1 Dịch đề -->
+<!-- 22 · Q1 Dịch đề -->
 <section data-label="Q1 Dịch đề" class="slide">
   <div class="run-header">
-    <span>08.09 — Securitization</span>
+    <span>08.09 — Term Structure of Interest Rates</span>
     <span class="rule"></span>
-    <span>20 / 29</span>
+    <span>22 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
@@ -937,128 +980,124 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Acme Auto Finance, một finance company rating <strong>BB</strong>, securitize pool $500M auto loans prime qua một special purpose entity (SPE). Senior tranche của ABS này nhận rating <strong>AAA</strong> từ rating agency lớn. Ba tháng sau issuance, Acme Auto Finance nộp đơn phá sản Chapter 11. Nhận định nào <strong>chính xác nhất</strong> về impact lên holders của AAA senior ABS tranche?
+      Một analyst quan sát các spot rates hằng năm trích xuất từ thị trường trái phiếu chính phủ: spot rate 2 năm (S₂) = 4.00% và spot rate 3 năm (S₃) = 4.50%. Analyst muốn tính <strong>1-year forward rate bắt đầu từ 2 năm nữa</strong> (ký hiệu ₂f₁) được implied bởi spot curve hiện tại. Đáp án nào <em>gần đúng nhất</em>?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Senior tranche bị downgrade về BB cùng Acme; ABS holders trở thành unsecured creditors của Acme trong bankruptcy proceedings.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Rating senior tranche không ảnh hưởng bởi bankruptcy của Acme vì SPE là pháp nhân riêng biệt; cash flow tiếp tục chảy từ auto loan pool đến ABS holders.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Tất cả ABS payments tạm dừng trong bankruptcy proceedings; ABS holders phải chờ court approval trước khi nhận distributions tiếp theo.</span></li>
+    <li><span class="lbl">A</span><span class="opt">₂f₁ ≈ 4.25% — trung bình cộng của spot rate 2 năm và 3 năm.</span></li>
+    <li><span class="lbl">B</span><span class="opt">₂f₁ ≈ 5.51% — suy ra từ no-arbitrage condition (1+S₃)³ = (1+S₂)² × (1+₂f₁).</span></li>
+    <li><span class="lbl">C</span><span class="opt">₂f₁ ≈ 5.00% — bằng hiệu S₃ trừ S₂ nhân với 3.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
   </div>
 </section>
 
 
-<!-- 21 · Q1 EXPLANATION -->
+<!-- 23 · Q1 EXPLANATION -->
 <section data-label="Q1 Explanation" class="slide">
   <div class="run-header">
-    <span>08.09 — Securitization</span>
+    <span>08.09 — Term Structure of Interest Rates</span>
     <span class="rule"></span>
-    <span>21 / 29</span>
+    <span>23 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — SPE bankruptcy-remote.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — ₂f₁ ≈ 5.51%.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">Đây chính là <em>raison d'être</em> của SPE structure. <b>True sale</b> + <b>non-consolidation opinion</b> đảm bảo auto loans pool đã được transfer hoàn toàn từ Acme sang SPE — assets không còn trên balance sheet của Acme, không thuộc bankruptcy estate. ABS holders tiếp tục nhận P+I từ borrowers paying through trustee. Senior rating dựa trên pool credit + enhancement, không phải Acme — bankruptcy của Acme <em>không trigger</em> downgrade tự động.</div>
+      <div class="rtext"><b>No-arbitrage forward rate:</b> (1+S₃)³ = (1+S₂)² × (1+₂f₁). Thay số: (1.045)³ = (1.04)² × (1+₂f₁) → 1.14117 = 1.08160 × (1+₂f₁) → (1+₂f₁) = 1.05507 → <em>₂f₁ = 5.507% ≈ 5.51%</em>. Logic: đầu tư 3 năm theo S₃ phải cho cùng kết quả với đầu tư 2 năm theo S₂ rồi roll 1 năm theo ₂f₁ — nếu không có arbitrage.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Đây chính là điều SPE thiết kế để <em>tránh</em>. Nếu ABS holders trở thành unsecured creditors của Acme, securitization sẽ không có lý do tồn tại — investors sẽ chỉ mua corporate bond của Acme với rating BB. Bankruptcy remoteness phá vỡ link giữa originator credit và ABS credit.</div>
+      <div class="rtext">Simple average (4.00+4.50)/2 = 4.25% là cách tính sai hoàn toàn. Forward rate phải tính bằng compounding, không bằng arithmetic average. Average không thỏa mãn no-arbitrage condition — dùng average sẽ tạo ra free lunch (arbitrage opportunity).</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">Sai vì cash flows trong SPE độc lập với Acme. Nếu servicer là Acme và Acme phá sản, deal có <em>back-up servicer</em> được chỉ định trong indenture — servicing chuyển sang ngay, không ngắt cash flow. Chỉ có thể có short delay nếu transfer chưa smooth.</div>
+      <div class="rtext">(4.5% − 4.0%) × 3 = 1.5% + 4% = 5% — không có basis toán học cho phép tính này. Đây là confusion giữa linear approximation và compound calculation. Fixed income pricing là compound (geometric), không linear.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">SPE = <em>bankruptcy-remote vehicle</em>. Three legal pillars: (1) <em>true sale</em> của assets, (2) <em>separate legal entity</em> với independent directors, (3) <em>non-consolidation opinion</em>. Hệ quả: ABS rating decoupled from originator rating — đây là magic của structured finance.</div>
+    <div class="ttext"><em>Forward rate formula:</em> (1+Sₙ)ⁿ = (1+Sₘ)ᵐ × (1+f)ⁿ⁻ᵐ. Với upward sloping curve: forward rate &gt; spot rate cùng maturity. ₂f₁ = 5.51% &gt; S₃ = 4.5% &gt; S₂ = 4%. Rule: PSF → Par &lt; Spot &lt; Forward khi curve normal. Tránh dùng arithmetic average — luôn dùng geometric compounding trong fixed income.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
   </div>
 </section>
 
 
-<!-- 22 · Q2 EN — Credit enhancement -->
+<!-- 24 · Q2 EN — Term structure theories -->
 <section data-label="Q2 Original" class="slide">
   <div class="run-header">
-    <span>08.09 — Securitization</span>
+    <span>08.09 — Term Structure of Interest Rates</span>
     <span class="rule"></span>
-    <span>22 / 29</span>
+    <span>24 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Internal</em> vs <em class="hi">External</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Term structure theories</em> — distinguishing.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      An auto loan ABS deal has the following credit enhancement features: (1) a $30M Equity tranche that absorbs first losses; (2) a pool of $510M auto loans backing $500M of issued ABS; (3) a $5M cash reserve account funded at closing; (4) a financial guarantee from a bond insurer covering principal and interest on the senior tranche. Which feature is the <strong>only example of external credit enhancement</strong>?
+      A fixed income strategist notes that the government bond yield curve has been upward sloping for an extended period, even during times when short-term interest rates were expected to remain stable. A colleague argues this persistent positive slope is best explained by investors requiring additional compensation to hold longer-maturity bonds, but also notes that pension funds and insurance companies tend to prefer long-duration bonds for liability matching and would accept lower yields in those maturities than pure expectations would suggest. Which term structure theory <em>best</em> explains both observations simultaneously?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Feature 2 — over-collateralization, because the extra $10M of collateral comes from outside the deal.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Feature 3 — the cash reserve account, because cash is held outside the loan pool.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Feature 4 — the financial guarantee from the bond insurer, because the protection comes from a third party.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Pure Expectations Theory — forward rates equal expected future spot rates, so the upward slope reflects market forecasts of rising rates, regardless of investor type.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Segmented Markets Theory — each maturity segment has its own independent supply and demand, and investors cannot move between segments regardless of incentives.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Preferred Habitat Theory — investors have preferred maturity segments (e.g., insurers prefer long) but will move to other maturities if offered sufficient premium, resulting in a curve shaped by both expectations and segment-specific premiums.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
   </div>
 </section>
 
 
-<!-- 23 · Q2 HINT -->
+<!-- 25 · Q2 HINT -->
 <section data-label="Q2 Hint" class="slide">
   <div class="run-header">
-    <span>08.09 — Securitization</span>
+    <span>08.09 — Term Structure of Interest Rates</span>
     <span class="rule"></span>
-    <span>23 / 29</span>
+    <span>25 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">two clues</em>.</h2>
   </div>
   <div class="hint-card">
-    <span class="h-tag">§ Keywords</span>
-    4 features: <mark>Equity tranche</mark> (subordination) · <mark>$510M pool / $500M ABS</mark> (OC) · <mark>$5M reserve</mark> · <mark>bond insurer guarantee</mark>. Hỏi đâu là <em>external</em>.
+    <span class="h-tag">§ Two observations in the vignette</span>
+    (1) Curve dốc lên ngay cả khi <mark>rates not expected to rise</mark> → cần theory giải thích bằng premium. (2) Pension/insurance <mark>prefer long duration</mark> nhưng vẫn switch → cần theory cho phép switching.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt"><em>Internal</em> = trong deal: subordination, OC, excess spread, reserve account. <em>External</em> = từ third party: monoline insurance, surety bond, LOC, parental guarantee.</span>
+      <span class="htxt">Loại A (Pure Expectations): nếu rates không expected tăng nhưng curve vẫn dốc → Pure Expectations không giải thích được. PE cho rằng curve shape = expectations only.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Equity tranche = subordination → internal. Pool 510 / ABS 500 = OC → internal. Cash reserve = internal (funded từ deal cash, kept trong trust).</span>
+      <span class="htxt">Loại B (Segmented Markets): nếu insurers "prefer long but would accept lower yields" → đây là switching behavior. Segmented Markets nói investors KHÔNG switch — mâu thuẫn với vignette.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Bond insurer guarantee = third-party (insurance company ngoài deal commit pay) → <em>external</em>. Đây là kiểu monoline insurance — phổ biến pre-2008, nay rare.</span>
+      <span class="htxt">C (Preferred Habitat): có preferred segment (insurers thích long) + willing to switch nếu premium đủ + curve shaped by both expectations AND segment premiums → giải thích cả hai observations. <em>Đây là answer.</em></span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
   </div>
 </section>
 
 
-<!-- 24 · Q2 Dịch đề -->
+<!-- 26 · Q2 Dịch đề -->
 <section data-label="Q2 Dịch đề" class="slide">
   <div class="run-header">
-    <span>08.09 — Securitization</span>
+    <span>08.09 — Term Structure of Interest Rates</span>
     <span class="rule"></span>
-    <span>24 / 29</span>
+    <span>26 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
@@ -1067,192 +1106,125 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một auto loan ABS deal có các credit enhancement features sau: (1) Equity tranche $30M absorb first losses; (2) pool $510M auto loans backing $500M ABS đã issue; (3) cash reserve account $5M funded khi closing; (4) financial guarantee từ bond insurer cover principal và interest của senior tranche. Feature nào là <strong>ví dụ duy nhất về external credit enhancement</strong>?
+      Một strategist nhận thấy yield curve trái phiếu chính phủ đã dốc lên trong thời gian dài, kể cả những giai đoạn lãi suất ngắn hạn không được kỳ vọng thay đổi. Một đồng nghiệp cho rằng độ dốc này được giải thích tốt nhất bởi việc investors cần được bù đắp thêm để hold bonds dài hạn, nhưng cũng lưu ý rằng các pension fund và công ty bảo hiểm thường thích bonds dài hạn cho mục đích liability matching và sẵn sàng chấp nhận yield thấp hơn ở kỳ hạn đó. Lý thuyết term structure nào <em>giải thích tốt nhất</em> cả hai quan sát này?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Feature 2 — over-collateralization, vì $10M collateral thừa đến từ bên ngoài deal.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Feature 3 — cash reserve account, vì cash được giữ ngoài loan pool.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Feature 4 — financial guarantee từ bond insurer, vì protection đến từ third party.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Pure Expectations Theory — forward rates bằng expected future spot rates; curve dốc lên phản ánh kỳ vọng rates tăng, bất kể loại investor.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Segmented Markets Theory — mỗi maturity segment có supply-demand riêng biệt và investors không thể chuyển giữa các segments bất kể incentive.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Preferred Habitat Theory — investors có preferred maturity segment (ví dụ: insurance thích long) nhưng sẵn sàng chuyển sang segment khác nếu được premium đủ lớn, tạo ra curve được hình thành bởi cả kỳ vọng lẫn segment-specific premium.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
   </div>
 </section>
 
 
-<!-- 25 · Q2 EXPLANATION -->
+<!-- 27 · Q2 EXPLANATION -->
 <section data-label="Q2 Explanation" class="slide">
   <div class="run-header">
-    <span>08.09 — Securitization</span>
+    <span>08.09 — Term Structure of Interest Rates</span>
     <span class="rule"></span>
-    <span>25 / 29</span>
+    <span>27 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — Bond insurer guarantee.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — Preferred Habitat Theory.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — C</div>
-      <div class="rtext">External credit enhancement = protection từ <b>third party</b> ngoài deal structure. Bond insurer (vd MBIA, Ambac) là một insurance company độc lập commit pay P+I của senior nếu pool shortfall. Investor chịu thêm <em>counterparty risk</em>: nếu insurer downgrade, value của enhancement giảm. Sau 2008, monolines mất AAA → external enhancement gần như biến mất.</div>
+      <div class="rtext"><b>Preferred Habitat Theory</b> giải thích cả hai: (1) Curve dốc lên dù rates stable → vì có segment premium (investors cần compensation để rời preferred habitat → kéo yields của other segments lên). (2) Insurance/pension prefer long-duration (preferred habitat) nhưng sẵn sàng switch nếu premium đủ → đây chính là defining feature của Preferred Habitat: "preferences + willingness to switch with incentive". Forward rate = expected spot + <em>habitat-specific premium</em>.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Over-collateralization (OC) là <em>internal</em> enhancement. Extra $10M loans nằm trong cùng pool/SPE — không phải từ bên ngoài. OC tạo first-loss buffer trong cấu trúc deal, không depend on third party. Originator over-collateralize để đạt AAA cho Senior.</div>
+      <div class="rtext">Pure Expectations không giải thích được curve dốc lên khi rates không expected tăng. Và PE không đề cập đến investor preferences hay segment-specific behavior. PE đơn giản: forward rate = expected future spot, no premiums, no preferences.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — B</div>
-      <div class="rtext">Cash reserve account là <em>internal</em>. Cash được giữ <b>trong</b> trust (SPE) — funded từ initial deal proceeds hoặc excess spread tích lũy. Không depend trên third party performance. Trustee control reserve, dùng cover shortfall, refill từ excess spread.</div>
+      <div class="rtext">Segmented Markets cho rằng investors KHÔNG switch giữa segments — mâu thuẫn trực tiếp với vignette khi nói insurers "would accept lower yields" (ám chỉ họ sẵn sàng switch if needed). Ngoài ra, Segmented Markets không giải thích được vai trò của expectations trong hình thành curve shape.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Phân biệt nhanh: <em>Internal</em> = subordination, OC, excess spread, reserve account (mọi thứ <b>trong</b> deal). <em>External</em> = monoline insurance, surety bond, LOC, parent guarantee (từ <b>third party</b>). External đem theo <em>counterparty risk</em> — chính xác lý do post-2008 thị trường thích internal enhancement hơn.</div>
+    <div class="ttext"><em>Preferred Habitat</em> = best of both worlds: có preferred segment (như Segmented Markets) nhưng cho phép switching với incentive (không giống Segmented Markets). Curve = f(expectations, segment demand/supply, habitat premiums). QE của Fed/ECB hoạt động qua exactly this channel — mua long bonds → reduce supply → push investors out of habitat → portfolio balance effect. Lý thuyết được empirical support mạnh nhất trong 4 theories.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
   </div>
 </section>
 
 
-<!-- 26 · Q3 EN — Waterfall / loss allocation -->
+<!-- 28 · Q3 EN — Spot, par, forward ordering -->
 <section data-label="Q3 Original" class="slide">
   <div class="run-header">
-    <span>08.09 — Securitization</span>
+    <span>08.09 — Term Structure of Interest Rates</span>
     <span class="rule"></span>
-    <span>26 / 29</span>
+    <span>28 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Loss</em> allocation.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Spot, par, and forward</em> — ordering.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      An ABS deal has a $1,000M pool with the following capital structure: <strong>Senior tranche $800M</strong>, <strong>Mezzanine tranche $150M</strong>, <strong>Equity tranche $50M</strong>. The deal also has $20M of over-collateralization and $10M cumulative excess spread retained. After three years, the pool has experienced cumulative defaults causing <strong>$120M of losses</strong>. Assuming standard sequential loss absorption (excess spread → OC → Equity → Mezz → Senior), what is the <strong>remaining principal balance</strong> of the Mezzanine tranche?
+      A bond analyst is reviewing an upward-sloping government yield curve. She observes that the 5-year on-the-run government bond has a yield-to-maturity of 4.20%. She then computes the 5-year spot rate (zero rate) from bootstrapping and finds it to be 4.35%. She is now asked to determine the approximate magnitude of the 1-year forward rate starting in 4 years (the ₄f₁) relative to both the par rate and the spot rate at the 5-year maturity. Which of the following statements is <em>most accurate</em>?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">$150M — the Mezzanine tranche is fully protected because losses ($120M) are less than the combined enhancement of excess spread + OC + Equity ($80M).</span></li>
-    <li><span class="lbl">B</span><span class="opt">$110M — Mezzanine absorbs $40M of losses after excess spread ($10M), OC ($20M), and Equity ($50M) are exhausted.</span></li>
-    <li><span class="lbl">C</span><span class="opt">$30M — Mezzanine absorbs $120M of losses entirely because losses bypass internal enhancement layers.</span></li>
+    <li><span class="lbl">A</span><span class="opt">The 5-year forward rate ₄f₁ will be less than the 5-year par rate (4.20%) because longer forward rates decline on an upward sloping curve.</span></li>
+    <li><span class="lbl">B</span><span class="opt">The 5-year par rate (4.20%) &lt; 5-year spot rate (4.35%) &lt; ₄f₁ — on an upward-sloping curve, the par rate is lowest, the spot rate is higher, and the forward rate is highest.</span></li>
+    <li><span class="lbl">C</span><span class="opt">The 5-year spot rate (4.35%) and the par rate (4.20%) are equal because they both apply to 5-year instruments, and the forward rate equals their average.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
   </div>
 </section>
 
 
-<!-- 27 · Q3 HINT -->
+<!-- 29 · Q3 HINT + Dịch đề + Explanation (combined for efficiency) -->
 <section data-label="Q3 Hint" class="slide">
   <div class="run-header">
-    <span>08.09 — Securitization</span>
+    <span>08.09 — Term Structure of Interest Rates</span>
     <span class="rule"></span>
-    <span>27 / 29</span>
+    <span>29 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Hint · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">numbers</em>.</h2>
+    <div class="eyebrow">Hint + Dịch đề + Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Thứ tự <em class="hi">Par · Spot · Forward</em> khi curve dốc lên.</h2>
   </div>
   <div class="hint-card">
-    <span class="h-tag">§ Keywords &amp; numbers</span>
-    Senior <mark>$800M</mark> · Mezz <mark>$150M</mark> · Equity <mark>$50M</mark>. OC <mark>$20M</mark>, excess spread <mark>$10M</mark>. Cumulative losses <mark>$120M</mark>. Hỏi Mezz remaining.
+    <span class="h-tag">§ Key rule</span>
+    Upward sloping curve: <mark>Par &lt; Spot &lt; Forward</mark>. Mnemonic: <em>"PSF going up"</em> — Par, Spot, Forward tăng dần khi curve normal.
   </div>
-  <ol class="hint-list">
-    <li>
-      <span class="hnum">Hint 1</span>
-      <span class="htxt">Loss absorption order: <em>excess spread → OC → Equity → Mezz → Senior</em>. Apply theo thứ tự, mỗi layer hấp thụ đến hết capacity rồi tràn xuống layer kế.</span>
-    </li>
-    <li>
-      <span class="hnum">Hint 2</span>
-      <span class="htxt">Loss = $120M. Step 1: Excess spread $10M absorbed → còn $110M. Step 2: OC $20M absorbed → còn $90M. Step 3: Equity $50M absorbed → còn $40M.</span>
-    </li>
-    <li>
-      <span class="hnum">Hint 3</span>
-      <span class="htxt">Step 4: Còn $40M tràn vào Mezz. Mezz $150M − $40M = <em>$110M remaining</em>. Senior intact ở $800M.</span>
-    </li>
-  </ol>
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
-  </div>
-</section>
-
-
-<!-- 28 · Q3 Dịch đề -->
-<section data-label="Q3 Dịch đề" class="slide">
-  <div class="run-header">
-    <span>08.09 — Securitization</span>
-    <span class="rule"></span>
-    <span>28 / 29</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
-  </div>
-  <div class="q-card">
-    <span class="q-tag">§ Vignette</span>
-    <div class="q-stem">
-      Một ABS deal có pool $1,000M với cấu trúc capital: <strong>Senior tranche $800M</strong>, <strong>Mezzanine tranche $150M</strong>, <strong>Equity tranche $50M</strong>. Deal có thêm $20M over-collateralization và $10M cumulative excess spread đã retain. Sau 3 năm, pool đã bị cumulative defaults gây <strong>$120M losses</strong>. Giả sử loss absorption sequential chuẩn (excess spread → OC → Equity → Mezz → Senior), <strong>remaining principal balance</strong> của Mezzanine tranche là bao nhiêu?
+  <div class="q-card" style="margin-top: 14px;">
+    <span class="q-tag">§ Dịch đề</span>
+    <div class="q-stem" style="font-size: 15px;">
+      Analyst quan sát yield curve dốc lên. Bond 5 năm on-the-run có YTM = 4.20% (= par rate). Bootstrapping cho S₅ = 4.35% (spot rate &gt; par rate — đúng với upward curve). Hỏi: ₄f₁ (1-year forward starting year 4) so với par rate và spot rate như thế nào? <strong>Đáp án B:</strong> Par (4.20%) &lt; Spot (4.35%) &lt; ₄f₁ — forward cao nhất.
     </div>
   </div>
-  <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">$150M — Mezzanine fully protected vì losses ($120M) thấp hơn tổng enhancement của excess spread + OC + Equity ($80M).</span></li>
-    <li><span class="lbl">B</span><span class="opt">$110M — Mezzanine hấp thụ $40M losses sau khi excess spread ($10M), OC ($20M), và Equity ($50M) đã cạn.</span></li>
-    <li><span class="lbl">C</span><span class="opt">$30M — Mezzanine hấp thụ toàn bộ $120M losses vì losses bypass internal enhancement layers.</span></li>
-  </ol>
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
-  </div>
-</section>
-
-
-<!-- 29 · Q3 EXPLANATION + END -->
-<section data-label="Q3 Explanation" class="slide">
-  <div class="run-header">
-    <span>08.09 — Securitization</span>
-    <span class="rule"></span>
-    <span>29 / 29</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Answer · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $110M Mezz remaining.</h2>
-  </div>
-  <div class="reasoning">
+  <div class="reasoning" style="margin-top: 14px;">
     <div class="rblock">
       <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">Apply waterfall theo thứ tự: <b>Excess spread $10M</b> absorbed → loss còn $110M. <b>OC $20M</b> absorbed → loss còn $90M. <b>Equity $50M</b> hoàn toàn wiped → loss còn $40M. <b>Mezz</b> chịu $40M loss còn lại → Mezz remaining = $150M − $40M = <b>$110M</b>. Senior $800M intact (chưa bị hit). Tổng enhancement layer trước Mezz = $80M, không đủ cover $120M, nên Mezz bị đụng $40M.</div>
+      <div class="rtext"><b>PSF rule cho upward curve:</b> Par rate (YTM on-the-run) &lt; Spot rate (zero rate) &lt; Forward rate. Par 4.20% &lt; Spot 4.35% — confirmed. Forward ₄f₁ phải &gt; Spot 4.35%. Intuition: forward rate "extracts" the rate on the last period — bởi vì toàn bộ đường cong đang dốc lên, rate của period cuối (năm 4→5) phải cao hơn average rate cho toàn bộ 5 năm (= spot rate).</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Sai math. Excess spread + OC + Equity = $10M + $20M + $50M = <em>$80M</em>, không đủ cover $120M loss. Mezz không "fully protected" — bị đụng $40M overflow. Đây là common trap: tính tổng enhancement nhưng không so với loss đúng cách.</div>
+      <div class="rtag">✗ Wrong — A &amp; C</div>
+      <div class="rtext">A sai: forward rate không giảm khi curve dốc lên — logic ngược lại. C sai: par rate và spot rate KHÔNG bằng nhau (đây là một misconception phổ biến). Par rate = coupon-at-par (= YTM on-the-run). Spot rate = zero rate từ bootstrapping. Khi curve không flat, hai đường này khác nhau.</div>
     </div>
-    <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">Sai logic — losses không bypass enhancement layers. Đó chính là mục đích của subordination + OC + reserve: hấp thụ loss <em>trước</em> khi đụng tranche cao hơn. Mezz chỉ chịu phần loss <em>vượt</em> các layer dưới. Nếu losses bypass thì cấu trúc tranching vô nghĩa.</div>
-    </div>
-  </div>
-  <div class="takeaway-box">
-    <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Loss waterfall <em>defense in depth</em>: Excess spread (in-period) → Reserve / OC → Equity → Mezz (sub-tranches từ thấp lên) → Senior. Mỗi layer hấp thụ <em>đến hết capacity</em> rồi tràn xuống layer kế. Câu hỏi loại này phổ biến trong CFA — luôn vẽ stack và apply sequential. Senior chỉ bị hit khi tất cả layer dưới wiped out.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.09 — Securitization &amp; ABS</span>
+    <span class="footer-topic">Fixed Income · 08.09 — Term Structure of Interest Rates</span>
   </div>
 </section>
 
 
-<!-- END -->
+<!-- 30 · END -->
 <section data-label="End" class="slide end-slide">
   <div>
     <h1>08.09 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
-    <div class="hint">Tiếp theo · Lesson 08.10 — Mortgage-Backed Securities (MBS) deep dive</div>
+    <div class="hint">Tiếp theo · Lesson 08.10 — Interest Rate Risk and Return</div>
   </div>
 </section>
 

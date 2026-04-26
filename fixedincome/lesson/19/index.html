@@ -1,0 +1,1128 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Fixed Income 08.19 — Mortgage-Backed Securities</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 104px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Mortgage<br>-Backed <em>Securities.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 08 · Lesson 08.19 · Fixed Income</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 19 · MBS · CMO · Prepayment risk</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Fixed Income</dd></div>
+      <div><dt>Module</dt><dd>19</dd></div>
+      <div><dt>Lesson</dt><dd>08.19</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Mortgage · Pass-through · CMO · Negative convexity</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">19</div>
+    <div class="lbl">Securitized fixed income</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How <em>mortgages</em><br>become <em>bonds</em>.</h2>
+    <ul class="toc">
+      <li class="active">01 · Mortgage basics — amortizing · fixed/ARM · prepayment</li>
+      <li>02 · RMBS vs CMBS · Agency vs Non-agency</li>
+      <li>03 · Pass-through structure · WAM · WAC</li>
+      <li>04 · Prepayment risk — contraction · extension · SMM · CPR · PSA</li>
+      <li>05 · CMO tranches — sequential · PAC · support · IO/PO</li>
+      <li>06 · CMBS · call protection · negative convexity · OAS</li>
+      <li>07 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · MORTGAGE BASICS -->
+<section data-label="Mortgage basics" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>03 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Mortgage · loan basics</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What is a <em class="hi">mortgage</em>?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Mortgage = <em>loan có collateral là real estate</em>. Borrower trả monthly (P + I); nếu default, lender <em>foreclose</em> và bán property. Hầu hết là <b>amortizing</b> — mỗi kỳ trả một phần principal + interest, hết kỳ thì balance = 0.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">FRM</span>
+      <div>
+        <div class="t"><em class="hi">Fixed-rate</em> mortgage</div>
+        <div class="d">Coupon rate cố định toàn life of loan (15Y/30Y phổ biến ở US). Monthly payment không đổi. Borrower được "lock in" rate — protected khi rates ↑.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">ARM</span>
+      <div>
+        <div class="t"><em class="hi">Adjustable-rate</em> (ARM)</div>
+        <div class="d">Rate reset định kỳ theo benchmark (SOFR, Treasury) + spread. Có cap/floor. Initial rate thấp hơn FRM nhưng borrower chịu rate risk.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PRE</span>
+      <div>
+        <div class="t"><em class="hi">Prepayment option</em></div>
+        <div class="d">Borrower có quyền trả sớm bất cứ lúc nào (refinance, sell house, default). Đây là <b>American call option</b> embedded — tốt cho borrower, xấu cho investor.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">AMR</span>
+      <div>
+        <div class="t">Amortizing schedule</div>
+        <div class="d">Đầu kỳ: payment chủ yếu là interest. Cuối kỳ: chủ yếu là principal. Curve uốn — quan trọng cho cash flow modeling MBS.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 04 · RMBS VS CMBS -->
+<section data-label="RMBS vs CMBS" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>04 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Asset class · split</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">RMBS</em> vs <em class="hi">CMBS</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      MBS chia 2 nhóm theo loại real estate underlying — <em>residential</em> (nhà ở) và <em>commercial</em> (toà văn phòng, retail, multifamily, hotel, industrial).
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>RMBS</em> — Residential</div>
+      <dl>
+        <dt>Collateral</dt>
+        <dd>Pool nhiều mortgage <em>nhà ở</em> (1-4 family homes)</dd>
+        <dt>Borrower</dt>
+        <dd>Hộ gia đình · cá nhân — credit underwriting chuẩn hoá</dd>
+        <dt>Prepay</dt>
+        <dd><b>Cao</b> — borrower có quyền trả sớm tự do, không phạt</dd>
+        <dt>Recourse</dt>
+        <dd>Tuỳ state — non-recourse ở CA, FL; recourse ở nhiều state khác</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>CMBS</em> — Commercial</div>
+      <dl>
+        <dt>Collateral</dt>
+        <dd>Mortgage trên <em>income-producing</em> property (office, retail, hotel, multifamily)</dd>
+        <dt>Borrower</dt>
+        <dd>Doanh nghiệp · LLC sở hữu property</dd>
+        <dt>Prepay</dt>
+        <dd><b>Thấp</b> — bị lock-out, defeasance, yield maintenance, prepayment penalty</dd>
+        <dt>Recourse</dt>
+        <dd>Thường <b>non-recourse</b> — chỉ bám vào property, không tài sản cá nhân của sponsor</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Key takeaway — RMBS investors lo <b>prepayment risk</b>; CMBS investors lo <b>credit risk</b> (DSCR, LTV) + <b>balloon risk</b>. CMBS có call protection mạnh nên prepay không phải vấn đề lớn.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 05 · AGENCY VS NON-AGENCY -->
+<section data-label="Agency vs Non-agency" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>05 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Issuer · guarantee</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Agency</em> vs <em class="hi">Non-agency</em> MBS.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      US RMBS market thống trị bởi 3 GSE/agency: <b>Ginnie Mae</b>, <b>Fannie Mae</b>, <b>Freddie Mac</b>. Phần còn lại = <em>non-agency</em> (private label) — không có guarantee, investor chịu credit risk.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Agency</em> MBS</div>
+      <dl>
+        <dt>Issuers</dt>
+        <dd><b>Ginnie Mae</b> (GNMA) · <b>Fannie Mae</b> (FNMA) · <b>Freddie Mac</b> (FHLMC)</dd>
+        <dt>Guarantee</dt>
+        <dd>Ginnie = <em>full faith &amp; credit</em> US gov. Fannie/Freddie = <em>implicit</em> guarantee (GSE — conservatorship 2008+)</dd>
+        <dt>Credit risk</dt>
+        <dd><b>Negligible</b> — investor chỉ chịu prepayment/interest rate risk</dd>
+        <dt>Conforming</dt>
+        <dd>Loans phải đáp ứng standards (size, LTV, FICO, doc) để được pooled vào agency MBS</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Non-agency</em> (Private label)</div>
+      <dl>
+        <dt>Issuers</dt>
+        <dd>Banks, dealers, REITs (vd: JPM, BAC tự issue)</dd>
+        <dt>Guarantee</dt>
+        <dd><b>Không</b> — chỉ dựa vào credit enhancement (subordination, over-collateralization, reserve fund, insurance)</dd>
+        <dt>Credit risk</dt>
+        <dd><b>Material</b> — investor chịu default risk + prepayment risk</dd>
+        <dt>Loans</dt>
+        <dd>Jumbo, sub-prime, Alt-A, non-conforming. Yield cao hơn agency để đền credit risk.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Memorize — Ginnie Mae là cơ quan thuộc HUD (full faith). Fannie + Freddie là GSE (chartered nhưng publicly traded trước 2008). Sau crisis 2008, cả 2 vào federal conservatorship.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 06 · PASS-THROUGH -->
+<section data-label="Pass-through" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>06 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Cash flow · structure</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">pass-through</em> structure.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Trong pass-through MBS đơn giản nhất, dòng tiền P+I từ borrowers <em>được "pass through"</em> đến investors theo tỷ lệ sở hữu, sau khi trừ <b>servicing fee</b> + <b>guarantee fee</b>.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">1 · Pool tạo ra</span>
+        <span class="step-body">Originator (bank) gom hàng trăm/ngàn mortgage tương đồng (cùng coupon, maturity gần nhau) → bán pool cho agency hoặc trust SPV.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">2 · Securitize</span>
+        <span class="step-body">Issuer phát hành <em>certificates</em> đại diện ownership trong pool. Mỗi investor nhận pro-rata share của P+I cash flow.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">3 · Servicer collect &amp; distribute</span>
+        <span class="step-body">Servicer thu monthly từ borrowers, trừ <em>servicing fee</em> (~25-50 bps) + <em>guarantee fee</em> (~5-25 bps), pass phần còn lại cho certificate holders.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">4 · Pass-through coupon</span>
+        <span class="step-body"><b>Pass-through rate</b> = WAC (gross mortgage rate) − servicing fee − guarantee fee. Đây là coupon investor thực sự nhận.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 07 · WAM & WAC -->
+<section data-label="WAM &amp; WAC" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>07 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Pool · metrics</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">WAM</em> &amp; <em class="hi">WAC</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Hai metric đặc trưng cho pool of mortgages — weight by <em>outstanding principal balance</em>, không phải simple average.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ WAM &amp; WAC formulas</span>
+    <div class="eq"><span class="var">WAM</span> = Σ <span class="var">w<sub>i</sub></span> × <span class="var">remaining_term<sub>i</sub></span></div>
+    <div class="eq"><span class="var">WAC</span> = Σ <span class="var">w<sub>i</sub></span> × <span class="var">mortgage_rate<sub>i</sub></span></div>
+    <div class="note">
+      <b>w<sub>i</sub></b> = (outstanding principal of loan i) / (total pool principal). <b>WAM</b> = weighted average maturity (months). <b>WAC</b> = weighted average coupon (gross mortgage rate trước khi trừ servicing/guarantee fee).
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Quick example</span>
+    Pool 2 loans: Loan A $200k @ 6% with 25Y left; Loan B $300k @ 7% with 28Y left.<br>
+    → w<sub>A</sub> = 200/500 = 40%; w<sub>B</sub> = 300/500 = 60%.<br>
+    → <b>WAC</b> = 0.4 × 6% + 0.6 × 7% = <b>6.6%</b>.<br>
+    → <b>WAM</b> = 0.4 × 300 + 0.6 × 336 = <b>321.6 months</b> (≈ 26.8 năm).
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 08 · PREPAYMENT RISK -->
+<section data-label="Prepayment risk" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>08 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Prepayment · two faces</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Contraction vs <em class="hi">Extension</em> risk.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Prepayment option (American call) làm cash flow MBS <em>uncertain</em>. Khi rate thay đổi, borrowers tối ưu hành vi ngược chiều với investor.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Contraction</em> risk</div>
+      <dl>
+        <dt>Trigger</dt>
+        <dd>Rates <em>↓</em> → borrowers <em>refinance</em> nhanh</dd>
+        <dt>Effect</dt>
+        <dd>Principal về <b>sớm hơn</b> expected → MBS rút ngắn duration</dd>
+        <dt>Reinvest</dt>
+        <dd>Investor nhận lại tiền gốc lớn nhưng phải reinvest tại <em>rates thấp mới</em></dd>
+        <dt>Analogy</dt>
+        <dd>Giống callable bond — issuer call khi rates ↓ (capped upside)</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Extension</em> risk</div>
+      <dl>
+        <dt>Trigger</dt>
+        <dd>Rates <em>↑</em> → borrowers <em>không refinance</em>, hold mortgage</dd>
+        <dt>Effect</dt>
+        <dd>Principal về <b>chậm hơn</b> expected → MBS kéo dài duration</dd>
+        <dt>Reinvest</dt>
+        <dd>Investor kẹt với coupon thấp khi market đang offer high rate (opportunity cost)</dd>
+        <dt>Analogy</dt>
+        <dd>Giống putable bond reverse — không thể put lại khi unfavorable</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Hai risk đối nghịch — đó là lý do MBS có <b>negative convexity</b> ở rates thấp: cả hai chiều rate đều bất lợi cho investor.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 09 · SMM & CPR -->
+<section data-label="SMM &amp; CPR" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>09 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Prepayment · measurement</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">SMM &amp; <em class="hi">CPR</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Để model prepayment, ta đo % principal được prepay <em>tự nguyện</em> mỗi kỳ — monthly (SMM) và annualized (CPR).
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Single Monthly Mortality (SMM)</span>
+    <div class="eq"><span class="var">SMM</span> = <span class="var">Prepayment in month</span> / (<span class="var">Beginning balance</span> − <span class="var">Scheduled principal</span>)</div>
+    <div class="note">
+      Tỉ lệ prepayment <b>monthly</b>. Mẫu = balance còn lại <em>sau khi trừ scheduled amortization</em> — tức là principal "có thể prepay" trong tháng.
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Conditional Prepayment Rate (CPR)</span>
+    <div class="eq"><span class="var">CPR</span> = 1 − (1 − <span class="var">SMM</span>)<sup>12</sup></div>
+    <div class="eq"><span class="var">SMM</span> = 1 − (1 − <span class="var">CPR</span>)<sup>1/12</sup></div>
+    <div class="note">
+      CPR = annualized prepayment rate. Convert SMM ↔ CPR bằng compound — KHÔNG simple multiply by 12.
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 10 · PSA BENCHMARK -->
+<section data-label="PSA" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>10 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">PSA · industry benchmark</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">PSA</em> prepayment model.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      <b>PSA</b> (Public Securities Association) = ramp prepayment benchmark được industry chuẩn hoá. Quote MBS prepay assumption thường ở dạng "<em>X% PSA</em>".
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ 100% PSA — base ramp</span>
+    <div class="eq">Months <span class="var">1–30</span>: <span class="var">CPR</span> = 0.2% × month <span class="var">t</span></div>
+    <div class="eq">Months <span class="var">≥ 30</span>: <span class="var">CPR</span> = <span class="var">6%</span> (flat)</div>
+    <div class="note">
+      Pool mới: prepay tăng dần từ 0.2% (month 1) lên 6% (month 30), sau đó giữ 6% mãi. Logic: borrower mới mua nhà ít refinance ngay; sau ~2.5 năm, "seasoning" đạt steady-state.
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Scaling — N% PSA</span>
+    <b>50% PSA</b> = half speed → CPR ramps 0.1% × t → flat 3%.<br>
+    <b>200% PSA</b> = double speed → CPR ramps 0.4% × t → flat 12%.<br>
+    Higher PSA = faster prepayment = more contraction risk khi rates ↓.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 11 · CMO INTRO -->
+<section data-label="CMO" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>11 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">CMO · structuring</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">CMO</em> — slicing the pool.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      <b>Collateralized Mortgage Obligation (CMO)</b> = restructure pass-through cash flows thành <em>multiple tranches</em> với prepayment risk khác nhau. Mục tiêu: bán cho investors khác nhau theo appetite.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Sequential pay (A → B → C → Z)</span>
+        <span class="step-body">Tất cả principal trả <em>tranche A trước</em> đến khi A retired, rồi đến B, C, Z. Tranche A có shortest WAL, Z dài nhất. Z thường accrual (không nhận coupon đến khi A-C retired).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Planned Amortization Class (PAC)</span>
+        <span class="step-body">PAC tranche có <em>schedule cố định</em> nếu prepay nằm trong <em>collar</em> (vd 100-300% PSA). Stable cash flow giống bullet bond.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Support / Companion tranches</span>
+        <span class="step-body"><em>Hấp thụ</em> volatility prepayment để bảo vệ PAC. Khi prepay > collar, support nhận thêm; khi < collar, support bị defer. Risk cao, yield cao.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">IO &amp; PO strips</span>
+        <span class="step-body"><em>Interest-only</em> nhận chỉ interest cash flow; <em>Principal-only</em> nhận chỉ principal. Cùng pool nhưng giá trị di chuyển <b>ngược nhau</b> theo prepayment speed.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 12 · SEQUENTIAL VS PAC -->
+<section data-label="Sequential vs PAC" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>12 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">CMO · structures</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Sequential</em> vs <em class="hi">PAC</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Sequential pay</em></div>
+      <dl>
+        <dt>Rule</dt>
+        <dd>Principal trả lần lượt: A → B → C → Z</dd>
+        <dt>WAL</dt>
+        <dd>A: ngắn nhất · Z: dài nhất (accrual). Tranche A protected khỏi extension; Z protected khỏi contraction (one-sided).</dd>
+        <dt>Prepay risk</dt>
+        <dd>Chia <em>theo thứ tự thời gian</em> — không cố định cho tranche nào</dd>
+        <dt>Investor</dt>
+        <dd>Insurance co. (Z dài), money market fund (A ngắn). Linh hoạt match liability duration.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>PAC</em> + Support</div>
+      <dl>
+        <dt>Rule</dt>
+        <dd>PAC nhận theo <em>schedule cố định</em> nếu prepay ∈ collar (vd 100-300% PSA)</dd>
+        <dt>WAL</dt>
+        <dd>PAC: <b>stable</b> across rate scenarios. Support: highly variable.</dd>
+        <dt>Prepay risk</dt>
+        <dd>Support hấp thụ <em>cả contraction lẫn extension</em>. PAC chỉ chịu risk khi prepay <em>vượt khỏi</em> collar (broken PAC).</dd>
+        <dt>Investor</dt>
+        <dd>Conservative cho PAC (yield thấp hơn, stability). Speculative cho support (yield cao hơn).</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Prefer PAC when…</span>
+    Investor cần <em>predictable cash flow</em> (pension, insurance liability matching). Sẵn sàng accept yield thấp hơn để đổi stability. <b>Bị broken PAC</b> nếu prepay sustained ngoài collar — lúc đó PAC behaves giống sequential.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 13 · IO VS PO -->
+<section data-label="IO vs PO" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>13 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">CMO · stripped securities</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">IO</em> vs <em class="hi">PO</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Stripping pass-through thành 2 securities: <em>Interest-only</em> nhận 100% interest cash flow; <em>Principal-only</em> nhận 100% principal. Cộng lại = pass-through gốc.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>IO</em> — Interest-only</div>
+      <dl>
+        <dt>Cash flow</dt>
+        <dd>Coupon × outstanding principal balance, mỗi tháng</dd>
+        <dt>Khi rates ↓ (prepay ↑)</dt>
+        <dd>Principal về sớm → balance shrink → <b>future interest cash flow giảm</b> → IO <em>mất giá</em></dd>
+        <dt>Khi rates ↑ (prepay ↓)</dt>
+        <dd>Balance kéo dài → IO nhận interest lâu hơn → IO <em>tăng giá</em></dd>
+        <dt>Đặc tính</dt>
+        <dd><b>Negative duration</b> — giá tăng khi rates tăng (rare).</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>PO</em> — Principal-only</div>
+      <dl>
+        <dt>Cash flow</dt>
+        <dd>Principal payments (scheduled + prepay), không nhận interest</dd>
+        <dt>Khi rates ↓ (prepay ↑)</dt>
+        <dd>Principal về sớm → PV cao hơn (discount nhỏ hơn) → PO <em>tăng giá mạnh</em></dd>
+        <dt>Khi rates ↑ (prepay ↓)</dt>
+        <dd>Principal về chậm → PV giảm (discount lớn hơn) → PO <em>mất giá</em></dd>
+        <dt>Đặc tính</dt>
+        <dd>Duration <b>rất dài + dương</b>, leveraged play on rates ↓.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Tools — IO dùng để hedge mortgage portfolio (positive vs prepayment slowdown). PO dùng để leverage view "rates sẽ giảm". Cùng pool nhưng performance đối nghịch.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 14 · CMBS DEEP DIVE -->
+<section data-label="CMBS" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>14 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">CMBS · structure &amp; protection</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">CMBS</em> mechanics.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CMBS là pool of <em>commercial</em> mortgages — non-recourse, balloon at maturity, strong call protection. Investor lo <b>credit risk</b> nhiều hơn prepayment.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Balloon payments</span>
+        <span class="step-body">CMBS loans thường <em>partial amortization + balloon</em>: trả monthly P+I theo 25-30Y schedule, nhưng maturity 7-10Y → balloon principal lớn refinance hoặc default risk.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Tranching by credit (waterfall)</span>
+        <span class="step-body">Senior (AAA) hấp thụ losses cuối; subordinated tranches (B-pieces) hấp thụ losses đầu. Tương tự CDO logic — <em>credit waterfall</em>, không phải prepayment waterfall.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">DSCR &amp; LTV</span>
+        <span class="step-body">Key metrics: <em>Debt Service Coverage Ratio</em> (NOI / debt service, target ≥ 1.25x) và <em>Loan-to-Value</em> (loan / appraised value, target ≤ 75%).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ CMBS call protection — 4 layers</span>
+    (1) <b>Lockout</b> — không cho prepay trong N năm đầu (vd 2-5 năm).<br>
+    (2) <b>Defeasance</b> — borrower phải mua Treasury portfolio replicate cash flow để thay thế collateral.<br>
+    (3) <b>Yield maintenance</b> — borrower trả penalty = PV của lost interest cho lender.<br>
+    (4) <b>Prepayment penalty points</b> — % declining (vd 5-4-3-2-1) qua các năm.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 15 · NEGATIVE CONVEXITY & OAS -->
+<section data-label="Negative convexity &amp; OAS" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>15 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Valuation · risk metric</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Negative convexity</em> &amp; OAS.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Embedded prepayment option làm price-yield curve uốn ngược ở rates thấp. Để compare MBS với option-free bond, dùng <b>option-adjusted spread (OAS)</b>.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Negative convexity — when it hurts</span>
+    Khi rates <em>giảm mạnh</em>: option-free bond price tăng theo lồi (positive convexity); MBS giá <em>bị capped</em> vì borrowers refinance, principal về sớm → upside limited. <br>
+    Khi rates <em>tăng mạnh</em>: MBS extends, hành xử giống bond duration cao hơn → downside không cap. <br>
+    <b>Heads I lose, tails I win less</b> — đó là cái giá investor trả khi short prepayment option.
+  </div>
+
+  <div class="formula-box" style="margin-top: 18px;">
+    <span class="fmt-label">§ OAS — Option-adjusted spread</span>
+    <div class="eq"><span class="var">Z-spread</span> = <span class="var">OAS</span> + <span class="var">Option cost</span></div>
+    <div class="note">
+      Z-spread bao gồm cả compensation cho prepayment option. <b>OAS</b> = phần spread <em>sau khi removed</em> giá trị của option → so sánh trực tiếp với corporate bond spread cùng credit. <em>Option cost = Z − OAS</em>; càng cao thì prepayment risk càng đáng kể.
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 16 · TAKEAWAYS -->
+<section data-label="Takeaways" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>16 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap · big picture</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">α</span>
+      <div>
+        <div class="t">Mortgages = amortizing + prepay option</div>
+        <div class="d">Borrower có American call (refinance bất cứ lúc nào). Pool nhiều mortgages → securitize → MBS. Coupon investor = WAC − servicing − guarantee.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">β</span>
+      <div>
+        <div class="t">Agency vs Non-agency · RMBS vs CMBS</div>
+        <div class="d">Ginnie (full faith) · Fannie/Freddie (implicit). Non-agency = credit risk. RMBS = prepay risk. CMBS = credit + balloon, call-protected (lockout, defeasance, YM, penalty).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">γ</span>
+      <div>
+        <div class="t">SMM · CPR · PSA</div>
+        <div class="d">SMM monthly · CPR = 1−(1−SMM)<sup>12</sup>. 100% PSA: ramp 0.2% × t đến 30 tháng, flat 6%. N% PSA = scale linearly.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">δ</span>
+      <div>
+        <div class="t">CMO tranches · negative convexity · OAS</div>
+        <div class="d">Sequential (A/B/C/Z); PAC + support (collar); IO ↑ khi rates ↑, PO ↑ khi rates ↓. MBS có negative convexity → giá đo bằng OAS, không Z-spread thuần.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 17 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 EN — SMM/CPR conversion -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>18 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">CPR</em> from SMM.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A mortgage pool reports a <strong>Single Monthly Mortality (SMM)</strong> of <strong>0.55%</strong> for the most recent month. The portfolio manager wants to express prepayment activity on an annualized basis. The corresponding <strong>Conditional Prepayment Rate (CPR)</strong> is <em>closest</em> to:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">6.60% — computed as 0.55% × 12 (simple annualization).</span></li>
+    <li><span class="lbl">B</span><span class="opt">6.41% — computed as 1 − (1 − 0.0055)<sup>12</sup>.</span></li>
+    <li><span class="lbl">C</span><span class="opt">5.34% — computed as (1 − 0.0055)<sup>12</sup> − 1.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>19 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>SMM 0.55%</mark> · annualize sang <mark>CPR</mark>. Lưu ý: prepayment là <em>compounding</em>, không phải simple sum.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">CPR = 1 − (1 − SMM)<sup>12</sup>. <em>Khả năng survive</em> 12 tháng liên tiếp = (1 − SMM)<sup>12</sup>; phần bù = annual prepay rate.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">(1 − 0.0055)<sup>12</sup> = (0.9945)<sup>12</sup> ≈ 0.9359 → CPR ≈ <em>1 − 0.9359 = 6.41%</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Sai 0.55% × 12 = 6.6% (overstate vì không tính compounding decay). Sai (1−SMM)<sup>12</sup>−1 (negative number, formula đảo).</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>20 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một pool mortgage báo cáo <strong>Single Monthly Mortality (SMM)</strong> = <strong>0.55%</strong> trong tháng gần nhất. Portfolio manager muốn quy đổi prepayment activity sang basis annualized. <strong>Conditional Prepayment Rate (CPR)</strong> tương ứng <em>gần nhất</em> với:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">6.60% — tính bằng 0.55% × 12 (annualize đơn giản).</span></li>
+    <li><span class="lbl">B</span><span class="opt">6.41% — tính bằng 1 − (1 − 0.0055)<sup>12</sup>.</span></li>
+    <li><span class="lbl">C</span><span class="opt">5.34% — tính bằng (1 − 0.0055)<sup>12</sup> − 1.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>21 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 6.41%.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Step 1: Survival 1 month = (1 − 0.0055) = 0.9945. Step 2: Survival 12 months compound = 0.9945<sup>12</sup> ≈ <b>0.9359</b>. Step 3: CPR = 1 − 0.9359 = <b>6.41%</b>. CPR là annualized prepayment rate dùng cho cash flow modeling và quote PSA speed.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">0.55% × 12 = 6.60% là simple annualization — overstate CPR vì không tính compounding decay (mỗi tháng base shrink). Sai về bản chất: prepayment giảm pool dần, không thể multiply tuyến tính.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">(1 − 0.0055)<sup>12</sup> − 1 = 0.9359 − 1 = −6.41%. Sai dấu — đây là <em>negative</em> survival decline, không phải prepayment rate. Phải lấy 1 − survival, không phải survival − 1.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Công thức chuẩn: <em>CPR = 1 − (1 − SMM)<sup>12</sup></em> và ngược lại <em>SMM = 1 − (1 − CPR)<sup>1/12</sup></em>. Compound, không simple multiply. PSA speed quote luôn ở basis CPR (vd "100% PSA flat = 6% CPR").</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 EN — Contraction risk / IO -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>22 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">IO/PO</em> response.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Interest rates fall sharply, and prepayment speeds on a 30-year agency pass-through pool accelerate well above the dealer's prior PSA assumption. An investor holds <strong>both an Interest-Only (IO) strip</strong> and a <strong>Principal-Only (PO) strip</strong> from the same pool. Which statement most accurately describes the impact?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Both IO and PO appreciate because faster cash flows pull all PVs forward.</span></li>
+    <li><span class="lbl">B</span><span class="opt">IO appreciates while PO depreciates because IO has positive duration and benefits from lower discount rates.</span></li>
+    <li><span class="lbl">C</span><span class="opt">PO appreciates because principal arrives sooner; IO depreciates because the shrinking balance reduces future interest cash flows.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>23 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Rates fall</mark> → <mark>prepayment speed ↑</mark>. Investor có <mark>IO + PO</mark>. Nhớ: IO &amp; PO chuyển động <em>ngược chiều</em> theo prepay.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">PO = chỉ nhận principal (không interest). Principal về sớm → discount factor nhỏ hơn → <em>PO tăng giá</em>. Bonus: rate giảm → discount càng thấp → PV càng cao.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">IO = nhận coupon × outstanding balance. Prepay nhanh → balance shrink → <em>future interest cash flow giảm</em> → IO mất giá. Đây là rare bond có <b>negative duration</b>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Vì IO &amp; PO cùng pool nên cộng lại = pass-through gốc. Khi pool tăng giá nhẹ, PO tăng mạnh + IO giảm để tổng cân.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>24 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Lãi suất giảm mạnh, và prepayment speed trên một 30-year agency pass-through pool tăng vượt xa PSA assumption mà dealer đã giả định. Một investor đang giữ <strong>cả Interest-Only (IO) strip</strong> và <strong>Principal-Only (PO) strip</strong> từ cùng pool đó. Nhận định nào mô tả tác động <em>chính xác nhất</em>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Cả IO và PO đều tăng giá vì cash flow về nhanh hơn kéo PV lên.</span></li>
+    <li><span class="lbl">B</span><span class="opt">IO tăng còn PO giảm vì IO có positive duration và hưởng lợi từ discount rate thấp hơn.</span></li>
+    <li><span class="lbl">C</span><span class="opt">PO tăng vì principal về sớm hơn; IO giảm vì balance shrink làm future interest cash flow giảm.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>25 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — PO ↑, IO ↓.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext"><b>PO</b>: chỉ nhận principal cash flow. Khi prepay tăng, principal $X về <em>sớm hơn</em> → PV cao hơn (less discounting). Combined với rate ↓ → PO <b>tăng giá mạnh</b> (PO leveraged play on rate ↓). <b>IO</b>: nhận coupon × outstanding balance. Prepay nhanh → balance shrink quickly → <em>future interest stream giảm</em> → IO <b>mất giá</b> bất chấp rate ↓. IO có <em>negative duration</em> — một trong số ít securities tăng khi rates tăng.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Sai cốt lõi — IO &amp; PO không cùng dấu. Cùng pool nên cộng = pass-through; nếu pool tăng nhẹ, PO tăng nhiều và IO giảm để tổng cân. Faster cash flow tốt cho PO nhưng <em>cắt</em> cash flow của IO.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Đảo ngược — IO có <em>negative duration</em> (giá tăng khi rates ↑, không phải ↓). Reasoning "positive duration + lower discount rate" áp dụng cho option-free bond, không phải IO trong pool đang prepay nhanh.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">IO &amp; PO là cặp hedge tự nhiên. <em>PO ↑ khi rates ↓</em> (cash về sớm + discount thấp). <em>IO ↑ khi rates ↑</em> (balance kéo dài, interest stream lâu hơn). Trader dùng IO để hedge mortgage portfolio chống prepayment slowdown; PO để leverage view rate ↓.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 EN — CMBS call protection -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>26 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">CMBS</em> protection.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst is comparing prepayment risk between an <strong>agency RMBS pass-through</strong> and a <strong>CMBS senior tranche</strong>. Which of the following statements is <em>most accurate</em>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Both securities expose investors to similar prepayment risk because the underlying loans amortize the same way.</span></li>
+    <li><span class="lbl">B</span><span class="opt">CMBS investors face significantly less prepayment risk because of features such as lockout periods, defeasance, yield maintenance, and prepayment penalties; CMBS investors instead focus on credit risk and balloon refinancing risk.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Agency RMBS investors face less prepayment risk than CMBS investors because the agency guarantee neutralizes the borrower's prepayment option.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>27 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Agency RMBS</mark> vs <mark>CMBS senior</mark>. Đối chiếu <em>prepayment risk</em> giữa residential và commercial.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">RMBS borrower (cá nhân): prepay <em>tự do</em>, không phạt → high prepay risk cho investor (cả contraction + extension).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">CMBS borrower (doanh nghiệp): bị 4 lớp call protection — <em>lockout</em>, <em>defeasance</em>, <em>yield maintenance</em>, <em>prepayment penalty</em>. Prepay rất hạn chế.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Bù lại, CMBS investor lo <b>credit risk</b> (DSCR, LTV) và <b>balloon refinancing risk</b> tại maturity. Agency RMBS có guarantee → no credit risk.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>28 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một analyst so sánh prepayment risk giữa một <strong>agency RMBS pass-through</strong> và một <strong>CMBS senior tranche</strong>. Nhận định nào <em>chính xác nhất</em>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Cả hai expose investor cho prepayment risk tương tự vì loans underlying đều amortize cùng cách.</span></li>
+    <li><span class="lbl">B</span><span class="opt">CMBS investor chịu prepayment risk thấp hơn đáng kể nhờ các features như lockout periods, defeasance, yield maintenance, và prepayment penalties; CMBS investor thay vào đó focus vào credit risk và balloon refinancing risk.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Agency RMBS investor chịu prepayment risk thấp hơn CMBS vì agency guarantee triệt tiêu prepayment option của borrower.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 29 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.19 — MBS</span>
+    <span class="rule"></span>
+    <span>29 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — CMBS = call-protected.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">CMBS borrowers (commercial real estate sponsors) bị ràng buộc 4 layer call protection: <b>(1) Lockout</b> không cho prepay vài năm đầu; <b>(2) Defeasance</b> phải mua Treasury portfolio thay collateral; <b>(3) Yield maintenance</b> trả PV của lost interest cho lender; <b>(4) Prepayment penalty</b> point declining (vd 5-4-3-2-1). Kết quả: cash flow CMBS rất predictable. Bù lại, investor lo <em>credit risk</em> (DSCR/LTV) + <em>balloon refinancing risk</em> tại maturity 7-10Y.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Sai — bản chất borrower và call protection khác nhau hoàn toàn. RMBS borrower (cá nhân) prepay tự do; CMBS borrower (sponsor) bị restrict mạnh. Cùng amortization schedule không có nghĩa cùng prepayment behavior.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Agency guarantee chỉ neutralize <em>credit risk</em>, KHÔNG neutralize prepayment option. Borrower vẫn có quyền refinance/sell bất cứ lúc nào — đó là risk lớn nhất của RMBS investor. Đảo ngược thực tế.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext"><em>RMBS</em>: prepayment risk dominant (residential borrower prepay tự do). <em>CMBS</em>: credit + balloon risk dominant (commercial borrower bị 4 layer call protection). Agency RMBS = no credit risk; non-agency RMBS = credit + prepay; CMBS = credit + balloon, prepay rất nhỏ.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.19 — Mortgage-Backed Securities</span>
+  </div>
+</section>
+
+
+<!-- 30 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>08.19 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Hết môn Fixed Income · Tiếp theo · Topic 09 — Derivatives</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

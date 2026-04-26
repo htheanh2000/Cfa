@@ -1,0 +1,1021 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Equity 07.07 — Company Analysis: Forecasting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 96px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Company Analysis<br><em>Forecasting.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 07 · Lesson 07.07 · Equity Investments</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 07 · Pro-forma · revenue/cost build · scenarios · sensitivity</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Equity</dd></div>
+      <div><dt>Module</dt><dd>07</dd></div>
+      <div><dt>Lesson</dt><dd>07.07</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Top-down · bottom-up · scenario · terminal value · errors</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">07</div>
+    <div class="lbl">Forecasting</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>Bridge from <em>past</em><br>to <em>value</em>.</h2>
+    <ul class="toc">
+      <li class="active">01 · Why forecast — bridge past → value</li>
+      <li>02 · Forecast horizon + top-down vs bottom-up</li>
+      <li>03 · Revenue forecast — 3 methods</li>
+      <li>04 · Cost forecast — variable vs fixed</li>
+      <li>05 · Margin trajectory + capex + working capital</li>
+      <li>06 · Pro-forma model — IS · BS · CF integration</li>
+      <li>07 · Scenario + sensitivity analysis</li>
+      <li>08 · Common forecasting errors</li>
+      <li>09 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · WHY FORECAST -->
+<section data-label="Why forecast" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>03 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Bridge · past → value</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Why <em class="hi">forecast</em>?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Valuation models (DCF, residual income, dividend discount) đều đòi hỏi <em>future cash flow</em>. Past performance là input, không phải output. Forecast = process biến historical analysis (m05) + industry outlook (m06) thành quantified future expected — input cho m08 valuation.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">α</span>
+      <div>
+        <div class="t">All valuation = forecast under uncertainty</div>
+        <div class="d">Stock value = PV of <em>future</em> cash flows. Phải project. Differences in forecast assumptions explain phần lớn variance trong analyst price targets.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">β</span>
+      <div>
+        <div class="t">Forecast = anchor + judgment</div>
+        <div class="d">Anchor = historical pattern + peer benchmark + industry growth. Judgment = adjust cho expected change (M&amp;A, regulation, cycle, mgmt strategy). Không pure extrapolation; không pure speculation.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">γ</span>
+      <div>
+        <div class="t">Multiple scenarios — không single number</div>
+        <div class="d">Single point forecast = misleading. Build base + bull + bear scenarios. Probability-weight để get expected value + understanding of dispersion.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">δ</span>
+      <div>
+        <div class="t">Test reasonability — sanity check</div>
+        <div class="d">If forecast implies revenue gấp 5× trong 3 năm — likely unrealistic. Check vs industry growth, market share cap, capacity constraint.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 04 · FORECAST HORIZON -->
+<section data-label="Horizon" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>04 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Time structure of forecast</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Forecast <em class="hi">horizon</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Explicit</em> period</div>
+      <dl>
+        <dt>Length</dt>
+        <dd>Thường <em>5-10 năm</em>. Đủ dài để growth normalize về sustainable rate; đủ ngắn để forecast còn meaningful.</dd>
+        <dt>Detail</dt>
+        <dd>Year-by-year forecast revenue, costs, capex, working capital, financing. Drivers articulated explicitly.</dd>
+        <dt>Cycle considerations</dt>
+        <dd>Cyclical company: explicit period nên cover ≥ 1 full cycle (peak-to-peak). Otherwise terminal anchored to peak hoặc trough → biased.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Terminal</em> value</div>
+      <dl>
+        <dt>Concept</dt>
+        <dd>PV of cash flows beyond explicit period, captured trong single terminal value. Thường 50-70% of total enterprise value cho mature company.</dd>
+        <dt>Methods</dt>
+        <dd>(a) <em>Perpetuity growth</em> = FCF<sub>n+1</sub> / (WACC − g). (b) <em>Exit multiple</em> = EBITDA<sub>n</sub> × multiple. (c) <em>Convergence</em> = ROIC converges to WACC over time.</dd>
+        <dt>Sustainable g</dt>
+        <dd>Long-term g phải ≤ long-term GDP growth (otherwise company becomes infinite share of economy). Practical: 2-3% p.a. cho mature firm.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Terminal value sensitivity = #1 source of valuation error. Small changes trong perpetuity g gây huge changes trong PV. Always sensitivity-test terminal assumptions.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 05 · TOP-DOWN VS BOTTOM-UP -->
+<section data-label="Top-down vs Bottom-up" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>05 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Two forecast directions</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Top-down</em> vs <em class="hi">bottom-up</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Top-down</em></div>
+      <dl>
+        <dt>Approach</dt>
+        <dd>Macro GDP → industry size → market share → company revenue. Drill down từ aggregate.</dd>
+        <dt>Use case</dt>
+        <dd>Cyclical industries, broad-market consumer goods, financials. Where macro is dominant driver.</dd>
+        <dt>Strength</dt>
+        <dd>Capture macro-cycle dynamics. Consistent với economic forecast.</dd>
+        <dt>Weakness</dt>
+        <dd>Can miss company-specific drivers (new product launch, market share shift).</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Bottom-up</em></div>
+      <dl>
+        <dt>Approach</dt>
+        <dd>Forecast từng segment / product / customer / geography → sum up to company. Build từ unit economics.</dd>
+        <dt>Use case</dt>
+        <dd>Tech, pharma, niche industrials. Where company-specific drivers dominant (new drug pipeline, product launch).</dd>
+        <dt>Strength</dt>
+        <dd>Captures company-specific story. Mgmt guidance nhiều khi bottom-up.</dd>
+        <dt>Weakness</dt>
+        <dd>Sum-of-parts có thể overstate hoặc miss macro headwind. Less consistent với industry view.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Best practice — dùng <em>cả 2</em> approaches independently và reconcile. Discrepancy reveal hidden assumption hoặc opportunity (vd top-down says industry contracts but bottom-up sees market share gain → company outperform).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 06 · REVENUE FORECAST METHODS -->
+<section data-label="Revenue methods" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>06 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Revenue · 3 methods</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Revenue forecast — <em class="hi">3 methods</em>.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Method 1 — Volume × Price decomposition</span>
+        <span class="step-body">Revenue = Volume × ASP. Forecast separately: Volume (units sold, customers, transactions) → driven by demand growth + market share. Price (ASP, mix shift, regional premium) → driven by inflation + pricing power. Best cho discrete-product company (auto, smartphone, F&amp;B).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Method 2 — Market share approach (top-down)</span>
+        <span class="step-body">Industry size × Company market share = Revenue. Forecast industry size (TAM growth) + company share evolution. Best khi industry data available (Euromonitor, Nielsen, IBISWorld).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Method 3 — Segment / customer build-up (bottom-up)</span>
+        <span class="step-body">Sum revenue by segment / business line / geography / top customer. Useful cho diversified company hoặc B2B với concentrated customer base. Vd Microsoft: Productivity + Cloud + Personal Computing segments forecast riêng.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Reconciliation</span>
+    Apply ≥ 2 methods và reconcile. Discrepancy = signal need to revisit assumption. Vd bottom-up build-up gives 15% revenue growth; top-down market-share gives 8% — gap raises question: market share gain assumption realistic?
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 07 · COST FORECAST -->
+<section data-label="Cost forecast" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>07 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Cost · variable vs fixed</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Cost</em> forecast.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Variable vs Fixed cost decomposition</span>
+    <div class="eq"><span class="var">Total Cost</span> = <span class="var">Variable Cost per unit</span> × Volume + <span class="var">Fixed Cost</span></div>
+    <div class="note">
+      <b>Variable</b>: scales với volume (raw material, packaging, sales commission, shipping). Forecast = unit cost trend × forecast volume. <b>Fixed</b>: capacity-based (rent, salary base, depreciation, interest). Forecast = current level × inflation × step-changes (capex bring new capacity).
+    </div>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Cost forecast methods</div>
+      <dl>
+        <dt>% of revenue</dt>
+        <dd>Simple: forecast cost = historical % × forecast revenue. Works cho stable margin company. Hidden assumption: cost behavior linear với revenue.</dd>
+        <dt>Trend extrapolation</dt>
+        <dd>Take historical cost trajectory + extrapolate. Works for fixed cost (G&amp;A growing với inflation).</dd>
+        <dt>Bottom-up build</dt>
+        <dd>Forecast each cost component separately: COGS by input, SG&amp;A by department, R&amp;D by project. Most rigorous nhưng heavy lift.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Operating leverage</div>
+      <dl>
+        <dt>Concept</dt>
+        <dd>High fixed cost = high operating leverage. Small revenue change → big margin change (both ways). Airline, hotel, factory = high leverage.</dd>
+        <dt>Forecast implication</dt>
+        <dd>Doubling revenue cho high-leverage firm → margin expand significantly. Halving revenue → margin collapse. Don't extrapolate margin linear với revenue cho high-leverage company.</dd>
+        <dt>Vietnam example</dt>
+        <dd>Vietnam Airlines: ~70% fixed cost (aircraft lease + crew + airport). 10% revenue swing → ~30% EBIT swing.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 08 · MARGIN + CAPEX + WC -->
+<section data-label="Margin + capex + WC" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>08 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Margins · capex · working capital</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Three <em class="hi">balance sheet</em> drivers.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Margin trajectory</span>
+        <span class="step-body">Forecast margin path: improve (scale economies, mix shift, pricing power), flat (mature), decline (competition, input cost, regulation). Anchor vs peer median; don't assume permanent margin expansion above industry leader.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Capex — maintenance vs growth</span>
+        <span class="step-body"><em>Maintenance capex</em> ≈ depreciation (replace existing capacity). <em>Growth capex</em> = additional investment expand capacity. Forecast separately. Capex ratio (capex/revenue) hoặc capex intensity (capex/sales) anchored vs historical + industry. Track ROIC on incremental capex.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Working capital</span>
+        <span class="step-body">Forecast DSO, DIO, DPO based on past trend + industry benchmark. Compute working capital change = ΔAR + ΔInventory − ΔAP. Affects cash flow but not earnings. Growing company often has working capital build (cash drain).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Tax + financing</span>
+        <span class="step-body">Effective tax rate: anchor vs statutory + historical. Country mix matters (geographic shift can change effective rate). Financing assumptions: debt level, interest rate trajectory, dividend payout, buyback pace.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 09 · PRO-FORMA MODEL -->
+<section data-label="Pro-forma model" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>09 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Pro-forma model build</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">3-statement <em class="hi">integrated</em> model.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Pro-forma = forecast 3 financial statements (IS, BS, CF) <em>integrated</em> sao cho cash flow statement reconcile income statement và balance sheet changes. Disciplined model exposes inconsistencies trong forecast assumptions.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">1 · Income Statement (top-down)</span>
+        <span class="step-body">Revenue → COGS → Gross Profit → SG&amp;A + R&amp;D → EBIT → Interest → Pre-tax → Tax → Net Income → EPS. Build từ revenue forecast, apply margin assumptions từng line.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">2 · Balance Sheet (driven by IS + assumptions)</span>
+        <span class="step-body">Assets: PP&amp;E (last + capex − dep), AR (DSO × revenue/365), Inventory (DIO × COGS/365), Cash (plug). Liabilities: AP (DPO × COGS/365), Debt (per financing plan). Equity: opening + Net Income − Dividend.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">3 · Cash Flow Statement (reconcile IS + BS)</span>
+        <span class="step-body">CFO = NI + Dep − ΔWC. CFI = −Capex + Disposals. CFF = New Debt − Repayment − Dividends + Equity Issuance. Net Cash Change = sum. Plug to BS Cash. <em>Validation: BS must balance every year</em>.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">4 · Iterate &amp; sanity check</span>
+        <span class="step-body">Check: ROIC trajectory makes sense. Margin doesn't permanently exceed industry leader. Cash position doesn't go negative. Debt covenant respected. Tax rate consistent.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 10 · SCENARIO ANALYSIS -->
+<section data-label="Scenario analysis" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>10 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Scenario analysis</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">3-scenario</em> framework.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Single point forecast hides uncertainty. <em>3-scenario</em> framework — Base / Bull / Bear — capture range of plausible outcomes. Each scenario has internally-consistent assumption set + probability weight.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Base</em> case (~50%)</div>
+      <dl>
+        <dt>Assumption</dt>
+        <dd>Most likely path. Industry growth at consensus. Company executes as guided. Margin in middle of historical band. No major regulation/disruption.</dd>
+        <dt>Output</dt>
+        <dd>Probability-weighted center of valuation distribution. "Fair value" estimate.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Bull</em> case (~25%)</div>
+      <dl>
+        <dt>Assumption</dt>
+        <dd>Favorable scenarios: market share gain, pricing power realized, new product hit, favorable regulation, M&amp;A accretive. Margin top of band.</dd>
+        <dt>Output</dt>
+        <dd>Upside fair value. Test "what could go right".</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Bear</em> case (~25%)</div>
+      <dl>
+        <dt>Assumption</dt>
+        <dd>Adverse scenarios: market share loss, competition intensifies, key product fail, regulation tightens, recession. Margin bottom of band.</dd>
+        <dt>Output</dt>
+        <dd>Downside fair value. Stress test resilience. Identify breaking points.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Probability-weighted: Expected value = 0.5 × Base + 0.25 × Bull + 0.25 × Bear. Decision rule: <em>buy</em> if current price &lt; expected value − margin of safety; <em>avoid</em> if current price &gt; expected value.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 11 · SENSITIVITY ANALYSIS -->
+<section data-label="Sensitivity" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>11 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Sensitivity analysis</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Sensitivity</em> + tornado chart.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">One-variable sensitivity</span>
+        <span class="step-body">Hold all assumptions constant. Vary <em>1 input</em> across range. Observe valuation output change. Reveals which assumption matter most.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Two-variable sensitivity (data table)</span>
+        <span class="step-body">Vary 2 inputs simultaneously. Vd terminal growth (rows) × WACC (columns) cho DCF model. Shows valuation matrix; useful cho key driver pair.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Tornado chart</span>
+        <span class="step-body">Rank inputs by valuation impact. Bar chart: longest bar at top = most-sensitive input. Identifies <em>where to focus diligence</em>: spend time refining input #1, not input #10.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Monte Carlo (advanced)</span>
+        <span class="step-body">Random sample inputs từ distribution (normal/triangular/etc), run thousands simulations, output distribution of valuation. CFA L1 mention nhưng không calc; CFA L2/L3 deep.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Common most-sensitive inputs</span>
+    DCF: terminal growth (g), WACC, year-5 margin. Multiples: peer multiple chosen, EBITDA. Residual income: ROE persistence, terminal book value.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 12 · COMMON ERRORS -->
+<section data-label="Common errors" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>12 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Pitfalls</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Common <em class="hi">forecasting errors</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">E1</span>
+      <div>
+        <div class="t">Hockey stick</div>
+        <div class="d">Forecast assumes sharp acceleration in years 3-5 without operational basis. Pattern phổ biến cho startups; analysts thường too optimistic about year 3+. Sanity check: industry growth, market share cap.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">E2</span>
+      <div>
+        <div class="t">Permanent margin expansion above leader</div>
+        <div class="d">Assume company eventually exceed industry leader's margin. Market structure prevents this absent unique advantage. Cap margin assumption at peer best-in-class.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">E3</span>
+      <div>
+        <div class="t">Anchoring on management guidance</div>
+        <div class="d">Mgmt has incentive to be optimistic (compensation tied to forecast). Past guidance accuracy matters: company chronically miss → discount; chronically beat → conservative. Test independent.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">E4</span>
+      <div>
+        <div class="t">Ignoring cycle position</div>
+        <div class="d">Forecast at peak: extrapolate above-cycle margins → overestimate. Forecast at trough: extrapolate below-cycle → underestimate. Anchor margin to mid-cycle for cyclical company.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">E5</span>
+      <div>
+        <div class="t">Mismatched IS-BS-CF</div>
+        <div class="d">Project revenue +20% mà capex flat — capacity contradiction. Project net income increase mà cash decreasing — working capital build hidden. Integrated model catches inconsistency.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">E6</span>
+      <div>
+        <div class="t">Ignore competitive response</div>
+        <div class="d">Forecast company gain market share without modeling how competitors react. In reality, competitor will respond (price cut, product launch, M&amp;A defense). Assume rational competitor.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 13 · TAKEAWAYS -->
+<section data-label="Takeaways" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>13 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap · big picture</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">α</span>
+      <div>
+        <div class="t">Forecast = anchor + judgment</div>
+        <div class="d">Anchor = historical pattern + peer benchmark + industry growth. Judgment = adjust cho expected change. Không pure extrapolation; không pure speculation.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">β</span>
+      <div>
+        <div class="t">3 revenue methods + reconcile</div>
+        <div class="d">Volume × Price decomposition · market share approach (top-down) · segment build-up (bottom-up). Use ≥ 2 và reconcile discrepancy.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">γ</span>
+      <div>
+        <div class="t">3-statement integrated model</div>
+        <div class="d">IS → BS → CF. Cash flow reconcile income statement và balance sheet changes. BS must balance every year — exposes hidden inconsistency.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">δ</span>
+      <div>
+        <div class="t">Scenario + sensitivity > single point</div>
+        <div class="d">Base/Bull/Bear scenarios + sensitivity to top inputs (terminal g, WACC, margin). Single point forecast hides risk. Tornado chart shows where to focus diligence.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 14 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 15 · Q1 EN — Revenue forecast method -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>15 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Revenue</em> forecast pick.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst is building a 5-year revenue forecast for a Vietnamese cement producer. Industry consultant data shows national cement consumption growing at 6% annually with the company's market share stable at 12%. The company sells one principal product (Portland cement) priced in VND/ton with no significant geographic mix changes. The most appropriate revenue forecast method is:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Bottom-up segment build-up — sum forecasts for each individual customer to capture company-specific sales pipeline.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Top-down market-share approach combined with volume × price decomposition — industry consumption × stable market share gives volume; track ASP separately for price effect (e.g., inflation).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Trend extrapolation of last 5 years' revenue using simple regression, ignoring industry data because past performance fully reflects future trajectory.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 16 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>16 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">setup</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>1 product</mark> + <mark>industry data available</mark> + <mark>stable market share 12%</mark> + <mark>VND/ton</mark>. Method nào fit best?
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Bottom-up build-up (đáp án A) phù hợp khi có concentrated customer base / multiple distinct segments. Cement = commodity sold widely; bottom-up unnecessary heavy.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Top-down market-share approach phù hợp khi industry data available + market share trackable. Cement industry có industry consultant data → fit.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Volume × Price decomposition fit cho discrete-product với clear pricing (VND/ton). Combine 2 methods cho rigorous + cross-check.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>17 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Analyst đang build forecast revenue 5 năm cho 1 nhà sản xuất xi măng Việt Nam. Dữ liệu industry consultant cho thấy tiêu thụ xi măng cả nước tăng 6%/năm với market share của công ty ổn định 12%. Công ty bán 1 sản phẩm chính (Portland cement) định giá VND/tấn không có thay đổi mix địa lý đáng kể. Phương pháp forecast revenue <em>phù hợp nhất</em> là:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Bottom-up segment build-up — sum forecast cho từng customer riêng để capture company-specific sales pipeline.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Top-down market-share approach kết hợp với volume × price decomposition — industry consumption × stable market share cho volume; track ASP riêng cho price effect (vd inflation).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Trend extrapolation revenue 5 năm qua bằng simple regression, bỏ qua industry data vì past performance fully reflect future trajectory.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>18 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em>.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Setup match best với <em>top-down market-share + Volume × Price</em>. Industry data có sẵn → top-down feasible. Stable 12% market share → volume forecast = industry × share = 6% growth × stable share. Single product với clear VND/ton pricing → ASP track separately (inflation, mix). Combine 2 methods cho consistency check + capture both volume drivers và price drivers. Best practice cho commodity-style industry với good industry data.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Sai — bottom-up segment build-up phù hợp với company có <em>multiple segments / concentrated customer base / diverse products</em>. Cement = single commodity sold widely → bottom-up unnecessary heavy + impractical (thousands of customers). Top-down market-share đơn giản hơn và effective hơn.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Sai cốt lõi — pure trend extrapolation ignore <em>industry context + economic cycle + market share dynamics</em>. Past 5 năm có thể chứa cycle peak hoặc trough → extrapolation lệch. Industry data là valuable input bị wasted trong approach này. Common forecasting error #4.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">3 revenue methods: <em>(1) Volume × Price decomposition</em> (best cho discrete-product), <em>(2) Market share approach</em> (best khi industry data available), <em>(3) Segment / customer build-up</em> (best cho diversified hoặc concentrated B2B). Best practice: combine ≥ 2 methods và reconcile discrepancy.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q2 EN — Operating leverage -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>19 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Operating leverage</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Saigon Hotels reports the following income statement: Revenue 1,000B; Variable costs 200B; Fixed costs 600B; EBIT 200B. An analyst forecasts Year 2 revenue will rise 20% to 1,200B. Variable costs are expected to scale linearly with revenue; fixed costs remain at 600B. What is the <em>most accurate</em> EBIT forecast for Year 2?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">240B — EBIT scales proportionally with revenue, so 20% revenue growth = 20% EBIT growth.</span></li>
+    <li><span class="lbl">B</span><span class="opt">360B — Variable cost scales to 240B (20% increase), fixed cost stays at 600B; EBIT = 1,200 − 240 − 600 = 360B (80% EBIT growth from 200 to 360).</span></li>
+    <li><span class="lbl">C</span><span class="opt">280B — Variable cost stays flat at 200B because the company has scale economies; only fixed cost rises with inflation.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>20 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">leverage</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Variable cost scale linear</mark> + <mark>fixed cost remains</mark> + <mark>20% revenue growth</mark>. Operating leverage tại work.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Variable cost Year 1 = 200B trên revenue 1,000B = 20% revenue. Year 2 revenue 1,200B → variable cost = 20% × 1,200 = <em>240B</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Fixed cost stays at <em>600B</em> (per assumption — capacity unchanged).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">EBIT Year 2 = 1,200 − 240 − 600 = <em>360B</em>. EBIT growth = 360/200 − 1 = <em>80%</em> trên revenue growth 20%. Đây là operating leverage = 4× (80%/20%).</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>21 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Saigon Hotels báo cáo income statement: Revenue 1,000B; Variable costs 200B; Fixed costs 600B; EBIT 200B. Analyst forecast Year 2 revenue tăng 20% lên 1,200B. Variable cost dự kiến scale linear với revenue; fixed cost giữ ở 600B. EBIT forecast Year 2 <em>chính xác nhất</em> là?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">240B — EBIT scale tỉ lệ với revenue, 20% revenue growth = 20% EBIT growth.</span></li>
+    <li><span class="lbl">B</span><span class="opt">360B — Variable cost scale lên 240B (tăng 20%), fixed cost giữ 600B; EBIT = 1,200 − 240 − 600 = 360B (EBIT tăng 80% từ 200 lên 360).</span></li>
+    <li><span class="lbl">C</span><span class="opt">280B — Variable cost giữ flat 200B vì công ty có scale economies; chỉ fixed cost tăng theo inflation.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>22 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 360B.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext"><b>Step 1:</b> Variable cost ratio Year 1 = 200/1,000 = <em>20% revenue</em>. <b>Step 2:</b> Year 2 variable cost = 20% × 1,200 = <em>240B</em>. <b>Step 3:</b> Fixed cost stays <em>600B</em> per assumption. <b>Step 4:</b> EBIT Year 2 = 1,200 − 240 − 600 = <em>360B</em>. EBIT growth = 360/200 − 1 = <em>80%</em>, while revenue growth chỉ 20% → <b>operating leverage 4×</b>. Đây là illustration classic: high fixed cost (600/1000 = 60% revenue) khuếch đại revenue change → margin change. Saigon Hotels = high operating leverage business (most hotels). Ngược lại, dịch chuyển revenue 20% downward sẽ collapse EBIT từ 200 → 40B (−80%).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Sai cốt lõi — EBIT KHÔNG scale tỉ lệ với revenue khi có fixed cost. 20% revenue growth tạo EBIT growth lớn hơn (vì fixed cost stays). "Proportional scaling" chỉ đúng nếu tất cả costs là variable (rare). Đây là common forecasting error #5 — ignore operating leverage.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Sai vì variable cost đã được definition là <em>scaling với revenue</em> (per question setup). "Scale economies" không relevant — đó là argument cho cost structure shifting (fixed → variable hoặc vice versa), không phải variable cost flattening tự dưng. Câu này C misreads question.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Operating leverage = (% Δ EBIT) / (% Δ Revenue). High fixed cost → high leverage → small revenue change → big EBIT change (cả 2 chiều). Cho hotels, airlines, factories, software — phải forecast carefully because <em>extrapolating margin linearly với revenue</em> sẽ sai. Build cost separately into variable + fixed.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q3 EN — Forecasting error -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>23 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">error</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst's 5-year forecast for a Vietnamese airline shows: revenue growing at the airline's 5-year historical CAGR of 18% per year (which spanned 2019-2024 covering pandemic recovery); EBIT margin expanding from current 8% to 22% by Year 5 (vs the current best-in-class global airline operating at 14%); capex flat at depreciation level despite revenue tripling. Which is the <em>most likely</em> issue with this forecast?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">No issues — the forecast is internally consistent and grounded in observable historical data, with clear margin expansion and disciplined capex.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Multiple issues: (i) extrapolating recovery-period CAGR ignores cycle position, (ii) margin assumption exceeds best-in-class without unique advantage, (iii) capex flat vs revenue tripling implies impossible capacity utilization.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Only one issue — the capex is too low; revenue and margin assumptions are reasonable based on the company's historical performance.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>24 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">red flags</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>5Y CAGR includes pandemic recovery</mark> + <mark>margin exceeds best-in-class</mark> + <mark>capex flat while revenue tripling</mark>. 3 separate red flags.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">CAGR 18% bao gồm 2019-2024 = pandemic recovery period (2020 collapse → 2021-2024 rebound). Extrapolating recovery rate forward → ignore cycle position. Common error #4.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Margin 22% vs current best-in-class 14% → assume Vietnam airline beat global leader bằng 1.5×. Without unique structural advantage (vd monopoly route, nationalized cost), unrealistic. Common error #2.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Revenue tripling = capacity tripling roughly. Capex flat at depreciation = maintenance only, no capacity expansion. Inconsistency. Common error #5 (mismatched IS-BS-CF).</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>25 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      5-year forecast của analyst cho 1 hãng hàng không Việt Nam show: revenue tăng theo 5-year historical CAGR 18%/năm (period 2019-2024 cover pandemic recovery); EBIT margin mở rộng từ hiện tại 8% lên 22% vào Year 5 (vs current best-in-class global airline đang operate 14%); capex flat ở depreciation level mặc dù revenue tăng gấp 3. Issue <em>nhiều khả năng</em> nhất của forecast này là?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Không có issue — forecast nhất quán nội tại và được anchor vào observable historical data, với margin expansion rõ ràng và capex disciplined.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Nhiều issues: (i) extrapolating recovery-period CAGR bỏ qua cycle position, (ii) margin assumption vượt best-in-class without unique advantage, (iii) capex flat vs revenue tripling implies capacity utilization không thể đạt.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Chỉ có 1 issue — capex thấp quá; revenue và margin assumptions hợp lý dựa trên historical performance.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>07.07 — Forecasting</span>
+    <span class="rule"></span>
+    <span>26 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 3 issues.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Forecast có 3 separate red flags: <b>(i) Cycle position ignored</b> — 5Y CAGR 18% bao gồm 2020 pandemic collapse + 2021-2024 recovery. Extrapolating recovery-rate forward = assume permanent acceleration. Mid-cycle airline industry growth thường 4-6% global. <b>(ii) Margin above best-in-class</b> — Vietnam airline forecast 22% EBIT margin vs current best-in-class global 14% (Singapore Airlines, Ryanair, Delta). Without unique advantage (monopoly route, government subsidy, nationalized cost), beating leader by 1.5× = unrealistic. Cap margin assumption at peer best-in-class. <b>(iii) Capex-revenue inconsistency</b> — revenue tripling implies capacity ~tripling. Capex flat at depreciation = maintenance only, no expansion. Either revenue is wrong hoặc capex is wrong; cannot have both.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Sai — forecast có nhiều structural issue. "Internally consistent" wrong vì capex contradiction; "grounded in historical" wrong vì historical CAGR include pandemic anomaly. "Disciplined capex" misread — disciplined means <em>appropriate</em>, không phải minimal. Disciplined capex cho tripling revenue = significant growth capex.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Underestimate — chỉ note capex issue (đúng) nhưng miss 2 issues khác. Revenue 18% CAGR + margin 22% là 2 separate flags — cả 2 bỏ qua = analyst likely overestimated future. Pick most-comprehensive answer khi multiple flags hiện diện.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">6 common forecasting errors: <em>hockey stick</em> · <em>margin above best-in-class</em> · <em>anchor on mgmt guidance</em> · <em>ignore cycle position</em> · <em>mismatched IS-BS-CF</em> · <em>ignore competitive response</em>. Khi review forecast, scan systematically for each. Multiple-issue patterns common cho overly-optimistic models.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.07 — Company Analysis: Forecasting</span>
+  </div>
+</section>
+
+
+<!-- 27 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>07.07 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 07.08 — Equity Valuation: Concepts and Basic Tools</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

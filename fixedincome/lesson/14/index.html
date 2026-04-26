@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Fixed Income 08.14 — Credit Risk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 104px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+
+  /* Rating ladder — compact 3-column scale */
+  .rating-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 36px; margin-top: 16px; }
+  .rating-grid .col { border-top: 4px solid var(--accent); padding-top: 18px; }
+  .rating-grid .col h4 {
+    font-family: var(--mono); font-size: 18px; color: var(--accent);
+    letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 10px;
+  }
+  .rating-grid .col table { width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: 19px; }
+  .rating-grid .col td { padding: 6px 8px; border-bottom: 1px solid var(--rule-soft); }
+  .rating-grid .col td.r { font-family: var(--mono); font-weight: 700; color: var(--accent); width: 40%; }
+  .rating-grid .col td.d { color: var(--ink-soft); }
+  .rating-grid .col.junk td.r { color: #B23A3A; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Credit<br><em>Risk.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 08 · Lesson 08.14 · Fixed Income</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 14 · PD · LGD · EL · Ratings · Spreads</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Fixed Income</dd></div>
+      <div><dt>Module</dt><dd>14</dd></div>
+      <div><dt>Lesson</dt><dd>08.14</dd></div>
+      <div><dt>Thời lượng</dt><dd>75 min</dd></div>
+    </dl>
+    <div class="mark">Default · LGD · EAD · Migration · Ratings · Spread decomposition</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">14</div>
+    <div class="lbl">Credit risk — components</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>Hiểu <em>credit risk</em>:<br>từ PD đến spreads.</h2>
+    <ul class="toc">
+      <li class="active">01 · Credit risk là gì — default risk + loss severity</li>
+      <li>02 · Expected Loss = PD × LGD × EAD</li>
+      <li>03 · Credit migration risk — downgrade trước khi default</li>
+      <li>04 · Rating agencies — Moody's · S&amp;P · Fitch · IG vs HY threshold</li>
+      <li>05 · Liquidity risk vs credit risk — hai loại thường bị nhầm</li>
+      <li>06 · Yield spread decomposition — credit · liquidity · tax · option</li>
+      <li>07 · Recovery rates by seniority</li>
+      <li>08 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · CREDIT RISK OVERVIEW -->
+<section data-label="Credit risk" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Credit risk — hai thành phần</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Credit risk là <em class="hi">gì</em>?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Credit risk = rủi ro issuer <em>không trả được</em> coupon hoặc principal đúng hạn, hoặc bị downgrade làm giá bond giảm trước khi default. Hai thành phần cốt lõi độc lập nhau: <em>default risk</em> và <em>loss severity</em>.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Default risk</em> — Probability of Default (PD)</div>
+      <dl>
+        <dt>Definition</dt>
+        <dd>Xác suất issuer <b>không meet</b> nghĩa vụ contractual (coupon hoặc principal) trong horizon cho trước</dd>
+        <dt>Drivers</dt>
+        <dd>Leverage (Debt/EBITDA), profitability, free cash flow, ngành, chu kỳ kinh tế, liquidity buffer</dd>
+        <dt>Measure</dt>
+        <dd>Historical default rates (Moody's annual cohort studies), structural models (Merton), reduced-form models</dd>
+        <dt>Horizon</dt>
+        <dd>1 năm (credit VaR), 5 năm, hoặc đến maturity của bond</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Loss severity</em> — Loss Given Default (LGD)</div>
+      <dl>
+        <dt>Definition</dt>
+        <dd>Phần trăm <b>mất đi</b> trên exposure khi default đã xảy ra (= 1 − Recovery Rate)</dd>
+        <dt>Drivers</dt>
+        <dd>Seniority trong capital structure, chất lượng collateral, ngành, jurisdiction (bankruptcy law)</dd>
+        <dt>Typical range</dt>
+        <dd>Senior secured: LGD ~30-40%; Senior unsecured: LGD ~50-70%; Subordinated: LGD ~70-90%</dd>
+        <dt>Post-default</dt>
+        <dd>Recovery thu từ asset liquidation + restructuring — có thể mất vài năm mới xác định</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Quan trọng — PD và LGD độc lập nhau trong lý thuyết nhưng thực tế tương quan dương: default rates cao (recession) thường đi kèm recovery rates thấp (asset values cũng giảm). Gọi là <em>wrong-way risk</em>.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 04 · EXPECTED LOSS -->
+<section data-label="Expected Loss" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Expected Loss — công thức cốt lõi</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Expected Loss</em> formula.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Expected Loss (EL)</span>
+    <div class="eq"><span class="var">EL</span> = <span class="var">PD</span> × <span class="var">LGD</span> × <span class="var">EAD</span></div>
+    <div class="note">
+      <b>PD</b> = Probability of Default (xác suất default trong horizon) ·
+      <b>LGD</b> = Loss Given Default = 1 − Recovery Rate ·
+      <b>EAD</b> = Exposure at Default (notional + accrued interest tại thời điểm default).
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Recovery Rate</span>
+    <div class="eq"><span class="var">Recovery Rate</span> = 1 − <span class="var">LGD</span></div>
+    <div class="note">
+      Ví dụ: bond default, holders thu về $40 trên mỗi $100 par → recovery = 40%, LGD = 60%.
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Ví dụ tính EL</span>
+    Bond par $10M. PD = 2%, Recovery = 40% → LGD = 60%. EAD = $10M.<br>
+    <b>EL = 0.02 × 0.60 × $10,000,000 = $120,000.</b><br>
+    Spread trên bond phải bù đắp ít nhất $120k/năm để investor hòa vốn expected loss. Thực tế spread còn bao gồm risk premium + liquidity premium.
+  </div>
+
+  <p class="fine-muted-sm">
+    § EL là expected value — không phải worst case. Unexpected loss (UL) = volatility quanh EL, captured bởi risk premium trong spread. Ngân hàng dùng EL để pricing, UL để capital allocation.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 05 · CREDIT MIGRATION RISK -->
+<section data-label="Credit migration risk" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Migration risk — downgrade trước khi default</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Credit migration</em> risk.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Ngoài actual default, investor còn chịu rủi ro <em>credit rating bị downgrade</em>, làm yield spread giãn rộng và giá bond giảm <b>trước khi</b> default xảy ra. Đây gọi là <em>credit migration risk</em> (hay mark-to-market credit risk).
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">α</span>
+      <div>
+        <div class="t">Downgrade = spread widens</div>
+        <div class="d">Rating BBB → BB: bond reclassified từ IG sang HY (junk). Nhiều institutional investors có mandate không giữ HY → forced selling → giá giảm mạnh ngay lập tức.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">β</span>
+      <div>
+        <div class="t">Fallen angels</div>
+        <div class="d">Bonds bị downgrade từ IG xuống HY gọi là <em>fallen angels</em>. Ngược lại, bonds upgrade từ HY lên IG = <em>rising stars</em>. Fallen angels có spread widening đột ngột do forced selling từ index rebalancing.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">γ</span>
+      <div>
+        <div class="t">Migration matrix</div>
+        <div class="d">Rating agencies publish <em>transition matrices</em> — ma trận xác suất một issuer từ rating X chuyển sang rating Y trong 1 năm. Ví dụ: P(BBB → BB trong 1Y) ≈ 5-7% theo lịch sử Moody's.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">δ</span>
+      <div>
+        <div class="t">Portfolio impact</div>
+        <div class="d">Credit VaR tính cả migration + default loss. Mark-to-market P&amp;L biến động kể cả khi không có actual default. Managers phải track spread sensitivity (spread duration) để estimate P&amp;L từ rating changes.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 06 · RATING AGENCIES -->
+<section data-label="Rating agencies" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Rating agencies — ba nhà lớn</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Rating agencies</em> &amp; scale.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Ba rating agency lớn nhất (Big 3): <b>Moody's</b>, <b>S&amp;P Global Ratings</b>, <b>Fitch Ratings</b>. Ratings phản ánh <em>opinion</em> về khả năng trả nợ — không phải đảm bảo, không phải giá. Ranh giới IG/HY là <b>Baa3/BBB−</b>.
+    </p>
+  </div>
+
+  <div class="rating-grid">
+    <div class="col">
+      <h4>Moody's</h4>
+      <table>
+        <tr><td class="r">Aaa</td><td class="d">Highest quality</td></tr>
+        <tr><td class="r">Aa</td><td class="d">High quality</td></tr>
+        <tr><td class="r">A</td><td class="d">Upper-medium</td></tr>
+        <tr><td class="r">Baa</td><td class="d">Medium (lowest IG)</td></tr>
+        <tr><td class="r" style="color:#B23A3A;">Ba</td><td class="d">Speculative</td></tr>
+        <tr><td class="r" style="color:#B23A3A;">B</td><td class="d">Speculative</td></tr>
+        <tr><td class="r" style="color:#B23A3A;">Caa/Ca/C</td><td class="d">Very speculative/D</td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <h4>S&amp;P / Fitch</h4>
+      <table>
+        <tr><td class="r">AAA</td><td class="d">Highest quality</td></tr>
+        <tr><td class="r">AA</td><td class="d">High quality</td></tr>
+        <tr><td class="r">A</td><td class="d">Upper-medium</td></tr>
+        <tr><td class="r">BBB</td><td class="d">Medium (lowest IG)</td></tr>
+        <tr><td class="r" style="color:#B23A3A;">BB</td><td class="d">Speculative</td></tr>
+        <tr><td class="r" style="color:#B23A3A;">B</td><td class="d">Speculative</td></tr>
+        <tr><td class="r" style="color:#B23A3A;">CCC/CC/C/D</td><td class="d">Very speculative/D</td></tr>
+      </table>
+    </div>
+    <div class="col">
+      <h4>IG vs HY</h4>
+      <table>
+        <tr><td class="r">IG</td><td class="d">≥ Baa3 / BBB− · Investment grade</td></tr>
+        <tr><td class="r">HY</td><td class="d">≤ Ba1 / BB+ · High yield (junk)</td></tr>
+        <tr><td class="r">NR</td><td class="d">Not rated — không có đủ thông tin</td></tr>
+        <tr><td class="r">+/−</td><td class="d">S&amp;P/Fitch: A+, A, A− · Moody's: A1, A2, A3</td></tr>
+        <tr><td class="r">Watch</td><td class="d">CreditWatch (S&amp;P) / Watch (Moody's) = review pending</td></tr>
+        <tr><td class="r">Outlook</td><td class="d">Positive/Negative/Stable — hướng rating 12-24M</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 07 · NOTCHING & RATING PROCESS -->
+<section data-label="Notching" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Notching — rating theo seniority</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Notching</em> &amp; issuer vs issue ratings.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Cùng một <em>issuer</em> có thể có nhiều issues với ratings khác nhau tùy seniority. Quá trình điều chỉnh rating theo seniority/structure gọi là <em>notching</em>.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Issuer rating (IDR)</span>
+        <span class="step-body">Rating <em>tổng thể</em> của công ty phản ánh creditworthiness. Đây là reference point. Ví dụ: Apple = Aaa/AAA. IDR thường áp cho senior unsecured obligations.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Issue-level notching (up)</span>
+        <span class="step-body">Senior secured debt được <em>notch up</em> (1-2 notch) so với IDR vì có collateral protection. Ví dụ: issuer rated A, senior secured issue → A+ hay Aa3 (Moody's). Recovery cao hơn = LGD thấp hơn.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Issue-level notching (down)</span>
+        <span class="step-body">Subordinated debt được <em>notch down</em> (1-3 notch) so với IDR. Subordinated chịu loss trước senior → rating thấp hơn. Preferred equity thường notch down thêm 1-2 nữa.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Sovereign ceiling</span>
+        <span class="step-body">Thông thường không có corporate issue nào được rate <em>cao hơn sovereign</em> của quốc gia đó (do transfer + convertibility risk). Sovereign rating = ceiling cho local corporate.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 08 · LIQUIDITY RISK VS CREDIT RISK -->
+<section data-label="Liquidity vs credit" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Phân biệt — hai loại risk hay nhầm nhau</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Liquidity risk</em> vs <em class="hi">credit risk</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Hai rủi ro này hay bị nhầm vì cả hai đều làm spread giãn rộng và giá bond giảm. Nhưng <em>nguyên nhân và ứng xử</em> hoàn toàn khác nhau.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Liquidity risk</em></div>
+      <dl>
+        <dt>Definition</dt>
+        <dd>Rủi ro <em>không thể bán bond</em> tại fair value trong thị trường rộng lớn — phải accept bid-ask spread lớn hoặc price concession</dd>
+        <dt>Source</dt>
+        <dd>Thị trường thin, bid-ask spread rộng, market-makers rút lui, flight-to-quality trong stress</dd>
+        <dt>Default?</dt>
+        <dd><b>Không liên quan đến khả năng trả nợ</b>. Issuer hoàn toàn có thể trả nợ nhưng bond vẫn illiquid</dd>
+        <dt>Premium</dt>
+        <dd>Liquidity premium trong yield = compensation cho market risk khi trade out của position</dd>
+        <dt>Marker</dt>
+        <dd>Bid-ask spread rộng; off-the-run Treasuries vs on-the-run; small issue size (&lt;$250M)</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Credit risk</em></div>
+      <dl>
+        <dt>Definition</dt>
+        <dd>Rủi ro issuer <em>không trả được nợ</em> — default trên coupon hoặc principal, hoặc bị downgrade</dd>
+        <dt>Source</dt>
+        <dd>Deteriorating fundamentals: leverage tăng, cash flow giảm, ngành xấu, governance yếu</dd>
+        <dt>Default?</dt>
+        <dd><b>Trực tiếp liên quan</b>. Nếu credit risk materialize → tiền mất một phần hoặc toàn bộ</dd>
+        <dt>Premium</dt>
+        <dd>Credit spread = compensation cho expected loss (EL) + unexpected loss (risk premium)</dd>
+        <dt>Marker</dt>
+        <dd>CDS spread rộng; negative watch; covenant breach; leverage ratios deteriorate</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Cả hai thường di chuyển cùng nhau trong stress (2008-09: liquidity crisis + credit crisis). Nhưng GFC đầu tiên là liquidity crisis (money markets seized), sau mới là credit crisis (defaults). Phân biệt để diagnose đúng nguyên nhân spread widening.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 09 · YIELD SPREAD DECOMPOSITION -->
+<section data-label="Spread decomposition" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Yield spread — các thành phần</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Spread decomposition</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Yield của một bond corporate = risk-free benchmark + <em>spread bù đắp các loại risk</em>. Hiểu từng thành phần của spread là nền tảng phân tích credit.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Yield decomposition</span>
+    <div class="eq"><span class="var">Yield</span> = <span class="var">Risk-free rate</span> + <span class="var">Credit spread</span> + <span class="var">Liquidity premium</span> + <span class="var">Tax premium</span> + <span class="var">Option-adjusted spread cost</span></div>
+    <div class="note">
+      Mỗi thành phần compensate cho một loại risk hay friction cụ thể.
+    </div>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">R<sub>f</sub></span>
+      <div>
+        <div class="t">Risk-free rate</div>
+        <div class="d">Benchmark: US Treasury (global) hoặc Swap rate (EUR/GBP). Phản ánh time value of money + inflation expectations. Không phải credit component.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CS</span>
+      <div>
+        <div class="t">Credit spread</div>
+        <div class="d">Bù đắp <em>default risk</em> (EL) + unexpected loss risk premium. Tăng khi credit quality xấu. Captured by G-spread, I-spread, Z-spread (tùy benchmark).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">LP</span>
+      <div>
+        <div class="t">Liquidity premium</div>
+        <div class="d">Bù đắp bid-ask risk + market impact khi exit position. Off-the-run Treasury vs on-the-run: ~10-15 bps. Small corporate bonds: 50-150 bps extra.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">TX</span>
+      <div>
+        <div class="t">Tax premium</div>
+        <div class="d">Một số bonds miễn thuế (US munis) → nominal yield thấp hơn. Taxable bond phải offer higher yield để compensate investor tax burden. After-tax comparison matters.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">OC</span>
+      <div>
+        <div class="t">Option cost</div>
+        <div class="d">Callable bond: issuer short call option → investor cần higher yield. Z-spread = OAS + option cost. OAS isolates credit+liquidity sau khi remove option value.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 10 · SPREAD MEASURES -->
+<section data-label="Spread measures" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Spread measures — G · I · Z · OAS</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Các loại <em class="hi">spread</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Tùy benchmark và method, có 4 spread measures chính. CFA L1 cần nhớ định nghĩa và so sánh.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">G-spread (Government spread)</span>
+        <span class="step-body">Yield bond − yield Treasury <em>cùng maturity</em>. Đơn giản nhất. Hạn chế: không account for non-flat yield curve. Dùng nhiều nhất trong thực tế khi compare to benchmark government bond.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">I-spread (Interpolated spread)</span>
+        <span class="step-body">Yield bond − <em>interpolated swap rate</em> cùng maturity. Swap rate = benchmark phổ biến hơn Treasury ở một số thị trường (EUR, GBP). Vẫn là flat spread, không adjust cho term structure.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Z-spread (Zero-volatility spread)</span>
+        <span class="step-body">Constant spread added vào <em>entire spot rate curve</em> để discount cash flows về đúng market price. Chính xác hơn G/I-spread vì account for yield curve shape. Tuy nhiên vẫn assume zero interest rate volatility.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">OAS (Option-adjusted spread)</span>
+        <span class="step-body">Z-spread <em>sau khi remove</em> giá trị của embedded options (call, put). OAS = Z-spread − option cost. Cho phép compare callable vs non-callable bonds trực tiếp. Đây là "true" credit spread.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 11 · RECOVERY RATES BY SENIORITY -->
+<section data-label="Recovery rates" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recovery rates — lịch sử theo seniority</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Recovery rates</em> by seniority.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Khi default xảy ra, recovery rate phụ thuộc chủ yếu vào <em>seniority trong capital structure</em> và chất lượng collateral. Dữ liệu historical (Moody's 1983-2023) cho pattern rõ ràng.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">SS</span>
+      <div>
+        <div class="t">Senior secured</div>
+        <div class="d">Recovery ~60-70%. Có collateral cụ thể (property, equipment, receivables). First priority claim trong bankruptcy. LGD ~30-40%.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SU</span>
+      <div>
+        <div class="t">Senior unsecured</div>
+        <div class="d">Recovery ~30-50%. Không có collateral nhưng rank trước sub-debt. Đây là rating phổ biến nhất cho corporate bonds. LGD ~50-70%.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SN</span>
+      <div>
+        <div class="t">Senior subordinated</div>
+        <div class="d">Recovery ~20-35%. Chỉ nhận sau senior unsecured được paid. Thường trong high-yield capital structures. LGD ~65-80%.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SD</span>
+      <div>
+        <div class="t">Subordinated / Junior</div>
+        <div class="d">Recovery ~10-30%. Gần bottom of waterfall. Thường = near zero trong systemic crises. LGD ~70-90%.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PF</span>
+      <div>
+        <div class="t">Preferred equity</div>
+        <div class="d">Recovery ~0-10%. Hưởng dividends trước common equity nhưng rank dưới tất cả debt. Trong bankruptcy thường không còn gì. LGD ~90-100%.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">EQ</span>
+      <div>
+        <div class="t">Common equity</div>
+        <div class="d">Recovery ≈ 0% trong bankruptcy. Residual claimant. Giá thị trường thường về 0 trước khi formal default declared.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Absolute priority rule (APR) — trong lý thuyết, senior phải paid in full trước subordinated nhận bất cứ gì. Trong thực tế US Chapter 11, APR thường bị negotiate around (management/equity giữ value để không block restructuring).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 12 · TAKEAWAYS -->
+<section data-label="Takeaways" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap · big picture</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">α</span>
+      <div>
+        <div class="t">EL = PD × LGD × EAD</div>
+        <div class="d">Hai thành phần cốt lõi: PD (xác suất default) và LGD (loss khi default). EL = expected annual loss, phải được phản ánh trong credit spread ít nhất. Spread thực tế = EL + risk premium + liquidity.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">β</span>
+      <div>
+        <div class="t">Migration risk &amp; fallen angels</div>
+        <div class="d">Credit risk không chỉ là default risk — downgrade cũng gây tổn thất mark-to-market. BBB → BB = fallen angel = forced selling từ IG-only mandates. Transition matrices track xác suất di chuyển.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">γ</span>
+      <div>
+        <div class="t">Ratings — IG/HY threshold Baa3/BBB−</div>
+        <div class="d">Moody's: Aaa-Baa3 = IG; Ba1+ = HY. S&amp;P/Fitch: AAA-BBB− = IG; BB++ = HY. Notching: senior secured up, subordinated down. Sovereign = ceiling cho corporate.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">δ</span>
+      <div>
+        <div class="t">Liquidity ≠ credit risk</div>
+        <div class="d">Liquidity = price of exit; credit = default loss. Cả hai widen spreads nhưng khác nguyên nhân. G-spread, I-spread, Z-spread, OAS — 4 spread measures, mỗi loại adjust khác nhau.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 13 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 14 · Q1 EN — Expected Loss calculation -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>14 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Expected Loss</em> calculation.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst is evaluating a $50 million corporate bond position. The bond has a <strong>probability of default (PD)</strong> of <strong>3%</strong> over the next year and a <strong>recovery rate</strong> of <strong>45%</strong>. The <strong>expected loss</strong> on this position over the next year is <em>closest</em> to:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$825,000 — calculated as PD × LGD × EAD = 3% × 55% × $50,000,000.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$675,000 — calculated as PD × Recovery Rate × EAD = 3% × 45% × $50,000,000.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$1,500,000 — calculated as PD × EAD = 3% × $50,000,000 (ignoring recovery).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 15 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>15 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">formula</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Formula</span>
+    EL = PD × <mark>LGD</mark> × EAD. Đề cho <em>Recovery Rate</em> = 45% → LGD = 1 − 45% = <mark>55%</mark>. Đừng dùng Recovery Rate trực tiếp vào công thức!
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Bước 1: Convert recovery → LGD. LGD = 1 − 0.45 = <em>0.55</em> (55%).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Bước 2: EL = PD × LGD × EAD = 0.03 × 0.55 × $50,000,000 = <em>$825,000</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Sai B: dùng Recovery (45%) thay vì LGD (55%) → understate loss. Sai C: ignore recovery hoàn toàn → overstate. Expected loss phải giảm bởi phần recover được.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 16 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>16 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một analyst đang đánh giá position corporate bond trị giá $50 triệu. Bond có <strong>probability of default (PD)</strong> là <strong>3%</strong> trong năm tới và <strong>recovery rate</strong> là <strong>45%</strong>. <strong>Expected loss</strong> trên position này trong năm tới <em>gần nhất</em> với:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$825,000 — tính bằng PD × LGD × EAD = 3% × 55% × $50,000,000.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$675,000 — tính bằng PD × Recovery Rate × EAD = 3% × 45% × $50,000,000.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$1,500,000 — tính bằng PD × EAD = 3% × $50,000,000 (bỏ qua recovery).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>17 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — $825,000.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">Step 1: LGD = 1 − Recovery = 1 − 0.45 = <b>0.55</b> (55%). Step 2: EL = PD × LGD × EAD = 0.03 × 0.55 × $50,000,000 = <b>$825,000</b>. Đây là expected annual loss — số tiền trung bình investor kỳ vọng mất mỗi năm từ credit event. Bond's credit spread phải bù đắp ít nhất $825k/năm hay 165 bps trên $50M EAD để investor break even trên credit risk alone.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Sai logic — sử dụng Recovery Rate (45%) thay vì LGD (55%). EL = PD × <em>LGD</em>, không phải PD × Recovery. Recovery là phần thu hồi lại — LGD là phần thực sự mất đi. EL phải phản ánh <b>loss</b>, không phải recovery. Kết quả $675k understates actual expected loss.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Sai vì ignore recovery hoàn toàn. EL = PD × EAD = $1,500,000 là <em>gross exposure</em> nếu default, trước khi account for recovery. Thực tế holder sẽ recover 45% → chỉ mất 55% × EAD. C overstates expected loss gần 2× so với thực tế.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Công thức chuẩn: <em>EL = PD × LGD × EAD</em>. Luôn convert Recovery Rate → LGD trước (LGD = 1 − RR). Expected loss là basis pricing credit bonds. Spread tối thiểu cần cover EL; thực tế spread = EL + liquidity premium + unexpected loss risk premium. Khi rating agency quote "1-year EL = 0.10%", đó là PD × LGD compound averaged từ historical cohort data.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q2 EN — Fallen angel / migration -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>18 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Credit migration</em> — fallen angel.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A portfolio manager holds a BBB-rated corporate bond with a face value of $5 million. S&amp;P downgrades the bond from BBB− to BB+. The bond has <strong>not defaulted</strong>. Which of the following best describes what has happened and the most likely immediate market consequence?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">The bond has become a "fallen angel." Many institutional investors with investment-grade-only mandates are forced to sell, typically causing the bond price to drop significantly even though no default has occurred.</span></li>
+    <li><span class="lbl">B</span><span class="opt">The bond has experienced a technical default. The manager should immediately write the position down to zero.</span></li>
+    <li><span class="lbl">C</span><span class="opt">The downgrade has no immediate price impact because the bond continues to pay coupons and the recovery rate is unchanged.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">threshold</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>BBB− → BB+</mark> = vượt qua ranh giới IG/HY. Không phải default — chỉ là <em>rating change</em>. Hệ quả: nhiều funds bị <mark>forced selling</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">BBB− là IG thấp nhất (S&amp;P). BB+ là HY cao nhất. Crossing từ BBB− sang BB+ = từ IG sang HY → đây là "fallen angel" event.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Nhiều institutional mandates (pension, insurance): "<em>must only hold IG bonds</em>". Khi bond thành HY, họ <em>must sell</em> bất kể price → supply tăng đột biến → giá giảm mạnh.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Không phải technical default (B sai). Giá bị impact ngay lập tức dù bond vẫn paying coupon (C sai) — migration risk thực sự là mark-to-market loss ngay tại thời điểm downgrade.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một portfolio manager đang giữ corporate bond rated BBB với mệnh giá $5 triệu. S&amp;P downgrade bond từ BBB− xuống BB+. Bond <strong>chưa default</strong>. Điều nào dưới đây mô tả đúng nhất điều đã xảy ra và hệ quả thị trường ngay lập tức khả năng nhất?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Bond đã trở thành "fallen angel." Nhiều institutional investors có mandate IG-only bị buộc phải bán, thường khiến giá bond giảm mạnh dù chưa có default.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Bond đã bị technical default. Manager nên lập tức write position xuống 0.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Downgrade không có tác động giá ngay lập tức vì bond vẫn đang trả coupon và recovery rate không thay đổi.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — Fallen angel + forced selling.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">BBB− → BB+ vượt qua ranh giới IG/HY — sự kiện này tạo ra <b>fallen angel</b>. Hệ quả chuỗi: (1) Bond bị loại khỏi IG indices (Bloomberg US Aggregate, ICE IG Index) → index rebalancing funds phải sell. (2) IG-only mandated investors (pension, insurance, nhiều mutual funds) <em>bị ràng buộc phải sell</em>. (3) Supply tăng đột ngột, demand giảm → spread <em>widening mạnh</em> → giá giảm. Tất cả xảy ra mà không có actual default. Đây chính là <b>credit migration risk</b> = mark-to-market loss từ downgrade.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Sai định nghĩa — technical default xảy ra khi issuer vi phạm covenant (vd ratio breach) hoặc miss payment, không phải khi bị downgrade. Rating downgrade là <em>opinion change</em> của agency về creditworthiness, không phải contractual default event. Write down về 0 chỉ áp dụng cho actual default với near-zero recovery.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Sai hoàn toàn — downgrade có tác động giá ngay lập tức qua 2 kênh: (1) Spread widening phản ánh higher perceived default risk → PV cash flows giảm. (2) Forced selling từ mandate-constrained investors. Đây chính là <em>migration risk</em> — bond price falls ngay cả khi coupon vẫn được trả. Giá bond phản ánh forward-looking expectations, không chỉ current cash flows.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext"><em>Fallen angel</em> = bond bị downgrade từ IG xuống HY. Hậu quả: index exclusion + mandate-forced selling → spread widening mạnh → giá giảm đáng kể. Ngược lại: <em>rising star</em> = HY bond upgrade lên IG → spread tightening + demand surge từ IG funds mới được mua. Migration risk là component quan trọng của credit risk tổng thể, phân biệt với actual default risk.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q3 EN — Liquidity vs credit -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Spread decomposition</em> — source identification.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Two bonds both have a 5-year maturity and are rated BBB by all three agencies. Bond A is a large, actively traded corporate bond with a $2 billion outstanding issue size and a G-spread of 120 bps. Bond B is a small, infrequently traded issue with only $150 million outstanding and a G-spread of 175 bps. Neither bond has embedded options. The 55 bps <strong>difference in G-spread</strong> is <em>most likely</em> attributable to:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Credit risk — Bond B has higher default probability despite the same agency rating.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Liquidity risk — Bond B's smaller issue size and lower trading frequency create a wider bid-ask spread, requiring a liquidity premium.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Interest rate risk — Bond B's duration is longer because of lower market-making activity.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">clues</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Clues</span>
+    Cả hai bonds: <mark>same rating BBB</mark>, <mark>same maturity 5Y</mark>, <mark>no embedded options</mark>. Khác nhau duy nhất: <mark>issue size</mark> + <mark>trading frequency</mark>. Điều gì giải thích spread difference 55 bps?
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Same credit rating → same expected credit risk (cùng PD, cùng LGD expected). Loại trừ A — credit risk không khác nhau khi cùng rating từ cả 3 agencies.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Clue: Bond B nhỏ ($150M), giao dịch ít. → Bid-ask spread rộng, khó exit position → investor demand higher <em>liquidity premium</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Market-making activity không ảnh hưởng duration — C sai. Same maturity 5Y → duration tương đương (trừ coupon khác biệt lớn). Issue là liquidity, không interest rate.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Hai bonds cùng maturity 5 năm và được cả 3 agency rate BBB. Bond A là issue lớn, giao dịch sôi nổi với $2 tỷ outstanding và G-spread = 120 bps. Bond B là issue nhỏ, ít giao dịch với chỉ $150 triệu outstanding và G-spread = 175 bps. Không bond nào có embedded options. <strong>Chênh lệch G-spread 55 bps</strong> giữa hai bonds <em>nhiều khả năng nhất</em> do:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Credit risk — Bond B có default probability cao hơn dù cùng rating.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Liquidity risk — issue size nhỏ và trading frequency thấp của Bond B tạo ra bid-ask spread rộng, đòi hỏi liquidity premium.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Interest rate risk — duration của Bond B dài hơn do market-making activity ít hơn.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.14 — Credit Risk</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Liquidity premium.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Khi hai bonds có <em>identical credit rating, maturity, no embedded options</em> nhưng spreads khác nhau 55 bps, nguyên nhân chủ đạo là <b>liquidity premium</b>. Bond B ($150M, ít traded) có: (1) <em>Bid-ask spread rộng hơn</em> nhiều — dealer cần hold risk lâu hơn → wider spread to compensate. (2) <em>Market impact cost cao hơn</em> khi muốn sell nhanh. (3) <em>Fewer market participants</em> — không có nhiều bên sẵn sàng mua lại. Investor yêu cầu thêm 55 bps là <b>liquidity premium</b> — không liên quan đến higher default probability.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Sai — cùng BBB rating từ 3 agencies → theo agency's assessment, cùng default risk. Nếu credit risk thực sự khác nhau đáng kể, agencies sẽ cho rating khác nhau. Rating agencies assess credit fundamentals thoroughly; same rating = same credit risk consensus. Spread difference không phải credit component.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Sai — duration phụ thuộc vào maturity và coupon, không phải market-making activity. Same 5Y maturity → duration tương đương (assuming coupons similar). Interest rate risk không differ vì market liquidity. C confuse market liquidity với duration profile — hai khái niệm hoàn toàn khác nhau.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Yield spread decomposition: khi same credit quality nhưng spread khác nhau → <em>liquidity premium</em>. Markers của illiquidity: small issue size (&lt;$250M), low daily trading volume, wide bid-ask spread, few market makers. On-the-run vs off-the-run Treasuries là ví dụ chuẩn: same credit (US gov), same maturity group nhưng off-the-run yield cao hơn ~15-25 bps do liquidity. CFA thường test this exact distinction.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.14 — Credit Risk</span>
+  </div>
+</section>
+
+
+<!-- 26 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>08.14 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 08.15 — Credit Analysis: Government Issuers</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

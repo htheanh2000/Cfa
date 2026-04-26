@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>CFA L1 · FSA 04.11 — Financial Statement Modeling</title>
+<title>CFA L1 · FSA 04.11 — Financial Analysis Techniques</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -24,18 +24,18 @@
 <section data-label="Title" class="slide title-slide">
   <div class="left">
     <div class="mark">CFA Institute · Level I</div>
-    <h1 class="main">Financial<br><em>Modeling.</em></h1>
+    <h1 class="main">Financial<br><em>Analysis.</em></h1>
     <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 04 · Lesson 04.11 · FSA</div>
   </div>
   <div class="right">
-    <div class="mark">Module 11 · Financial statement modeling &amp; forecasting</div>
+    <div class="mark">Module 11 · Financial Analysis Techniques</div>
     <dl class="meta-grid">
       <div><dt>Môn</dt><dd>FSA</dd></div>
       <div><dt>Module</dt><dd>11</dd></div>
       <div><dt>Lesson</dt><dd>04.11</dd></div>
-      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+      <div><dt>Thời lượng</dt><dd>120 min</dd></div>
     </dl>
-    <div class="mark">Top-down · Bottom-up · Hybrid · FCFF · FCFE · Scenario &amp; Sensitivity</div>
+    <div class="mark">common-size · ratios · DuPont · credit · valuation · forecasting</div>
   </div>
 </section>
 
@@ -45,775 +45,755 @@
   <div class="band">
     <div class="lbl">PART</div>
     <div class="n">11</div>
-    <div class="lbl">FS modeling</div>
+    <div class="lbl">Financial analysis</div>
   </div>
   <div class="content">
     <div class="eyebrow">Today's lesson</div>
-    <h2>How analysts <em>forecast</em><br>three statements forward.</h2>
+    <h2>From <em>statements</em><br>to <em>insight</em>.</h2>
     <ul class="toc">
-      <li class="active">01 · Forecasting approaches — top-down, bottom-up, hybrid</li>
-      <li>02 · Revenue forecasting — market share, volume × price, organic vs inorganic</li>
-      <li>03 · COGS, OpEx &amp; working capital projections</li>
-      <li>04 · CapEx, depreciation, capital structure &amp; tax assumptions</li>
-      <li>05 · FCFF / FCFE · scenario &amp; sensitivity analysis</li>
-      <li>06 · Inflation, FX &amp; model validation</li>
+      <li class="active">01 · Common-size analysis (vertical &amp; horizontal)</li>
+      <li>02 · Activity, liquidity, solvency ratios</li>
+      <li>03 · Profitability &amp; valuation ratios</li>
+      <li>04 · DuPont decomposition (3-step &amp; 5-step)</li>
+      <li>05 · Credit analysis · segment · pro-forma</li>
+      <li>06 · Limitations &amp; quality of earnings</li>
       <li>07 · Practice — 3 CFA-style questions</li>
     </ul>
   </div>
 </section>
 
 
-<!-- 03 · WHY MODEL -->
-<section data-label="Why model" class="slide">
+<!-- 03 · OVERVIEW -->
+<section data-label="Overview" class="slide">
   <div class="run-header">
-    <span>04.11 — FS Modeling</span>
+    <span>04.11 — Financial Analysis</span>
     <span class="rule"></span>
-    <span>03 / 33</span>
+    <span>03 / 32</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Foundation</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Why <em class="hi">model</em> the three statements?</h2>
+    <div class="eyebrow">Why financial analysis</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Tools to <em class="hi">read</em> a firm.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      FS modeling biến historicals + assumptions thành <em>forward-looking</em> P&amp;L, BS, CF. Output drive valuation (DCF), credit analysis, scenario planning. Mọi forecast đều là một bộ <em>assumptions</em> — analyst phải làm rõ, có thể defend được, và nhất quán giữa 3 statements.
+      Financial statements là raw data. <em>Analysis techniques</em> biến raw thành insight: firm có khoẻ không, có efficient không, có sustainable growth không, định giá hợp lý không.
     </p>
   </div>
 
-  <div class="rule-box">
-    <span class="tag">§ Core principle</span>
-    Một mô hình tốt KHÔNG phải mô hình "đúng" — mà là mô hình mà <em>mọi assumption đều có thể defend</em>, các statements <em>articulate</em> với nhau (NI flow vào RE; CapEx flow vào PP&amp;E và D&amp;A; debt flow vào interest expense), và output <em>nhạy cảm</em> với những drivers thực sự matter.
-  </div>
-
-  <p class="fine-muted-sm">
-    § Three-statement integration — Income Statement → Balance Sheet (qua RE, PP&amp;E, debt) → Cash Flow (qua NI, working capital changes, CapEx). Một số sai chunk: forecast revenue mà quên cập nhật receivables; forecast CapEx mà quên D&amp;A.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
-  </div>
-</section>
-
-
-<!-- 04 · TOP-DOWN VS BOTTOM-UP -->
-<section data-label="Top-down vs Bottom-up" class="slide">
-  <div class="run-header">
-    <span>04.11 — FS Modeling</span>
-    <span class="rule"></span>
-    <span>04 / 33</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Forecasting approach</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Top-down</em> vs Bottom-up.</h2>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head">Top-down</div>
-      <dl>
-        <dt>Khởi điểm</dt>
-        <dd>Macro / GDP → Industry → Firm. Bắt đầu từ <em>nominal GDP growth</em>, industry size, firm market share</dd>
-        <dt>Điểm mạnh</dt>
-        <dd>Capture macro cycles, dễ triển khai cho ngành cyclical (auto, steel, banking)</dd>
-        <dt>Điểm yếu</dt>
-        <dd>Bỏ sót firm-specific drivers (new product, geographic expansion)</dd>
-        <dt>Khi dùng</dt>
-        <dd>Mature firm trong industry stable; cyclical industry; coverage rộng</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head">Bottom-up</div>
-      <dl>
-        <dt>Khởi điểm</dt>
-        <dd>Firm-level: store count × sales/store; subscribers × ARPU; capacity × utilization × ASP</dd>
-        <dt>Điểm mạnh</dt>
-        <dd>Capture micro drivers, new product launches, granular operational levers</dd>
-        <dt>Điểm yếu</dt>
-        <dd>Có thể bỏ qua macro shock; overstate growth nếu mỗi đơn vị extrapolate riêng</dd>
-        <dt>Khi dùng</dt>
-        <dd>Growth firm, retail / SaaS / commodity producer, deep sector coverage</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Hybrid — phần lớn analyst thực tế dùng <em>hybrid</em>: bottom-up cho top-line, sanity-check với top-down (industry growth × market share). Hai cách phải ra số gần nhau, nếu lệch quá xa thì có assumption sai.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
-  </div>
-</section>
-
-
-<!-- 05 · HYBRID & ASSUMPTION HIERARCHY -->
-<section data-label="Hybrid &amp; hierarchy" class="slide">
-  <div class="run-header">
-    <span>04.11 — FS Modeling</span>
-    <span class="rule"></span>
-    <span>05 / 33</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Best practice</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Assumption <em class="hi">hierarchy</em>.</h2>
-  </div>
-
-  <div class="rule-box">
-    <span class="tag">§ Forecast assumptions hierarchy</span>
-    Build assumption stack <b>top → down</b>: (1) Macro — GDP, inflation, FX, rates. (2) Industry — TAM, growth, competitive intensity. (3) Firm — share, margins, CapEx intensity, capital structure. (4) Line item — revenue mix, COGS components, OpEx ratios. Mỗi tầng <em>constrain</em> tầng dưới. Vi phạm hierarchy = revenue grow 25% mà GDP 3% và market share giả định không đổi.
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 20px;">
+  <ol class="num-list tight" style="margin-top: 16px;">
     <li>
       <span>
-        <span class="step-title">Anchor macros first</span>
-        <span class="step-body">Real GDP, inflation, exchange rates, policy rates. Use central bank / IMF / consensus, không tự bịa.</span>
+        <span class="step-title">Common-size analysis — normalize size</span>
+        <span class="step-body">Express line items as % để so sánh firms khác size hoặc track shift qua thời gian.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Then industry — TAM × growth × structure</span>
-        <span class="step-body">Industry growth thường vượt GDP với secular tailwind (cloud, EV); dưới GDP với declining (print media). Check Porter forces cho margin sustainability.</span>
+        <span class="step-title">Ratio analysis — relate two numbers</span>
+        <span class="step-body">5 categories: activity, liquidity, solvency, profitability, valuation. Mỗi ratio kể một góc của câu chuyện.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Then firm — share, margins, capital intensity</span>
-        <span class="step-body">Market share trend, gross margin vs peers, CapEx / Revenue, D/E target. Mỗi assumption phải có lý do — quote management guidance, peer benchmarks, history.</span>
+        <span class="step-title">Decomposition — DuPont, segment, pro-forma</span>
+        <span class="step-body">Tách ROE thành drivers, phân tích by segment, dự báo statements forward.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Context bắt buộc — peer + time + industry</span>
+        <span class="step-body">Một ratio đứng một mình vô nghĩa. Phải so cross-sectional (peers) + time-series (trend).</span>
       </span>
     </li>
   </ol>
 
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
   </div>
 </section>
 
 
-<!-- 06 · REVENUE FORECASTING METHODS -->
-<section data-label="Revenue methods" class="slide">
+<!-- 04 · COMMON-SIZE INTRO -->
+<section data-label="Common-size" class="slide">
   <div class="run-header">
-    <span>04.11 — FS Modeling</span>
+    <span>04.11 — Financial Analysis</span>
     <span class="rule"></span>
-    <span>06 / 33</span>
+    <span>04 / 32</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Top-line</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Revenue <em class="hi">forecasting</em> methods.</h2>
+    <div class="eyebrow">Technique 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Common-size</em> analysis.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Revenue là driver mạnh nhất của valuation. Sai 1% revenue thường lớn hơn sai 1% margin về kết quả EPS. Có 3 cách chính.
+      Loại bỏ "scale effect" để so sánh firms hoặc track structural shift. Hai biến thể: vertical (cross-section một kỳ) và horizontal (time-series).
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Common-size formulas</span>
+    <div class="eq"><span class="var">Vertical IS item %</span> = <span class="var">Line item</span> / <span class="var">Revenue</span> × 100</div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Vertical BS item %</span> = <span class="var">Line item</span> / <span class="var">Total assets</span> × 100</div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Horizontal growth %</span> = (<span class="var">Item<sub>t</sub></span> − <span class="var">Item<sub>0</sub></span>) / <span class="var">Item<sub>0</sub></span> × 100</div>
+    <div class="note">IS dùng <b>Revenue</b> làm denominator; BS dùng <b>Total Assets</b>; CF statement thường dùng Revenue hoặc Total CF inflows. Chọn base nhất quán.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Ví dụ — COGS / Revenue = 60% → mỗi $1 doanh thu có $0.60 chi cho hàng. Nếu peer 50%, firm này gross margin yếu hơn 10pp.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
+  </div>
+</section>
+
+
+<!-- 05 · VERTICAL VS HORIZONTAL -->
+<section data-label="Vertical vs Horizontal" class="slide">
+  <div class="run-header">
+    <span>04.11 — Financial Analysis</span>
+    <span class="rule"></span>
+    <span>05 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Common-size · two variants</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Vertical</em> vs horizontal.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Vertical (% of base)</div>
+      <dl>
+        <dt>Mục tiêu</dt>
+        <dd>So sánh <em>structure</em> giữa firms cùng kỳ, hoặc track mix shift trong cùng firm</dd>
+        <dt>Base</dt>
+        <dd>IS → Revenue · BS → Total Assets</dd>
+        <dt>Output</dt>
+        <dd>COGS = 62%, SG&amp;A = 18%, Net margin = 8%, Inventory = 22% TA…</dd>
+        <dt>Ưu điểm</dt>
+        <dd>Loại scale → so peer khác size dễ. Phát hiện structural drift</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Horizontal (% growth)</div>
+      <dl>
+        <dt>Mục tiêu</dt>
+        <dd>Track <em>growth rate</em> của từng item qua nhiều kỳ</dd>
+        <dt>Base</dt>
+        <dd>Period 0 (base year) hoặc prior period (YoY)</dd>
+        <dt>Output</dt>
+        <dd>Revenue +12%, Receivables +28%, Inventory +35% — receivables &amp; inventory grow faster than sales = warning</dd>
+        <dt>Ưu điểm</dt>
+        <dd>Phát hiện <em>quality-of-earnings</em> issues, deteriorating working capital</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Combined view — kết hợp cả hai cho bức tranh đầy đủ. Vertical cho biết WHAT (mix), horizontal cho biết HOW IT'S MOVING (trend).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
+  </div>
+</section>
+
+
+<!-- 06 · ACTIVITY RATIOS -->
+<section data-label="Activity ratios" class="slide">
+  <div class="run-header">
+    <span>04.11 — Financial Analysis</span>
+    <span class="rule"></span>
+    <span>06 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Ratio category 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Activity</em> ratios — efficiency.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Đo firm dùng tài sản hiệu quả ra sao. Cao hơn = quay vòng nhanh hơn, generate sales tốt hơn từ asset base.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Core activity ratios</span>
+    <div class="eq"><span class="var">Inventory Turnover</span> = <span class="var">COGS</span> / <span class="var">Avg Inventory</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">DOH (Days of Inventory)</span> = <span class="var">365</span> / <span class="var">Inventory Turnover</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Receivables Turnover</span> = <span class="var">Revenue</span> / <span class="var">Avg Receivables</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">DSO</span> = <span class="var">365</span> / <span class="var">Receivables Turnover</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Payables Turnover</span> = <span class="var">Purchases</span> / <span class="var">Avg Payables</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">DPO</span> = <span class="var">365</span> / <span class="var">Payables Turnover</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Total Asset Turnover</span> = <span class="var">Revenue</span> / <span class="var">Avg Total Assets</span></div>
+    <div class="note">Cash Conversion Cycle = <b>DOH + DSO − DPO</b>. Càng ngắn càng tốt — firm thu tiền trước khi phải trả supplier.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
+  </div>
+</section>
+
+
+<!-- 07 · LIQUIDITY RATIOS -->
+<section data-label="Liquidity ratios" class="slide">
+  <div class="run-header">
+    <span>04.11 — Financial Analysis</span>
+    <span class="rule"></span>
+    <span>07 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Ratio category 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Liquidity</em> ratios — short-term.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Khả năng meet obligations &lt; 12 months. Bốn ratios sắp theo độ "khắt khe" tăng dần.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Four liquidity ratios</span>
+    <div class="eq"><span class="var">Current</span> = <span class="var">CA</span> / <span class="var">CL</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Quick</span> = (<span class="var">Cash</span> + <span class="var">ST Inv</span> + <span class="var">AR</span>) / <span class="var">CL</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Cash</span> = (<span class="var">Cash</span> + <span class="var">ST Inv</span>) / <span class="var">CL</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Defensive Interval</span> = (<span class="var">Cash</span> + <span class="var">ST Inv</span> + <span class="var">AR</span>) / <span class="var">Daily Cash Expenses</span></div>
+    <div class="note"><b>Defensive interval</b> đo số ngày firm sống được nếu không có inflow nào — đơn vị "days", thay vì ratio. Daily cash expenses ≈ (OpEx + COGS − D&amp;A) / 365.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Quick &gt; 1 thường được xem là healthy; cash ratio &gt; 0.5 là conservative. Nhưng industry context bắt buộc — retailer high-turnover có quick ratio thấp vẫn OK.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
+  </div>
+</section>
+
+
+<!-- 08 · SOLVENCY RATIOS -->
+<section data-label="Solvency ratios" class="slide">
+  <div class="run-header">
+    <span>04.11 — Financial Analysis</span>
+    <span class="rule"></span>
+    <span>08 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Ratio category 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Solvency</em> ratios — long-term.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Capital structure &amp; khả năng trả interest. Hai nhóm: <em>debt ratios</em> (BS-based) và <em>coverage ratios</em> (IS/CF-based).
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Solvency &amp; coverage</span>
+    <div class="eq"><span class="var">Debt-to-Equity</span> = <span class="var">Total Debt</span> / <span class="var">Total Equity</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Debt-to-Assets</span> = <span class="var">Total Debt</span> / <span class="var">Total Assets</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Financial Leverage</span> = <span class="var">Avg Total Assets</span> / <span class="var">Avg Equity</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Interest Coverage</span> = <span class="var">EBIT</span> / <span class="var">Interest Expense</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">FCCR</span> = (<span class="var">EBIT</span> + <span class="var">Lease pmt</span>) / (<span class="var">Interest</span> + <span class="var">Lease pmt</span>)</div>
+    <div class="note"><b>FCCR</b> (Fixed Charge Coverage Ratio) thêm lease payments — relevant với firms thuê nhiều (retail, airlines). Pre-IFRS 16 đặc biệt quan trọng.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
+  </div>
+</section>
+
+
+<!-- 09 · PROFITABILITY MARGINS -->
+<section data-label="Profitability margins" class="slide">
+  <div class="run-header">
+    <span>04.11 — Financial Analysis</span>
+    <span class="rule"></span>
+    <span>09 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Ratio category 04a</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Profitability</em> margins.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Mỗi level của IS sinh ra một margin. Đi từ trên xuống (gross → net) cho thấy chi phí hấp thụ doanh thu ở từng tầng.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Income statement margins</span>
+    <div class="eq"><span class="var">Gross Margin</span> = <span class="var">Gross Profit</span> / <span class="var">Revenue</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Operating Margin</span> = <span class="var">EBIT</span> / <span class="var">Revenue</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Pretax Margin</span> = <span class="var">EBT</span> / <span class="var">Revenue</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Net Margin</span> = <span class="var">Net Income</span> / <span class="var">Revenue</span></div>
+    <div class="note">Gross margin → reflect <b>pricing power + product cost</b>. Operating margin → reflect <b>operational efficiency</b>. Net margin → reflect <b>tax + financing</b>.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Watch the cascade — gross margin ổn định nhưng operating margin giảm = SG&amp;A bloat. Operating ổn nhưng net giảm = interest hoặc tax cao bất thường.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
+  </div>
+</section>
+
+
+<!-- 10 · ROA / ROE / ROIC -->
+<section data-label="Return ratios" class="slide">
+  <div class="run-header">
+    <span>04.11 — Financial Analysis</span>
+    <span class="rule"></span>
+    <span>10 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Ratio category 04b</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Return</em> on capital ratios.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Profit relative to capital invested. Khác nhau ở denominator: total assets, equity, hay total invested capital.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Return ratios</span>
+    <div class="eq"><span class="var">ROA</span> = <span class="var">Net Income</span> / <span class="var">Avg Total Assets</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">ROA (operating)</span> = <span class="var">EBIT</span> / <span class="var">Avg Total Assets</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">ROE</span> = <span class="var">Net Income</span> / <span class="var">Avg Equity</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">ROIC</span> = <span class="var">EBIT × (1 − t)</span> / (<span class="var">Avg Debt</span> + <span class="var">Avg Equity</span>)</div>
+    <div class="note"><b>ROIC</b> = NOPAT / Invested Capital. So với <em>WACC</em>: ROIC &gt; WACC → firm tạo value. Là metric trung tâm của value-based management.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § ROE cao có thể do (a) good operations, (b) high leverage, (c) buyback shrinks equity. DuPont decomposition phân biệt được nguồn gốc.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
+  </div>
+</section>
+
+
+<!-- 11 · DUPONT 3-STEP -->
+<section data-label="DuPont 3-step" class="slide">
+  <div class="run-header">
+    <span>04.11 — Financial Analysis</span>
+    <span class="rule"></span>
+    <span>11 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">DuPont decomposition</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">3-step</em> DuPont.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Tách ROE thành 3 drivers: profitability, efficiency, leverage. Trả lời: ROE đến từ đâu?
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ ROE = NPM × Asset Turnover × Leverage</span>
+    <div class="eq"><span class="var">ROE</span> = <span class="var">NI/Rev</span> × <span class="var">Rev/Assets</span> × <span class="var">Assets/Equity</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">ROE</span> = <span class="var">Net Margin</span> × <span class="var">Asset Turnover</span> × <span class="var">Equity Multiplier</span></div>
+    <div class="note">Three drivers: <b>profitability</b> (margin), <b>efficiency</b> (asset turnover), <b>leverage</b> (equity multiplier). Một firm có thể đạt ROE 20% bằng 3 đường khác nhau.</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">High margin, low turnover — luxury / pharma</span>
+        <span class="step-body">Hermès, Pfizer. Margin 25%+, asset turnover &lt; 1. Pricing power là moat.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Low margin, high turnover — retail / discount</span>
+        <span class="step-body">Walmart, Costco. Margin 2-3%, turnover 2-3x. Volume là moat.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Average × high leverage — banks / utilities</span>
+        <span class="step-body">Equity multiplier có thể 8-10x. ROE bơm bằng leverage, đi kèm risk.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
+  </div>
+</section>
+
+
+<!-- 12 · DUPONT 5-STEP -->
+<section data-label="DuPont 5-step" class="slide">
+  <div class="run-header">
+    <span>04.11 — Financial Analysis</span>
+    <span class="rule"></span>
+    <span>12 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">DuPont · extended</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">5-step</em> DuPont.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Phân rã thêm Net Margin thành <em>Tax burden × Interest burden × EBIT margin</em>. Tách operating performance khỏi tax + financing.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ ROE in 5 components</span>
+    <div class="eq"><span class="var">ROE</span> = <span class="var">NI/EBT</span> × <span class="var">EBT/EBIT</span> × <span class="var">EBIT/Rev</span> × <span class="var">Rev/Assets</span> × <span class="var">Assets/Equity</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">ROE</span> = <span class="var">Tax Burden</span> × <span class="var">Interest Burden</span> × <span class="var">EBIT Margin</span> × <span class="var">Asset Turnover</span> × <span class="var">Leverage</span></div>
+    <div class="note"><b>Tax burden</b> = NI/EBT (1 − effective tax rate). <b>Interest burden</b> = EBT/EBIT (≈ 1 nếu ít debt). <b>EBIT margin</b> = pure operating profitability.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Use case — phân biệt firm có operating tốt nhưng bị bóp bởi interest (interest burden &lt; 0.7) hay firm hưởng lợi từ tax holiday (tax burden &gt; 0.85).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
+  </div>
+</section>
+
+
+<!-- 13 · 3-STEP VS 5-STEP -->
+<section data-label="3-step vs 5-step" class="slide">
+  <div class="run-header">
+    <span>04.11 — Financial Analysis</span>
+    <span class="rule"></span>
+    <span>13 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">DuPont · which version</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">3-step</em> vs 5-step.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">3-step DuPont</div>
+      <dl>
+        <dt>Components</dt>
+        <dd>Net Margin × Asset Turnover × Leverage</dd>
+        <dt>Drivers</dt>
+        <dd><em>Profitability</em> · <em>Efficiency</em> · <em>Leverage</em></dd>
+        <dt>Use when</dt>
+        <dd>Quick ROE diagnosis, peer comparison đơn giản</dd>
+        <dt>Hạn chế</dt>
+        <dd>Net margin gộp tax + interest + operations — không tách được</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">5-step DuPont</div>
+      <dl>
+        <dt>Components</dt>
+        <dd>Tax × Interest burden × EBIT margin × Turnover × Leverage</dd>
+        <dt>Drivers</dt>
+        <dd>5 distinct levers — granular</dd>
+        <dt>Use when</dt>
+        <dd>So firm cross-jurisdiction (tax differs), cross-leverage (interest differs)</dd>
+        <dt>Lợi thế</dt>
+        <dd>Tách <em>operating</em> khỏi <em>financing &amp; tax</em>; biết operating sức khoẻ thật</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § CFA L1 yêu cầu cả hai. Khi đề cho EBT, EBIT, NI, Revenue → thường test 5-step. Khi chỉ có NI, Revenue, Assets, Equity → 3-step.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
+  </div>
+</section>
+
+
+<!-- 14 · VALUATION RATIOS -->
+<section data-label="Valuation ratios" class="slide">
+  <div class="run-header">
+    <span>04.11 — Financial Analysis</span>
+    <span class="rule"></span>
+    <span>14 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Ratio category 05</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Valuation</em> ratios — market.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Relate price tới fundamental. Price multiples (numerator = price hoặc EV) so với earnings, book, cash flow, sales.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Five core valuation multiples</span>
+    <div class="eq"><span class="var">P/E</span> = <span class="var">Price</span> / <span class="var">EPS</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">P/B</span> = <span class="var">Price</span> / <span class="var">Book Value per Share</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">P/CF</span> = <span class="var">Price</span> / <span class="var">CFO per Share</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">P/S</span> = <span class="var">Price</span> / <span class="var">Sales per Share</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">EV/EBITDA</span> = (<span class="var">MV Equity</span> + <span class="var">MV Debt</span> − <span class="var">Cash</span>) / <span class="var">EBITDA</span></div>
+    <div class="note"><b>EV/EBITDA</b> capital-structure-neutral — so firms với leverage khác nhau. P/E lệch khi tax / financing khác nhau giữa firms.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
+  </div>
+</section>
+
+
+<!-- 15 · CREDIT ANALYSIS 4 C's -->
+<section data-label="Credit 4 C's" class="slide">
+  <div class="run-header">
+    <span>04.11 — Financial Analysis</span>
+    <span class="rule"></span>
+    <span>15 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Application 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Credit</em> analysis — 4 C's.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Framework chuẩn cho debt analysis. Rating agencies (Moody's, S&amp;P, Fitch) dùng biến thể 4 C's hoặc 5 C's (thêm Conditions).
     </p>
   </div>
 
   <div class="tenets-grid" style="margin-top: 16px;">
     <div class="tenet">
-      <span class="n">MS</span>
+      <span class="n">CAP</span>
       <div>
-        <div class="t"><em class="hi">Market-share method</em></div>
-        <div class="d">Revenue = Industry size × Market share. Top-down classic. Dùng khi industry data có sẵn (auto, smartphone, beer).</div>
+        <div class="t"><em class="hi">Capacity</em></div>
+        <div class="d">Khả năng generate cash flow để service debt. Key ratios: Interest coverage, FCCR, CFO/Debt, Debt/EBITDA.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">V×P</span>
+      <span class="n">COL</span>
       <div>
-        <div class="t"><em class="hi">Volume × Price</em></div>
-        <div class="d">Units sold × ASP. Bottom-up cho commodity / hardware. Tách rời volume growth khỏi price effect — important cho mining, steel, semiconductor.</div>
+        <div class="t"><em class="hi">Collateral</em></div>
+        <div class="d">Asset quality &amp; liquidation value backing the debt. PP&amp;E tangible &gt; goodwill / intangibles.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">UNIT</span>
+      <span class="n">COV</span>
       <div>
-        <div class="t"><em class="hi">Unit economics</em></div>
-        <div class="d">Stores × Sales/store; subscribers × ARPU × months; trucks × loads × revenue/load. Granular, cho retail / SaaS / logistics.</div>
+        <div class="t"><em class="hi">Covenants</em></div>
+        <div class="d">Restrictions trong indenture: max D/E, min coverage, dividend limits, asset sale restrictions.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">ORG</span>
+      <span class="n">CHA</span>
       <div>
-        <div class="t"><em class="hi">Organic vs Inorganic</em></div>
-        <div class="d">Tách <em>organic growth</em> (existing operations) khỏi <em>inorganic growth</em> (M&amp;A, FX). CFA chú trọng organic vì M&amp;A không sustainable không có acquisition pipeline rõ.</div>
+        <div class="t"><em class="hi">Character</em></div>
+        <div class="d">Management quality, track record trả nợ, transparency của reporting, corporate governance.</div>
       </div>
     </div>
   </div>
 
   <p class="fine-muted-sm">
-    § Same-store sales (SSS / comps) — riêng cho retail. Tách ảnh hưởng của store count growth khỏi productivity hiện tại. Negative comps + new store growth = revenue grow nhưng underlying business yếu.
+    § Some texts use 5 C's adding <b>Conditions</b> — macro environment, industry cycle, regulatory shifts. CFA L1 chấp nhận cả hai.
   </p>
 
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
   </div>
 </section>
 
 
-<!-- 07 · COGS & GROSS MARGIN -->
-<section data-label="COGS &amp; gross margin" class="slide">
+<!-- 16 · SEGMENT + PRO-FORMA -->
+<section data-label="Segment & Pro-forma" class="slide">
   <div class="run-header">
-    <span>04.11 — FS Modeling</span>
+    <span>04.11 — Financial Analysis</span>
     <span class="rule"></span>
-    <span>07 / 33</span>
+    <span>16 / 32</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Profitability</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">COGS &amp; <em class="hi">gross margin</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Sau khi forecast revenue, bước tiếp là project COGS để ra Gross Profit. Có 2 cách dominant.
-    </p>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Two paths to COGS</span>
-    <div class="eq"><span class="var">COGS</span> = <span class="var">Revenue</span> × (1 − <span class="var">Gross Margin %</span>)</div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">COGS</span> = <span class="var">Volume</span> × <span class="var">Unit Cost</span></div>
-    <div class="note"><b>Margin method</b> — assume gross margin (e.g. 38%), dễ với firm có margin ổn. <b>Bottom-up</b> — model raw material, labor, overhead riêng. Bắt buộc cho commodity producer khi input price (oil, steel, coffee bean) volatile.</div>
-  </div>
-
-  <div class="take" style="margin-top: 16px;">
-    <b>Margin trend rules</b> — (1) <em>Mean-revert</em> với mature firm; (2) <em>Expand</em> nếu có operating leverage hoặc scale; (3) <em>Compress</em> nếu commoditized hoặc price war. CFA L1 hay test case mean reversion: assume margin trở về industry average qua 3-5 năm.
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
-  </div>
-</section>
-
-
-<!-- 08 · OPERATING EXPENSE RATIOS -->
-<section data-label="OpEx ratios" class="slide">
-  <div class="run-header">
-    <span>04.11 — FS Modeling</span>
-    <span class="rule"></span>
-    <span>08 / 33</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Below the line</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Operating <em class="hi">expense</em> ratios.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      OpEx (SG&amp;A, R&amp;D, marketing) thường model bằng <em>% of sales</em> method. Đơn giản và đủ chính xác cho non-volatile firms.
-    </p>
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 16px;">
-    <li>
-      <span>
-        <span class="step-title">% of sales method — default approach</span>
-        <span class="step-body">SG&amp;A = X% × Revenue. Compute X% từ historicals (3-5 năm trung bình). Adjust nếu firm đang restructure hoặc scale.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Fixed vs variable split — for cyclical firms</span>
-        <span class="step-body">Một phần OpEx fixed (rent, headcount baseline), phần khác variable (commissions, performance pay). Phân tách nếu revenue có volatility cao → margin sensitivity rõ hơn.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">R&amp;D — strategic, không scale tuyến tính</span>
-        <span class="step-body">Tech firm thường commit R&amp;D mức $ tuyệt đối (theo guidance), không đơn giản % of sales. Pharma R&amp;D phụ thuộc pipeline.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Operating leverage — incremental margin</span>
-        <span class="step-body">Khi revenue tăng nhanh hơn fixed cost, operating margin expand. Quote case Costco, Amazon AWS — fixed infrastructure → mỗi $1 revenue tăng đem &gt;20% operating margin biên.</span>
-      </span>
-    </li>
-  </ol>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
-  </div>
-</section>
-
-
-<!-- 09 · WORKING CAPITAL -->
-<section data-label="Working capital" class="slide">
-  <div class="run-header">
-    <span>04.11 — FS Modeling</span>
-    <span class="rule"></span>
-    <span>09 / 33</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Balance sheet links</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Working capital <em class="hi">projections</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Receivables, inventory, payables drive cash conversion cycle. Project bằng <em>days-based ratios</em>, không phải % of sales đơn thuần.
-    </p>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Days-based working capital</span>
-    <div class="eq"><span class="var">DSO</span> = (<span class="var">AR</span> / <span class="var">Revenue</span>) × 365</div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">DIO</span> = (<span class="var">Inventory</span> / <span class="var">COGS</span>) × 365</div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">DPO</span> = (<span class="var">AP</span> / <span class="var">COGS</span>) × 365</div>
-    <div class="note"><b>Forecast</b> — chọn DSO/DIO/DPO target, rồi back-solve AR/Inventory/AP. Ví dụ DSO 45 → AR = Revenue × 45/365. <b>Cash conversion cycle</b> = DSO + DIO − DPO. Trend của CCC quan trọng — tăng = cash bị tied up, có thể là warning sign.</div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Trend signal — DSO tăng nhanh hơn revenue = aggressive revenue recognition hoặc customer credit deteriorating. DIO tăng = inventory buildup, có thể obsolete. DPO tăng = stretching suppliers, có thể short-term cash, nhưng rủi ro relationship.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
-  </div>
-</section>
-
-
-<!-- 10 · CAPEX & DEPRECIATION -->
-<section data-label="CapEx &amp; D&amp;A" class="slide">
-  <div class="run-header">
-    <span>04.11 — FS Modeling</span>
-    <span class="rule"></span>
-    <span>10 / 33</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Capital intensity</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">CapEx + <em class="hi">Depreciation</em> schedule.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      CapEx và D&amp;A liên kết: CapEx hôm nay → PP&amp;E gross → depreciate qua nhiều năm thành D&amp;A. Mismatch là sai lầm phổ biến.
-    </p>
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 16px;">
-    <li>
-      <span>
-        <span class="step-title">Maintenance vs growth CapEx</span>
-        <span class="step-body"><em>Maintenance CapEx</em> ≈ D&amp;A — chỉ giữ asset base hiện tại. <em>Growth CapEx</em> = excess, drive future revenue. Tách ra giúp xác định sustainable FCF.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Forecast as % of revenue (capital intensity)</span>
-        <span class="step-body">CapEx / Revenue ratio. Asset-heavy (utilities, telcos) ~15-25%; asset-light (software) ~2-5%. Stable trong steady-state, lumpy trong build-out phase.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Depreciation — straight-line trên gross PP&amp;E</span>
-        <span class="step-body">D&amp;A = average useful life division. Nếu firm CapEx mỗi năm $100M, useful life 10 năm → D&amp;A steady-state ≈ $100M/year. Build asset roll: Gross PP&amp;E_t = PP&amp;E_t-1 + CapEx_t.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Net PP&amp;E roll-forward</span>
-        <span class="step-body">Net PP&amp;E_t = Net PP&amp;E_t-1 + CapEx_t − D&amp;A_t − Disposals. Đảm bảo BS articulation với CF.</span>
-      </span>
-    </li>
-  </ol>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
-  </div>
-</section>
-
-
-<!-- 11 · CAPITAL STRUCTURE -->
-<section data-label="Capital structure" class="slide">
-  <div class="run-header">
-    <span>04.11 — FS Modeling</span>
-    <span class="rule"></span>
-    <span>11 / 33</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Financing assumptions</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Capital structure &amp; <em class="hi">target D/E</em>.</h2>
-  </div>
-
-  <div class="rule-box">
-    <span class="tag">§ Capital structure rule</span>
-    Phần lớn analyst assume firm <em>maintains target D/E ratio</em>. Khi equity grow (qua RE), debt grow tỷ lệ để giữ leverage. Điều này đơn giản hóa interest expense forecast và phù hợp với <em>WACC stability</em> giả định trong DCF.
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 20px;">
-    <li>
-      <span>
-        <span class="step-title">Debt level — target ratio approach</span>
-        <span class="step-body">Total Debt_t = D/E target × Equity_t. Hoặc Debt / EBITDA target (3.0x, 4.0x). Suy ra new borrowings hoặc repayments.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Interest expense — average balance × rate</span>
-        <span class="step-body">Interest = avg(Debt_t-1, Debt_t) × effective rate. Avg để tránh over/under-state khi debt thay đổi mid-year.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Tax rate — effective vs statutory</span>
-        <span class="step-body">Dùng <em>effective tax rate</em> historical (NI / pre-tax income) làm baseline. Adjust nếu có tax holidays expiring, jurisdiction shift, deferred tax reversal. CFA L1 thường dùng effective rate flat forward.</span>
-      </span>
-    </li>
-  </ol>
-
-  <p class="fine-muted-sm">
-    § Circular reference — interest expense depends on debt; debt depends on equity; equity depends on NI; NI depends on interest. Excel models thường iterate (enable circular refs) hoặc dùng beginning balance để break loop.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
-  </div>
-</section>
-
-
-<!-- 12 · FCFF -->
-<section data-label="FCFF" class="slide">
-  <div class="run-header">
-    <span>04.11 — FS Modeling</span>
-    <span class="rule"></span>
-    <span>12 / 33</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Cash flow output</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Free Cash Flow to <em class="hi">Firm</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      FCFF là cash available cho <em>tất cả capital providers</em> (debt + equity) sau khi firm đã tài trợ working capital và CapEx. Discount tại WACC để ra Enterprise Value.
-    </p>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ FCFF — from Net Income</span>
-    <div class="eq"><span class="var">FCFF</span> = NI + NCC + Int(1−t) − FCInv − WCInv</div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">FCFF</span> = EBIT(1−t) + D&amp;A − FCInv − WCInv</div>
-    <div class="note"><b>NCC</b> non-cash charges (D&amp;A) · <b>Int(1−t)</b> after-tax interest add-back (debt holders' claim) · <b>FCInv</b> CapEx · <b>WCInv</b> change in non-cash working capital. Hai công thức equivalent — chọn theo data có sẵn.</div>
-  </div>
-
-  <div class="take" style="margin-top: 16px;">
-    <b>Why add back after-tax interest?</b> — FCFF là cash <em>trước khi</em> chia cho debt holders. NI đã trừ interest expense — phải cộng lại. Nhân (1−t) vì interest tax shield đã được hưởng.
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
-  </div>
-</section>
-
-
-<!-- 13 · FCFE -->
-<section data-label="FCFE" class="slide">
-  <div class="run-header">
-    <span>04.11 — FS Modeling</span>
-    <span class="rule"></span>
-    <span>13 / 33</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Equity holders' cash</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Free Cash Flow to <em class="hi">Equity</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      FCFE là cash available cho <em>equity holders only</em>, sau khi đã pay debt holders (interest + net principal repayment). Discount tại cost of equity để ra Equity Value.
-    </p>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ FCFE — three equivalent forms</span>
-    <div class="eq"><span class="var">FCFE</span> = FCFF − Int(1−t) + Net Borrowing</div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">FCFE</span> = NI + NCC − FCInv − WCInv + Net Borrowing</div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">FCFE</span> = CFO − FCInv + Net Borrowing</div>
-    <div class="note"><b>Net Borrowing</b> = New debt issued − Debt repaid. <b>FCFE &gt; FCFF</b> khi firm raises new debt; <b>&lt;</b> khi paying down debt. Khác FCFF: KHÔNG add back interest, vì interest đã đi vào debt holders.</div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Practical rule — dùng FCFF khi capital structure changing nhiều (M&amp;A, leveraged buyout); dùng FCFE khi structure stable và mục tiêu valuation là equity directly.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
-  </div>
-</section>
-
-
-<!-- 14 · FCFF VS FCFE -->
-<section data-label="FCFF vs FCFE" class="slide">
-  <div class="run-header">
-    <span>04.11 — FS Modeling</span>
-    <span class="rule"></span>
-    <span>14 / 33</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Side-by-side</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">FCFF <em class="hi">vs</em> FCFE.</h2>
+    <div class="eyebrow">Application 02 &amp; 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Segment</em> &amp; pro-forma.</h2>
   </div>
 
   <div class="compare" style="margin-top: 16px;">
     <div class="cc">
-      <div class="head">FCFF</div>
+      <div class="head">Segment analysis</div>
       <dl>
-        <dt>Recipient</dt>
-        <dd>Tất cả capital providers — debt + equity holders</dd>
-        <dt>Discount rate</dt>
-        <dd><em>WACC</em> (weighted average cost of capital)</dd>
-        <dt>Output</dt>
-        <dd>Enterprise Value (EV) → trừ Net Debt → Equity Value</dd>
-        <dt>Khi nào ưu tiên</dt>
-        <dd>Capital structure đang thay đổi; firm có nhiều layers debt; M&amp;A scenario</dd>
+        <dt>Định nghĩa</dt>
+        <dd>Operating segment ≥ 10% revenue, profit hoặc assets → disclose riêng (IFRS 8 / ASC 280)</dd>
+        <dt>Use</dt>
+        <dd>Phát hiện đâu là <em>cash cow</em>, đâu là <em>drag</em>. Apple Services vs Hardware. Amazon AWS vs Retail</dd>
+        <dt>Ratio</dt>
+        <dd>Segment margin, segment ROA, segment growth — tính riêng cho từng đơn vị</dd>
+        <dt>Cẩn thận</dt>
+        <dd>Allocation overhead có thể bóp méo segment profitability. Inter-segment transfers cần unwind</dd>
       </dl>
     </div>
     <div class="cc">
-      <div class="head">FCFE</div>
+      <div class="head">Pro-forma forecasts</div>
       <dl>
-        <dt>Recipient</dt>
-        <dd>Chỉ equity holders</dd>
-        <dt>Discount rate</dt>
-        <dd><em>Cost of equity</em> (r_e từ CAPM)</dd>
+        <dt>Định nghĩa</dt>
+        <dd>Forward-looking IS / BS / CF dựa trên assumptions về revenue growth, margin, capex…</dd>
+        <dt>Phương pháp</dt>
+        <dd><em>% of sales</em>: line item = historical % × forecast revenue. <em>Driver-based</em>: từng item có công thức riêng</dd>
         <dt>Output</dt>
-        <dd>Equity Value trực tiếp</dd>
-        <dt>Khi nào ưu tiên</dt>
-        <dd>Capital structure stable; firm pay dividends regular; investor view trực tiếp equity</dd>
+        <dd>Forecast NI, FCF, leverage trajectory → input cho DCF, credit model, scenario analysis</dd>
+        <dt>Sensitivity</dt>
+        <dd>Test base / bull / bear scenarios. Identify key assumptions driving valuation</dd>
       </dl>
     </div>
   </div>
 
-  <p class="fine-muted-sm">
-    § Bridge — FCFE = FCFF − Int(1−t) + Net Borrowing. Điều này nói: FCFE bằng FCFF, trừ phần debt holders đã lấy (after-tax interest), cộng phần debt holders bơm thêm (net new borrowing).
-  </p>
-
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
   </div>
 </section>
 
 
-<!-- 15 · SUSTAINABLE GROWTH -->
-<section data-label="Sustainable growth" class="slide">
+<!-- 17 · QUALITY OF EARNINGS RED FLAGS -->
+<section data-label="Quality of earnings" class="slide">
   <div class="run-header">
-    <span>04.11 — FS Modeling</span>
+    <span>04.11 — Financial Analysis</span>
     <span class="rule"></span>
-    <span>15 / 33</span>
+    <span>17 / 32</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Validation tool</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Sustainable</em> growth rate.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Sustainable growth rate (SGR) = tốc độ growth tối đa firm có thể duy trì <em>không cần raise external equity</em>, giả định D/E ratio và payout ratio hold.
-    </p>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Sustainable growth rate</span>
-    <div class="eq"><span class="var">g</span> = <span class="var">ROE</span> × <span class="var">b</span></div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">b</span> = 1 − <span class="var">Dividend Payout Ratio</span> = retention ratio</div>
-    <div class="note"><b>Intuition</b> — ROE là return trên equity hiện có. Nếu firm retain b% (không trả dividend), equity sẽ grow ROE × b. Với D/E hold, debt grow cùng tỷ lệ → asset base grow → revenue grow ở mức g (steady state).</div>
-  </div>
-
-  <div class="take" style="margin-top: 16px;">
-    <b>Validation use</b> — nếu forecast revenue growth &gt; SGR liên tục, firm phải <em>hoặc</em> raise equity, <em>hoặc</em> tăng leverage, <em>hoặc</em> tăng ROE. Kiểm tra forecast có nhất quán không. Nếu growth dài hạn vượt SGR mà không có funding plan = inconsistent model.
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
-  </div>
-</section>
-
-
-<!-- 16 · SCENARIO ANALYSIS -->
-<section data-label="Scenario analysis" class="slide">
-  <div class="run-header">
-    <span>04.11 — FS Modeling</span>
-    <span class="rule"></span>
-    <span>16 / 33</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Uncertainty</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Scenario</em> analysis.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Single-point forecast (base case) thường không đủ. Analyst build <em>3 scenarios</em> với assumptions <em>internally consistent</em> trong mỗi scenario.
-    </p>
-  </div>
-
-  <div class="tenets-grid" style="margin-top: 16px;">
-    <div class="tenet">
-      <span class="n">BASE</span>
-      <div>
-        <div class="t"><em class="hi">Base case</em></div>
-        <div class="d">Most likely outcome. Reflect consensus, management guidance midpoint, history. Usually the anchor cho price target.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">BULL</span>
-      <div>
-        <div class="t"><em class="hi">Bull case</em></div>
-        <div class="d">Optimistic: market share gains, margin expansion, FX tailwind, new product success. Set assumptions ~75-90th percentile.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">BEAR</span>
-      <div>
-        <div class="t"><em class="hi">Bear case</em></div>
-        <div class="d">Pessimistic: recession, margin compression, FX headwind, product failure. ~10-25th percentile.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">CONS</span>
-      <div>
-        <div class="t"><em class="hi">Internal consistency</em></div>
-        <div class="d">Trong mỗi scenario, assumptions phải fit nhau. Bull: revenue ↑ + margin ↑ + working capital efficient. Bear: revenue ↓ + margin ↓ + WC bloat.</div>
-      </div>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Probability-weighted output — gán xác suất (e.g., 50% base, 25% bull, 25% bear) → expected value. Thường được dùng trong sell-side reports như "scenario-weighted price target".
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
-  </div>
-</section>
-
-
-<!-- 17 · SENSITIVITY ANALYSIS -->
-<section data-label="Sensitivity" class="slide">
-  <div class="run-header">
-    <span>04.11 — FS Modeling</span>
-    <span class="rule"></span>
-    <span>17 / 33</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">What drives the answer?</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Sensitivity</em> analysis.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Khác scenario (multi-variable bundles), sensitivity là <em>single-variable</em> stress test. Hỏi: "Nếu revenue growth 8% thay vì 10%, EPS thay đổi bao nhiêu?"
-    </p>
+    <div class="eyebrow">Watch list</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Quality of earnings <em class="hi">red flags</em>.</h2>
   </div>
 
   <div class="rule-box">
-    <span class="tag">§ Sensitivity vs Scenario</span>
-    <b>Sensitivity</b> — flex 1 input tại 1 thời điểm, hold còn lại. Trả lời "biến nào quan trọng nhất". <b>Scenario</b> — flex nhiều inputs cùng lúc theo narrative coherent. Trả lời "kết quả thế nào nếu storyline X xảy ra". Hai cách bổ sung, không thay thế.
+    <span class="tag">§ Red flag #1 — Receivables &amp; inventory growing faster than sales</span>
+    Receivables +30%, Revenue +10% → có thể revenue recognition aggressive (channel stuffing) hoặc collection issues. Inventory +25%, Revenue +5% → demand soft, write-down sắp tới.
   </div>
 
-  <ol class="num-list tight" style="margin-top: 20px;">
-    <li>
-      <span>
-        <span class="step-title">Identify sensitive variables — tornado chart</span>
-        <span class="step-body">Flex mỗi input ±10% (hoặc ±1 SD), record EPS / DCF impact. Plot bar chart sorted descending. Top vars là drivers thực sự matter.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Common high-impact variables</span>
-        <span class="step-body">Revenue growth, gross margin, WACC / discount rate, terminal growth rate. EPS thường nhạy nhất với revenue và margin; DCF thường nhạy nhất với discount rate và terminal g.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Use case — guide research priority</span>
-        <span class="step-body">Nếu top sensitivity là gross margin, analyst nên dành thêm thời gian để hiểu margin trajectory (input cost, pricing power), không phải dwell vào tax rate (low impact).</span>
-      </span>
-    </li>
-  </ol>
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Red flag #2 — Net income lệch xa Operating Cash Flow</span>
+    NI dương mạnh nhưng OCF yếu hoặc âm nhiều quý → earnings có thể là accounting noise (accruals), không phải cash. Tính <em>Accruals ratio</em> = (NI − OCF) / Avg Total Assets — high &amp; persistent là cảnh báo.
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Red flag #3 — Frequent "one-time" charges</span>
+    Restructuring charges năm nào cũng có → không phải one-time. Firms dùng để smooth earnings. Tính core earnings excluding "non-recurring" và so với reported.
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Red flag #4 — Aggressive capitalization vs expensing</span>
+    Capitalize R&amp;D, software dev, marketing → boost current NI, push expense to future via amortization. So với industry norm.
+  </div>
 
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
   </div>
 </section>
 
 
-<!-- 18 · INFLATION & FX -->
-<section data-label="Inflation &amp; FX" class="slide">
+<!-- 18 · LIMITATIONS -->
+<section data-label="Limitations" class="slide">
   <div class="run-header">
-    <span>04.11 — FS Modeling</span>
+    <span>04.11 — Financial Analysis</span>
     <span class="rule"></span>
-    <span>18 / 33</span>
+    <span>18 / 32</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Macro adjustments</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Inflation &amp; <em class="hi">currency</em>.</h2>
+    <div class="eyebrow">Caveats</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Limitations</em> of ratio analysis.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Multinational firms phải model inflation cho mỗi country exposure và translate non-USD operations về reporting currency.
+      Ratios không phải truth — chỉ là indicator. Biết các caveat sau để không over-interpret.
     </p>
   </div>
 
   <ol class="num-list tight" style="margin-top: 16px;">
     <li>
       <span>
-        <span class="step-title">Real vs nominal forecast</span>
-        <span class="step-body">Nominal revenue = real volume growth + price inflation. Tách 2 component giúp forecast phù hợp với nominal CapEx, nominal interest rate. Cẩn thận double-count nếu unit price đã embed inflation.</span>
+        <span class="step-title">GAAP vs IFRS differences</span>
+        <span class="step-body">Inventory (LIFO chỉ US GAAP), R&amp;D capitalization (IFRS allows, GAAP expense), revaluation model (IFRS only) — ảnh hưởng directly tới margins, ROA, asset turnover.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Pricing power — pass-through inflation</span>
-        <span class="step-body">Firm có brand mạnh / commodity oligopoly có thể raise giá ≥ inflation → margin protected. Firm không có pricing power → margin compress khi input cost ↑.</span>
+        <span class="step-title">Off-balance-sheet items</span>
+        <span class="step-body">Pre-IFRS 16 operating leases, JV equity method, SPEs — true leverage có thể cao hơn reported. Adjust trước khi compute solvency ratios.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">FX translation — current vs temporal method</span>
-        <span class="step-body">IFRS/GAAP: <em>current rate</em> method (functional ≠ reporting) → BS items at spot, IS items at avg, FX adjustment in OCI. <em>Temporal</em> method (functional = reporting, tức hyperinflation parent's currency) → monetary items at spot, non-monetary at historical → FX gain/loss in NI.</span>
+        <span class="step-title">Accounting choices &amp; estimates</span>
+        <span class="step-body">Depreciation method (SL vs accelerated), useful life, allowance for doubtful accounts, pension assumptions — quyết định bởi management, ảnh hưởng NI và assets.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Hyperinflationary economies — restate</span>
-        <span class="step-body">IFRS IAS 29: nếu cumulative 3-year inflation ≥ 100%, restate FS bằng general price index trước khi translate. Common cho subsidiaries ở Argentina, Turkey, Venezuela.</span>
+        <span class="step-title">Snapshot vs continuous reality</span>
+        <span class="step-body">BS là 1 ngày, IS là 1 năm. Window-dressing trước balance date có thể bóp méo BS-based ratios. Dùng <em>average</em> balances khi pair với IS items.</span>
       </span>
     </li>
   </ol>
 
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
   </div>
 </section>
 
 
-<!-- 19 · MODEL VALIDATION -->
-<section data-label="Validation" class="slide">
+<!-- 19 · KEY TAKEAWAYS -->
+<section data-label="Key takeaways" class="slide">
   <div class="run-header">
-    <span>04.11 — FS Modeling</span>
+    <span>04.11 — Financial Analysis</span>
     <span class="rule"></span>
-    <span>19 / 33</span>
+    <span>19 / 32</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Quality checks</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Model <em class="hi">validation</em> checklist.</h2>
+    <div class="eyebrow">Recap before practice</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What to <em class="hi">remember</em>.</h2>
   </div>
 
-  <div class="rule-box">
-    <span class="tag">§ Validation checklist</span>
-    Trước khi gửi model đi, chạy 5 checks: (1) <em>BS balances</em> mỗi year — A = L + E. (2) <em>CF reconcile</em> — change in cash on CF = change in cash on BS. (3) <em>Ratio reasonableness</em> — gross margin, ROE, D/E trong range hợp lý vs history &amp; peers. (4) <em>Growth sustainability</em> — long-term g ≤ SGR; terminal growth ≤ nominal GDP growth. (5) <em>Articulation</em> — NI flow vào RE; CapEx flow vào PP&amp;E + D&amp;A.
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">CSA</span>
+      <div>
+        <div class="t"><em class="hi">Common-size</em></div>
+        <div class="d">Vertical = % of base (Rev for IS, TA for BS). Horizontal = growth %. Loại scale, lộ structure &amp; trend.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">5C</span>
+      <div>
+        <div class="t"><em class="hi">5 ratio categories</em></div>
+        <div class="d">Activity, Liquidity, Solvency, Profitability, Valuation. Mỗi category answer một câu hỏi khác nhau.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">DUP</span>
+      <div>
+        <div class="t"><em class="hi">DuPont</em></div>
+        <div class="d">3-step: NPM × ATO × Lev. 5-step thêm Tax burden &amp; Interest burden để tách operating khỏi finance + tax.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CCC</span>
+      <div>
+        <div class="t"><em class="hi">Cash conversion cycle</em></div>
+        <div class="d">CCC = DOH + DSO − DPO. Càng ngắn càng tốt. Dell từng có CCC âm — collect tiền trước khi trả supplier.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">4C</span>
+      <div>
+        <div class="t"><em class="hi">Credit 4 C's</em></div>
+        <div class="d">Capacity, Collateral, Covenants, Character. Framework chuẩn cho rating agencies.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CTX</span>
+      <div>
+        <div class="t"><em class="hi">Context bắt buộc</em></div>
+        <div class="d">Peer + time + industry. Một ratio đứng riêng vô nghĩa. So GAAP/IFRS, off-BS, accounting choices.</div>
+      </div>
+    </div>
   </div>
-
-  <ol class="num-list tight" style="margin-top: 20px;">
-    <li>
-      <span>
-        <span class="step-title">Ratio reasonableness check</span>
-        <span class="step-body">ROE 35% sustainable? Gross margin 70% với industry avg 40%? Nếu output ratios xa peers, phải có lý do thuyết phục. Mean-revert là default expectation.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Growth sustainability — terminal value sanity</span>
-        <span class="step-body">Terminal growth rate trong DCF ≤ nominal GDP (~3-4% USD-denominated). Cao hơn = firm sẽ chiếm hơn 100% của economy về dài hạn — không possible.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Sense check vs management guidance</span>
-        <span class="step-body">Forecast EPS so với consensus. Lệch &gt; 10% phải có thesis rõ. "Out of consensus" trade ý kiến độc lập, nhưng phải defend được, không phải sai số.</span>
-      </span>
-    </li>
-  </ol>
 
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
   </div>
 </section>
 
 
-<!-- 20 · TRANSITION TO PRACTICE -->
+<!-- 20 · TRANSITION -->
 <section data-label="Practice begins" class="slide end-slide">
   <div>
     <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
@@ -822,31 +802,31 @@
 </section>
 
 
-<!-- 21 · Q1 EN -->
+<!-- 21 · Q1 EN — DSO -->
 <section data-label="Q1 Original" class="slide">
   <div class="run-header">
-    <span>04.11 — FS Modeling</span>
+    <span>04.11 — Financial Analysis</span>
     <span class="rule"></span>
-    <span>21 / 33</span>
+    <span>21 / 32</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Calculate <em class="hi">FCFF</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Calculate <em class="hi">DSO</em>.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      A firm reports: Net Income <strong>$200M</strong>, Depreciation <strong>$80M</strong>, Interest expense <strong>$50M</strong>, Tax rate <strong>30%</strong>, CapEx <strong>$120M</strong>, Increase in non-cash working capital <strong>$30M</strong>. The firm's <strong>FCFF</strong> for the year is <strong>closest to</strong>:
+      Beta Corp reports annual revenue of <strong>$7,300M</strong> and average accounts receivable of <strong>$1,200M</strong>. Industry median DSO is 45 days. The firm's DSO and the <strong>most appropriate</strong> interpretation is:
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">$130M</span></li>
-    <li><span class="lbl">B</span><span class="opt">$165M</span></li>
-    <li><span class="lbl">C</span><span class="opt">$215M</span></li>
+    <li><span class="lbl">A</span><span class="opt">45 days — in line with industry; collection efficiency is normal.</span></li>
+    <li><span class="lbl">B</span><span class="opt">60 days — slower than peers; possible collection issues or aggressive revenue recognition.</span></li>
+    <li><span class="lbl">C</span><span class="opt">6.08 days — significantly faster than peers, indicating tight credit terms.</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
   </div>
 </section>
 
@@ -854,9 +834,9 @@
 <!-- 22 · Q1 HINT -->
 <section data-label="Q1 Hint" class="slide">
   <div class="run-header">
-    <span>04.11 — FS Modeling</span>
+    <span>04.11 — Financial Analysis</span>
     <span class="rule"></span>
-    <span>22 / 33</span>
+    <span>22 / 32</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 01</div>
@@ -864,25 +844,25 @@
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>FCFF</mark> = NI + NCC + <mark>Int(1−t)</mark> − FCInv − WCInv. Đừng quên <mark>after-tax interest add-back</mark>.
+    <mark>DSO</mark> = 365 / Receivables Turnover. <mark>Receivables Turnover</mark> = Revenue / Avg AR. So với <mark>industry median 45 days</mark>.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">NCC ≈ Depreciation = <em>$80M</em>. Add back vào NI: 200 + 80 = $280M.</span>
+      <span class="htxt">Receivables Turnover = 7,300 / 1,200 = <em>6.08x</em>. Đây không phải DSO — đây là turnover ratio.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Int(1−t) = 50 × (1 − 0.30) = <em>$35M</em>. Add back vì FCFF là pre-debt-holders.</span>
+      <span class="htxt">DSO = 365 / 6.08 ≈ <em>60 days</em>. Firm cần ~60 ngày để thu một đồng AR.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Trừ FCInv (CapEx) $120M và WCInv $30M. Tổng: 200 + 80 + 35 − 120 − 30 = <em>$165M</em>.</span>
+      <span class="htxt">60 vs 45 industry → firm chậm hơn 15 ngày. Cảnh báo collection issues hoặc channel stuffing (push sales chưa thu được tiền).</span>
     </li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
   </div>
 </section>
 
@@ -890,9 +870,9 @@
 <!-- 23 · Q1 VN -->
 <section data-label="Q1 Dịch đề" class="slide">
   <div class="run-header">
-    <span>04.11 — FS Modeling</span>
+    <span>04.11 — Financial Analysis</span>
     <span class="rule"></span>
-    <span>23 / 33</span>
+    <span>23 / 32</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
@@ -901,17 +881,17 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một firm báo cáo: Net Income <strong>$200M</strong>, Depreciation <strong>$80M</strong>, Interest expense <strong>$50M</strong>, Tax rate <strong>30%</strong>, CapEx <strong>$120M</strong>, Tăng non-cash working capital <strong>$30M</strong>. <strong>FCFF</strong> của firm trong năm <strong>gần nhất với</strong>:
+      Beta Corp báo cáo annual revenue <strong>$7,300M</strong> và average accounts receivable <strong>$1,200M</strong>. Industry median DSO là 45 ngày. DSO của firm và interpretation <strong>phù hợp nhất</strong> là:
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">$130M</span></li>
-    <li><span class="lbl">B</span><span class="opt">$165M</span></li>
-    <li><span class="lbl">C</span><span class="opt">$215M</span></li>
+    <li><span class="lbl">A</span><span class="opt">45 ngày — trùng industry; collection efficiency bình thường.</span></li>
+    <li><span class="lbl">B</span><span class="opt">60 ngày — chậm hơn peers; có thể có collection issues hoặc revenue recognition aggressive.</span></li>
+    <li><span class="lbl">C</span><span class="opt">6.08 ngày — nhanh hơn peers nhiều, gợi ý credit terms chặt.</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
   </div>
 </section>
 
@@ -919,64 +899,64 @@
 <!-- 24 · Q1 EXPLANATION -->
 <section data-label="Q1 Explanation" class="slide">
   <div class="run-header">
-    <span>04.11 — FS Modeling</span>
+    <span>04.11 — Financial Analysis</span>
     <span class="rule"></span>
-    <span>24 / 33</span>
+    <span>24 / 32</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $165M.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 60 days.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">FCFF = NI + NCC + Int(1−t) − FCInv − WCInv = <b>200 + 80 + 50(1−0.30) − 120 − 30 = 200 + 80 + 35 − 120 − 30 = $165M</b>. Each component: NI sau interest, add back depreciation (non-cash), add back after-tax interest (debt holders' claim), trừ CapEx và WC investment.</div>
+      <div class="rtext">Step 1: Receivables Turnover = Revenue / Avg AR = 7,300 / 1,200 = <b>6.08x</b>. Step 2: DSO = 365 / 6.08 = <b>60 days</b>. Step 3: 60 vs industry 45 → firm chậm 15 ngày. Có thể (a) credit policy lỏng, (b) collection process yếu, (c) revenue recognition aggressive (channel stuffing). Cần kiểm tra horizontal trend của AR vs Revenue và allowance for doubtful accounts.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">$130M = NI + NCC − FCInv − WCInv = 200 + 80 − 120 − 30 = $130M. <em>Quên</em> add back after-tax interest. Đây là sai lầm phổ biến nhất khi compute FCFF từ NI.</div>
+      <div class="rtext">45 ngày là industry median — không phải kết quả tính toán. 365 / (7,300/1,200) = 60, không phải 45.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">$215M = NI + NCC + Int (full, không after-tax) − FCInv − WCInv = 200 + 80 + 50 − 120 − 30 = $180M (không khớp nhưng gần). Hoặc 200 + 80 + 50 − 120 + 5 = sai. Trong mọi trường hợp dùng pre-tax interest sẽ overstate FCFF vì không recognize tax shield.</div>
+      <div class="rtext">6.08 là <em>turnover</em> (lần/năm), không phải DSO (ngày). Confusion giữa hai metric. Phải chia 365 / turnover để ra DSO.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">FCFF từ NI: <em>NI + NCC + Int(1−t) − FCInv − WCInv</em>. Always add back <em>after-tax</em> interest, không pre-tax. Tax shield đã được hưởng nên (1−t) factor essential. Nhớ FCFF là pre-debt-holders → add lại phần đã trả họ.</div>
+    <div class="ttext">DSO = <em>365 / Receivables Turnover</em> = <em>365 × Avg AR / Revenue</em>. Cao hơn peer = warning. Combine với horizontal analysis: nếu AR growth &gt;&gt; Revenue growth, quality of earnings suspect.</div>
   </div>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
   </div>
 </section>
 
 
-<!-- 25 · Q2 EN -->
+<!-- 25 · Q2 EN — DUPONT -->
 <section data-label="Q2 Original" class="slide">
   <div class="run-header">
-    <span>04.11 — FS Modeling</span>
+    <span>04.11 — Financial Analysis</span>
     <span class="rule"></span>
-    <span>25 / 33</span>
+    <span>25 / 32</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Sustainable</em> growth rate.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">DuPont</em> — drivers of ROE.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      A firm has ROE of <strong>18%</strong> and a dividend payout ratio of <strong>40%</strong>. Management has guided to revenue growth of <strong>15%</strong> per year for the next five years while maintaining the current capital structure and payout policy. Which of the following is the <strong>most appropriate</strong> conclusion?
+      Gamma Inc reports: Net Income <strong>$240M</strong>, Revenue <strong>$3,000M</strong>, Average Total Assets <strong>$2,400M</strong>, Average Equity <strong>$1,200M</strong>. Using <strong>3-step DuPont</strong>, the firm's ROE and the largest driver are:
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">The growth target is consistent with sustainable growth and requires no external financing.</span></li>
-    <li><span class="lbl">B</span><span class="opt">The growth target exceeds the sustainable growth rate; the firm will need to raise external equity, increase leverage, or improve ROE.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Sustainable growth is irrelevant when management has explicitly guided to a target.</span></li>
+    <li><span class="lbl">A</span><span class="opt">10% — driven by net margin (8%).</span></li>
+    <li><span class="lbl">B</span><span class="opt">20% — driven by financial leverage (2.0x).</span></li>
+    <li><span class="lbl">C</span><span class="opt">10% — driven by asset turnover (1.25x).</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
   </div>
 </section>
 
@@ -984,9 +964,9 @@
 <!-- 26 · Q2 HINT -->
 <section data-label="Q2 Hint" class="slide">
   <div class="run-header">
-    <span>04.11 — FS Modeling</span>
+    <span>04.11 — Financial Analysis</span>
     <span class="rule"></span>
-    <span>26 / 33</span>
+    <span>26 / 32</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 02</div>
@@ -994,25 +974,25 @@
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>g = ROE × b</mark>. Retention ratio b = <mark>1 − payout</mark>. So sánh SGR với target growth.
+    <mark>3-step DuPont</mark> = Net Margin × Asset Turnover × Equity Multiplier. Tính từng phần, rồi tổng. Identify <mark>largest multiplier</mark>.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">b = 1 − 0.40 = <em>0.60</em>. SGR = 18% × 0.60 = <em>10.8%</em>.</span>
+      <span class="htxt">Net Margin = NI/Rev = 240/3,000 = <em>8%</em>. Asset Turnover = Rev/Assets = 3,000/2,400 = <em>1.25x</em>. Equity Multiplier = Assets/Equity = 2,400/1,200 = <em>2.0x</em>.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Target 15% &gt; SGR 10.8%. Firm KHÔNG thể duy trì 15% growth chỉ bằng RE với current ROE và payout.</span>
+      <span class="htxt">ROE = 8% × 1.25 × 2.0 = <em>20%</em>. Verify: NI/Equity = 240/1,200 = 20% ✓</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Để fund gap: hoặc <em>raise external equity</em> (issue shares), <em>tăng leverage</em> (D/E lên), hoặc <em>tăng ROE</em> (margin/turnover/leverage tăng). Một trong 3 phải xảy ra.</span>
+      <span class="htxt">Largest <em>multiplier</em>: 2.0x leverage. Margin (0.08) thấp; turnover (1.25) trung bình; leverage (2.0) cao nhất → leverage là driver lớn nhất giúp pump ROE từ ROA 10% lên ROE 20%.</span>
     </li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
   </div>
 </section>
 
@@ -1020,9 +1000,9 @@
 <!-- 27 · Q2 VN -->
 <section data-label="Q2 Dịch đề" class="slide">
   <div class="run-header">
-    <span>04.11 — FS Modeling</span>
+    <span>04.11 — Financial Analysis</span>
     <span class="rule"></span>
-    <span>27 / 33</span>
+    <span>27 / 32</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
@@ -1031,17 +1011,17 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một firm có ROE <strong>18%</strong> và dividend payout ratio <strong>40%</strong>. Management guidance revenue growth <strong>15%</strong>/năm trong 5 năm tới, giữ nguyên capital structure và payout policy. Kết luận nào <strong>phù hợp nhất</strong>?
+      Gamma Inc báo cáo: Net Income <strong>$240M</strong>, Revenue <strong>$3,000M</strong>, Average Total Assets <strong>$2,400M</strong>, Average Equity <strong>$1,200M</strong>. Dùng <strong>3-step DuPont</strong>, ROE của firm và driver lớn nhất là:
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Growth target consistent với sustainable growth; không cần external financing.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Growth target vượt sustainable growth rate; firm cần raise external equity, tăng leverage, hoặc cải thiện ROE.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Sustainable growth không relevant khi management đã guidance target cụ thể.</span></li>
+    <li><span class="lbl">A</span><span class="opt">10% — driven by net margin (8%).</span></li>
+    <li><span class="lbl">B</span><span class="opt">20% — driven by financial leverage (2.0x).</span></li>
+    <li><span class="lbl">C</span><span class="opt">10% — driven by asset turnover (1.25x).</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
   </div>
 </section>
 
@@ -1049,74 +1029,74 @@
 <!-- 28 · Q2 EXPLANATION -->
 <section data-label="Q2 Explanation" class="slide">
   <div class="run-header">
-    <span>04.11 — FS Modeling</span>
+    <span>04.11 — Financial Analysis</span>
     <span class="rule"></span>
-    <span>28 / 33</span>
+    <span>28 / 32</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Vượt SGR.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — ROE 20%.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">SGR = ROE × b = <b>18% × (1 − 0.40) = 18% × 0.60 = 10.8%</b>. Target 15% &gt; 10.8% → gap ~4.2 ppt. Để đạt 15% mà không raise equity, firm phải <em>tăng ROE</em> (qua margin, asset turnover, hoặc leverage qua DuPont) hoặc <em>giảm payout</em> (b lên). Nếu cả hai hold, phải <em>raise external equity</em> — phá vỡ "current capital structure".</div>
+      <div class="rtext">Compute từng driver: <b>Net Margin</b> = 240/3,000 = 8%; <b>Asset Turnover</b> = 3,000/2,400 = 1.25x; <b>Equity Multiplier</b> = 2,400/1,200 = 2.0x. ROE = 0.08 × 1.25 × 2.0 = <b>0.20 = 20%</b>. Verify by direct: NI/Equity = 240/1,200 = 20% ✓. Leverage 2.0x là multiplier lớn nhất — pump ROA 10% (= 8% × 1.25) lên ROE 20%.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Sai vì 15% &gt; 10.8% — gap ~4.2 ppt là material. "Consistent" có nghĩa target ≤ SGR, không phải "gần". Firm sẽ cần funding để đạt 15%.</div>
+      <div class="rtext">10% là <em>ROA</em> (NI/Assets = 240/2,400), không phải ROE. Net margin 8% là một component, không phải kết quả cuối. Bỏ qua leverage là sai bước cuối DuPont.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">Concept sai. SGR là validation tool đặc biệt quan trọng <em>khi</em> management guide aggressive growth — để check whether numbers are internally consistent với capital structure and dividend policy.</div>
+      <div class="rtext">10% sai cho ROE. Asset turnover 1.25x là một driver nhưng không phải lớn nhất — leverage 2.0x lớn hơn. Phải multiply cả 3, không pick một.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">SGR = <em>ROE × b</em>. Khi forecast growth &gt; SGR liên tục, model phải explicit về: equity raise, leverage tăng, hoặc ROE tăng. Nếu không address → forecast inconsistent. SGR là <em>reality check</em> căn bản, không thay thế bằng guidance.</div>
+    <div class="ttext">3-step DuPont: <em>ROE = NPM × ATO × Lev</em>. Tính <b>cả ba</b>, multiply, identify driver lớn nhất bằng cách so multiplier (không so contribution to %). Cẩn thận: ROA 10%, ROE 20% → 50% của ROE đến từ leverage.</div>
   </div>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
   </div>
 </section>
 
 
-<!-- 29 · Q3 EN -->
+<!-- 29 · Q3 EN — INTEREST COVERAGE -->
 <section data-label="Q3 Original" class="slide">
   <div class="run-header">
-    <span>04.11 — FS Modeling</span>
+    <span>04.11 — Financial Analysis</span>
     <span class="rule"></span>
-    <span>29 / 33</span>
+    <span>29 / 32</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Top-down vs <em class="hi">Bottom-up</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Coverage</em> ratios — credit lens.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      An analyst is forecasting revenue for a domestic auto manufacturer in a mature, cyclical industry where the firm has held a stable <strong>14-15% market share</strong> over the past decade. Industry data is widely published and the firm follows the broader business cycle closely. Which forecasting approach is <strong>most appropriate</strong>?
+      Delta Co reports: Revenue <strong>$5,000M</strong>, EBIT <strong>$800M</strong>, Interest Expense <strong>$200M</strong>, Lease Payments <strong>$100M</strong>, Tax rate 25%. Which statement is <strong>most accurate</strong> regarding Delta's debt-service ability?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Pure bottom-up: forecast each model line by units × ASP using dealer-level data.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Top-down: forecast industry vehicle sales from GDP, then apply firm market share to derive revenue.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Neither approach is appropriate; revenue should be assumed to grow at the long-term GDP growth rate.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Interest coverage is 4.0x and FCCR is 3.0x; both indicate adequate but tightening capacity.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Interest coverage is 3.0x and FCCR is 2.0x; the firm cannot service its leases.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Interest coverage is 4.0x and FCCR is 4.5x; coverage improves once leases are added.</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
   </div>
 </section>
 
 
-<!-- 30 · Q3 HINT (note: rearranged order to fit 30 slides — Hint, VN, Answer follow) -->
+<!-- 30 · Q3 HINT -->
 <section data-label="Q3 Hint" class="slide">
   <div class="run-header">
-    <span>04.11 — FS Modeling</span>
+    <span>04.11 — Financial Analysis</span>
     <span class="rule"></span>
-    <span>30 / 33</span>
+    <span>30 / 32</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 03</div>
@@ -1124,25 +1104,25 @@
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>Mature</mark>, <mark>cyclical</mark>, <mark>stable market share</mark>, <mark>industry data widely published</mark>. Đây là điều kiện textbook cho <mark>top-down</mark>.
+    <mark>Interest Coverage</mark> = EBIT / Interest. <mark>FCCR</mark> = (EBIT + Lease) / (Interest + Lease). Lease payment xuất hiện ở <mark>cả tử và mẫu</mark> của FCCR.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">Top-down lý tưởng khi: (1) industry data có sẵn, (2) firm theo broader cycle, (3) market share stable. Tất cả 3 conditions đều fit case này.</span>
+      <span class="htxt">Interest Coverage = 800 / 200 = <em>4.0x</em>. Mỗi $1 interest, EBIT cover $4 → comfortable but not stellar.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Bottom-up phù hợp hơn cho growth firm với new product launches hoặc retail expansion — không match mature auto OEM với market share đã settle.</span>
+      <span class="htxt">FCCR = (EBIT + Lease) / (Interest + Lease) = (800 + 100) / (200 + 100) = 900 / 300 = <em>3.0x</em>. Tax rate là red herring — không vào công thức coverage.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Option C bỏ qua cyclicality — auto industry đặc biệt cyclical, không thể đơn giản assume long-term GDP growth.</span>
+      <span class="htxt">FCCR &lt; Interest Coverage là quy luật chung khi coverage &gt; 1: thêm lease vào cả tử &amp; mẫu kéo ratio về phía 1. "Cannot service leases" sai — 3.0x vẫn cover được.</span>
     </li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
   </div>
 </section>
 
@@ -1150,9 +1130,9 @@
 <!-- 31 · Q3 VN -->
 <section data-label="Q3 Dịch đề" class="slide">
   <div class="run-header">
-    <span>04.11 — FS Modeling</span>
+    <span>04.11 — Financial Analysis</span>
     <span class="rule"></span>
-    <span>31 / 33</span>
+    <span>31 / 32</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
@@ -1161,62 +1141,53 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một analyst forecast revenue cho domestic auto manufacturer trong ngành mature, cyclical, nơi firm giữ market share ổn định <strong>14-15%</strong> qua 1 thập kỷ. Industry data widely published và firm follow business cycle closely. Forecasting approach nào <strong>phù hợp nhất</strong>?
+      Delta Co báo cáo: Revenue <strong>$5,000M</strong>, EBIT <strong>$800M</strong>, Interest Expense <strong>$200M</strong>, Lease Payments <strong>$100M</strong>, Tax rate 25%. Statement nào <strong>chính xác nhất</strong> về khả năng debt-service của Delta?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Pure bottom-up: forecast từng model bằng units × ASP dùng dealer-level data.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Top-down: forecast industry vehicle sales từ GDP, áp market share để ra revenue firm.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Cả hai đều không phù hợp; revenue assume grow theo long-term GDP growth rate.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Interest coverage = 4.0x và FCCR = 3.0x; cả hai cho thấy adequate nhưng đang tightening.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Interest coverage = 3.0x và FCCR = 2.0x; firm không thể service leases.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Interest coverage = 4.0x và FCCR = 4.5x; coverage cải thiện khi cộng leases.</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
   </div>
 </section>
 
 
-<!-- 32 · Q3 EXPLANATION -->
+<!-- 32 · Q3 EXPLANATION + END FUSED -->
 <section data-label="Q3 Explanation" class="slide">
   <div class="run-header">
-    <span>04.11 — FS Modeling</span>
+    <span>04.11 — Financial Analysis</span>
     <span class="rule"></span>
-    <span>32 / 33</span>
+    <span>32 / 32</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Top-down.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — IC 4.0x, FCCR 3.0x.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
-      <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">Top-down approach lý tưởng cho mature, cyclical industries với <b>industry data widely available</b> và <b>stable market share</b>. Path: GDP forecast → industry vehicle sales (qua elasticity) → firm revenue = industry × 14-15% share. Capture cyclicality và mean-reverting market share assumption phù hợp.</div>
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">Interest Coverage = EBIT / Interest = 800 / 200 = <b>4.0x</b>. FCCR = (EBIT + Lease) / (Interest + Lease) = 900 / 300 = <b>3.0x</b>. Cả hai &gt; 1 → firm cover được fixed charges. FCCR &lt; IC vì lease pmt được cộng cả tử &amp; mẫu → ratio bị pull về 1. "Adequate but tightening" hợp lý: rating BBB-grade thường cần IC ≥ 3-4x; gần ngưỡng dưới = không stellar.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Pure bottom-up có thể overstate growth nếu mỗi model line được extrapolate riêng — bỏ qua macro headwind. Bottom-up phù hợp hơn cho growth firms với new product / new geography. Mature auto OEM với fleet đã settle không cần granularity này (mặc dù dealer data có thể dùng làm sanity check).</div>
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Sai số: IC ≠ 3.0x (chính xác = 4.0x). "Cannot service leases" cũng sai — FCCR 3.0x &gt; 1 nghĩa là firm <em>cover được</em> cả interest và lease.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">Sai về 2 điểm: (1) ngành auto đặc biệt cyclical — sales có thể swing ±20% trong recession, không thể đơn giản dùng long-term GDP. (2) Top-down/bottom-up <em>luôn</em> applicable; chỉ là chọn cái phù hợp với firm characteristics.</div>
+      <div class="rtext">FCCR &gt; IC chỉ xảy ra khi tử mẫu lệch đặc biệt — không phải case này. Quy luật: khi IC &gt; 1 và lease &gt; 0, FCCR &lt; IC. "Coverage improves" sai logic.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Chọn approach theo <em>firm + industry characteristics</em>. <em>Top-down</em>: mature, cyclical, stable share, industry data có. <em>Bottom-up</em>: growth, new product, granular operational levers. <em>Hybrid</em>: best practice — bottom-up cho top-line, top-down sanity check.</div>
+    <div class="ttext">Hai coverage ratio cốt lõi: <em>IC = EBIT/Interest</em>, <em>FCCR = (EBIT + Lease)/(Interest + Lease)</em>. Khi có lease, FCCR là conservative measure rating agencies quan tâm. Tax rate KHÔNG vào coverage formula — distractor.</div>
   </div>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.11 — Financial Statement Modeling</span>
-  </div>
-</section>
-
-
-<!-- 33 · END -->
-<section data-label="End" class="slide end-slide">
-  <div>
-    <h1>04.11 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
-    <div class="hint">Tiếp theo · Tiếp tục review CFA L1 · Module 04 — FSA</div>
+    <span>FSA · 04.11 — Financial Analysis Techniques</span>
   </div>
 </section>
 

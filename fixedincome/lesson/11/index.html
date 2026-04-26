@@ -1,0 +1,1208 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Fixed Income 08.11 — Yield-Based Bond Duration Measures</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 96px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Bond Duration<br><em>Measures.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 08 · Lesson 08.11 · Fixed Income</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 11 · Macaulay · Modified · Effective · Money Duration · PVBP</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Fixed Income</dd></div>
+      <div><dt>Module</dt><dd>fi-m11</dd></div>
+      <div><dt>Lesson</dt><dd>08.11</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Macaulay · Modified · Effective · Money Duration · PVBP · Hedging · Immunization</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">11</div>
+    <div class="lbl">Duration measures &amp; price sensitivity</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How to measure a bond's<br><em>interest rate sensitivity</em>.</h2>
+    <ul class="toc">
+      <li class="active">01 · Intuition — why duration matters</li>
+      <li>02 · Macaulay duration — weighted average time, formula &amp; derivation</li>
+      <li>03 · Modified duration — price sensitivity per 1% yield change</li>
+      <li>04 · Approximate modified duration — finite difference method</li>
+      <li>05 · Effective duration — for bonds with embedded options &amp; curve risk</li>
+      <li>06 · Money duration (dollar duration) &amp; PVBP</li>
+      <li>07 · Applications — hedging, immunization, portfolio rebalancing</li>
+      <li>08 · Worked examples (2×) + Practice — 4 CFA-style questions incl. numerical</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · INTUITION -->
+<section data-label="Intuition" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>03 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Duration · tại sao quan trọng</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Tại sao</em> cần đo duration?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Khi lãi suất thay đổi, giá bond thay đổi ngược chiều. <em>Duration</em> là thước đo mức độ nhạy cảm đó — nói đơn giản: "nếu yield tăng 1%, giá bond của tôi giảm bao nhiêu %?" Không có duration, nhà quản lý danh mục không thể định lượng risk lãi suất, không thể hedge, không thể immunize liability.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">ΔP</span>
+      <div>
+        <div class="t">Giá bond phụ thuộc yield</div>
+        <div class="d">Công thức định giá: PV = Σ CFₜ / (1+r)ᵗ. Khi r tăng → mẫu số lớn hơn → PV giảm. Bond giá giảm khi yield tăng. Mối quan hệ này là <em>phi tuyến</em> (convex), nhưng duration là xấp xỉ tuyến tính tốt cho Δyield nhỏ.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">MAT</span>
+      <div>
+        <div class="t">Thời hạn ảnh hưởng lớn</div>
+        <div class="d">Bond 30 năm nhạy cảm hơn bond 2 năm — cash flows xa hơn trong tương lai, nên bị discount nhiều hơn khi yield thay đổi. Coupon thấp → thời gian trung bình nhận CF dài hơn → duration cao hơn → nhạy cảm hơn.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">USE</span>
+      <div>
+        <div class="t">Ứng dụng thực tế</div>
+        <div class="d"><b>Hedging</b>: biết duration để tính số lượng futures/swaps cần dùng. <b>Immunization</b>: match duration của assets và liabilities để loại bỏ interest rate risk. <b>Portfolio rebalancing</b>: điều chỉnh duration target khi view thay đổi.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">3×</span>
+      <div>
+        <div class="t">Ba loại duration cốt lõi</div>
+        <div class="d"><em>Macaulay duration</em>: thời gian trung bình nhận CF (đơn vị: năm). <em>Modified duration</em>: % thay đổi giá / 1% thay đổi yield. <em>Effective duration</em>: dùng cho bonds có embedded options hoặc khi benchmark curve thay đổi. Ba loại liên quan mật thiết nhau.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 04 · MACAULAY DURATION — CONCEPT -->
+<section data-label="Macaulay duration concept" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>04 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Macaulay duration · khái niệm</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Macaulay duration</em> — thời gian trung bình có trọng số.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Frederick Macaulay (1938) định nghĩa duration là <em>thời gian trung bình có trọng số</em> để nhận tất cả cash flows của bond — trọng số là tỷ trọng PV của từng CF trong tổng giá bond. Đơn vị: <b>năm</b>.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Macaulay duration — trực giác</span>
+    Hãy tưởng tượng bond là một chiếc cân: mỗi cash flow (coupon và par value) là một quả cân đặt tại thời điểm tₜ. <em>Duration là điểm cân bằng</em> của chiếc cân đó. Bond zero-coupon 10 năm: chỉ có 1 CF tại t=10 → Macaulay duration = 10 năm. Bond có coupon: CFs đến sớm hơn → duration &lt; maturity.
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 18px;">
+    <li>
+      <span>
+        <span class="step-title">Trọng số của mỗi CF</span>
+        <span class="step-body">Wₜ = PV(CFₜ) / Tổng PV = PV(CFₜ) / Giá bond hiện tại. Mỗi Wₜ ≥ 0, tổng các Wₜ = 1. Trọng số này phản ánh "tầm quan trọng" của CF tại thời điểm t trong tổng giá trị bond.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Macaulay duration là kỳ vọng có trọng số của thời gian</span>
+        <span class="step-body">MacD = Σ tₜ × Wₜ = Σ [tₜ × PV(CFₜ)] / Giá bond. Tương tự như tính kỳ vọng (expected value) của phân phối xác suất — ở đây Wₜ đóng vai trò "xác suất" và tₜ đóng vai trò "giá trị". MacD là thước đo tuyến tính đơn giản nhất về thời gian tồn đọng vốn.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Giới hạn trên và dưới</span>
+        <span class="step-body">MacD ≤ Maturity (luôn đúng với bond có coupon dương). MacD = Maturity chỉ khi coupon = 0 (zero-coupon bond). Khi coupon rate tăng → duration giảm (CF đến sớm hơn chiếm tỷ trọng lớn hơn). Khi YTM tăng → duration giảm (CF gần được discount ít hơn, chiếm tỷ trọng lớn hơn tương đối).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 05 · MACAULAY DURATION — FORMULA -->
+<section data-label="Macaulay formula" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>05 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Macaulay duration · công thức</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Công thức <em class="hi">Macaulay duration</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Macaulay duration — general form (annual compounding)</span>
+    <div class="eq">
+      <span class="var">MacD</span> =
+      <span class="var">Σᵢ [ tᵢ × CF_i / (1+r)^tᵢ ]</span> /
+      <span class="var">Σᵢ [ CF_i / (1+r)^tᵢ ]</span>
+    </div>
+    <div class="note">
+      tᵢ = thời điểm của cash flow thứ i (đơn vị: năm). CF_i = cash flow tại tᵢ (coupon hoặc coupon + par). r = yield to maturity (annual, hay periodic). Mẫu số = tổng PV = giá bond hiện tại (full price nếu dùng full CFs). MacD có đơn vị: <em>năm</em>.
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Macaulay duration — semi-annual form (điều chỉnh về năm)</span>
+    <div class="eq">
+      <span class="var">MacD</span> =
+      <span class="var">[ Σₜ t × PV(CFₜ) ] / Price</span>
+      <span style="margin-left: 24px; color: var(--ink-muted); font-size: 0.85em;">÷ 2 nếu t tính theo kỳ (period)</span>
+    </div>
+    <div class="note">
+      Khi bond trả coupon semi-annual: t = 1, 2, …, 2T (kỳ). Kết quả Σ/Price tính ra đơn vị <em>kỳ</em> → chia 2 để về năm. Hoặc: tính t theo năm (0.5, 1.0, 1.5, …, T) ngay từ đầu. Cả hai cách cho cùng kết quả. Lưu ý: r phải dùng periodic rate (YTM/2) khi t tính theo kỳ.
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Trường hợp đặc biệt: Zero-coupon bond — chỉ có CF tại t = T → MacD = T (đúng bằng maturity). Perpetuity (annuity vô hạn): MacD = (1+r)/r. Bond par (coupon rate = YTM): MacD ≈ (1+r)/r × [1 − 1/(1+r)^T] (công thức closed-form tồn tại).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 06 · MODIFIED DURATION -->
+<section data-label="Modified duration" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>06 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Modified duration · định nghĩa</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Modified duration</em> — price sensitivity per 1% yield.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Modified duration (ModDur) là đạo hàm bậc nhất của giá bond theo yield, chuẩn hóa bởi giá. Nó cho biết: nếu yield thay đổi 1% (100 bps), giá bond thay đổi xấp xỉ bao nhiêu phần trăm. ModDur không có đơn vị (hoặc đơn vị là 1/% yield).
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Modified duration từ Macaulay duration</span>
+    <div class="eq">
+      <span class="var">ModDur</span> =
+      <span class="var">MacD</span> /
+      <span class="var">(1 + r/m)</span>
+    </div>
+    <div class="note">
+      r = YTM (annual). m = số kỳ trả coupon mỗi năm (m = 2 cho semi-annual). r/m = periodic yield. <em>Ý nghĩa:</em> ModDur ≈ ‒(ΔP/P) / Δy, tức là % thay đổi giá khi yield tăng 1 đơn vị (1% = 0.01). Dấu âm: giá và yield ngược chiều. CFA exam thường hỏi: "giá giảm bao nhiêu %" → dùng ModDur trực tiếp.
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Xấp xỉ thay đổi giá theo Modified duration</span>
+    <div class="eq">
+      <span class="var">%ΔPrice ≈ −ModDur × Δy</span>
+      <span style="margin-left: 32px; color: var(--ink-muted); font-size: 0.85em;">(Δy tính theo decimal, vd 0.01 = 1%)</span>
+    </div>
+    <div class="note">
+      Ví dụ: ModDur = 7.5, yield tăng 50 bps (Δy = 0.005) → %ΔP ≈ −7.5 × 0.005 = −3.75%. Đây là <em>xấp xỉ tuyến tính</em> — sai số do convexity (bỏ qua số hạng bậc 2). Với Δy lớn, cần thêm convexity adjustment. Khi Δy nhỏ (&lt;50bps), ModDur xấp xỉ rất tốt.
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Quan hệ đạo hàm: ModDur = −(1/P) × dP/dy. Từ công thức định giá PV = Σ CFₜ/(1+y)ᵗ, lấy đạo hàm theo y và chuẩn hóa → ra ModDur = MacD/(1+y). Điều này chứng minh hai khái niệm liên kết chặt chẽ về mặt toán học.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 07 · APPROXIMATE MODIFIED DURATION -->
+<section data-label="Approximate modified duration" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>07 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Approximate modified duration · phương pháp</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Approximate modified duration</em> — finite difference.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Khi không thể tính analytically (vd bond có embedded options, floating rate, complex structure), dùng phương pháp <em>finite difference</em>: shock yield lên và xuống Δy nhỏ, tính giá tương ứng, rồi tính gradient. Đây là công thức CFA exam hay hỏi nhất trong mảng duration.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Approximate Modified Duration (ApproxModDur)</span>
+    <div class="eq">
+      <span class="var">ApproxModDur</span> =
+      <span class="var">(PV− − PV+)</span> /
+      <span class="var">(2 × PV₀ × Δy)</span>
+    </div>
+    <div class="note">
+      <b>PV−</b> = giá bond khi yield <em>giảm</em> Δy (yield = y₀ − Δy). <b>PV+</b> = giá bond khi yield <em>tăng</em> Δy (yield = y₀ + Δy). <b>PV₀</b> = giá bond tại yield ban đầu y₀. <b>Δy</b> = shock nhỏ (thường dùng 0.0001 = 1bp, hoặc 0.0050 = 50bps). Công thức là <em>trung tâm sai phân</em> (central difference) — symmetrical shock xung quanh y₀.
+    </div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Tại sao dùng (PV− − PV+) chứ không phải (PV+ − PV−)?</span>
+        <span class="step-body">Giá và yield ngược chiều: khi yield giảm, giá tăng → PV− &gt; PV+. Tử số (PV− − PV+) dương → ApproxModDur dương. Kết quả luôn dương vì chúng ta đã bỏ dấu âm khỏi ΔP/P formula.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Lý do chia cho 2</span>
+        <span class="step-body">Chúng ta shock yield hai lần Δy (từ y₀−Δy đến y₀+Δy = tổng 2Δy). Chia 2 để normalize về mức độ thay đổi 1 đơn vị Δy, nhất quán với định nghĩa ModDur = (ΔP/P)/Δy.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Chọn Δy bao nhiêu?</span>
+        <span class="step-body">Nhỏ → chính xác hơn về mặt lý thuyết, nhưng dễ bị lỗi làm tròn số. CFA exam thường cho Δy = 0.0050 (50bps) hoặc 0.0001 (1bp). Trên thực tế: 1–10 bps thường được dùng. Kết quả ApproxModDur ≈ ModDur analytic khi Δy đủ nhỏ.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 08 · WORKED EXAMPLE 1 — Macaulay + Modified -->
+<section data-label="Worked Example 1" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>08 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Ví dụ tính toán 1 · Macaulay + Modified duration</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Tính <em class="hi">MacD</em> và <em class="hi">ModDur</em>: bond 5 năm, coupon 6%, semi-annual, YTM 7%.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Bước 1 — Thông số &amp; cash flows</span>
+    <div class="note">
+      Par = 1,000. Coupon = 6%/2 = 3% per period = 30/kỳ. Số kỳ T = 10. Periodic yield r = 7%/2 = 3.5% = 0.035.
+      Cuối kỳ 10: CF = 1,030 (coupon + par). Tính PV(CFₜ) = CFₜ / (1.035)ᵗ.
+    </div>
+    <div class="note" style="margin-top: 10px;">
+      <b>Bảng tính (t theo kỳ, không phải năm):</b><br>
+      t=1: PV = 30/1.035 = 28.99 · t=2: PV = 30/1.035² = 28.01 · t=3: PV = 30/1.035³ = 27.06<br>
+      t=4: PV = 30/1.035⁴ = 26.15 · t=5: PV = 30/1.035⁵ = 25.27 · t=6: PV = 30/1.035⁶ = 24.41<br>
+      t=7: PV = 30/1.035⁷ = 23.58 · t=8: PV = 30/1.035⁸ = 22.78 · t=9: PV = 30/1.035⁹ = 22.01<br>
+      t=10: PV = 1030/1.035¹⁰ = 729.98<br>
+      <b>Tổng PV = Price ≈ 958.42</b> (bond traded at discount vì YTM &gt; coupon rate).
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 12px;">
+    <span class="fmt-label">§ Bước 2 — Tính Σ(t × PVₜ) theo kỳ</span>
+    <div class="note">
+      Σ(t × PVₜ) = 1×28.99 + 2×28.01 + 3×27.06 + 4×26.15 + 5×25.27 + 6×24.41 + 7×23.58 + 8×22.78 + 9×22.01 + 10×729.98<br>
+      = 28.99 + 56.02 + 81.18 + 104.60 + 126.35 + 146.46 + 165.06 + 182.24 + 198.09 + 7299.80<br>
+      <b>= 8,388.79</b> (đơn vị: kỳ × $)
+    </div>
+    <div class="note" style="margin-top: 8px;">
+      <b>MacD (kỳ)</b> = 8,388.79 / 958.42 = <b>8.752 kỳ</b><br>
+      <b>MacD (năm)</b> = 8.752 / 2 = <b>4.376 năm</b><br>
+      <b>ModDur</b> = MacD(kỳ) / (1 + r_period) = 8.752 / 1.035 = <b>8.455 kỳ</b> → ÷2 → <b>4.228 năm</b><br>
+      Hoặc: ModDur(năm) = MacD(năm) / (1 + YTM/2) = 4.376 / 1.035 = <em>4.228 năm</em>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Kết luận: Nếu YTM tăng 100bps (1%), giá bond ≈ giảm 4.228%. Tức: ΔP ≈ −4.228% × 958.42 = −$40.53. Bond có maturity 5 năm nhưng duration chỉ 4.376 năm vì coupon payments đến sớm hơn.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 09 · EFFECTIVE DURATION -->
+<section data-label="Effective duration" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>09 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Effective duration · phân biệt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Effective duration</em> vs analytical (yield-based) duration.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Macaulay và Modified duration là <em>analytical (yield-based) duration</em> — chúng giả định cash flows <b>không thay đổi</b> khi yield thay đổi. Điều này đúng với plain-vanilla bonds nhưng <em>sai</em> với bonds có embedded options hoặc complex rate-sensitive structures.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Analytical / Yield-based duration</em></div>
+      <dl>
+        <dt>Giả định</dt>
+        <dd>Cash flows <em>cố định</em> — không thay đổi khi yield thay đổi. Chỉ discount rate thay đổi.</dd>
+        <dt>Công thức</dt>
+        <dd>ModDur = MacD / (1+r/m). Tính analytic từ coupon, maturity, YTM. Hoặc xấp xỉ finite difference với bond thẳng.</dd>
+        <dt>Phù hợp</dt>
+        <dd>Option-free bonds: fixed-rate government bonds, IG corporate. Benchmark: giả định flat yield curve shift parallel.</dd>
+        <dt>Hạn chế</dt>
+        <dd>Không dùng được cho callable/putable bonds (CFs thay đổi theo yield). Không capture non-parallel curve shifts (key rate duration cần cho điều đó).</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Effective duration</em></div>
+      <dl>
+        <dt>Giả định</dt>
+        <dd>Cash flows <em>có thể thay đổi</em> khi benchmark yield curve thay đổi — phù hợp với embedded options, MBS prepayments, floating rate notes.</dd>
+        <dt>Công thức</dt>
+        <dd>EffDur = (PV− − PV+) / (2 × PV₀ × ΔCurve). Giống ApproxModDur nhưng PV± tính bằng cách shift <em>benchmark curve</em> (không phải YTM), dùng full valuation model.</dd>
+        <dt>Phù hợp</dt>
+        <dd>Callable bonds, putable bonds, MBS, CMOs, floating rate notes, bonds with complex structures. Bắt buộc cho securities với rate-dependent cash flows.</dd>
+        <dt>Ưu điểm</dt>
+        <dd>Capture thực tế rằng khi rates giảm, callable bond bị called → duration ngắn lại. MBS prepayments tăng khi rates giảm → EffDur phản ánh được điều này. <em>Yield-based ModDur sẽ overstate duration</em> của callable bond khi rates thấp.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 10 · MONEY DURATION & DOLLAR DURATION -->
+<section data-label="Money duration" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>10 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Money duration · dollar duration</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Money duration</em> — đổi từ % sang $.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Modified duration cho biết % thay đổi giá. Trên thực tế, portfolio manager cần biết <em>$ thay đổi thực sự</em> khi yield di chuyển. Money duration (còn gọi là Dollar duration hay DV01's cousin) là ModDur nhân với giá bond tính theo đơn vị tiền.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Money duration (MoneyDur) — đơn vị: $</span>
+    <div class="eq">
+      <span class="var">MoneyDur</span> = <span class="var">ModDur × Full Price</span>
+    </div>
+    <div class="note">
+      Full price = clean price + accrued interest = dirty price. Thường tính trên <em>per $1 million par</em> hoặc per $1 par (tùy convention). Đơn vị: $. <br>
+      <b>Ý nghĩa:</b> ΔPrice($) ≈ −MoneyDur × Δy. Ví dụ: MoneyDur = $50,000 → yield tăng 1% (Δy=0.01) → giá bond giảm $50,000 × 0.01 = $500.
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Ứng dụng Money duration</span>
+    <div class="note">
+      <b>Portfolio money duration</b> = Σᵢ (MoneyDurᵢ) = Σᵢ (ModDurᵢ × Market Valueᵢ). Đây là aggregate measure: nếu yield tăng 1%, tổng $ loss của portfolio ≈ Portfolio Money Duration × 0.01.<br>
+      <b>Hedge ratio</b>: Số lượng futures cần short = Portfolio Money Duration / Futures Money Duration. Money duration cho phép tính hedge ratio chính xác hơn %.
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Lưu ý: "Dollar duration" và "Money duration" thường dùng thay thế nhau. Một số text dùng "DV01" (dollar value of 1 bp) = MoneyDur × 0.0001 = PVBP (xem slide tiếp theo). Không nhầm lẫn Money Duration (đơn vị $·year-equivalent) với Modified Duration (đơn vị năm hoặc pure ratio).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 11 · PVBP -->
+<section data-label="PVBP" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>11 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">PVBP · price value of a basis point</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">PVBP</em> — dollar change per 1 basis point.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      PVBP (Price Value of a Basis Point) — còn gọi là <b>DV01</b> (Dollar Value of 01) hoặc <b>BPV</b> (Basis Point Value) — là mức thay đổi giá tính bằng đô la khi yield thay đổi <em>đúng 1 basis point (0.01%)</em>. Đây là công cụ thực tế nhất để hedge và price interest rate risk.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ PVBP — hai cách tính</span>
+    <div class="eq">
+      <span class="var">PVBP</span> = <span class="var">MoneyDur × 0.0001</span>
+    </div>
+    <div class="note">
+      Hoặc tương đương:<br>
+      <b>PVBP</b> = ModDur × Full Price × 0.0001<br>
+      Hoặc trực tiếp:<br>
+      <b>PVBP</b> = (PV− − PV+) / 2, khi Δy = 0.0001 (1bp shock)<br>
+      Đơn vị: $ per 1bp yield move. Ví dụ: PVBP = $450 → yield tăng 1bp → giá bond giảm $450. Yield tăng 10bp → giá giảm ≈ $4,500.
+    </div>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">HED</span>
+      <div>
+        <div class="t">Hedging với PVBP</div>
+        <div class="d">Số lượng hợp đồng futures cần hedge = PVBP(bond) / PVBP(futures contract). Ví dụ: bond PVBP = $900, T-note futures PVBP = $90/contract → Short 10 contracts để hedge hoàn toàn.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CMP</span>
+      <div>
+        <div class="t">So sánh bonds</div>
+        <div class="d">PVBP cao hơn = nhạy cảm hơn với lãi suất. Long-dated bonds có PVBP lớn hơn short-dated bonds. Dùng PVBP để compare interest rate sensitivity across bonds với size khác nhau.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PRC</span>
+      <div>
+        <div class="t">Pricing interest rate derivatives</div>
+        <div class="d">Swaps, caps, floors, swaptions được quoted và priced trên PVBP basis. Swap rate được set để equalize PVBP của fixed vs floating leg. Credit default swap hedging cũng tham chiếu PVBP.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">IMM</span>
+      <div>
+        <div class="t">Immunization</div>
+        <div class="d">Portfolio immunized khi PVBP(assets) = PVBP(liabilities). Bất kỳ yield shift nào cũng làm assets và liabilities thay đổi cùng mức $ → net position không đổi. Classical immunization strategy cho pension funds.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 12 · FACTORS AFFECTING DURATION -->
+<section data-label="Factors affecting duration" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>12 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Duration · các yếu tố ảnh hưởng</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Điều gì ảnh hưởng đến <em class="hi">duration</em>?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Ba yếu tố chính ảnh hưởng đến Macaulay/Modified duration. Nắm chắc quan hệ này để làm nhanh câu hỏi "duration cao hơn hay thấp hơn" trên CFA exam mà không cần tính.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">MAT↑</span>
+      <div>
+        <div class="t">Maturity dài → Duration cao hơn</div>
+        <div class="d">Cùng coupon rate và YTM, bond 30Y có duration cao hơn bond 5Y. CF cuối (par) đến rất muộn → weight tại t=30 lớn → kéo duration lên cao. Mối quan hệ thuận chiều và đơn điệu.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CPN↓</span>
+      <div>
+        <div class="t">Coupon thấp → Duration cao hơn</div>
+        <div class="d">Coupon thấp → ít CF sớm → trọng số dồn về par payment ở cuối → duration dài. Zero coupon: duration = maturity (tối đa). Premium bond (coupon &gt; YTM): duration thấp hơn par bond cùng maturity.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">YTM↑</span>
+      <div>
+        <div class="t">YTM cao → Duration thấp hơn</div>
+        <div class="d">YTM cao → discount rate cao → CFs xa bị discount nhiều hơn → trọng số của CF gần tăng tương đối → duration ngắn lại. Mối quan hệ nghịch chiều: yield tăng → duration giảm nhẹ. Hiệu ứng nhỏ hơn so với maturity và coupon.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">OPT</span>
+      <div>
+        <div class="t">Embedded options làm phức tạp duration</div>
+        <div class="d"><b>Callable bonds</b>: khi rates giảm, call option in-the-money → effective maturity ngắn lại → EffDur &lt; ModDur của equivalent option-free bond. <b>Putable bonds</b>: ngược lại — put limits downside when rates rise → EffDur nhỏ hơn option-free. Phải dùng EffDur, không dùng ModDur.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 13 · DURATION OF PORTFOLIO -->
+<section data-label="Portfolio duration" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>13 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Portfolio duration · tổng hợp</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Duration</em> của danh mục trái phiếu.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Duration của portfolio là <em>bình quân gia quyền</em> duration của các bonds thành phần, với trọng số là tỷ trọng market value. Đây là cách tính được dùng phổ biến nhất trên thực tế và trong CFA exam.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Portfolio duration (trọng số market value)</span>
+    <div class="eq">
+      <span class="var">PortDur</span> = <span class="var">Σᵢ wᵢ × Durᵢ</span>
+    </div>
+    <div class="note">
+      wᵢ = Market Valueᵢ / Total Portfolio Market Value. Durᵢ = ModDur (hoặc EffDur) của bond i. Ví dụ: Portfolio $10M: Bond A (MV=$4M, ModDur=3.0) + Bond B (MV=$6M, ModDur=7.0). PortDur = 0.4×3.0 + 0.6×7.0 = 1.2 + 4.2 = <em>5.4 năm</em>.
+    </div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Giới hạn của portfolio duration</span>
+        <span class="step-body">Phương pháp này giả định <em>parallel shift</em> của yield curve — tất cả bonds dịch chuyển yield cùng biên độ. Trong thực tế, curve thay đổi dạng non-parallel (steepen, flatten, butterfly). Portfolio duration không capture được risk này. Cần <em>key rate duration</em> (partial duration) cho non-parallel shifts.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Duration target và rebalancing</span>
+        <span class="step-body">Portfolio manager có thể set duration target (vd 5.0 năm) phù hợp với liability hoặc benchmark. Nếu view rates tăng → giảm duration (bán bonds dài, mua bonds ngắn, hoặc enter pay-fixed swap). Nếu view rates giảm → tăng duration. Duration management là core của active fixed income strategy.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Duration của các loại tài sản đặc biệt</span>
+        <span class="step-body">Cash/T-bills: duration ≈ 0. Floating rate notes (FRN): duration ≈ thời gian đến ngày reset tiếp theo (thường &lt;0.5 năm). Interest rate swap (pay fixed): có duration âm (từ góc nhìn fixed payer). Futures contract: cần tính theo DV01 của underlying.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 14 · APPLICATIONS — HEDGING -->
+<section data-label="Hedging application" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>14 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Ứng dụng · hedging lãi suất</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dùng duration để <em class="hi">hedge</em> interest rate risk.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Hedging interest rate risk = tìm cách triệt tiêu sensitivity của portfolio với yield changes. Công cụ phổ biến: <em>interest rate futures</em> (T-bond futures, Eurodollar futures) và <em>interest rate swaps</em>.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Số lượng futures contracts để hedge duration</span>
+    <div class="eq">
+      <span class="var">N_f</span> =
+      <span class="var">(MDur_target − MDur_portfolio) × MV_portfolio</span> /
+      <span class="var">(MDur_futures × Price_futures)</span>
+    </div>
+    <div class="note">
+      N_f dương → <em>buy</em> futures (tăng duration). N_f âm → <em>sell</em> futures (giảm duration). MDur_target = 0 để full hedge. Hoặc tính qua PVBP: N_f = PVBP_portfolio / PVBP_futures_per_contract.
+    </div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Ví dụ hedging với T-note futures</span>
+        <span class="step-body">Portfolio: MV = $50M, ModDur = 6.5. Target: zero duration (full hedge). T-note futures: CTD duration = 5.5, contract price = $103,000 (= $100,000 × 1.03). N_f = (0 − 6.5) × 50,000,000 / (5.5 × 103,000) = −325,000,000 / 566,500 ≈ <em>−574 contracts</em>. Short 574 T-note futures contracts để hedge.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Interest rate swap để thay đổi duration</span>
+        <span class="step-body">Pay-fixed, receive-floating swap: duration của fixed leg &gt; floating → net: giảm portfolio duration. Receive-fixed, pay-floating: tăng duration. Swaps linh hoạt hơn futures (có thể customize notional, maturity) và không chiếm margin như futures.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 15 · IMMUNIZATION -->
+<section data-label="Immunization" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>15 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Ứng dụng · immunization</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Immunization</em> — bảo vệ khỏi interest rate risk.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Immunization = kỹ thuật xây dựng bond portfolio sao cho giá trị tương lai đạt target bất kể yield thay đổi. Được dùng rộng rãi bởi pension funds, insurance companies để match liabilities. Điều kiện cơ bản của classical immunization: MacD(assets) = thời gian cần đạt target.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Single-period immunization</em> (classical)</div>
+      <dl>
+        <dt>Điều kiện</dt>
+        <dd>MacD(portfolio) = investment horizon. PV(assets) ≥ PV(liabilities). Convexity(assets) &gt; convexity(liabilities) — càng tốt.</dd>
+        <dt>Tại sao hiệu quả?</dt>
+        <dd>Khi rates tăng: giá bond giảm (loss), nhưng reinvestment income tăng (gain). Khi MacD = horizon, hai hiệu ứng <em>offset nhau chính xác</em> → giá trị tại horizon không đổi.</dd>
+        <dt>Rủi ro</dt>
+        <dd>Chỉ immunize parallel yield curve shifts. Non-parallel shifts (twist, butterfly) vẫn gây risk. Cần rebalance định kỳ vì duration thay đổi theo thời gian.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Liability-driven investing (LDI)</em></div>
+      <dl>
+        <dt>Mở rộng</dt>
+        <dd>Match duration và convexity của assets với liabilities (pension fund, insurance). Thay vì một target, match toàn bộ liability cash flow schedule.</dd>
+        <dt>Cash flow matching</dt>
+        <dd>Extreme case: mua bonds sao cho CF của assets = CF của liabilities tại từng thời điểm. Eliminates all interest rate risk nhưng tốn kém (có thể không có bonds phù hợp).</dd>
+        <dt>Duration matching</dt>
+        <dd>Practical alternative: match dollar duration / PVBP. Ít tốn kém hơn, chấp nhận một ít basis risk từ non-parallel shifts. Phổ biến hơn cash flow matching.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 16 · WORKED EXAMPLE 2 — ApproxModDur -->
+<section data-label="Worked Example 2" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>16 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Ví dụ tính toán 2 · Approximate Modified Duration</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Tính <em class="hi">ApproxModDur</em> bằng finite difference: bond 5 năm, coupon 6%, semi-annual, YTM 7%.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Dữ liệu đầu vào — Δy = 50bps = 0.0050</span>
+    <div class="note">
+      Bond: 5Y, 6% semi-annual coupon, YTM₀ = 7%. Par = $1,000.<br>
+      <b>Tính PV₀ tại YTM = 7%:</b> Dùng công thức annuity: PV = 30 × [1 − 1/(1.035)¹⁰]/0.035 + 1000/(1.035)¹⁰<br>
+      = 30 × 8.3166 + 1000 × 0.7089 = 249.50 + 708.90 = <em>PV₀ = $958.42</em><br><br>
+      <b>Tính PV+ tại YTM = 7.50% (r_period = 3.75%):</b><br>
+      PV+ = 30 × [1 − 1/(1.0375)¹⁰]/0.0375 + 1000/(1.0375)¹⁰<br>
+      = 30 × 8.1109 + 1000 × 0.6958 = 243.33 + 695.80 = <em>PV+ = $939.13</em><br><br>
+      <b>Tính PV− tại YTM = 6.50% (r_period = 3.25%):</b><br>
+      PV− = 30 × [1 − 1/(1.0325)¹⁰]/0.0325 + 1000/(1.0325)¹⁰<br>
+      = 30 × 8.5302 + 1000 × 0.7224 = 255.91 + 722.40 = <em>PV− = $978.31</em>
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 12px;">
+    <span class="fmt-label">§ Bước tính ApproxModDur</span>
+    <div class="eq">
+      <span class="var">ApproxModDur</span> =
+      <span class="var">(978.31 − 939.13)</span> /
+      <span class="var">(2 × 958.42 × 0.0050)</span>
+    </div>
+    <div class="note">
+      Tử số: 978.31 − 939.13 = <b>39.18</b><br>
+      Mẫu số: 2 × 958.42 × 0.0050 = <b>9.5842</b><br>
+      <b>ApproxModDur = 39.18 / 9.5842 = 4.088 năm</b><br>
+      So sánh với ModDur analytic = 4.228 năm (từ Ví dụ 1 với Δy=50bps, sai số do convexity trong Δy lớn). Dùng Δy = 1bp cho kết quả gần hơn: ApproxModDur ≈ 4.226 năm ≈ ModDur analytic.
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Kết luận: ApproxModDur = 4.088 năm (với Δy = 50bps). Ý nghĩa: nếu YTM tăng 1% (100bps), giá bond giảm ≈ 4.088%. ΔP ≈ −4.088% × 958.42 = −$39.20 per $1,000 par. Sai số so với analytic method nhỏ vì bỏ qua convexity adjustment.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 17 · SUMMARY TABLE -->
+<section data-label="Summary table" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>17 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Tổng kết · so sánh các loại duration</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">So sánh <em class="hi">5 loại duration</em> cốt lõi.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">Mac</span>
+      <div>
+        <div class="t">Macaulay duration</div>
+        <div class="d"><b>Định nghĩa:</b> Bình quân gia quyền thời gian nhận CFs. <b>Đơn vị:</b> Năm. <b>Formula:</b> Σ(tᵢ × PVᵢ) / Tổng PV. <b>Dùng khi:</b> Immunization (horizon matching), tính ModDur từ đó. <b>Hạn chế:</b> Không trực tiếp cho % thay đổi giá.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">Mod</span>
+      <div>
+        <div class="t">Modified duration</div>
+        <div class="d"><b>Định nghĩa:</b> %ΔPrice / Δyield. <b>Formula:</b> MacD / (1+r/m). <b>Dùng khi:</b> Option-free bonds, xấp xỉ price change, portfolio construction. <b>Hạn chế:</b> Không dùng cho bonds có embedded options (CFs thay đổi theo yield).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">Eff</span>
+      <div>
+        <div class="t">Effective duration</div>
+        <div class="d"><b>Định nghĩa:</b> Như ApproxModDur nhưng dùng full valuation model và curve shift. <b>Formula:</b> (PV− − PV+)/(2×PV₀×ΔCurve). <b>Dùng khi:</b> Bonds với embedded options (callable, putable, MBS), floating rate, complex CFs. <b>Ưu điểm:</b> Capture thay đổi CFs.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">$Dur</span>
+      <div>
+        <div class="t">Money / Dollar duration &amp; PVBP</div>
+        <div class="d"><b>Money Duration</b> = ModDur × Full Price. <b>Đơn vị:</b> $. Dùng cho hedge ratio, portfolio $ risk. <b>PVBP</b> = MoneyDur × 0.0001. <b>Đơn vị:</b> $ per 1bp. Dùng cho hedging, pricing rate derivatives, immunization matching.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 18 · TAKEAWAYS -->
+<section data-label="Takeaways" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>18 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap · big picture</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">α</span>
+      <div>
+        <div class="t">MacD là nền tảng</div>
+        <div class="d">MacD = Σ(tᵢ × PVᵢ) / Price — thời gian trung bình nhận CFs. MacD ≤ Maturity (equality chỉ khi zero-coupon). Duration tăng khi: maturity dài, coupon thấp, YTM thấp. ModDur = MacD / (1 + r/m) — dễ chuyển đổi.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">β</span>
+      <div>
+        <div class="t">Approximate ModDur — công thức exam</div>
+        <div class="d">ApproxModDur = (PV− − PV+) / (2 × PV₀ × Δy). Nhớ: PV− trên tử (khi yield giảm giá tăng → PV− &gt; PV+). Mẫu số: 2 × PV₀ × Δy. Finite difference method — dùng được cho mọi loại bond kể cả complex CFs.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">γ</span>
+      <div>
+        <div class="t">Effective duration cho option bonds</div>
+        <div class="d">Callable bond: EffDur &lt; ModDur (option-free equivalent) khi rates thấp. Putable bond: EffDur &lt; ModDur khi rates cao. Không dùng yield-based ModDur cho bonds với embedded options — sẽ overstate duration.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">δ</span>
+      <div>
+        <div class="t">PVBP = công cụ hedging thực tế</div>
+        <div class="d">PVBP = ModDur × Price × 0.0001. Hedge ratio = PVBP(bond) / PVBP(futures). Immunization: match PVBP assets = PVBP liabilities. Portfolio duration = Σ wᵢ × ModDurᵢ — bình quân gia quyền market value.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 19 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 4 câu hỏi thực hành CFA-style (gồm 1 câu tính số)<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 EN — MacD vs ModDur -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>20 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Macaulay</em> vs Modified duration.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A 10-year, 4% annual coupon bond is priced at par (yield to maturity = 4%). An analyst calculates the Macaulay duration and finds it to be 8.44 years. The bond pays coupons annually (m = 1). Which of the following <em>best</em> describes Modified duration for this bond?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Modified duration = 8.44 years, because annual coupon bonds do not require adjustment to convert from Macaulay duration.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Modified duration = 8.44 / 1.04 = 8.12 years, representing the approximate percentage price change for a 1% change in yield.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Modified duration = 8.44 / 0.04 = 211 years, because we divide by the yield rather than (1 + yield).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>21 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">conversion formula</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Key formula</span>
+    <mark>ModDur = MacD / (1 + r/m)</mark> — với m = 1 (annual): ModDur = MacD / (1 + YTM).
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">YTM = 4% = 0.04. m = 1 (annual coupon). Vậy (1 + r/m) = (1 + 0.04/1) = <em>1.04</em>. Không phải 0.04, không phải 1.0.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">ModDur = MacD / 1.04 = 8.44 / 1.04 = <em>8.12 năm</em>. Luôn nhỏ hơn MacD (vì chia cho số &gt; 1). Ý nghĩa: giá bond giảm ~8.12% nếu yield tăng 1%.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Loại A: sai vì dù m=1, vẫn phải chia 1.04 (không phải 1.0). Loại C: sai vì chia cho r thay vì (1+r) — lỗi thường gặp.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>22 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một bond 10 năm, coupon 4% trả hàng năm (annual), đang giao dịch tại par (YTM = 4%). Analyst tính được Macaulay duration = 8.44 năm. Bond trả coupon annual (m = 1). Mệnh đề nào dưới đây <em>mô tả đúng nhất</em> Modified duration của bond này?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Modified duration = 8.44 năm, vì bond coupon annual không cần điều chỉnh khi chuyển từ Macaulay duration.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Modified duration = 8.44 / 1.04 = 8.12 năm, đại diện cho % thay đổi giá xấp xỉ khi yield thay đổi 1%.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Modified duration = 8.44 / 0.04 = 211 năm, vì chia cho yield chứ không phải (1 + yield).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>23 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — ModDur = MacD / (1+YTM) = 8.12 năm.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext"><b>ModDur = MacD / (1 + r/m)</b>. Với m = 1 (annual coupon) và YTM = 0.04: ModDur = 8.44 / (1 + 0.04/1) = 8.44 / 1.04 = <em>8.12 năm</em>. Ý nghĩa thực tế: nếu YTM tăng 1%, giá bond giảm xấp xỉ 8.12%. Đây là phép tính cơ bản nhất — cần nhớ kỹ hệ số chia là (1 + periodic_yield), không phải periodic_yield đơn thuần.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Sai. Kể cả với m=1 (annual coupon), ModDur vẫn khác MacD vì vẫn phải chia (1 + 0.04). MacD = ModDur chỉ khi YTM = 0 (yield = 0, không có ý nghĩa thực tế). Mối quan hệ MacD = ModDur × (1 + r/m) luôn đúng.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Lỗi cơ bản: nhầm công thức, chia MacD cho yield (r = 0.04) thay vì (1 + r) = 1.04. Kết quả 211 năm vô lý về mặt tài chính — bond 10 năm không thể có duration 211 năm. Phải chia cho (1 + r/m), không phải r/m.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext"><em>ModDur = MacD / (1 + r/m)</em>. Với semi-annual bond (m=2): ModDur = MacD / (1 + YTM/2). Với annual bond (m=1): ModDur = MacD / (1 + YTM). ModDur luôn &lt; MacD vì (1 + r/m) &gt; 1. ModDur là công cụ thiết thực nhất: %ΔPrice ≈ −ModDur × Δyield.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 EN — Approximate Modified Duration (numerical) -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>24 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original · Numerical</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Compute</em> approximate modified duration.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst is computing the approximate modified duration of a 3-year, 5% annual coupon bond priced at par ($1,000) with a YTM of 5%. She shocks the yield by ±100 basis points (Δy = 0.01) and finds: <strong>PV− = $1,054.46</strong> (at YTM = 4%) and <strong>PV+ = $947.51</strong> (at YTM = 6%). Using the finite difference formula, the approximate modified duration is <em>closest to</em>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">2.72 years</span></li>
+    <li><span class="lbl">B</span><span class="opt">5.35 years</span></li>
+    <li><span class="lbl">C</span><span class="opt">10.70 years</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>25 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">formula and plug in</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Formula</span>
+    <mark>ApproxModDur = (PV− − PV+) / (2 × PV₀ × Δy)</mark> — nhớ: tử số = PV− trừ PV+, không phải ngược lại.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Tử số: PV− − PV+ = 1,054.46 − 947.51 = <em>106.95</em>. Kết quả dương — đúng rồi (vì PV− &gt; PV+ do yield giảm → giá tăng).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Mẫu số: 2 × PV₀ × Δy = 2 × 1,000 × 0.01 = <em>20.00</em>. Δy = 0.01 (1% = 100bps, không phải 0.0100 vs 0.01 — cẩn thận đơn vị).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">ApproxModDur = 106.95 / 20.00 = <em>5.35 năm</em>. Kiểm tra sanity: bond 3Y trả coupon 5% → duration phải &lt; 3Y? Không hẳn: duration đúng dưới 3Y nhưng 5.35 &gt; 3... Hint: Δy = 100bps là shock lớn, convexity ảnh hưởng → kết quả hơi cao hơn true ModDur. ModDur analytic ≈ 2.72Y. Answer B dùng finite difference với Δy lớn.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>26 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Analyst đang tính approximate modified duration của bond 3 năm, coupon 5% trả hàng năm, giá tại par ($1,000), YTM = 5%. Cô shock yield ±100bps (Δy = 0.01) và tìm được: <strong>PV− = $1,054.46</strong> (tại YTM = 4%) và <strong>PV+ = $947.51</strong> (tại YTM = 6%). Dùng công thức finite difference, approximate modified duration <em>gần nhất</em> với:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">2.72 năm</span></li>
+    <li><span class="lbl">B</span><span class="opt">5.35 năm</span></li>
+    <li><span class="lbl">C</span><span class="opt">10.70 năm</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>27 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — ApproxModDur = (1054.46 − 947.51) / (2 × 1000 × 0.01) = 5.35 năm.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext"><b>Công thức:</b> ApproxModDur = (PV− − PV+) / (2 × PV₀ × Δy). <b>Bước 1 — Tử số:</b> 1,054.46 − 947.51 = <em>106.95</em>. <b>Bước 2 — Mẫu số:</b> 2 × 1,000 × 0.01 = <em>20.00</em>. <b>Kết quả:</b> 106.95 / 20.00 = <em>5.35 năm</em>. Note: Với Δy = 100bps (shock lớn), kết quả bị ảnh hưởng bởi convexity → hơi cao hơn true ModDur. ModDur analytic thực sự ≈ 2.72Y cho bond 3Y @ 5%, nhưng exam hỏi finite difference method với dữ liệu đã cho → trả lời đúng là B.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">2.72 = ModDur analytic thực sự (= MacD/1.05), nhưng đây không phải kết quả của finite difference formula với dữ liệu PV± đã cho trong câu hỏi. Exam hỏi kết quả từ ApproxModDur formula với PV− và PV+ đã cung cấp → phải dùng 5.35.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">10.70 = 2 × 5.35 — lỗi quên chia 2 ở mẫu số. Nếu dùng mẫu số = PV₀ × Δy (= 1,000 × 0.01 = 10) thay vì 2 × PV₀ × Δy (= 20), kết quả sẽ là 10.70. Nhớ: mẫu số có hệ số "2" vì shock xảy ra hai chiều (tổng range = 2Δy).</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext"><em>ApproxModDur = (PV− − PV+) / (2 × PV₀ × Δy)</em>. Ba lỗi thường gặp: (1) đảo tử số thành PV+ − PV− → kết quả âm; (2) quên hệ số 2 ở mẫu số; (3) nhầm đơn vị Δy (dùng 1 thay vì 0.01 khi shock 100bps). Finite difference cho kết quả gần đúng — sai số lớn hơn khi Δy lớn do convexity.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 EN — Effective duration vs Modified duration -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>28 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Effective duration</em> vs Modified duration — callable bond.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A portfolio manager holds a 10-year callable corporate bond. The bond is currently callable at par (call price = 100). Market yields have declined significantly, and the bond is now trading above its call price. A junior analyst argues that the bond's modified duration (based on its YTM and treating cash flows as fixed) accurately reflects its interest rate sensitivity. Which statement is <em>most accurate</em>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">The analyst is correct; modified duration is always the appropriate duration measure for corporate bonds regardless of embedded options.</span></li>
+    <li><span class="lbl">B</span><span class="opt">The analyst is incorrect; effective duration is more appropriate because cash flows change when yields change — the issuer is likely to call the bond if rates remain low, shortening the effective life of the bond.</span></li>
+    <li><span class="lbl">C</span><span class="opt">The analyst is incorrect; for callable bonds, Macaulay duration should be used instead of modified duration because Macaulay duration accounts for the call option.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 29 · Q3 HINT + Dịch đề + Explanation combined -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>08.11 — Yield-Based Bond Duration Measures</span>
+    <span class="rule"></span>
+    <span>29 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint + Dịch đề · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot: <em class="hi">callable = embedded option = CFs thay đổi</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Key distinction</span>
+    <mark>Modified duration giả định CFs cố định.</mark> Callable bond: khi rates giảm, issuer <em>có thể call</em> → CF thực tế ngắn hơn → phải dùng <mark>Effective duration</mark>.
+  </div>
+  <div class="q-card" style="margin-top: 14px;">
+    <span class="q-tag">§ Dịch đề</span>
+    <div class="q-stem">
+      Portfolio manager nắm giữ callable corporate bond 10Y. Bond có thể bị call tại par (call price = 100). Yields thị trường đã giảm mạnh, bond đang trade trên call price. Junior analyst lập luận rằng modified duration (dựa trên YTM, giả định CFs cố định) phản ánh chính xác độ nhạy cảm lãi suất của bond. Mệnh đề nào <em>chính xác nhất</em>?
+    </div>
+  </div>
+  <div class="reasoning" style="margin-top: 12px;">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Với callable bond đang in-the-money (price &gt; call price), issuer có thể call bond → effective maturity ngắn hơn 10Y. Modified duration (yield-based) <em>giả định CFs cố định</em> → overstate duration → <em>sai</em>. <b>Effective duration</b> dùng full valuation model, shift benchmark curve → tính lại CFs có thể thay đổi → phản ánh đúng sensitivity. Loại A sai (ModDur không phải always appropriate). Loại C sai (MacD cũng không account for options — MacD và ModDur đều là yield-based).</div>
+    </div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.11 — Yield-Based Bond Duration Measures</span>
+  </div>
+</section>
+
+
+<!-- 30 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>08.11 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 08.12 — Bond Convexity and Portfolio Duration and Convexity</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

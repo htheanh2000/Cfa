@@ -1,0 +1,1173 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Fixed Income 08.16 — Credit Analysis: Corporate Issuers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 96px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Credit Analysis:<br><em>Corporate Issuers.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 08 · Lesson 08.16 · Fixed Income</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 16 · 4Cs · Ratios · Recovery · Spreads · Vietnam Context</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Fixed Income</dd></div>
+      <div><dt>Module</dt><dd>16</dd></div>
+      <div><dt>Lesson</dt><dd>08.16</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Capacity · Collateral · Covenants · Character · Recovery Rates · G-spread · Z-spread</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">16</div>
+    <div class="lbl">Credit analysis deep-dive</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How analysts <em>assess</em><br>corporate <em>credit risk</em>.</h2>
+    <ul class="toc">
+      <li class="active">01 · Four C's framework — Capacity, Collateral, Covenants, Character</li>
+      <li>02 · Capacity ratios — Leverage · Coverage · Profitability</li>
+      <li>03 · Collateral analysis — secured vs unsecured, asset quality</li>
+      <li>04 · Covenants — affirmative vs negative, creditor protections</li>
+      <li>05 · Character — management track record, governance, ESG</li>
+      <li>06 · Industry analysis applied to credit</li>
+      <li>07 · Recovery rates by seniority — key data</li>
+      <li>08 · Distressed bond metrics — yield-to-worst, distressed exchange</li>
+      <li>09 · Spread interpretation — G-spread, Z-spread</li>
+      <li>10 · Vietnam corporate bond context</li>
+      <li>11 · Practice — 4 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · FOUR C'S OVERVIEW -->
+<section data-label="Four C's overview" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>03 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Credit analysis · framework</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">Four C's</em> framework.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Phân tích tín dụng doanh nghiệp được tổ chức xung quanh bốn trụ cột — <em>Four C's</em>. Mỗi C đánh giá một khía cạnh khác nhau của khả năng và thiện chí trả nợ của issuer. CFA L1 yêu cầu hiểu và áp dụng cả bốn.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">C1</span>
+      <div>
+        <div class="t"><em class="hi">Capacity</em> — khả năng trả nợ</div>
+        <div class="d">Issuer có đủ cash flow để phục vụ debt không? Phân tích định lượng qua leverage ratios, coverage ratios, và profitability metrics. Trọng tâm: <em>EBITDA, FCF, Debt/EBITDA, EBITDA/Interest</em>. Đây là C quan trọng nhất trong phân tích credit.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">C2</span>
+      <div>
+        <div class="t"><em class="hi">Collateral</em> — tài sản đảm bảo</div>
+        <div class="d">Nếu issuer default, creditors có thể thu hồi được bao nhiêu từ tài sản? Phân tích asset quality, liquidation value, và thứ tự ưu tiên trong capital structure (secured vs unsecured vs subordinated).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">C3</span>
+      <div>
+        <div class="t"><em class="hi">Covenants</em> — điều khoản bảo vệ</div>
+        <div class="d">Điều khoản trong bond indenture bảo vệ bondholders khỏi hành vi rủi ro của issuer. Affirmative covenants (issuer phải làm gì) vs negative covenants (issuer không được làm gì). Covenants mạnh → credit quality tốt hơn.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">C4</span>
+      <div>
+        <div class="t"><em class="hi">Character</em> — phẩm chất ban lãnh đạo</div>
+        <div class="d">Management track record, governance quality, accounting transparency, ethical behavior, và ESG practices. Qualitative C — khó quantify nhưng critical: management quyết định rủi ro tài chính và chiến lược trả nợ dài hạn.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 04 · CAPACITY — LEVERAGE RATIOS -->
+<section data-label="Leverage ratios" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>04 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Capacity · leverage</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Leverage ratios</em> — đo gánh nặng nợ.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Leverage ratios đo lường <em>tổng nợ so với thu nhập hoặc vốn</em>. Leverage càng cao → rủi ro credit càng lớn → spread càng rộng. Ba ratio cốt lõi mà CFA testing tập trung:
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 14px;">
+    <div class="tenet">
+      <span class="n">D/E</span>
+      <div>
+        <div class="t"><em class="hi">Debt / EBITDA</em> — ratio quan trọng nhất</div>
+        <div class="d"><b>Công thức:</b> Total Debt ÷ EBITDA. <b>Ý nghĩa:</b> Số năm cần để EBITDA trả hết toàn bộ nợ. <b>Ngưỡng tham chiếu:</b> &lt;2× = conservative/IG. 2–4× = moderate leverage. 4–6× = HY territory. &gt;6× = highly leveraged / distressed risk. <b>Ứng dụng:</b> LBO deals thường 6–8× Debt/EBITDA ban đầu.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">D/Eq</span>
+      <div>
+        <div class="t"><em class="hi">Debt / Equity</em> — capital structure view</div>
+        <div class="d"><b>Công thức:</b> Total Debt ÷ Shareholders' Equity. <b>Ý nghĩa:</b> Mức độ tài trợ bằng debt so với equity. <b>Hạn chế:</b> Equity bị distort bởi goodwill, intangibles, và accumulated losses. <b>Ngưỡng:</b> &lt;1× = conservative. 1–2× = moderate. &gt;3× = aggressive. Cyclical industries thường có D/E cao hơn utility/stable issuers.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">TC</span>
+      <div>
+        <div class="t"><em class="hi">Total Debt / Total Capital</em> — gearing ratio</div>
+        <div class="d"><b>Công thức:</b> Total Debt ÷ (Total Debt + Equity). <b>Ý nghĩa:</b> % tài sản được tài trợ bởi debt (0–100%). <b>Ngưỡng:</b> &lt;30% = low leverage. 30–50% = moderate. &gt;50% = high gearing. Dễ so sánh across companies và industries vì luôn trong khoảng [0%, 100%]. Rating agencies thường dùng ratio này để set initial leverage assessment.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">NET</span>
+      <div>
+        <div class="t"><em class="hi">Net Debt / EBITDA</em> — practical variant</div>
+        <div class="d"><b>Công thức:</b> (Total Debt − Cash &amp; Equivalents) ÷ EBITDA. <b>Ý nghĩa:</b> Phản ánh khả năng trả nợ thực tế nếu dùng toàn bộ cash hiện có. Phổ biến trong M&amp;A analysis và leveraged finance. Issuer có $2B debt nhưng $1.5B cash → net leverage chỉ 0.5× — rủi ro thấp hơn gross leverage 2× rất nhiều.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 05 · CAPACITY — COVERAGE RATIOS -->
+<section data-label="Coverage ratios" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>05 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Capacity · coverage</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Coverage ratios</em> — khả năng trả lãi.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Coverage ratios đo lường thu nhập so với nghĩa vụ trả lãi (interest expense). Coverage càng cao → issuer càng dễ dàng phục vụ debt → credit risk thấp hơn.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>EBITDA / Interest</em> — Interest Coverage Ratio</div>
+      <dl>
+        <dt>Công thức</dt>
+        <dd>EBITDA ÷ Interest Expense (Gross). Đôi khi dùng EBIT/Interest (EBIT = EBITDA − D&amp;A).</dd>
+        <dt>Ý nghĩa</dt>
+        <dd>Số lần EBITDA "cover" được interest payment. <b>EBITDA/Interest:</b> &gt;8× = very strong (IG). 4–8× = adequate. 2–4× = HY zone. &lt;2× = distressed risk. <b>EBIT/Interest:</b> thấp hơn EBITDA version vì không add-back D&amp;A — conservative hơn.</dd>
+        <dt>Lưu ý</dt>
+        <dd>EBITDA không = cash flow (capex, working capital changes chưa trừ). EBIT/Interest phản ánh tốt hơn cho asset-heavy industries (steel, mining) nơi D&amp;A lớn.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>FFO / Debt</em> — cash-based coverage</div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd><b>FFO</b> = Funds From Operations = Net Income + D&amp;A + other non-cash charges (standard S&amp;P definition). Gần với cash earnings hơn EBITDA.</dd>
+        <dt>Ý nghĩa</dt>
+        <dd>FFO/Debt đo lường cash generation so với total debt — khả năng trả nợ từ operations. <b>Ngưỡng:</b> &gt;45% = IG (minimal leverage). 20–45% = moderate. &lt;12% = speculative grade / distressed territory. Moody's và S&amp;P dùng FFO/Debt trong rating methodology.</dd>
+        <dt>Ứng dụng</dt>
+        <dd>Đặc biệt hữu ích cho utility, REIT, infrastructure — nơi D&amp;A cao và capex predictable. Kết hợp với Debt/EBITDA để có picture đầy đủ về debt capacity.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 06 · CAPACITY — PROFITABILITY METRICS -->
+<section data-label="Profitability metrics" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>06 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Capacity · profitability</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Profitability metrics</em> — chất lượng thu nhập.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Profitability metrics đánh giá <em>chất lượng và bền vững của earnings</em> — không chỉ quy mô. Issuer với margins cao và ROIC tốt tạo ra buffer để chịu đựng downturns mà không vi phạm covenants.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 14px;">
+    <div class="tenet">
+      <span class="n">ROIC</span>
+      <div>
+        <div class="t"><em class="hi">ROIC</em> — Return on Invested Capital</div>
+        <div class="d"><b>Công thức:</b> NOPAT ÷ Invested Capital. NOPAT = EBIT × (1 − tax rate). Invested Capital = Debt + Equity − excess cash. <b>Ý nghĩa credit:</b> ROIC &gt; WACC → issuer tạo ra economic value → sustainable business model → lower default risk. ROIC thấp hơn cost of debt = báo động đỏ về long-term solvency.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">EM</span>
+      <div>
+        <div class="t"><em class="hi">EBITDA Margin</em> — operating cash profitability</div>
+        <div class="d"><b>Công thức:</b> EBITDA ÷ Revenue. <b>Ngưỡng theo sector:</b> Software/pharma: 30–50%+. Retail/commodity: 5–15%. Manufacturing: 10–20%. <b>Ý nghĩa credit:</b> Margin cao → buffer lớn khi revenue giảm. Margin thấp nhưng stable (utility, telecom) có thể vẫn IG nếu revenue predictable. Margin compression → coverage ratios xấu đi → risk của rating downgrade.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">FCF</span>
+      <div>
+        <div class="t"><em class="hi">FCF Margin</em> — free cash flow quality</div>
+        <div class="d"><b>Công thức:</b> Free Cash Flow ÷ Revenue. FCF = CFO − Capex. <b>Ý nghĩa:</b> FCF là "tiền thật" sau khi duy trì và phát triển business — đây là nguồn trả nợ thực sự. FCF margin dương và ổn định = dấu hiệu mạnh về credit quality. FCF âm liên tục → issuer phải huy động thêm vốn → rủi ro refinancing.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">INT</span>
+      <div>
+        <div class="t">Tích hợp: Credit Score Card</div>
+        <div class="d">Rating agencies kết hợp nhiều metrics: Debt/EBITDA + EBITDA/Interest + FFO/Debt + EBITDA Margin + ROIC → weighted score → indicative rating. Không có single metric quyết định — phải đánh giá tổng thể. <em>Trend quan trọng hơn absolute level</em>: ROIC đang tăng dù còn thấp = positive signal hơn ROIC cao nhưng đang giảm.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 07 · COLLATERAL ANALYSIS -->
+<section data-label="Collateral" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>07 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Collateral · asset quality</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Collateral</em> — tài sản đảm bảo.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Collateral analysis trả lời câu hỏi: nếu issuer default, creditors thu hồi được bao nhiêu? Đây là cơ sở xác định <em>recovery rate</em> và do đó ảnh hưởng trực tiếp đến <em>Loss Given Default (LGD)</em>.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Secured</em> vs <em>Unsecured</em></div>
+      <dl>
+        <dt>Secured bonds</dt>
+        <dd>Được đảm bảo bởi specific assets: real estate (mortgage bonds), equipment (equipment trust certificates), receivables, inventory. Creditor có <em>legal claim</em> trực tiếp lên tài sản đó khi default. Recovery rate cao hơn đáng kể — senior secured: 60–70%.</dd>
+        <dt>Unsecured bonds (debentures)</dt>
+        <dd>Không có specific asset pledge — chỉ có <em>general claim</em> lên assets còn lại sau khi secured creditors được trả. Recovery thấp hơn nhiều. Senior unsecured: 30–50%. Subordinated: 10–30%.</dd>
+        <dt>First vs Second Lien</dt>
+        <dd>First lien secured = ưu tiên cao nhất khi liquidation. Second lien = claim sau first lien nhưng trước unsecured. Phổ biến trong leveraged loans và HY bond structures. Recovery second lien thường 20–40%.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Asset quality</em> &amp; <em>liquidation value</em></div>
+      <dl>
+        <dt>Hard assets</dt>
+        <dd>Real estate, machinery, aircraft, ships → giá trị tương đối ổn định, dễ định giá, dễ bán (liquid collateral). Recovery cao hơn. Aircraft-backed bonds (EETC) và CMBS có collateral chất lượng cao.</dd>
+        <dt>Intangible assets</dt>
+        <dd>Brand, IP, customer relationships → khó liquidate, giá trị sụp đổ khi company distressed. Software companies có ít tangible collateral → unsecured bonds rủi ro hơn book value gợi ý.</dd>
+        <dt>Going concern vs liquidation</dt>
+        <dd>Enterprise value (going concern) thường cao hơn liquidation value. Recovery trong restructuring (Chapter 11 US) thường better than straight liquidation (Chapter 7) vì business tiếp tục hoạt động. Distressed investors thường model cả hai scenarios.</dd>
+        <dt>VN context</dt>
+        <dd>Vietnam corporate bonds chủ yếu secured bằng real estate — nhưng legal enforcement khó, thị trường bất động sản illiquid → actual recovery thường thấp hơn nominal collateral value.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 08 · COVENANTS -->
+<section data-label="Covenants" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>08 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Covenants · creditor protection</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Covenants</em> — bảo vệ bondholder.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Covenants là các điều khoản ràng buộc pháp lý trong <em>bond indenture</em> (hợp đồng trái phiếu) — thiết kế để bảo vệ bondholders khỏi hành vi làm tăng rủi ro sau khi bonds được issued. Covenants mạnh = credit quality cao hơn (= lower spread ceteris paribus).
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Affirmative covenants</em> — issuer phải làm gì</div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>Các nghĩa vụ <em>positive</em> mà issuer cam kết thực hiện trong suốt vòng đời bond. Ví dụ điển hình:</dd>
+        <dt>Pay interest &amp; principal</dt>
+        <dd>Đương nhiên — nhưng được ghi rõ ràng trong indenture với grace period (thường 30 ngày cho interest, 10 ngày cho principal).</dd>
+        <dt>Maintain insurance</dt>
+        <dd>Bảo đảm tài sản được bảo hiểm đầy đủ — đặc biệt quan trọng khi tài sản được dùng làm collateral.</dd>
+        <dt>Financial reporting</dt>
+        <dd>Submit audited financials định kỳ cho trustee. Comply với GAAP/IFRS. Certify no events of default (CEO/CFO sign-off hàng quý).</dd>
+        <dt>Cross-default</dt>
+        <dd>Default tại bất kỳ other debt obligation → trigger default tại bond này. Bảo vệ bondholders khỏi bị xếp hạng thấp hơn khi issuer selective default.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Negative covenants</em> — issuer không được làm gì</div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>Các <em>restrictions</em> hạn chế hành động của issuer có thể làm hại bondholders. Đây là phần phức tạp và được thương lượng nhiều nhất.</dd>
+        <dt>Debt limitation</dt>
+        <dd>Không được phát hành thêm debt vượt quá ngưỡng nhất định (vd Debt/EBITDA &lt; 4.5×). Bảo vệ bondholders khỏi debt dilution. IG bonds thường có maintenance covenants (phải duy trì ratio). HY bonds thường có incurrence covenants (chỉ triggered khi issue thêm debt).</dd>
+        <dt>Restricted payments</dt>
+        <dd>Hạn chế dividends, share buybacks, intercompany loans — đặc biệt khi leverage cao. Bảo đảm cash ở lại công ty cho debt service.</dd>
+        <dt>Asset sale (liens)</dt>
+        <dd>Không được bán tài sản chủ chốt hoặc pledge thêm assets cho lenders khác (negative pledge clause) mà không có bondholder consent.</dd>
+        <dt>Change of control</dt>
+        <dd>Nếu M&amp;A thay đổi chủ sở hữu, bondholder có quyền put bonds lại cho issuer tại 101% par — "poison put" bảo vệ khỏi event risk từ leveraged buyouts.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 09 · CHARACTER -->
+<section data-label="Character" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>09 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Character · qualitative C</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Character</em> — phẩm chất ban lãnh đạo.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Character là C duy nhất không quantifiable theo công thức. Tuy nhiên, history của corporate defaults cho thấy <em>management quality và governance failures</em> là nguyên nhân cốt lõi trong nhiều vụ phá sản lớn (Enron, WorldCom, Evergrande).
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 14px;">
+    <div class="tenet">
+      <span class="n">TRK</span>
+      <div>
+        <div class="t"><em class="hi">Management track record</em></div>
+        <div class="d">Lịch sử ra quyết định tài chính: đã từng leverage quá mức? Đã từng miss guidance liên tục? Đã completed acquisitions thành công? Management với track record disciplined capital allocation → lower credit risk. Serial acquirers với poor integration history → higher risk.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">GOV</span>
+      <div>
+        <div class="t"><em class="hi">Governance quality</em></div>
+        <div class="d">Board independence (independent directors &gt; 50% = positive signal). Audit committee quality. Separation of CEO/Chairman roles. Ownership concentration — controlling shareholder có thể extract value at expense of bondholders (tunneling, related-party transactions). Transparent reporting = trustworthy management.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">ACC</span>
+      <div>
+        <div class="t"><em class="hi">Accounting quality</em></div>
+        <div class="d">Frequent restatements = red flag lớn. Aggressive accounting: revenue recognition front-loading, operating lease capitalization avoid, off-balance-sheet entities. Credit analysts đọc footnotes kỹ hơn income statement. Cash flow ≫ net income nhất quán = healthy signal. Net income ≫ cash flow liên tục = possible manipulation.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">ESG</span>
+      <div>
+        <div class="t"><em class="hi">ESG factors</em> trong credit</div>
+        <div class="d"><b>Environmental:</b> Carbon transition risk (fossil fuel companies), physical climate risk (coastal facilities). <b>Social:</b> Labor relations, supply chain standards, community relations — litigation risk từ ESG failures. <b>Governance:</b> Như trên. ESG risks là <em>credit risks</em>: regulatory fines, stranded assets, reputational damage → revenue impact → reduced debt capacity. ESG-linked bonds: coupon điều chỉnh theo KPI targets.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 10 · INDUSTRY ANALYSIS -->
+<section data-label="Industry analysis" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>10 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Industry context · credit overlay</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Industry analysis</em> applied to credit.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Cùng một issuer với Debt/EBITDA = 4× có thể là IG trong một ngành nhưng HY trong ngành khác. Industry context quyết định <em>acceptable leverage level, margin sustainability, và coverage ratio thresholds</em>.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Cyclicality</em> → affects coverage ratios</div>
+      <dl>
+        <dt>Cyclical industries</dt>
+        <dd>Steel, chemicals, airlines, autos, commodities — revenue và EBITDA biến động mạnh theo business cycle. Rating agencies dùng <em>through-the-cycle</em> EBITDA (average qua chu kỳ) thay vì peak EBITDA để set rating. Issuer trong cyclical industry cần coverage ratio cao hơn để có buffer khi downturn.</dd>
+        <dt>Defensive / stable industries</dt>
+        <dd>Utilities, telecom, consumer staples, healthcare — revenue predictable, regulated. Có thể maintain higher leverage (Debt/EBITDA 5–6×) vì EBITDA stable. Lower coverage ratio acceptable (EBITDA/Interest 3–4× đủ ở utility).</dd>
+        <dt>Covenant implications</dt>
+        <dd>Cyclical issuers thường có looser covenants (covenant headroom rộng hơn) để tránh technical default tại trough of cycle. Maintenance covenants nguy hiểm hơn cho cyclicals — phổ biến hơn incurrence covenants trong HY cyclical bonds.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Competitive position</em> → margin sustainability</div>
+      <dl>
+        <dt>Porter's Five Forces applied</dt>
+        <dd>Strong competitive position (low substitutes, high barriers) → pricing power → sustainable EBITDA margin → sustainable coverage ratios. Analyst phải assess: Có thể issuer maintain current margins 5 năm tới không?</dd>
+        <dt>Market share &amp; moat</dt>
+        <dd>Market leader với moat (cost advantage, switching costs, network effects) → margins khó bị erode → credit quality ổn định hơn. Niche companies với unique technology cũng có pricing power mạnh.</dd>
+        <dt>Concentration risk</dt>
+        <dd>Revenue concentration: 1 customer &gt; 20% revenue = credit risk (Walmart supplier risk). Geographic concentration: issuer heavy in one market → macro risk. Product concentration: single product company = event risk nếu product fails/obsolete.</dd>
+        <dt>Supplier power</dt>
+        <dd>Commodity input costs volatile → margins unpredictable. Companies với fixed-price long-term supply contracts → cost predictability → credit stability. Natural resource companies: vertically integrated = better margin control.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 11 · RECOVERY RATES BY SENIORITY -->
+<section data-label="Recovery rates" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>11 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Capital structure · recovery</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Recovery rates</em> by seniority.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Recovery rate = % of par value recovered by creditor sau default/restructuring. Recovery rate quyết định <em>Loss Given Default (LGD = 1 − Recovery Rate)</em> và đóng vai trò then chốt trong credit risk modeling. Thứ tự thanh toán theo <em>absolute priority rule</em>.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-bottom: 16px;">
+    <span class="tag">§ Absolute Priority Rule — waterfall thanh toán khi liquidation</span>
+    Secured creditors (first lien → second lien) → Senior unsecured creditors → Subordinated creditors → Preferred shareholders → Common equity. Mỗi tầng phải được trả đủ 100% trước khi tầng dưới nhận bất cứ thứ gì (lý thuyết — thực tế negotiated settlement thường vi phạm rule này).
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 8px;">
+    <div class="tenet">
+      <span class="n">SS</span>
+      <div>
+        <div class="t"><em class="hi">Senior Secured</em> — 60–70%</div>
+        <div class="d">First lien secured bonds và loans. Có direct claim lên specific assets. Recovery cao nhất trong credit stack. Bank loans (senior secured) thường recover 60–80%. Trong US high-yield market, senior secured bonds average ~65% recovery (Moody's historical data).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SU</span>
+      <div>
+        <div class="t"><em class="hi">Senior Unsecured</em> — 30–50%</div>
+        <div class="d">General claim lên assets sau secured creditors. Đây là loại bond phổ biến nhất trong IG corporate market. Investment grade senior unsecured: recovery thực tế thường 40–50% vì asset quality còn tốt khi default. High-yield senior unsecured: thường 35–45%.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SUB</span>
+      <div>
+        <div class="t"><em class="hi">Subordinated</em> — 10–30%</div>
+        <div class="d">Junior unsecured — behind all senior creditors. High-yield market dùng nhiều (junk bonds). Recovery thấp vì nhận gì còn lại sau senior creditors trả xong. Trong nhiều distressed cases, subordinated bondholders nhận &lt;10% hoặc zero. Average historical: ~20%.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PFD</span>
+      <div>
+        <div class="t"><em class="hi">Preferred Equity</em> — 0–10%</div>
+        <div class="d">Hybrid — ưu tiên hơn common equity nhưng sau tất cả creditors. Thường nhận rất ít hoặc zero khi restructuring. Đây là lý do preferred stock trading ở steep discount khi issuer distressed — market pricing in near-zero recovery. Preferred đôi khi được convert thành common equity trong restructuring.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Recovery rate summary: Senior Secured 60–70% · Senior Unsecured 30–50% · Subordinated 10–30% · Preferred 0–10% · Common Equity ~0%. Source: Moody's historical default studies. LGD = 1 − Recovery Rate. Expected Loss = PD × LGD.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 12 · DISTRESSED BOND METRICS -->
+<section data-label="Distressed metrics" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>12 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Distressed bonds · special metrics</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Distressed</em> bond metrics.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Khi issuer tiếp cận distress, các metrics thông thường (YTM, credit rating) không còn đủ thông tin. Analyst cần dùng các công cụ đặc thù cho distressed debt.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 14px;">
+    <div class="tenet">
+      <span class="n">YTW</span>
+      <div>
+        <div class="t"><em class="hi">Yield-to-Worst (YTW)</em></div>
+        <div class="d"><b>Định nghĩa:</b> Yield thấp nhất có thể nhận được khi tính đến mọi call/put options và mandatory redemptions — tức là yield tệ nhất mà bondholder có thể nhận. <b>Công thức:</b> Min(YTC₁, YTC₂, ..., YTM, YTP). <b>Ứng dụng:</b> Conservative measure for callable HY bonds — issuer sẽ call khi có lợi cho họ (tức là bất lợi cho bondholder). CFA L1 thường test YTW &lt; YTM implies bond callable at premium.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">DEX</span>
+      <div>
+        <div class="t"><em class="hi">Distressed Exchange</em></div>
+        <div class="d"><b>Định nghĩa:</b> Thay thế bonds hiện tại bằng new securities (new bonds, equity, or mix) ở điều khoản ít favorable hơn — alternative to formal bankruptcy. <b>Recovery trong distressed exchange:</b> Bondholders nhận new instruments với value thấp hơn par — thường 40–70 cents on dollar. <b>Tại sao issuer prefer:</b> Tránh bankruptcy costs và stigma. <b>Tại sao bondholder accept:</b> Thường tốt hơn recovery qua formal liquidation.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PRI</span>
+      <div>
+        <div class="t"><em class="hi">Price-based analysis</em> khi distressed</div>
+        <div class="d">Khi bonds trade tại 50–60 cents on dollar, YTM có thể 20–30% — vô nghĩa vì market không tin issuer sẽ pay tại par. Analyst chuyển sang: <em>Recovery value analysis</em> (what assets worth?) và <em>Enterprise value analysis</em> (going concern value). Bond price / Recovery estimate = implied probability of default signal.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PD</span>
+      <div>
+        <div class="t"><em class="hi">Implied PD</em> từ market spread</div>
+        <div class="d"><b>Công thức đơn giản:</b> Spread ≈ PD × LGD. Nếu spread = 800 bps và recovery = 40% (LGD = 60%): implied PD ≈ 800/60 ≈ 13.3% per year. Market-implied PD tăng mạnh khi bond enters distressed territory (spread &gt; 1000 bps). So sánh với agency PD estimates để tìm mispricing opportunities.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 13 · G-SPREAD AND Z-SPREAD -->
+<section data-label="Spreads" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>13 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Credit spreads · interpretation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">G-spread</em> &amp; <em class="hi">Z-spread</em> — đọc tín hiệu credit.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Credit spreads so sánh yield của corporate bond với benchmark (risk-free rate). Spread phản ánh <em>credit risk premium + liquidity premium</em>. Analyst dùng spreads để compare credit quality, detect relative value, và track credit trend theo thời gian.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>G-spread</em> — nominal spread over government</div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>G-spread = YTM(corporate bond) − YTM(benchmark government bond của cùng maturity). Benchmark thường là on-the-run US Treasury hoặc German Bund. Đây là spread đơn giản và phổ biến nhất.</dd>
+        <dt>Ý nghĩa</dt>
+        <dd>Bù đắp cho: (1) <em>Credit risk</em>: probability of default × LGD. (2) <em>Liquidity risk</em>: corporate bonds kém liquid hơn Treasuries. (3) <em>Tax premium</em> (nếu applicable). G-spread = tổng compensation cho rủi ro phi-risk-free.</dd>
+        <dt>Hạn chế</dt>
+        <dd>So sánh một điểm trên yield curve với một điểm khác. Không account for shape of yield curve → inaccurate khi curve steep hoặc inverted. OAS (Option-Adjusted Spread) better for callable bonds.</dd>
+        <dt>Tham chiếu</dt>
+        <dd>Investment grade IG BBB: G-spread 100–200 bps. HY BB: 200–400 bps. HY B: 400–700 bps. CCC/distressed: 700–2000+ bps.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Z-spread</em> — zero-volatility spread</div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>Z-spread (zero-volatility spread) = constant spread added to <em>entire spot rate curve</em> (zero-coupon yield curve) such that PV(cash flows discounted at spot rates + Z) = dirty price. Sophisticated hơn G-spread.</dd>
+        <dt>Tại sao tốt hơn G-spread?</dt>
+        <dd>Sử dụng toàn bộ term structure thay vì một điểm. Phù hợp hơn khi yield curve không flat — đặc biệt với bonds có nhiều coupon payments trải dài theo thời gian. Z-spread ≈ G-spread khi yield curve flat.</dd>
+        <dt>OAS (Option-Adjusted Spread)</dt>
+        <dd>OAS = Z-spread − Option value (bps). Cho callable bonds: OAS &lt; Z-spread (embedded call = positive value to issuer → phải adjust). OAS là "pure credit + liquidity spread" sau khi remove option value. OAS tốt nhất để compare bonds với different optionalities.</dd>
+        <dt>Credit + Liquidity premium</dt>
+        <dd>Ngay cả AAA corporate bonds có spread dương so với sovereign — phần này là <em>liquidity premium</em>. Phần còn lại là credit premium. Trong credit crisis, liquidity premium spike mạnh (2008: spreads tăng 5×+ không hoàn toàn do credit deterioration).</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 14 · VIETNAM CORPORATE BOND CONTEXT -->
+<section data-label="Vietnam context" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>14 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Vietnam · thị trường trái phiếu doanh nghiệp</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Vietnam corporate bond <em class="hi">context</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Thị trường trái phiếu doanh nghiệp Việt Nam (TPDN VN) có đặc điểm khác biệt đáng kể so với developed markets — analyst cần adjust framework accordingly.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 14px;">
+    <div class="tenet">
+      <span class="n">STR</span>
+      <div>
+        <div class="t"><em class="hi">Cấu trúc thị trường</em></div>
+        <div class="d">Dominance: Sovereign government bonds (G-bonds) + State-owned bank bonds chiếm majority. Thị trường TPDN tư nhân nhỏ hơn nhiều và phát triển chậm sau scandal 2022 (Tân Hoàng Minh, Vạn Thịnh Phát). Hầu như không có thị trường HY công khai — phần lớn HY-equivalent bonds bán private placement cho nhà đầu tư cá nhân không chuyên.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">ISO</span>
+      <div>
+        <div class="t"><em class="hi">Issuers chủ yếu</em></div>
+        <div class="d">IG-equivalent: Vietcombank, BIDV, Vietinbank (state banks), Vingroup flagship entities. Bank bonds: dominated TPDN market pre-2022 (Circular 16). Real estate developers: Novaland, Hưng Thịnh, Nam Long — nhiều đơn vị rơi vào distress 2022–2024. Đặc điểm: thiếu công bố tài chính minh bạch, rating agencies domestic còn non-standard.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">REG</span>
+      <div>
+        <div class="t"><em class="hi">Regulatory framework</em></div>
+        <div class="d">SSC (Ủy ban Chứng khoán Nhà nước) quản lý. Decree 65/2022 → Decree 08/2023 siết chặt điều kiện phát hành: yêu cầu tài sản đảm bảo rõ ràng hơn, credit rating bắt buộc cho một số loại. Bộ Tài chính push phát triển credit rating industry (VIS Rating, FiinRatings). Roadmap hướng tới published ratings standards tương đương quốc tế.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">LMT</span>
+      <div>
+        <div class="t"><em class="hi">Hạn chế cho analyst</em></div>
+        <div class="d">Limited HY public market → khó build spread curves. Collateral = real estate chiếm dominant nhưng legal enforcement phức tạp, time-consuming. Công bố thông tin doanh nghiệp kém hơn developed markets. Liquidity secondary market thấp — bid-ask spreads rộng. 4C framework áp dụng được nhưng Character C cực kỳ quan trọng hơn trong context quản trị VN (thường thấy related-party risks).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 15 · KEY TAKEAWAYS -->
+<section data-label="Takeaways" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>15 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap · big picture</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">α</span>
+      <div>
+        <div class="t">Four C's = credit analysis foundation</div>
+        <div class="d">Capacity (ratios: leverage + coverage + profitability) → khả năng trả nợ. Collateral (secured vs unsecured, asset quality) → recovery nếu default. Covenants (affirmative + negative) → bảo vệ bondholders. Character (management, governance, ESG) → thiện chí trả nợ.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">β</span>
+      <div>
+        <div class="t">Recovery rates are seniority-driven</div>
+        <div class="d">Senior secured 60–70% → Senior unsecured 30–50% → Subordinated 10–30% → Preferred 0–10%. LGD = 1 − Recovery. Expected Loss = PD × LGD. Absolute priority rule — secured first, equity last. Distressed exchange thường better than liquidation for all parties.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">γ</span>
+      <div>
+        <div class="t">Spreads reflect credit + liquidity</div>
+        <div class="d">G-spread = YTM(corp) − YTM(govt) = credit risk + liquidity premium. Z-spread = constant spread over entire spot rate curve — more accurate. OAS = Z-spread − option value = pure credit + liquidity. Wider spread → higher implied PD → lower credit quality. Spread ≈ PD × LGD (simplified).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">δ</span>
+      <div>
+        <div class="t">Industry context adjusts all thresholds</div>
+        <div class="d">Cyclical industries: lower acceptable leverage, higher required coverage buffer. Defensive/regulated: can sustain higher leverage. Competitive position → margin sustainability → coverage sustainability. Vietnam TPDN: mostly IG sovereign + bank, HY market underdeveloped, Character C especially critical given governance environment.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 16 · TRANSITION TO PRACTICE -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 4 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 EN — Four C's application -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>17 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Four C's</em> framework application.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst is evaluating HorizonTech Corp, a mid-cap technology company. She notes the following: (1) Debt/EBITDA = 3.8×, EBITDA/Interest = 5.2×, FCF margin = 12%. (2) All bonds are unsecured debentures; the company's primary assets are patents and software. (3) The bond indenture contains a negative pledge clause and restricts dividends if Debt/EBITDA exceeds 4.5×. (4) The CEO has a history of three acquisitions, two of which were written down within 18 months. Under the Four C's framework, which C represents the <strong>most significant concern</strong> for the credit analyst?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Capacity, because Debt/EBITDA of 3.8× exceeds the 3.0× threshold typically associated with investment-grade ratings.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Collateral, because the company's primary assets are intangibles (patents and software) that have low liquidation value in default, making recovery rates significantly lower than for asset-backed bonds.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Character, because the CEO's track record of two acquisition write-downs in 18 months indicates poor capital allocation discipline and potential for value destruction.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>18 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Assess each <em class="hi">C</em> carefully.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Systematic approach</span>
+    Đánh giá từng C riêng biệt trước khi kết luận C nào "most significant concern."
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt"><b>Capacity:</b> Debt/EBITDA 3.8× là moderate leverage — không đặc biệt đáng lo với IG tech company. EBITDA/Interest 5.2× = adequate coverage. FCF margin 12% = positive. Capacity không phải concern lớn nhất.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt"><b>Collateral:</b> Đúng là intangible assets có liquidation value thấp — patents và software rất khó bán khi distress. Đây là concern thực sự — recovery sẽ thấp nếu default. Nhưng có phải "most significant"?</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt"><b>Character:</b> 2 acquisition write-downs trong 18 tháng = <em>systematic poor capital allocation</em>. Đây không phải một lần lỗi — là pattern. Cho thấy CEO thiếu discipline → nguy cơ tiếp tục destroy value → future leverage spike → credit deterioration. Character concern thường underrated nhưng predictive of future problems.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>19 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Analyst đang đánh giá HorizonTech Corp, công ty công nghệ vừa. Ghi nhận: (1) Debt/EBITDA = 3.8×, EBITDA/Interest = 5.2×, FCF margin = 12%. (2) Tất cả bonds là unsecured debentures; tài sản chủ yếu là patents và software. (3) Bond indenture có negative pledge clause và hạn chế cổ tức nếu Debt/EBITDA vượt 4.5×. (4) CEO có lịch sử 3 thương vụ M&amp;A, 2 trong số đó bị write-down trong 18 tháng. Theo framework Four C's, <strong>C nào là mối lo ngại lớn nhất</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Capacity — Debt/EBITDA 3.8× vượt ngưỡng 3.0× thường liên quan đến investment-grade ratings.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Collateral — tài sản chủ yếu là intangibles (patents, software) có liquidation value thấp, recovery rate khi default sẽ thấp hơn đáng kể so với asset-backed bonds.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Character — track record của CEO với 2 write-down trong 18 tháng cho thấy poor capital allocation discipline và tiềm năng phá hủy giá trị.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>20 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — Character là concern lớn nhất.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext"><b>Character:</b> Hai acquisition write-downs trong 18 tháng không phải ngẫu nhiên — đây là pattern systematic poor capital allocation. CEO consistently overpaying for acquisitions và failing integration → tiếp tục hành vi này sẽ: (1) consume FCF bằng acquisition spending, (2) increase debt nếu funded bằng borrowing, (3) destroy book equity qua goodwill impairments. Credit analyst nhìn forward — management track record là leading indicator của future financial health. <em>Character failure là nguyên nhân gốc rễ của nhiều default</em>.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Capacity hiện tại không đáng lo: 3.8× Debt/EBITDA với coverage 5.2× và FCF margin 12% là acceptable cho một tech company IG-borderline. Nhiều BBB-rated tech companies operate ở 3–4× Debt/EBITDA. Concern A overestimates severity của current ratios.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Collateral là concern thực — intangible-heavy tech company có low recovery nếu default. Tuy nhiên, đây là structural characteristic của tech industry (analyst sẽ price in qua expected recovery, không phải "most significant concern" riêng của HorizonTech). Character issue là <em>specific và current warning signal</em> không được price in hoàn toàn.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext"><em>Character</em> là C dễ bỏ qua nhất nhưng có predictive power mạnh. Management có pattern của poor decisions → expect future decisions cũng poor → forward credit risk tăng. Enron, WorldCom, Evergrande: all had Character failures that preceded financial collapse. Credit analyst tốt đọc <em>history of management decisions</em>, không chỉ current financial ratios.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 EN — Recovery rate calculation -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>21 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Recovery rate</em> &amp; capital structure.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      SteelCore Industries files for bankruptcy. Its capital structure: $400M senior secured debt (backed by plant and equipment), $600M senior unsecured bonds, $300M subordinated bonds, and $200M preferred equity. The bankruptcy court determines total enterprise value at liquidation = $700M. Using the <strong>absolute priority rule</strong>, what is the recovery rate for senior unsecured bondholders?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">50% — the senior unsecured bondholders receive $300M out of $600M owed, after senior secured creditors are fully paid.</span></li>
+    <li><span class="lbl">B</span><span class="opt">100% — total enterprise value of $700M exceeds senior secured ($400M), so senior unsecured receive full recovery on their $600M.</span></li>
+    <li><span class="lbl">C</span><span class="opt">0% — the bankruptcy court distributes funds pro-rata among all creditors, and the remaining $300M after senior secured is insufficient to cover any single class fully.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>22 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Apply the <em class="hi">waterfall</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Absolute priority waterfall</span>
+    Trả từ trên xuống: <mark>Senior secured → Senior unsecured → Subordinated → Preferred → Common</mark>. Mỗi tầng phải trả đủ trước khi tầng dưới nhận được.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Total liquidation value = <em>$700M</em>. Senior secured = $400M. Trả senior secured trước → $700M − $400M = <em>$300M còn lại</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Senior unsecured = $600M owed. Nhưng chỉ còn $300M. Recovery = $300M / $600M = <em>50%</em>. Dừng ở đây — senior unsecured chưa được trả đủ → subordinated và preferred nhận 0%.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Absolute priority rule = strict waterfall. Không có pro-rata across all creditors. Trả toàn bộ trên tầng trước. Option C (pro-rata) mô tả <em>không đúng</em> absolute priority. Option B sai khi cho rằng $700M cover được $1B+ of total claims.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>23 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      SteelCore Industries nộp đơn phá sản. Cấu trúc vốn: $400M senior secured debt (đảm bảo bằng nhà máy và thiết bị), $600M senior unsecured bonds, $300M subordinated bonds, và $200M preferred equity. Tòa án phá sản xác định tổng enterprise value khi liquidation = $700M. Áp dụng <strong>absolute priority rule</strong>, recovery rate của senior unsecured bondholders là bao nhiêu?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">50% — senior unsecured bondholders nhận $300M trên $600M owed, sau khi senior secured creditors được trả đủ.</span></li>
+    <li><span class="lbl">B</span><span class="opt">100% — tổng enterprise value $700M vượt senior secured ($400M), nên senior unsecured nhận full recovery trên $600M.</span></li>
+    <li><span class="lbl">C</span><span class="opt">0% — tòa án phân phối pro-rata cho tất cả creditors, $300M còn lại không đủ để cover bất kỳ class nào hoàn toàn.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>24 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — Recovery = 50% cho senior unsecured.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext"><b>Waterfall calculation:</b> Step 1: Senior secured ($400M) → paid first from $700M. Remaining = $700M − $400M = <b>$300M</b>. Step 2: Senior unsecured ($600M owed) → get remaining $300M. Recovery = $300M / $600M = <b>50%</b>. Step 3: Subordinated ($300M owed) → $0 remaining after senior unsecured. Recovery = 0%. Step 4: Preferred ($200M) → $0. Recovery = 0%. <em>Summary:</em> Senior secured = 100%. Senior unsecured = 50%. Sub = 0%. Preferred = 0%. Matches historical benchmark (senior unsecured 30–50% recovery range).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Sai logic: $700M total ≠ có đủ để trả senior unsecured $600M. Sau khi trả senior secured $400M, chỉ còn $300M. $300M &lt; $600M owed → recovery &lt; 100%. B confused tổng enterprise value với amount available for senior unsecured class.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Absolute priority rule KHÔNG pro-rata across all creditors. C mô tả một scheme chia đều — không phải bankruptcy law. Pro-rata chỉ áp dụng <em>within</em> cùng một class (vd senior unsecured class chia đều $300M). Giữa classes, strict priority order phải tuân thủ.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext"><em>Absolute priority rule waterfall:</em> Senior Secured → Senior Unsecured → Sub → Preferred → Common. Tính recovery: start từ total liquidation value, trừ dần từ trên xuống. Recovery rate = min(amount available / amount owed, 100%). Historical ranges: SS 60–70%, SU 30–50%, Sub 10–30%, Preferred 0–10%. Trong thực tế negotiated restructuring, absolute priority đôi khi bị vi phạm (equity holders nhận ít nhưng không zero) — "deviation from APR" là negotiating lever.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 EN — Coverage ratio + industry -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>25 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Coverage ratios</em> + industry context.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Pacific Power &amp; Light (PP&amp;L) is a regulated electric utility with EBITDA/Interest = 3.5× and Debt/EBITDA = 5.8×. Summit Chemicals is a cyclical industrial with EBITDA/Interest = 6.2× and Debt/EBITDA = 2.9×. A junior analyst concludes that Summit Chemicals has stronger credit quality than PP&amp;L because its coverage ratio is higher and leverage is lower. The senior analyst disagrees. Which response <em>best explains</em> why PP&amp;L may have stronger credit quality despite weaker ratios?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">PP&amp;L's regulated revenue model provides stable, predictable cash flows that allow it to sustain higher leverage and lower coverage ratios without increased default risk compared to a cyclical chemical company.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Summit Chemicals' EBITDA is overstated because cyclical companies often recognize revenue when goods are shipped, inflating current-period metrics during economic upturns.</span></li>
+    <li><span class="lbl">C</span><span class="opt">PP&amp;L's leverage ratios are distorted by non-cash depreciation charges that reduce reported EBITDA, so the true leverage is lower than reported.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 Hint -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>26 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Industry context <em class="hi">adjusts thresholds</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Key insight</span>
+    Không phải absolute level của ratio quyết định credit quality — mà là ratio <mark>relative to industry norms and business model stability</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt"><b>PP&amp;L:</b> Regulated utility = revenue được set bởi regulator, demand inelastic (people always need electricity). EBITDA cực kỳ stable và predictable. Với predictable EBITDA, Debt/EBITDA 5.8× không nguy hiểm như nó có vẻ — debt service có thể được planned chính xác.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt"><b>Summit Chemicals:</b> Cyclical industry — khi recession, EBITDA có thể giảm 40–60%. EBITDA/Interest 6.2× tại peak cycle có thể drop xuống 2.5× trong trough → covenant breach / distress risk. Junior analyst dùng current-point metrics, không through-the-cycle.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Option A mô tả chính xác rationale: <em>revenue predictability của regulated utility</em> là lý do PP&amp;L chịu được higher leverage. Options B và C đưa ra explanations không liên quan đến industry context fundamental.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>27 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Pacific Power &amp; Light (PP&amp;L) là một regulated electric utility với EBITDA/Interest = 3.5× và Debt/EBITDA = 5.8×. Summit Chemicals là công ty hóa chất cyclical với EBITDA/Interest = 6.2× và Debt/EBITDA = 2.9×. Một junior analyst kết luận Summit Chemicals có credit quality mạnh hơn PP&amp;L vì coverage ratio cao hơn và leverage thấp hơn. Senior analyst không đồng ý. Câu trả lời nào <em>giải thích tốt nhất</em> tại sao PP&amp;L có thể có credit quality mạnh hơn dù các ratio yếu hơn?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Mô hình doanh thu được quản lý (regulated) của PP&amp;L cung cấp cash flows ổn định, có thể dự đoán — cho phép chịu được leverage cao hơn và coverage thấp hơn mà không tăng default risk so với công ty hóa chất cyclical.</span></li>
+    <li><span class="lbl">B</span><span class="opt">EBITDA của Summit Chemicals bị overstated vì các công ty cyclical thường ghi nhận doanh thu khi hàng được ship, làm phồng metrics hiện tại trong upturns.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Leverage ratios của PP&amp;L bị distort bởi non-cash depreciation charges làm giảm EBITDA, nên leverage thực sự thấp hơn so với báo cáo.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>28 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — Regulated revenue = stable EBITDA.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext"><b>PP&amp;L as regulated utility:</b> Revenue set by regulator with guaranteed cost-plus return. Electricity demand inelastic — customers need power regardless of economy. EBITDA predictable → lenders and rating agencies apply higher acceptable Debt/EBITDA (~5–7× for IG utility vs ~2–3× for IG cyclical). Coverage 3.5× for utility = very stable compared to cyclical peaking at 6.2×. <b>Summit Chemicals through-the-cycle:</b> chemical demand drops 30–50% in recession → EBITDA drops proportionally → coverage 6.2× → potentially 2–3× in trough → covenant risk. <em>Industry context adjusts all thresholds.</em></div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Revenue recognition methodology là concern nhưng không phải lý do fundamental. Vả lại, EBITDA = earnings before interest, taxes, D&amp;A — không trực tiếp bị distorted bởi revenue recognition timing trong most cyclical companies. Đây là side issue, không phải core reasoning tại sao industry thresholds differ.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Sai về mechanics: EBITDA = earnings <em>before</em> D&amp;A — depreciation đã được added back. Do đó D&amp;A không distort Debt/EBITDA. C hiểu sai cách tính EBITDA. Depreciation ảnh hưởng đến EBIT/Interest (EBIT = EBITDA − D&amp;A), không phải Debt/EBITDA.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Credit ratios phải được interpreted <em>trong context của industry và business model</em>. Thresholds acceptable cho regulated utilities (high D/EBITDA, low coverage) là distressed territory cho cyclicals. Rating agencies explicitly adjust thresholds by industry: utility IG benchmark ~6× D/EBITDA; chemical IG benchmark ~2.5×. <em>Absolute ratios deceive — relative-to-industry ratios inform.</em></div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 29 · Q4 EN — Spread interpretation -->
+<section data-label="Q4 Original" class="slide">
+  <div class="run-header">
+    <span>08.16 — Credit Analysis: Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>29 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 04 · Original + Hint + Dịch đề + Answer</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">G-spread</em> &amp; implied default probability.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A BB-rated corporate bond trades at a G-spread of 420 bps over a comparable-maturity government bond. A credit analyst estimates the bond's recovery rate at 40%. Using the simplified relationship <em>Spread ≈ PD × LGD</em>, the analyst calculates the market-implied annual probability of default. She then notes that her internal credit model estimates PD at 5.0% per year. Which conclusion is <em>most consistent</em> with this analysis?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">The bond is fairly valued; market-implied PD of 7.0% is close enough to the internal estimate of 5.0% given model uncertainty.</span></li>
+    <li><span class="lbl">B</span><span class="opt">The bond appears cheap (undervalued); market is pricing more default risk than the internal model implies, suggesting a potential long opportunity if the analyst trusts her model.</span></li>
+    <li><span class="lbl">C</span><span class="opt">The bond appears rich (overvalued); market-implied PD of 7.0% exceeds the internal estimate, meaning the market is too optimistic and the bond should be shorted.</span></li>
+  </ol>
+
+  <div class="hint-card" style="margin-top: 14px;">
+    <span class="h-tag">§ Hint: Dịch đề &amp; Calculation</span>
+    <b>Tính market-implied PD:</b> LGD = 1 − 40% = 60%. Spread = PD × LGD → 420 bps = PD × 60% → PD = 420/60 = <mark>7.0%</mark>.
+    <br><b>Dịch đề:</b> Bond BB-rated trade tại G-spread 420 bps. Recovery rate = 40%. Dùng Spread ≈ PD × LGD, analyst tính market-implied PD. Internal model PD = 5.0%/năm. Kết luận nào <em>phù hợp nhất</em>?
+    <br><b>Phân tích:</b> Market-implied PD = 7.0% &gt; internal PD = 5.0%. Market đang định giá <em>nhiều</em> default risk hơn analyst estimate. Nếu analyst tin model → bond được định giá quá thấp (cheap/undervalued) → potential <em>long opportunity</em>. <b>Answer: B.</b>
+    <br><em>A sai:</em> 7% vs 5% là gap 40% — không "close enough" trong credit analysis. <em>C sai logic:</em> Market-implied PD cao = market pessimistic (not optimistic) → bond có spread lớn → thực ra là cheap, không phải rich.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.16 — Credit Analysis: Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 30 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>08.16 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 08.17 — Securitization</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

@@ -1,0 +1,1133 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Fixed Income 08.18 — ABS Features</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 96px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">ABS<br><em>Features.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 08 · Lesson 08.18 · Fixed Income</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 18 · Auto · Credit Card · Student Loan · CDO · CLO</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Fixed Income</dd></div>
+      <div><dt>Module</dt><dd>18</dd></div>
+      <div><dt>Lesson</dt><dd>08.18</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">ABS · SPV · Tranches · CDO · CLO · Synthetic · Risk</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">18</div>
+    <div class="lbl">Asset-Backed Securities</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>Non-mortgage ABS — <em>types,</em><br><em>structures,</em> and risks.</h2>
+    <ul class="toc">
+      <li class="active">01 · ABS framework chung — pool → SPV → tranches</li>
+      <li>02 · Auto loan ABS — maturity, prepayment, prime vs subprime</li>
+      <li>03 · Credit card receivables ABS — revolving: lockout + amortization</li>
+      <li>04 · Student loan ABS — FFELP (government-guaranteed) vs private</li>
+      <li>05 · Equipment lease &amp; Solar / Utility ABS</li>
+      <li>06 · CDO — Cash CDO · Synthetic CDO · CLO</li>
+      <li>07 · Risk factors &amp; performance metrics</li>
+      <li>08 · Vietnam ABS context + 3 CFA-style practice questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · ABS FRAMEWORK CHUNG -->
+<section data-label="ABS Framework" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>03 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Non-mortgage ABS · tổng quan</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">ABS framework</em> chung.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Asset-Backed Security (ABS) là chứng khoán được đảm bảo bởi một <em>pool tài sản đồng nhất</em> — receivables, loans, hoặc leases. Cơ chế cốt lõi: originator bán pool sang <em>SPV</em>, SPV phát hành tranches cho investors. Cách ly originator risk khỏi tài sản.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">ORI</span>
+      <div>
+        <div class="t"><em class="hi">Originator</em></div>
+        <div class="d">Ngân hàng, công ty tài chính, hoặc retailer — tạo ra receivables gốc (ví dụ: cho vay mua xe, phát hành credit card, cho vay sinh viên). Bán pool sang SPV để <em>off-balance-sheet</em> và thu hồi vốn sớm.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SPV</span>
+      <div>
+        <div class="t"><em class="hi">Special Purpose Vehicle</em></div>
+        <div class="d">Pháp nhân độc lập — <b>bankruptcy-remote</b> với originator. SPV mua pool, phát hành ABS tranches. Nếu originator phá sản, pool tài sản không bị ảnh hưởng → bảo vệ investors. Servicer thu tiền từ borrowers &amp; chuyển sang SPV.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">TRA</span>
+      <div>
+        <div class="t"><em class="hi">Tranching</em></div>
+        <div class="d">Pool cash flows được phân phối theo <em>waterfall</em>: Senior tranche nhận trước (AAA rated, rủi ro thấp nhất), Mezzanine giữa, Junior/Equity cuối (chịu first loss). Credit enhancement: overcollateralization, excess spread, reserve fund.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">ENH</span>
+      <div>
+        <div class="t">Credit enhancement</div>
+        <div class="d"><b>Internal:</b> Overcollateralization (pool lớn hơn ABS issued), excess spread (coupon pool &gt; ABS coupon), subordination (junior absorbs losses). <b>External:</b> Financial guarantee insurance, letter of credit từ bank. Mục tiêu: đạt rating cao cho senior tranche.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 04 · AUTO LOAN ABS -->
+<section data-label="Auto Loan ABS" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>04 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Non-mortgage ABS · auto</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Auto loan ABS</em> — đặc điểm.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Auto ABS là loại non-mortgage ABS lớn nhất và phổ biến nhất. Collateral là các khoản vay mua xe — simple, dễ dự đoán, maturity ngắn so với mortgage.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Đặc điểm cấu trúc</em></div>
+      <dl>
+        <dt>Maturity</dt>
+        <dd>Trung bình 3–5 năm (weighted average life). Ngắn hơn mortgage ABS → <em>duration thấp hơn</em>, ít nhạy cảm với lãi suất hơn. Investor ưa thích cho liability-matching ngắn hạn.</dd>
+        <dt>Prepayment</dt>
+        <dd>Prepayment risk <em>thấp hơn</em> mortgage. Lý do: vay mua xe không refinance nhiều (lãi suất ít biến động bằng mortgage), xe mất giá nhanh → incentive refinance thấp. Tuy nhiên vẫn có nếu lãi suất giảm mạnh.</dd>
+        <dt>Collateral</dt>
+        <dd>Xe hơi cũ/mới với lien của lender. Recovery rate tương đối cao (xe có thể repossessed và bán lại). Tuy nhiên, xe depreciate nhanh → giá trị collateral giảm dần.</dd>
+        <dt>Overcollateralization</dt>
+        <dd>Pool thường lớn hơn ABS issued 5–15% → credit cushion cho senior tranches đạt AAA.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Prime vs Subprime</em></div>
+      <dl>
+        <dt>Prime auto ABS</dt>
+        <dd>Borrowers có <em>credit score cao</em> (FICO ≥ 700). Default rate rất thấp (&lt;1%). Senior tranche thường AAA. Spread hẹp. Issuers: Ford Motor Credit, GM Financial, Toyota Financial.</dd>
+        <dt>Subprime auto ABS</dt>
+        <dd>Borrowers có FICO thấp hơn (thường 580–660). <em>Default rate cao hơn</em> (3–10%). Yield cao hơn để bù risk. Overcollateralization và subordination cao hơn. Credit enhancement mạnh hơn. Rủi ro: nếu kinh tế suy, subprime defaults tăng đột biến.</dd>
+        <dt>Deep subprime</dt>
+        <dd>FICO &lt; 580. Risk rất cao — thường chỉ equity investors mua junior tranches. Spread rất rộng. Đây là phân khúc nhạy cảm nhất với economic cycle.</dd>
+        <dt>Servicer risk</dt>
+        <dd>Servicer thu payments, xử lý defaults, repossess xe. Nếu servicer thất bại → backup servicer tiếp quản. CFA test: servicer quality ảnh hưởng performance.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 05 · CREDIT CARD RECEIVABLES ABS -->
+<section data-label="Credit Card ABS" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>05 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Non-mortgage ABS · credit card</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Credit card receivables ABS</em> — revolving structure.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Credit card ABS khác biệt về cấu trúc so với auto/mortgage ABS vì collateral là <em>revolving receivables</em> — khoản nợ thay đổi liên tục khi cardholder spend và pay. Cần cơ chế đặc biệt để handle điều này.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">REV</span>
+      <div>
+        <div class="t"><em class="hi">Revolving structure</em></div>
+        <div class="d">Credit card balance = <em>revolving</em>: cardholder mua thêm hàng tháng → balance thay đổi liên tục. Không giống mortgage (principal giảm dần). SPV mua <em>receivables mới</em> liên tục từ originator trong suốt lockout period để maintain pool size.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">LOC</span>
+      <div>
+        <div class="t"><em class="hi">Lockout period</em> (revolving period)</div>
+        <div class="d">Thường 1–5 năm đầu: principal payments nhận từ cardholders <em>không được trả cho ABS investors</em>. Thay vào đó, principal được <em>reinvest</em> để mua receivables mới, giữ pool size ổn định. Investors chỉ nhận interest payments trong giai đoạn này.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">AMO</span>
+      <div>
+        <div class="t"><em class="hi">Amortization period</em></div>
+        <div class="d">Sau lockout: principal payments bắt đầu được <em>trả lại cho investors</em>. Pool không được reinvest thêm → pool shrinks. Có thể: <b>controlled amortization</b> (trả đều) hoặc <b>early amortization</b> nếu trigger events xảy ra (excess spread &lt; 0, servicer default).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">EAM</span>
+      <div>
+        <div class="t"><em class="hi">Early amortization trigger</em></div>
+        <div class="d">Nếu <em>excess spread</em> âm (lãi từ pool &lt; chi phí ABS) hoặc default rate vượt threshold → early amortization triggered: principal trả ngay cho investors. Bảo vệ investors nhưng gây disruption cho originator. CFA: key structural feature của credit card ABS.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 06 · STUDENT LOAN ABS -->
+<section data-label="Student Loan ABS" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>06 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Non-mortgage ABS · student loan</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Student loan ABS</em> — FFELP vs Private.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Student loan ABS phân thành hai loại rõ rệt: <em>FFELP</em> (government-guaranteed) và <em>private student loans</em>. Sự khác biệt về credit risk và structure rất lớn — cần phân biệt rõ cho CFA exam.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>FFELP Student Loan ABS</em></div>
+      <dl>
+        <dt>FFELP là gì?</dt>
+        <dd>Federal Family Education Loan Program — chương trình vay sinh viên do <em>government (Mỹ) bảo lãnh</em>. Chính phủ đảm bảo 97–100% khoản vay nếu borrower default. FFELP ended 2010, nhưng legacy pools vẫn tồn tại và giao dịch.</dd>
+        <dt>Credit risk</dt>
+        <dd><em>Rất thấp</em> — gần như sovereign-backed. Senior tranches thường AAA dễ dàng. Default risk chuyển từ borrower sang U.S. government. Risk chính là: prepayment risk (borrower tốt nghiệp sớm, trả nhanh) và basis risk (lãi suất FFELP variable = T-bill based).</dd>
+        <dt>Deferment &amp; forbearance</dt>
+        <dd>Borrower có thể defer payments khi đang đi học → <em>cash flow timing không chắc</em>. ABS phải model deferment periods trong WAL calculation.</dd>
+        <dt>Importance</dt>
+        <dd>Là loại ABS "quasi-sovereign" — risk profile gần sovereign bond nhưng yield cao hơn một chút. Attractive cho pension funds và insurance cos.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Private Student Loan ABS</em></div>
+      <dl>
+        <dt>Nguồn gốc</dt>
+        <dd><em>Không có government guarantee</em>. Originated bởi banks, Sallie Mae (now Navient), credit unions, và fintech lenders. Borrowers thường cần co-signer để đủ điều kiện.</dd>
+        <dt>Credit risk</dt>
+        <dd><em>Cao hơn nhiều</em> so với FFELP. Default rate phụ thuộc vào: ngành học, tỷ lệ tốt nghiệp, employment rate sau graduation, income trajectory của borrower. Suy kinh tế → default tăng mạnh.</dd>
+        <dt>Prepayment</dt>
+        <dd>Cao hơn FFELP — private loans thường có higher interest rates → refinance incentive lớn khi income tăng hoặc rates thấp. Navient, Earnest, SoFi là lenders lớn.</dd>
+        <dt>Structural features</dt>
+        <dd>Overcollateralization cao hơn, subordination dày hơn. Thường có <em>income-share agreements (ISA)</em> trong các cấu trúc mới. Credit enhancement quan trọng hơn nhiều so với FFELP.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 07 · EQUIPMENT LEASE ABS -->
+<section data-label="Equipment &amp; Solar ABS" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>07 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Non-mortgage ABS · specialty</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Equipment Lease</em> &amp; <em class="hi">Solar/Utility ABS</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Các loại ABS specialty ngày càng phổ biến — equipment lease (aircraft, container, nông nghiệp) và solar/utility ABS (tài sản ESG). CFA Level 1 cần nhận biết được đặc điểm cốt lõi.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">AIR</span>
+      <div>
+        <div class="t"><em class="hi">Aircraft lease ABS</em></div>
+        <div class="d">Pool là các hợp đồng thuê máy bay từ airlines. Lessor (Air Lease Corp, AerCap) bán pool vào SPV. <em>Collateral value</em> quan trọng — máy bay có thể repossessed và re-leased. Risk: airline defaults (COVID-19 2020 làm disruption lớn), aircraft type obsolescence. Maturity 5–10 năm.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CON</span>
+      <div>
+        <div class="t"><em class="hi">Container &amp; shipping ABS</em></div>
+        <div class="d">Pool là hợp đồng thuê container cho shipping companies. Cash flows từ daily/monthly container hire rates. <em>Cyclical</em> — phụ thuộc vào global trade volume. Collateral: physical containers (dễ track, di chuyển toàn cầu). Maturity 3–7 năm. Issuers: Triton, Textainer.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">AGR</span>
+      <div>
+        <div class="t"><em class="hi">Agriculture equipment ABS</em></div>
+        <div class="d">Pool là loans/leases mua máy cày, máy thu hoạch, thiết bị nông nghiệp (Deere, CNH Industrial). Seasonal cash flows — payments tập trung sau thu hoạch. Collateral giữ giá tốt (máy nông nghiệp depreciate chậm hơn xe hơi). Maturity 3–5 năm.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SOL</span>
+      <div>
+        <div class="t"><em class="hi">Solar / Utility ABS</em></div>
+        <div class="d">Asset class <em>mới nổi</em> từ 2013+. Pool là receivables từ rooftop solar installations (Power Purchase Agreements — PPAs) hoặc PACE (Property Assessed Clean Energy) loans. <em>ESG-aligned</em> → growing investor appetite. Cash flows từ utility savings/electricity payments. Risks: panel degradation, homeowner prepayment, regulatory changes. Issuers: SunRun, Mosaic, Sunnova.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 08 · CDO OVERVIEW -->
+<section data-label="CDO Overview" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>08 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Structured credit · CDO</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Collateralized Debt Obligation</em> — tổng quan.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CDO = structured credit vehicle phức tạp hơn ABS thông thường. Collateral không phải là consumer loans mà là <em>bonds, loans, hoặc credit derivatives</em>. Phân thành Cash CDO, Synthetic CDO, và CLO — CFA exam cần phân biệt rõ ba loại.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ CDO structure chung</span>
+    CDO Manager (portfolio manager) chọn và quản lý collateral portfolio. SPV phát hành tranches: <em>Senior</em> (AAA, 70–80% of capital structure), <em>Mezzanine</em> (BBB–BB, 10–15%), <em>Equity/First Loss</em> (unrated, 5–10%). CDO manager nhận management fee + equity residual. Waterfall: Senior nhận trước, equity nhận cuối (excess cash flow nếu có).
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 18px;">
+    <li>
+      <span>
+        <span class="step-title">Arbitrage CDO</span>
+        <span class="step-body">Mục tiêu: kiếm lợi nhuận từ <em>spread arbitrage</em> — collateral yield cao hơn cost of funding (ABS tranches). Manager kiếm equity return từ excess spread. Phổ biến nhất trước 2008.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Balance-sheet CDO</span>
+        <span class="step-body">Bank muốn <em>remove loans khỏi balance sheet</em> (giảm capital requirements). Bán loan pool vào CDO. Mục tiêu chính là regulatory capital relief, không phải arbitrage. Ít phổ biến hơn.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 09 · CASH CDO vs SYNTHETIC CDO -->
+<section data-label="Cash vs Synthetic CDO" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>09 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">CDO · phân loại</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Cash CDO</em> vs <em class="hi">Synthetic CDO</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Đây là distinction quan trọng nhất trong CDO taxonomy. CFA examiners thường hỏi về sự khác biệt về <em>ownership của tài sản</em> và cách exposure được tạo ra.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Cash CDO</em></div>
+      <dl>
+        <dt>Cơ chế</dt>
+        <dd>SPV <em>thực sự mua</em> bonds/loans vào portfolio. Ownership vật lý (physical purchase) của collateral assets. Cash flows từ coupon và principal của bonds đó nuôi waterfall.</dd>
+        <dt>Collateral típ biểu</dt>
+        <dd>High-yield corporate bonds, leveraged loans, structured finance securities (ABS/MBS), EM bonds. Manager actively selects và có thể trade collateral (managed CDO) hoặc static pool.</dd>
+        <dt>Funding</dt>
+        <dd>CDO phát hành notes (tranches) ra thị trường → dùng proceeds để <em>mua bonds</em>. Fully funded. Balance sheet của SPV: assets = bond portfolio; liabilities = CDO tranches.</dd>
+        <dt>Rủi ro</dt>
+        <dd>Credit risk của bonds trong portfolio, market price risk, liquidity risk khi manager muốn trade. Post-2008: CDO of ABS (CDO-squared) gây catastrophic losses do correlation.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Synthetic CDO</em></div>
+      <dl>
+        <dt>Cơ chế</dt>
+        <dd>SPV <em>không mua bonds thực</em>. Thay vào đó, SPV <em>bán credit default swaps (CDS)</em> → nhận premium nhưng phải trả protection buyer nếu reference entity default. Exposure = synthetic, không phải physical ownership.</dd>
+        <dt>Collateral típ biểu</dt>
+        <dd>Reference portfolio thường là corporate bonds (CDX index) hoặc bespoke portfolio. SPV giữ high-quality collateral (Treasuries) như margin, không phải reference assets.</dd>
+        <dt>Funding</dt>
+        <dd><em>Partially funded</em>: chỉ equity + mez tranches được funded (sold to investors). Senior tranche thường <em>unfunded super-senior</em> — protection buyer trả ongoing premium thay vì upfront. Leverage cao hơn.</dd>
+        <dt>Rủi ro</dt>
+        <dd>Counterparty risk từ CDS. <em>Correlation risk</em> cực kỳ quan trọng — nếu reference entities default cùng lúc (systemic event 2008), losses vượt trội. Synthetic CDO amplified 2007–2008 crisis.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 10 · CLO -->
+<section data-label="CLO" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>10 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">CDO · phân loại · CLO</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">CLO</em> — Collateralized Loan Obligation.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CLO là dạng Cash CDO phổ biến nhất hiện nay — collateral là <em>leveraged loans</em> (syndicated bank loans cho companies có credit rating BB/B). Thị trường CLO tăng mạnh post-2010 và đạt &gt;$1 trillion outstanding tại Mỹ.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">DEF</span>
+      <div>
+        <div class="t"><em class="hi">Leveraged loans</em> — collateral của CLO</div>
+        <div class="d">Leveraged loans = syndicated loans cho <em>speculative-grade companies</em> (BB hoặc thấp hơn), thường dùng cho LBO, M&amp;A financing. Floating rate (SOFR + spread) → CLO senior tranches cũng floating rate → tự nhiên interest rate hedged. Loan thường secured (senior secured 1st lien).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">STR</span>
+      <div>
+        <div class="t"><em class="hi">CLO structure</em></div>
+        <div class="d">CLO Manager (Ares, PGIM, Blackstone Credit) quản lý active portfolio 150–300 loans. <em>Reinvestment period</em> (2–3 năm): principal payments được reinvest. <em>Amortization period</em>: principal trả về cho noteholders. AAA tranche thường chiếm 60–65% cấu trúc, rated AAA vì overcollateralization dày.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">GRW</span>
+      <div>
+        <div class="t">CLO market growth post-2010</div>
+        <div class="d">CLO trở thành <em>dominant buyer của leveraged loans</em> — chiếm 60-70% demand. Sau GFC 2008, Basel III regulations làm banks giảm loan holdings → CLO fills the gap. Market size: ~$1.1T (US) + €300B (EU) tính đến 2023. Retail access qua CLO ETFs (JAAA, AAA, CLOI).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">RSK</span>
+      <div>
+        <div class="t">CLO risk factors</div>
+        <div class="d"><b>Credit risk:</b> leveraged company defaults. <b>Correlation risk:</b> macro downturn → nhiều companies default cùng lúc. <b>Manager risk:</b> quality của CLO manager quan trọng. <b>Reinvestment risk:</b> yields thấp hơn khi reinvest. Post-COVID (2020): CLO stress test ổn — AAA không bị impaired, chứng minh cấu trúc resilient.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 11 · RISK FACTORS -->
+<section data-label="Risk Factors" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>11 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">ABS · rủi ro</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Risk factors</em> trong ABS.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      ABS mang nhiều loại rủi ro độc đáo so với straight bonds. CFA Level 1 cần nhận biết và hiểu tác động của từng loại risk đến investor returns.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">PRE</span>
+      <div>
+        <div class="t"><em class="hi">Prepayment risk</em></div>
+        <div class="d">Borrowers trả nợ sớm hơn schedule → investor nhận cash flows sớm nhưng phải reinvest ở <em>lãi suất thấp hơn</em> (contraction risk) khi rates giảm. Hoặc rates tăng → prepayment chậm → extension risk. Auto ABS: prepayment thấp. Mortgage ABS/MBS: prepayment cao và phức tạp. Đo bằng PSA speed hoặc CPR.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CRD</span>
+      <div>
+        <div class="t"><em class="hi">Credit deterioration risk</em></div>
+        <div class="d">Chất lượng collateral xấu đi theo thời gian — borrowers defaults tăng. Đặc biệt: subprime auto, private student loans, credit card trong suy thoái kinh tế. Senior tranches được bảo vệ bởi subordination, nhưng junior tranches chịu first loss. Rating downgrades → price declines.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">STR</span>
+      <div>
+        <div class="t"><em class="hi">Structure risk</em></div>
+        <div class="d">Complexity của waterfall, triggers, và legal structure. <em>Early amortization triggers</em> trong credit card ABS có thể force rapid paydown. <em>Excess spread compression</em> tín hiệu xấu. Misaligned incentives giữa originator, manager, và investors (agency problem — "originate to distribute" moral hazard).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">LIQ</span>
+      <div>
+        <div class="t"><em class="hi">Liquidity risk</em></div>
+        <div class="d">ABS tranches — đặc biệt mezzanine và junior — <em>ít liquid hơn</em> corporate bonds. Bid-ask spreads rộng, ít market makers. Trong stress (2008, 2020 March): liquidity drying up → fire-sale prices. Senior/AAA tranches liquid hơn. CLO equity rất illiquid — OTC only.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 12 · PERFORMANCE METRICS -->
+<section data-label="Performance Metrics" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>12 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">ABS · metrics</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Performance metrics</em> của ABS.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CFA exam thường test các performance metrics đặc thù của ABS. Ba chỉ số quan trọng nhất: <em>Weighted Average Life, Prepayment Speed, Default Rate</em>.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Weighted Average Life (WAL)</span>
+    <div class="eq"><span class="var">WAL</span> = Σ [ <span class="var">t × (Principal payment at t)</span> / <span class="var">Total principal</span> ]</div>
+    <div class="note">
+      WAL đo <em>thời gian trung bình nhận principal</em>, không phải maturity. Quan trọng hơn final maturity vì ABS principal trả dần (amortizing). WAL phụ thuộc nhiều vào prepayment speed. Auto ABS WAL: 1.5–3 năm. MBS WAL: 5–10 năm tùy prepayment.
+    </div>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Prepayment speed metrics</em></div>
+      <dl>
+        <dt>CPR — Conditional Prepayment Rate</dt>
+        <dd>Tỷ lệ % của outstanding balance được prepaid trong <em>một năm</em>. CPR 10% = 10% balance trả trước trong năm đó. Annualized.</dd>
+        <dt>SMM — Single Monthly Mortality</dt>
+        <dd>Prepayment rate theo <em>tháng</em>. SMM = 1 − (1 − CPR)^(1/12). SMM 0.88% ≈ CPR 10%.</dd>
+        <dt>PSA — Public Securities Association</dt>
+        <dd>Benchmark prepayment curve cho mortgage. 100% PSA = starting CPR 0.2% tháng 1, tăng 0.2%/tháng, cap 6% CPR từ tháng 30. Dùng để compare: "200% PSA" = prepayment đôi benchmark.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Default rate metrics</em></div>
+      <dl>
+        <dt>CDR — Constant Default Rate</dt>
+        <dd>Tỷ lệ % outstanding balance expected to default trong <em>một năm</em>. CDR cao → losses cao → junior tranches bị hit trước.</dd>
+        <dt>Cumulative default rate</dt>
+        <dd>Tổng % balance đã default <em>từ đầu</em> đến hiện tại. Dùng so sánh performance của vintage khác nhau. Subprime auto: cumulative default thường 8–15% over life of deal.</dd>
+        <dt>Excess spread</dt>
+        <dd>Lãi từ collateral pool trừ cost của ABS + fees + losses. <em>Excess spread &gt; 0</em> = cushion for losses. Nếu excess spread âm → early amortization trigger (credit card ABS). Barometer quan trọng của deal health.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 13 · VIETNAM ABS CONTEXT -->
+<section data-label="Vietnam ABS" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>13 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Vietnam context · ABS</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Thị trường ABS <em class="hi">Việt Nam</em> — limited but growing.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Thị trường ABS Việt Nam còn rất sơ khai so với Mỹ và Châu Âu, nhưng đang có những bước phát triển đầu tiên quan trọng. Understanding context này giúp CFA candidates connect lý thuyết với thực tiễn local.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">BG</span>
+      <div>
+        <div class="t">Bối cảnh pháp lý</div>
+        <div class="d">Khung pháp lý ABS tại Việt Nam dựa trên <em>Nghị định 155/2020</em> và Luật Chứng khoán 2019. Khái niệm SPV được quy định nhưng chưa phổ biến. UBCK (SSC) là regulator chính. Chứng khoán hóa (securitization) còn là khái niệm mới với nhiều ngân hàng VN.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">AUTO</span>
+      <div>
+        <div class="t">Auto loan ABS pilot 2023+</div>
+        <div class="d">VPBank, VIB, và một số ngân hàng đang nghiên cứu <em>chứng khoán hóa danh mục vay mua xe</em>. Market size tiềm năng lớn — dư nợ vay mua xe tại VN đạt ~200,000 tỷ VNĐ (2023). Mục tiêu: giải phóng capital, giảm concentration risk, extend credit capacity.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">BOND</span>
+      <div>
+        <div class="t">VAMC &amp; NPL securitization</div>
+        <div class="d"><em>VAMC</em> (Vietnam Asset Management Company) đã mua và chứng khoán hóa Non-Performing Loans (NPL) từ các ngân hàng từ 2013. Đây là hình thức ABS sơ khai nhất tại VN — chuyển NPL sang VAMC bonds. Tuy nhiên secondary market cho các bonds này rất hạn chế.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">FUT</span>
+      <div>
+        <div class="t">Triển vọng phát triển</div>
+        <div class="d">Để ABS phát triển tại VN cần: <em>(1)</em> Khung pháp lý SPV rõ ràng hơn, <em>(2)</em> Credit rating agencies độc lập (hiện FiinRatings đang phát triển), <em>(3)</em> Nhà đầu tư tổ chức đủ lớn (pension fund, insurance), <em>(4)</em> Infrastructure dữ liệu — standardized loan data. Green ABS/ESG ABS tiềm năng khi VN đẩy mạnh green bonds 2025–2030.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 14 · TAKEAWAYS -->
+<section data-label="Takeaways" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>14 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap · big picture</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">α</span>
+      <div>
+        <div class="t">ABS framework = pool → SPV → tranches</div>
+        <div class="d">SPV bankruptcy-remote. Waterfall: Senior (AAA) nhận trước, equity chịu first loss. Credit enhancement: overcollateralization, excess spread, subordination. Non-mortgage ABS collateral: receivables đồng nhất (auto, credit card, student loan).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">β</span>
+      <div>
+        <div class="t">Từng loại ABS có đặc thù riêng</div>
+        <div class="d">Auto: short maturity 3–5y, low prepayment, prime vs subprime. Credit card: revolving → lockout period (principal reinvested) → amortization period (principal returned) + early amortization trigger. Student loan: FFELP (government-guaranteed, low risk) vs private (high risk, higher CE).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">γ</span>
+      <div>
+        <div class="t">CDO: Cash (physical) vs Synthetic (CDS exposure)</div>
+        <div class="d">Cash CDO: mua bonds thực. Synthetic CDO: bán CDS — no physical purchase, partially funded. CLO = Cash CDO backed by leveraged loans, floating rate, dominant post-2010, growing &gt;$1T market. Manager quality quan trọng cho CLO performance.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">δ</span>
+      <div>
+        <div class="t">Metrics: WAL · CPR · CDR · Excess spread</div>
+        <div class="d">WAL quan trọng hơn final maturity. CPR/PSA đo prepayment speed. CDR đo default rate. Excess spread = health indicator (âm → trigger early amortization). Prepayment risk: contraction (rates ↓, prepay fast) + extension (rates ↑, prepay slow).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 15 · TRANSITION TO PRACTICE -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 4 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 16 · Q1 EN — Credit card ABS lockout period -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>16 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Credit card ABS</em> — revolving structure.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A $500 million credit card ABS issued by First National Bank has a 3-year lockout period followed by a 12-month controlled amortization period. During the lockout period, the underlying cardholders continue to make purchases and payments. Which of the following <em>most accurately</em> describes how principal cash flows are handled during the lockout period?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Principal payments received from cardholders are passed through directly to ABS investors on a pro-rata basis, reducing the outstanding balance of each tranche.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Principal payments received from cardholders are reinvested by the SPV to purchase new receivables from the originator, maintaining the pool balance while investors receive only interest payments.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Principal payments are held in a reserve account and invested in money market instruments until the controlled amortization period begins, at which point they are paid out in a lump sum.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>17 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">key term</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Key term</span>
+    <mark>Lockout period</mark> trong credit card ABS = revolving period. Principal <em>không được trả cho investors</em>. Hỏi: principal đi đâu?
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Credit card là revolving receivable — cardholder liên tục spend và pay. Pool size cần được maintain để ABS không shrink trong lockout. Điều này đòi hỏi SPV phải làm gì với principal payments?</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Trong lockout: principal từ cardholders → SPV <em>reinvest</em> để mua thêm receivables mới từ originator. Pool size ổn định. Investors chỉ nhận <em>interest</em>. Đây là "revolving" trong revolving structure.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Loại A: Pass-through principal trực tiếp là cơ chế của amortizing ABS (auto, mortgage), không phải credit card lockout period. Loại C: Giữ trong reserve account và lump sum — không đúng cơ chế reinvestment.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>18 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một credit card ABS $500 triệu do First National Bank phát hành có lockout period 3 năm, tiếp theo là controlled amortization period 12 tháng. Trong lockout period, các cardholder vẫn tiếp tục chi tiêu và thanh toán. Mô tả nào sau đây <em>chính xác nhất</em> về cách xử lý các principal cash flows trong suốt lockout period?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Các khoản principal nhận được từ cardholder được chuyển thẳng cho ABS investors theo tỷ lệ pro-rata, làm giảm dần outstanding balance của mỗi tranche.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Các khoản principal nhận được từ cardholder được SPV tái đầu tư để mua receivables mới từ originator, duy trì pool balance trong khi investors chỉ nhận interest payments.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Các khoản principal được giữ trong reserve account và đầu tư vào money market instruments cho đến khi controlled amortization period bắt đầu, rồi mới trả một lần.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>19 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Principal reinvested, investors nhận interest only.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext"><b>Lockout period = revolving period</b>: Credit card receivables là revolving — cardholders liên tục spend và pay. Nếu principal được trả ngay cho investors, pool sẽ shrink và ABS structure bị disrupted. Thay vào đó, trong lockout period, SPV dùng principal payments nhận được để <em>mua receivables mới từ originator</em> → pool size maintained → ABS balance ổn định. Investors nhận <em>chỉ interest</em> (coupon trên outstanding ABS balance). Đây là cơ chế cốt lõi phân biệt credit card ABS với auto/mortgage ABS.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Pass-through principal là cơ chế của <em>amortizing ABS</em> như auto loan, student loan, hoặc MBS — nơi mỗi payment của borrower gồm cả interest và principal, và principal được forward thẳng cho investors. Credit card ABS trong lockout period hoạt động khác hoàn toàn — principal reinvested, không pass-through.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Giữ principal trong reserve account + lump sum cuối — không phải standard credit card ABS mechanism. Reserve account trong credit card ABS được dùng cho <em>credit enhancement</em> (chống losses), không phải để accumulate principal. Principal được reinvested ngay vào new receivables để maintain revolving pool.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext"><em>Credit card ABS</em>: Lockout (revolving) period → principal reinvested → pool stable, investors nhận interest only. Amortization period → principal passed to investors → pool shrinks. Early amortization trigger: excess spread âm hoặc servicer event → instant switch to amortization. Contrast với <em>auto ABS</em>: không có lockout — principal pass-through ngay từ đầu.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q2 EN — Cash CDO vs Synthetic CDO -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>20 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Cash vs Synthetic CDO</em> — key distinction.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A hedge fund manager is comparing two structured credit vehicles. Vehicle X uses investor proceeds to purchase a portfolio of 100 high-yield corporate bonds directly. Vehicle Y takes credit exposure to the same 100 companies by selling credit default swaps, while holding US Treasuries as collateral; only the mezzanine and equity tranches are sold to investors. Which statement best characterizes the <em>key structural difference</em> between Vehicle X and Vehicle Y?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Vehicle X is a synthetic CDO because it holds actual bonds, while Vehicle Y is a cash CDO because the CDS premiums provide cash flows similar to bond coupons.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Vehicle X is a cash CDO (physically owns the bonds), and Vehicle Y is a synthetic CDO (obtains credit exposure via CDS without physically purchasing the bonds, partially funded).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Both vehicles are economically identical because they have the same credit exposure to the 100 companies; the structural differences are purely cosmetic.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>21 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">ownership</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Key distinction</span>
+    Cash CDO = <mark>physically owns</mark> bonds/loans. Synthetic CDO = <mark>CDS exposure</mark>, no physical purchase. Partially funded = chỉ mez + equity sold, senior unfunded.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Vehicle X: "uses investor proceeds to purchase... bonds directly" → <em>physical purchase</em> → Cash CDO. Fully funded (proceeds used to buy bonds). Senior + mez + equity tranches all issued.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Vehicle Y: "selling credit default swaps... holding Treasuries as collateral... only mez and equity sold" → <em>CDS exposure, no physical purchase, partially funded</em> → Synthetic CDO. Super-senior tranche = unfunded.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Loại C bẫy: không identical về structure — funding, counterparty risk, correlation dynamics rất khác. Synthetic CDO amplified 2008 crisis vì unfunded super-senior CDS exposure cực lớn.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>22 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một hedge fund manager đang so sánh hai structured credit vehicles. Vehicle X dùng tiền từ investors để <em>mua trực tiếp</em> danh mục 100 high-yield corporate bonds. Vehicle Y tạo credit exposure với 100 công ty tương tự bằng cách <em>bán credit default swaps</em>, trong khi giữ US Treasuries làm collateral; chỉ mezzanine và equity tranches được bán cho investors. Mô tả nào phản ánh đúng nhất <em>sự khác biệt cấu trúc then chốt</em> giữa hai vehicles?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Vehicle X là synthetic CDO vì nắm giữ bonds thực, còn Vehicle Y là cash CDO vì CDS premium tạo ra cash flows tương tự coupon bond.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Vehicle X là cash CDO (sở hữu vật lý bonds), và Vehicle Y là synthetic CDO (có được credit exposure qua CDS mà không mua bonds thực, partially funded).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Hai vehicles về kinh tế là giống hệt nhau vì chúng có cùng credit exposure với 100 công ty; sự khác biệt về cấu trúc là hoàn toàn hình thức.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>23 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — X = Cash CDO, Y = Synthetic CDO.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext"><b>Vehicle X = Cash CDO</b>: "uses investor proceeds to purchase bonds directly" → <em>physical ownership</em> của bonds. Fully funded — toàn bộ tranches (senior + mez + equity) issued ra market, proceeds dùng mua bonds. Cash flows từ bond coupons và principal nuôi waterfall. <b>Vehicle Y = Synthetic CDO</b>: "selling CDS... holding Treasuries... only mez and equity sold" → <em>no physical purchase</em>, exposure thông qua CDS. Partially funded — senior tranche = unfunded super-senior, protection buyer trả ongoing premium thay vì upfront. Treasuries = collateral, không phải collateral portfolio.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Đảo ngược định nghĩa: "Cash CDO" không có nghĩa là giữ cash — Cash = vật lý mua bonds/loans thực. "Synthetic" = dùng derivatives (CDS) không phải physical. Vehicle X mua bonds thực = Cash CDO. Vehicle Y dùng CDS = Synthetic CDO. A confuse hai khái niệm.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Hoàn toàn sai về "economically identical". Sự khác biệt có ý nghĩa thực chất: (1) <em>Funding</em>: Cash CDO fully funded, Synthetic partially funded → leverage khác nhau. (2) <em>Counterparty risk</em>: Synthetic CDO có CDS counterparty risk mà Cash CDO không có. (3) <em>Correlation dynamics</em>: Synthetic CDO amplified losses 2008 qua systemic CDS unwinding. Không "cosmetic" chút nào.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext"><em>Cash CDO</em>: physically owns bonds/loans, fully funded. <em>Synthetic CDO</em>: sells CDS for exposure, no physical bonds, partially funded (unfunded super-senior). CLO = Cash CDO backed by leveraged loans (most common today). Synthetic CDOs were central to 2008 crisis — "The Big Short" là về synthetic CDO của MBS. CFA exam: phân biệt physical ownership vs synthetic exposure là điểm cốt lõi.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q3 EN — Auto ABS prime vs subprime + WAL -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>24 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Auto ABS</em> — risk &amp; WAL.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An analyst is comparing two auto loan ABS tranches: Tranche P backed by prime auto loans (average FICO 730, 48-month original term, CPR 8%) and Tranche S backed by subprime auto loans (average FICO 590, 60-month original term, CPR 4%). The analyst notes that Tranche P has a shorter weighted average life (WAL). Which statement <em>most accurately</em> explains the WAL difference and a key risk distinction between the two tranches?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Tranche P's shorter WAL is driven entirely by its higher FICO scores; the lower default risk of prime borrowers means principal is returned faster than in subprime pools.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Tranche P has a shorter WAL primarily because of its shorter original loan term (48 vs 60 months) and higher CPR (prepayments return principal faster); Tranche S has greater credit risk due to higher expected default rates on subprime borrowers.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Tranche S has a shorter WAL because subprime borrowers refinance more frequently to take advantage of lower rates, returning principal faster despite the longer original term.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>25 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">two drivers</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Two factors</span>
+    WAL phụ thuộc vào: <mark>original term</mark> (48 vs 60 tháng) VÀ <mark>CPR</mark> (prepayment speed 8% vs 4%). Cả hai cùng chiều.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Tranche P: 48-month term ngắn hơn → principal paid off nhanh hơn về mặt schedule. PLUS CPR 8% &gt; CPR 4% → <em>thêm prepayments</em> → principal returned even faster. Hai factors cộng hưởng → WAL ngắn hơn đáng kể.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Credit risk: Subprime FICO 590 &lt; Prime FICO 730 → <em>default rate cao hơn nhiều</em>. Đây là distinction về credit risk, không về WAL. Subprime ABS cần nhiều overcollateralization và credit enhancement hơn để đạt rating tương đương.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Loại A: "entirely by FICO" — sai, không phải FICO mà là term + CPR quyết định WAL. Loại C: subprime borrowers refinance <em>ít</em> hơn prime (credit access hạn chế, rates ít favorable) → CPR thấp hơn, không cao hơn.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>26 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một analyst đang so sánh hai auto loan ABS tranches: Tranche P được đảm bảo bởi prime auto loans (FICO trung bình 730, kỳ hạn gốc 48 tháng, CPR 8%) và Tranche S được đảm bảo bởi subprime auto loans (FICO trung bình 590, kỳ hạn gốc 60 tháng, CPR 4%). Analyst ghi nhận rằng Tranche P có weighted average life (WAL) ngắn hơn. Mô tả nào <em>chính xác nhất</em> giải thích sự khác biệt WAL và một phân biệt rủi ro quan trọng giữa hai tranches?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">WAL ngắn hơn của Tranche P hoàn toàn do FICO cao hơn; rủi ro default thấp của prime borrowers đồng nghĩa với việc principal được hoàn trả nhanh hơn so với subprime pools.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Tranche P có WAL ngắn hơn chủ yếu do kỳ hạn vay gốc ngắn hơn (48 vs 60 tháng) và CPR cao hơn (prepayments hoàn trả principal nhanh hơn); Tranche S có credit risk lớn hơn do tỷ lệ default kỳ vọng cao hơn với subprime borrowers.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Tranche S có WAL ngắn hơn vì subprime borrowers refinance thường xuyên hơn để tận dụng lãi suất thấp, hoàn trả principal nhanh hơn bất chấp kỳ hạn gốc dài hơn.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>27 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — WAL = term + CPR; Subprime = higher credit risk.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext"><b>Hai driver của WAL:</b> (1) <em>Original loan term</em>: Tranche P có 48-month loans so với Tranche S 60-month → scheduled principal return nhanh hơn tự nhiên. (2) <em>CPR</em>: Tranche P CPR 8% &gt; Tranche S CPR 4% → prepayments trả thêm principal nhanh hơn → WAL co ngắn hơn nữa. Hai yếu tố cộng hưởng = WAL Tranche P &lt; WAL Tranche S. <b>Credit risk:</b> FICO 590 (subprime) có <em>expected default rate cao hơn nhiều</em> so với FICO 730 (prime) — đây là distinction về credit quality, không ảnh hưởng trực tiếp đến WAL nhưng ảnh hưởng đến <em>yield spread, credit enhancement requirements, và rating</em>.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">FICO score liên quan đến <em>credit risk</em> (default probability), không phải WAL trực tiếp. WAL được xác định bởi <em>loan term và prepayment speed (CPR)</em>. Borrower có FICO cao không tự động trả principal nhanh hơn — đó là function của contractual payment schedule và voluntary prepayments. A conflates credit quality với repayment timing.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Sai về subprime refinance behavior. Subprime borrowers có <em>ít khả năng refinance</em> hơn prime: (1) credit access hạn chế — lenders không sẵn sàng refinance borrowers FICO thấp; (2) rates cao hơn → savings từ refinance ít hơn; (3) chi phí origination relatif to savings ít hấp dẫn. Do đó CPR subprime (4%) &lt; CPR prime (8%). C đảo ngược thực tế.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext"><em>WAL</em> của auto ABS phụ thuộc vào: loan term + CPR (prepayment speed). Loan term ngắn hơn + CPR cao hơn → WAL ngắn hơn. <em>FICO</em> ảnh hưởng credit risk (default rate), không trực tiếp WAL. Subprime auto: WAL dài hơn (term 60m, CPR thấp), credit risk cao hơn → yield spread rộng hơn, credit enhancement nhiều hơn. Prime auto: WAL ngắn hơn, credit risk thấp, spread hẹp. CLO equity investors prefer high CPR in reinvestment period (returns cash faster for redeployment).</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 28 · BONUS QUESTION — FFELP vs Private Student Loan -->
+<section data-label="Q4 Original" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>28 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 04 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Student loan ABS</em> — FFELP vs Private.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A fixed income portfolio manager is evaluating two student loan ABS with similar yields. Security F is backed by FFELP loans originated before 2010; Security V is backed by private student loans originated by an online lender in 2022. The manager concludes that Security F has lower credit risk. Which factor <em>best supports</em> this conclusion, and what is a primary risk that Security F still carries despite its government backing?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Security F has lower credit risk because private lenders have stricter underwriting than FFELP; however, F carries significant liquidity risk because FFELP bonds are rarely traded in the secondary market.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Security F has lower credit risk because FFELP loans are 97–100% guaranteed by the US federal government, transferring default risk to the government; however, F still carries prepayment risk and basis risk from its floating-rate structure tied to T-bills.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Security F has lower credit risk because government-backed loans have lower interest rates, which reduces the probability of borrower default; Security V carries no additional risks beyond standard credit risk.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 29 · Q4 EXPLANATION + END -->
+<section data-label="Q4 Explanation &amp; End" class="slide">
+  <div class="run-header">
+    <span>08.18 — ABS Features</span>
+    <span class="rule"></span>
+    <span>29 / 29</span>
+  </div>
+  <div style="margin-top: 32px;">
+    <div class="eyebrow">Answer · Question 04</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">Answer: <em class="hi">B</em> — FFELP = government guarantee; risk còn lại = prepayment + basis.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext"><b>Lower credit risk:</b> FFELP loans được U.S. federal government bảo lãnh 97–100% giá trị nếu borrower default → default risk gần như chuyển hoàn toàn sang chính phủ Mỹ → credit quality gần sovereign. <b>Remaining risks:</b> (1) <em>Prepayment risk</em>: borrowers tốt nghiệp sớm, trả nợ sớm, hoặc refinance → cash flow timing bất định. (2) <em>Basis risk</em>: FFELP loan rates thường tied to T-bill/SOFR (variable), trong khi ABS funding có thể mismatch → interest rate basis risk. Deferment/forbearance periods cũng gây uncertainty về timing.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Sai về lý do: private lenders không underwrite chặt hơn FFELP — thực ra private lenders cho vay based on creditworthiness và thường cần co-signer, nhưng FFELP được government-backed. Liquidity of FFELP bonds: legacy FFELP ABS thực ra liquid khá tốt vì thị trường tồn tại lâu và institutional investors quen thuộc.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Mechanism sai: lower interest rates không phải lý do credit risk thấp. Government guarantee là lý do đúng. Về Security V: ngoài credit risk, private student loan ABS còn có prepayment risk, income correlation risk (borrower income phụ thuộc graduation rate và job market), servicer risk — không "no additional risks beyond standard credit risk".</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Lesson 08.18 wrap-up</div>
+    <div class="ttext">ABS spectrum: <em>Auto</em> (short WAL, low prepay, prime/subprime) → <em>Credit card</em> (revolving, lockout + amortization, early amortization trigger) → <em>Student loan</em> (FFELP = govt-guaranteed; private = high credit risk) → <em>Equipment/Solar</em> (specialty, ESG) → <em>CDO</em> (Cash = physical; Synthetic = CDS; CLO = leveraged loans). Metrics: WAL, CPR, CDR, excess spread. Risks: prepayment, credit, structure, liquidity.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.18 — ABS Features</span>
+  </div>
+</section>
+
+
+<!-- 30 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>08.18 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 08.19 — MBS Features</div>
+  </div>
+</section>
+
+</deck-stage>
+</body>
+</html>

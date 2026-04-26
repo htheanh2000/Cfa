@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>CFA L1 · Equity 07.05 — Industry &amp; Company Analysis</title>
+<title>CFA L1 · Equity 07.05 — Company Analysis: Past and Present</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/assets/cfa-theme.css">
 <style>
   .title-slide .left { background: var(--accent); }
-  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main { font-size: 96px; line-height: 0.98; }
   .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
   .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
 </style>
@@ -24,18 +24,18 @@
 <section data-label="Title" class="slide title-slide">
   <div class="left">
     <div class="mark">CFA Institute · Level I</div>
-    <h1 class="main">Industry<br>&amp; <em>Company.</em></h1>
+    <h1 class="main">Company Analysis<br><em>Past &amp; Present.</em></h1>
     <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 07 · Lesson 07.05 · Equity Investments</div>
   </div>
   <div class="right">
-    <div class="mark">Module 05 · Industry &amp; company analysis</div>
+    <div class="mark">Module 05 · Business model · historical financials · quality of earnings</div>
     <dl class="meta-grid">
       <div><dt>Môn</dt><dd>Equity</dd></div>
       <div><dt>Module</dt><dd>05</dd></div>
       <div><dt>Lesson</dt><dd>07.05</dd></div>
       <div><dt>Thời lượng</dt><dd>90 min</dd></div>
     </dl>
-    <div class="mark">Top-down · Porter · life cycle · moat · strategy</div>
+    <div class="mark">Revenue · margins · DuPont · capital allocation · accruals</div>
   </div>
 </section>
 
@@ -45,721 +45,565 @@
   <div class="band">
     <div class="lbl">PART</div>
     <div class="n">05</div>
-    <div class="lbl">Industry &amp; company</div>
+    <div class="lbl">Past &amp; Present</div>
   </div>
   <div class="content">
     <div class="eyebrow">Today's lesson</div>
-    <h2>From <em>macro</em> to<br>moat analysis.</h2>
+    <h2>Read a company<br>through <em>its history</em>.</h2>
     <ul class="toc">
-      <li class="active">01 · Top-down approach &amp; industry classification</li>
-      <li>02 · Porter's 5 forces</li>
-      <li>03 · Industry life cycle &amp; structures</li>
-      <li>04 · SWOT, PESTLE &amp; company/moat analysis</li>
-      <li>05 · Practice — 3 CFA-style questions</li>
+      <li class="active">01 · Why "past &amp; present" — basis for forecast</li>
+      <li>02 · 3-step framework — business → financials → quality</li>
+      <li>03 · Business model dissection</li>
+      <li>04 · Revenue + cost structure</li>
+      <li>05 · Margins + profitability ratios + DuPont</li>
+      <li>06 · Cash flow quality + capital allocation history</li>
+      <li>07 · Quality of earnings + management track record</li>
+      <li>08 · Practice — 3 CFA-style questions</li>
     </ul>
   </div>
 </section>
 
 
-<!-- 03 · TOP-DOWN APPROACH -->
-<section data-label="Top-down" class="slide">
+<!-- 03 · WHY PAST & PRESENT -->
+<section data-label="Why past &amp; present" class="slide">
   <div class="run-header">
-    <span>Equity · 07.05</span>
+    <span>07.05 — Past &amp; Present</span>
     <span class="rule"></span>
-    <span>03 / 28</span>
+    <span>03 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Analytical framework</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Top-down</em> approach.</h2>
+    <div class="eyebrow">Foundation · before forecast</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Why analyze <em class="hi">past &amp; present</em> first?</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Equity analyst truyền thống đi từ <em>macro</em> → <em>sector</em> → <em>company</em>. Logic: macro drivers quyết định sector nào thắng; sector structure quyết định biên lợi nhuận; company-specific drivers quyết định winner trong sector.
+      Forecast (m07) chỉ đáng tin nếu base = thực tế đã hiểu kỹ. Past &amp; present analysis answer 3 câu cơ bản: <em>(1)</em> công ty làm gì để kiếm tiền? <em>(2)</em> kết quả historical thế nào — trends, drivers, anomalies? <em>(3)</em> earnings có "real" không hay accounting-driven?
     </p>
   </div>
 
   <div class="tenets-grid" style="margin-top: 16px;">
     <div class="tenet">
-      <span class="n">01</span>
+      <span class="n">α</span>
       <div>
-        <div class="t"><em class="hi">Macro</em> analysis</div>
-        <div class="d">GDP growth, lãi suất, inflation, FX, fiscal/monetary policy, demographics. Xác định <em>cyclical</em> hay <em>defensive</em> sector nào được favor trong chu kỳ hiện tại.</div>
+        <div class="t">Forecast = past × judgment</div>
+        <div class="d">Bất kỳ revenue/margin forecast nào đều start từ historical base. Skip past analysis = forecast trên cát.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">02</span>
+      <span class="n">β</span>
       <div>
-        <div class="t"><em class="hi">Industry</em> analysis</div>
-        <div class="d">Classification (GICS/ICB), Porter's 5 forces, life cycle stage, structure (oligopoly vs competitive). Đánh giá <em>industry profitability</em> trung bình.</div>
+        <div class="t">Spot accounting from operations</div>
+        <div class="d">Past analysis reveal accounting choices (depreciation method, revenue recognition timing, accrual reserves) đã inflate hoặc smooth earnings. Forecast cần adjust away.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">03</span>
+      <span class="n">γ</span>
       <div>
-        <div class="t"><em class="hi">Company</em> analysis</div>
-        <div class="d">Business model, competitive strategy, moat, management quality, financial analysis. Pick winners <em>within</em> industry.</div>
-      </div>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Alt approach — <b>Bottom-up</b>: bắt đầu từ company fundamentals, ignoring macro; phổ biến ở value investors (Buffett-style). <b>Hybrid</b>: kết hợp cả hai, thông dụng nhất ở buy-side institutional.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — TOP-DOWN</span>
-  </div>
-</section>
-
-
-<!-- 04 · INDUSTRY CLASSIFICATION -->
-<section data-label="Classification" class="slide">
-  <div class="run-header">
-    <span>Equity · 07.05</span>
-    <span class="rule"></span>
-    <span>04 / 28</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Industry classification systems</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Three <em class="hi">classification</em> systems.</h2>
-  </div>
-
-  <div class="tenets-grid" style="margin-top: 16px;">
-    <div class="tenet">
-      <span class="n">GICS</span>
-      <div>
-        <div class="t"><em class="hi">Global Industry Classification Standard</em></div>
-        <div class="d">MSCI + S&amp;P. 11 sectors → 25 industry groups → 74 industries → 163 sub-industries. Based on <em>principal business activity</em> (sources of revenue/earnings). Dùng cho S&amp;P 500, MSCI indexes.</div>
+        <div class="t">Identify anomalies — one-offs vs recurring</div>
+        <div class="d">Last year's big gain từ asset sale ≠ recurring earning. Need to clean historical earnings để forecast trên "core" base.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">ICB</span>
+      <span class="n">δ</span>
       <div>
-        <div class="t"><em class="hi">Industry Classification Benchmark</em></div>
-        <div class="d">FTSE Russell. 11 industries → 20 supersectors → 45 sectors → 173 subsectors. Tương tự GICS nhưng terminology khác (FTSE gọi "industries", GICS gọi "sectors").</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">SIC</span>
-      <div>
-        <div class="t"><em class="hi">Standard Industrial Classification</em></div>
-        <div class="d">US government (1937), legacy. Được NAICS thay thế dần cho statistical purposes. CFA vẫn mention vì thường xuất hiện trong SEC filings cũ.</div>
-      </div>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Commercial (GICS/ICB) vs Government (SIC/NAICS) — Commercial systems cập nhật nhanh hơn theo thị trường (vd thêm "Communication Services" 2018). Government systems chậm, dùng cho census/tax. Equity analyst gần như luôn dùng GICS hoặc ICB.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — CLASSIFICATION</span>
-  </div>
-</section>
-
-
-<!-- 05 · CYCLICAL vs DEFENSIVE -->
-<section data-label="Cyclical vs Defensive" class="slide">
-  <div class="run-header">
-    <span>Equity · 07.05</span>
-    <span class="rule"></span>
-    <span>05 / 28</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Economic sensitivity</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Cyclical</em> vs <em class="hi">defensive</em>.</h2>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head">Cyclical industries</div>
-      <dl>
-        <dt>Đặc điểm</dt>
-        <dd>Revenue &amp; earnings dao động mạnh theo chu kỳ kinh tế. High operating leverage.</dd>
-        <dt>Ví dụ</dt>
-        <dd>Autos, luxury goods, construction, airlines, semiconductors, basic materials, capital goods</dd>
-        <dt>Demand</dt>
-        <dd>Discretionary (có thể trì hoãn). Consumer delays mua khi recession.</dd>
-        <dt>Beta</dt>
-        <dd>Thường &gt; 1. Outperform late expansion, underperform recession.</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head">Defensive (non-cyclical)</div>
-      <dl>
-        <dt>Đặc điểm</dt>
-        <dd>Revenue stable bất kể chu kỳ. Demand ít co giãn theo income.</dd>
-        <dt>Ví dụ</dt>
-        <dd>Consumer staples (food, household), healthcare, utilities, telecom</dd>
-        <dt>Demand</dt>
-        <dd>Non-discretionary (cần thiết yếu). Người tiêu dùng vẫn mua gạo, thuốc, điện khi recession.</dd>
-        <dt>Beta</dt>
-        <dd>Thường &lt; 1. Outperform recession, underperform late expansion.</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Growth vs Value là khái niệm <em>khác</em> với cyclical/defensive. Growth = EPS tăng nhanh (tech). Value = P/E thấp (utilities, banks). Một sector có thể cyclical + value (autos) hoặc defensive + growth (healthcare innovators).
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — CYCLICAL/DEF</span>
-  </div>
-</section>
-
-
-<!-- 06 · PORTER'S 5 FORCES -->
-<section data-label="Porter 5 forces" class="slide">
-  <div class="run-header">
-    <span>Equity · 07.05</span>
-    <span class="rule"></span>
-    <span>06 / 28</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Industry structure analysis</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Porter's <em class="hi">5 forces</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Michael Porter (HBS, 1979) — framework đánh giá <em>average industry profitability</em>. Force càng mạnh → competition càng khốc liệt → margin càng mỏng. Đây là câu hỏi CFA test rất nhiều.
-    </p>
-  </div>
-
-  <div class="tenets-grid" style="margin-top: 16px;">
-    <div class="tenet">
-      <span class="n">01</span>
-      <div>
-        <div class="t">Threat of <em class="hi">new entrants</em></div>
-        <div class="d">Rào cản gia nhập: capital intensity, brand, patent, regulation, economies of scale, distribution access. High barriers = low threat = high margin.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">02</span>
-      <div>
-        <div class="t">Threat of <em class="hi">substitutes</em></div>
-        <div class="d">Sản phẩm thay thế từ ngành khác. Switching cost thấp, substitute giá rẻ hơn/tốt hơn → threat cao. Ví dụ: streaming thay cable TV.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">03</span>
-      <div>
-        <div class="t">Bargaining power of <em class="hi">suppliers</em></div>
-        <div class="d">Supplier concentration cao, input unique, ít substitute, switching cost lớn → supplier ép giá. Ví dụ: TSMC cho chip advanced node.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">04</span>
-      <div>
-        <div class="t">Bargaining power of <em class="hi">buyers</em></div>
-        <div class="d">Buyer concentration, purchase volume lớn, product undifferentiated, price-sensitive → buyer ép giá. Ví dụ: Walmart ép vendors.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">05</span>
-      <div>
-        <div class="t"><em class="hi">Rivalry</em> among competitors</div>
-        <div class="d">Nhiều competitor cùng size, growth chậm, fixed costs cao, exit barriers cao, product giống nhau → price war. Airlines là textbook example.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">Σ</span>
-      <div>
-        <div class="t"><em class="hi">Verdict</em> on industry</div>
-        <div class="d">Tổng 5 forces mạnh → competitive, margin thấp (commodity chemicals). 5 forces yếu → attractive, margin cao (software).</div>
+        <div class="t">Management track record</div>
+        <div class="d">Past capital allocation (M&amp;A win/lose, buyback timing, dividend consistency) reveal management skill — quan trọng cho forward thesis.</div>
       </div>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — 5 FORCES</span>
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
   </div>
 </section>
 
 
-<!-- 07 · BARRIERS TO ENTRY DEEP DIVE -->
-<section data-label="Barriers to entry" class="slide">
+<!-- 04 · 3-STEP FRAMEWORK -->
+<section data-label="3-step framework" class="slide">
   <div class="run-header">
-    <span>Equity · 07.05</span>
+    <span>07.05 — Past &amp; Present</span>
     <span class="rule"></span>
-    <span>07 / 28</span>
+    <span>04 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Force 1 · deep dive</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Barriers</em> to entry.</h2>
+    <div class="eyebrow">Workflow</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">A <em class="hi">3-step</em> framework.</h2>
   </div>
 
-  <ol class="num-list tight" style="margin-top: 20px;">
+  <ol class="num-list tight" style="margin-top: 16px;">
     <li>
       <span>
-        <span class="step-title">Capital intensity</span>
-        <span class="step-body">Cần vốn lớn upfront (semiconductor fabs, airlines, telecom infrastructure). New entrant khó raise đủ capital và chịu burn rate dài.</span>
+        <span class="step-title">1 · Business model — what + how</span>
+        <span class="step-body">Hiểu <em>products/services</em>, <em>customers</em>, <em>geography</em>, <em>delivery</em>. Bao nhiêu segments? Where does revenue come from? Pricing power level? B2B vs B2C? Recurring vs one-off? <em>Output:</em> 1-page business map.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Brand &amp; reputation</span>
-        <span class="step-body">Trust tích lũy nhiều năm (Coca-Cola, luxury fashion). Entrant phải đốt marketing budget khổng lồ mà chưa chắc thành công.</span>
+        <span class="step-title">2 · Historical financials — trends + drivers</span>
+        <span class="step-body">5–10 năm: revenue growth (organic vs M&amp;A), margin trends, profitability ratios (ROIC, ROE, ROA), capital structure history, cash flow profile. <em>Output:</em> spreadsheet với common-size statements + trend chart.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Regulation &amp; licenses</span>
-        <span class="step-body">Pharma (FDA approval 10+ năm), banking (regulatory capital), utilities (monopoly franchise). Chính phủ tạo rào cản hợp pháp.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Economies of scale</span>
-        <span class="step-body">Incumbent có cost/unit thấp hơn nhờ volume (Amazon logistics, TSMC). Entrant small scale → cost cao hơn → không thể pricing cạnh tranh.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Network effects &amp; switching costs</span>
-        <span class="step-body">Platform value = f(số user): Facebook, Visa, Microsoft Office. User lock-in (data, training, integrations) → switching cost cao.</span>
+        <span class="step-title">3 · Quality assessment — earnings + management</span>
+        <span class="step-body">Quality of earnings (accruals, non-recurring items, accounting choices). Capital allocation track record. Governance &amp; insider behavior. <em>Output:</em> red flag list + adjusted "core earnings" base cho forecast.</span>
       </span>
     </li>
   </ol>
 
   <p class="fine-muted-sm">
-    § Barriers to entry ≠ Barriers to success — New entrant có thể gia nhập dễ (low barrier) nhưng thành công khó vì incumbent strong brand. Và ngược lại. CFA test phân biệt này.
+    § Sequence matters — không jump vào ratios trước khi hiểu business. Nếu không hiểu what company sells/to-whom, ratios chỉ là digits không context.
   </p>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — BARRIERS</span>
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
   </div>
 </section>
 
 
-<!-- 08 · INDUSTRY LIFE CYCLE -->
-<section data-label="Life cycle" class="slide">
+<!-- 05 · BUSINESS MODEL -->
+<section data-label="Business model" class="slide">
   <div class="run-header">
-    <span>Equity · 07.05</span>
+    <span>07.05 — Past &amp; Present</span>
     <span class="rule"></span>
-    <span>08 / 28</span>
+    <span>05 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Industry life cycle</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Five <em class="hi">stages</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Mỗi industry đi qua 5 giai đoạn characteristic. Stage quyết định growth rate, competition intensity, margin, và investment thesis phù hợp.
-    </p>
+    <div class="eyebrow">Step 1 · business model</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dissect the <em class="hi">business model</em>.</h2>
   </div>
 
   <div class="tenets-grid" style="margin-top: 16px;">
     <div class="tenet">
-      <span class="n">01</span>
+      <span class="n">B1</span>
       <div>
-        <div class="t"><em class="hi">Embryonic</em></div>
-        <div class="d">Growth chậm, prices cao, unit cost cao, few competitors, high risk, cần capex lớn. Ví dụ: quantum computing, fusion energy hiện tại.</div>
+        <div class="t">Products &amp; services</div>
+        <div class="d">Liệt kê SKU/service categories. Identify <em>flagship</em> products (Pareto: ~20% products thường đem ~80% revenue/profit).</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">02</span>
+      <span class="n">B2</span>
       <div>
-        <div class="t"><em class="hi">Growth</em></div>
-        <div class="d">Demand bùng nổ, prices giảm (economies of scale), many new entrants, competition còn thấp, margin cao. Ví dụ: EV 2018–2023.</div>
+        <div class="t">Customer concentration</div>
+        <div class="d">Top 10 customer % revenue. High concentration = key risk (supplier loss = revenue cliff). Geography concentration cũng vậy.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">03</span>
+      <span class="n">B3</span>
       <div>
-        <div class="t"><em class="hi">Shakeout</em></div>
-        <div class="d">Growth chậm lại, excess capacity, weak players bị đào thải, consolidation qua M&amp;A, margin compression. Ví dụ: dot-com 2001–2002.</div>
+        <div class="t">Pricing power</div>
+        <div class="d">Price-taker (commodity) vs price-maker (brand). Test: company có raise price during inflation mà không lose volume không?</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">04</span>
+      <span class="n">B4</span>
       <div>
-        <div class="t"><em class="hi">Mature</em></div>
-        <div class="d">Growth = GDP, ít entrants, consolidated (oligopoly), price competition, high margin nếu ít rivalry. Ví dụ: soft drinks, cigarettes.</div>
+        <div class="t">Revenue recurrence</div>
+        <div class="d">Subscription/contract = recurring (predictable). Project-based / transactional = lumpy. SaaS, utilities = recurring; construction, M&amp;A advisory = lumpy.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">05</span>
+      <span class="n">B5</span>
       <div>
-        <div class="t"><em class="hi">Decline</em></div>
-        <div class="d">Negative growth, substitute thắng thế, exits, further consolidation, dividend-focus. Ví dụ: tobacco, print media, landline telecom.</div>
+        <div class="t">Distribution channel</div>
+        <div class="d">Direct (own salesforce, own retail) vs indirect (wholesaler, distributor, marketplace). Direct = higher margin nhưng heavier capex; indirect = lower margin nhưng scale faster.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">→</span>
+      <span class="n">B6</span>
       <div>
-        <div class="t"><em class="hi">Flow</em> of the cycle</div>
-        <div class="d">Embryonic → Growth → Shakeout → Mature → Decline. Mỗi stage có valuation framework phù hợp: DCF cho growth, dividend discount cho mature/decline.</div>
+        <div class="t">Operating model</div>
+        <div class="d">Asset-heavy (manufacturer, utility) vs asset-light (consulting, software). Drives capital intensity, ROIC, working capital cycle.</div>
       </div>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — LIFE CYCLE</span>
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
   </div>
 </section>
 
 
-<!-- 09 · INDUSTRY STRUCTURES (recall from Econ) -->
-<section data-label="Industry structures" class="slide">
+<!-- 06 · REVENUE + COST STRUCTURE -->
+<section data-label="Revenue + cost" class="slide">
   <div class="run-header">
-    <span>Equity · 07.05</span>
+    <span>07.05 — Past &amp; Present</span>
     <span class="rule"></span>
-    <span>09 / 28</span>
+    <span>06 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Market structure · recall from Econ 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Four <em class="hi">structures</em>.</h2>
-  </div>
-
-  <div class="tenets-grid" style="margin-top: 16px;">
-    <div class="tenet">
-      <span class="n">01</span>
-      <div>
-        <div class="t"><em class="hi">Perfect competition</em></div>
-        <div class="d">Many firms, identical products, no pricing power, free entry/exit. Long-run profit = 0. Ví dụ approximation: generic commodities, spot FX between majors.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">02</span>
-      <div>
-        <div class="t"><em class="hi">Monopolistic competition</em></div>
-        <div class="d">Many firms, <em>differentiated</em> products (brand, quality), some pricing power, easy entry. Ví dụ: restaurants, apparel, consumer packaged goods.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">03</span>
-      <div>
-        <div class="t"><em class="hi">Oligopoly</em></div>
-        <div class="d">Few large firms, high barriers, strategic interaction (game theory). Có thể collusion hoặc price war. Ví dụ: airlines, telecom, automakers, soft drinks.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">04</span>
-      <div>
-        <div class="t"><em class="hi">Monopoly</em></div>
-        <div class="d">Single seller, high barriers (patent, network effect, regulated). Price maker. Ví dụ: local utility, Google Search (regulatory scrutiny), De Beers (historical).</div>
-      </div>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Link với Porter — Industry structure = snapshot của 5 forces. Perfect competition = 5 forces tất cả mạnh (zero margin). Monopoly = 5 forces yếu. Analyst dùng cả hai framework song song.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — STRUCTURES</span>
-  </div>
-</section>
-
-
-<!-- 10 · SWOT -->
-<section data-label="SWOT" class="slide">
-  <div class="run-header">
-    <span>Equity · 07.05</span>
-    <span class="rule"></span>
-    <span>10 / 28</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Strategic analysis · SWOT</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">SWOT</em> matrix.</h2>
+    <div class="eyebrow">Step 2 · revenue + cost</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Revenue + <em class="hi">cost structure</em>.</h2>
   </div>
 
   <div class="compare" style="margin-top: 16px;">
     <div class="cc">
-      <div class="head">Internal · controllable</div>
+      <div class="head"><em>Revenue</em> dissection</div>
       <dl>
-        <dt>Strengths (S)</dt>
-        <dd>Brand equity, patent, cost advantage, scale, talent, balance sheet mạnh, distribution network</dd>
-        <dt>Weaknesses (W)</dt>
-        <dd>High debt, outdated tech, dependency on single customer/supplier, weak brand, high cost structure</dd>
+        <dt>Decomposition</dt>
+        <dd>Revenue = Volume × Price. Track Volume growth (units sold, customers, transactions) vs Price growth (ASP, mix shift, geography premium) <em>separately</em>.</dd>
+        <dt>Organic vs M&amp;A</dt>
+        <dd>Organic growth (same-store, like-for-like) phản ánh business strength thật. M&amp;A growth là one-time trừ khi chiến lược roll-up bền vững.</dd>
+        <dt>Segment view</dt>
+        <dd>Most companies report 2-5 segments. Fast-growing segment có thể bị che bởi declining segment ở consolidated number.</dd>
+        <dt>Geography view</dt>
+        <dd>FX impact: report constant-currency growth vs reported. EM exposure = beta cao; DM exposure = stable.</dd>
       </dl>
     </div>
     <div class="cc">
-      <div class="head">External · uncontrollable</div>
+      <div class="head"><em>Cost</em> structure</div>
       <dl>
-        <dt>Opportunities (O)</dt>
-        <dd>New markets, demographic shifts, regulatory tailwinds, partner opportunities, tech breakthroughs</dd>
-        <dt>Threats (T)</dt>
-        <dd>New entrants, substitute products, regulatory scrutiny, input cost inflation, recession, FX risk</dd>
+        <dt>Fixed vs variable</dt>
+        <dd>High fixed cost = operating leverage (small revenue change → big margin change, both ways). Airlines, hotels, factories = high op leverage.</dd>
+        <dt>COGS analysis</dt>
+        <dd>Major input commodities + supplier power. Vd hãng F&amp;B: track sugar, wheat, packaging cost. Tech: track salary inflation cho engineers.</dd>
+        <dt>SG&amp;A</dt>
+        <dd>Selling cost (sales team, marketing) — phụ thuộc growth strategy. G&amp;A — fixed overhead, scale theo size firm. Track SG&amp;A % revenue trends.</dd>
+        <dt>R&amp;D</dt>
+        <dd>R&amp;D % revenue: tech ~15-25%, pharma ~15-20%, manufacturer ~3-5%. Capitalized vs expensed (US GAAP expense; IFRS allows capitalize). Affect comparability.</dd>
       </dl>
     </div>
   </div>
 
-  <p class="fine-muted-sm">
-    § Use cases — SWOT phù hợp company-level thinking. Khó định lượng (qualitative framework). Thường kết hợp với PESTLE (macro-level) và Porter (industry-level) để có full picture.
-  </p>
-
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — SWOT</span>
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
   </div>
 </section>
 
 
-<!-- 11 · PESTLE + VALUE CHAIN -->
-<section data-label="PESTLE + value chain" class="slide">
+<!-- 07 · MARGINS + PROFITABILITY -->
+<section data-label="Margins + ratios" class="slide">
   <div class="run-header">
-    <span>Equity · 07.05</span>
+    <span>07.05 — Past &amp; Present</span>
     <span class="rule"></span>
-    <span>11 / 28</span>
+    <span>07 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Strategic analysis · PESTLE &amp; value chain</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">PESTLE</em> &amp; value chain.</h2>
+    <div class="eyebrow">Margins + profitability ratios</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Margin</em> trends &amp; profitability ratios.</h2>
   </div>
 
-  <div class="tenets-grid" style="margin-top: 16px;">
-    <div class="tenet">
-      <span class="n">P</span>
-      <div>
-        <div class="t"><em class="hi">Political</em></div>
-        <div class="d">Chính sách thương mại, thuế, trợ cấp, ổn định chính trị, geopolitical risk (sanctions, tariffs).</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">E</span>
-      <div>
-        <div class="t"><em class="hi">Economic</em></div>
-        <div class="d">GDP, lãi suất, inflation, FX, unemployment, consumer confidence, disposable income.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">S</span>
-      <div>
-        <div class="t"><em class="hi">Social</em></div>
-        <div class="d">Demographics, lifestyle, urbanization, health consciousness, cultural trends, education level.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">T</span>
-      <div>
-        <div class="t"><em class="hi">Technological</em></div>
-        <div class="d">Disruption, R&amp;D pace, automation, AI, cybersecurity, digital transformation.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">L</span>
-      <div>
-        <div class="t"><em class="hi">Legal</em></div>
-        <div class="d">Employment law, consumer protection, IP, antitrust, contract enforcement, data privacy (GDPR).</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">E</span>
-      <div>
-        <div class="t"><em class="hi">Environmental</em></div>
-        <div class="d">Climate policy, carbon pricing, ESG disclosure, resource scarcity, weather-dependent demand.</div>
-      </div>
+  <div class="formula-box">
+    <span class="fmt-label">§ Margin ladder</span>
+    <div class="eq"><span class="var">Gross margin</span> = (Revenue − COGS) / Revenue</div>
+    <div class="eq"><span class="var">Operating margin</span> = EBIT / Revenue (loại tax + interest)</div>
+    <div class="eq"><span class="var">Net margin</span> = Net Income / Revenue</div>
+    <div class="eq"><span class="var">EBITDA margin</span> = EBITDA / Revenue (proxy cho operating cash flow)</div>
+    <div class="note">
+      Gross margin trend → product mix &amp; input cost story. Operating margin → operational efficiency. Net margin → financing &amp; tax overhead. Track 5-10Y trend; compare với peer median.
     </div>
   </div>
 
-  <p class="fine-muted-sm">
-    § Value chain analysis (Porter, 1985) — Chia firm thành <em>primary activities</em> (inbound logistics → operations → outbound logistics → marketing/sales → service) và <em>support activities</em> (procurement, HR, tech, infrastructure). Identify nơi firm tạo value added và cost. Link trực tiếp với competitive strategy (cost leadership vs differentiation).
-  </p>
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Profitability ratios</span>
+    <div class="eq"><span class="var">ROA</span> = NI / Avg Total Assets</div>
+    <div class="eq"><span class="var">ROE</span> = NI / Avg Common Equity</div>
+    <div class="eq"><span class="var">ROIC</span> = NOPAT / Invested Capital = EBIT(1−t) / (Debt + Equity − Cash)</div>
+    <div class="note">
+      <b>ROIC</b> là metric "purest" cho operational profitability — strip out capital structure choice. <b>ROIC vs WACC</b>: nếu ROIC &gt; WACC liên tục, công ty đang tạo value; ROIC &lt; WACC = phá value bất kể growth.
+    </div>
+  </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — PESTLE</span>
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
   </div>
 </section>
 
 
-<!-- 12 · COMPANY ANALYSIS -->
-<section data-label="Company analysis" class="slide">
+<!-- 08 · DUPONT -->
+<section data-label="DuPont" class="slide">
   <div class="run-header">
-    <span>Equity · 07.05</span>
+    <span>07.05 — Past &amp; Present</span>
     <span class="rule"></span>
-    <span>12 / 28</span>
+    <span>08 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Company analysis framework</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Company <em class="hi">anatomy</em>.</h2>
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 20px;">
-    <li>
-      <span>
-        <span class="step-title">Business model</span>
-        <span class="step-body">Revenue drivers (volume × price), customer segments, distribution channels, cost structure (fixed vs variable), unit economics, competitive advantage source.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Competitive strategy</span>
-        <span class="step-body">Porter's generic strategies: cost leadership, differentiation, focus (niche). Firm phải chọn rõ — "stuck in the middle" là chết.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Moat (competitive advantage)</span>
-        <span class="step-body">Buffett framework: sustainable edge bảo vệ margin dài hạn. Xem slide kế tiếp cho 4 loại moat chính.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Management quality</span>
-        <span class="step-body">Track record, capital allocation discipline, skin in the game (ownership), incentive alignment, transparency trong communication, succession planning.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Financial analysis (từ FSA)</span>
-        <span class="step-body">Growth, margin trajectory, ROIC vs WACC, leverage (D/E, interest coverage), cash conversion, earnings quality — link sang FSA topic.</span>
-      </span>
-    </li>
-  </ol>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — COMPANY</span>
-  </div>
-</section>
-
-
-<!-- 13 · MOAT ANALYSIS (Buffett) -->
-<section data-label="Moat analysis" class="slide">
-  <div class="run-header">
-    <span>Equity · 07.05</span>
-    <span class="rule"></span>
-    <span>13 / 28</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Competitive advantage · Buffett's moat</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Four <em class="hi">moats</em>.</h2>
+    <div class="eyebrow">DuPont decomposition</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">DuPont</em> — decompose ROE.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Moat = economic castle bảo vệ lợi nhuận khỏi competitors. Buffett/Morningstar chuẩn hóa thành 4 nguồn chính. Moat càng rộng và bền → ROIC &gt; WACC lâu hơn → valuation cao hơn.
+      DuPont separate ROE thành 3 (hoặc 5) drivers — phân biệt margin growth, asset efficiency, leverage. Identify nguồn ROE growth là <em>healthy</em> (margin/turnover) hay <em>risky</em> (leverage).
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ 3-step DuPont</span>
+    <div class="eq"><span class="var">ROE</span> = <span class="var">Net margin</span> × <span class="var">Asset turnover</span> × <span class="var">Equity multiplier</span></div>
+    <div class="eq"><span class="var">ROE</span> = (NI/Rev) × (Rev/Avg Assets) × (Avg Assets/Avg Equity)</div>
+    <div class="note">
+      <b>Net margin</b> = profitability per dollar of sales. <b>Asset turnover</b> = sales per dollar of assets (efficiency). <b>Equity multiplier</b> = financial leverage. ROE ↑ chỉ vì equity multiplier ↑ = leveraged growth → fragile.
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ 5-step (extended) DuPont</span>
+    <div class="eq"><span class="var">ROE</span> = (NI/EBT) × (EBT/EBIT) × (EBIT/Rev) × (Rev/Avg Assets) × (Avg Assets/Avg Equity)</div>
+    <div class="note">
+      Tách Tax burden, Interest burden, Operating margin, Asset turnover, Leverage. Tách interest burden cho phép xem liệu interest expense có eat margin growth không. Useful cho heavy-debt company (REIT, utility, leveraged buyouts).
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
+  </div>
+</section>
+
+
+<!-- 09 · CASH FLOW QUALITY -->
+<section data-label="Cash flow quality" class="slide">
+  <div class="run-header">
+    <span>07.05 — Past &amp; Present</span>
+    <span class="rule"></span>
+    <span>09 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Cash flow quality</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Earnings vs <em class="hi">cash</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      "Profit là opinion; cash là fact." Reported earnings có thể méo do accounting choices; cash flow khó méo hơn (nhưng vẫn có). Quality check: <em>operating cash flow consistently &gt; net income</em> = high quality.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Quality ratio</span>
+    <b>Cash earnings ratio</b> = CFO / Net Income. <em>≥ 1</em> = high quality (cash backs reported profit). <em>&lt; 1 sustained</em> = red flag (earnings driven by accruals — receivables ↑, deferred revenue ↓, working capital build).
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Free Cash Flow (FCF) tiers</span>
+    <b>FCFF</b> = CFO + Int(1−t) − Capex (cash to all capital providers).<br>
+    <b>FCFE</b> = CFO − Capex + Net Borrowing (cash to equity holders).<br>
+    Track <em>FCF margin</em> = FCF / Revenue và <em>FCF conversion</em> = FCF / Net Income. Mature company: FCF conversion ≥ 70%.
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Red flags</span>
+    Reported earnings tăng nhanh nhưng CFO flat hoặc giảm. Receivables tăng nhanh hơn revenue (collection issue, channel stuffing). Inventory tăng nhanh hơn COGS (slow-moving stock, demand drop). Cap-ex chronic &gt; depreciation (treadmill — phải invest mãi để giữ tốc độ).
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
+  </div>
+</section>
+
+
+<!-- 10 · CAPITAL ALLOCATION -->
+<section data-label="Capital allocation" class="slide">
+  <div class="run-header">
+    <span>07.05 — Past &amp; Present</span>
+    <span class="rule"></span>
+    <span>10 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Capital allocation history</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">How management <em class="hi">spent</em> the cash.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Cash generated → 5 destinations: <em>reinvest in business (capex), M&amp;A, debt repay, dividend, buyback</em>. Decade-long pattern reveal management priorities và competence.
     </p>
   </div>
 
   <div class="tenets-grid" style="margin-top: 16px;">
     <div class="tenet">
-      <span class="n">01</span>
+      <span class="n">C1</span>
       <div>
-        <div class="t"><em class="hi">Brand &amp; intangibles</em></div>
-        <div class="d">Brand loyalty cho phép pricing power (Coca-Cola, Hermès). Patent/regulatory license (pharma, utility). Khó copy, duy trì được decades.</div>
+        <div class="t">Reinvestment (capex + R&amp;D)</div>
+        <div class="d">High capex/depreciation ratio = growing capacity. ≈ 1 = maintenance only. Track ROIC on incremental capex — nếu giảm theo time, marginal returns suy yếu.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">02</span>
+      <span class="n">C2</span>
       <div>
-        <div class="t"><em class="hi">Cost advantage</em></div>
-        <div class="d">Economies of scale (Walmart, Costco), process advantage (low-cost geographies), unique access (mining rights, proprietary tech).</div>
+        <div class="t">M&amp;A</div>
+        <div class="d">Track record win/lose. Goodwill impairment = past M&amp;A failed (acquired assets không deliver). Roll-up strategy có thể successful (constellation: Berkshire, Constellation Software) hay disaster (HP-Autonomy, Yahoo-Tumblr).</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">03</span>
+      <span class="n">C3</span>
       <div>
-        <div class="t"><em class="hi">Network effects</em></div>
-        <div class="d">Platform value tăng theo số user (Visa, Facebook, eBay). Winner-take-most dynamics. Đặc biệt mạnh trong digital marketplaces.</div>
+        <div class="t">Buybacks</div>
+        <div class="d">Buyback ở undervalued price = value creation per share. Buyback ở overvalued (peak) = value destruction. Track price-paid vs intrinsic value estimate.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">04</span>
+      <span class="n">C4</span>
       <div>
-        <div class="t"><em class="hi">Switching costs</em></div>
-        <div class="d">Customer lock-in: data migration cost, retraining, integration (SAP, Bloomberg Terminal, core banking systems). Sticky revenue.</div>
+        <div class="t">Dividends</div>
+        <div class="d">Track payout ratio + dividend growth + coverage ratio. Cut dividend = signal financial stress hoặc shift strategy. "Dividend aristocrat" (25+ năm increase) = signal stable cash + management discipline.</div>
       </div>
     </div>
   </div>
 
-  <p class="fine-muted-sm">
-    § Moat ≠ temporary advantage — First-mover, hot product, lucky macro không phải moat. Moat phải <em>sustainable</em> — competitor biết rõ nhưng không thể replicate trong 5-10 năm. Test: nếu đối thủ có $10B và 5 năm, có thể vượt không?
-  </p>
-
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — MOAT</span>
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
   </div>
 </section>
 
 
-<!-- 14 · COMPETITIVE STRATEGY (Porter generic) -->
-<section data-label="Competitive strategy" class="slide">
+<!-- 11 · WORKING CAPITAL -->
+<section data-label="Working capital" class="slide">
   <div class="run-header">
-    <span>Equity · 07.05</span>
+    <span>07.05 — Past &amp; Present</span>
     <span class="rule"></span>
-    <span>14 / 28</span>
+    <span>11 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Competitive strategy · Porter generic strategies</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Three <em class="hi">generic</em> strategies.</h2>
+    <div class="eyebrow">Working capital cycle</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Cash conversion</em> cycle.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Cash Conversion Cycle (CCC)</span>
+    <div class="eq"><span class="var">CCC</span> = <span class="var">DSO</span> + <span class="var">DIO</span> − <span class="var">DPO</span></div>
+    <div class="eq"><span class="var">DSO</span> = (Receivables / Revenue) × 365 — days collect customer</div>
+    <div class="eq"><span class="var">DIO</span> = (Inventory / COGS) × 365 — days hold inventory</div>
+    <div class="eq"><span class="var">DPO</span> = (Payables / COGS) × 365 — days defer payment supplier</div>
+    <div class="note">
+      <b>CCC ngắn</b> = ít vốn lưu động, hiệu quả. Walmart, Amazon CCC âm (collect khách trước khi trả supplier) — supplier financed growth. <b>CCC dài</b> = vốn bị tied up trong inventory + receivables, cần funding.
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Trends to spot</span>
+    <b>DSO ↑</b> sustained = collection issues hoặc bigger but slower-paying customers. <b>DIO ↑</b> sustained = slow-moving inventory, demand softening, có thể write-down sắp đến. <b>DPO ↑</b> sustained = stretching supplier (có thể signal cash crunch hoặc successful negotiation).
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
+  </div>
+</section>
+
+
+<!-- 12 · QUALITY OF EARNINGS + MGMT -->
+<section data-label="Quality + Mgmt" class="slide">
+  <div class="run-header">
+    <span>07.05 — Past &amp; Present</span>
+    <span class="rule"></span>
+    <span>12 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Step 3 · quality + management</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Quality of earnings + <em class="hi">management</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Quality of earnings</em></div>
+      <dl>
+        <dt>Accruals</dt>
+        <dd>High accruals (NI &gt;&gt; CFO) = potential earnings management. Track accruals ratio = (NI − CFO) / Avg Total Assets.</dd>
+        <dt>One-off items</dt>
+        <dd>Asset sale gains, restructuring charges, FX gains, litigation settlements. Strip away cho "core earnings" base.</dd>
+        <dt>Accounting choices</dt>
+        <dd>Depreciation method (straight-line vs accelerated), inventory (FIFO vs LIFO), revenue recognition timing, capitalize vs expense R&amp;D.</dd>
+        <dt>Disclosure changes</dt>
+        <dd>Mid-year change in segment reporting, restated prior year — usually cover something. Read footnote carefully.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Management track record</em></div>
+      <dl>
+        <dt>Capital allocation skill</dt>
+        <dd>Past M&amp;A ROIC. Buyback timing vs price. Dividend consistency.</dd>
+        <dt>Guidance accuracy</dt>
+        <dd>Track vs guided revenue/EPS. Repeated overshooting → conservative guidance (good). Repeated missing → optimistic guidance (concern).</dd>
+        <dt>Insider behavior</dt>
+        <dd>Insider buying ở deep value times = positive signal. Insider selling clustered ở peak = caution. Stock options vesting timing có thể explain.</dd>
+        <dt>Compensation alignment</dt>
+        <dd>Comp tied to long-term ROIC/TSR vs short-term EPS. Stock-heavy comp aligns; cash-heavy = potentially short-term focus.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
+  </div>
+</section>
+
+
+<!-- 13 · COMPANY SNAPSHOT -->
+<section data-label="Company snapshot" class="slide">
+  <div class="run-header">
+    <span>07.05 — Past &amp; Present</span>
+    <span class="rule"></span>
+    <span>13 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Synthesis</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">company snapshot</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Output cuối cùng của past &amp; present analysis = 1-page snapshot có thể đặt tên file <code>{Ticker}_Snapshot.md</code>. Đây là input cho m07 forecast và bất kỳ valuation model nào.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Snapshot template</span>
+    <b>Business:</b> 1 sentence "what + how + who". <em>"Sells X to Y customers via Z channel"</em>.<br>
+    <b>Revenue:</b> Last 5Y CAGR + organic vs M&amp;A split + segment mix.<br>
+    <b>Margin:</b> Gross/Operating/Net trend + peer-comparison band.<br>
+    <b>Returns:</b> ROIC trend + ROIC vs WACC verdict.<br>
+    <b>Cash:</b> CFO/NI ratio + FCF margin + capex intensity.<br>
+    <b>Capital allocation:</b> Top 2 use of cash last 5Y + assessment.<br>
+    <b>Quality:</b> Top 3 quality red flags (or "clean").<br>
+    <b>Management:</b> CEO tenure + capital allocation track record + comp alignment.
+  </div>
+
+  <p class="fine-muted-sm">
+    § Snapshot phải <em>1 trang</em>. Nếu cần 5 trang để summarize, bạn chưa simplify. Hard discipline: nếu không thể explain past performance trong 1 trang thì chưa thực sự understand.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
+  </div>
+</section>
+
+
+<!-- 14 · TAKEAWAYS -->
+<section data-label="Takeaways" class="slide">
+  <div class="run-header">
+    <span>07.05 — Past &amp; Present</span>
+    <span class="rule"></span>
+    <span>14 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap · big picture</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
   </div>
 
   <div class="tenets-grid" style="margin-top: 16px;">
     <div class="tenet">
-      <span class="n">01</span>
+      <span class="n">α</span>
       <div>
-        <div class="t"><em class="hi">Cost leadership</em></div>
-        <div class="d">Mục tiêu: cost thấp nhất industry. Margin qua volume + operational efficiency. Ví dụ: Walmart, Costco, Ryanair, Southwest Airlines, Xiaomi.</div>
+        <div class="t">3-step framework</div>
+        <div class="d">Business model dissection → Historical financials → Quality assessment. Sequence matters: hiểu business trước khi compute ratios.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">02</span>
+      <span class="n">β</span>
       <div>
-        <div class="t"><em class="hi">Differentiation</em></div>
-        <div class="d">Mục tiêu: unique value → pricing power. Margin qua premium. Ví dụ: Apple, Tesla, LVMH, Nike, Starbucks. Cần R&amp;D/marketing đầu tư lớn.</div>
+        <div class="t">DuPont reveals ROE drivers</div>
+        <div class="d">3-step: ROE = margin × turnover × leverage. ROE growth chỉ vì leverage = fragile. ROE growth từ margin/turnover = sustainable.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">03</span>
+      <span class="n">γ</span>
       <div>
-        <div class="t"><em class="hi">Focus</em> (niche)</div>
-        <div class="d">Target narrow segment. Có thể focus + cost hoặc focus + differentiation. Ví dụ: Ferrari (luxury focus), Rolex (luxury focus), Tesla ban đầu (high-end EV).</div>
+        <div class="t">Cash earnings ≥ reported earnings</div>
+        <div class="d">CFO/NI &lt; 1 sustained = red flag. FCF conversion ≥ 70% cho mature company. CCC ngắn = capital efficiency.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">✗</span>
+      <span class="n">δ</span>
       <div>
-        <div class="t"><em class="hi">Stuck in the middle</em></div>
-        <div class="d">Không cost leader cũng không differentiator → margin yếu, không moat. Ví dụ: department stores mid-tier bị squeeze giữa Walmart và Nordstrom. Porter warning.</div>
+        <div class="t">Past capital allocation = future skill predictor</div>
+        <div class="d">Track M&amp;A ROIC, buyback timing, dividend pattern. Past skill là best predictor cho future capital allocation. Goodwill impairment = past M&amp;A admitted to fail.</div>
       </div>
     </div>
   </div>
 
-  <p class="fine-muted-sm">
-    § Practical test — Khi analyst đọc 10-K, hỏi: "Firm cạnh tranh bằng cost hay value?" Nếu cả hai đều yếu → stuck in the middle → tránh. Link: strategy quyết định moat type; moat type quyết định financial profile (margin vs turnover).
-  </p>
-
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — STRATEGY</span>
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
   </div>
 </section>
 
 
-<!-- 15 · SYNTHESIS TAKEAWAY -->
-<section data-label="Synthesis" class="slide">
-  <div class="run-header">
-    <span>Equity · 07.05</span>
-    <span class="rule"></span>
-    <span>15 / 28</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Putting it together</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">From <em class="hi">framework</em> to thesis.</h2>
-  </div>
-
-  <div class="takeaway-box">
-    <div class="tlabel">Investment thesis pipeline</div>
-    <div class="ttext">
-      <b>1. Macro</b> chọn sector favored (cyclical nếu early expansion, defensive nếu late cycle). <b>2. Porter 5 forces</b> filter industries có margin structure tốt. <b>3. Life cycle</b> match với investment horizon (growth cho DCF, mature cho dividend). <b>4. SWOT/PESTLE</b> stress-test thesis. <b>5. Company moat + strategy</b> pick winner. <b>6. Financial analysis</b> verify fundamentals. <b>7. Valuation</b> compare giá thị trường với intrinsic value.
-    </div>
-  </div>
-
-  <div class="take" style="margin-top: 20px;">
-    <b>CFA test focus</b> — Các câu hỏi L1 thường test: (a) identify Porter force từ scenario, (b) identify life cycle stage từ đặc điểm, (c) match competitive strategy với ví dụ company, (d) distinguish cyclical vs defensive, (e) classify moat type. Framework nào cho use case nào — đó là điểm then chốt.
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — SYNTHESIS</span>
-  </div>
-</section>
-
-
-<!-- 16 · TRANSITION -->
+<!-- 15 · TRANSITION -->
 <section data-label="Practice begins" class="slide end-slide">
   <div>
     <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
@@ -768,77 +612,75 @@
 </section>
 
 
-<!-- 17 · Q1 EN — Porter's force -->
+<!-- 16 · Q1 EN — DuPont decomposition -->
 <section data-label="Q1 Original" class="slide">
   <div class="run-header">
-    <span>Equity · 07.05</span>
+    <span>07.05 — Past &amp; Present</span>
     <span class="rule"></span>
-    <span>17 / 28</span>
+    <span>16 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Identify the <em class="hi">force</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">DuPont</em> driver.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      An analyst studies the commercial aircraft manufacturing industry. She observes that <strong>only two firms</strong> (Boeing and Airbus) supply virtually all wide-body jet engines to global airlines, while <strong>hundreds of airlines</strong> worldwide depend on them. Airlines cannot easily switch aircraft families due to pilot training, maintenance, and parts compatibility. The Porter's force that is <strong>most strongly</strong> illustrated by this scenario is:
+      Saigon Industrial Co. reports the following 3-year ROE trend: 12% (Year 1) → 16% (Year 2) → 20% (Year 3). Over the same period: net margin held flat at 8%, asset turnover declined from 1.5× to 1.3×, and the equity multiplier rose from 1.0× to 1.92×. Which of the following <em>best</em> describes the source of the ROE improvement?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Threat of new entrants — high capital barriers.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Bargaining power of suppliers — supplier concentration and switching costs.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Rivalry among existing competitors — duopoly dynamics.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Operational excellence — improving net margin and rising asset turnover both indicate stronger underlying business performance.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Increased financial leverage — the equity multiplier nearly doubled while operating drivers (margin, turnover) deteriorated or held flat. ROE growth is leveraged, not earned.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Improved asset efficiency — asset turnover rose and was the primary driver of the higher ROE.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — Q1 ORIGINAL</span>
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
   </div>
 </section>
 
 
-<!-- 18 · Q1 HINT -->
+<!-- 17 · Q1 HINT -->
 <section data-label="Q1 Hint" class="slide">
   <div class="run-header">
-    <span>Equity · 07.05</span>
+    <span>07.05 — Past &amp; Present</span>
     <span class="rule"></span>
-    <span>18 / 28</span>
+    <span>17 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">driver</em>.</h2>
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>Only 2 firms</mark> supply; <mark>hundreds of airlines</mark> depend. <mark>Switching costs</mark> cao (training, maintenance). Ai ép giá ai?
+    <mark>NM flat · Asset turnover ↓ · Equity multiplier ↑↑</mark>. ROE = NM × AT × EM. Verify từng driver.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">Hỏi từ góc nhìn của <em>airlines</em> (buyers): họ mua engine từ Boeing/Airbus. Khi supplier ít và buyer nhiều → supplier có power.</span>
+      <span class="htxt">Year 1: 8% × 1.5 × 1.0 = <em>12%</em> ✓. Year 3: 8% × 1.3 × 1.92 = <em>~20%</em> ✓. ROE tăng 67% (12 → 20).</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Switching cost cao (retraining phi công, parts riêng) càng khóa airline vào supplier hiện tại. Power of suppliers tăng.</span>
+      <span class="htxt">EM nhân từ 1.0 → 1.92 = +92%. Đây là <em>only driver</em> tăng. NM flat (0% contribution); AT giảm (drag negative).</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Threat of new entrants cũng true (high capital) nhưng scenario nhấn vào <em>mối quan hệ supplier-buyer hiện tại</em>, không phải entrant potential. Rivalry cũng có (duopoly) nhưng scenario mô tả quyền lực lên customer, không phải price war nội bộ.</span>
+      <span class="htxt">EM = Assets/Equity. EM tăng = Debt-to-Equity tăng. ROE growth chỉ vì leverage = không sustainable + tăng risk → fragile.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — Q1 HINT</span>
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
   </div>
 </section>
 
 
-<!-- 19 · Q1 Dịch đề -->
+<!-- 18 · Q1 Dịch đề -->
 <section data-label="Q1 Dịch đề" class="slide">
   <div class="run-header">
-    <span>Equity · 07.05</span>
+    <span>07.05 — Past &amp; Present</span>
     <span class="rule"></span>
-    <span>19 / 28</span>
+    <span>18 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
@@ -847,128 +689,124 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một analyst nghiên cứu ngành sản xuất máy bay thương mại. Cô quan sát thấy <strong>chỉ có 2 firm</strong> (Boeing và Airbus) cung cấp hầu hết wide-body jet cho các airline toàn cầu, trong khi <strong>hàng trăm airline</strong> phụ thuộc vào họ. Airlines không thể dễ dàng switch aircraft family vì chi phí đào tạo pilot, bảo trì, và linh kiện. Porter's force được minh họa <strong>rõ nhất</strong> bởi scenario này là:
+      Saigon Industrial Co. có ROE 3 năm: 12% (Năm 1) → 16% (Năm 2) → 20% (Năm 3). Cùng kỳ: net margin giữ nguyên 8%, asset turnover giảm từ 1.5× xuống 1.3×, equity multiplier tăng từ 1.0× lên 1.92×. Phương án nào <em>mô tả tốt nhất</em> nguồn gốc của ROE cải thiện?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Threat of new entrants — rào cản vốn cao.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Bargaining power of suppliers — supplier concentration và switching costs.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Rivalry among existing competitors — duopoly dynamics.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Xuất sắc operational — net margin cải thiện và asset turnover tăng đều cho thấy business performance underlying mạnh hơn.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Tăng financial leverage — equity multiplier gần gấp đôi trong khi operating drivers (margin, turnover) xấu đi hoặc giữ nguyên. ROE growth là leveraged, không phải earned.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Asset efficiency cải thiện — asset turnover tăng và là driver chính của ROE cao hơn.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — Q1 VIỆT</span>
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
   </div>
 </section>
 
 
-<!-- 20 · Q1 EXPLANATION -->
+<!-- 19 · Q1 EXPLANATION -->
 <section data-label="Q1 Explanation" class="slide">
   <div class="run-header">
-    <span>Equity · 07.05</span>
+    <span>07.05 — Past &amp; Present</span>
     <span class="rule"></span>
-    <span>20 / 28</span>
+    <span>19 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Supplier power.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — leverage.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">Scenario thỏa đúng 3 điều kiện kinh điển của <b>bargaining power of suppliers</b>: (1) <em>supplier concentration cao</em> — chỉ 2 firm cung cấp; (2) <em>buyer phân tán</em> — hàng trăm airlines; (3) <em>switching costs cao</em> — training, maintenance, parts. Boeing/Airbus đứng ở phía supplier trong relationship với airlines. Supplier power = price maker.</div>
+      <div class="rtext">DuPont 3-step: ROE = NM × AT × EM. <b>Verify:</b> Year 1 = 8% × 1.5 × 1.0 = 12% ✓; Year 3 = 8% × 1.3 × 1.92 = 19.97% ≈ 20% ✓. <b>Decompose source:</b> NM flat (0% contribution to ROE growth); AT giảm 1.5 → 1.3 = −13% (negative drag); EM tăng 1.0 → 1.92 = +92% (sole driver). ROE tăng 67% chỉ vì leverage tăng — không phải vì business mạnh hơn. Đây là <em>fragile</em> ROE: nếu rate ↑ hoặc downturn, leveraged firm chịu interest expense + default risk cao hơn.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Threat of new entrants cũng thật (capital ~$30-50B để thiết kế jet mới), nhưng scenario không nói về potential entrants. Nó mô tả <em>power dynamics hiện tại</em> giữa Boeing/Airbus và airlines. Force trực tiếp minh họa là supplier-buyer relationship.</div>
+      <div class="rtext">Sai cốt lõi — net margin <em>giữ nguyên 8%</em> (không cải thiện), asset turnover <em>giảm</em> (1.5 → 1.3, không tăng). Đáp án A đảo ngược fact.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">Rivalry between Boeing và Airbus có tồn tại nhưng scenario tập trung quyền lực của họ <em>lên customer</em> (airlines), không phải cuộc cạnh tranh nội bộ giữa 2 firms. Duopoly dynamic là structure; câu hỏi về force tác động lên profit.</div>
+      <div class="rtext">Sai phần "asset turnover tăng" — turnover thực tế giảm. Asset turnover đóng góp <em>negative</em> tới ROE growth, không phải driver.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Để identify Porter force: (1) <em>ai đứng ở đâu</em> trong value chain — supplier, buyer, entrant, substitute, rival? (2) <em>power asymmetry</em> chảy theo chiều nào? (3) Keyword "switching cost" + "concentration" → supplier or buyer power. Đọc kỹ firm đang ở role nào trong scenario.</div>
+    <div class="ttext">DuPont reveal <em>nguồn gốc</em> ROE growth — đặc biệt important khi compare các năm. ROE growth từ margin/turnover = healthy operational improvement. ROE growth từ leverage = financial engineering, tăng fragility. Khi đọc proxy CEO khoe ROE 20% — verify driver trước khi praise.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — ANSWER Q1</span>
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
   </div>
 </section>
 
 
-<!-- 21 · Q2 EN — Life cycle stage -->
+<!-- 20 · Q2 EN — Cash flow quality -->
 <section data-label="Q2 Original" class="slide">
   <div class="run-header">
-    <span>Equity · 07.05</span>
+    <span>07.05 — Past &amp; Present</span>
     <span class="rule"></span>
-    <span>21 / 28</span>
+    <span>20 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Identify the <em class="hi">stage</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Earnings quality</em> red flag.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      An equity analyst observes an industry with the following characteristics: industry revenue growth has <strong>slowed sharply</strong> after years of rapid expansion, <strong>excess capacity</strong> has emerged, several <strong>weaker competitors are exiting or being acquired</strong>, margin is under pressure, and the remaining firms are fighting intense price-based competition for market share. The industry is <strong>most likely</strong> in the:
+      Hanoi Tech reports the following 3-year metrics: revenue growth 25% / 30% / 28% per year; net income growth 35% / 40% / 45%; cash from operations growth 5% / 3% / −2%; days sales outstanding (DSO) rose from 45 days to 95 days. Which is <em>most likely</em> indicated?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Growth stage — still gaining scale.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Shakeout stage — consolidation amid slowing growth.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Mature stage — stable oligopoly.</span></li>
+    <li><span class="lbl">A</span><span class="opt">High-quality growth — net income is outpacing revenue, indicating expanding margins and operational excellence.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Earnings quality concerns — net income growth far exceeds CFO growth and DSO has more than doubled, suggesting reported earnings are accrual-driven rather than cash-backed; collection issues or potential channel-stuffing should be investigated.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Strong working capital management — rising DSO indicates the company is offering attractive credit terms to win market share, which is supported by accelerating revenue.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — Q2 ORIGINAL</span>
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
   </div>
 </section>
 
 
-<!-- 22 · Q2 HINT -->
+<!-- 21 · Q2 HINT -->
 <section data-label="Q2 Hint" class="slide">
   <div class="run-header">
-    <span>Equity · 07.05</span>
+    <span>07.05 — Past &amp; Present</span>
     <span class="rule"></span>
-    <span>22 / 28</span>
+    <span>21 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">divergence</em>.</h2>
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>Growth slowed sharply</mark>, <mark>excess capacity</mark>, <mark>weaker exits / acquired</mark>, <mark>margin under pressure</mark>, intense <mark>price competition</mark>.
+    <mark>NI growth >> CFO growth</mark> + <mark>DSO 45 → 95 days</mark>. Phân biệt accrual-driven earnings vs cash-backed earnings.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">"Growth slowed <em>after years of rapid expansion</em>" → không còn ở growth stage. Loại A.</span>
+      <span class="htxt">NI tăng 35-45% mỗi năm; CFO tăng 5%, 3%, thậm chí giảm 2%. Divergence này = earnings không được cash backup → accrual-driven.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">"Excess capacity" + "weaker players exit/acquired" + "price war" = dấu hiệu <em>shakeout</em>, giai đoạn đào thải. Consolidation đang diễn ra.</span>
+      <span class="htxt">DSO 45 → 95 ngày = customers trả chậm hơn gấp đôi. Hoặc: collection issue, hoặc: channel-stuffing (ship inventory cho distributor cuối quý để book revenue, distributor không thực sự sold to end-user).</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Mature stage: consolidation đã xong, stable oligopoly, price competition có thể có nhưng margin ổn định. Ở đây <em>đang</em> consolidate và margin <em>đang</em> bị ép — chính giữa shakeout, chưa đạt mature.</span>
+      <span class="htxt">Quality of earnings red flag classic. Khi reported earnings tốt nhưng cash không theo, đặt câu hỏi: revenue có thực sự "real" không?</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — Q2 HINT</span>
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
   </div>
 </section>
 
 
-<!-- 23 · Q2 Dịch đề -->
+<!-- 22 · Q2 Dịch đề -->
 <section data-label="Q2 Dịch đề" class="slide">
   <div class="run-header">
-    <span>Equity · 07.05</span>
+    <span>07.05 — Past &amp; Present</span>
     <span class="rule"></span>
-    <span>23 / 28</span>
+    <span>22 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
@@ -977,128 +815,124 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một equity analyst quan sát một ngành với các đặc điểm sau: revenue growth của ngành đã <strong>chậm mạnh</strong> sau nhiều năm tăng trưởng nhanh, <strong>excess capacity</strong> xuất hiện, nhiều <strong>competitor yếu đang exit hoặc bị mua lại</strong>, margin bị ép, và các firm còn lại đang cạnh tranh price-based khốc liệt để giữ market share. Ngành này <strong>nhiều khả năng nhất</strong> đang ở:
+      Hanoi Tech báo cáo metrics 3 năm: revenue growth 25% / 30% / 28% mỗi năm; net income growth 35% / 40% / 45%; cash from operations growth 5% / 3% / −2%; DSO tăng từ 45 ngày lên 95 ngày. Phương án nào <em>nhiều khả năng</em> được chỉ ra?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Growth stage — vẫn đang scale lên.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Shakeout stage — consolidation khi growth chậm lại.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Mature stage — oligopoly ổn định.</span></li>
+    <li><span class="lbl">A</span><span class="opt">High-quality growth — net income vượt revenue cho thấy margin mở rộng và operational excellence.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Earnings quality concerns — net income growth vượt xa CFO growth và DSO gấp đôi, gợi ý reported earnings là accrual-driven thay vì cash-backed; collection issues hoặc channel-stuffing tiềm năng cần investigate.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Working capital management mạnh — DSO tăng cho thấy công ty đang offer credit terms hấp dẫn để win market share, được support bởi revenue gia tốc.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — Q2 VIỆT</span>
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
   </div>
 </section>
 
 
-<!-- 24 · Q2 EXPLANATION -->
+<!-- 23 · Q2 EXPLANATION -->
 <section data-label="Q2 Explanation" class="slide">
   <div class="run-header">
-    <span>Equity · 07.05</span>
+    <span>07.05 — Past &amp; Present</span>
     <span class="rule"></span>
-    <span>24 / 28</span>
+    <span>23 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Shakeout.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — quality concerns.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">Mọi dấu hiệu đều trỏ đến <b>shakeout</b>: (1) growth <em>slowed sharply</em> sau growth stage; (2) <em>excess capacity</em> do many entrants giai đoạn trước; (3) <em>consolidation</em> qua exits và M&amp;A; (4) <em>intense price competition</em>, margin pressure. Đây là transition phase giữa growth và mature.</div>
+      <div class="rtext">Cardinal red flag: <em>NI growth diverges from CFO growth</em>. NI tăng 35-45%/năm; CFO chỉ tăng 5%, 3%, thậm chí giảm 2%. Divergence sustained = earnings được drive bởi <b>accruals</b>, không phải cash. Receivables tăng (DSO 45 → 95 ngày = gần gấp đôi) là confirm: revenue được book nhưng tiền chưa thu. Khả năng: <em>(a)</em> collection deteriorating (customer financial stress), <em>(b)</em> channel-stuffing (ship distributor cuối quý để hit revenue target, distributor sẽ return), <em>(c)</em> aggressive revenue recognition (ghi nhận trước thực tế delivery). Cần investigate footnotes về revenue recognition policy + customer concentration + bad debt provision.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Growth stage đặc trưng bởi demand bùng nổ, entrants liên tục, ít consolidation, margin cao. Scenario nói growth đã CHẬM LẠI và có exits — ngược lại. Loại trực tiếp.</div>
+      <div class="rtext">Sai — NI vượt revenue có thể do margin mở rộng (good) HOẶC accrual-driven (bad). DSO tăng gấp đôi + CFO không follow = clearly bad scenario, không phải good. Margin expansion thật sẽ đi kèm cash conversion mạnh, không phải tách rời.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">Mature stage: consolidation đã hoàn tất, industry structure ổn định (oligopoly), margin cao nhờ rationality giữa incumbents. Ở đây consolidation <em>đang diễn ra</em> chứ chưa xong, margin <em>đang bị ép</em>. Đó là shakeout, chưa phải mature.</div>
+      <div class="rtext">Tự lừa logic — "DSO tăng = good credit terms để win market" có thể đúng trong 1 năm. Nhưng khi DSO tăng gấp đôi mà CFO giảm = không phải growth strategy, là <em>cash crunch warning</em>. "Revenue gia tốc" cũng có thể là book revenue mà không deliver.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Shakeout keywords: "growth slowing", "excess capacity", "exits/M&amp;A", "price war". Mature keywords: "stable", "GDP-like growth", "consolidated", "rational pricing". Growth keywords: "rapid", "many entrants", "declining prices due to scale". Học keyword → lock stage nhanh trong CFA exam.</div>
+    <div class="ttext">"NI grows, CFO doesn't" = quality red flag #1. Combine với DSO tăng rapid = channel-stuffing hoặc collection collapse. Investigate: revenue recognition policy, top customer concentration, bad debt provision adequacy. Adjust historical earnings về cash basis trước khi forecast.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — ANSWER Q2</span>
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
   </div>
 </section>
 
 
-<!-- 25 · Q3 EN — Competitive strategy -->
+<!-- 24 · Q3 EN — Capital allocation -->
 <section data-label="Q3 Original" class="slide">
   <div class="run-header">
-    <span>Equity · 07.05</span>
+    <span>07.05 — Past &amp; Present</span>
     <span class="rule"></span>
-    <span>25 / 28</span>
+    <span>24 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Classify the <em class="hi">strategy</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Buyback</em> assessment.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Retailer XYZ operates 800 warehouse-style stores across North America. It sources in <strong>massive volumes</strong> directly from manufacturers, maintains a <strong>lean SKU count</strong>, minimizes labor per store, and offers <strong>consistently lower prices</strong> than rivals across all product categories. Its gross margin is lower than competitors, but <strong>inventory turnover and volume</strong> are far higher. XYZ's competitive strategy is <strong>best</strong> described as:
+      Vietnam Consumer Goods Co. has executed three large share buyback programs over the past five years, all at prices substantially above analyst-estimated intrinsic value. Two years after the most recent buyback, the stock has declined 40% and the company has now taken a write-down on previously repurchased treasury stock value. Which is the <em>most accurate</em> conclusion about management's capital allocation decisions?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Differentiation — unique in-store experience.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Cost leadership — scale-driven low-cost operator.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Focus (niche) — serving a narrow premium segment.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Buybacks are always accretive to shareholders because they reduce share count, increase EPS, and signal management confidence — the price decline is unrelated to the buyback decisions.</span></li>
+    <li><span class="lbl">B</span><span class="opt">The buybacks destroyed shareholder value because management repurchased shares above intrinsic value. Effective buyback strategy requires repurchasing below intrinsic value; otherwise, capital is being transferred from continuing shareholders to exiting ones.</span></li>
+    <li><span class="lbl">C</span><span class="opt">The buybacks were value-neutral because shareholders who sold received cash equal to their proportional ownership; only the subsequent stock decline affected returns, not the buyback itself.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — Q3 ORIGINAL</span>
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
   </div>
 </section>
 
 
-<!-- 26 · Q3 HINT -->
+<!-- 25 · Q3 HINT -->
 <section data-label="Q3 Hint" class="slide">
   <div class="run-header">
-    <span>Equity · 07.05</span>
+    <span>07.05 — Past &amp; Present</span>
     <span class="rule"></span>
-    <span>26 / 28</span>
+    <span>25 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot <em class="hi">value</em> vs price.</h2>
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>Massive volumes</mark>, <mark>lean SKU</mark>, <mark>low prices</mark> toàn bộ categories, <mark>low gross margin</mark> nhưng <mark>high turnover</mark>.
+    <mark>Buyback at price above intrinsic value</mark> + <mark>subsequent decline 40%</mark>. Buyback có luôn accretive không?
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">"Consistently lower prices across <em>all</em> categories" → broad market, không phải niche. Loại focus (C).</span>
+      <span class="htxt">Buyback = company mua lại stock của exiting shareholders. Nếu price &gt; intrinsic value → company over-pay → wealth transfer từ <em>continuing</em> shareholders → <em>exiting</em> shareholders.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">"Massive volumes", "lean SKU", "minimize labor per store" = economies of scale + operational efficiency = <em>cost leadership</em> signature.</span>
+      <span class="htxt">Effective buyback: mua khi stock undervalued. Buffett rule: "buy back stock only when significantly below intrinsic value, otherwise dividend or hold cash".</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Differentiation đòi hỏi unique value và premium pricing. XYZ pricing THẤP hơn rivals → không phải differentiation. Đây là Costco/Walmart playbook.</span>
+      <span class="htxt">EPS accretion từ buyback chỉ là <em>accounting</em> illusion (giảm shares outstanding). Per-share intrinsic value chỉ tăng nếu buy below intrinsic — không phải bất kỳ giá nào.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — Q3 HINT</span>
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
   </div>
 </section>
 
 
-<!-- 27 · Q3 Dịch đề -->
+<!-- 26 · Q3 Dịch đề -->
 <section data-label="Q3 Dịch đề" class="slide">
   <div class="run-header">
-    <span>Equity · 07.05</span>
+    <span>07.05 — Past &amp; Present</span>
     <span class="rule"></span>
-    <span>27 / 28</span>
+    <span>26 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
@@ -1107,62 +941,60 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Retailer XYZ vận hành 800 warehouse-style stores khắp Bắc Mỹ. Họ sourcing <strong>volume cực lớn</strong> trực tiếp từ manufacturer, giữ <strong>SKU count tối thiểu</strong>, tối ưu labor per store, và offer <strong>giá luôn thấp hơn</strong> rivals ở mọi product category. Gross margin thấp hơn competitors nhưng <strong>inventory turnover và volume</strong> cao hơn nhiều. Competitive strategy của XYZ được mô tả <strong>đúng nhất</strong> là:
+      Vietnam Consumer Goods Co. đã thực hiện 3 chương trình share buyback lớn trong 5 năm qua, tất cả ở giá <em>cao hơn đáng kể intrinsic value</em> (theo analyst estimate). 2 năm sau buyback gần nhất, stock giảm 40% và công ty đã write-down giá trị treasury stock đã repurchase. Phương án nào <em>chính xác nhất</em> về capital allocation decision của management?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Differentiation — unique in-store experience.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Cost leadership — scale-driven low-cost operator.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Focus (niche) — phục vụ segment hẹp cao cấp.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Buyback luôn accretive cho shareholders vì giảm share count, tăng EPS, và signal management confidence — stock giảm không liên quan buyback decisions.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Buyback destroyed shareholder value vì management mua lại shares trên intrinsic value. Effective buyback strategy require mua dưới intrinsic value; nếu không, capital được transfer từ continuing shareholders sang exiting shareholders.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Buyback value-neutral vì shareholders bán nhận cash bằng proportional ownership; chỉ sau-này stock giảm mới ảnh hưởng returns, không phải buyback bản thân.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — Q3 VIỆT</span>
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
   </div>
 </section>
 
 
-<!-- 28 · Q3 EXPLANATION -->
+<!-- 27 · Q3 EXPLANATION -->
 <section data-label="Q3 Explanation" class="slide">
   <div class="run-header">
-    <span>Equity · 07.05</span>
+    <span>07.05 — Past &amp; Present</span>
     <span class="rule"></span>
-    <span>28 / 28</span>
+    <span>27 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Cost leadership.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — value destruction.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — B</div>
-      <div class="rtext"><b>Cost leadership</b>: volume sourcing (bargaining power với suppliers), lean SKU để tối đa turnover, low prices across-the-board, operational efficiency. Mô hình <em>Walmart/Costco</em> kinh điển. Low gross margin × high turnover = strong ROIC. Moat = cost advantage từ economies of scale.</div>
+      <div class="rtext">Buyback effectiveness phụ thuộc 100% vào <em>price paid vs intrinsic value</em>. Khi management buy back ở price &gt; intrinsic value: <em>(a)</em> company over-pay cash; <em>(b)</em> wealth transfers từ <b>continuing</b> shareholders (intrinsic share của họ shrink) sang <b>exiting</b> shareholders (nhận giá premium); <em>(c)</em> per-share intrinsic value của continuing shareholders <em>giảm</em> dù share count giảm. Subsequent stock decline + treasury stock write-down confirm management mua peak. EPS accretion là kế toán illusion: net income chia ít shares = EPS cao, nhưng underlying business value per share thực sự giảm. <em>Buffett principle:</em> "buy back only significantly below intrinsic value; otherwise dividend or retain".</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Differentiation = unique value + premium pricing (Apple, LVMH, Nike). XYZ có pricing THẤP hơn rivals và sản phẩm không unique (cùng manufacturer products) → ngược hẳn với differentiation. Loại trực tiếp.</div>
+      <div class="rtext">Sai cốt lõi — "buybacks always accretive" là common myth. Buyback above intrinsic value <em>destroys</em> per-share value bất chấp EPS tăng. EPS accretion ≠ value creation. Stock decline 40% + write-down chính là evidence buyback decision sai.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">Focus = narrow niche (Ferrari premium cars, Rolex luxury watches). XYZ phục vụ mass market, 800 stores, across <em>all</em> product categories → broad scope, không phải niche focus.</div>
+      <div class="rtext">Sai logic — "value-neutral" only true nếu buyback at exactly intrinsic value. Above intrinsic = wealth transfer. Treasury stock write-down explicitly recognize accounting loss của over-paid buyback — không "value neutral" chút nào.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Cost leadership signature: scale, volume sourcing, lean ops, low price, low margin, high turnover (Walmart, Costco, Ryanair). Differentiation: premium, brand, R&amp;D, high margin (Apple, LVMH). Focus: narrow segment, có thể cost hoặc differentiation <em>trong</em> niche (Ferrari, Rolex). Match company ví dụ với strategy trong 10 giây — CFA L1 test dạng này rất thường.</div>
+    <div class="ttext">Buyback là tool, không phải always-good. Effective khi: <em>(a)</em> price &lt; intrinsic value, <em>(b)</em> management có conviction về intrinsic value estimate, <em>(c)</em> alternative use of cash (capex, M&amp;A, debt) có lower IRR. Track record buyback ở peak = capital allocation red flag, ảnh hưởng forecast assumption về future capital deployment skill.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>EQUITY · 07.05 — ANSWER Q3</span>
+    <span class="footer-topic">Equity · 07.05 — Company Analysis: Past &amp; Present</span>
   </div>
 </section>
 
 
-<!-- END (bonus, not numbered) -->
+<!-- 28 · END -->
 <section data-label="End" class="slide end-slide">
   <div>
     <h1>07.05 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
-    <div class="hint">Tiếp theo · Lesson 07.06 — Equity Valuation Concepts</div>
+    <div class="hint">Tiếp theo · Lesson 07.06 — Industry &amp; Competitive Analysis</div>
   </div>
 </section>
 

@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>CFA L1 · Fixed Income 08.06 — Duration</title>
+<title>CFA L1 · Fixed Income 08.06 — Bond Valuation: Prices and Yields</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/assets/cfa-theme.css">
 <style>
   .title-slide .left { background: var(--accent); }
-  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main { font-size: 96px; line-height: 0.98; }
   .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
   .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
 </style>
@@ -24,18 +24,18 @@
 <section data-label="Title" class="slide title-slide">
   <div class="left">
     <div class="mark">CFA Institute · Level I</div>
-    <h1 class="main">Duration<br>&amp; <em>Sensitivity.</em></h1>
+    <h1 class="main">Bond Valuation:<br><em>Prices &amp; Yields.</em></h1>
     <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 08 · Lesson 08.06 · Fixed Income</div>
   </div>
   <div class="right">
-    <div class="mark">Module 06 · Macaulay · Modified · Effective · PVBP</div>
+    <div class="mark">Module 06 · PV Pricing · Par/Discount/Premium · Clean vs Dirty · Matrix Pricing</div>
     <dl class="meta-grid">
       <div><dt>Môn</dt><dd>Fixed Income</dd></div>
       <div><dt>Module</dt><dd>06</dd></div>
       <div><dt>Lesson</dt><dd>08.06</dd></div>
       <div><dt>Thời lượng</dt><dd>90 min</dd></div>
     </dl>
-    <div class="mark">Macaulay · Modified · Effective · Money · PVBP · Key rate</div>
+    <div class="mark">PV Approach · Coupon Bonds · Accrued Interest · Day-Count · Matrix Pricing</div>
   </div>
 </section>
 
@@ -45,835 +45,788 @@
   <div class="band">
     <div class="lbl">PART</div>
     <div class="n">06</div>
-    <div class="lbl">Interest-rate risk</div>
+    <div class="lbl">Pricing &amp; valuation</div>
   </div>
   <div class="content">
     <div class="eyebrow">Today's lesson</div>
-    <h2>How bond prices <em>respond</em><br>to yield changes.</h2>
+    <h2>How bonds are <em>priced</em><br>using present value.</h2>
     <ul class="toc">
-      <li class="active">01 · Duration concept — weighted-average time + price sensitivity</li>
-      <li>02 · Macaulay &amp; Modified — analytical formulas for option-free bonds</li>
-      <li>03 · Effective duration — bonds with embedded options</li>
-      <li>04 · Money duration &amp; PVBP — dollar measures</li>
-      <li>05 · Properties · portfolio · key rate — applications</li>
-      <li>06 · Practice — 3 CFA-style questions</li>
+      <li class="active">01 · PV approach — bond price = sum of discounted cash flows</li>
+      <li>02 · Annuity formula &amp; full bond pricing equation</li>
+      <li>03 · Par / discount / premium — coupon vs YTM relationships</li>
+      <li>04 · Inverse price-yield relationship &amp; convexity preview</li>
+      <li>05 · Pricing between coupon dates — clean vs dirty price &amp; accrued interest</li>
+      <li>06 · Day-count conventions — 30/360 · Actual/Actual · Actual/360</li>
+      <li>07 · Matrix pricing — interpolation for inactive bonds</li>
+      <li>08 · Worked examples &amp; 3 CFA-style practice questions</li>
     </ul>
   </div>
 </section>
 
 
-<!-- 03 · DURATION CONCEPT -->
-<section data-label="Duration concept" class="slide">
+<!-- 03 · PV APPROACH OVERVIEW -->
+<section data-label="PV approach" class="slide">
   <div class="run-header">
-    <span>08.06 — Duration</span>
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
     <span class="rule"></span>
-    <span>03 / 34</span>
+    <span>03 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Concept · interest-rate risk</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">What is <em class="hi">duration</em>?</h2>
+    <div class="eyebrow">Pricing · present value framework</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Present value</em> approach to bond pricing.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Duration đo lường <em>interest-rate risk</em> của bond — mức độ price thay đổi khi yield thay đổi. Là số đo quan trọng nhất để quản lý lãi suất trong fixed income.
+      Bond là một chuỗi <em>cash flows đã được xác định trước</em>: coupon định kỳ + hoàn trả principal (face value) tại maturity. Giá bond = <em>tổng giá trị hiện tại</em> (present value) của tất cả cash flows đó, chiết khấu bằng <em>required rate of return</em> (YTM).
     </p>
   </div>
 
-  <div class="rule-box" style="margin-top: 18px;">
-    <span class="tag">§ Two equivalent interpretations</span>
-    (1) <em>Time interpretation</em> — weighted-average time investor phải đợi để nhận lại các cash flows (đơn vị: năm). <br>
-    (2) <em>Sensitivity interpretation</em> — tỷ lệ phần trăm price thay đổi khi yield thay đổi 1% (đơn vị: % per 1% Δy, được hiểu là <em>elasticity</em>).
-  </div>
-
-  <p class="fine-muted-sm">
-    § Trực giác — bond có cash flow xa trong tương lai (long maturity, low coupon) sẽ <em>nhạy cảm hơn</em> với thay đổi yield. Cash flow gần (high coupon, short maturity) ít bị ảnh hưởng. Duration vừa là "thời gian trung bình", vừa là "độ nhạy" — hai mặt của cùng một con số.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Duration</span>
-  </div>
-</section>
-
-
-<!-- 04 · TIME VS SENSITIVITY -->
-<section data-label="Two interpretations" class="slide">
-  <div class="run-header">
-    <span>08.06 — Duration</span>
-    <span class="rule"></span>
-    <span>04 / 34</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Two views · same number</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Time</em> vs <em class="hi">sensitivity</em>.</h2>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head"><em>Time</em> view</div>
-      <dl>
-        <dt>Câu hỏi</dt>
-        <dd>"Trung bình bao lâu để thu hồi vốn từ bond này?"</dd>
-        <dt>Đơn vị</dt>
-        <dd><b>Năm</b> (years)</dd>
-        <dt>Đại diện</dt>
-        <dd><b>Macaulay duration</b> — weighted average của thời điểm CFs</dd>
-        <dt>Trực giác</dt>
-        <dd>Zero-coupon bond N năm → D_Mac = N (chỉ 1 cash flow)</dd>
-      </dl>
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">CF</span>
+      <div>
+        <div class="t"><em class="hi">Cash flows của bond</em></div>
+        <div class="d">Hai loại: (1) <b>Coupon payments</b> — định kỳ (thường semi-annual ở US), cố định. (2) <b>Par (face value)</b> — trả 1 lần tại maturity. Cả hai đều là <em>contractual obligations</em> của issuer.</div>
+      </div>
     </div>
-    <div class="cc">
-      <div class="head"><em>Sensitivity</em> view</div>
-      <dl>
-        <dt>Câu hỏi</dt>
-        <dd>"Price thay đổi bao nhiêu % khi yield đổi 1%?"</dd>
-        <dt>Đơn vị</dt>
-        <dd><b>% per 1% Δy</b> (elasticity)</dd>
-        <dt>Đại diện</dt>
-        <dd><b>Modified · Effective duration</b> — slope của price-yield curve</dd>
-        <dt>Trực giác</dt>
-        <dd>Δy +1% → Price ≈ −D_Mod% (relationship inverse)</dd>
-      </dl>
+    <div class="tenet">
+      <span class="n">YTM</span>
+      <div>
+        <div class="t"><em class="hi">Discount rate = YTM</em></div>
+        <div class="d"><b>Yield to Maturity</b> là lãi suất mà tại đó PV của tất cả cash flows bằng đúng giá market hiện tại. YTM phản ánh <em>risk + opportunity cost</em>: credit risk, liquidity, term premium, macro conditions.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PV</span>
+      <div>
+        <div class="t"><em class="hi">Discounting mechanism</em></div>
+        <div class="d">Mỗi cash flow CF<sub>t</sub> tại kỳ t được chiết khấu: PV<sub>t</sub> = CF<sub>t</sub> / (1 + r)<sup>t</sup> — với r là periodic discount rate (= YTM/m, m là số kỳ/năm). Tổng tất cả PV<sub>t</sub> = Bond Price.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PAR</span>
+      <div>
+        <div class="t"><em class="hi">Quoted price convention</em></div>
+        <div class="d">Giá bond được <em>quoted as % of par</em>. Par thường = 1,000 USD (US) hoặc 100,000 VND (VN). Giá 98.50 nghĩa là bond bán ở 98.50% của par = $985 trên $1,000 par. Quan trọng: đây là <em>clean price</em> (chưa tính accrued interest).</div>
+      </div>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Duration</span>
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
   </div>
 </section>
 
 
-<!-- 05 · MACAULAY FORMULA -->
-<section data-label="Macaulay formula" class="slide">
+<!-- 04 · FULL PRICING FORMULA -->
+<section data-label="Pricing formula" class="slide">
   <div class="run-header">
-    <span>08.06 — Duration</span>
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
     <span class="rule"></span>
-    <span>05 / 34</span>
+    <span>04 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Macaulay · formula</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Macaulay</em> duration.</h2>
+    <div class="eyebrow">Pricing · core formula</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Full bond pricing</em> equation.</h2>
   </div>
 
   <div class="formula-box">
-    <span class="fmt-label">§ Macaulay duration — weighted-average time</span>
-    <div class="eq"><span class="var">D<sub>Mac</sub></span> = Σ [ <span class="var">t</span> × <span class="var">PV(CF<sub>t</sub>)</span> ] / <span class="var">Price</span></div>
-    <div class="eq"><span class="var">PV(CF<sub>t</sub>)</span> = <span class="var">CF<sub>t</sub></span> / (1 + <span class="var">y</span>)<sup>t</sup></div>
-    <div class="note">
-      <b>t</b> = thời điểm CF (period number) · <b>CF<sub>t</sub></b> = cash flow tại t (coupon hoặc coupon + par) · <b>y</b> = yield per period · <b>Price</b> = Σ PV(CF<sub>t</sub>) = full (dirty) price. Trọng số <em>w<sub>t</sub></em> = PV(CF<sub>t</sub>) / Price → Σw<sub>t</sub> = 1. D_Mac = Σ t·w<sub>t</sub>.
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Đơn vị quan trọng — nếu y là semi-annual yield và t đếm theo periods, kết quả D_Mac sẽ tính theo <em>periods</em> (vd: 6.4 periods = 3.2 năm cho semi). Để chuyển: chia cho số periods/year.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Macaulay</span>
-  </div>
-</section>
-
-
-<!-- 06 · MACAULAY EXAMPLE -->
-<section data-label="Macaulay example" class="slide">
-  <div class="run-header">
-    <span>08.06 — Duration</span>
-    <span class="rule"></span>
-    <span>06 / 34</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Worked · example</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Macaulay <em class="hi">step-by-step</em>.</h2>
-  </div>
-
-  <div class="rule-box">
-    <span class="tag">§ Setup — 3-year bond, annual pay</span>
-    Par $1,000 · 5% annual coupon ($50/yr) · YTM 5% → bond trade at par. CFs: Y1 $50, Y2 $50, Y3 $1,050.
-  </div>
-
-  <div class="formula-box" style="margin-top: 16px;">
-    <span class="fmt-label">§ Compute PV(CF<sub>t</sub>) and t × PV</span>
+    <span class="fmt-label">§ General bond price — sum of discounted cash flows</span>
     <div class="eq">
-      t=1: PV = 50/1.05 = 47.62 · t·PV = 47.62<br>
-      t=2: PV = 50/1.05<sup>2</sup> = 45.35 · t·PV = 90.70<br>
-      t=3: PV = 1,050/1.05<sup>3</sup> = 907.03 · t·PV = 2,721.09<br>
-      Σ PV = 1,000.00 · Σ t·PV = 2,859.41
+      <span class="var">P</span> =
+      <span class="var">C/(1+r)</span> +
+      <span class="var">C/(1+r)²</span> + ··· +
+      <span class="var">C/(1+r)<sup>N</sup></span> +
+      <span class="var">F/(1+r)<sup>N</sup></span>
     </div>
-    <div class="eq"><span class="var">D<sub>Mac</sub></span> = 2,859.41 / 1,000.00 = <span class="var">2.859 years</span></div>
-    <div class="note">Vì hầu hết CF cuối tập trung ở year 3 (par + coupon = $1,050), weighted-average kéo gần về 3 năm. Nếu coupon cao hơn, D_Mac sẽ thấp hơn (CFs phân bố sớm hơn).</div>
+    <div class="note">
+      Trong đó: <b>P</b> = bond price · <b>C</b> = periodic coupon = (coupon rate × F) / m · <b>F</b> = face value (par) · <b>r</b> = periodic discount rate = YTM / m · <b>N</b> = tổng số kỳ = maturity (years) × m · <b>m</b> = coupon frequency (2 = semi-annual, 1 = annual).
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 18px;">
+    <span class="fmt-label">§ Compact annuity form</span>
+    <div class="eq">
+      <span class="var">P</span> =
+      <span class="var">C</span> ×
+      <span class="var">[1 − (1+r)<sup>−N</sup>] / r</span> +
+      <span class="var">F / (1+r)<sup>N</sup></span>
+    </div>
+    <div class="note">
+      Phần đầu = PV of annuity (chuỗi coupon đều nhau). Phần sau = PV of par (lump sum). Công thức này là <em>shortcut chuẩn</em> cho CFA exam — tránh cộng từng CF một khi N lớn. Trên máy tính tài chính (BA II+): N, I/Y, PMT, FV → CPT PV.
+    </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Macaulay Example</span>
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
   </div>
 </section>
 
 
-<!-- 07 · MODIFIED DURATION -->
-<section data-label="Modified duration" class="slide">
+<!-- 05 · WORKED EXAMPLE 1 — 5Y 6% SEMI-ANNUAL AT YTM 7% -->
+<section data-label="Example 1: 5Y 6% at YTM 7%" class="slide">
   <div class="run-header">
-    <span>08.06 — Duration</span>
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
     <span class="rule"></span>
-    <span>07 / 34</span>
+    <span>05 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Modified · formula</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Modified</em> duration.</h2>
+    <div class="eyebrow">Worked example · 01 · Numerical</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Price a <em class="hi">5-year 6% semi-annual</em> bond at YTM 7%.</h2>
   </div>
 
   <div class="formula-box">
-    <span class="fmt-label">§ Modified duration — sensitivity measure</span>
-    <div class="eq"><span class="var">D<sub>Mod</sub></span> = <span class="var">D<sub>Mac</sub></span> / (1 + <span class="var">y</span>)</div>
-    <div class="eq">%Δ<span class="var">Price</span> ≈ − <span class="var">D<sub>Mod</sub></span> × Δ<span class="var">y</span></div>
+    <span class="fmt-label">§ Setup</span>
     <div class="note">
-      <b>y</b> = yield per period (cùng đơn vị với Macaulay). Modified = Macaulay đã <em>scale</em> để chuyển từ "time" thành "% sensitivity". Dấu trừ phản ánh quan hệ <em>nghịch chiều</em> giữa price và yield.
+      <b>Given:</b> Face value F = $1,000 · Coupon rate = 6% annual, semi-annual → C = $1,000 × 6% / 2 = <em>$30 per period</em> · YTM = 7% annual → r = 7%/2 = <em>3.5% per period</em> · Maturity = 5 years → N = 5 × 2 = <em>10 periods</em>
+    </div>
+    <div class="eq" style="margin-top: 12px;">
+      <span class="var">P</span> =
+      <span class="var">30</span> ×
+      <span class="var">[1 − (1.035)<sup>−10</sup>] / 0.035</span> +
+      <span class="var">1,000 / (1.035)<sup>10</sup></span>
+    </div>
+    <div class="note" style="margin-top: 10px;">
+      <b>Step 1:</b> (1.035)<sup>10</sup> = 1.41060 → (1.035)<sup>−10</sup> = 0.70892<br>
+      <b>Step 2:</b> Annuity factor = [1 − 0.70892] / 0.035 = 0.29108 / 0.035 = <em>8.3166</em><br>
+      <b>Step 3:</b> PV(coupons) = 30 × 8.3166 = <em>$249.50</em><br>
+      <b>Step 4:</b> PV(par) = 1,000 / 1.41060 = <em>$708.92</em><br>
+      <b>Step 5:</b> P = 249.50 + 708.92 = <em class="hi">$958.42</em>
+    </div>
+    <div class="note" style="margin-top: 8px;">
+      <b>BA II+ check:</b> N=10, I/Y=3.5, PMT=30, FV=1000, CPT PV → <em>−958.42</em> ✓. Bond trades at <em>discount</em> (price &lt; par) because YTM 7% &gt; coupon rate 6%.
     </div>
   </div>
 
-  <div class="rule-box" style="margin-top: 16px;">
-    <span class="tag">§ Tiếp ví dụ trên</span>
-    Từ slide trước: D_Mac = 2.859 năm, y = 5%. <br>
-    → <b>D_Mod</b> = 2.859 / 1.05 = <b>2.723</b>. <br>
-    → Nếu yield tăng 100 bps (Δy = +0.01), price ước tính giảm: %ΔP ≈ −2.723 × 0.01 = <b>−2.72%</b>. Bond $1,000 → giá mới ≈ $972.80.
-  </div>
-
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Modified</span>
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
   </div>
 </section>
 
 
-<!-- 08 · MACAULAY VS MODIFIED -->
-<section data-label="Mac vs Mod" class="slide">
+<!-- 06 · WORKED EXAMPLE 2 — PAR AND PREMIUM -->
+<section data-label="Example 2: Par and Premium" class="slide">
   <div class="run-header">
-    <span>08.06 — Duration</span>
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
     <span class="rule"></span>
-    <span>08 / 34</span>
+    <span>06 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Compare · two analytical durations</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Macaulay</em> vs <em class="hi">Modified</em>.</h2>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head"><em>Macaulay</em></div>
-      <dl>
-        <dt>Định nghĩa</dt>
-        <dd>Weighted-average time đến lúc nhận CFs</dd>
-        <dt>Đơn vị</dt>
-        <dd><b>Years</b> (hoặc periods)</dd>
-        <dt>Công thức</dt>
-        <dd>Σ t·PV(CF<sub>t</sub>) / Price</dd>
-        <dt>Dùng cho</dt>
-        <dd><em>Immunization</em> matching — duration-matching cho liability</dd>
-        <dt>Kích thước</dt>
-        <dd>Lớn hơn Modified (cho bond có y &gt; 0)</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head"><em>Modified</em></div>
-      <dl>
-        <dt>Định nghĩa</dt>
-        <dd>% price change per 1% yield change</dd>
-        <dt>Đơn vị</dt>
-        <dd><b>% per 1% Δy</b> (sensitivity)</dd>
-        <dt>Công thức</dt>
-        <dd>D<sub>Mac</sub> / (1 + y)</dd>
-        <dt>Dùng cho</dt>
-        <dd><em>Risk management</em> — ước tính %ΔP từ Δy</dd>
-        <dt>Kích thước</dt>
-        <dd>Nhỏ hơn Macaulay (chia cho 1+y &gt; 1)</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Quy tắc nhanh — D_Mod = D_Mac × <em>discount factor 1 period</em>. Khi yield rất nhỏ (y ≈ 0), D_Mod ≈ D_Mac. Khi yield cao, gap giữa hai mở rộng.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Mac vs Mod</span>
-  </div>
-</section>
-
-
-<!-- 09 · EFFECTIVE DURATION -->
-<section data-label="Effective duration" class="slide">
-  <div class="run-header">
-    <span>08.06 — Duration</span>
-    <span class="rule"></span>
-    <span>09 / 34</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Effective · numerical method</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Effective</em> duration.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Khi bond có <em>embedded options</em> (callable, putable, MBS prepay) — cash flows <em>không cố định</em> mà phụ thuộc vào yield. Modified duration không còn áp dụng được vì giả định CFs cố định bị vi phạm. Phải dùng phương pháp <em>numerical bump-and-revalue</em>.
-    </p>
+    <div class="eyebrow">Worked example · 02 · Numerical</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">3-year 5% annual bond: price at YTM <em class="hi">5%</em> vs YTM <em class="hi">3%</em>.</h2>
   </div>
 
   <div class="formula-box">
-    <span class="fmt-label">§ Effective duration — numerical estimate</span>
-    <div class="eq"><span class="var">D<sub>Eff</sub></span> = ( <span class="var">P<sub>−</sub></span> − <span class="var">P<sub>+</sub></span> ) / ( 2 × <span class="var">P<sub>0</sub></span> × Δ<span class="var">y</span> )</div>
+    <span class="fmt-label">§ Case A — YTM = 5% (coupon = YTM → par bond)</span>
     <div class="note">
-      <b>P<sub>0</sub></b> = price hiện tại. <b>P<sub>−</sub></b> = price khi yield curve dịch <em>xuống</em> Δy. <b>P<sub>+</sub></b> = price khi yield curve dịch <em>lên</em> Δy. <b>Δy</b> = parallel shift (vd: 25 bps = 0.0025). P<sub>+</sub> và P<sub>−</sub> được tính từ <em>option-pricing model</em> (binomial tree, Monte Carlo) phản ánh option exercise.
+      F = $1,000, C = $50, r = 5%, N = 3. PV = 50/(1.05) + 50/(1.05)² + 1,050/(1.05)³<br>
+      = 47.619 + 45.351 + 907.029 = <em class="hi">$1,000.00</em>. Khi coupon rate = YTM → bond định giá đúng bằng par.
     </div>
   </div>
 
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Effective</span>
-  </div>
-</section>
-
-
-<!-- 10 · MODIFIED VS EFFECTIVE -->
-<section data-label="Mod vs Eff" class="slide">
-  <div class="run-header">
-    <span>08.06 — Duration</span>
-    <span class="rule"></span>
-    <span>10 / 34</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Compare · analytical vs numerical</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Modified</em> vs <em class="hi">Effective</em>.</h2>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head"><em>Modified</em></div>
-      <dl>
-        <dt>Bond type</dt>
-        <dd><b>Option-free</b> (vanilla, fixed CFs)</dd>
-        <dt>Method</dt>
-        <dd>Analytical — closed-form từ D_Mac</dd>
-        <dt>Yield input</dt>
-        <dd>YTM (single yield)</dd>
-        <dt>Discount</dt>
-        <dd>Flat YTM curve</dd>
-        <dt>Hạn chế</dt>
-        <dd>Sai khi CFs phụ thuộc yield (callable, MBS)</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head"><em>Effective</em></div>
-      <dl>
-        <dt>Bond type</dt>
-        <dd><b>Bonds with embedded options</b> + complex CFs</dd>
-        <dt>Method</dt>
-        <dd>Numerical — bump and reprice</dd>
-        <dt>Yield input</dt>
-        <dd>Parallel shift của <em>benchmark curve</em> (Δy)</dd>
-        <dt>Discount</dt>
-        <dd>Full curve, model phải reprice CFs</dd>
-        <dt>Hạn chế</dt>
-        <dd>Phụ thuộc model + Δy chosen, chỉ parallel shift</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Quy tắc — Option-free bond: D_Mod ≈ D_Eff (xấp xỉ bằng nhau). Bond callable với option ITM: D_Eff &lt; D_Mod (call cap upside, giảm sensitivity khi yield falls). Putable: D_Eff &lt; D_Mod (put protect downside).
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Mod vs Eff</span>
-  </div>
-</section>
-
-
-<!-- 11 · WHEN EFFECTIVE REQUIRED -->
-<section data-label="When effective" class="slide">
-  <div class="run-header">
-    <span>08.06 — Duration</span>
-    <span class="rule"></span>
-    <span>11 / 34</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Decision · which duration to use</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">When <em class="hi">effective</em> is required.</h2>
-  </div>
-
-  <div class="rule-box">
-    <span class="tag">§ Rule — use Effective when CFs depend on yield</span>
-    Bất cứ khi nào <em>cash flows thay đổi theo yield</em>, modified duration là <em>sai</em>. Phải dùng Effective. Các trường hợp:<br>
-    <b>(1) Callable bonds</b> — issuer call lại khi yields giảm; CFs bị cắt sớm. <br>
-    <b>(2) Putable bonds</b> — investor sell back khi yields tăng; CFs bị cắt sớm theo cách khác. <br>
-    <b>(3) MBS / ABS</b> — prepayment speeds phụ thuộc yield (refinance khi yields drop). <br>
-    <b>(4) Floating-rate notes</b> — coupon resets theo benchmark, CFs động. <br>
-    <b>(5) Convertible bonds</b> — option to convert vào equity.
-  </div>
-
-  <p class="fine-muted-sm">
-    § Quy tắc nhanh — nếu thấy <em>"callable", "putable", "MBS", "convertible", "floater"</em> trong đề CFA → dùng Effective. Nếu là vanilla coupon bond không có option → Modified OK. Bond Treasury straight (no embedded option) → Modified.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — When Effective</span>
-  </div>
-</section>
-
-
-<!-- 12 · MONEY DURATION -->
-<section data-label="Money duration" class="slide">
-  <div class="run-header">
-    <span>08.06 — Duration</span>
-    <span class="rule"></span>
-    <span>12 / 34</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Money · dollar duration</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Money</em> duration.</h2>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Money duration (Dollar duration)</span>
-    <div class="eq"><span class="var">MoneyDur</span> = <span class="var">D<sub>Mod</sub></span> × <span class="var">Price</span></div>
-    <div class="eq">Δ<span class="var">Price</span> ≈ − <span class="var">MoneyDur</span> × Δ<span class="var">y</span></div>
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Case B — YTM = 3% (coupon &gt; YTM → premium bond)</span>
     <div class="note">
-      Đơn vị: <b>tiền tệ</b> ($ hoặc VND), không phải %. <b>Price</b> thường là full price (dirty) tính theo position size hoặc per bond. Money duration chuyển sensitivity từ % thành <em>dollar amount</em> — useful cho portfolio risk management khi cần biết P&amp;L theo Δy.
+      Same bond, same coupons, nhưng r = 3%. PV = 50/(1.03) + 50/(1.03)² + 1,050/(1.03)³<br>
+      = 48.544 + 47.130 + 961.169 = <em class="hi">$1,056.84</em>. Bond bán cao hơn par (premium) vì coupon rate 5% &gt; market YTM 3% → investors sẵn sàng trả cao hơn cho dòng coupon hấp dẫn.
     </div>
-  </div>
-
-  <div class="rule-box" style="margin-top: 16px;">
-    <span class="tag">§ Example — portfolio $10M, D_Mod = 6.5</span>
-    MoneyDur = 6.5 × $10,000,000 = <b>$65,000,000</b>. <br>
-    Nếu yield curve dịch lên 25 bps (Δy = +0.0025): <br>
-    → ΔPrice ≈ −$65,000,000 × 0.0025 = <b>−$162,500</b> (loss).
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Money Dur</span>
-  </div>
-</section>
-
-
-<!-- 13 · PVBP -->
-<section data-label="PVBP" class="slide">
-  <div class="run-header">
-    <span>08.06 — Duration</span>
-    <span class="rule"></span>
-    <span>13 / 34</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">PVBP · price value of basis point</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">PVBP</em> — DV01.</h2>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Price Value of a Basis Point</span>
-    <div class="eq"><span class="var">PVBP</span> = <span class="var">MoneyDur</span> × 0.0001</div>
-    <div class="eq"><span class="var">PVBP</span> = ( <span class="var">P<sub>−</sub></span> − <span class="var">P<sub>+</sub></span> ) / 2 &nbsp;&nbsp; (with Δy = 1 bp)</div>
-    <div class="note">
-      PVBP = dollar change in price khi yield thay đổi <em>1 basis point</em> (0.01%). Còn gọi là <b>DV01</b> (Dollar Value of an 01) hoặc <b>BPV</b>. Đây là <em>standard risk unit</em> của trader fixed income — quote theo $/bp cho dễ aggregate cross-position.
-    </div>
-  </div>
-
-  <div class="rule-box" style="margin-top: 16px;">
-    <span class="tag">§ Example — same portfolio</span>
-    MoneyDur = $65M. <br>
-    → <b>PVBP</b> = $65,000,000 × 0.0001 = <b>$6,500 per bp</b>. <br>
-    Δy +25 bps → PnL ≈ −25 × $6,500 = −$162,500 (khớp với money duration calc). Trader monitor risk theo "PVBP exposure" — vd: desk có $10k PVBP nghĩa là 1 bp dịch chuyển = $10k PnL.
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — PVBP</span>
-  </div>
-</section>
-
-
-<!-- 14 · MONEY DUR VS PVBP -->
-<section data-label="Money vs PVBP" class="slide">
-  <div class="run-header">
-    <span>08.06 — Duration</span>
-    <span class="rule"></span>
-    <span>14 / 34</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Compare · two dollar measures</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Money</em> vs <em class="hi">PVBP</em>.</h2>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head"><em>Money</em> duration</div>
-      <dl>
-        <dt>Định nghĩa</dt>
-        <dd>$ change per <b>1.00</b> (100%) Δy — theoretical</dd>
-        <dt>Đơn vị</dt>
-        <dd>$ (hoặc currency)</dd>
-        <dt>Công thức</dt>
-        <dd>D<sub>Mod</sub> × Price</dd>
-        <dt>Practical use</dt>
-        <dd>Multiply with Δy (decimal) cho ΔPrice</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head"><em>PVBP / DV01</em></div>
-      <dl>
-        <dt>Định nghĩa</dt>
-        <dd>$ change per <b>1 bp</b> (0.01%) Δy — practical unit</dd>
-        <dt>Đơn vị</dt>
-        <dd>$ per bp</dd>
-        <dt>Công thức</dt>
-        <dd>MoneyDur × 0.0001</dd>
-        <dt>Practical use</dt>
-        <dd>Multiply with Δy (in bps) cho ΔPrice</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Quy tắc — PVBP là <em>scaled-down</em> Money duration (chia 10,000). Trader prefer PVBP vì market dịch chuyển theo bps, dễ thinking. Risk reports thường show "DV01 by tenor". Cùng concept, khác scale.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Money vs PVBP</span>
-  </div>
-</section>
-
-
-<!-- 15 · DURATION APPROXIMATION -->
-<section data-label="Approximation" class="slide">
-  <div class="run-header">
-    <span>08.06 — Duration</span>
-    <span class="rule"></span>
-    <span>15 / 34</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Approximation · price change</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Estimating <em class="hi">%ΔPrice</em>.</h2>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ First-order linear approximation</span>
-    <div class="eq">%Δ<span class="var">Price</span> ≈ − <span class="var">D<sub>Mod</sub></span> × Δ<span class="var">y</span></div>
-    <div class="eq">Δ<span class="var">Price</span> ≈ − <span class="var">D<sub>Mod</sub></span> × Δ<span class="var">y</span> × <span class="var">Price</span></div>
-    <div class="note">
-      Duration là <em>tangent line</em> tại điểm yield hiện tại trên price-yield curve. Đúng cho Δy nhỏ. Khi Δy lớn, đường cong thực <em>convex</em> hơn tangent → duration alone <em>under-estimate</em> price change. Cần thêm <em>convexity adjustment</em> để chính xác hơn (CFA L1 mention; calc tại L2).
-    </div>
-  </div>
-
-  <div class="rule-box" style="margin-top: 16px;">
-    <span class="tag">§ Why "approximation"?</span>
-    Bond price-yield là <em>convex curve</em> (đường cong lồi), không phải đường thẳng. Duration đo slope tại 1 điểm. <br>
-    → Δy nhỏ (vd ±10 bps): error nhỏ, OK. <br>
-    → Δy lớn (vd ±200 bps): duration <em>under-predict</em> cả 2 chiều. Reality: actual price drop nhỏ hơn dự đoán khi yields tăng, actual price rise lớn hơn dự đoán khi yields giảm (convexity benefit).
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Approximation</span>
-  </div>
-</section>
-
-
-<!-- 16 · DURATION PROPERTIES -->
-<section data-label="Properties" class="slide">
-  <div class="run-header">
-    <span>08.06 — Duration</span>
-    <span class="rule"></span>
-    <span>16 / 34</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Properties · 3 rules to memorize</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Duration <em class="hi">properties</em>.</h2>
-  </div>
-
-  <div class="rule-box">
-    <span class="tag">§ Rule 1 — Maturity</span>
-    Holding coupon &amp; yield constant: <em>longer maturity → higher duration</em>. CFs spread out further → weighted-average time tăng. Bond 30-year nhạy cảm với yield hơn bond 5-year.
   </div>
 
   <div class="rule-box" style="margin-top: 14px;">
-    <span class="tag">§ Rule 2 — Coupon</span>
-    Holding maturity &amp; yield constant: <em>lower coupon → higher duration</em>. Coupon thấp → ít CFs sớm → trọng số dồn về cuối. Zero-coupon bond N năm có D_Mac = N (max possible). High-coupon bond có CFs phân bố sớm → D thấp hơn.
+    <span class="tag">§ Pattern confirmed</span>
+    Coupon rate <em>&gt;</em> YTM → Price <em>&gt;</em> Par (premium) ·
+    Coupon rate <em>=</em> YTM → Price <em>=</em> Par ·
+    Coupon rate <em>&lt;</em> YTM → Price <em>&lt;</em> Par (discount). Pattern này là <em>constant và testable</em> trong CFA exam.
   </div>
-
-  <div class="rule-box" style="margin-top: 14px;">
-    <span class="tag">§ Rule 3 — Yield (YTM)</span>
-    Holding maturity &amp; coupon constant: <em>lower yield → higher duration</em>. Yield thấp → discount factor nhẹ tay → CFs xa giữ trọng số lớn hơn. Yield cao → CFs xa bị discount mạnh → trọng số kéo về CFs gần → D giảm.
-  </div>
-
-  <p class="fine-muted-sm">
-    § Mnemonic — Long maturity, Low coupon, Low yield → High duration (3 L's). Đây là 3 yếu tố quyết định độ nhạy cảm lãi suất.
-  </p>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Properties</span>
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
   </div>
 </section>
 
 
-<!-- 17 · PORTFOLIO DURATION -->
-<section data-label="Portfolio duration" class="slide">
+<!-- 07 · PAR / DISCOUNT / PREMIUM RELATIONSHIPS -->
+<section data-label="Par / Discount / Premium" class="slide">
   <div class="run-header">
-    <span>08.06 — Duration</span>
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
     <span class="rule"></span>
-    <span>17 / 34</span>
+    <span>07 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Portfolio · aggregation</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Portfolio</em> duration.</h2>
+    <div class="eyebrow">Pricing · coupon vs YTM</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Par · Discount · <em class="hi">Premium</em> bonds.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Mối quan hệ giữa coupon rate và YTM xác định hoàn toàn bond đang ở par, discount hay premium.
+    </p>
   </div>
 
-  <div class="formula-box">
-    <span class="fmt-label">§ Portfolio duration = weighted average</span>
-    <div class="eq"><span class="var">D<sub>P</sub></span> = Σ <span class="var">w<sub>i</sub></span> × <span class="var">D<sub>i</sub></span></div>
-    <div class="eq"><span class="var">w<sub>i</sub></span> = <span class="var">MV<sub>i</sub></span> / <span class="var">MV<sub>P</sub></span></div>
-    <div class="note">
-      <b>w<sub>i</sub></b> = trọng số bond i theo <em>market value</em> (KHÔNG phải par). <b>D<sub>i</sub></b> = duration của bond i (Modified hoặc Effective tùy bond). <b>MV<sub>P</sub></b> = total market value of portfolio. Σw<sub>i</sub> = 1.
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Par bond</em> — Coupon = YTM</div>
+      <dl>
+        <dt>Price</dt>
+        <dd>= Face value (100% of par). Investor được exactly YTM từ coupon mà không cần capital gain/loss.</dd>
+        <dt>Ví dụ</dt>
+        <dd>10-year 5% bond khi YTM = 5% → Price = $1,000. Thường xảy ra khi bond mới issued (set coupon ≈ current YTM).</dd>
+        <dt>Pull to par</dt>
+        <dd>Khi đến maturity, mọi bond (dù discount hay premium) đều "kéo" về par. Quá trình này gọi là <em>pull-to-par</em>.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Discount &amp; Premium</em> bonds</div>
+      <dl>
+        <dt>Discount (Coupon &lt; YTM)</dt>
+        <dd>Price &lt; par. Bond phải bán thấp hơn par để tổng return (coupon + capital gain từ pull-to-par) đủ bù đắp YTM cao hơn coupon. Ví dụ: 6% bond @ YTM 7% → $958.42.</dd>
+        <dt>Premium (Coupon &gt; YTM)</dt>
+        <dd>Price &gt; par. Coupon rất hào phóng → investors trả thêm. Sẽ có capital loss khi pull-to-par, nhưng high coupon income bù lại. Ví dụ: 5% bond @ YTM 3% → $1,056.84.</dd>
+        <dt>Capital G/L</dt>
+        <dd>Discount bond: capital gain (price rises → par). Premium bond: capital loss (price falls → par). Trong cả hai trường hợp, total annualized return = YTM nếu hold to maturity.</dd>
+      </dl>
     </div>
   </div>
 
-  <div class="rule-box" style="margin-top: 16px;">
-    <span class="tag">§ Example — 2-bond portfolio</span>
-    Bond A: MV $4M, D_Mod 3.5 → w<sub>A</sub> = 0.4 <br>
-    Bond B: MV $6M, D_Mod 7.2 → w<sub>B</sub> = 0.6 <br>
-    → <b>D_P</b> = 0.4 × 3.5 + 0.6 × 7.2 = 1.4 + 4.32 = <b>5.72</b>. <br>
-    Đây là <em>limitation</em> — công thức này giả định <em>parallel shift</em> của yield curve. Nếu curve flatten/steepen, công thức này không capture được — phải dùng <em>key rate duration</em>.
-  </div>
-
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Portfolio</span>
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
   </div>
 </section>
 
 
-<!-- 18 · KEY RATE DURATION -->
-<section data-label="Key rate duration" class="slide">
+<!-- 08 · INVERSE PRICE-YIELD RELATIONSHIP -->
+<section data-label="Inverse price-yield" class="slide">
   <div class="run-header">
-    <span>08.06 — Duration</span>
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
     <span class="rule"></span>
-    <span>18 / 34</span>
+    <span>08 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Key rate · partial durations</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Key rate</em> duration.</h2>
+    <div class="eyebrow">Pricing · key principle</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Inverse</em> price-yield relationship.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Effective &amp; modified durations giả định <em>parallel shift</em> của yield curve — toàn bộ curve dịch lên/xuống cùng một lượng. Thực tế curve thường <em>twist</em> (steepen, flatten, butterfly). Key rate duration đo sensitivity với từng tenor riêng biệt.
+      Đây là một trong những quy luật cơ bản nhất của fixed income: khi yield <em>tăng</em>, price <em>giảm</em> — và ngược lại. Quan hệ này là <em>mathematical necessity</em>, không phải quy ước thị trường.
     </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">INV</span>
+      <div>
+        <div class="t"><em class="hi">Tại sao inverse?</em></div>
+        <div class="d">Cash flows (coupon + par) cố định. Discount rate (YTM) tăng → denominator (1+r)<sup>N</sup> tăng → PV giảm. Logic toán học đơn giản nhưng hệ quả rất quan trọng cho portfolio management.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CVX</span>
+      <div>
+        <div class="t"><em class="hi">Convexity — đường cong lồi</em></div>
+        <div class="d">Price-yield curve là <em>convex</em> (lồi hướng về gốc tọa độ), <b>không phải tuyến tính</b>. Nghĩa là: price tăng <em>nhiều hơn</em> khi yield giảm 1% so với price giảm khi yield tăng 1%. Đây là <em>convexity</em> — có lợi cho bondholder. Detail sẽ học ở Duration/Convexity module.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">MAT</span>
+      <div>
+        <div class="t"><em class="hi">Maturity &amp; sensitivity</em></div>
+        <div class="d">Bond có maturity dài hơn → <em>nhạy cảm hơn</em> với thay đổi yield (duration cao hơn). Ví dụ: 30-year bond giảm giá nhiều hơn 2-year bond khi yield tăng cùng mức. Long-duration bonds = higher interest rate risk.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CPN</span>
+      <div>
+        <div class="t"><em class="hi">Coupon rate &amp; sensitivity</em></div>
+        <div class="d">Bond có coupon thấp hơn (hoặc zero coupon) → <em>nhạy cảm hơn</em> với yield changes. Zero coupon bond có duration = maturity — maximum sensitivity. High-coupon bond nhận cash flows sớm hơn → trung bình duration thấp hơn.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Price-yield illustration: 5-year 6% bond: YTM 5% → $1,043.29 | YTM 6% → $1,000.00 | YTM 7% → $958.42 | YTM 8% → $918.89. Mỗi 100bps tăng yield = giảm giá, nhưng mức giảm nhỏ dần (convexity).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
+  </div>
+</section>
+
+
+<!-- 09 · CLEAN VS DIRTY PRICE -->
+<section data-label="Clean vs Dirty price" class="slide">
+  <div class="run-header">
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
+    <span class="rule"></span>
+    <span>09 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Pricing · between coupon dates</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Clean price</em> vs <em class="hi">Dirty (full) price</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Bonds hiếm khi được mua/bán đúng ngày coupon. Buyer phải bồi hoàn cho seller phần lãi coupon đã accrued kể từ coupon date gần nhất.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 14px;">
+    <div class="cc">
+      <div class="head"><em>Clean price</em> (Quoted price)</div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd><b>Quoted price</b> trên market — <em>không bao gồm</em> accrued interest. Giá này được publish trên Bloomberg, Reuters, trading screens. Dễ so sánh qua thời gian vì không có "jump" tại coupon dates.</dd>
+        <dt>Còn gọi</dt>
+        <dd>Flat price. Quoted as % of par (e.g., 98.25 = 98.25% × par).</dd>
+        <dt>Khi nào bằng dirty?</dt>
+        <dd>Chỉ đúng tại ngày coupon (AI = 0). Cũng áp dụng cho zero coupon bonds (không có coupon → không có AI).</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Dirty (full) price</em> — thực tế thanh toán</div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd><b>Dirty price = Clean price + Accrued Interest</b>. Đây là số tiền <em>thực sự buyer trả</em> (settlement amount). Còn gọi là invoice price hoặc full price.</dd>
+        <dt>Accrued Interest (AI)</dt>
+        <dd>AI = Coupon × (t / T). t = số ngày từ coupon date gần nhất đến settlement date. T = tổng số ngày trong coupon period. Tính theo day-count convention của bond đó.</dd>
+        <dt>Ví dụ nhanh</dt>
+        <dd>Semi-annual $30 coupon, 45 ngày sau coupon date, period 30/360 → T = 180. AI = $30 × (45/180) = <em>$7.50</em>. Clean = $980 → dirty = $987.50.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
+  </div>
+</section>
+
+
+<!-- 10 · ACCRUED INTEREST FORMULA -->
+<section data-label="Accrued interest formula" class="slide">
+  <div class="run-header">
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
+    <span class="rule"></span>
+    <span>10 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Pricing · accrued interest</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Accrued interest</em> — công thức &amp; ví dụ.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Accrued Interest formula</span>
+    <div class="eq">
+      <span class="var">AI</span> =
+      <span class="var">C</span> ×
+      <span class="var">t / T</span>
+    </div>
+    <div class="note">
+      <b>AI</b> = Accrued Interest · <b>C</b> = Coupon per period = (Annual coupon rate × Face value) / m · <b>t</b> = ngày từ coupon date gần nhất đến settlement date · <b>T</b> = tổng số ngày trong coupon period · Cách tính t và T phụ thuộc vào <em>day-count convention</em> của bond.
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Full (dirty) price</span>
+    <div class="eq">
+      <span class="var">P<sub>full</sub></span> =
+      <span class="var">P<sub>flat</sub></span> +
+      <span class="var">AI</span>
+    </div>
+    <div class="note">
+      <b>Ví dụ số:</b> US corporate bond, coupon 8% annual semi-annual, par $1,000 → C = $40 mỗi 6 tháng. Settlement: 60 ngày sau coupon date. Day-count = 30/360 → T = 180.<br>
+      AI = $40 × (60/180) = $40 × 0.333 = <em>$13.33</em>.<br>
+      Clean price quoted = 101.50 → $1,015.00.<br>
+      <em>Dirty price = $1,015.00 + $13.33 = $1,028.33</em>. Đây là số tiền buyer thực trả tại settlement.
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
+  </div>
+</section>
+
+
+<!-- 11 · DAY-COUNT CONVENTIONS -->
+<section data-label="Day-count conventions" class="slide">
+  <div class="run-header">
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
+    <span class="rule"></span>
+    <span>11 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Conventions · day-count</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Day-count</em> conventions.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Day-count convention xác định cách tính <em>t</em> (số ngày đã qua) và <em>T</em> (tổng ngày trong period) để tính accrued interest. Khác nhau giữa các loại bond và thị trường.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">30/360</span>
+      <div>
+        <div class="t"><em class="hi">30/360 (Bond basis)</em></div>
+        <div class="d">Giả định mỗi tháng có <em>30 ngày</em>, mỗi năm có <em>360 ngày</em>. Mỗi coupon period (semi-annual) = 180 ngày. Dùng cho: <b>US corporate bonds, US agency bonds, EUR corporate bonds, munis</b>. Đơn giản, nhất quán, ít phụ thuộc lịch thực tế.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">Act/Act</span>
+      <div>
+        <div class="t"><em class="hi">Actual/Actual (ICMA)</em></div>
+        <div class="d">Dùng số ngày <em>thực tế</em> của cả t lẫn T. Ví dụ: coupon period Jan 15–Jul 15 = 181 ngày; tính t/181 thực tế. Dùng cho: <b>US Treasury bonds và notes, UK Gilts, EUR sovereign bonds</b>. Chính xác nhất về mặt kinh tế nhưng phức tạp hơn.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">Act/360</span>
+      <div>
+        <div class="t"><em class="hi">Actual/360 (Money market)</em></div>
+        <div class="d">Dùng số ngày <em>thực tế</em> cho t, nhưng chuẩn hóa T = <em>360 ngày</em>. Phổ biến cho <b>money market instruments</b>: US T-bills, commercial paper, LIBOR/SOFR, repos. Vì money market thường &lt; 1 năm, công thức đơn giản hóa tính lãi.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">Act/365</span>
+      <div>
+        <div class="t"><em class="hi">Actual/365 (Sterling)</em></div>
+        <div class="d">Dùng ngày thực tế / 365. Dùng cho một số <b>UK money market instruments</b> và một số EM bonds. Ít phổ biến hơn Actual/360 trong thực tế. CFA exam thường chỉ test 30/360 và Actual/Actual cho bond context.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § CFA exam tip: US Treasuries = Actual/Actual · US Corporate/Agency/Munis = 30/360 · Money market (T-bills, LIBOR/SOFR) = Actual/360. Đây là combination hay xuất hiện nhất trong exam.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
+  </div>
+</section>
+
+
+<!-- 12 · MATRIX PRICING OVERVIEW -->
+<section data-label="Matrix pricing" class="slide">
+  <div class="run-header">
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
+    <span class="rule"></span>
+    <span>12 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Pricing · inactive bonds</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Matrix pricing</em> — interpolation approach.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Nhiều bonds (đặc biệt corporate, muni) không giao dịch thường xuyên → không có quoted market price. Matrix pricing dùng <em>linear interpolation</em> từ comparable (benchmark) bonds để estimate yield, từ đó tính price.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">WHY</span>
+      <div>
+        <div class="t"><em class="hi">Khi nào cần matrix pricing?</em></div>
+        <div class="d">Bond inactive = no recent trade = không có reliable market price. Cần cho: <b>mark-to-market valuation</b> (portfolio NAV), <b>new issue pricing</b> (estimate fair yield cho bond sắp phát hành), <b>OTC quote estimation</b>, <b>regulatory reporting</b>. Phổ biến trong illiquid credit markets.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">HOW</span>
+      <div>
+        <div class="t"><em class="hi">Cách thực hiện</em></div>
+        <div class="d">1. Tìm <em>comparable bonds</em> từ cùng issuer hoặc same-credit-quality issuer — bonds đang active với known yields. 2. Chọn ít nhất 2 bonds: một có maturity &lt; target, một có maturity &gt; target. 3. <em>Interpolate linearly</em> giữa hai yields. 4. Áp dụng yield estimate để tính price qua PV formula.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">LIM</span>
+      <div>
+        <div class="t"><em class="hi">Limitations</em></div>
+        <div class="d">Giả định quan hệ yield-maturity <em>tuyến tính</em> — không chính xác hoàn toàn (yield curve thường convex). Comparable bonds phải thực sự comparable về credit quality, seniority, covenants. Spreads có thể differ giữa issues. Chỉ là estimate, không phải fair value chính xác.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CFA</span>
+      <div>
+        <div class="t"><em class="hi">CFA exam angle</em></div>
+        <div class="d">Matrix pricing thường xuất hiện trong context: (1) estimate yield cho bond inactive, (2) price new issue, (3) distinguish khỏi mark-to-market (dùng actual trade prices). Exam có thể cho bảng comparable bonds và yêu cầu interpolate yield.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
+  </div>
+</section>
+
+
+<!-- 13 · MATRIX PRICING — INTERPOLATION WORKED EXAMPLE -->
+<section data-label="Matrix pricing example" class="slide">
+  <div class="run-header">
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
+    <span class="rule"></span>
+    <span>13 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Matrix pricing · worked example</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Interpolate</em> yield for a 7-year inactive bond.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Setup</span>
+    <div class="note">
+      <b>Target bond:</b> XYZ Corp, 7-year maturity, 5% coupon, BBB-rated — inactive (no recent trade).<br>
+      <b>Comparable bonds (active, same issuer):</b><br>
+      · Bond A: 5-year, YTM = <em>4.80%</em><br>
+      · Bond B: 10-year, YTM = <em>5.40%</em>
+    </div>
+    <div class="eq" style="margin-top: 10px;">
+      <span class="var">YTM<sub>7yr</sub></span> =
+      <span class="var">YTM<sub>5yr</sub></span> +
+      <span class="var">[(7 − 5) / (10 − 5)]</span> ×
+      <span class="var">(YTM<sub>10yr</sub> − YTM<sub>5yr</sub>)</span>
+    </div>
+    <div class="note" style="margin-top: 10px;">
+      <b>Tính:</b> = 4.80% + [(2)/(5)] × (5.40% − 4.80%)<br>
+      = 4.80% + 0.40 × 0.60%<br>
+      = 4.80% + 0.24% = <em class="hi">5.04%</em>
+    </div>
+    <div class="note" style="margin-top: 8px;">
+      <b>Kết luận:</b> Estimated YTM = 5.04%. Từ đó dùng PV formula (N=7, r=5.04%, PMT=50, FV=1000) để tính price ≈ $997.77 (gần par vì coupon 5% ≈ YTM 5.04%). Matrix pricing đã cho yield estimate mà không cần actual trade.
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
+  </div>
+</section>
+
+
+<!-- 14 · QUOTED PRICE CONVENTIONS RECAP -->
+<section data-label="Quoted price conventions" class="slide">
+  <div class="run-header">
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
+    <span class="rule"></span>
+    <span>14 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Pricing · market conventions</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Quoted price <em class="hi">conventions</em> — recap.</h2>
   </div>
 
   <ol class="num-list tight" style="margin-top: 16px;">
     <li>
       <span>
-        <span class="step-title">Định nghĩa</span>
-        <span class="step-body">Key rate duration (KRD) tại tenor τ = % price change khi <em>chỉ</em> par yield tại τ shift 1%, các tenor khác giữ nguyên (non-parallel shift). Còn gọi là <em>partial duration</em> hoặc <em>rate duration</em>.</span>
+        <span class="step-title">Percentage of par — standard convention</span>
+        <span class="step-body">Hầu hết bonds được quoted là % of par. Par = 100. Giá 97.50 = 97.50% × $1,000 = $975. Giá 102.375 = $1,023.75 per $1,000 par. Trên Bloomberg: trường "Bid Price" = clean price % of par.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Tổng các KRDs = effective duration</span>
-        <span class="step-body">Σ KRD<sub>τ</sub> = D_Eff (parallel shift = sum of all key rate shifts). KRD decompose duration risk theo curve buckets (2y, 5y, 10y, 30y...).</span>
+        <span class="step-title">US Treasury — 32nds convention</span>
+        <span class="step-body">US Treasury bonds và notes được quoted theo <em>32nds of par</em>. Ví dụ: 99-16 = 99 và 16/32 = 99.50. 99-16+ = 99 và 16.5/32 = 99.515625. Lý do lịch sử: era trước khi thập phân hóa thị trường US.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Tại sao quan trọng</span>
-        <span class="step-body">Hai bond cùng D_Eff = 7 nhưng KRD profile khác nhau (bond A nặng tại 5y, bond B nặng tại 10y) sẽ react khác khi curve twist. Risk manager dùng KRD để hedge curve risk, không chỉ level risk.</span>
+        <span class="step-title">Accrued interest always added at settlement</span>
+        <span class="step-body">Dù quoted thế nào (% of par hay 32nds), <em>dirty price = quoted clean price + AI</em> tại settlement. Buyer luôn trả dirty price. Seller nhận dirty price. Clean price được dùng để quote vì stable hơn (không jump tại coupon dates).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Zero coupon bonds — special case</span>
+        <span class="step-body">Không có coupon → không có accrued interest → clean = dirty = full price. Quoted as deep discount: 60.00 = buy $1,000 par zero coupon bond for $600. Discount phản ánh toàn bộ return (imputed interest). US STRIPS là zero coupon US Treasuries.</span>
       </span>
     </li>
   </ol>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Key Rate</span>
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
   </div>
 </section>
 
 
-<!-- 19 · APPLICATIONS -->
-<section data-label="Applications" class="slide">
+<!-- 15 · PULL TO PAR & PRICE PATH -->
+<section data-label="Pull to par" class="slide">
   <div class="run-header">
-    <span>08.06 — Duration</span>
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
     <span class="rule"></span>
-    <span>19 / 34</span>
+    <span>15 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Applications · ALM &amp; immunization</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Practical <em class="hi">uses</em>.</h2>
+    <div class="eyebrow">Pricing dynamics · over time</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Pull to par</em> — price path đến maturity.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Nếu YTM không thay đổi, bond price sẽ từ từ converge về par value khi đến maturity — bất kể bond đang ở discount hay premium. Quá trình này gọi là <em>pull to par</em> (hay amortization of premium/discount).
+    </p>
   </div>
 
-  <div class="tenets-grid" style="margin-top: 16px;">
-    <div class="tenet">
-      <span class="n">IM</span>
-      <div>
-        <div class="t"><em class="hi">Immunization</em></div>
-        <div class="d">Match Macaulay duration of asset portfolio = duration of liability. Khi yield thay đổi, gain/loss từ price ≈ offset bởi reinvestment income → terminal wealth được lock in. Chuẩn cho pension, insurance.</div>
-      </div>
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Discount bond</em> — price increases to par</div>
+      <dl>
+        <dt>Cơ chế</dt>
+        <dd>Bond discount → mỗi period, PV của remaining cash flows tăng lên khi maturity gần hơn. Price tăng dần từ discount về $1,000 par.</dd>
+        <dt>Capital gain</dt>
+        <dd>Investor có <em>capital gain</em> = par − purchase price. Nhưng coupon thấp hơn YTM → total return vẫn = YTM (coupon return + capital gain = YTM).</dd>
+        <dt>Ví dụ</dt>
+        <dd>5Y 6% bond ở YTM 7%: year 0 = $958.42 → year 1 = $965.46 → year 2 = $973.46 → year 5 = $1,000.00. Price tăng dần mỗi năm.</dd>
+      </dl>
     </div>
-    <div class="tenet">
-      <span class="n">ALM</span>
-      <div>
-        <div class="t">Asset-Liability Matching</div>
-        <div class="d">Bank, insurer match D_assets = D_liabilities để giảm interest-rate risk của net worth. Duration gap = D_A − (L/A) × D_L. Gap = 0 → equity insulated khỏi parallel shifts.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">HG</span>
-      <div>
-        <div class="t">Hedging</div>
-        <div class="d">Trader hedge bond position bằng futures/swaps sao cho net PVBP = 0. Hedge ratio = PVBP_position / PVBP_hedge. DV01 neutral = first-order interest-rate hedge.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">RM</span>
-      <div>
-        <div class="t">Risk reporting</div>
-        <div class="d">Portfolio duration là single-number summary của interest-rate risk. KRD shows curve risk by tenor. Fund prospectus phải disclose duration → investor compare interest-rate sensitivity giữa funds.</div>
-      </div>
+    <div class="cc">
+      <div class="head"><em>Premium bond</em> — price decreases to par</div>
+      <dl>
+        <dt>Cơ chế</dt>
+        <dd>Bond premium → mỗi period, giá trị premium <em>amortized away</em>. Price giảm dần từ premium về $1,000 par.</dd>
+        <dt>Capital loss</dt>
+        <dd>Investor có <em>capital loss</em> = par − purchase price (&lt; 0). Nhưng coupon rất cao → tổng return vẫn = YTM (high coupon income − capital loss = YTM).</dd>
+        <dt>Tax note</dt>
+        <dd>Premium amortization có tax implications: IRS cho phép deduct amortized premium để offset coupon income. Discount bonds: discount accretes (OID rules). CFA không test tax detail nhưng concept quan trọng.</dd>
+      </dl>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Applications</span>
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
   </div>
 </section>
 
 
-<!-- 20 · TAKEAWAYS -->
-<section data-label="Takeaways" class="slide">
+<!-- 16 · SUMMARY: KEY RELATIONSHIPS TABLE -->
+<section data-label="Key relationships" class="slide">
   <div class="run-header">
-    <span>08.06 — Duration</span>
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
     <span class="rule"></span>
-    <span>20 / 34</span>
+    <span>16 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Recap · big picture</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
+    <div class="eyebrow">Module summary · quick reference</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Key relationships</em> — cheat sheet.</h2>
   </div>
 
-  <div class="tenets-grid" style="margin-top: 16px;">
-    <div class="tenet">
-      <span class="n">α</span>
-      <div>
-        <div class="t">Duration = time + sensitivity</div>
-        <div class="d">Macaulay = weighted-avg time đến CFs (years). Modified = D_Mac/(1+y) = sensitivity (%/1% Δy). Effective = numerical (P₋−P₊)/(2P₀Δy) cho bonds with options.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">β</span>
-      <div>
-        <div class="t">Money &amp; PVBP — dollar measures</div>
-        <div class="d">MoneyDur = D_Mod × Price. PVBP = MoneyDur × 0.0001 = $/bp. ΔP ≈ −D_Mod × Δy × P. First-order linear approximation; convexity adjusts higher-order.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">γ</span>
-      <div>
-        <div class="t">3 properties — long M, low C, low y → high D</div>
-        <div class="d">Maturity ↑ → D ↑. Coupon ↓ → D ↑ (zero-coupon: D_Mac = N). Yield ↓ → D ↑. Memorize 3 L's: Long maturity, Low coupon, Low yield = High duration.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">δ</span>
-      <div>
-        <div class="t">Portfolio &amp; key rate</div>
-        <div class="d">D_P = Σ w<sub>i</sub>D<sub>i</sub> (MV-weighted, parallel-shift assumption). Key rate duration decompose risk theo tenor để capture curve twist. Use cases: immunization, ALM, hedging, risk reporting.</div>
-      </div>
-    </div>
+  <div class="rule-box">
+    <span class="tag">§ Bond pricing relationships — CFA exam essentials</span>
+    <table style="width:100%; border-collapse:collapse; margin-top:10px; font-family: var(--mono); font-size: 19px;">
+      <thead>
+        <tr style="border-bottom: 2px solid var(--accent);">
+          <th style="text-align:left; padding: 6px 12px;">Coupon vs YTM</th>
+          <th style="text-align:left; padding: 6px 12px;">Bond type</th>
+          <th style="text-align:left; padding: 6px 12px;">Price vs Par</th>
+          <th style="text-align:left; padding: 6px 12px;">Price path (hold to maturity)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+          <td style="padding: 6px 12px;">Coupon <em>&gt;</em> YTM</td>
+          <td style="padding: 6px 12px;"><em>Premium</em></td>
+          <td style="padding: 6px 12px;">Price <em>&gt;</em> Par</td>
+          <td style="padding: 6px 12px;">Decreases → Par (capital loss)</td>
+        </tr>
+        <tr style="border-bottom: 1px solid rgba(0,0,0,0.08);">
+          <td style="padding: 6px 12px;">Coupon <em>=</em> YTM</td>
+          <td style="padding: 6px 12px;"><em>Par</em></td>
+          <td style="padding: 6px 12px;">Price <em>=</em> Par</td>
+          <td style="padding: 6px 12px;">Stays at Par (no capital G/L)</td>
+        </tr>
+        <tr>
+          <td style="padding: 6px 12px;">Coupon <em>&lt;</em> YTM</td>
+          <td style="padding: 6px 12px;"><em>Discount</em></td>
+          <td style="padding: 6px 12px;">Price <em>&lt;</em> Par</td>
+          <td style="padding: 6px 12px;">Increases → Par (capital gain)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Formulas to memorize</span>
+    <span style="font-family: var(--mono); font-size: 18px;">
+      P = C × [1−(1+r)<sup>−N</sup>] / r + F/(1+r)<sup>N</sup> ·
+      AI = C × t/T ·
+      P<sub>dirty</sub> = P<sub>clean</sub> + AI ·
+      YTM<sub>interp</sub> = YTM<sub>A</sub> + [(T<sub>target</sub>−T<sub>A</sub>)/(T<sub>B</sub>−T<sub>A</sub>)] × (YTM<sub>B</sub>−YTM<sub>A</sub>)
+    </span>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Recap</span>
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
   </div>
 </section>
 
 
-<!-- 21 · TRANSITION -->
-<section data-label="Practice begins" class="slide end-slide">
-  <div>
-    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
-    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+<!-- 17 · PRACTICE SECTION BREAK -->
+<section data-label="Practice" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PRACTICE</div>
+    <div class="n">3Q</div>
+    <div class="lbl">CFA-style questions</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Luyện tập · 3 câu</div>
+    <h2>Apply the <em>formulas</em>.</h2>
+    <ul class="toc">
+      <li class="active">Q1 · Compute bond price — 4-year annual coupon vs YTM (numerical)</li>
+      <li>Q2 · Clean vs dirty price — accrued interest calculation (numerical)</li>
+      <li>Q3 · Matrix pricing — interpolate yield from comparable bonds</li>
+    </ul>
   </div>
 </section>
 
 
-<!-- 22 · Q1 EN — Modified duration calc -->
+<!-- 18 · Q1 ORIGINAL — COMPUTE BOND PRICE -->
 <section data-label="Q1 Original" class="slide">
   <div class="run-header">
-    <span>08.06 — Duration</span>
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
     <span class="rule"></span>
-    <span>22 / 34</span>
+    <span>18 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Modified</em> duration calc.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Compute</em> bond price.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      An option-free corporate bond has a <strong>Macaulay duration of 7.20 years</strong> and is currently trading to yield <strong>6.00% (annual compounding)</strong>. The bond's full price is <strong>$1,050</strong>. If the yield to maturity rises by <strong>50 basis points</strong>, the <strong>approximate percentage change in price</strong> using modified duration alone is <em>closest to</em>:
+      An analyst is valuing a 4-year, 8% annual coupon bond with a face value of $1,000. The bond pays coupons annually. The current required yield to maturity (YTM) is 6%. Which of the following is <em>closest</em> to the bond's price?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">−3.40% (using Macaulay duration directly without scaling).</span></li>
-    <li><span class="lbl">B</span><span class="opt">−3.60% (correct adjustment via Modified duration = D_Mac / (1 + y)).</span></li>
-    <li><span class="lbl">C</span><span class="opt">+3.60% (modified duration applied with positive sign).</span></li>
+    <li><span class="lbl">A</span><span class="opt">$931.28 — bond trades at a discount because the coupon rate exceeds the YTM.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$1,069.30 — bond trades at a premium because the coupon rate of 8% exceeds the YTM of 6%.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$1,000.00 — bond trades at par because the difference between coupon rate and YTM is exactly 2%, which offsets over the 4-year horizon.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Q1 ORIGINAL</span>
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
   </div>
 </section>
 
 
-<!-- 23 · Q1 HINT -->
+<!-- 19 · Q1 HINT -->
 <section data-label="Q1 Hint" class="slide">
   <div class="run-header">
-    <span>08.06 — Duration</span>
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
     <span class="rule"></span>
-    <span>23 / 34</span>
+    <span>19 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">coupon vs YTM</em> relationship.</h2>
   </div>
   <div class="hint-card">
-    <span class="h-tag">§ Keywords</span>
-    <mark>Option-free</mark> → dùng Modified duration. <mark>Macaulay 7.20</mark> · YTM <mark>6%</mark> · <mark>Δy +50 bps</mark>. Cần %ΔP, KHÔNG phải $ΔP.
+    <span class="h-tag">§ Key insight</span>
+    Coupon rate (8%) <mark>&gt;</mark> YTM (6%) → bond must trade at <mark>premium</mark> (P &gt; $1,000). Loại A ngay lập tức.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">Convert Macaulay → Modified: <em>D_Mod = D_Mac / (1 + y) = 7.20 / 1.06 = 6.7925</em>. Đây là step quan trọng nhất.</span>
+      <span class="htxt">Coupon 8% &gt; YTM 6% → premium → Price &gt; $1,000. Loại A ($931 = discount) và C ($1,000 = par). Answer là B.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Apply approximation: <em>%ΔP ≈ −D_Mod × Δy = −6.7925 × 0.0050 = −0.033962</em> = <em>−3.40%</em>... nhưng wait, check option A.</span>
+      <span class="htxt">Kiểm tra B bằng tính toán: N=4, r=6%, PMT=80, FV=1000. PV = 80/1.06 + 80/1.06² + 80/1.06³ + 1080/1.06⁴ = 75.47 + 71.19 + 67.16 + 855.49 = <em>$1,069.31</em> ≈ $1,069.30 ✓.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Recompute carefully: 6.7925 × 0.005 = 0.033962 → −3.40%? Đáp án A giả không scale (dùng 7.20 × 0.005 = 0.036 → −3.60%) — đây là <em>trap</em>. Đáp án B claim −3.60% với scaling — sai dấu logic. Câu đúng: <em>−6.7925 × 0.50% = −3.40%</em> = <em>option A</em>. Re-read options carefully.</span>
+      <span class="htxt">C sai vì logic "difference offsets" không có cơ sở. Bond pricing dựa trên PV của từng cash flow riêng lẻ, không phải average difference. 2% spread không tự cancel ra qua thời gian.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Q1 HINT</span>
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
   </div>
 </section>
 
 
-<!-- 24 · Q1 Dịch đề -->
+<!-- 20 · Q1 DỊCH ĐỀ -->
 <section data-label="Q1 Dịch đề" class="slide">
   <div class="run-header">
-    <span>08.06 — Duration</span>
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
     <span class="rule"></span>
-    <span>24 / 34</span>
+    <span>20 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
@@ -882,128 +835,127 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một corporate bond không có embedded option (option-free) có <strong>Macaulay duration 7.20 năm</strong>, đang trade ở yield <strong>6.00% (compound annual)</strong>. Full price hiện tại $1,050. Nếu YTM tăng <strong>50 basis points</strong>, <strong>% thay đổi giá</strong> ước tính bằng modified duration <em>gần nhất</em> với:
+      Một analyst đang định giá bond kỳ hạn 4 năm, coupon 8% annual, mệnh giá $1,000. Bond trả coupon hàng năm. YTM hiện tại là 6%. Giá bond <em>gần nhất</em> với giá trị nào?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">−3.40% (đúng — dùng D_Mod sau khi scale: 7.20/1.06 × 0.50%).</span></li>
-    <li><span class="lbl">B</span><span class="opt">−3.60% (sai — dùng Macaulay trực tiếp không scale: 7.20 × 0.50%).</span></li>
-    <li><span class="lbl">C</span><span class="opt">+3.60% (sai — không scale + sai dấu).</span></li>
+    <li><span class="lbl">A</span><span class="opt">$931.28 — bond giao dịch ở mức discount vì coupon rate cao hơn YTM.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$1,069.30 — bond giao dịch ở mức premium vì coupon rate 8% vượt YTM 6%.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$1,000.00 — bond giao dịch ở par vì chênh lệch giữa coupon rate và YTM là đúng 2%, tự offset qua 4 năm.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Q1 VIỆT</span>
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
   </div>
 </section>
 
 
-<!-- 25 · Q1 EXPLANATION -->
+<!-- 21 · Q1 EXPLANATION -->
 <section data-label="Q1 Explanation" class="slide">
   <div class="run-header">
-    <span>08.06 — Duration</span>
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
     <span class="rule"></span>
-    <span>25 / 34</span>
+    <span>21 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — −3.40%.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $1,069.30 (premium bond).</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
-      <div class="rtag">✓ Correct — A</div>
-      <div class="rtext"><b>Step 1:</b> Convert Macaulay → Modified. <b>D_Mod</b> = D_Mac / (1 + y) = 7.20 / 1.06 = <b>6.7925</b>. <b>Step 2:</b> Apply linear approximation: <b>%ΔP</b> ≈ −D_Mod × Δy = −6.7925 × 0.0050 = −0.033962 ≈ <b>−3.40%</b>. Bond price drop khoảng 3.40% khi yield tăng 50 bps. Convert sang $: ΔP ≈ −0.034 × $1,050 ≈ −$35.66 → new price ≈ $1,014.34.</div>
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext"><b>Bước 1:</b> Coupon 8% &gt; YTM 6% → premium bond → P &gt; $1,000. <b>Bước 2 (tính chính xác):</b> N=4, r=6%, PMT=$80, FV=$1,000.<br>
+      PV = 80/1.06 + 80/1.06² + 80/1.06³ + 1080/1.06⁴<br>
+      = 75.472 + 71.200 + 67.169 + 855.449 = <em>$1,069.29 ≈ $1,069.30</em><br>
+      BA II+: N=4, I/Y=6, PMT=80, FV=1000 → CPT PV = −1,069.30 ✓</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — B</div>
-      <div class="rtext">−3.60% = 7.20 × 0.0050 = dùng <em>Macaulay</em> trực tiếp như sensitivity measure. Sai vì Macaulay đo <em>time</em>, không phải sensitivity. Phải scale bằng (1+y) để ra Modified. Đây là common trap — quên divide by (1+y).</div>
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">$931 là discount price — xảy ra khi coupon &lt; YTM (ví dụ coupon 6%, YTM 8%). Ở đây coupon 8% &gt; YTM 6% → nhất định là premium. Logic bị đảo ngược. Classic error: nhầm direction của discount/premium relationship.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">+3.60% sai 2 chỗ: (1) không scale Macaulay, (2) sai dấu — yield và price quan hệ <em>nghịch</em>, yield tăng → price <em>giảm</em>. Dấu trừ trong công thức %ΔP ≈ −D_Mod × Δy phản ánh quan hệ nghịch chiều này.</div>
+      <div class="rtext">Không có cơ chế "difference offsets" trong bond pricing. PV formula chiết khấu từng cash flow riêng lẻ theo lãi kép. Spread 2% không tự cancel ra. Bond chỉ bằng par khi coupon = YTM — đây là mathematical identity, không phải approximation.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Quy trình 2 bước cho bond option-free: <em>(1)</em> D_Mod = D_Mac / (1+y). <em>(2)</em> %ΔP ≈ −D_Mod × Δy. Luôn nhớ <em>scale</em> Macaulay trước khi multiply Δy. Sign convention: yield ↑ → price ↓ → dấu trừ. Δy theo decimal (0.0050 không phải 50).</div>
+    <div class="ttext"><em>Nhớ:</em> Coupon &gt; YTM → Premium · Coupon = YTM → Par · Coupon &lt; YTM → Discount. Để tính chính xác: dùng PV annuity formula hoặc BA II+ (N, I/Y, PMT, FV → CPT PV). Premium bond $1,069.30 sẽ pull to par $1,000 khi đến maturity qua amortization of premium.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — ANSWER Q1</span>
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
   </div>
 </section>
 
 
-<!-- 26 · Q2 EN — PVBP / Money duration -->
+<!-- 22 · Q2 ORIGINAL — ACCRUED INTEREST & DIRTY PRICE -->
 <section data-label="Q2 Original" class="slide">
   <div class="run-header">
-    <span>08.06 — Duration</span>
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
     <span class="rule"></span>
-    <span>26 / 34</span>
+    <span>22 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">PVBP</em> &amp; portfolio.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Accrued interest</em> &amp; dirty price.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      A fixed-income portfolio has a <strong>market value of $50,000,000</strong> and a <strong>modified duration of 5.40</strong>. The portfolio manager expects a parallel upward shift of <strong>20 basis points</strong> in the yield curve. The <strong>approximate dollar loss</strong> on the portfolio (using duration only) is <em>closest to</em>:
+      A US corporate bond has a 6% semi-annual coupon, $1,000 face value, and uses the <strong>30/360 day-count convention</strong>. The bond last paid a coupon on March 1. A trader executes a purchase with settlement on <strong>May 1</strong> (60 days after the last coupon date under 30/360). The bond's clean price is quoted at <strong>99.50</strong>. What is the <em>full (dirty) price</em> that the buyer will pay per $1,000 face value?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">$27,000 — using PVBP × 1 bp without scaling for the actual move.</span></li>
-    <li><span class="lbl">B</span><span class="opt">$540,000 — applying full money duration without scaling for Δy.</span></li>
-    <li><span class="lbl">C</span><span class="opt">$540,000 (loss) — Money duration × Δy = 5.40 × $50M × 0.0020.</span></li>
+    <li><span class="lbl">A</span><span class="opt">$995.00 — the buyer pays only the quoted clean price; accrued interest is not added at settlement for corporate bonds.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$1,005.00 — full price = clean price $995.00 + accrued interest $10.00, calculated as $30 × (60/180).</span></li>
+    <li><span class="lbl">C</span><span class="opt">$1,010.00 — full price = $995.00 + $15.00 accrued interest, calculated as $30 × (90/180).</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Q2 ORIGINAL</span>
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
   </div>
 </section>
 
 
-<!-- 27 · Q2 HINT -->
+<!-- 23 · Q2 HINT -->
 <section data-label="Q2 Hint" class="slide">
   <div class="run-header">
-    <span>08.06 — Duration</span>
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
     <span class="rule"></span>
-    <span>27 / 34</span>
+    <span>23 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">day count</em>.</h2>
   </div>
   <div class="hint-card">
-    <span class="h-tag">§ Keywords</span>
-    Portfolio <mark>$50M</mark> · D_Mod <mark>5.40</mark> · <mark>Δy +20 bps</mark> (parallel up). Yêu cầu <mark>$ loss</mark> (dollar amount, không phải %).
+    <span class="h-tag">§ Key formula</span>
+    Dirty Price = Clean Price + AI · AI = Coupon × <mark>t / T</mark>. Với 30/360: t = 60 ngày, T = <mark>180</mark> (semi-annual period = 6 × 30 = 180 ngày).
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">Compute Money duration: <em>MoneyDur = D_Mod × Price = 5.40 × $50,000,000 = $270,000,000</em>. Đây là $ change cho 100% Δy (theoretical).</span>
+      <span class="htxt">Semi-annual coupon 6%: C = $1,000 × 6% / 2 = <em>$30 per period</em>. 30/360 → semi-annual period T = 180 ngày.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Apply Δy: <em>ΔP ≈ −MoneyDur × Δy = −$270,000,000 × 0.0020 = −$540,000</em>. Loss $540k khi yield tăng 20 bps.</span>
+      <span class="htxt">t: từ March 1 đến May 1 theo 30/360: March 1→April 1 = 30 ngày, April 1→May 1 = 30 ngày → t = <em>60 ngày</em>. AI = $30 × (60/180) = <em>$10.00</em>.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Cross-check via PVBP: <em>PVBP = $270M × 0.0001 = $27,000/bp</em>. Δy = 20 bps → loss = 20 × $27,000 = <em>$540,000</em>. Khớp.</span>
+      <span class="htxt">Clean price 99.50 = $995.00. Dirty = $995.00 + $10.00 = <em>$1,005.00</em>. C bị sai: 90 ngày = May 31, không phải May 1. A sai: AI luôn được cộng vào cho mọi loại bond.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Q2 HINT</span>
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
   </div>
 </section>
 
 
-<!-- 28 · Q2 Dịch đề -->
+<!-- 24 · Q2 DỊCH ĐỀ -->
 <section data-label="Q2 Dịch đề" class="slide">
   <div class="run-header">
-    <span>08.06 — Duration</span>
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
     <span class="rule"></span>
-    <span>28 / 34</span>
+    <span>24 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
@@ -1012,128 +964,124 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một portfolio fixed income có <strong>market value $50,000,000</strong> và <strong>modified duration 5.40</strong>. Portfolio manager dự kiến yield curve dịch lên <strong>parallel 20 basis points</strong>. <strong>Khoản lỗ dollar ước tính</strong> trên portfolio (chỉ dùng duration) <em>gần nhất</em> với:
+      Một US corporate bond có coupon 6% semi-annual, mệnh giá $1,000, dùng quy ước <strong>30/360</strong>. Bond trả coupon gần nhất vào ngày 1 tháng 3. Trader thực hiện giao dịch với settlement vào <strong>ngày 1 tháng 5</strong> (60 ngày sau coupon date gần nhất theo 30/360). Clean price quoted là <strong>99.50</strong>. Buyer sẽ thực sự trả bao nhiêu trên mệnh giá $1,000?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">$27,000 — chỉ là PVBP × 1 bp, chưa scale cho 20 bps move.</span></li>
-    <li><span class="lbl">B</span><span class="opt">$540,000 — money duration applied without scaling Δy (sai cách giải thích nhưng đúng số).</span></li>
-    <li><span class="lbl">C</span><span class="opt">$540,000 (loss) — Money duration × Δy = 5.40 × $50M × 0.0020.</span></li>
+    <li><span class="lbl">A</span><span class="opt">$995.00 — buyer chỉ trả clean price; accrued interest không được cộng thêm khi settlement với corporate bonds.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$1,005.00 — full price = clean price $995.00 + accrued interest $10.00, tính theo $30 × (60/180).</span></li>
+    <li><span class="lbl">C</span><span class="opt">$1,010.00 — full price = $995.00 + $15.00 accrued interest, tính theo $30 × (90/180).</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Q2 VIỆT</span>
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
   </div>
 </section>
 
 
-<!-- 29 · Q2 EXPLANATION -->
+<!-- 25 · Q2 EXPLANATION -->
 <section data-label="Q2 Explanation" class="slide">
   <div class="run-header">
-    <span>08.06 — Duration</span>
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
     <span class="rule"></span>
-    <span>29 / 34</span>
+    <span>25 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — −$540,000.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Full price $1,005.00.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
-      <div class="rtag">✓ Correct — C</div>
-      <div class="rtext"><b>Step 1: MoneyDur</b> = D_Mod × Price = 5.40 × $50,000,000 = <b>$270,000,000</b>. <b>Step 2: ΔPrice</b> ≈ −MoneyDur × Δy = −$270,000,000 × 0.0020 = <b>−$540,000</b> (loss). <b>Cross-check</b>: PVBP = MoneyDur × 0.0001 = $27,000/bp. Total = 20 bps × $27,000 = $540,000 loss. Hai cách cho cùng kết quả vì PVBP chỉ là Money duration scaled to per-bp.</div>
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext"><b>Bước 1:</b> Coupon semi-annual = $1,000 × 6% / 2 = <em>$30</em>. <b>Bước 2:</b> 30/360 → T = 180 ngày. t = 60 ngày (March 1 → May 1: March = 30 ngày, April = 30 ngày). <b>Bước 3:</b> AI = $30 × (60/180) = <em>$10.00</em>. <b>Bước 4:</b> Clean price = 99.50% × $1,000 = $995.00. <b>Bước 5:</b> Dirty price = $995.00 + $10.00 = <em>$1,005.00</em>.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">$27,000 = chỉ là PVBP (loss per 1 bp move). Δy thực = 20 bps → phải multiply: 20 × $27,000 = $540,000. Common trap khi confused giữa PVBP (per bp) và total ΔPrice (cho move cụ thể).</div>
+      <div class="rtext">Sai hoàn toàn. Accrued interest LUÔN được cộng vào clean price khi settlement — cho tất cả bonds (corporate, sovereign, agency). Clean price chỉ là quoted convention, không phải settlement amount. Buyer PHẢI bồi hoàn accrued coupon cho seller vì seller đã "earned" coupon trong thời gian nắm giữ.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — B</div>
-      <div class="rtext">Số $540,000 trùng với đáp án đúng nhưng explanation "without scaling Δy" sai về mặt logic — Money duration BUỘC phải multiply với Δy mới ra ΔPrice. Đáp án C có cách giải thích chính xác hơn nên là answer chính thức.</div>
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">t = 90 ngày → settlement May 31, không phải May 1. Từ March 1 → May 1 theo 30/360 chỉ là 60 ngày (2 tháng × 30 = 60). AI đúng là $10, không phải $15. Dirty = $1,005, không phải $1,010.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Workflow $ loss: <em>MoneyDur = D_Mod × MV</em>, sau đó <em>ΔP ≈ −MoneyDur × Δy</em>. Hoặc dùng <em>PVBP shortcut</em>: PVBP = MoneyDur × 0.0001, rồi multiply by Δy in bps. Trader thường thinking "DV01 × bps" cho intuition; risk team thinking "MoneyDur × Δy" cho stress test. Δy luôn theo decimal (0.0020 cho 20 bps).</div>
+    <div class="ttext"><em>Dirty price = Clean price + AI</em> — luôn luôn cho mọi loại bond. <em>AI = Coupon × t/T</em>. 30/360: mỗi tháng = 30 ngày → semi-annual T = 180. Actual/Actual (US Treasuries): đếm ngày thực tế. Clean price ổn định hơn để quote (không jump tại coupon dates), nhưng buyer trả dirty price tại settlement.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — ANSWER Q2</span>
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
   </div>
 </section>
 
 
-<!-- 30 · Q3 EN — Effective duration -->
+<!-- 26 · Q3 ORIGINAL — MATRIX PRICING -->
 <section data-label="Q3 Original" class="slide">
   <div class="run-header">
-    <span>08.06 — Duration</span>
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
     <span class="rule"></span>
-    <span>30 / 34</span>
+    <span>26 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Effective</em> duration calc.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Matrix pricing</em> — interpolate yield.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      A <strong>callable corporate bond</strong> currently trades at a price of <strong>P₀ = $98.50</strong> per $100 par. An analyst uses an option-pricing model to reprice the bond after a parallel <strong>±25 bps</strong> shift in the benchmark curve, obtaining <strong>P₋ = $99.40</strong> (yields down 25 bps) and <strong>P₊ = $97.30</strong> (yields up 25 bps). The bond's <strong>effective duration</strong> is <em>closest to</em>:
+      A fixed income analyst needs to value an <strong>inactive</strong> BBB-rated corporate bond with <strong>6 years to maturity</strong>. No recent trade data exists. She identifies two actively traded bonds from the same issuer with similar seniority: Bond X (4-year maturity, YTM = 4.40%) and Bond Y (8-year maturity, YTM = 5.00%). Using <strong>linear interpolation (matrix pricing)</strong>, what is the estimated YTM for the 6-year bond?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">2.13 — using (P₋ − P₊) / (2 × P₀ × Δy) with Δy = 0.0025.</span></li>
-    <li><span class="lbl">B</span><span class="opt">4.27 — forgot the factor of 2 in the denominator.</span></li>
-    <li><span class="lbl">C</span><span class="opt">8.53 — used Δy = 0.0001 (1 bp) instead of 0.0025.</span></li>
+    <li><span class="lbl">A</span><span class="opt">4.70% — target 6-year is equidistant between 4-year and 8-year, so the interpolated YTM = midpoint of 4.40% and 5.00%.</span></li>
+    <li><span class="lbl">B</span><span class="opt">4.55% — interpolated at position (6−4)/(8−4) = 0.25, which gives 4.40% + 0.25 × 0.60% = 4.55%.</span></li>
+    <li><span class="lbl">C</span><span class="opt">4.85% — interpolated at position (6−4)/(8−4) = 0.50, giving 4.40% + 0.50 × 0.90% = 4.85%.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Q3 ORIGINAL</span>
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
   </div>
 </section>
 
 
-<!-- 31 · Q3 HINT -->
+<!-- 27 · Q3 HINT -->
 <section data-label="Q3 Hint" class="slide">
   <div class="run-header">
-    <span>08.06 — Duration</span>
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
     <span class="rule"></span>
-    <span>31 / 34</span>
+    <span>27 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">interpolation formula</em>.</h2>
   </div>
   <div class="hint-card">
-    <span class="h-tag">§ Keywords</span>
-    <mark>Callable</mark> bond → phải dùng <mark>Effective duration</mark> (không Modified). <mark>P₀ = 98.50</mark> · <mark>P₋ = 99.40</mark> · <mark>P₊ = 97.30</mark> · <mark>Δy = 25 bps = 0.0025</mark>.
+    <span class="h-tag">§ Interpolation logic</span>
+    YTM<sub>target</sub> = YTM<sub>A</sub> + <mark>[(T<sub>target</sub> − T<sub>A</sub>) / (T<sub>B</sub> − T<sub>A</sub>)]</mark> × (YTM<sub>B</sub> − YTM<sub>A</sub>)
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">Memorize formula: <em>D_Eff = (P₋ − P₊) / (2 × P₀ × Δy)</em>. Δy là <em>parallel shift</em> mỗi chiều, không phải total range.</span>
+      <span class="htxt">Bond X = 4-year (T<sub>A</sub>=4, YTM<sub>A</sub>=4.40%). Bond Y = 8-year (T<sub>B</sub>=8, YTM<sub>B</sub>=5.00%). Target = 6-year. Ratio = (6−4)/(8−4) = 2/4 = <em>0.50</em>. Spread = 5.00%−4.40% = <em>0.60%</em>.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Compute numerator: <em>P₋ − P₊ = 99.40 − 97.30 = 2.10</em>. Lưu ý dấu — P₋ &gt; P₊ vì yield giảm thì price tăng.</span>
+      <span class="htxt">YTM<sub>6yr</sub> = 4.40% + 0.50 × 0.60% = 4.40% + 0.30% = <em>4.70%</em>. Đây cũng là midpoint vì 6 nằm giữa 4 và 8 (equidistant).</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Compute denominator: <em>2 × 98.50 × 0.0025 = 0.4925</em>. Final: <em>D_Eff = 2.10 / 0.4925 ≈ 4.27</em>... nhưng wait, double-check answer A says 2.13 = half of 4.27. Recompute: 2.10 / 0.4925 = 4.264 ≈ 4.27. Đáp án B chính xác. Đáp án A có thể là forgot factor 2 in numerator (chia thêm 2).</span>
+      <span class="htxt">B sai: 0.25 → tính như 2/8 = 0.25 (sai denominator). C sai: dùng spread 0.90% (sai — đúng là 5.00−4.40 = 0.60%). Chỉ A đúng.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Q3 HINT</span>
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
   </div>
 </section>
 
 
-<!-- 32 · Q3 Dịch đề -->
+<!-- 28 · Q3 DỊCH ĐỀ -->
 <section data-label="Q3 Dịch đề" class="slide">
   <div class="run-header">
-    <span>08.06 — Duration</span>
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
     <span class="rule"></span>
-    <span>32 / 34</span>
+    <span>28 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
@@ -1142,66 +1090,67 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một <strong>callable corporate bond</strong> trade ở giá <strong>P₀ = $98.50</strong> trên $100 par. Analyst dùng option-pricing model reprice bond sau parallel <strong>±25 bps</strong> shift của benchmark curve, được <strong>P₋ = $99.40</strong> (yield giảm 25 bps) và <strong>P₊ = $97.30</strong> (yield tăng 25 bps). <strong>Effective duration</strong> của bond <em>gần nhất</em> với:
+      Một analyst cần định giá bond corporate BBB-rated <strong>không active</strong> với kỳ hạn còn lại <strong>6 năm</strong>. Không có dữ liệu giao dịch gần đây. Cô ấy tìm được 2 bonds từ cùng issuer đang giao dịch active: Bond X (4 năm, YTM = 4.40%) và Bond Y (8 năm, YTM = 5.00%). Sử dụng <strong>matrix pricing (linear interpolation)</strong>, YTM ước tính cho bond 6 năm là bao nhiêu?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">2.13 — chia đôi nhầm (extra factor 2 trong numerator).</span></li>
-    <li><span class="lbl">B</span><span class="opt">4.27 — đúng: (P₋ − P₊) / (2 × P₀ × Δy) với Δy = 0.0025.</span></li>
-    <li><span class="lbl">C</span><span class="opt">8.53 — sai khi dùng Δy = 0.0001 (1 bp) thay vì 0.0025.</span></li>
+    <li><span class="lbl">A</span><span class="opt">4.70% — target 6 năm nằm chính giữa 4 năm và 8 năm, YTM interpolated = midpoint của 4.40% và 5.00%.</span></li>
+    <li><span class="lbl">B</span><span class="opt">4.55% — interpolated tại vị trí (6−4)/(8−4) = 0.25, cho 4.40% + 0.25 × 0.60% = 4.55%.</span></li>
+    <li><span class="lbl">C</span><span class="opt">4.85% — interpolated tại vị trí (6−4)/(8−4) = 0.50, cho 4.40% + 0.50 × 0.90% = 4.85%.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — Q3 VIỆT</span>
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
   </div>
 </section>
 
 
-<!-- 33 · Q3 EXPLANATION -->
+<!-- 29 · Q3 EXPLANATION -->
 <section data-label="Q3 Explanation" class="slide">
   <div class="run-header">
-    <span>08.06 — Duration</span>
+    <span>08.06 — Bond Valuation: Prices and Yields</span>
     <span class="rule"></span>
-    <span>33 / 34</span>
+    <span>29 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 4.27.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — Estimated YTM = 4.70%.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
-      <div class="rtag">✓ Correct — B</div>
-      <div class="rtext"><b>Step 1: Numerator</b> = P₋ − P₊ = 99.40 − 97.30 = <b>2.10</b>. <b>Step 2: Denominator</b> = 2 × P₀ × Δy = 2 × 98.50 × 0.0025 = <b>0.4925</b>. <b>Step 3: D_Eff</b> = 2.10 / 0.4925 ≈ <b>4.264 ≈ 4.27</b>. Bond callable → đúng phải dùng Effective duration (không Modified) vì call option làm CFs phụ thuộc yield. Interpretation: bond price thay đổi ~4.27% per 1% parallel curve shift.</div>
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext"><b>Matrix pricing formula:</b> YTM<sub>6yr</sub> = YTM<sub>A</sub> + [(T<sub>target</sub>−T<sub>A</sub>) / (T<sub>B</sub>−T<sub>A</sub>)] × (YTM<sub>B</sub>−YTM<sub>A</sub>)<br>
+      = 4.40% + [(6−4) / (8−4)] × (5.00%−4.40%)<br>
+      = 4.40% + [2/4] × 0.60%<br>
+      = 4.40% + 0.50 × 0.60% = 4.40% + 0.30% = <em>4.70%</em>.<br>
+      Target 6-year nằm chính giữa 4-year và 8-year (equidistant: 6−4=2, 8−6=2) → interpolated YTM = midpoint của hai yields. (4.40%+5.00%)/2 = 4.70% ✓.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">2.13 = 4.27 / 2 — sai khi cho thêm factor 2 vào numerator (nhầm với formula của convexity hay average price calc). Formula chuẩn: numerator chỉ là (P₋ − P₊), <em>không</em> divide by 2 ở numerator. Factor 2 chỉ xuất hiện ở denominator.</div>
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Ratio sai: đúng là (6−4)/(8−4) = 2/4 = 0.50, không phải 0.25. Để đạt 0.25, phải dùng 2/8 (sai denominator — đáng lẽ là T<sub>B</sub>−T<sub>A</sub>=4, không phải T<sub>B</sub>=8). Lỗi hay gặp: chia cho maturity tuyệt đối thay vì khoảng cách giữa hai benchmarks.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">8.53 ≈ 2.10 / (2 × 98.50 × 0.000125) — sai khi nhầm Δy. Δy phải là <em>parallel shift mỗi chiều</em> (25 bps = 0.0025), không phải half of that. Common error: confused giữa "Δy as in 1 bp" với "Δy as in the actual shift used".</div>
+      <div class="rtext">Ratio 0.50 đúng, nhưng spread sai: YTM<sub>B</sub>−YTM<sub>A</sub> = 5.00%−4.40% = 0.60%, không phải 0.90%. 0.90% có thể bị nhầm từ việc cộng thêm số khác. Kết quả 4.85% = 4.40% + 0.50×0.90% — wrong spread input.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Effective duration formula: <em>D_Eff = (P₋ − P₊) / (2 × P₀ × Δy)</em>. P₋ &gt; P₊ vì yield down → price up. Δy là <em>parallel shift size</em> (decimal, vd 0.0025 cho 25 bps). Trigger để dùng Effective: bond có <em>callable, putable, MBS, convertible, FRN</em>. Bond option-free dùng Modified.</div>
+    <div class="ttext"><em>Matrix pricing:</em> YTM<sub>target</sub> = YTM<sub>A</sub> + [(T<sub>t</sub>−T<sub>A</sub>)/(T<sub>B</sub>−T<sub>A</sub>)] × (YTM<sub>B</sub>−YTM<sub>A</sub>). Hai lỗi phổ biến: (1) sai denominator — luôn dùng (T<sub>B</sub>−T<sub>A</sub>), không phải T<sub>B</sub>; (2) sai spread — kiểm tra lại YTM<sub>B</sub>−YTM<sub>A</sub>. Sau khi có yield estimate → áp vào PV formula để tính price.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.06 — ANSWER Q3</span>
+    <span class="footer-topic">Fixed Income · 08.06 — Bond Valuation: Prices and Yields</span>
   </div>
 </section>
 
 
-<!-- 34 · END -->
+<!-- 30 · END -->
 <section data-label="End" class="slide end-slide">
   <div>
-    <h1>08.06 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
-    <div class="hint">Tiếp theo · Lesson 08.07 — Convexity &amp; Yield Curve Risk</div>
+    <h1>08.06 <em style="font-style: normal; opacity: 0.55;">&#10003;</em></h1>
+    <div class="hint">Tiếp theo · Lesson 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</div>
   </div>
 </section>
 
 </deck-stage>
-
 </body>
 </html>

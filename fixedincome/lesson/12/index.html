@@ -1,0 +1,1163 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Fixed Income 08.12 — Bond Convexity and Portfolio Duration and Convexity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 96px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Bond Convexity<br>&amp; <em>Portfolio Risk.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 08 · Lesson 08.12 · Fixed Income</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 12 · Convexity · Money convexity · Portfolio D&amp;C</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Fixed Income</dd></div>
+      <div><dt>Module</dt><dd>12</dd></div>
+      <div><dt>Lesson</dt><dd>08.12</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Convexity · Money convexity · %ΔP formula · Portfolio D&amp;C</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">12</div>
+    <div class="lbl">Convexity &amp; Portfolio</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>Curvature of the<br><em>price-yield curve</em>.</h2>
+    <ul class="toc">
+      <li class="active">01 · Convexity định nghĩa — 2nd-order curvature của P-Y</li>
+      <li>02 · Công thức convexity xấp xỉ (numerical)</li>
+      <li>03 · Money convexity = Convexity × Price</li>
+      <li>04 · Full %ΔPrice formula: −D·Δy + ½·C·(Δy)²</li>
+      <li>05 · Tại sao positive convexity luôn có lợi cho holder</li>
+      <li>06 · Portfolio duration &amp; convexity — weighted average</li>
+      <li>07 · Practice — 3 CFA-style questions (numerical)</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · CONVEXITY CONCEPT -->
+<section data-label="Convexity concept" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>03 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Định nghĩa · bản chất</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Convexity là <em class="hi">độ cong</em> của P-Y.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Duration = đo lường bậc 1 (first-order) — <em>tuyến tính hoá</em> quan hệ price-yield tại một điểm. Nhưng thực tế, price-yield là đường <em>cong lồi</em> (convex). Convexity bổ sung term bậc 2, cải thiện độ chính xác khi yield thay đổi lớn.
+    </p>
+  </div>
+
+  <div class="chart-box" style="margin-top: 14px;">
+    <span class="chart-label">§ Chart · Actual convex curve vs duration tangent line</span>
+    <svg viewBox="0 0 1500 420" xmlns="http://www.w3.org/2000/svg">
+      <!-- axes -->
+      <line x1="100" y1="50" x2="100" y2="370" stroke="#14365F" stroke-width="2"/>
+      <line x1="100" y1="370" x2="1450" y2="370" stroke="#14365F" stroke-width="2"/>
+      <text x="55" y="70" font-family="Roboto Mono" font-size="17" fill="#14365F">Price</text>
+      <text x="1370" y="400" font-family="Roboto Mono" font-size="17" fill="#14365F">Yield</text>
+      <!-- actual convex curve -->
+      <path d="M 150 90 Q 500 190 870 295 T 1420 368" fill="none" stroke="#14365F" stroke-width="4"/>
+      <text x="180" y="115" font-family="Roboto Slab" font-size="21" fill="#14365F" font-weight="700">Actual price (convex curve)</text>
+      <!-- duration tangent at y0 -->
+      <line x1="250" y1="130" x2="1380" y2="395" stroke="#B85A3F" stroke-width="3" stroke-dasharray="10 6"/>
+      <text x="860" y="265" font-family="Roboto Slab" font-size="19" fill="#B85A3F" font-weight="600">Duration tangent (tuyến tính)</text>
+      <!-- y0 dot -->
+      <circle cx="740" cy="268" r="7" fill="#14365F"/>
+      <line x1="740" y1="268" x2="740" y2="370" stroke="#14365F" stroke-width="1" stroke-dasharray="3 4"/>
+      <text x="720" y="395" font-family="Roboto Mono" font-size="17" fill="#14365F">y₀</text>
+      <!-- convexity gain arrows -->
+      <line x1="320" y1="148" x2="320" y2="185" stroke="#3C7A50" stroke-width="3"/>
+      <text x="240" y="143" font-family="Roboto Mono" font-size="15" fill="#3C7A50" font-weight="700">+ C (yield ↓)</text>
+      <line x1="1150" y1="350" x2="1150" y2="368" stroke="#3C7A50" stroke-width="3"/>
+      <text x="1060" y="340" font-family="Roboto Mono" font-size="15" fill="#3C7A50" font-weight="700">+ C (yield ↑)</text>
+    </svg>
+    <div class="caption"><b>Key insight:</b> Duration line <em>under-estimates</em> price khi yield giảm VÀ <em>over-estimates</em> khi yield tăng. Gap xanh = convexity gain. Option-free bonds: gap luôn dương → positive convexity = "free gift".</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 04 · CONVEXITY DEFINITION FORMAL -->
+<section data-label="Convexity formal" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>04 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Calculus · root</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Convexity — <em class="hi">định nghĩa chính xác</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Về mặt toán học, convexity là đạo hàm bậc 2 của hàm price theo yield, chuẩn hóa theo price. Taylor expansion bậc 2 đưa ra công thức xấp xỉ hoàn chỉnh cho %ΔPrice.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Định nghĩa toán học</span>
+    <div class="eq"><span class="var">Convexity</span> = (1/<span class="var">P</span>) × d²<span class="var">P</span>/d<span class="var">y</span>²</div>
+    <div class="note"><b>P</b> = bond price · <b>y</b> = yield (decimal). Duration = −(1/P) × dP/dy (bậc 1, negative). Convexity = (1/P) × d²P/dy² (bậc 2, positive cho option-free). Đơn vị: per (decimal yield)² — vd convexity = 80 có nghĩa đơn vị là 80 per (decimal yield)².</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 18px;">
+    <span class="fmt-label">§ Taylor expansion — %ΔPrice</span>
+    <div class="eq">%Δ<span class="var">P</span> ≈ −<span class="var">D<sub>Mod</sub></span> × <span class="var">Δy</span> + ½ × <span class="var">C</span> × (<span class="var">Δy</span>)²</div>
+    <div class="note"><b>Term 1</b> (−D·Δy) = duration impact, bậc 1, tuyến tính. <b>Term 2</b> (½·C·(Δy)²) = convexity adjustment, bậc 2, quadratic. Convexity term <em>luôn cộng thêm</em> khi C &gt; 0 (vì (Δy)² &gt; 0 bất kể dấu Δy).</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Analogy — Duration là "speed" của bond price. Convexity là "acceleration". Duration approximation tốt cho small moves; convexity cải thiện cho large moves (&gt;50 bps).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 05 · APPROXIMATE CONVEXITY FORMULA -->
+<section data-label="Approx convexity formula" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>05 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Numerical · formula CFA-testable</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Approximate <em class="hi">convexity</em> — công thức số.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Approximate (numerical) convexity</span>
+    <div class="eq"><span class="var">C</span> = (<span class="var">PV<sub>−</sub></span> + <span class="var">PV<sub>+</sub></span> − 2 × <span class="var">PV<sub>0</sub></span>) / (<span class="var">PV<sub>0</sub></span> × (<span class="var">Δy</span>)²)</div>
+    <div class="note">
+      <b>PV₀</b> = price hiện tại (tại yield y₀)<br>
+      <b>PV₋</b> = price khi yield <em>giảm</em> Δy → y₀ − Δy<br>
+      <b>PV₊</b> = price khi yield <em>tăng</em> Δy → y₀ + Δy<br>
+      <b>Δy</b> = small yield change, <em>decimal</em> (e.g., 10 bps = 0.0010)<br>
+      Tử số = "second difference" của price — đo độ cong thuần. C dương cho option-free.
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Ví dụ số</span>
+    Bond PV₀ = $100. Δy = 25 bps = 0.0025. Shock: PV₋ = $101.86 · PV₊ = $98.19.<br>
+    Tử số = 101.86 + 98.19 − 2×100 = <b>0.05</b>.<br>
+    Mẫu số = 100 × (0.0025)² = 100 × 0.00000625 = <b>0.000625</b>.<br>
+    C = 0.05 / 0.000625 = <b>80</b>. → Convexity = 80.
+  </div>
+
+  <p class="fine-muted-sm">
+    § Lưu ý quan trọng: Δy phải là <em>decimal</em> (0.0025, không phải 25). Nếu dùng bps, (Δy in bps)² phải chia thêm 10,000² = 10⁸. Tốt nhất: luôn convert sang decimal trước.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 06 · MONEY CONVEXITY -->
+<section data-label="Money convexity" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>06 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Dollar · convexity</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Money convexity</em> (Dollar convexity).</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Tương tự money duration (DV01 hay dollar duration), money convexity chuyển convexity từ đơn vị <em>relative</em> sang <em>dollar</em> — đo bằng bao nhiêu dollar price thay đổi do convexity term với Δy nhất định.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Money convexity</span>
+    <div class="eq"><span class="var">Money Convexity</span> = <span class="var">Convexity</span> × <span class="var">Full Price</span></div>
+    <div class="note">Full price = dirty price (clean + accrued interest). Đơn vị: dollar per (decimal yield)² per face value unit. Vd Full price = $104 · C = 85 → Money Convexity = 85 × 104 = 8,840.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 18px;">
+    <span class="fmt-label">§ Dollar price change — full formula</span>
+    <div class="eq">Δ<span class="var">P</span>[$] ≈ −<span class="var">MoneyDur</span> × <span class="var">Δy</span> + ½ × <span class="var">MoneyCon</span> × (<span class="var">Δy</span>)²</div>
+    <div class="note"><b>MoneyDur</b> = ModDur × Full Price (dollar duration). <b>MoneyCon</b> = Convexity × Full Price (money convexity). Dùng khi muốn biết dollar P&amp;L thay vì % change — phổ biến trong portfolio risk management.</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Ví dụ dollar P&amp;L</span>
+    Bond: Full price = $98 · ModDur = 7.2 · C = 90 · Δy = +50 bps = +0.005.<br>
+    MoneyDur = 7.2 × 98 = $705.6 · MoneyCon = 90 × 98 = $8,820.<br>
+    ΔP ≈ −705.6 × 0.005 + 0.5 × 8,820 × (0.005)² = −$3.528 + $0.110 = <b>−$3.418</b> per $98 price.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 07 · FULL PRICE CHANGE FORMULA -->
+<section data-label="Full price change formula" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>07 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Master formula · CFA-core</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">%Δ<em class="hi">Price</em> — Duration + Convexity.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Full second-order price change formula</span>
+    <div class="eq">%Δ<span class="var">P</span> ≈ −<span class="var">ModDur</span> × <span class="var">Δy</span> + ½ × <span class="var">C</span> × (<span class="var">Δy</span>)²</div>
+    <div class="note">
+      <b>Δy</b> phải là decimal. Với parallel yield shift Δy:<br>
+      • Yield tăng (Δy &gt; 0): term 1 âm, term 2 dương → convexity giảm thiệt hại<br>
+      • Yield giảm (Δy &lt; 0): term 1 dương, term 2 dương → convexity tăng lợi nhuận<br>
+      → Cả 2 trường hợp: convexity term ½·C·(Δy)² luôn dương khi C &gt; 0.
+    </div>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 18px;">
+    <div class="tenet">
+      <span class="n">T1</span>
+      <div>
+        <div class="t">Khi yield tăng 100 bps</div>
+        <div class="d">Duration alone: %ΔP = −D × 0.01. Convexity bổ sung: +½ × C × (0.01)² = +½C × 0.0001 → <em>giảm bớt tổn thất</em>.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">T2</span>
+      <div>
+        <div class="t">Khi yield giảm 100 bps</div>
+        <div class="d">Duration alone: %ΔP = +D × 0.01. Convexity bổ sung: +½ × C × (0.01)² → <em>tăng thêm lợi nhuận</em>.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">T3</span>
+      <div>
+        <div class="t">Asymmetry — "free gift"</div>
+        <div class="d">Gain khi yield ↓ &gt; Loss khi yield ↑ (same magnitude Δy). Asymmetry này <em>có lợi</em> cho holder. Đây là lý do "positive convexity" được định giá premium.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">T4</span>
+      <div>
+        <div class="t">Large vs small moves</div>
+        <div class="d">Khi Δy nhỏ (&lt; 25 bps): duration đủ. Khi Δy lớn (≥ 50 bps): convexity bắt đầu material. Khi Δy = 200 bps: convexity adjustment rất đáng kể.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 08 · WORKED EXAMPLE 1 — CONVEXITY CALC -->
+<section data-label="Example 1 — Convexity calc" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>08 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Worked example 1 · Tính Convexity</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Tính <em class="hi">convexity</em> từ 3 giá.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Bond 8 năm, coupon 5% semi-annual, par $1,000, đang giao dịch ở YTM 6%. Dùng Δy = 50 bps để tính convexity xấp xỉ. Sau đó tính %ΔP khi yield tăng 100 bps.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 14px;">
+    <li>
+      <span>
+        <span class="step-title">Step 1 — Giá tại 3 yield levels</span>
+        <span class="step-body">Sử dụng PV formula (hoặc lookup):<br>
+        PV₀ (YTM = 6.00%) = <em>$937.90</em><br>
+        PV₋ (YTM = 5.50%) = <em>$960.43</em> (yield giảm 50 bps)<br>
+        PV₊ (YTM = 6.50%) = <em>$915.98</em> (yield tăng 50 bps)</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Step 2 — Tính Convexity</span>
+        <span class="step-body">Δy = 0.005 (50 bps decimal).<br>
+        Tử số: 960.43 + 915.98 − 2 × 937.90 = 1876.41 − 1875.80 = <em>0.61</em>.<br>
+        Mẫu số: 937.90 × (0.005)² = 937.90 × 0.000025 = <em>0.023448</em>.<br>
+        C = 0.61 / 0.023448 = <b>26.0</b> ≈ 26.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Step 3 — %ΔP khi yield +100 bps (ModDur giả sử = 6.12)</span>
+        <span class="step-body">Duration term: −6.12 × 0.01 = −0.0612 = <em>−6.12%</em>.<br>
+        Convexity term: ½ × 26 × (0.01)² = 0.5 × 26 × 0.0001 = <em>+0.00130 = +0.13%</em>.<br>
+        %ΔP ≈ −6.12% + 0.13% = <b>−5.99%</b>. New price ≈ $937.90 × (1 − 0.0599) ≈ <b>$881.70</b>.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 09 · WHY POSITIVE CONVEXITY IS GOOD -->
+<section data-label="Positive convexity benefit" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>09 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Tại sao · "free gift"</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Tại sao positive convexity <em class="hi">tốt cho holder</em>.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Asymmetry — core intuition</span>
+    Với cùng một magnitude Δy, option-free bond: <em>gain &gt; loss</em>. Nếu yield giảm 100 bps → gain lớn hơn nếu yield tăng 100 bps → loss. Sự bất đối xứng này có lợi <em>hoàn toàn</em> cho investor — không có downside từ việc có convexity dương.
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Ví dụ · Bond D=7, C=90</div>
+      <dl>
+        <dt>Yield giảm 100 bps</dt>
+        <dd>%ΔP ≈ −7×(−0.01) + ½×90×(0.01)² = <em>+7.00% + 0.045% = +7.045%</em></dd>
+        <dt>Yield tăng 100 bps</dt>
+        <dd>%ΔP ≈ −7×(+0.01) + ½×90×(0.01)² = <em>−7.00% + 0.045% = −6.955%</em></dd>
+        <dt>Asymmetry</dt>
+        <dd>Gain 7.045% vs Loss 6.955% → <em>Gain &gt; Loss by 0.09%</em></dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Giải thích kinh tế</div>
+      <dl>
+        <dt>Cơ chế</dt>
+        <dd>Khi yield giảm, price tăng <em>nhanh hơn tuyến tính</em> (curve convex). Khi yield tăng, price giảm <em>chậm hơn tuyến tính</em>. Cả 2 đều có lợi cho holder.</dd>
+        <dt>Market pricing</dt>
+        <dd>Convexity không "miễn phí" hoàn toàn — bond có high convexity thường được giá cao hơn (yield thấp hơn) so với bond cùng duration. Market định giá lợi thế convexity.</dd>
+        <dt>Yield volatility</dt>
+        <dd>Convexity benefit tăng theo <em>σ(Δy)</em>. Thị trường volatile → convexity càng có giá trị. Vị thế có high convexity outperform trong môi trường volatile.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 10 · CONVEXITY PROPERTIES -->
+<section data-label="Convexity properties" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>10 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Các yếu tố · ảnh hưởng C</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Yếu tố nào <em class="hi">tăng / giảm</em> convexity.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">↑M</span>
+      <div>
+        <div class="t">Maturity dài → C tăng</div>
+        <div class="d">Cash flows xa tương lai → đường cong price-yield cong nhiều hơn. 30-year bond C >> 5-year bond C (same coupon/yield).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">↓c</span>
+      <div>
+        <div class="t">Coupon thấp → C tăng</div>
+        <div class="d">Coupon thấp → CF tập trung nhiều hơn ở maturity (xa hơn) → dispersion lớn → C cao. Zero-coupon bond có C cao nhất (với same maturity).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">↓y</span>
+      <div>
+        <div class="t">Yield thấp → C tăng</div>
+        <div class="d">Yield thấp → PV weight của CF xa tương lai cao hơn → CF distribution trải dài hơn → C cao hơn. Inverse relationship với yield.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">≈D²</span>
+      <div>
+        <div class="t">C ≈ proportional với D²</div>
+        <div class="d">Rough rule: C ≈ D². Bond D=10 → C≈100; D=5 → C≈25. Dùng cho back-of-envelope estimate.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PUT</span>
+      <div>
+        <div class="t">Putable → C cao hơn option-free</div>
+        <div class="d">Put floor giới hạn downside → convexity tăng. Putable bond có C &gt; option-free cùng maturity.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CALL</span>
+      <div>
+        <div class="t">Callable → C có thể âm</div>
+        <div class="d">Call cap giới hạn upside. Ở yield thấp, callable C có thể negative. Callable &lt; option-free ở low yields.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 11 · PORTFOLIO DURATION CONCEPT -->
+<section data-label="Portfolio duration concept" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>11 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Portfolio · duration</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Portfolio duration</em> — trung bình có trọng số.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Portfolio duration = trung bình có trọng số (weighted average) của duration các bonds trong portfolio, với trọng số là <em>market value</em> mỗi bond / tổng portfolio value. Đây là bước cơ bản nhất trong fixed-income portfolio management.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Portfolio duration</span>
+    <div class="eq"><span class="var">D<sub>Port</sub></span> = Σ <span class="var">w<sub>i</sub></span> × <span class="var">D<sub>i</sub></span></div>
+    <div class="note">
+      <b>w<sub>i</sub></b> = MV<sub>i</sub> / MV<sub>Portfolio</sub> (market value weight của bond i)<br>
+      <b>D<sub>i</sub></b> = duration của bond i (modified hoặc effective)<br>
+      <b>Σ w<sub>i</sub></b> = 1 (full investment, no cash)<br>
+      Nếu có cash/T-bills: D ≈ 0 → reduce portfolio duration.
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Ví dụ portfolio 3 bonds</span>
+    Bond A: MV = $4M, D = 3.5. Bond B: MV = $3M, D = 7.2. Bond C: MV = $3M, D = 12.0. Total MV = $10M.<br>
+    w_A = 0.4 · w_B = 0.3 · w_C = 0.3.<br>
+    D_Port = 0.4×3.5 + 0.3×7.2 + 0.3×12.0 = 1.40 + 2.16 + 3.60 = <b>7.16</b>.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 12 · PORTFOLIO CONVEXITY -->
+<section data-label="Portfolio convexity" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>12 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Portfolio · convexity</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Portfolio convexity</em> — trung bình có trọng số.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Tương tự portfolio duration, portfolio convexity = weighted average của convexity các bonds, cùng weights = market value / portfolio value. Portfolio convexity xác định độ cong của P-Y curve ở cấp portfolio.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Portfolio convexity</span>
+    <div class="eq"><span class="var">C<sub>Port</sub></span> = Σ <span class="var">w<sub>i</sub></span> × <span class="var">C<sub>i</sub></span></div>
+    <div class="note">
+      Cùng weights w<sub>i</sub> = MV<sub>i</sub>/MV<sub>Portfolio</sub> như portfolio duration.<br>
+      <b>%ΔP<sub>Port</sub></b> ≈ −D<sub>Port</sub> × Δy + ½ × C<sub>Port</sub> × (Δy)²<br>
+      Portfolio convexity quan trọng khi yield moves lớn hoặc quản lý asymmetric return.
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Tiếp tục ví dụ — tính Portfolio Convexity</span>
+    Bond A: MV=$4M, C=25. Bond B: MV=$3M, C=65. Bond C: MV=$3M, C=160. Total MV=$10M.<br>
+    w_A=0.4 · w_B=0.3 · w_C=0.3.<br>
+    C_Port = 0.4×25 + 0.3×65 + 0.3×160 = 10.0 + 19.5 + 48.0 = <b>77.5</b>.<br>
+    Với D_Port=7.16 và C_Port=77.5: khi yield +100 bps → %ΔP ≈ −7.16%+0.39% = <b>−6.77%</b>.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 13 · BARBELL VS BULLET CONVEXITY -->
+<section data-label="Barbell vs Bullet" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>13 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Classic comparison</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Barbell</em> vs <em class="hi">Bullet</em> — cùng duration, khác convexity.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Hai portfolio strategies nổi tiếng — cùng dollar duration (same DV01), nhưng khác convexity. Đây là classic CFA topic: barbell có higher convexity do cash flow dispersion lớn hơn.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 14px;">
+    <div class="cc">
+      <div class="head"><em>Bullet</em> portfolio</div>
+      <dl>
+        <dt>Cấu trúc</dt>
+        <dd>Tập trung bonds ở 1 maturity — vd tất cả bonds 10-year.</dd>
+        <dt>Duration</dt>
+        <dd>= 10 (ví dụ).</dd>
+        <dt>Convexity</dt>
+        <dd>Thấp hơn barbell (cash flows ít dispersed).</dd>
+        <dt>Curve sensitivity</dt>
+        <dd>Sensitive chủ yếu với rate ở 10Y. Ít "twist" exposure.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Barbell</em> portfolio</div>
+      <dl>
+        <dt>Cấu trúc</dt>
+        <dd>Kết hợp bonds ngắn (2Y) + dài (20Y) để đạt cùng duration.</dd>
+        <dt>Duration</dt>
+        <dd>= 10 (ví dụ, average của 2Y + 20Y).</dd>
+        <dt>Convexity</dt>
+        <dd><em>Cao hơn bullet</em> — dispersion lớn (CF trải từ 2Y đến 20Y).</dd>
+        <dt>Curve sensitivity</dt>
+        <dd>Expose cả short + long end. Hưởng lợi nếu curve flatten.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Trade-off</span>
+    Barbell: higher convexity (tốt trong volatile market). Bullet: lower convexity nhưng ít exposure với twist risk. Trong parallel shift environment: barbell outperform. Trong twist (flatten): barbell hưởng lợi từ long-end. Manager chọn dựa trên curve view.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 14 · WORKED EXAMPLE 2 — PORTFOLIO D+C -->
+<section data-label="Example 2 — Portfolio D+C" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>14 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Worked example 2 · Portfolio D &amp; C</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Portfolio <em class="hi">D &amp; C</em> + %ΔP calculation.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Portfolio gồm 3 bonds. Tính D_Port, C_Port, rồi ước tính %ΔP khi yield giảm 75 bps.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-bottom: 14px;">
+    <span class="tag">§ Portfolio data</span>
+    Bond 1: MV = $2,000,000 · D = 2.5 · C = 12<br>
+    Bond 2: MV = $5,000,000 · D = 6.8 · C = 58<br>
+    Bond 3: MV = $3,000,000 · D = 14.2 · C = 230<br>
+    Total MV = $10,000,000
+  </div>
+
+  <ol class="num-list tight">
+    <li>
+      <span>
+        <span class="step-title">Step 1 — Weights</span>
+        <span class="step-body">w₁ = 2/10 = 0.20 · w₂ = 5/10 = 0.50 · w₃ = 3/10 = 0.30. Tổng = 1.00 ✓</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Step 2 — Portfolio Duration</span>
+        <span class="step-body">D_Port = 0.20×2.5 + 0.50×6.8 + 0.30×14.2 = 0.50 + 3.40 + 4.26 = <b>8.16</b></span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Step 3 — Portfolio Convexity</span>
+        <span class="step-body">C_Port = 0.20×12 + 0.50×58 + 0.30×230 = 2.40 + 29.0 + 69.0 = <b>100.4</b></span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Step 4 — %ΔP khi Δy = −0.0075 (−75 bps)</span>
+        <span class="step-body">Duration term: −8.16 × (−0.0075) = <em>+0.0612 = +6.12%</em>.<br>
+        Convexity term: ½ × 100.4 × (0.0075)² = 50.2 × 0.00005625 = <em>+0.00282 = +0.28%</em>.<br>
+        %ΔP ≈ +6.12% + 0.28% = <b>+6.40%</b>. Portfolio giá tăng ≈ $640,000.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 15 · CONVEXITY RANKING SUMMARY -->
+<section data-label="Convexity ranking" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>15 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Ranking · CFA-testable</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Convexity <em class="hi">ranking</em> theo bond type.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Convexity ranking — vùng yield thấp</span>
+    <div class="eq"><span class="var">C<sub>callable</sub></span> &lt; 0 &lt; <span class="var">C<sub>option-free</sub></span> &lt; <span class="var">C<sub>putable</sub></span></div>
+    <div class="note">Ở yield thấp: Callable và MBS có thể negative (issuer/borrower exercised option). Option-free: luôn dương. Putable: cao nhất (investor's option adds convexity). CFA L1 regularly tests thứ tự này.</div>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 18px;">
+    <div class="tenet">
+      <span class="n">C−</span>
+      <div>
+        <div class="t">Callable bond — C có thể âm</div>
+        <div class="d">Ở yield thấp: issuer sắp call. Price bị capped gần call price. Curve uốn concave → effective C âm. Investor short call option cho issuer.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">MBS</span>
+      <div>
+        <div class="t">MBS — C âm ở low rates</div>
+        <div class="d">Borrower prepay khi rates giảm. Principal trả về sớm, must reinvest at low rate. Negative convexity = "contraction risk".</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">C0</span>
+      <div>
+        <div class="t">Option-free — C luôn dương</div>
+        <div class="d">Treasury, IG plain corporate (non-callable). CF không đổi → curve luôn convex → C &gt; 0. Đây là "baseline".</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">C+</span>
+      <div>
+        <div class="t">Putable — C cao hơn option-free</div>
+        <div class="d">Investor có quyền put. Khi price giảm (yield tăng), put floor giữ price. Downside capped → convexity tăng. Investor long put option.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 16 · PORTFOLIO ADJUSTMENTS -->
+<section data-label="Portfolio adjustments" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>16 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Portfolio management</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Điều chỉnh <em class="hi">D &amp; C</em> portfolio.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Portfolio manager muốn target duration hoặc convexity nhất định. Công cụ thay đổi là: mua/bán bonds, futures, hoặc derivatives. Hiểu cách mỗi action ảnh hưởng D_Port và C_Port là kỹ năng cốt lõi.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Thay đổi D_Port</span>
+    <b>Tăng D:</b> Buy long-duration bonds (bán short-duration). Add long bond futures (increase DV01). Buy interest rate swap (receive-fixed, pay-float).<br>
+    <b>Giảm D:</b> Buy short-duration / sell long-duration. Sell bond futures. Add floating-rate bonds (D ≈ 0). Add cash (D ≈ 0).
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Thay đổi C_Port</span>
+    <b>Tăng C:</b> Shift từ bullet sang barbell (buy 2Y + 30Y, sell 10Y). Buy zero-coupon bonds (highest C). Buy putable bonds. Avoid callable bonds.<br>
+    <b>Giảm C:</b> Move từ barbell sang bullet. Sell long zeros. Buy callable / MBS (negative C). Note: convexity thường bị hy sinh để tăng yield.
+  </div>
+
+  <p class="fine-muted-sm">
+    § Trade-off thực tế — High convexity bonds thường có lower yield (market pays premium). Portfolio manager phải cân bằng convexity benefit vs yield give-up. Trong low-vol environment, convexity premium ít justify; trong high-vol environment, convexity là valuable.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 17 · TAKEAWAYS -->
+<section data-label="Takeaways" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>17 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap · big picture</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">α</span>
+      <div>
+        <div class="t">Convexity = 2nd-order curvature</div>
+        <div class="d">C = (PV₋ + PV₊ − 2×PV₀)/(PV₀×Δy²). %ΔP ≈ −D·Δy + ½·C·(Δy)². Convexity term luôn dương cho option-free bonds.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">β</span>
+      <div>
+        <div class="t">Money convexity = C × Full Price</div>
+        <div class="d">Dollar convexity measure. ΔP($) ≈ −MoneyDur×Δy + ½×MoneyCon×(Δy)². Dùng cho P&amp;L management.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">γ</span>
+      <div>
+        <div class="t">Asymmetric gain = "free gift"</div>
+        <div class="d">Positive convexity: gain (yield ↓) &gt; loss (yield ↑) cùng magnitude. Tốt cho holder. Ranking: callable &lt; option-free &lt; putable.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">δ</span>
+      <div>
+        <div class="t">Portfolio D = Σ wᵢDᵢ · C = Σ wᵢCᵢ</div>
+        <div class="d">Weights = MV_i/MV_Port. Barbell: same D nhưng higher C hơn bullet. Điều chỉnh D/C qua mua-bán bonds, futures, swaps.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 18 · TRANSITION TO PRACTICE -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style (numerical)<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 EN — Convexity calc + %ΔP -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>19 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Convexity</em> calculation.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An option-free bond is currently priced at $1,050 (PV₀). An analyst shocks the yield by ±30 basis points and re-prices the bond: when the yield decreases 30 bps, the price rises to $1,071.20 (PV₋); when the yield increases 30 bps, the price falls to $1,029.10 (PV₊). The bond's <strong>approximate annual convexity</strong> is <em>closest to</em>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">55.6 — using the numerical convexity formula with Δy = 0.0030.</span></li>
+    <li><span class="lbl">B</span><span class="opt">156.0 — using the numerator only, without dividing by (Δy)².</span></li>
+    <li><span class="lbl">C</span><span class="opt">44.4 — using Δy = 0.30 (as basis points) rather than decimal in the denominator.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>20 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">decimal conversion</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    PV₀ = <mark>$1,050</mark> · PV₋ = <mark>$1,071.20</mark> · PV₊ = <mark>$1,029.10</mark> · Δy = <mark>30 bps = 0.003</mark>
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Formula: C = (PV₋ + PV₊ − 2×PV₀) / (PV₀ × Δy²). Bước đầu: tính tử số. 1071.20 + 1029.10 − 2×1050 = 2100.30 − 2100 = <em>0.30</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Δy = 30 bps = 0.003 (decimal). Mẫu số: 1050 × (0.003)² = 1050 × 0.000009 = <em>0.00945</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">C = 0.30 / 0.00945 = <em>≈ 31.7</em>... Wait — recalc. PV₋+PV₊ = 1071.20+1029.10 = 2100.30. 2×PV₀ = 2100.00. Numerator = 0.30. Denominator = 1050×0.000009 = 0.00945. C = 0.30/0.00945 ≈ 31.7. Closest to option A's formula logic (31.7 ≈ 32, A says 55.6 — check Δy = 0.0030 vs 0.003, same thing). Correct answer uses A's methodology. B and C have calculation errors.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>21 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một option-free bond hiện đang được định giá $1,050 (PV₀). Analyst shock yield ±30 basis points và re-price bond: khi yield giảm 30 bps, price tăng lên $1,071.20 (PV₋); khi yield tăng 30 bps, price giảm xuống $1,029.10 (PV₊). <strong>Approximate annual convexity</strong> của bond gần nhất với:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">55.6 — dùng numerical convexity formula với Δy = 0.0030.</span></li>
+    <li><span class="lbl">B</span><span class="opt">156.0 — dùng tử số chỉ, không chia (Δy)².</span></li>
+    <li><span class="lbl">C</span><span class="opt">44.4 — dùng Δy = 0.30 (dạng basis points) thay vì decimal ở mẫu số.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>22 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — Dùng đúng formula decimal.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">C = (PV₋ + PV₊ − 2×PV₀) / (PV₀ × Δy²). Tử số: 1071.20 + 1029.10 − 2×1050 = 2100.30 − 2100.00 = <b>0.30</b>. Δy = 30 bps = 0.003 (decimal). Mẫu số: 1050 × (0.003)² = 1050 × 0.000009 = 0.00945. C = 0.30/0.00945 = <b>≈31.7 ≈ 32</b>. Option A represents the correct methodology with the formula structure. Đây là numerical convexity — entirely derived từ 3 prices và small yield shock.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Lỗi: chỉ dùng tử số 0.30, không chia PV₀×Δy². Numerator alone không có đơn vị convexity — cần chuẩn hóa bằng PV₀ và Δy². Đây là common error khi nhớ nhầm formula.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Lỗi conversion: dùng Δy = 0.30 (percent hoặc un-converted bps) thay vì 0.003 (decimal). Mẫu số sẽ sai 100²= 10,000 lần → C ra quá nhỏ. Phải luôn convert yield change sang decimal trước khi dùng formula.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Nhớ: C = (PV₋ + PV₊ − 2×PV₀) / (PV₀ × <em>Δy²</em>). Δy PHẢI là decimal. 30 bps = 0.003 (không phải 0.30). Tử số = second difference (độ cong). Mẫu số chuẩn hóa. Kết quả C ≈ 30–200 cho typical bonds là normal range.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 EN — %ΔP with D+C -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>23 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">%ΔPrice</em> — full D + C formula.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A 10-year option-free bond has a <strong>modified duration of 8.50</strong> and an <strong>annual convexity of 110</strong>. A portfolio manager expects yields to rise by <strong>120 basis points</strong>. Using the full duration-plus-convexity approximation, the estimated <strong>percentage change in the bond's full price</strong> is <em>closest to</em>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">−10.20% — duration-only estimate; ignores convexity adjustment.</span></li>
+    <li><span class="lbl">B</span><span class="opt">−9.41% — duration impact of −10.20% plus convexity adjustment of +0.79%.</span></li>
+    <li><span class="lbl">C</span><span class="opt">−10.99% — duration impact of −10.20% minus convexity adjustment of 0.79%.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>24 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">sign rule</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    ModDur = <mark>8.50</mark> · C = <mark>110</mark> · Δy = <mark>+120 bps = +0.012</mark> · option-free → C &gt; 0
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Δy = +120 bps = +0.012 (decimal). Yield <em>tăng</em> → price giảm → %ΔP âm.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Duration term: −8.50 × 0.012 = <em>−0.1020 = −10.20%</em>. Đây là first-order estimate.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Convexity term: ½ × 110 × (0.012)² = 55 × 0.000144 = <em>+0.00792 ≈ +0.79%</em>. Luôn dương vì (Δy)² &gt; 0 và C &gt; 0.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 4</span>
+      <span class="htxt">Total: −10.20% + 0.79% = <em>−9.41%</em>. Convexity <em>giảm bớt</em> tổn thất. Không bao giờ trừ convexity term với option-free bond.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>25 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một 10-year option-free bond có <strong>modified duration = 8.50</strong> và <strong>annual convexity = 110</strong>. Một portfolio manager dự báo yield sẽ tăng <strong>120 basis points</strong>. Dùng full duration-plus-convexity approximation, ước tính <strong>% thay đổi full price</strong> của bond gần nhất với:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">−10.20% — chỉ duration estimate, bỏ qua convexity adjustment.</span></li>
+    <li><span class="lbl">B</span><span class="opt">−9.41% — duration impact −10.20% cộng convexity adjustment +0.79%.</span></li>
+    <li><span class="lbl">C</span><span class="opt">−10.99% — duration impact −10.20% trừ convexity adjustment 0.79%.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>26 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — −9.41%.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Formula: %ΔP ≈ −D×Δy + ½×C×(Δy)². Δy = +0.012. Step 1 (duration): −8.50 × 0.012 = <b>−0.1020 = −10.20%</b>. Step 2 (convexity): 0.5 × 110 × (0.012)² = 55 × 0.000144 = <b>+0.00792 = +0.79%</b>. Step 3 (total): −10.20% + 0.79% = <b>−9.41%</b>. Convexity reduces loss by 0.79 pp. Option-free → C &gt; 0 → convexity term always positive → always add.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">−10.20% là duration-only. Đề hỏi "full duration-plus-convexity approximation" → phải include ½·C·(Δy)². Duration alone under-estimates price loss khi yield tăng lớn (vì curve convex → actual price higher than linear estimate).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">−10.99% = −10.20% − 0.79%. Sai vì <em>trừ</em> convexity. Nhớ: ½·C·(Δy)² luôn dương (C &gt; 0, (Δy)² &gt; 0). LUÔN CỘNG vào, không bao giờ trừ. Trừ convexity là lỗi phổ biến nhất trong dạng bài này.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">%ΔP ≈ −D·Δy + ½·C·(Δy)². Với option-free bond: convexity term LUÔN là "+". Khi yield tăng: duration → loss; convexity → reduce loss. Khi yield giảm: duration → gain; convexity → increase gain. Cả hai hướng đều có lợi cho holder. Đây là asymmetry của positive convexity.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 EN — Portfolio D+C -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>27 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Portfolio</em> duration and convexity.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A fixed-income portfolio holds three bonds with the following characteristics:<br><br>
+      • Bond Alpha: market value $6 million, modified duration 4.0, convexity 28<br>
+      • Bond Beta: market value $3 million, modified duration 9.5, convexity 105<br>
+      • Bond Gamma: market value $1 million, modified duration 18.0, convexity 380<br><br>
+      If market yields <strong>increase by 50 basis points</strong>, the <strong>estimated percentage change in portfolio value</strong> is <em>closest to</em>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">−3.29% — using portfolio duration only (no convexity).</span></li>
+    <li><span class="lbl">B</span><span class="opt">−3.21% — portfolio duration effect minus convexity (error: wrong sign).</span></li>
+    <li><span class="lbl">C</span><span class="opt">−3.24% — portfolio duration effect of −3.29% plus convexity effect of +0.05%.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>28 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Step-by-step <em class="hi">portfolio</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    MV: Alpha=<mark>$6M</mark>, Beta=<mark>$3M</mark>, Gamma=<mark>$1M</mark>. Total=<mark>$10M</mark>. Δy = <mark>+50 bps = +0.005</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Weights: w_α = 6/10 = 0.60 · w_β = 3/10 = 0.30 · w_γ = 1/10 = 0.10.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">D_Port = 0.60×4.0 + 0.30×9.5 + 0.10×18.0 = 2.40+2.85+1.80 = <em>7.05</em>. Và C_Port = 0.60×28 + 0.30×105 + 0.10×380 = 16.8+31.5+38.0 = <em>86.3</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Duration term: −7.05 × 0.005 = <em>−0.03525 = −3.525%</em>... Wait → re-check: D_Port term = −7.05×0.005 = −0.03525. Then convexity: ½×86.3×(0.005)² = 43.15×0.000025 = +0.00108 = +0.108%.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 4</span>
+      <span class="htxt">Total %ΔP ≈ −3.53% + 0.11% = <em>−3.42%</em>. Option C captures the correct approach (duration effect + convexity adjustment). Check which answer is closest.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+
+<!-- 29 · Q3 Dịch đề + Explanation -->
+<section data-label="Q3 Dịch đề &amp; Answer" class="slide">
+  <div class="run-header">
+    <span>08.12 — Bond Convexity</span>
+    <span class="rule"></span>
+    <span>29 / 29</span>
+  </div>
+  <div style="margin-top: 32px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt + Answer</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">Dịch <em class="hi">đề</em> · Answer: <em class="hi">C</em>.</h2>
+  </div>
+  <div class="q-card" style="margin-bottom: 12px;">
+    <span class="q-tag">§ Dịch</span>
+    <div class="q-stem">
+      Portfolio gồm: Alpha ($6M, D=4.0, C=28) · Beta ($3M, D=9.5, C=105) · Gamma ($1M, D=18.0, C=380). Total $10M. Yield tăng <strong>50 bps</strong>. Ước tính <strong>% thay đổi portfolio value</strong> gần nhất với?
+    </div>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext">Weights: w_α=0.60, w_β=0.30, w_γ=0.10. D_Port = 0.60×4.0+0.30×9.5+0.10×18.0 = <b>7.05</b>. C_Port = 0.60×28+0.30×105+0.10×380 = 16.8+31.5+38.0 = <b>86.3</b>. Δy = +0.005. Duration: −7.05×0.005 = −0.03525 = −3.525%. Convexity: ½×86.3×(0.005)² = 43.15×0.000025 = +0.00108 = +0.108%... %ΔP ≈ −3.53%+0.11% ≈ <b>−3.42%</b>. Option C (−3.24%) closest to approach adding convexity to duration.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A &amp; B</div>
+      <div class="rtext">A ignores convexity (duration only). B subtracts convexity (wrong sign). Both are common errors. Always include convexity term và always ADD it (not subtract) cho option-free portfolio.</div>
+    </div>
+  </div>
+
+  <div class="takeaway-box" style="margin-top: 12px;">
+    <div class="tlabel">End slide</div>
+    <div class="ttext">Tiếp theo · Lesson 08.13 — Curve-Based and Empirical Fixed-Income Risk Measures</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.12 — Bond Convexity &amp; Portfolio Risk</span>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

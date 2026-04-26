@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>CFA L1 · Equity 07.06 — Equity Valuation</title>
+<title>CFA L1 · Equity 07.06 — Industry &amp; Competitive Analysis</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -11,15 +11,9 @@
 <link rel="stylesheet" href="/assets/cfa-theme.css">
 <style>
   .title-slide .left { background: var(--accent); }
-  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main { font-size: 96px; line-height: 0.98; }
   .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
   .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
-  /* 3-col compare for approach grids */
-  .compare.c3 { grid-template-columns: 1fr 1fr 1fr; gap: 48px; }
-  .compare.c3 .cc dl { grid-template-columns: 130px 1fr; gap: 14px; row-gap: 18px; }
-  .compare.c3 .cc dt { font-size: 18px; }
-  .compare.c3 .cc dd { font-size: 22px; line-height: 1.4; }
-  .compare.c3 .cc .head { font-size: 48px; }
 </style>
 </head>
 <body>
@@ -30,18 +24,18 @@
 <section data-label="Title" class="slide title-slide">
   <div class="left">
     <div class="mark">CFA Institute · Level I</div>
-    <h1 class="main">Equity<br><em>Valuation.</em></h1>
+    <h1 class="main">Industry &amp;<br><em>Competitive Analysis.</em></h1>
     <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 07 · Lesson 07.06 · Equity Investments</div>
   </div>
   <div class="right">
-    <div class="mark">Module 06 · Equity valuation models</div>
+    <div class="mark">Module 06 · Top-down · Porter · Life cycle · Structures</div>
     <dl class="meta-grid">
       <div><dt>Môn</dt><dd>Equity</dd></div>
       <div><dt>Module</dt><dd>06</dd></div>
       <div><dt>Lesson</dt><dd>07.06</dd></div>
-      <div><dt>Thời lượng</dt><dd>120 min</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
     </dl>
-    <div class="mark">DDM · FCF · Multiples · NAV</div>
+    <div class="mark">Classification · 5 Forces · barriers · SWOT · PESTLE</div>
   </div>
 </section>
 
@@ -51,842 +45,756 @@
   <div class="band">
     <div class="lbl">PART</div>
     <div class="n">06</div>
-    <div class="lbl">Equity valuation</div>
+    <div class="lbl">Industry</div>
   </div>
   <div class="content">
     <div class="eyebrow">Today's lesson</div>
-    <h2>What is a <em>share</em><br>truly worth?</h2>
+    <h2>Read an industry<br><em>before</em> picking a stock.</h2>
     <ul class="toc">
-      <li class="active">01 · Three valuation approaches — DCF · multiples · asset-based</li>
-      <li>02 · Dividend Discount Model — Gordon Growth, two-stage, three-stage</li>
-      <li>03 · Free Cash Flow models — FCFF &amp; FCFE</li>
-      <li>04 · Required return — CAPM, build-up, multifactor</li>
-      <li>05 · Price multiples — P/E, P/B, P/S, P/CF, EV/EBITDA</li>
-      <li>06 · Comparables vs forecasted fundamentals · NAV</li>
-      <li>07 · Choosing approach · reconciling valuations</li>
+      <li class="active">01 · Why industry analysis precedes company</li>
+      <li>02 · Top-down approach + 3 classification systems</li>
+      <li>03 · Cyclical vs Defensive industries</li>
+      <li>04 · Porter's 5 Forces — entrants · suppliers · buyers · substitutes · rivalry</li>
+      <li>05 · Industry life cycle — 5 stages</li>
+      <li>06 · Industry structures — competition typology</li>
+      <li>07 · SWOT · PESTLE · value chain</li>
       <li>08 · Practice — 3 CFA-style questions</li>
     </ul>
   </div>
 </section>
 
 
-<!-- 03 · WHY VALUATION -->
-<section data-label="Why valuation" class="slide">
+<!-- 03 · WHY INDUSTRY FIRST -->
+<section data-label="Why industry first" class="slide">
   <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
+    <span>07.06 — Industry</span>
     <span class="rule"></span>
-    <span>03 / 32</span>
+    <span>03 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Equity valuation · the core question</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Estimate <em class="hi">intrinsic value</em>.</h2>
+    <div class="eyebrow">Foundation · before company</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Why <em class="hi">industry</em> precedes company.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      <em>Equity valuation</em> ước lượng <b>intrinsic value</b> của một share để so với <em>market price</em>. Khi market price &lt; intrinsic value → undervalued (buy); &gt; intrinsic value → overvalued (sell). Tất cả approach đều rơi vào ba nhóm.
+      Best company trong industry tệ thường thua average company trong industry tốt. Industry structure quyết định <em>profit pool</em> — cap trên long-term ROIC. Trước khi pick stock, ranking industry attractiveness là step quan trọng.
     </p>
   </div>
 
-  <div class="rule-box" style="margin-top: 16px;">
-    <div class="rb-label">§ Three families of models</div>
-    <div class="rb-body">
-      <b>1. Present Value (DCF)</b> — chiết khấu dòng tiền tương lai về hiện tại (DDM cho dividend, FCFF/FCFE cho free cash flow).
-      <b>2. Multiplier (Relative)</b> — so sánh ratio giá vs fundamental (P/E, P/B, EV/EBITDA) với peers/history.
-      <b>3. Asset-based</b> — fair value của assets trừ liabilities (NAV).
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Practical — Một analyst tốt thường dùng &gt;1 approach để cross-check; mỗi method capture góc nhìn khác nhau (cash flow, market sentiment, balance sheet).
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
-  </div>
-</section>
-
-
-<!-- 04 · THREE APPROACHES COMPARE -->
-<section data-label="Three approaches" class="slide">
-  <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
-    <span class="rule"></span>
-    <span>04 / 32</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Three valuation approaches</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">DCF · Multiples · Asset-based.</h2>
-  </div>
-
-  <div class="compare c3" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head">Present Value</div>
-      <dl>
-        <dt>Idea</dt>
-        <dd>V₀ = Σ CF<sub>t</sub>/(1+r)<sup>t</sup>. <b>Intrinsic</b> value từ <em>future cash flows</em>.</dd>
-        <dt>Models</dt>
-        <dd>DDM · FCFF · FCFE · Residual income.</dd>
-        <dt>Best for</dt>
-        <dd>Mature firms với cash flow predictable.</dd>
-        <dt>Weak when</dt>
-        <dd>Dòng tiền âm, growth không ổn định, terminal value chiếm &gt;70%.</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head">Multiplier</div>
-      <dl>
-        <dt>Idea</dt>
-        <dd>Compare price ratio (P/E, P/B…) với <em>peers</em> hoặc <em>fundamentals</em>.</dd>
-        <dt>Models</dt>
-        <dd>P/E · P/B · P/S · P/CF · EV/EBITDA.</dd>
-        <dt>Best for</dt>
-        <dd>Quick comp, sector relative, market sentiment check.</dd>
-        <dt>Weak when</dt>
-        <dd>Negative earnings, peer set không homogeneous, accounting differences.</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head">Asset-based</div>
-      <dl>
-        <dt>Idea</dt>
-        <dd>V₀ = fair value (Assets) − fair value (Liabilities). NAV approach.</dd>
-        <dt>Models</dt>
-        <dd>Liquidation value · Replacement cost · NAV.</dd>
-        <dt>Best for</dt>
-        <dd>Asset-rich firms (REITs, banks, holdings, natural resource).</dd>
-        <dt>Weak when</dt>
-        <dd>Service/tech firms — intangibles &amp; growth options không trên balance sheet.</dd>
-      </dl>
-    </div>
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
-  </div>
-</section>
-
-
-<!-- 05 · DCF / DDM INTRO -->
-<section data-label="DCF intro" class="slide">
-  <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
-    <span class="rule"></span>
-    <span>05 / 32</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Present value · discounted cash flow</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Three <em class="hi">cash flow</em> definitions.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      DCF khác nhau ở <em>cash flow</em> nào được chiết khấu. Mỗi loại CF cần discount rate <em>tương ứng</em>: dividend &amp; FCFE → cost of equity (r<sub>e</sub>); FCFF → WACC.
-    </p>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Generic DCF (intrinsic value of equity)</span>
-    <div class="eq"><span class="var">V₀</span> = Σ<sub>t=1..∞</sub> <span class="var">CF<sub>t</sub></span> / (1 + <span class="var">r</span>)<sup>t</sup></div>
-    <div class="note">CF = dividend (DDM), FCFE (equity-holders), hoặc FCFF (firm). r = cost of equity hoặc WACC tương ứng.</div>
-  </div>
-
-  <div class="tenets-grid" style="margin-top: 12px;">
+  <div class="tenets-grid" style="margin-top: 16px;">
     <div class="tenet">
-      <span class="n">DDM</span>
+      <span class="n">α</span>
       <div>
-        <div class="t"><em class="hi">Dividend Discount Model</em></div>
-        <div class="d">CF = dividend đến shareholder. Tốt cho firm trả dividend ổn định, mature, payout policy rõ. Discount = r<sub>e</sub>.</div>
+        <div class="t">"Bet on the jockey, ride a fast horse"</div>
+        <div class="d">Buffett: "khi management tốt gặp business tệ, business reputation thường thắng". Industry quality thường constrains company outcome.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">FCFE</span>
+      <span class="n">β</span>
       <div>
-        <div class="t"><em class="hi">Free Cash Flow to Equity</em></div>
-        <div class="d">CF = tiền equity-holder <em>có thể</em> nhận được, sau khi trả debt. Dùng khi firm không trả dividend hoặc dividend &lt;&lt; FCFE.</div>
+        <div class="t">Profit pool varies 10× by industry</div>
+        <div class="d">Software industry ROIC trung bình 25-30%; airline industry trung bình 5-8%. Same execution effort = vastly different return potential.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">FCFF</span>
+      <span class="n">γ</span>
       <div>
-        <div class="t"><em class="hi">Free Cash Flow to Firm</em></div>
-        <div class="d">CF cho cả debt + equity holders. Discount bằng WACC → ra firm value, trừ debt → equity value. Dùng khi capital structure thay đổi.</div>
+        <div class="t">Macro → industry → company workflow</div>
+        <div class="d">Top-down: macro outlook (rate, GDP, FX) → identify hot/cold sectors → pick best company within each.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">δ</span>
+      <div>
+        <div class="t">Sector rotation = industry-driven alpha</div>
+        <div class="d">Pro PMs rotate sector based on macro view (cyclical sectors khi expansion; defensive khi recession). Industry analysis = primary tool.</div>
       </div>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
   </div>
 </section>
 
 
-<!-- 06 · GORDON GROWTH -->
-<section data-label="Gordon Growth" class="slide">
+<!-- 04 · TOP-DOWN -->
+<section data-label="Top-down" class="slide">
   <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
+    <span>07.06 — Industry</span>
     <span class="rule"></span>
-    <span>06 / 32</span>
+    <span>04 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Single-stage DDM · Gordon Growth Model</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Gordon Growth</em> — constant g.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Giả định dividend tăng với <b>tốc độ không đổi g</b> mãi mãi (perpetuity). Đơn giản, dùng cho firm mature trong stable industry. Yêu cầu <em>r &gt; g</em>; nếu không, công thức blow up.
-    </p>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Gordon Growth Model</span>
-    <div class="eq"><span class="var">V₀</span> = <span class="var">D₁</span> / (<span class="var">r</span> − <span class="var">g</span>)</div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">D₁</span> = <span class="var">D₀</span> · (1 + <span class="var">g</span>)</div>
-    <div class="note"><b>D₁</b> dividend kỳ tới · <b>r</b> required return on equity · <b>g</b> constant growth rate. Điều kiện bắt buộc: <em>r &gt; g</em>, g bền vững mãi mãi.</div>
-  </div>
-
-  <div class="rule-box" style="margin-top: 16px;">
-    <div class="rb-label">§ When Gordon Growth works</div>
-    <div class="rb-body">
-      <b>Yes</b> — mature, dividend-paying firms (utilities, consumer staples), payout ratio ổn định, ROE và g không biến động lớn.
-      <b>No</b> — high-growth firms (g có thể &gt; r tạm thời), no-dividend firms, cyclical earnings, startups. Với high-growth → dùng multi-stage.
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Sensitivity warning — V₀ rất nhạy với (r − g). Nếu r = 10%, g = 4%, D₁ = 2 → V₀ = 33.3. Nếu g tăng lên 5% → V₀ = 40 (+20%). Nhỏ thay đổi g, big impact giá.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
-  </div>
-</section>
-
-
-<!-- 07 · MULTI-STAGE DDM -->
-<section data-label="Multi-stage DDM" class="slide">
-  <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
-    <span class="rule"></span>
-    <span>07 / 32</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Two-stage &amp; three-stage DDM</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">When growth <em class="hi">isn't constant</em>.</h2>
-  </div>
-
-  <div class="formula-box" style="margin-top: 8px;">
-    <span class="fmt-label">§ Two-stage DDM</span>
-    <div class="eq"><span class="var">V₀</span> = Σ<sub>t=1..n</sub> <span class="var">D<sub>t</sub></span>/(1+<span class="var">r</span>)<sup>t</sup> + <span class="var">V<sub>n</sub></span>/(1+<span class="var">r</span>)<sup>n</sup></div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">V<sub>n</sub></span> = <span class="var">D<sub>n+1</sub></span> / (<span class="var">r</span> − <span class="var">g<sub>L</sub></span>)</div>
-    <div class="note"><b>Stage 1</b> high-growth period (n năm) tính từng dividend. <b>Stage 2</b> stable growth g<sub>L</sub> → terminal value V<sub>n</sub> bằng Gordon Growth, sau đó discount về hiện tại.</div>
+    <div class="eyebrow">Top-down workflow</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Macro → <em class="hi">industry</em> → company.</h2>
   </div>
 
   <ol class="num-list tight" style="margin-top: 16px;">
     <li>
       <span>
-        <span class="step-title">Two-stage</span>
-        <span class="step-body">Hai pha: <em>high growth (g<sub>S</sub>)</em> trong n năm → <em>stable growth (g<sub>L</sub>)</em> mãi mãi. Phù hợp firm trẻ chuyển sang mature, ví dụ tech profitable.</span>
+        <span class="step-title">1 · Macro outlook</span>
+        <span class="step-body">GDP cycle (expansion/peak/recession/recovery), monetary policy (rate trajectory), fiscal stance, FX, commodity prices, geopolitical risk. Output: 12-24 month thesis cho economic regime.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Three-stage (H-model variant)</span>
-        <span class="step-body">Ba pha: <em>high growth → declining transition → stable</em>. Phù hợp firm có growth peak rồi giảm dần (giai đoạn maturation). Realistic hơn 2-stage.</span>
+        <span class="step-title">2 · Industry attractiveness ranking</span>
+        <span class="step-body">Filter industries phù hợp regime: rising rate → financials thường benefit, REIT &amp; utilities thường suffer. Recession → defensive (consumer staples, healthcare). Recovery → cyclical (industrials, materials).</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Terminal value caveat</span>
-        <span class="step-body">Terminal value thường chiếm <em>60-80%</em> tổng V₀ → assumption về g<sub>L</sub> cực quan trọng. g<sub>L</sub> ≤ tốc độ tăng trưởng GDP dài hạn (≈ 3-5%).</span>
+        <span class="step-title">3 · Industry structure analysis</span>
+        <span class="step-body">Trong industry chọn: Porter forces, life cycle stage, structure type. Identify leaders, laggards, disruption risk.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">4 · Company selection</span>
+        <span class="step-body">Trong industry attractive: pick company với strongest competitive position (m05 past/present + m07 forecasting analysis).</span>
       </span>
     </li>
   </ol>
 
+  <p class="fine-muted-sm">
+    § Bottom-up alternative — start với company picks regardless industry. Stock pickers like Lynch, Buffett. Both valid; CFA L1 chủ yếu test top-down framework.
+  </p>
+
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
   </div>
 </section>
 
 
-<!-- 08 · SUSTAINABLE GROWTH -->
-<section data-label="Sustainable g" class="slide">
+<!-- 05 · CLASSIFICATION SYSTEMS -->
+<section data-label="Classification" class="slide">
   <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
+    <span>07.06 — Industry</span>
     <span class="rule"></span>
-    <span>08 / 32</span>
+    <span>05 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Where does g come from?</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Sustainable</em> growth rate.</h2>
+    <div class="eyebrow">Classification systems</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Three <em class="hi">classification</em> systems.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      <em>Sustainable growth rate</em> = tốc độ tăng trưởng tối đa mà firm có thể duy trì <b>không cần huy động vốn ngoài</b> và giữ nguyên capital structure. Là input chuẩn cho g trong DDM.
+      CFA L1 mention 3 cách classify industries: <em>commercial</em> (GICS, ICB, RGS), <em>government</em> (NAICS, ISIC, SIC), <em>statistical</em> (cluster theo correlation). Plus 1 traditional CFA category: <em>cyclical / defensive / growth</em>.
     </p>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Sustainable growth (PRAT model)</span>
-    <div class="eq"><span class="var">g</span> = <span class="var">ROE</span> · <span class="var">b</span></div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">b</span> = 1 − payout ratio = (1 − <span class="var">D</span>/<span class="var">EPS</span>)</div>
-    <div class="note"><b>ROE</b> return on equity · <b>b</b> retention ratio (% earnings giữ lại). Logic: firm tái đầu tư b·EPS vào equity, kiếm ROE → equity tăng b·ROE → earnings tăng cùng tỷ lệ.</div>
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 16px;">
-    <li>
-      <span>
-        <span class="step-title">Example</span>
-        <span class="step-body">ROE = 15%, payout = 40% → b = 60%. g = 0.15 × 0.60 = <b>9%</b>. Nếu firm này trả 100% earnings (b=0) → g = 0% (không reinvest, không grow).</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Implication</span>
-        <span class="step-body">High-growth firms thường có payout thấp (b cao) để fund growth. Mature firms có payout cao (b thấp) — growth đã chậm.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Trade-off</span>
-        <span class="step-body">Tăng b → g cao hơn nhưng D₁ thấp hơn. V₀ tối ưu phụ thuộc spread <em>ROE vs r</em>: ROE &gt; r → giữ lại earnings tạo giá trị; ROE &lt; r → trả dividend tốt hơn.</span>
-      </span>
-    </li>
-  </ol>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
-  </div>
-</section>
-
-
-<!-- 09 · FCFF vs FCFE -->
-<section data-label="FCFF vs FCFE" class="slide">
-  <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
-    <span class="rule"></span>
-    <span>09 / 32</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Free cash flow models</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">FCFF</em> vs <em class="hi">FCFE</em>.</h2>
   </div>
 
   <div class="compare" style="margin-top: 16px;">
     <div class="cc">
-      <div class="head">FCFF · firm-level</div>
+      <div class="head"><em>Commercial</em> systems</div>
       <dl>
-        <dt>Definition</dt>
-        <dd>Cash flow available cho <em>cả</em> debt + equity holders, <em>trước</em> khi trả interest.</dd>
-        <dt>Formula</dt>
-        <dd>FCFF = NI + Int·(1−t) + Dep − ΔWC − CapEx</dd>
-        <dt>Discount</dt>
-        <dd><b>WACC</b> → ra Firm Value. Trừ Debt → Equity Value.</dd>
-        <dt>Use</dt>
-        <dd>Capital structure thay đổi; firm có nhiều debt; firm không trả dividend ổn định.</dd>
+        <dt>GICS</dt>
+        <dd>Global Industry Classification Standard (S&amp;P + MSCI). 11 sectors, 25 industry groups, 74 industries, 163 sub-industries. Phổ biến nhất cho equity research và index construction.</dd>
+        <dt>ICB</dt>
+        <dd>Industry Classification Benchmark (FTSE Russell). 11 industries, 20 supersectors. Tương tự GICS.</dd>
+        <dt>RGS</dt>
+        <dd>Russell Global Sectors. 9 sectors. Used by Russell indices.</dd>
       </dl>
     </div>
     <div class="cc">
-      <div class="head">FCFE · equity-level</div>
+      <div class="head"><em>Government</em> + <em>Statistical</em></div>
       <dl>
-        <dt>Definition</dt>
-        <dd>Cash flow chỉ available cho <em>equity holders</em> sau khi trả debt + reinvest.</dd>
-        <dt>Formula</dt>
-        <dd>FCFE = FCFF − Int·(1−t) + Net Borrowing</dd>
-        <dt>Discount</dt>
-        <dd><b>r<sub>e</sub></b> (cost of equity) → ra trực tiếp Equity Value.</dd>
-        <dt>Use</dt>
-        <dd>Capital structure ổn định; firm-level analysis không cần thiết; analyst muốn ra equity value direct.</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Why FCF over DDM — Dividend là policy choice (firm có thể không trả). FCF là <em>economic</em> cash thực sự generate. Với firm không trả dividend (Berkshire, growth tech), FCF model phù hợp hơn.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
-  </div>
-</section>
-
-
-<!-- 10 · REQUIRED RETURN -->
-<section data-label="Required return" class="slide">
-  <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
-    <span class="rule"></span>
-    <span>10 / 32</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Discount rate · cost of equity</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Estimating <em class="hi">required return</em>.</h2>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ CAPM — risk-based</span>
-    <div class="eq"><span class="var">r<sub>e</sub></span> = <span class="var">r<sub>f</sub></span> + <span class="var">β</span> · (<span class="var">r<sub>m</sub></span> − <span class="var">r<sub>f</sub></span>)</div>
-    <div class="note"><b>r<sub>f</sub></b> risk-free rate · <b>β</b> sensitivity to market · <b>(r<sub>m</sub> − r<sub>f</sub>)</b> equity risk premium (ERP). Single-factor — chỉ systematic (market) risk được pricing.</div>
-  </div>
-
-  <div class="formula-box" style="margin-top: 14px;">
-    <span class="fmt-label">§ Build-up method</span>
-    <div class="eq"><span class="var">r<sub>e</sub></span> = <span class="var">r<sub>f</sub></span> + ERP + size premium + specific-company premium</div>
-    <div class="note">Cộng dồn các <em>premium</em>. Phù hợp <em>private companies</em> không có β observable. Size + idiosyncratic risk được thêm vào.</div>
-  </div>
-
-  <div class="formula-box" style="margin-top: 14px;">
-    <span class="fmt-label">§ Multifactor (e.g. Fama-French)</span>
-    <div class="eq"><span class="var">r<sub>e</sub></span> = <span class="var">r<sub>f</sub></span> + β<sub>M</sub>·MRP + β<sub>SMB</sub>·SMB + β<sub>HML</sub>·HML</div>
-    <div class="note">Multiple risk factors. <b>SMB</b> size premium · <b>HML</b> value premium. Capture systematic risk mà CAPM bỏ sót.</div>
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
-  </div>
-</section>
-
-
-<!-- 11 · P/E DETAIL -->
-<section data-label="P/E ratio" class="slide">
-  <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
-    <span class="rule"></span>
-    <span>11 / 32</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Most common multiple · P/E</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">P/E</em> — three flavors.</h2>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Trailing &amp; Forward P/E</span>
-    <div class="eq">Trailing P/E = <span class="var">P₀</span> / <span class="var">EPS<sub>0</sub></span> (last 12 months)</div>
-    <div class="eq" style="margin-top: 8px;">Forward P/E = <span class="var">P₀</span> / <span class="var">E(EPS<sub>1</sub>)</span> (next 12 months)</div>
-    <div class="note"><b>Trailing</b> dùng EPS đã thực hiện · <b>Forward</b> dùng EPS dự báo. Forward P/E thường &lt; trailing nếu earnings tăng.</div>
-  </div>
-
-  <div class="formula-box" style="margin-top: 14px;">
-    <span class="fmt-label">§ Justified P/E (forecasted fundamentals — Gordon Growth)</span>
-    <div class="eq">Justified leading P/E = <span class="var">P₀</span>/<span class="var">E₁</span> = (1 − <span class="var">b</span>) / (<span class="var">r</span> − <span class="var">g</span>)</div>
-    <div class="eq" style="margin-top: 8px;">Justified trailing P/E = <span class="var">P₀</span>/<span class="var">E₀</span> = (1 − <span class="var">b</span>)·(1 + <span class="var">g</span>) / (<span class="var">r</span> − <span class="var">g</span>)</div>
-    <div class="note">Derived từ Gordon Growth: V₀ = D₁/(r−g) = E₁·(1−b)/(r−g). <em>Higher</em> g, <em>lower</em> r → P/E cao hơn (justified).</div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § EPS issues — Trailing EPS có thể gồm <em>non-recurring</em> items (writedown, one-off gain). Analyst nên dùng <em>core/normalized EPS</em>. Nếu EPS &lt; 0, P/E meaningless.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
-  </div>
-</section>
-
-
-<!-- 13 · P/B + JUSTIFIED -->
-<section data-label="P/B ratio" class="slide">
-  <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
-    <span class="rule"></span>
-    <span>12 / 32</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Price-to-Book · justified P/B</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">P/B</em> — book value lens.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      <b>Book value</b> = common equity (assets − liabilities − preferred). Phù hợp firm có assets mark-to-market (banks, insurance, REITs). Stable hơn EPS qua chu kỳ.
-    </p>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ P/B ratio</span>
-    <div class="eq">P/B = <span class="var">P₀</span> / <span class="var">BVPS</span> · BVPS = (Common equity) / (Shares outstanding)</div>
-    <div class="note"><b>BVPS</b> = book value per share. Loại trừ preferred + intangibles có thể không reliable.</div>
-  </div>
-
-  <div class="formula-box" style="margin-top: 14px;">
-    <span class="fmt-label">§ Justified P/B (forecasted fundamentals)</span>
-    <div class="eq">Justified P/B = (<span class="var">ROE</span> − <span class="var">g</span>) / (<span class="var">r</span> − <span class="var">g</span>)</div>
-    <div class="note">Derive từ residual income: <em>ROE &gt; r</em> → P/B &gt; 1 (firm tạo value); ROE = r → P/B = 1; ROE &lt; r → P/B &lt; 1 (destroying value).</div>
-  </div>
-
-  <div class="rule-box" style="margin-top: 14px;">
-    <div class="rb-label">§ Decision rule</div>
-    <div class="rb-body">
-      So sánh <b>actual P/B</b> với <b>justified P/B</b>: actual &lt; justified → undervalued. ROE − r là <em>residual income spread</em> — driver chính của P/B premium.
-    </div>
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
-  </div>
-</section>
-
-
-<!-- 14 · OTHER MULTIPLES -->
-<section data-label="Other multiples" class="slide">
-  <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
-    <span class="rule"></span>
-    <span>13 / 32</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">P/S · P/CF · EV/EBITDA</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">When <em class="hi">EPS doesn't work</em>.</h2>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Price-to-Sales · Price-to-Cash Flow</span>
-    <div class="eq">P/S = <span class="var">P₀</span> / Sales per share</div>
-    <div class="eq" style="margin-top: 8px;">P/CF = <span class="var">P₀</span> / CF per share (CFO, FCFE, or earnings + DA)</div>
-    <div class="note"><b>P/S</b> always positive, ít manipulation, tốt cho startup. <b>P/CF</b> avoid accounting earnings noise — quality-of-earnings issues.</div>
-  </div>
-
-  <div class="formula-box" style="margin-top: 14px;">
-    <span class="fmt-label">§ Enterprise Value / EBITDA</span>
-    <div class="eq"><span class="var">EV</span> = Market cap + Debt − Cash</div>
-    <div class="eq" style="margin-top: 8px;">EV/EBITDA = <span class="var">EV</span> / EBITDA</div>
-    <div class="note"><b>Capital-structure neutral</b> — comparable across firms với leverage khác nhau. EBITDA = operating income + DA. Đo cash-generating capacity của <em>core ops</em>.</div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Caveats — P/S không reflect profit margin (high revenue, low margin có thể khó kiếm tiền). EV/EBITDA bỏ qua CapEx + working capital — không đại diện FCF thực sự cho asset-heavy firms.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
-  </div>
-</section>
-
-
-<!-- 15 · COMPARE 3 MULTIPLES -->
-<section data-label="Compare multiples" class="slide">
-  <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
-    <span class="rule"></span>
-    <span>14 / 32</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Choosing the right multiple</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">P/E · P/B · EV/EBITDA.</h2>
-  </div>
-
-  <div class="compare c3" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head">P/E</div>
-      <dl>
-        <dt>Strength</dt>
-        <dd>Universal · close to investor return · good for stable earnings.</dd>
-        <dt>Weakness</dt>
-        <dd>Negative EPS broken · accounting earnings nhạy với choices · cyclical earnings biến động.</dd>
-        <dt>Best for</dt>
-        <dd>Mature, profitable firms với earnings stable: consumer, industrial blue chips.</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head">P/B</div>
-      <dl>
-        <dt>Strength</dt>
-        <dd>Stable across cycles · works với negative earnings · fits asset-heavy firms.</dd>
-        <dt>Weakness</dt>
-        <dd>Bị méo bởi intangibles, share buybacks, accounting differences (IFRS vs US GAAP).</dd>
-        <dt>Best for</dt>
-        <dd>Banks · insurance · REITs · holding companies — assets mark-to-market.</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head">EV/EBITDA</div>
-      <dl>
-        <dt>Strength</dt>
-        <dd>Capital structure neutral · compare across leverage · positive with negative NI.</dd>
-        <dt>Weakness</dt>
-        <dd>Ignore CapEx + WC — overstate FCF cho capital-intensive firms.</dd>
-        <dt>Best for</dt>
-        <dd>M&amp;A analysis · cross-border comparable · capital-intensive sectors (telecom, utilities).</dd>
+        <dt>NAICS / SIC / ISIC</dt>
+        <dd>NAICS = North American Industry Classification (US/Canada/Mexico). SIC = older Standard Industrial. ISIC = UN system. Government statistical purposes (employment, output stats).</dd>
+        <dt>Statistical clustering</dt>
+        <dd>Group companies theo similarity in <em>historical return correlations</em> hoặc business metric clustering. Useful cho risk modeling, không phải fundamental analysis.</dd>
+        <dt>Traditional CFA</dt>
+        <dd><em>Cyclical · Defensive · Growth</em> — not formal taxonomy nhưng practical sector view used in equity research.</dd>
       </dl>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
   </div>
 </section>
 
 
-<!-- 16 · COMPARABLES VS FUNDAMENTALS -->
-<section data-label="Methods" class="slide">
+<!-- 06 · CYCLICAL VS DEFENSIVE -->
+<section data-label="Cyclical vs Defensive" class="slide">
   <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
+    <span>07.06 — Industry</span>
     <span class="rule"></span>
-    <span>15 / 32</span>
+    <span>06 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Two ways to apply multiples</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Comparables</em> vs <em class="hi">forecasted fundamentals</em>.</h2>
+    <div class="eyebrow">Sensitivity to economic cycle</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Cyclical</em> vs <em class="hi">Defensive</em>.</h2>
   </div>
 
   <div class="compare" style="margin-top: 16px;">
     <div class="cc">
-      <div class="head">Method of comparables</div>
+      <div class="head"><em>Cyclical</em> industries</div>
       <dl>
-        <dt>Approach</dt>
-        <dd>So sánh multiple của subject firm với <em>peer median</em> hoặc <em>historical avg</em>.</dd>
-        <dt>Logic</dt>
-        <dd>Law of one price — assets tương đồng nên giá tương đồng. Market đã price peers; subject nên align.</dd>
-        <dt>Strength</dt>
-        <dd>Đơn giản · market-based · dễ defend với client.</dd>
-        <dt>Weakness</dt>
-        <dd>Peer set có thể không homogeneous · cả market có thể overvalued (bubble) → comparables vẫn sai.</dd>
+        <dt>Definition</dt>
+        <dd>Earnings highly sensitive to economic cycle. Big swings up trong expansion, down trong recession.</dd>
+        <dt>Examples</dt>
+        <dd>Auto, airline, hotel, luxury goods, construction, industrial machinery, semiconductor, banking, asset management.</dd>
+        <dt>Beta</dt>
+        <dd>High β (&gt; 1.0) — outperform broad market khi expansion, underperform khi recession.</dd>
+        <dt>Sub-types</dt>
+        <dd><em>Consumer cyclical</em> (auto, leisure, retail) vs <em>Industrial cyclical</em> (machinery, materials).</dd>
       </dl>
     </div>
     <div class="cc">
-      <div class="head">Forecasted fundamentals</div>
+      <div class="head"><em>Defensive (non-cyclical)</em></div>
       <dl>
-        <dt>Approach</dt>
-        <dd>Derive <em>justified multiple</em> từ DDM/FCF assumptions (r, g, ROE, b).</dd>
-        <dt>Logic</dt>
-        <dd>Multiple intrinsic không phụ thuộc market sentiment, chỉ phụ thuộc fundamentals.</dd>
-        <dt>Strength</dt>
-        <dd>Theory-based · explicit assumptions · phát hiện market mispricing.</dd>
-        <dt>Weakness</dt>
-        <dd>Sensitive với assumptions (g, r) · giả định Gordon Growth có thể không hold.</dd>
+        <dt>Definition</dt>
+        <dd>Earnings stable across cycle. Demand essential, ít elastic theo income.</dd>
+        <dt>Examples</dt>
+        <dd>Consumer staples (food, beverage, household goods), utilities (electricity, water), healthcare (pharma, hospitals), telecom.</dd>
+        <dt>Beta</dt>
+        <dd>Low β (&lt; 1.0) — relatively stable, outperform khi recession (relatively).</dd>
+        <dt>Trade-off</dt>
+        <dd>Stable nhưng growth thấp. Investor accept lower upside để có lower downside.</dd>
       </dl>
     </div>
   </div>
 
-  <div class="take" style="margin-top: 20px;">
-    <b>Take</b> — Comparables trả lời "giá thị trường đang định bao nhiêu?". Forecasted fundamentals trả lời "giá <em>nên</em> bao nhiêu?". Dùng cả 2 để cross-check.
-  </div>
+  <p class="fine-muted-sm">
+    § Growth industries là category 3 (separate): industries growing faster than economy regardless cycle (vd cloud computing, EV battery, gen AI). Có thể overlap cyclical hoặc defensive — tech growth thường cyclical, healthcare growth thường defensive.
+  </p>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
   </div>
 </section>
 
 
-<!-- 17 · WHEN MULTIPLES MISLEAD -->
-<section data-label="Multiples mislead" class="slide">
+<!-- 07 · PORTER OVERVIEW -->
+<section data-label="Porter overview" class="slide">
   <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
+    <span>07.06 — Industry</span>
     <span class="rule"></span>
-    <span>16 / 32</span>
+    <span>07 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Caveats · when multiples deceive</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">When <em class="hi">multiples mislead</em>.</h2>
+    <div class="eyebrow">Porter's framework</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Porter's <em class="hi">5 Forces</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Michael Porter (Harvard, 1979) framework xác định <em>industry profitability potential</em>. 5 forces compete cho profit pool: high force = lower industry profitability (profit drained away); low force = higher industry profitability (profit retained).
+    </p>
   </div>
 
-  <div class="rule-box" style="margin-top: 8px;">
-    <div class="rb-label">§ Five red flags</div>
-    <div class="rb-body">
-      <b>1. Negative denominator</b> — EPS &lt; 0 hoặc BVPS &lt; 0 → P/E, P/B meaningless.
-      <b>2. One-off items</b> — gain/loss extraordinary làm méo trailing EPS.
-      <b>3. Different accounting</b> — IFRS vs US GAAP, capitalization vs expense → P/B, P/E khác nhau.
-      <b>4. Different growth</b> — peer cùng P/E nhưng g khác nhau → một bị undervalued, một fair.
-      <b>5. Different risk (β)</b> — peer có cost of equity khác → justified P/E khác.
+  <div class="formula-box">
+    <span class="fmt-label">§ The 5 Forces (memorize)</span>
+    <div class="eq"><span class="var">1</span> Threat of new entrants</div>
+    <div class="eq"><span class="var">2</span> Bargaining power of suppliers</div>
+    <div class="eq"><span class="var">3</span> Bargaining power of buyers</div>
+    <div class="eq"><span class="var">4</span> Threat of substitutes</div>
+    <div class="eq"><span class="var">5</span> Industry rivalry (existing competitors)</div>
+    <div class="note">
+      <b>High force = bad for industry profitability.</b> Vd suppliers high power → suppliers extract margin (Microsoft mua chip Intel; Intel có pricing power). Industry attractive khi tất cả 5 forces low.
     </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Pneumonic — "<b>NEW SUB</b>" / "<b>BUYER</b>" / "<b>RIVAL</b>": <em>N</em>ew entrants, s<em>U</em>pplier, s<em>UB</em>stitute, <em>BUYER</em>, <em>RIVAL</em>ry. Hoặc 3 categories: vertical (suppliers + buyers), horizontal (entrants + substitutes + rivalry).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
+  </div>
+</section>
+
+
+<!-- 08 · ENTRANTS + BARRIERS -->
+<section data-label="Entrants + barriers" class="slide">
+  <div class="run-header">
+    <span>07.06 — Industry</span>
+    <span class="rule"></span>
+    <span>08 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Force 1 · new entrants</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Threat of <em class="hi">new entrants</em> + barriers.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      High threat = new players có thể join → existing players phải lower price hoặc invest defensive → lower industry margin. Low threat (high barriers) = incumbents protected.
+    </p>
   </div>
 
   <ol class="num-list tight" style="margin-top: 16px;">
     <li>
       <span>
-        <span class="step-title">PEG ratio fix</span>
-        <span class="step-body"><em>PEG = (P/E) / g (in %)</em>. Adjust P/E theo growth — peer cùng PEG = cùng valuation given growth. Caveat: PEG giả định linear, không capture risk.</span>
+        <span class="step-title">Capital requirement</span>
+        <span class="step-body">Capital-intensive industries (telecom, semiconductor fab, airline) = high barrier; phải invest billions trước khi compete. Software, consulting = low capital, easy entry.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Normalize earnings</span>
-        <span class="step-body">Strip non-recurring items, smooth qua chu kỳ (3-5 year average). Cyclically-adjusted P/E (CAPE / Shiller P/E) là extension của ý này.</span>
+        <span class="step-title">Economies of scale</span>
+        <span class="step-body">Industries với significant scale advantages (Walmart, Amazon distribution, semiconductor fab) — new entrant phải đạt scale tương đương để cost-competitive → khó.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Match the multiple to the metric</span>
-        <span class="step-body">Equity multiple (P/E, P/B) ↔ equity-level earnings. EV multiple (EV/EBITDA) ↔ firm-level metric. Mismatch → comparison vô nghĩa.</span>
+        <span class="step-title">Brand &amp; switching cost</span>
+        <span class="step-body">Strong brand (Coca-Cola, Apple) → customer loyal khó switch. High switching cost (enterprise software như SAP, banking core systems) → customer captive.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Regulation / licensing</span>
+        <span class="step-body">Pharma (FDA approval), banking (regulator license), telecom (spectrum auction), utilities (rate regulation). Regulator quyết định ai vào.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Network effects</span>
+        <span class="step-body">Platforms với network effects (Facebook, LinkedIn, Visa) — value proposition tăng theo số users. New entrant cần critical mass impossible.</span>
       </span>
     </li>
   </ol>
 
+  <p class="fine-muted-sm">
+    § Barriers to <em>exit</em> cũng important — nếu cao (long-term contract, specialized assets, employee severance) thì capacity stuck even khi profitability collapse → continued price war (vd US airline pre-consolidation).
+  </p>
+
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
   </div>
 </section>
 
 
-<!-- 18 · ASSET-BASED / NAV -->
-<section data-label="Asset-based" class="slide">
+<!-- 09 · SUPPLIERS + BUYERS -->
+<section data-label="Suppliers + Buyers" class="slide">
   <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
+    <span>07.06 — Industry</span>
     <span class="rule"></span>
-    <span>17 / 32</span>
+    <span>09 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Asset-based · NAV approach</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Value = <em class="hi">net assets</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      <em>Asset-based valuation</em> ước lượng equity value bằng <b>fair value (assets) − fair value (liabilities)</b>. Khác book value: dùng <em>market/fair value</em> của từng item, không phải book.
-    </p>
+    <div class="eyebrow">Forces 2 + 3 · vertical bargaining</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Suppliers</em> + <em class="hi">Buyers</em> bargaining power.</h2>
   </div>
 
-  <div class="formula-box">
-    <span class="fmt-label">§ Net Asset Value (NAV)</span>
-    <div class="eq"><span class="var">NAV</span> = FV(Assets) − FV(Liabilities) − FV(Preferred)</div>
-    <div class="eq" style="margin-top: 8px;">NAV per share = <span class="var">NAV</span> / Shares outstanding</div>
-    <div class="note">Adjust each balance sheet item to <em>current market value</em>. Real estate, securities, inventory marked to fair value. Intangibles thường loại trừ (conservative).</div>
-  </div>
-
-  <div class="rule-box" style="margin-top: 14px;">
-    <div class="rb-label">§ When asset-based works best</div>
-    <div class="rb-body">
-      <b>Yes</b> — REITs (real estate liquid), banks/insurance (assets mark-to-market), holdings/closed-end funds (assets là securities), natural resource (oil reserves quantifiable), liquidation scenarios.
-      <b>No</b> — service/tech firms (value ở intangibles, brand, R&amp;D pipeline), going concerns với high growth options, firms với synergies không trên balance sheet.
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Force 2</em> — Supplier power</div>
+      <dl>
+        <dt>High when</dt>
+        <dd>Few suppliers (concentrated). No substitute input. Switching cost high. Supplier can forward-integrate. Industry purchased small % of supplier output.</dd>
+        <dt>Examples</dt>
+        <dd>Intel/AMD đối với PC OEMs (concentrated supplier). Boeing engine vendors (GE, Rolls-Royce). Chip foundries (TSMC).</dd>
+        <dt>Effect</dt>
+        <dd>Suppliers extract margin. Industry profit thấp dù demand strong.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Force 3</em> — Buyer power</div>
+      <dl>
+        <dt>High when</dt>
+        <dd>Few buyers (concentrated). Buyer purchase large % of industry output. Standardized product (low switching cost). Buyer can backward-integrate. Buyer price-sensitive.</dd>
+        <dt>Examples</dt>
+        <dd>Walmart vs suppliers (massive buyer). Auto OEM vs parts suppliers. Hospital group vs medical device firms.</dd>
+        <dt>Effect</dt>
+        <dd>Buyers force price down. Industry margin compressed.</dd>
+      </dl>
     </div>
   </div>
 
   <p class="fine-muted-sm">
-    § Floor value — Asset-based thường được coi là <em>floor</em> cho equity value của going concern (firm value ≥ liquidation value). Premium trên NAV phản ánh franchise value, growth options.
+    § Both vertical forces test concentration → concentrated side wins. Industry attractive khi <em>both</em> suppliers + buyers fragmented (high # players, low individual leverage). Vd luxury goods firms — many small suppliers + many individual buyers → high industry margin.
   </p>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
   </div>
 </section>
 
 
-<!-- 19 · RECONCILING + INDUSTRY FIT -->
-<section data-label="Reconciling" class="slide">
+<!-- 10 · SUBSTITUTES + RIVALRY -->
+<section data-label="Substitutes + Rivalry" class="slide">
   <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
+    <span>07.06 — Industry</span>
     <span class="rule"></span>
-    <span>18 / 32</span>
+    <span>10 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Industry fit + reconciling</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Match · weight · <em class="hi">defend</em>.</h2>
+    <div class="eyebrow">Forces 4 + 5 · alternatives + competition</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Substitutes</em> + <em class="hi">Rivalry</em>.</h2>
   </div>
 
-  <div class="rule-box" style="margin-top: 8px;">
-    <div class="rb-label">§ Industry fit cheat-sheet</div>
-    <div class="rb-body">
-      <b>Utilities · staples</b> → DDM (Gordon Growth). <b>Banks · insurance</b> → P/B + residual income. <b>High-growth tech</b> → multi-stage FCFE; nếu negative earnings → P/S, EV/Sales. <b>Cyclicals</b> → normalized P/E hoặc EV/EBITDA. <b>REITs · oil/gas</b> → NAV + P/FFO. <b>M&amp;A cross-border</b> → EV/EBITDA + DCF (FCFF).
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Force 4</em> — Substitutes</div>
+      <dl>
+        <dt>Definition</dt>
+        <dd>Different product/service that satisfies same customer need. Khác từ direct competitor (cùng product); substitute = alternative way để fulfill need.</dd>
+        <dt>Examples</dt>
+        <dd>Coffee ↔ Tea, Energy drink. Airline ↔ High-speed rail (Europe, China). DVD ↔ Streaming (Netflix killed Blockbuster). Taxi ↔ Ride-hail ↔ Public transit.</dd>
+        <dt>High when</dt>
+        <dd>Substitute price-performance attractive. Switching cost low. Substitute available + visible.</dd>
+        <dt>Effect</dt>
+        <dd>Cap pricing power. Disruption risk (industry can be wiped — Kodak vs digital).</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Force 5</em> — Industry Rivalry</div>
+      <dl>
+        <dt>High when</dt>
+        <dd>Many competitors of similar size. Slow industry growth (zero-sum competition). High fixed cost (must utilize capacity → price war). Low product differentiation. High exit barriers (stuck in price war).</dd>
+        <dt>Examples</dt>
+        <dd>US airlines pre-consolidation. Memory chip (DRAM). Vietnamese banking sector. Restaurant industry generally.</dd>
+        <dt>Low when</dt>
+        <dd>Few large players (oligopoly). Differentiated products. Growing industry. Implicit coordination on pricing.</dd>
+      </dl>
     </div>
   </div>
 
-  <ol class="num-list tight" style="margin-top: 14px;">
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
+  </div>
+</section>
+
+
+<!-- 11 · LIFE CYCLE -->
+<section data-label="Life cycle" class="slide">
+  <div class="run-header">
+    <span>07.06 — Industry</span>
+    <span class="rule"></span>
+    <span>11 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Industry life cycle</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Five <em class="hi">stages</em>.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
     <li>
       <span>
-        <span class="step-title">Triangulate, đừng average</span>
-        <span class="step-body">Average mù quáng 3 estimates không phải best practice. Weight theo confidence: DCF cao confidence → weight cao; multiples thấp confidence (peer set thiếu) → weight thấp.</span>
+        <span class="step-title">1 · Embryonic — early</span>
+        <span class="step-body">New industry. Slow growth (chưa adoption). High product price. High failure rate. Few players, R&amp;D-heavy. Vd quantum computing 2026, gene therapy 2010s, blockchain 2015.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Explain divergence</span>
-        <span class="step-body">Nếu DCF &gt;&gt; multiples → market đang underprice growth/quality? Hoặc DCF assumptions quá optimistic (g quá cao)?</span>
+        <span class="step-title">2 · Growth — accelerating</span>
+        <span class="step-body">Adoption accelerate. Rapid revenue growth. Margins improve (scale economies). Many entrants attracted. Vd Internet 1995-2000, smartphone 2008-2015, EV 2020-now.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Sensitivity &amp; scenario</span>
-        <span class="step-body">Run sensitivity trên (r, g, ROE) cho DCF; trên peer set selection cho multiples. Range thay vì point estimate.</span>
+        <span class="step-title">3 · Shakeout — consolidation</span>
+        <span class="step-body">Growth slowing. Excess capacity. Marginal players exit/acquired. Margin pressure. Survivors emerge stronger. Vd US auto 1920s, dot-com 2000-2003, EV expected ~2027-2030.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Asset-based as floor</span>
-        <span class="step-body">NAV thường = floor (liquidation value). Going-concern value ≥ NAV; premium = franchise + growth. Nếu DCF &lt; NAV → red flag (firm destroying value, nên thanh lý).</span>
+        <span class="step-title">4 · Mature — saturation</span>
+        <span class="step-body">Growth ≈ GDP. Industry consolidated (oligopoly common). High barriers to entry. Stable margins (pricing discipline). Cash-generative. Vd US banking, beverage, telecom, autos.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">5 · Decline — shrinking</span>
+        <span class="step-body">Negative growth. Demand replaced by substitute or obsolete. Players exit or pivot. Vd print newspapers, landline phones, DVD rental, traditional cable TV.</span>
       </span>
     </li>
   </ol>
 
-  <div class="take" style="margin-top: 16px;">
-    <b>Take</b> — Valuation là <em>art + science</em>. Models là tools; judgment ở việc chọn model, set assumptions, weight evidence, và defend kết luận.
-  </div>
-
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
   </div>
 </section>
 
 
-<!-- 21 · PRACTICE TRANSITION -->
+<!-- 12 · INDUSTRY STRUCTURES -->
+<section data-label="Industry structures" class="slide">
+  <div class="run-header">
+    <span>07.06 — Industry</span>
+    <span class="rule"></span>
+    <span>12 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Microeconomic structures</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Four <em class="hi">structures</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Competition spectrum (perfect → monopoly)</span>
+    <div class="eq"><span class="var">Perfect</span> competition: many sellers · identical product · price-taker · zero economic profit</div>
+    <div class="eq"><span class="var">Monopolistic</span> competition: many sellers · differentiated product · some pricing power · low long-term profit</div>
+    <div class="eq"><span class="var">Oligopoly</span>: few sellers · differentiated or homogeneous · interdependent pricing · sustained profit possible</div>
+    <div class="eq"><span class="var">Monopoly</span>: single seller · unique product · price-maker · high sustained profit</div>
+    <div class="note">
+      Move từ left → right: <em>fewer players, more differentiation, higher pricing power, higher long-term profit</em>. Industry attractive khi gần monopoly end. Most real industries = monopolistic comp hoặc oligopoly.
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Examples by structure</span>
+    <b>Perfect competition</b>: agricultural commodities (wheat, corn) — closest real-world. <br>
+    <b>Monopolistic comp</b>: restaurant industry, retail apparel, consumer electronics. <br>
+    <b>Oligopoly</b>: US airlines (post-consolidation), beverage (Coke/Pepsi), telecom carriers, auto. <br>
+    <b>Monopoly</b>: utility companies (regulated), local cable provider (historically), pharma during patent period.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
+  </div>
+</section>
+
+
+<!-- 13 · SWOT + PESTLE -->
+<section data-label="SWOT + PESTLE" class="slide">
+  <div class="run-header">
+    <span>07.06 — Industry</span>
+    <span class="rule"></span>
+    <span>13 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Strategic frameworks</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">SWOT</em> + <em class="hi">PESTLE</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>SWOT</em> — internal + external</div>
+      <dl>
+        <dt>Strengths (internal +)</dt>
+        <dd>Brand strength, IP/patents, scale, talent, distribution network. Within company control.</dd>
+        <dt>Weaknesses (internal −)</dt>
+        <dd>Capital structure (over-levered), legacy tech, lacking talent, customer concentration. Within control to fix.</dd>
+        <dt>Opportunities (external +)</dt>
+        <dd>New geographies, adjacent products, regulatory tailwind, competitor weakness. Outside control but actionable.</dd>
+        <dt>Threats (external −)</dt>
+        <dd>Substitutes, new entrants, regulation tightening, FX, geopolitical. Outside control, must adapt.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>PESTLE</em> — macro environment</div>
+      <dl>
+        <dt>Political</dt>
+        <dd>Government stability, trade policy, tax, sanctions. Vd US-China trade war affect tech supply chain.</dd>
+        <dt>Economic</dt>
+        <dd>GDP, rate, FX, inflation, unemployment. Affect demand &amp; cost.</dd>
+        <dt>Social</dt>
+        <dd>Demographics (aging EU, young SEA), consumer preferences (ESG, healthy food), culture shifts.</dd>
+        <dt>Technological</dt>
+        <dd>Disruption (AI, EV, blockchain), automation, R&amp;D capability.</dd>
+        <dt>Legal</dt>
+        <dd>Antitrust, consumer protection, employment law, IP enforcement.</dd>
+        <dt>Environmental</dt>
+        <dd>Climate, ESG mandate, carbon pricing, water scarcity, biodiversity.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § SWOT focus on <em>company-level</em> internal/external; PESTLE focus on <em>industry/macro</em> external. Use SWOT cho stock pick; PESTLE cho sector outlook.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
+  </div>
+</section>
+
+
+<!-- 14 · VALUE CHAIN + STRATEGIC GROUPS -->
+<section data-label="Value chain" class="slide">
+  <div class="run-header">
+    <span>07.06 — Industry</span>
+    <span class="rule"></span>
+    <span>14 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Profit pool decomposition</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Value chain</em> + strategic groups.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Value chain analysis</span>
+        <span class="step-body">Trace <em>profit pool</em> from raw material → component → assembly → distribution → retail → end customer. Identify which stage capture margin. Vd smartphone industry: chip (high margin), assembly (low margin — Foxconn 1-2%), brand (high margin — Apple). Investor focus high-margin stages.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Strategic groups</span>
+        <span class="step-body">Companies trong same industry pursue similar strategy = strategic group. Vd luxury hotel (Four Seasons, Ritz-Carlton) vs budget (Holiday Inn Express, Motel 6). Different group = different competitive dynamics dù cùng industry. Compare within group cho more relevant peer benchmark.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">3 generic competitive strategies (Porter)</span>
+        <span class="step-body"><b>Cost leadership</b>: lowest cost producer (Walmart, Ryanair). <b>Differentiation</b>: unique value premium pricing (Apple, Tesla, LVMH). <b>Focus</b>: serve niche segment (Ferrari super-luxury, Vans skater niche).</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § Stuck in middle = no clear strategy → typically poor performer. Pick a lane: cost OR differentiate OR niche.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
+  </div>
+</section>
+
+
+<!-- 15 · INDUSTRY ATTRACTIVENESS SYNTHESIS -->
+<section data-label="Synthesis" class="slide">
+  <div class="run-header">
+    <span>07.06 — Industry</span>
+    <span class="rule"></span>
+    <span>15 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Synthesis</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Industry <em class="hi">attractiveness</em> scorecard.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Attractive industry checklist</span>
+    <b>(1)</b> Low threat new entrants — high barriers (capital, scale, brand, regulation, network).<br>
+    <b>(2)</b> Low supplier power — fragmented suppliers, alternative inputs.<br>
+    <b>(3)</b> Low buyer power — fragmented customers, differentiated product, switching cost.<br>
+    <b>(4)</b> Low substitute threat — no good alternative, high switching cost.<br>
+    <b>(5)</b> Low rivalry — few large players, growing market, differentiated, low fixed cost.<br>
+    <b>(6)</b> Life cycle stage = growth or mature (avoid decline).<br>
+    <b>(7)</b> Structure = oligopoly or monopolistic competition with strong brand. Avoid pure perfect competition.
+  </div>
+
+  <p class="fine-muted-sm">
+    § Score industry 1-5 trên mỗi pillar. Total 35 = perfectly attractive (rare). Most real industries 18-25. Pick top quartile cho stock universe.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
+  </div>
+</section>
+
+
+<!-- 16 · TAKEAWAYS -->
+<section data-label="Takeaways" class="slide">
+  <div class="run-header">
+    <span>07.06 — Industry</span>
+    <span class="rule"></span>
+    <span>16 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap · big picture</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">α</span>
+      <div>
+        <div class="t">Industry first, company second</div>
+        <div class="d">Industry structure cap long-term ROIC. Best company tệ industry thường thua average company industry tốt. Top-down: macro → industry → company.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">β</span>
+      <div>
+        <div class="t">Porter 5 Forces = profit pool</div>
+        <div class="d">5 forces compete cho industry profit. <em>High</em> force = drain margin; <em>low</em> force = retain margin. Attractive industry = all 5 forces low.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">γ</span>
+      <div>
+        <div class="t">Life cycle + structure</div>
+        <div class="d">5 stages: embryonic → growth → shakeout → mature → decline. 4 structures: perfect comp → monopoly. Stock favorable: growth/mature stage + oligopoly/monopolistic comp.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">δ</span>
+      <div>
+        <div class="t">Generic strategy: cost OR differentiate OR niche</div>
+        <div class="d">Pick a lane. "Stuck in middle" = poor performer. Strategic groups bên trong industry — compare within group cho relevant peer benchmark.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
+  </div>
+</section>
+
+
+<!-- 17 · TRANSITION -->
 <section data-label="Practice begins" class="slide end-slide">
   <div>
     <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
-    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án (with full numerical calc)</div>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
   </div>
 </section>
 
 
-<!-- 22 · Q1 EN — Gordon Growth -->
+<!-- 18 · Q1 EN — Porter force identify -->
 <section data-label="Q1 Original" class="slide">
   <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
+    <span>07.06 — Industry</span>
     <span class="rule"></span>
-    <span>20 / 32</span>
+    <span>18 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Apply <em class="hi">Gordon Growth</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Identify the <em class="hi">force</em>.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      A mature utility company just paid a dividend of <strong>D₀ = $2.00</strong> per share. Dividends are expected to grow at a constant rate of <strong>g = 4%</strong> indefinitely. The required return on equity is <strong>r = 10%</strong>. Using the Gordon Growth Model, the intrinsic value per share is <strong>closest</strong> to:
+      Vietnamese smartphone assemblers depend on Qualcomm and MediaTek for nearly all of their application processor chips. The two chip vendors face limited competition, hold patent portfolios that prevent direct substitution, and frequently increase prices during industry up-cycles. Vietnamese assemblers cannot easily backward-integrate due to fab capital intensity. Which of Porter's 5 Forces is <em>most</em> elevated for the Vietnamese assembler industry?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">$33.33.</span></li>
-    <li><span class="lbl">B</span><span class="opt">$34.67.</span></li>
-    <li><span class="lbl">C</span><span class="opt">$50.00.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Threat of new entrants — capital and patents make it easy for new chip vendors to disrupt.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Bargaining power of suppliers — concentrated chip vendors with patent protection extract margin from assemblers, who cannot easily switch or backward-integrate.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Industry rivalry — many smartphone assemblers compete fiercely for chip allocation.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
   </div>
 </section>
 
 
-<!-- 23 · Q1 HINT -->
+<!-- 19 · Q1 HINT -->
 <section data-label="Q1 Hint" class="slide">
   <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
+    <span>07.06 — Industry</span>
     <span class="rule"></span>
-    <span>21 / 32</span>
+    <span>19 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">leverage</em>.</h2>
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>Just paid D₀ = $2.00</mark> · <mark>constant growth g = 4%</mark> · <mark>r = 10%</mark>. Gordon Growth công thức: V₀ = D₁/(r−g), <em>không</em> D₀/(r−g).
+    <mark>Qualcomm + MediaTek</mark> + <mark>concentrated</mark> + <mark>patents</mark> + <mark>can't backward-integrate</mark>. Ai có leverage trong relationship này?
   </div>
   <ol class="hint-list">
-    <li><span class="hnum">Hint 1</span><span class="htxt">"Just paid" = <em>D₀</em>. Phải convert sang D₁ = D₀·(1+g) trước khi áp công thức. Quên bước này → ra $33.33 (đáp án A — bẫy).</span></li>
-    <li><span class="hnum">Hint 2</span><span class="htxt">D₁ = 2.00 × 1.04 = $2.08. Sau đó V₀ = D₁/(r−g) = 2.08/(0.10 − 0.04) = 2.08 / 0.06.</span></li>
-    <li><span class="hnum">Hint 3</span><span class="htxt">2.08 / 0.06 = $34.67. Đáp án B. C ($50) là kết quả nếu lỡ dùng D₀ = $3 hoặc r−g = 0.04 — không match data.</span></li>
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Test "supplier power high" gồm: (a) few suppliers, (b) no substitute input, (c) switching cost high, (d) supplier can forward-integrate, (e) buyer can't backward-integrate. Tất cả ✓.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Vietnamese assembler = buyer industry. Qualcomm/MediaTek = suppliers. Suppliers concentrated + patent protected = supplier power high → drain margin từ assembler.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Đáp án A đảo ngược logic — patents make entry <em>khó</em>, không "easy to disrupt". Đáp án C confuse vertical (suppliers) với horizontal (rivalry between assemblers).</span>
+    </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
   </div>
 </section>
 
 
-<!-- 24 · Q1 Dịch đề -->
+<!-- 20 · Q1 Dịch đề -->
 <section data-label="Q1 Dịch đề" class="slide">
   <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
+    <span>07.06 — Industry</span>
     <span class="rule"></span>
-    <span>22 / 32</span>
+    <span>20 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
@@ -895,128 +803,124 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một công ty utility mature vừa trả dividend <strong>D₀ = $2.00</strong>/share. Dividend dự kiến tăng với tốc độ không đổi <strong>g = 4%</strong> mãi mãi. Required return on equity là <strong>r = 10%</strong>. Dùng Gordon Growth Model, intrinsic value per share <strong>gần nhất</strong> với:
+      Các nhà lắp ráp smartphone Việt Nam phụ thuộc gần như toàn bộ vào Qualcomm và MediaTek cho application processor chips. Hai chip vendors face limited competition, sở hữu patent portfolio ngăn substitute trực tiếp, và thường tăng price trong industry up-cycle. Vietnamese assemblers không thể dễ dàng backward-integrate vì fab capital intensity quá cao. Trong Porter's 5 Forces, force nào <em>elevated nhất</em> cho industry lắp ráp Việt Nam?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">$33.33.</span></li>
-    <li><span class="lbl">B</span><span class="opt">$34.67.</span></li>
-    <li><span class="lbl">C</span><span class="opt">$50.00.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Threat of new entrants — capital và patents khiến new chip vendors dễ disrupt.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Bargaining power of suppliers — concentrated chip vendors với patent protection extract margin từ assemblers, vốn không thể switch hay backward-integrate.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Industry rivalry — nhiều smartphone assemblers cạnh tranh kịch liệt cho chip allocation.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
   </div>
 </section>
 
 
-<!-- 25 · Q1 EXPLANATION -->
+<!-- 21 · Q1 EXPLANATION -->
 <section data-label="Q1 Explanation" class="slide">
   <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
+    <span>07.06 — Industry</span>
     <span class="rule"></span>
-    <span>23 / 32</span>
+    <span>21 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $34.67.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — supplier power.</h2>
   </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Calculation</span>
-    <div class="eq"><span class="var">D₁</span> = D₀ · (1 + g) = 2.00 × 1.04 = <b>$2.08</b></div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">V₀</span> = D₁ / (r − g) = 2.08 / (0.10 − 0.04) = 2.08 / 0.06 = <b>$34.67</b></div>
-  </div>
-
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">Gordon Growth dùng <b>D₁</b> (dividend kỳ tới), không phải D₀. Convert: D₁ = 2.00·(1.04) = $2.08. Áp công thức V₀ = 2.08/(0.10−0.04) = $34.67. Điều kiện r &gt; g hold (10% &gt; 4%), perpetuity assumption phù hợp với mature utility.</div>
+      <div class="rtext">Supplier power test gồm 5 conditions, all ✓: <em>(1)</em> few suppliers (chỉ Qualcomm + MediaTek concentrated); <em>(2)</em> no substitute input (patent protection ngăn); <em>(3)</em> switching cost high (re-design board cho different chip); <em>(4)</em> supplier có pricing power "frequently increase prices"; <em>(5)</em> buyer không thể backward-integrate (fab capital intensity = barrier). Result: chip vendors extract margin → Vietnamese assembler industry profit pool nhỏ. Apple, Samsung là exception vì họ design own silicon → reduce supplier dependency. Vietnamese assemblers không có scale.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">$33.33 = 2.00/0.06 — bẫy lớn nhất. Quên convert D₀ → D₁. Always remember: numerator phải là <em>next-period</em> dividend, không phải dividend vừa trả.</div>
+      <div class="rtext">Đảo ngược logic — capital intensity và patent protection <em>tăng</em> entry barriers, làm threat of new entrants <em>thấp hơn</em>, không phải dễ disrupt. Đáp án A misread Porter framework.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">$50 = 2.00/0.04 — sai cả tử lẫn mẫu (lỡ dùng D₀ và g thay cho r−g). Không match logic Gordon Growth.</div>
+      <div class="rtext">Sai phần phân loại force — assembler-to-assembler competition là <em>industry rivalry</em> (Force 5), force <em>horizontal</em>. Câu hỏi mô tả <em>vertical</em> relationship (assembler vs chip supplier) → Force 2 supplier power. Đáp án C confuse 2 forces.</div>
     </div>
   </div>
-
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Gordon Growth: V₀ = D₁/(r−g). <em>"Just paid" = D₀</em>; convert sang D₁ = D₀·(1+g) trước. Đây là bẫy phổ biến nhất trong CFA L1 valuation. Always check: r &gt; g, mature firm, perpetuity assumption defendable.</div>
+    <div class="ttext">Supplier power high khi: (1) concentrated, (2) no substitute, (3) high switching cost, (4) supplier can forward-integrate, (5) buyer can't backward-integrate. Vertical force (suppliers/buyers) khác horizontal (rivalry/entrants/substitutes). Identify which side of value chain question is testing trước khi pick force.</div>
   </div>
-
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
   </div>
 </section>
 
 
-<!-- 26 · Q2 EN — Justified P/B -->
+<!-- 22 · Q2 EN — Life cycle stage -->
 <section data-label="Q2 Original" class="slide">
   <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
+    <span>07.06 — Industry</span>
     <span class="rule"></span>
-    <span>24 / 32</span>
+    <span>22 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Compute <em class="hi">justified P/B</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Life cycle</em> stage.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      A regional bank has the following profile: <strong>ROE = 14%</strong>, sustainable growth rate <strong>g = 6%</strong>, and required return on equity <strong>r = 10%</strong>. The bank currently trades at a <strong>P/B of 1.5×</strong>. Based on the justified P/B (forecasted fundamentals) approach, the bank is <strong>most likely</strong>:
+      The global EV industry has the following characteristics in 2026: revenue growth has decelerated from 60% per year (2018-2022) to ~25% per year, several smaller manufacturers have filed bankruptcy, leading players (Tesla, BYD) have begun acquiring weaker competitors, gross margins are under pressure due to price competition, and excess production capacity exists in China. Which life cycle stage <em>best</em> describes the global EV industry?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Overvalued; justified P/B is 1.4×.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Undervalued; justified P/B is 2.0×.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Fairly valued; justified P/B is 1.5×.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Growth stage — revenue is still growing 25% per year, faster than GDP, indicating the industry remains in expansion.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Shakeout stage — decelerating growth, bankruptcies of marginal players, M&amp;A consolidation, margin pressure, and excess capacity are textbook shakeout features.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Mature stage — the presence of dominant leaders (Tesla, BYD) and consolidation indicates industry has reached maturity.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
   </div>
 </section>
 
 
-<!-- 27 · Q2 HINT -->
+<!-- 23 · Q2 HINT -->
 <section data-label="Q2 Hint" class="slide">
   <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
+    <span>07.06 — Industry</span>
     <span class="rule"></span>
-    <span>25 / 32</span>
+    <span>23 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">stage signature</em>.</h2>
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>ROE = 14%</mark> · <mark>g = 6%</mark> · <mark>r = 10%</mark>. Câu hỏi về <mark>justified P/B</mark>, công thức = (ROE − g)/(r − g).
+    <mark>Growth decelerate</mark> + <mark>bankruptcies</mark> + <mark>M&amp;A consolidation</mark> + <mark>margin pressure</mark> + <mark>excess capacity</mark>. 5 signature của một stage cụ thể.
   </div>
   <ol class="hint-list">
-    <li><span class="hnum">Hint 1</span><span class="htxt">Justified P/B = (ROE − g) / (r − g). Tử số = ROE − g = 14% − 6% = <em>8%</em>. Mẫu số = r − g = 10% − 6% = <em>4%</em>.</span></li>
-    <li><span class="hnum">Hint 2</span><span class="htxt">Justified P/B = 8% / 4% = <em>2.0×</em>. Bank đang trade ở 1.5× &lt; 2.0× (justified) → undervalued.</span></li>
-    <li><span class="hnum">Hint 3</span><span class="htxt">Decision rule: actual P/B &lt; justified P/B → undervalued (BUY). Actual &gt; justified → overvalued (SELL). Logic: ROE &gt; r (14% &gt; 10%) → firm tạo value → P/B &gt; 1.</span></li>
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Growth stage signatures: rapid + accelerating growth, many entrants, margin <em>improving</em> (scale economies). Đề mô tả opposite: decelerating + margin pressure → fail growth criteria.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Mature stage signatures: growth ≈ GDP (~3-5%), high consolidation đã hoàn tất, stable margins, oligopoly. Đề nói growth vẫn 25% (much &gt; GDP) → fail mature criteria.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Shakeout signatures: decelerating growth (transition từ growth → mature), bankruptcies, M&amp;A, margin pressure, excess capacity. Tất cả ✓ với fact pattern. Classic shakeout.</span>
+    </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
   </div>
 </section>
 
 
-<!-- 28 · Q2 Dịch đề -->
+<!-- 24 · Q2 Dịch đề -->
 <section data-label="Q2 Dịch đề" class="slide">
   <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
+    <span>07.06 — Industry</span>
     <span class="rule"></span>
-    <span>26 / 32</span>
+    <span>24 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
@@ -1025,129 +929,128 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một regional bank có profile: <strong>ROE = 14%</strong>, sustainable growth rate <strong>g = 6%</strong>, required return on equity <strong>r = 10%</strong>. Bank hiện trade ở <strong>P/B = 1.5×</strong>. Dựa trên justified P/B (forecasted fundamentals approach), bank <strong>nhiều khả năng</strong> là:
+      Industry EV toàn cầu năm 2026 có đặc điểm: revenue growth giảm tốc từ 60%/năm (2018-2022) xuống ~25%/năm, một số nhà sản xuất nhỏ đã phá sản, leading players (Tesla, BYD) bắt đầu mua lại các competitor yếu hơn, gross margins chịu áp lực do price competition, và excess production capacity tồn tại ở China. Stage nào trong life cycle <em>mô tả tốt nhất</em> EV industry toàn cầu?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Overvalued; justified P/B = 1.4×.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Undervalued; justified P/B = 2.0×.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Fairly valued; justified P/B = 1.5×.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Growth stage — revenue vẫn tăng 25%/năm, nhanh hơn GDP, cho thấy industry vẫn trong giai đoạn expansion.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Shakeout stage — growth giảm tốc, phá sản marginal players, M&amp;A consolidation, áp lực margin, và excess capacity là textbook shakeout features.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Mature stage — sự hiện diện của dominant leaders (Tesla, BYD) và consolidation cho thấy industry đã đến giai đoạn maturity.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
   </div>
 </section>
 
 
-<!-- 29 · Q2 EXPLANATION -->
+<!-- 25 · Q2 EXPLANATION -->
 <section data-label="Q2 Explanation" class="slide">
   <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
+    <span>07.06 — Industry</span>
     <span class="rule"></span>
-    <span>27 / 32</span>
+    <span>25 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Undervalued, 2.0×.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — shakeout.</h2>
   </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Calculation</span>
-    <div class="eq">Justified P/B = (<span class="var">ROE</span> − <span class="var">g</span>) / (<span class="var">r</span> − <span class="var">g</span>)</div>
-    <div class="eq" style="margin-top: 8px;">= (0.14 − 0.06) / (0.10 − 0.06) = 0.08 / 0.04 = <b>2.0×</b></div>
-    <div class="eq" style="margin-top: 8px;">Actual P/B = 1.5× &lt; Justified 2.0× → <b>UNDERVALUED</b></div>
-  </div>
-
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">Justified P/B = (ROE − g)/(r − g) = 0.08/0.04 = <b>2.0×</b>. Actual 1.5× &lt; justified 2.0× → market đang underprice bank. <em>ROE &gt; r</em> (14% &gt; 10%) confirms firm tạo value → P/B nên &gt; 1; cụ thể là 2× given growth profile.</div>
+      <div class="rtext">Shakeout stage = transition giữa growth → mature, có 5 signature đặc trưng all ✓: <em>(1)</em> growth decelerating (60% → 25%); <em>(2)</em> bankruptcies of marginal players; <em>(3)</em> M&amp;A consolidation (Tesla/BYD acquire weaker); <em>(4)</em> margin pressure (price competition); <em>(5)</em> excess capacity. Đây là pattern classic shakeout (US auto 1920s, dot-com 2000-2003, EV 2024-2027). Investment implication: surviving leaders emerge stronger với pricing power; weaker players bị weeded out.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">1.4× sai mathematically. Có thể từ lỗi tính (ROE+g)/(r+g) = 0.20/0.16 = 1.25 (vẫn không khớp 1.4). Justified P/B đúng dùng <em>spread</em> ở cả tử lẫn mẫu (subtract g).</div>
+      <div class="rtext">Sai vì growth stage = <em>accelerating</em> growth + improving margins + many new entrants. Fact pattern có <em>decelerating</em> growth + margin pressure + bankruptcies — opposite of growth signatures. 25%/năm vẫn cao but trajectory matters.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">1.5× = market price hiện tại, không phải justified. "Fairly valued" yêu cầu actual = justified. Khi actual ≠ justified, cần BUY/SELL recommendation, không phải "fair".</div>
+      <div class="rtext">Sai vì mature stage = growth ≈ GDP (~3-5%), consolidation <em>đã xong</em> với stable oligopoly. EV vẫn growing 25% (much above GDP) và consolidation đang <em>diễn ra</em> chưa kết thúc → chưa mature. Mature stage đến sau shakeout.</div>
     </div>
   </div>
-
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Justified P/B = (ROE − g)/(r − g). <em>Spread ROE − r</em> driver chính: ROE &gt; r → P/B &gt; 1; ROE = r → P/B = 1; ROE &lt; r → P/B &lt; 1. Decision: actual &lt; justified → buy. Đây là công cụ chuẩn cho banks &amp; insurance.</div>
+    <div class="ttext">5 stages signature: <em>Embryonic</em> (slow growth, high failure, R&amp;D heavy); <em>Growth</em> (accelerate growth, many entrants, margin improving); <em>Shakeout</em> (decelerate growth, bankruptcies, M&amp;A, margin pressure, excess capacity); <em>Mature</em> (growth ≈ GDP, oligopoly, stable margin); <em>Decline</em> (negative growth, exit, substitute won). Stage chuyển dần — phải đọc multiple signatures để identify chính xác.</div>
   </div>
-
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
   </div>
 </section>
 
 
-<!-- 30 · Q3 EN — Sustainable growth + DDM -->
+<!-- 26 · Q3 EN — Industry structure / barriers -->
 <section data-label="Q3 Original" class="slide">
   <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
+    <span>07.06 — Industry</span>
     <span class="rule"></span>
-    <span>28 / 32</span>
+    <span>26 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Sustainable g <em class="hi">+ DDM</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">SWOT</em> placement.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      A consumer staples firm reports <strong>ROE = 12%</strong> and a <strong>payout ratio of 50%</strong>. Required return on equity is <strong>r = 9%</strong>. Last year's earnings per share was <strong>EPS₀ = $4.00</strong>, and the firm just paid a dividend equal to 50% of EPS₀. Using sustainable growth and the Gordon Growth Model, the intrinsic value per share is <strong>closest</strong> to:
+      An analyst is preparing a SWOT analysis for a Vietnamese pharmaceutical manufacturer. Where in the SWOT framework should each of the following be placed? <br>
+      (i) The company's vertically integrated API production facility (the only one of its scale in Vietnam). <br>
+      (ii) Pending Ministry of Health regulation requiring stricter bioequivalence testing for generic drugs. <br>
+      (iii) Aging demographics in Vietnam expected to drive 8% annual growth in chronic-disease drug demand. <br>
+      (iv) The company's high financial leverage (Debt/EBITDA = 5.2× vs industry median of 2.0×).
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">$66.67.</span></li>
-    <li><span class="lbl">B</span><span class="opt">$70.67.</span></li>
-    <li><span class="lbl">C</span><span class="opt">$72.00.</span></li>
+    <li><span class="lbl">A</span><span class="opt">(i) Strength · (ii) Threat · (iii) Opportunity · (iv) Weakness — internal factors: (i) and (iv); external factors: (ii) and (iii).</span></li>
+    <li><span class="lbl">B</span><span class="opt">(i) Strength · (ii) Weakness · (iii) Strength · (iv) Threat — all are competitive considerations affecting the company's market position.</span></li>
+    <li><span class="lbl">C</span><span class="opt">(i) Opportunity · (ii) Strength · (iii) Threat · (iv) Weakness — internal/external classification depends on direct controllability rather than origin.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
   </div>
 </section>
 
 
-<!-- 31 · Q3 HINT -->
+<!-- 27 · Q3 HINT -->
 <section data-label="Q3 Hint" class="slide">
   <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
+    <span>07.06 — Industry</span>
     <span class="rule"></span>
-    <span>29 / 32</span>
+    <span>27 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot <em class="hi">internal</em> vs external.</h2>
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>ROE = 12%</mark> · <mark>payout = 50%</mark> → b = 50%. <mark>EPS₀ = $4</mark>, <mark>D₀ = 0.5 × 4 = $2</mark>. Two-step: tính g rồi áp Gordon.
+    SWOT 2 axes: <mark>internal vs external</mark> · <mark>positive vs negative</mark>. Internal positive = S; internal negative = W. External positive = O; external negative = T.
   </div>
   <ol class="hint-list">
-    <li><span class="hnum">Hint 1</span><span class="htxt">Sustainable g = ROE × b = 0.12 × 0.50 = <em>6%</em>. Đây là input cho Gordon Growth, không cho sẵn.</span></li>
-    <li><span class="hnum">Hint 2</span><span class="htxt">D₀ = 50% × $4 = $2. D₁ = D₀·(1+g) = 2 × 1.06 = <em>$2.12</em>. (Đừng quên bước convert D₀ → D₁ như Q1.)</span></li>
-    <li><span class="hnum">Hint 3</span><span class="htxt">V₀ = D₁/(r−g) = 2.12/(0.09 − 0.06) = 2.12/0.03 = <em>$70.67</em>. Đáp án B. A ($66.67) là bẫy nếu quên convert D₀ → D₁ (= 2/0.03).</span></li>
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">(i) API facility = company-owned asset → <em>internal</em>. Unique in Vietnam = positive → <em>Strength</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">(ii) Ministry regulation pending = outside company control → <em>external</em>. Stricter testing increases compliance burden → negative → <em>Threat</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">(iii) Aging demographics = macro trend, outside company control → <em>external</em>. Growth in demand = positive → <em>Opportunity</em>. (iv) High leverage = company's own balance sheet → <em>internal</em>. Above industry → negative → <em>Weakness</em>.</span>
+    </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
   </div>
 </section>
 
 
-<!-- 32 · Q3 Dịch đề -->
+<!-- 28 · Q3 Dịch đề -->
 <section data-label="Q3 Dịch đề" class="slide">
   <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
+    <span>07.06 — Industry</span>
     <span class="rule"></span>
-    <span>30 / 32</span>
+    <span>28 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
@@ -1156,74 +1059,64 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một consumer staples firm có <strong>ROE = 12%</strong> và <strong>payout ratio = 50%</strong>. Required return on equity <strong>r = 9%</strong>. EPS năm vừa rồi <strong>EPS₀ = $4.00</strong>, firm vừa trả dividend bằng 50% của EPS₀. Dùng sustainable growth và Gordon Growth Model, intrinsic value per share <strong>gần nhất</strong> với:
+      Analyst đang chuẩn bị SWOT analysis cho 1 nhà sản xuất dược Việt Nam. Mỗi item dưới đây thuộc category nào trong SWOT framework? <br>
+      (i) Vertically integrated API production facility của công ty (duy nhất ở Vietnam có scale này). <br>
+      (ii) Quy định Bộ Y tế sắp ban hành yêu cầu bioequivalence testing nghiêm hơn cho generic drugs. <br>
+      (iii) Demographics già hoá Việt Nam dự kiến drive 8% annual growth in chronic-disease drug demand. <br>
+      (iv) Đòn bẩy tài chính cao của công ty (Debt/EBITDA = 5.2× vs industry median 2.0×).
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">$66.67.</span></li>
-    <li><span class="lbl">B</span><span class="opt">$70.67.</span></li>
-    <li><span class="lbl">C</span><span class="opt">$72.00.</span></li>
+    <li><span class="lbl">A</span><span class="opt">(i) Strength · (ii) Threat · (iii) Opportunity · (iv) Weakness — internal factors: (i) và (iv); external factors: (ii) và (iii).</span></li>
+    <li><span class="lbl">B</span><span class="opt">(i) Strength · (ii) Weakness · (iii) Strength · (iv) Threat — tất cả là competitive considerations ảnh hưởng market position của công ty.</span></li>
+    <li><span class="lbl">C</span><span class="opt">(i) Opportunity · (ii) Strength · (iii) Threat · (iv) Weakness — internal/external classification phụ thuộc direct controllability hơn là origin.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
   </div>
 </section>
 
 
-<!-- 33 · Q3 EXPLANATION -->
+<!-- 29 · Q3 EXPLANATION -->
 <section data-label="Q3 Explanation" class="slide">
   <div class="run-header">
-    <span>07.06 — Equity Valuation</span>
+    <span>07.06 — Industry</span>
     <span class="rule"></span>
-    <span>31 / 32</span>
+    <span>29 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $70.67.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em>.</h2>
   </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Step-by-step calculation</span>
-    <div class="eq">Step 1 · <span class="var">b</span> = 1 − payout = 1 − 0.50 = <b>0.50</b></div>
-    <div class="eq" style="margin-top: 6px;">Step 2 · <span class="var">g</span> = ROE · b = 0.12 × 0.50 = <b>6%</b></div>
-    <div class="eq" style="margin-top: 6px;">Step 3 · <span class="var">D₀</span> = 0.50 × $4.00 = <b>$2.00</b></div>
-    <div class="eq" style="margin-top: 6px;">Step 4 · <span class="var">D₁</span> = D₀·(1+g) = 2.00 × 1.06 = <b>$2.12</b></div>
-    <div class="eq" style="margin-top: 6px;">Step 5 · <span class="var">V₀</span> = D₁/(r−g) = 2.12 / 0.03 = <b>$70.67</b></div>
-  </div>
-
   <div class="reasoning">
     <div class="rblock">
-      <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">Bài 3-step: (1) <b>g từ sustainable growth</b> = ROE×b = 6%. (2) <b>D₁ từ D₀</b> = 2.00·1.06 = $2.12. (3) <b>V₀ Gordon</b> = 2.12/0.03 = $70.67. Tất cả check: r &gt; g (9% &gt; 6%), payout ổn định, mature consumer staples — Gordon Growth phù hợp.</div>
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">SWOT 2 trục: <em>internal vs external</em> + <em>positive vs negative</em>. <b>(i) Strength</b>: vertically integrated API facility = company asset (internal) + unique scale advantage (positive). <b>(ii) Threat</b>: Ministry regulation = outside company control (external) + stricter testing burden (negative). <b>(iii) Opportunity</b>: aging demographics = macro trend (external) + drives demand growth (positive). <b>(iv) Weakness</b>: high leverage = company balance sheet (internal) + above industry median (negative). Classification rule clear, không phụ thuộc "controllability" như đáp án C suggest.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">$66.67 = $2.00/0.03 — quên convert D₀ → D₁ (cùng bẫy như Q1). Hoặc dùng D₀ ($2) trực tiếp trong tử số. Always D₁, không bao giờ D₀.</div>
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Sai phần (ii) và (iii). Regulation pending là <em>Threat</em> (external negative), không phải Weakness (Weakness = internal negative). Aging demographics là <em>Opportunity</em> (external positive), không phải Strength (Strength = internal positive). Đáp án B mix internal/external categories.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">$72.00 = 2.16/0.03 — sai khi tính D₁ (2.00 × 1.08 thay vì 1.06). Lỗi rounding hoặc dùng g sai (8% thay vì 6%). Check sustainable g: 0.12 × 0.50 = 0.06, không phải 0.08.</div>
+      <div class="rtext">Sai logic — internal/external <em>không</em> phụ thuộc "controllability" mà phụ thuộc <em>origin</em>. API facility là internal (company-owned) dù không control hoàn toàn supply chain. Demographics là external dù affect company. Classification rule based on <em>where it originates</em>, not what management can change.</div>
     </div>
   </div>
-
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Pattern phổ biến CFA L1: bài cho <em>ROE + payout</em> → tự derive <b>g = ROE × b</b>; cho <em>EPS + payout</em> → derive D₀; rồi convert D₀ → D₁ → áp Gordon Growth. 5 steps, 2 formulas. Skip step nào cũng vào bẫy.</div>
+    <div class="ttext">SWOT 2×2 matrix: <em>Internal × Positive</em> = Strength; <em>Internal × Negative</em> = Weakness; <em>External × Positive</em> = Opportunity; <em>External × Negative</em> = Threat. Internal = company-owned assets/decisions/balance sheet. External = macro/regulatory/competitor/market. Decide internal/external first based on origin, then positive/negative.</div>
   </div>
-
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Equity · 07.06 — Equity Valuation</span>
+    <span class="footer-topic">Equity · 07.06 — Industry &amp; Competitive Analysis</span>
   </div>
 </section>
 
 
-<!-- 34 · END -->
+<!-- 30 · END -->
 <section data-label="End" class="slide end-slide">
   <div>
     <h1>07.06 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
-    <div class="hint">Hết module Equity Investments · Tiếp theo · Topic 08 — Fixed Income</div>
+    <div class="hint">Tiếp theo · Lesson 07.07 — Company Analysis: Forecasting</div>
   </div>
 </section>
 

@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>CFA L1 · FSA 04.07 — Income Taxes</title>
+<title>CFA L1 · FSA 04.07 — Long-Lived Assets</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -24,635 +24,558 @@
 <section data-label="Title" class="slide title-slide">
   <div class="left">
     <div class="mark">CFA Institute · Level I</div>
-    <h1 class="main">Income<br><em>Taxes.</em></h1>
+    <h1 class="main">Long-Lived<br><em>Assets.</em></h1>
     <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 04 · Lesson 04.07 · FSA</div>
   </div>
   <div class="right">
-    <div class="mark">Module 07 · Income taxes — temporary differences, deferred tax, recognition</div>
+    <div class="mark">Module 07 · Long-lived assets — capitalize, depreciate, impair, derecognize</div>
     <dl class="meta-grid">
       <div><dt>Môn</dt><dd>FSA</dd></div>
       <div><dt>Module</dt><dd>07</dd></div>
       <div><dt>Lesson</dt><dd>04.07</dd></div>
       <div><dt>Thời lượng</dt><dd>90 min</dd></div>
     </dl>
-    <div class="mark">Accounting profit vs taxable income · DTA / DTL · effective tax rate · IFRS vs GAAP</div>
+    <div class="mark">capitalize vs expense · depreciation · amortization · goodwill · impairment · revaluation · derecognition</div>
   </div>
 </section>
 
 
-<!-- 02 · AGENDA -->
+<!-- 02 · AGENDA / TOC -->
 <section data-label="Agenda" class="slide section-break">
   <div class="band">
     <div class="lbl">PART</div>
     <div class="n">07</div>
-    <div class="lbl">Income taxes</div>
+    <div class="lbl">Long-lived assets</div>
   </div>
   <div class="content">
-    <div class="eyebrow">Today's lesson</div>
-    <h2>Why <em>book</em> profit<br>≠ <em>tax</em> profit.</h2>
+    <div class="eyebrow">Today's lesson · Table of contents</div>
+    <h2>Assets that <em>last</em><br>more than one year.</h2>
     <ul class="toc">
-      <li class="active">01 · Accounting profit vs Taxable income — book-tax differences</li>
-      <li>02 · Permanent vs Temporary differences</li>
-      <li>03 · Tax base · DTA &amp; DTL formation</li>
-      <li>04 · Statutory vs effective tax rate · Reconciliation</li>
-      <li>05 · Tax loss carryforwards · Recognition rules · IFRS vs GAAP</li>
-      <li>06 · Disclosures · Practice — 3 CFA-style questions</li>
+      <li class="active">01 · Capitalization vs Expensing decisions</li>
+      <li>02 · Depreciation methods — SL, DDB, Units of production</li>
+      <li>03 · Amortization of finite-life intangibles</li>
+      <li>04 · Goodwill &amp; impairment (IFRS vs US GAAP)</li>
+      <li>05 · Revaluation model (IFRS) · Derecognition</li>
+      <li>06 · Investment property · Disclosures &amp; ratios</li>
+      <li>07 · Practice — 3 CFA-style questions</li>
     </ul>
   </div>
 </section>
 
 
-<!-- 03 · ACCOUNTING vs TAXABLE INCOME -->
-<section data-label="Two profits" class="slide">
+<!-- 03 · CAPITALIZE VS EXPENSE — concept -->
+<section data-label="Capitalize concept" class="slide">
   <div class="run-header">
-    <span>04.07 — Income Taxes</span>
+    <span>04.07 — Long-Lived Assets</span>
     <span class="rule"></span>
-    <span>03 / 30</span>
+    <span>03 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Foundation</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Two <em class="hi">profits</em>, one firm.</h2>
+    <div class="eyebrow">Decision · accounting policy</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Capitalize</em> or expense?</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Firm phải tính lợi nhuận theo <em>hai bộ luật</em>: IFRS/US GAAP cho shareholders, và Tax code cho cơ quan thuế. Hai bộ này không giống nhau → tạo ra book-tax differences.
-    </p>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Two parallel calculations</span>
-    <div class="eq"><span class="var">Accounting profit</span> = Revenue − Expenses (per IFRS / GAAP) → <span class="var">Income tax expense</span></div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">Taxable income</span> = Revenue − Deductions (per Tax code) → <span class="var">Income tax payable</span></div>
-    <div class="note"><b>Income tax expense</b> (IS, theo accounting) ≠ <b>Income tax payable</b> (cash thực sự nộp thuế). Phần chênh lệch đi vào <em>deferred tax</em> trên BS.</div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Income tax expense = Tax payable + ΔDTL − ΔDTA. Đây là công thức "ráp" giữa accounting world và tax world — sẽ xuất hiện lại trong reconciliation.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
-  </div>
-</section>
-
-
-<!-- 04 · PERMANENT vs TEMPORARY -->
-<section data-label="Differences" class="slide">
-  <div class="run-header">
-    <span>04.07 — Income Taxes</span>
-    <span class="rule"></span>
-    <span>04 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Book-tax differences</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Permanent</em> vs Temporary.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Hai loại differences — phân biệt CỰC kỳ quan trọng vì chỉ <em>temporary</em> mới tạo deferred tax.
-    </p>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head">Permanent</div>
-      <dl>
-        <dt>Định nghĩa</dt>
-        <dd>Khác biệt <em>không bao giờ reverse</em> — item ghi nhận một bên (book hoặc tax) nhưng không bao giờ bên kia</dd>
-        <dt>Ví dụ</dt>
-        <dd>Tax-exempt interest (municipal bonds), non-deductible fines, một phần meals &amp; entertainment, life insurance proceeds</dd>
-        <dt>Tác động</dt>
-        <dd>Tạo gap giữa <em>statutory</em> và <em>effective tax rate</em>; KHÔNG tạo DTA/DTL</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head">Temporary</div>
-      <dl>
-        <dt>Định nghĩa</dt>
-        <dd>Timing difference — cùng item ghi nhận ở <em>kỳ khác nhau</em> giữa book và tax → sẽ reverse</dd>
-        <dt>Ví dụ</dt>
-        <dd>Depreciation (accelerated tax vs straight-line book), warranty expense (book accrual vs tax cash), unearned revenue</dd>
-        <dt>Tác động</dt>
-        <dd>Tạo <em>DTA</em> hoặc <em>DTL</em> trên BS; reverse khi gap đóng lại</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Mnemonic — Permanent = "không gặp lại". Temporary = "vay mượn thời gian". Chỉ temporary mới biến thành deferred tax line item.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
-  </div>
-</section>
-
-
-<!-- 05 · TAX BASE -->
-<section data-label="Tax base" class="slide">
-  <div class="run-header">
-    <span>04.07 — Income Taxes</span>
-    <span class="rule"></span>
-    <span>05 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Concept</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Tax base</em> vs carrying amount.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Mỗi asset/liability có <em>hai giá trị</em>: <b>carrying amount</b> trên BS (theo accounting) và <b>tax base</b> (theo tax code). Chênh lệch giữa hai số này quyết định DTA hay DTL.
-    </p>
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 16px;">
-    <li>
-      <span>
-        <span class="step-title">Tax base of an asset — value left to deduct in the future</span>
-        <span class="step-body">= Carrying amount nếu không có khác biệt; nhưng thường là (cost − depreciation đã trừ thuế). Khi asset được sử dụng/bán, phần này deductible.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Tax base of a liability — already-taxed portion</span>
-        <span class="step-body">= Carrying amount − amount sẽ được deduct trong tương lai. Với unearned revenue đã chịu thuế khi nhận cash → tax base = 0 → DTA.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Compare the two — sign tells you DTA or DTL</span>
-        <span class="step-body">Asset: <em>CA &gt; tax base</em> → DTL. Liability: <em>CA &gt; tax base</em> → DTA. Logic: tương lai book sẽ trả nhiều/ít thuế hơn so với hiện tại.</span>
-      </span>
-    </li>
-  </ol>
-
-  <p class="fine-muted-sm">
-    § Hỏi nhanh: machine cost $100, book depr $20, tax depr $30 → CA = 80, tax base = 70 → CA &gt; tax base → DTL = (80 − 70) × tax rate.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
-  </div>
-</section>
-
-
-<!-- 06 · DTL FORMATION -->
-<section data-label="DTL" class="slide">
-  <div class="run-header">
-    <span>04.07 — Income Taxes</span>
-    <span class="rule"></span>
-    <span>06 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Deferred tax liability</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">When <em class="hi">DTL</em> forms.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      DTL = nợ thuế trong tương lai. Phát sinh khi book ghi nhận <em>income sớm hơn</em> hoặc <em>expense muộn hơn</em> tax code.
-    </p>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ DTL formula</span>
-    <div class="eq"><span class="var">DTL</span> = (<span class="var">Carrying amount</span> − <span class="var">Tax base</span>) × <span class="var">tax rate</span> &nbsp; <em>(asset where CA &gt; tax base)</em></div>
-    <div class="note"><b>Logic:</b> firm đã trừ depreciation thuế nhanh hơn book → ít thuế phải nộp <em>bây giờ</em>, nhưng sẽ nhiều hơn <em>sau này</em> khi book vẫn còn depreciation mà tax đã hết. Phần "sẽ phải nộp sau" = DTL.</div>
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 16px;">
-    <li>
-      <span>
-        <span class="step-title">Classic trigger — accelerated tax depreciation</span>
-        <span class="step-body">Tax code cho phép depreciate $30/năm; book ghi $20/năm. Năm 1: tax saving sớm hơn → DTL accumulate.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Reversal — gap đóng lại</span>
-        <span class="step-body">Trong những năm cuối useful life, tax depr cạn nhưng book còn → tax payable &gt; tax expense → DTL giảm dần về 0.</span>
-      </span>
-    </li>
-  </ol>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
-  </div>
-</section>
-
-
-<!-- 07 · DTA FORMATION -->
-<section data-label="DTA" class="slide">
-  <div class="run-header">
-    <span>04.07 — Income Taxes</span>
-    <span class="rule"></span>
-    <span>07 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Deferred tax asset</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">When <em class="hi">DTA</em> forms.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      DTA = "voucher" giảm thuế tương lai. Phát sinh khi firm <em>đã trả thuế trước</em> trên expense chưa được tax code cho deduct, hoặc chịu loss carryforward.
-    </p>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ DTA formula</span>
-    <div class="eq"><span class="var">DTA</span> = (<span class="var">Tax base</span> − <span class="var">Carrying amount</span>) × <span class="var">tax rate</span> &nbsp; <em>(asset where tax base &gt; CA)</em></div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">DTA</span> = (<span class="var">Carrying amount</span> − <span class="var">Tax base</span>) × <span class="var">tax rate</span> &nbsp; <em>(liability where CA &gt; tax base)</em></div>
-    <div class="note"><b>Common triggers:</b> warranty expense (book accrue, tax deduct khi cash chi), unearned revenue (tax tính khi nhận cash, book record khi earn), tax loss carryforward, post-employment benefits accrued.</div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Test thường gặp — Unearned revenue $100, tax đã thu thuế full → CA = 100, tax base = 0 → liability với CA &gt; tax base → DTA = 100 × tax rate. Khi revenue được earn (book), no more tax → DTA reverse.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
-  </div>
-</section>
-
-
-<!-- 08 · DTA vs DTL COMPARE -->
-<section data-label="DTA vs DTL" class="slide">
-  <div class="run-header">
-    <span>04.07 — Income Taxes</span>
-    <span class="rule"></span>
-    <span>08 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Side-by-side</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">DTA</em> vs DTL.</h2>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head">DTA</div>
-      <dl>
-        <dt>Bản chất</dt>
-        <dd>Future tax <em>savings</em> — đã trả thuế trước hoặc có loss carryforward</dd>
-        <dt>BS location</dt>
-        <dd>Asset (non-current under IFRS &amp; US GAAP post-2015)</dd>
-        <dt>Trigger</dt>
-        <dd>Expense recognized for book BEFORE tax (warranty, post-emp benefits) · revenue taxed BEFORE earned · NOL carryforward</dd>
-        <dt>Reversal</dt>
-        <dd>Khi tax cuối cùng cho deduct hoặc khi loss được offset → DTA giảm</dd>
-        <dt>Risk</dt>
-        <dd>Có thể bị <em>valuation allowance</em> (US GAAP) hoặc unrecognized (IFRS) nếu khó realize</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head">DTL</div>
-      <dl>
-        <dt>Bản chất</dt>
-        <dd>Future tax <em>obligation</em> — đã trì hoãn thuế</dd>
-        <dt>BS location</dt>
-        <dd>Liability (non-current)</dd>
-        <dt>Trigger</dt>
-        <dd>Accelerated tax depreciation · revenue recognized for book BEFORE tax (installment sales) · capitalized costs deducted faster on tax</dd>
-        <dt>Reversal</dt>
-        <dd>Khi temporary difference đảo chiều → tax payable cao hơn → DTL giảm</dd>
-        <dt>Analyst note</dt>
-        <dd>Nếu DTL <em>không kỳ vọng reverse</em> (firm liên tục reinvest), analyst treat như equity</dd>
-      </dl>
-    </div>
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
-  </div>
-</section>
-
-
-<!-- 09 · STATUTORY vs EFFECTIVE -->
-<section data-label="Tax rates" class="slide">
-  <div class="run-header">
-    <span>04.07 — Income Taxes</span>
-    <span class="rule"></span>
-    <span>09 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Tax rates</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Statutory</em> vs effective.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Hai con số tax rate khác nhau — và analyst phải biết tại sao chúng lệch.
-    </p>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Effective tax rate</span>
-    <div class="eq"><span class="var">Effective tax rate</span> = <span class="var">Income tax expense</span> / <span class="var">Pre-tax accounting income</span></div>
-    <div class="note"><b>Statutory rate</b> là rate chính thức của cơ quan thuế (e.g., US federal 21%). <b>Effective rate</b> là rate thực sự firm chịu trên book income — gồm tác động của permanent differences, tax credits, foreign tax rate khác, valuation allowance changes.</div>
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 16px;">
-    <li>
-      <span>
-        <span class="step-title">Statutory rate — luật định</span>
-        <span class="step-body">Áp dụng cho taxable income theo luật. Thường nhiều "rates" nếu firm hoạt động đa quốc gia → blended statutory.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Effective rate — phản ánh thực tế</span>
-        <span class="step-body">Permanent differences (tax-exempt interest, non-deductible expenses), tax credits (R&amp;D), và mix lợi nhuận theo jurisdiction kéo effective ra khỏi statutory.</span>
-      </span>
-    </li>
-  </ol>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
-  </div>
-</section>
-
-
-<!-- 10 · RECONCILIATION -->
-<section data-label="Reconciliation" class="slide">
-  <div class="run-header">
-    <span>04.07 — Income Taxes</span>
-    <span class="rule"></span>
-    <span>10 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Tax footnote</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">rate reconciliation</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Một footnote tiêu chuẩn — đi từ statutory rate xuống effective rate, từng dòng giải thích chênh lệch.
+      Quyết định cốt lõi khi firm bỏ tiền mua / xây / phát triển một asset: ghi nhận như <em>asset</em> trên BS rồi spread cost qua nhiều năm, hay <em>expense</em> ngay vào IS kỳ này.
     </p>
   </div>
 
   <div class="rule-box">
-    <span class="tag">§ Typical reconciliation lines</span>
-    Statutory rate (21%) → +/− <em>foreign rate differential</em> → +/− <em>state &amp; local taxes</em> → − <em>tax credits</em> (R&amp;D, foreign tax credit) → +/− <em>permanent differences</em> (tax-exempt int, non-deductible) → +/− <em>valuation allowance change</em> → <b>effective rate</b>.
+    <span class="tag">§ Capitalization criterion</span>
+    Capitalize khi (1) firm <b>controls</b> resource, (2) <b>future economic benefits</b> chảy về firm, (3) cost có thể <b>reliably measured</b>, và (4) benefit kéo dài <b>&gt; 1 năm</b>. Nếu thiếu điều kiện → <em>expense</em>.
   </div>
 
-  <p class="fine-muted-sm" style="margin-top: 24px;">
-    § Why analyst cares — (1) <em>Sustainability check</em>: effective rate thấp do one-off credit hay structural? (2) <em>Forecast</em>: dùng "structural" effective rate cho future earnings projection. (3) <em>Red flag</em>: large valuation allowance reversal có thể boost EPS nhân tạo.
+  <p class="fine-muted-sm">
+    § Borrowing costs gắn với <em>self-constructed asset</em> (qualifying asset) được capitalize trong giai đoạn xây — IFRS bắt buộc, US GAAP cũng yêu cầu cho qualifying assets. Sau khi asset ready for use → interest expense bình thường.
   </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
+  </div>
+</section>
+
+
+<!-- 04 · CAPITALIZE VS EXPENSE — compare -->
+<section data-label="Capitalize vs Expense" class="slide">
+  <div class="run-header">
+    <span>04.07 — Long-Lived Assets</span>
+    <span class="rule"></span>
+    <span>04 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Financial statement effects</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Capitalize</em> vs <em class="hi">Expense</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Capitalize</div>
+      <dl>
+        <dt>Balance sheet</dt>
+        <dd>Asset ↑, lifetime &gt; 1 năm. Cost được spread qua depreciation/amortization</dd>
+        <dt>Income statement</dt>
+        <dd>Year 1 NI <em>cao hơn</em> (chỉ tính 1 phần expense); những năm sau NI thấp hơn (depreciation drag)</dd>
+        <dt>Cash flow</dt>
+        <dd>Outflow đi vào <em>CFI</em> (investing), không phải CFO → CFO trông tốt hơn</dd>
+        <dt>Equity / ratios</dt>
+        <dd>Total assets ↑, equity ↑ ban đầu. ROA, ROE <em>thấp hơn</em> early years (denominator lớn)</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Expense</div>
+      <dl>
+        <dt>Balance sheet</dt>
+        <dd>Không tạo asset. Cost hit ngay kỳ phát sinh</dd>
+        <dt>Income statement</dt>
+        <dd>Year 1 NI <em>thấp hơn</em> (full expense); những năm sau NI cao hơn (no drag)</dd>
+        <dt>Cash flow</dt>
+        <dd>Outflow đi vào <em>CFO</em> (operating) → CFO thấp hơn ngay năm đầu</dd>
+        <dt>Equity / ratios</dt>
+        <dd>Lower total assets &amp; equity. ROA, ROE <em>cao hơn</em> các năm sau (denominator nhỏ)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Lifetime <em>total</em> NI giống nhau giữa 2 phương pháp — chỉ khác <b>timing</b>. Capitalization làm earnings smoother; expensing tạo earnings volatility nhưng conservative hơn.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
+  </div>
+</section>
+
+
+<!-- 05 · DEPRECIATION OVERVIEW -->
+<section data-label="Depreciation methods" class="slide">
+  <div class="run-header">
+    <span>04.07 — Long-Lived Assets</span>
+    <span class="rule"></span>
+    <span>05 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Allocate cost over useful life</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Depreciation</em> methods.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Sau khi capitalize PP&amp;E, firm phải <em>allocate</em> cost qua useful life. CFA L1 tập trung 3 phương pháp: Straight-line, Double-declining balance (DDB), và Units of production.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 12px;">
+    <li>
+      <span>
+        <span class="step-title">Straight-line (SL) — phẳng đều mỗi năm</span>
+        <span class="step-body">Phù hợp asset cho benefit ổn định qua thời gian (buildings, office furniture). Đơn giản, dễ so sánh peer-to-peer.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Double-declining balance (DDB) — accelerated</span>
+        <span class="step-body">Front-load expense vào early years. Phù hợp asset mất giá nhanh thời gian đầu (vehicles, tech equipment). Bỏ qua salvage value khi tính đến lúc carrying ≈ salvage.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Units of production — gắn với output</span>
+        <span class="step-body">Expense biến đổi theo sản lượng thực tế (mining equipment, aircraft engine theo flight hours). Match revenue tốt, nhưng dao động.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § <b>Component depreciation</b> — IFRS bắt buộc tách asset thành parts có useful life khác nhau và depreciate riêng (e.g. aircraft: airframe vs engine). US GAAP cho phép nhưng không bắt buộc.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
+  </div>
+</section>
+
+
+<!-- 06 · SL + DDB FORMULAS -->
+<section data-label="SL + DDB" class="slide">
+  <div class="run-header">
+    <span>04.07 — Long-Lived Assets</span>
+    <span class="rule"></span>
+    <span>06 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Formulas · SL &amp; DDB</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Straight-line vs <em class="hi">Double-declining</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Straight-line depreciation</span>
+    <div class="eq"><span class="var">Dep<sub>SL</sub></span> = ( <span class="var">Cost</span> − <span class="var">Salvage</span> ) / <span class="var">Useful Life</span></div>
+    <div class="note"><b>Cost</b> bao gồm purchase price + freight + installation + test runs. <b>Salvage value</b> là estimated residual tại cuối useful life. Mỗi năm expense bằng nhau.</div>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Double-declining balance (DDB)</span>
+    <div class="eq"><span class="var">Dep<sub>DDB,t</sub></span> = ( 2 / <span class="var">Useful Life</span> ) × <span class="var">Carrying Value<sub>t−1</sub></span></div>
+    <div class="note"><b>KHÔNG trừ salvage</b> trong công thức. Áp dụng rate cố định lên carrying value (declining mỗi năm). Khi carrying ≈ salvage → ngừng depreciate. Có thể switch sang SL ở cuối life để hoàn tất.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Ví dụ: Cost $100k, salvage $10k, life 5 năm. SL = (100−10)/5 = $18k/năm. DDB year 1 = (2/5) × 100 = $40k; year 2 = (2/5) × 60 = $24k → front-loaded.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
+  </div>
+</section>
+
+
+<!-- 07 · UNITS OF PRODUCTION -->
+<section data-label="Units of production" class="slide">
+  <div class="run-header">
+    <span>04.07 — Long-Lived Assets</span>
+    <span class="rule"></span>
+    <span>07 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Formula · usage-based</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Units of production</em> method.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Units-of-production depreciation</span>
+    <div class="eq"><span class="var">Dep<sub>t</sub></span> = ( <span class="var">Cost</span> − <span class="var">Salvage</span> ) × ( <span class="var">Units<sub>t</sub></span> / <span class="var">Total Units</span> )</div>
+    <div class="note"><b>Total Units</b> = estimated lifetime output (barrels, miles, machine-hours). <b>Units<sub>t</sub></b> = actual output kỳ này. Expense biến đổi theo sản lượng — match revenue cycle tốt.</div>
+  </div>
 
   <div class="take" style="margin-top: 16px;">
-    <b>Tip cho exam</b> — nếu đề cho sẵn pre-tax income và income tax expense, bạn tính được effective rate. Nếu đề cho reconciliation table và hỏi sustainable rate → loại các one-off items (settlement, valuation allowance reversal).
+    <b>When to use</b> — extractive industries (oil &amp; gas wells, mines), aircraft (flight hours), trucking fleets (miles driven). Khi useful life đo bằng <em>output</em>, không phải <em>time</em>.
   </div>
+
+  <p class="fine-muted-sm">
+    § Tổng depreciation lifetime của cả 3 phương pháp đều = Cost − Salvage. Khác nhau chỉ ở <b>timing</b> — ảnh hưởng NI, ROA, ROE từng năm nhưng không thay đổi cumulative.
+  </p>
 
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
   </div>
 </section>
 
 
-<!-- 11 · TAX LOSS CARRYFORWARD -->
-<section data-label="Loss carryforward" class="slide">
+<!-- 08 · AMORTIZATION INTANGIBLES -->
+<section data-label="Amortization" class="slide">
   <div class="run-header">
-    <span>04.07 — Income Taxes</span>
+    <span>04.07 — Long-Lived Assets</span>
     <span class="rule"></span>
-    <span>11 / 30</span>
+    <span>08 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">NOL</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Tax loss <em class="hi">carryforwards</em>.</h2>
+    <div class="eyebrow">Intangibles · finite life</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Amortization</em> of intangibles.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Khi firm lỗ thuế, cơ quan thuế cho phép "mang" loss đó qua các kỳ sau để giảm taxable income tương lai. Đây là một dạng <em>DTA</em>.
+      Intangibles có useful life xác định (patent 20 năm, license 10 năm, software 5 năm) phải được amortize qua useful life. Concept giống depreciation nhưng áp cho intangibles.
     </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Straight-line amortization (most common)</span>
+    <div class="eq"><span class="var">Amort<sub>annual</sub></span> = ( <span class="var">Cost</span> − <span class="var">Residual</span> ) / <span class="var">Useful Life</span></div>
+    <div class="note">Residual value của intangibles thường = 0 (patent expire không còn giá trị). Useful life = lower of <em>legal life</em> hoặc <em>economic life</em>.</div>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 14px;">
+    <div class="tenet">
+      <span class="n">FIN</span>
+      <div>
+        <div class="t"><em class="hi">Finite life</em> — amortize</div>
+        <div class="d">Patent, license, copyright, customer list, software. SL method dominant. Test impairment khi có triggering event.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">INF</span>
+      <div>
+        <div class="t"><em class="hi">Indefinite life</em> — không amortize</div>
+        <div class="d">Brand name, trademark renewable, broadcast license renewable. Tested annually for impairment. Goodwill thuộc nhóm này.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
+  </div>
+</section>
+
+
+<!-- 09 · GOODWILL -->
+<section data-label="Goodwill" class="slide">
+  <div class="run-header">
+    <span>04.07 — Long-Lived Assets</span>
+    <span class="rule"></span>
+    <span>09 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">M&amp;A · indefinite-life intangible</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Goodwill</em> — không amortize.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Goodwill rule</span>
+    Goodwill phát sinh <b>chỉ trong M&amp;A</b> khi <em>purchase price &gt; fair value of net identifiable assets</em>. <b>KHÔNG amortize</b> dưới cả IFRS và US GAAP. Tested for impairment <b>ít nhất annually</b> (và khi có indicator). Impairment loss <b>KHÔNG reverse</b> (kể cả IFRS).
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 18px;">
+    <li>
+      <span>
+        <span class="step-title">Purchase price allocation</span>
+        <span class="step-body">Acquirer trả $500M cho target. Fair value of identifiable net assets = $350M. Goodwill = <em>$150M</em> = premium for synergies, workforce, brand không ghi riêng được.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Internally generated goodwill — KHÔNG ghi nhận</span>
+        <span class="step-body">Brand value tự build, R&amp;D synergies, workforce expertise → expense ngay, không tạo goodwill on BS. Chỉ <em>acquired</em> goodwill mới capitalized.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Impairment test — annual</span>
+        <span class="step-body">IFRS: test cash-generating unit (CGU). US GAAP: test reporting unit. Loss = carrying − recoverable (IFRS) hoặc carrying − fair value (GAAP, post-2017 simplified).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
+  </div>
+</section>
+
+
+<!-- 10 · IMPAIRMENT FORMULA -->
+<section data-label="Impairment formula" class="slide">
+  <div class="run-header">
+    <span>04.07 — Long-Lived Assets</span>
+    <span class="rule"></span>
+    <span>10 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Write-down · long-lived assets</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Impairment</em> — measurement.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Impairment xảy ra khi carrying value của asset vượt amount có thể recover. Khi đó firm phải write down asset xuống recoverable amount, ghi loss vào IS.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ IFRS — single-step (IAS 36)</span>
+    <div class="eq"><span class="var">Impairment Loss</span> = <span class="var">Carrying Value</span> − <span class="var">Recoverable Amount</span></div>
+    <div class="note"><b>Recoverable Amount</b> = <em>higher</em> of (a) fair value − costs to sell, (b) value in use (PV of future cash flows). Test khi có indicator. Recovery <em>được phép</em> reverse cho non-goodwill assets, capped tại original carrying.</div>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ US GAAP — two-step (ASC 360)</span>
+    <div class="eq"><span class="var">Step 1</span>: Carrying &gt; <span class="var">Undiscounted CF</span>?</div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Step 2</span> if yes: Loss = <span class="var">Carrying</span> − <span class="var">Fair Value</span></div>
+    <div class="note">Step 1 = recoverability test (so undiscounted future CF). Nếu fail, step 2 đo loss bằng <em>fair value</em>, không phải undiscounted CF. Impairment <b>KHÔNG được reverse</b> dưới US GAAP (held for use).</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
+  </div>
+</section>
+
+
+<!-- 11 · IFRS vs US GAAP IMPAIRMENT -->
+<section data-label="Impairment compare" class="slide">
+  <div class="run-header">
+    <span>04.07 — Long-Lived Assets</span>
+    <span class="rule"></span>
+    <span>11 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Standards comparison</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">IFRS</em> vs <em class="hi">US GAAP</em> — impairment.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">IFRS · IAS 36</div>
+      <dl>
+        <dt>Trigger</dt>
+        <dd>Khi <em>indicator</em> xuất hiện (mọi kỳ); goodwill &amp; indefinite-life intangibles test annually</dd>
+        <dt>Test</dt>
+        <dd><b>One-step</b> — carrying vs recoverable amount</dd>
+        <dt>Recoverable</dt>
+        <dd>Higher of fair value − cost to sell, hoặc value in use (PV CF)</dd>
+        <dt>Loss</dt>
+        <dd>Carrying − Recoverable</dd>
+        <dt>Reversal</dt>
+        <dd><em>Cho phép</em> cho non-goodwill assets (capped). Goodwill: <em>không reverse</em></dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">US GAAP · ASC 360</div>
+      <dl>
+        <dt>Trigger</dt>
+        <dd>Khi <em>indicator</em> xuất hiện; goodwill &amp; indefinite intangibles test annually</dd>
+        <dt>Test</dt>
+        <dd><b>Two-step</b> — recoverability test, sau đó đo loss</dd>
+        <dt>Step 1</dt>
+        <dd>Carrying vs <em>undiscounted</em> future cash flows</dd>
+        <dt>Loss</dt>
+        <dd>Carrying − Fair Value (chỉ nếu step 1 fail)</dd>
+        <dt>Reversal</dt>
+        <dd><em>KHÔNG cho phép</em> reverse cho assets held for use (kể cả non-goodwill)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Hệ quả analyst — IFRS impairment thường <em>nhạy hơn</em> (one-step, test ngay khi carrying &gt; recoverable). US GAAP cho asset "miễn nhiễm" lâu hơn (chỉ impair khi carrying &gt; undiscounted CF — threshold lỏng hơn).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
+  </div>
+</section>
+
+
+<!-- 12 · REVALUATION MODEL -->
+<section data-label="Revaluation" class="slide">
+  <div class="run-header">
+    <span>04.07 — Long-Lived Assets</span>
+    <span class="rule"></span>
+    <span>12 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">IFRS-only · alternative model</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Revaluation</em> model (IFRS).</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      IFRS cho firm chọn giữa (1) <em>cost model</em> — historical cost − accumulated depreciation, hoặc (2) <em>revaluation model</em> — fair value tại revaluation date. US GAAP <b>chỉ cho phép cost model</b> (trừ một số financial assets).
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Revaluation rule (IAS 16 / IAS 38)</span>
+    <b>Gain</b> on revaluation: ghi vào <em>OCI</em> → tích luỹ vào <b>Revaluation Surplus</b> (equity). KHÔNG đi qua P&amp;L. <b>Loss</b>: hit <em>P&amp;L</em> trừ khi có surplus tồn tại từ trước (offset surplus trước, phần dư mới hit P&amp;L). Khi <em>reverse</em> loss đã hit P&amp;L → gain ghi vào P&amp;L (capped); phần dư mới qua OCI.
   </div>
 
   <ol class="num-list tight" style="margin-top: 16px;">
     <li>
       <span>
-        <span class="step-title">Mechanics — recognize DTA equal to (loss × tax rate)</span>
-        <span class="step-body">NOL $100M × 21% = DTA $21M. Khi firm có taxable income tương lai, dùng DTA để giảm tax payable, DTA giảm tương ứng.</span>
+        <span class="step-title">Phải áp dụng cho <em>cả lớp</em> tài sản</span>
+        <span class="step-body">Không chọn lựa từng asset — toàn bộ class (e.g. land, buildings) phải dùng cùng model. Chống cherry-picking.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">US (post-TCJA 2017) — indefinite carryforward, 80% cap</span>
-        <span class="step-body">Loss carry forward vô thời hạn nhưng chỉ offset tối đa 80% taxable income mỗi năm. Carryback hầu hết bị bỏ.</span>
+        <span class="step-title">Tần suất revaluation</span>
+        <span class="step-body">Đủ thường xuyên để carrying value không lệch nhiều với fair value. Volatile assets → annually; stable → 3-5 năm.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">IFRS — indefinite carryforward (IAS 12)</span>
-        <span class="step-body">Recognize DTA <em>chỉ khi probable</em> sẽ có future taxable profit để offset. Phải đánh giá lại mỗi reporting period.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Cảnh báo — DTA chỉ valuable nếu firm sẽ có lợi nhuận</span>
-        <span class="step-body">Startup hoặc firm liên tục lỗ → DTA có thể bị valuation allowance toàn phần (US GAAP) hoặc not recognized (IFRS).</span>
+        <span class="step-title">Investment property — exception</span>
+        <span class="step-body">IAS 40 cho phép fair value model với gain/loss đi <em>thẳng vào P&amp;L</em> (không qua OCI) — khác revaluation model của PP&amp;E.</span>
       </span>
     </li>
   </ol>
 
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
   </div>
 </section>
 
 
-<!-- 12 · DTA RECOGNITION RULE -->
-<section data-label="DTA recognition" class="slide">
+<!-- 13 · DERECOGNITION + INVESTMENT PROPERTY -->
+<section data-label="Derecognition" class="slide">
   <div class="run-header">
-    <span>04.07 — Income Taxes</span>
+    <span>04.07 — Long-Lived Assets</span>
     <span class="rule"></span>
-    <span>12 / 30</span>
+    <span>13 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Recognition</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">When to <em class="hi">recognize</em> a DTA.</h2>
+    <div class="eyebrow">End of asset's life on books</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Derecognition</em> &amp; investment property.</h2>
   </div>
 
-  <div class="rule-box">
-    <span class="tag">§ Rule — recognize DTA only if realizable</span>
-    Recognize DTA <em>chỉ trong phạm vi</em> firm <b>probable</b> (IFRS) hoặc <b>more likely than not</b> (US GAAP) sẽ có <em>future taxable profit</em> để dùng tax benefit. Nếu không đáp ứng, không recognize (IFRS) hoặc giảm bằng <em>valuation allowance</em> (US GAAP).
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 20px;">
+  <ol class="num-list tight" style="margin-top: 16px;">
     <li>
       <span>
-        <span class="step-title">Evidence pháp luật xét — positive vs negative</span>
-        <span class="step-body"><em>Positive:</em> hợp đồng dài hạn lock-in lợi nhuận, history có lãi consistently. <em>Negative:</em> 3 năm liên tiếp lỗ, ngành xuống dốc, going-concern issue.</span>
+        <span class="step-title">Sale — gain/loss vào P&amp;L</span>
+        <span class="step-body">Gain/Loss = <em>Sale price − Carrying value</em>. Asset removed khỏi BS; cash thu vào CFI (investing inflow).</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Reassessment mỗi reporting period</span>
-        <span class="step-body">DTA không phải "set and forget". Khi điều kiện kinh doanh đổi, recognition phải được tính lại — có thể flip dậy bằng valuation allowance reversal (boost EPS) hoặc gây surprise loss.</span>
+        <span class="step-title">Abandonment / retirement — loss = carrying value</span>
+        <span class="step-body">Asset bỏ đi không thu được gì → ghi loss bằng carrying value. Không ảnh hưởng cash flow.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Disclosure required</span>
-        <span class="step-body">Cả IFRS và GAAP buộc disclose breakdown của DTA, valuation allowance, và lý do nếu DTA không recognized.</span>
+        <span class="step-title">Exchange (asset for asset)</span>
+        <span class="step-body">Generally đo asset mới ở fair value. Gain/loss = FV asset cũ − carrying value. Khi exchange "lacks commercial substance" → carry over basis, no gain.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Held for sale — reclassified</span>
+        <span class="step-body">Khi firm commit bán trong &lt; 1 năm → reclassify ra <em>current assets</em>; depreciation <em>ngừng</em>. Đo lower of carrying hay fair value − cost to sell.</span>
       </span>
     </li>
   </ol>
 
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Investment property (IFRS · IAS 40)</span>
+    Property held để <em>earn rental hoặc capital appreciation</em>, không dùng trong operations. Firm chọn (a) <b>cost model</b> (giống PP&amp;E), hoặc (b) <b>fair value model</b> — fair value mỗi kỳ, gain/loss vào <em>P&amp;L</em> trực tiếp. <b>US GAAP không có category này</b> — báo cáo như PP&amp;E thường.
+  </div>
+
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
   </div>
 </section>
 
 
-<!-- 13 · IFRS vs GAAP VALUATION -->
-<section data-label="IFRS vs GAAP" class="slide">
-  <div class="run-header">
-    <span>04.07 — Income Taxes</span>
-    <span class="rule"></span>
-    <span>13 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Standards</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">IFRS</em> vs US GAAP — DTA test.</h2>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head">IFRS · IAS 12</div>
-      <dl>
-        <dt>Test</dt>
-        <dd><em>Probability</em> test — recognize DTA chỉ khi <b>probable</b> (&gt; 50%) future taxable profit available</dd>
-        <dt>Mechanism</dt>
-        <dd>Direct — recognize DTA <em>net</em>; nếu không probable, simply không lên BS</dd>
-        <dt>Reassessment</dt>
-        <dd>Mỗi reporting date; có thể recognize thêm hoặc derecognize</dd>
-        <dt>Visibility</dt>
-        <dd>Less transparent — analyst không thấy "shadow" DTA chưa recognized</dd>
-        <dt>Tax rate</dt>
-        <dd><em>Substantively enacted</em> rate khi temporary difference reverse</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head">US GAAP · ASC 740</div>
-      <dl>
-        <dt>Test</dt>
-        <dd>Recognize <em>full DTA</em>, sau đó offset bằng <b>valuation allowance</b> nếu <em>more likely than not</em> (&gt; 50%) một phần không realizable</dd>
-        <dt>Mechanism</dt>
-        <dd>Two-step — gross DTA + (contra) valuation allowance = net DTA</dd>
-        <dt>Reassessment</dt>
-        <dd>Mỗi quarter; allowance có thể tăng/giảm → hit tax expense</dd>
-        <dt>Visibility</dt>
-        <dd>More transparent — analyst thấy gross DTA và size of allowance</dd>
-        <dt>Tax rate</dt>
-        <dd><em>Enacted</em> rate at reporting date</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Cùng business reality, cách trình bày khác. US GAAP cho analyst nhiều thông tin hơn (gross DTA visible). IFRS cô đọng nhưng "ẩn" capacity nếu unrecognized.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
-  </div>
-</section>
-
-
-<!-- 14 · DTL → EQUITY-LIKE -->
-<section data-label="DTL as equity" class="slide">
-  <div class="run-header">
-    <span>04.07 — Income Taxes</span>
-    <span class="rule"></span>
-    <span>14 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Analyst adjustment</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">When DTL becomes <em class="hi">equity-like</em>.</h2>
-  </div>
-
-  <div class="rule-box">
-    <span class="tag">§ Rule — analyst reclassification</span>
-    Nếu DTL <em>không kỳ vọng reverse</em> trong horizon dự báo (firm liên tục reinvest, capex steady, growing fixed asset base), DTL hoạt động như <b>permanent funding</b> — analyst thường <em>reclassify như equity</em> khi compute leverage và book value ratios.
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 20px;">
-    <li>
-      <span>
-        <span class="step-title">Treat as liability — khi reverse expected</span>
-        <span class="step-body">Firm sắp wind-down asset base, hoặc tax law thay đổi → DTL sẽ thành cash outflow → giữ nguyên là liability.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Treat as equity — khi DTL "permanent"</span>
-        <span class="step-body">Steady-state firm với consistent capex → mỗi năm reverse cũ + tạo mới → DTL net không giảm. Effectively equity-like funding.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Discount approach — middle ground</span>
-        <span class="step-body">Một số analyst PV the future DTL outflow tại WACC → adjusted liability lower hơn book DTL. Phản ánh đúng giá trị kinh tế.</span>
-      </span>
-    </li>
-  </ol>
-
-  <p class="fine-muted-sm">
-    § Tác động lên ratios — D/E thấp hơn, book equity cao hơn → ROE thấp hơn nhưng leverage profile "cleaner". CFA L1 chỉ yêu cầu nhận diện <em>concept</em>, chưa cần adjust thực tế.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
-  </div>
-</section>
-
-
-<!-- 15 · DISCLOSURES -->
+<!-- 14 · DISCLOSURES & RATIOS -->
 <section data-label="Disclosures" class="slide">
   <div class="run-header">
-    <span>04.07 — Income Taxes</span>
+    <span>04.07 — Long-Lived Assets</span>
     <span class="rule"></span>
-    <span>15 / 30</span>
+    <span>14 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Footnotes</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">What firms <em class="hi">disclose</em>.</h2>
+    <div class="eyebrow">Footnotes &amp; analyst ratios</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Disclosures</em> &amp; useful ratios.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CFA L1 yêu cầu nhớ disclosures bắt buộc + 3 ratio rút từ chúng để estimate <em>asset age</em> và <em>useful life</em>.
+    </p>
   </div>
 
-  <div class="tenets-grid" style="margin-top: 16px;">
-    <div class="tenet">
-      <span class="n">REC</span>
-      <div>
-        <div class="t"><em class="hi">Rate reconciliation</em></div>
-        <div class="d">Statutory → effective, line-by-line. Permanent diffs, foreign rate diff, credits, valuation allowance changes.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">CMP</span>
-      <div>
-        <div class="t"><em class="hi">DTA / DTL components</em></div>
-        <div class="d">Breakdown theo nguồn — depreciation, NOL, warranty, post-emp benefits, lease accounting, intangibles.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">VA</span>
-      <div>
-        <div class="t"><em class="hi">Valuation allowance</em></div>
-        <div class="d">Size, change qua các năm, lý do (US GAAP only). IFRS chỉ disclose unrecognized DTA amount.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">NOL</span>
-      <div>
-        <div class="t"><em class="hi">NOL carryforwards</em></div>
-        <div class="d">Total NOL chưa dùng, expiration schedule (nếu có), jurisdiction breakdown.</div>
-      </div>
-    </div>
+  <div class="formula-box">
+    <span class="fmt-label">§ Three asset-base ratios</span>
+    <div class="eq"><span class="var">Avg. Age</span> = <span class="var">Accumulated Dep</span> / <span class="var">Annual Dep Expense</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Avg. Useful Life</span> = <span class="var">Gross PP&amp;E</span> / <span class="var">Annual Dep Expense</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Remaining Life</span> = <span class="var">Net PP&amp;E</span> / <span class="var">Annual Dep Expense</span></div>
+    <div class="note"><b>Total Asset Turnover</b> = Revenue / Average Total Assets — đo efficiency. <b>Fixed Asset Turnover</b> = Revenue / Average Net PP&amp;E — đo cụ thể PP&amp;E productivity.</div>
   </div>
 
-  <p class="fine-muted-sm">
-    § Đọc tax footnote là kỹ năng CFA L1 expects — biết tìm permanent diffs, valuation allowance changes, và unrecognized tax benefits trong 10-K hoặc IFRS annual report.
-  </p>
+  <div class="take" style="margin-top: 16px;">
+    <b>Required disclosures</b> — depreciation method, useful lives / rates, gross + accumulated dep, depreciation expense, reconciliation of opening/closing carrying. IFRS: thêm thông tin về <em>revaluation</em> nếu áp dụng (date, method, surplus). Impairment loss: amount, asset / CGU bị ảnh hưởng, recoverable basis.
+  </div>
 
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
   </div>
 </section>
 
 
-<!-- 16 · TRANSITION -->
+<!-- 15 · TRANSITION -->
 <section data-label="Practice begins" class="slide end-slide">
   <div>
     <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
@@ -661,41 +584,42 @@
 </section>
 
 
-<!-- 17 · Q1 EN -->
+<!-- 16 · Q1 EN -->
 <section data-label="Q1 Original" class="slide">
   <div class="run-header">
-    <span>04.07 — Income Taxes</span>
+    <span>04.07 — Long-Lived Assets</span>
     <span class="rule"></span>
-    <span>17 / 30</span>
+    <span>16 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Identify the <em class="hi">deferred tax</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Compare <em class="hi">depreciation methods</em>.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      A firm purchases a machine for <strong>$500,000</strong>. For book purposes it depreciates straight-line over 5 years (<strong>$100,000/year</strong>). For tax purposes it uses an accelerated schedule: <strong>$200,000</strong> in Year 1. The applicable tax rate is <strong>25%</strong>. At the end of Year 1, which of the following <strong>most accurately</strong> describes the deferred tax item created?
+      A company purchases equipment for <strong>$500,000</strong> with an estimated salvage value of <strong>$50,000</strong> and a useful life of <strong>5 years</strong>. Compared with using straight-line, in <strong>Year 1</strong> the use of the <strong>double-declining balance (DDB)</strong> method will <strong>most likely</strong> result in:
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Deferred tax asset of $25,000.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Deferred tax liability of $25,000.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Deferred tax liability of $50,000.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Higher net income and higher return on assets (ROA).</span></li>
+    <li><span class="lbl">B</span><span class="opt">Lower net income and lower return on assets (ROA).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Lower net income but higher return on assets (ROA).</span></li>
+    <li><span class="lbl">D</span><span class="opt">Higher net income but lower return on assets (ROA).</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
   </div>
 </section>
 
 
-<!-- 18 · Q1 HINT -->
+<!-- 17 · Q1 HINT -->
 <section data-label="Q1 Hint" class="slide">
   <div class="run-header">
-    <span>04.07 — Income Taxes</span>
+    <span>04.07 — Long-Lived Assets</span>
     <span class="rule"></span>
-    <span>18 / 30</span>
+    <span>17 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 01</div>
@@ -703,35 +627,35 @@
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>Accelerated tax depreciation</mark> &gt; <mark>book depreciation</mark> → <mark>asset CA &gt; tax base</mark> → DTL. Tính bằng <mark>(CA − tax base) × rate</mark>.
+    <mark>Year 1</mark>. <mark>DDB</mark> vs <mark>straight-line</mark>. DDB là <mark>accelerated</mark> → front-load expense. Cả NI và assets đều ảnh hưởng — phải xét cả tử và mẫu của ROA.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">End of Year 1: <em>Carrying amount = 500 − 100 = $400K</em>. <em>Tax base = 500 − 200 = $300K</em>.</span>
+      <span class="htxt">SL Year 1 = (500−50)/5 = <em>$90k</em>. DDB Year 1 = (2/5) × 500 = <em>$200k</em> (không trừ salvage). DDB expense > SL expense → NI thấp hơn.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">CA &gt; tax base → <em>DTL</em>. Quantify: (400 − 300) × 25% = <em>$25K DTL</em>.</span>
+      <span class="htxt">ROA = NI / Avg Assets. Tử số NI <em>giảm</em> dưới DDB. Mẫu số (Net PP&amp;E) cũng <em>giảm nhanh hơn</em> vì depreciation lớn hơn → cả 2 đều nhỏ hơn.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Logic kinh tế: tax saving sớm hơn (deduct $200 thay vì $100) → trả ít thuế bây giờ, nợ thêm sau → liability.</span>
+      <span class="htxt">Trong year 1, hiệu ứng <em>numerator (NI)</em> dominate hiệu ứng denominator (vì asset chỉ depreciate 1 năm) → ROA <em>giảm</em>. Cả NI và ROA đều thấp hơn dưới DDB year 1.</span>
     </li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
   </div>
 </section>
 
 
-<!-- 19 · Q1 VN -->
+<!-- 18 · Q1 VN -->
 <section data-label="Q1 Dịch đề" class="slide">
   <div class="run-header">
-    <span>04.07 — Income Taxes</span>
+    <span>04.07 — Long-Lived Assets</span>
     <span class="rule"></span>
-    <span>19 / 30</span>
+    <span>18 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
@@ -740,92 +664,94 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một firm mua máy với giá <strong>$500,000</strong>. Theo book, depreciate straight-line trong 5 năm (<strong>$100,000/năm</strong>). Theo tax, dùng accelerated: <strong>$200,000</strong> năm 1. Tax rate <strong>25%</strong>. Cuối năm 1, item nào mô tả <strong>chính xác nhất</strong> deferred tax phát sinh?
+      Một công ty mua thiết bị giá <strong>$500,000</strong> với salvage value ước tính <strong>$50,000</strong> và useful life <strong>5 năm</strong>. So với straight-line, trong <strong>Year 1</strong> nếu dùng phương pháp <strong>double-declining balance (DDB)</strong> sẽ <strong>most likely</strong> dẫn tới:
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Deferred tax asset $25,000.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Deferred tax liability $25,000.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Deferred tax liability $50,000.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Net income cao hơn và return on assets (ROA) cao hơn.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Net income thấp hơn và return on assets (ROA) thấp hơn.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Net income thấp hơn nhưng return on assets (ROA) cao hơn.</span></li>
+    <li><span class="lbl">D</span><span class="opt">Net income cao hơn nhưng return on assets (ROA) thấp hơn.</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
   </div>
 </section>
 
 
-<!-- 20 · Q1 EXPLANATION -->
+<!-- 19 · Q1 EXPLANATION -->
 <section data-label="Q1 Explanation" class="slide">
   <div class="run-header">
-    <span>04.07 — Income Taxes</span>
+    <span>04.07 — Long-Lived Assets</span>
     <span class="rule"></span>
-    <span>20 / 30</span>
+    <span>19 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — DTL $25K.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — NI ↓ và ROA ↓.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">Cuối năm 1: <b>CA</b> = 500 − 100 = $400K. <b>Tax base</b> = 500 − 200 = $300K. CA &gt; tax base → DTL = (400 − 300) × 25% = <b>$25K</b>. Accelerated tax depreciation tạo DTL — firm trì hoãn thuế sang sau.</div>
+      <div class="rtext">SL Year 1 expense = (500−50)/5 = <b>$90k</b>. DDB Year 1 expense = (2/5) × 500 = <b>$200k</b>. DDB expense lớn hơn → <b>NI thấp hơn</b>. ROA = NI / Avg Assets: tử số NI giảm $110k, mẫu giảm chỉ $110k đó × 0.5 (do trung bình BoP+EoP) → tử giảm % nhanh hơn mẫu → <b>ROA giảm</b> trong Year 1.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">DTA xảy ra khi <em>tax base &gt; CA</em> với asset (e.g., book depreciate nhanh hơn tax). Ở đây ngược lại — tax depreciate nhanh hơn book → DTL chứ không phải DTA.</div>
+      <div class="rtext">DDB là <em>accelerated</em> — front-load expense → NI Year 1 không thể cao hơn SL. Đây là sai lầm phổ biến khi nhầm chiều của effect.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">$50K = (200 − 100) × 50% — gấp đôi tax rate, hoặc nhân difference với 50%. Sai số học. Đúng phải là <em>(temporary difference) × tax rate</em> = 100K × 25% = $25K.</div>
+      <div class="rtag">✗ Wrong — C / D</div>
+      <div class="rtext">Cả 2 đều giả định NI và ROA chuyển động ngược chiều. Trong year 1, NI hit DDB lớn hơn so với mức giảm của Avg Assets → ROA cũng giảm. Chỉ ở các năm sau (khi cumulative dep dưới DDB lớn) mà ROA có thể đảo chiều.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Khi <em>tax depreciation &gt; book depreciation</em> → tax base &lt; carrying amount → <em>DTL</em>. DTL = (CA − tax base) × rate. Cùng logic: revenue ghi sớm trên book vs tax cũng tạo DTL.</div>
+    <div class="ttext">DDB year 1: <em>expense ↑, NI ↓, Net PP&amp;E ↓, ROA ↓, ROE ↓, asset turnover ↑</em>. Total lifetime depreciation = Cost − Salvage cho cả SL và DDB — chỉ khác <em>timing</em>. DDB không trừ salvage trong công thức.</div>
   </div>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
   </div>
 </section>
 
 
-<!-- 21 · Q2 EN -->
+<!-- 20 · Q2 EN -->
 <section data-label="Q2 Original" class="slide">
   <div class="run-header">
-    <span>04.07 — Income Taxes</span>
+    <span>04.07 — Long-Lived Assets</span>
     <span class="rule"></span>
-    <span>21 / 30</span>
+    <span>20 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Effective tax rate</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Calculate <em class="hi">impairment loss</em>.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      A firm reports pre-tax accounting income of <strong>$800M</strong> and income tax expense of <strong>$144M</strong>. The country's statutory tax rate is <strong>21%</strong>. The <strong>most likely</strong> reason the effective tax rate differs from the statutory rate is:
+      Under <strong>IFRS</strong>, an asset has a carrying value of <strong>$800,000</strong>. The fair value less costs to sell is <strong>$650,000</strong>, and the value in use (PV of expected future cash flows) is <strong>$700,000</strong>. The undiscounted future cash flows total <strong>$900,000</strong>. The impairment loss the company should recognize is <strong>closest to</strong>:
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">A temporary difference from accelerated tax depreciation.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Tax-exempt municipal bond interest income (a permanent difference).</span></li>
-    <li><span class="lbl">C</span><span class="opt">A change in the deferred tax liability balance during the period.</span></li>
+    <li><span class="lbl">A</span><span class="opt">$0 — no impairment because undiscounted cash flows exceed carrying value.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$100,000 — carrying value minus value in use.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$150,000 — carrying value minus fair value less costs to sell.</span></li>
+    <li><span class="lbl">D</span><span class="opt">$250,000 — carrying value minus the lower of fair value or value in use.</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
   </div>
 </section>
 
 
-<!-- 22 · Q2 HINT -->
+<!-- 21 · Q2 HINT -->
 <section data-label="Q2 Hint" class="slide">
   <div class="run-header">
-    <span>04.07 — Income Taxes</span>
+    <span>04.07 — Long-Lived Assets</span>
     <span class="rule"></span>
-    <span>22 / 30</span>
+    <span>21 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 02</div>
@@ -833,35 +759,35 @@
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>Effective tax rate = expense / pre-tax income</mark>. <mark>Statutory 21%</mark>. Phải lệch — câu hỏi: <mark>cái gì gây lệch</mark>?
+    <mark>IFRS</mark>. <mark>Recoverable amount</mark> = <mark>HIGHER</mark> of fair value − costs to sell và value in use. <mark>Undiscounted CF</mark> chỉ dùng cho US GAAP step 1, KHÔNG cho IFRS.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">Tính: Effective = 144 / 800 = <em>18%</em>. Lệch <em>3 percentage points</em> dưới statutory 21%.</span>
+      <span class="htxt">IFRS one-step: Loss = Carrying − Recoverable. Recoverable = max($650k, $700k) = <em>$700k</em>. Đừng nhầm sang lower.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Chỉ <em>permanent differences</em> mới làm effective ≠ statutory. Temporary differences chỉ shift timing, không thay đổi total tax expense / income ratio in steady state.</span>
+      <span class="htxt">Loss = $800k − $700k = <em>$100k</em>. Đáp án B.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Tax-exempt interest = revenue trong book nhưng KHÔNG taxable → giảm tax expense relative to book income → effective &lt; statutory. Match.</span>
+      <span class="htxt">Bẫy: option A dùng undiscounted CF (test US GAAP, không phải IFRS). Option C dùng FV − costs (sai vì recoverable lấy higher). Option D dùng lower (sai chiều).</span>
     </li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
   </div>
 </section>
 
 
-<!-- 23 · Q2 VN -->
+<!-- 22 · Q2 VN -->
 <section data-label="Q2 Dịch đề" class="slide">
   <div class="run-header">
-    <span>04.07 — Income Taxes</span>
+    <span>04.07 — Long-Lived Assets</span>
     <span class="rule"></span>
-    <span>23 / 30</span>
+    <span>22 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
@@ -870,92 +796,94 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một firm báo cáo pre-tax accounting income <strong>$800M</strong> và income tax expense <strong>$144M</strong>. Statutory tax rate quốc gia là <strong>21%</strong>. Lý do <strong>phù hợp nhất</strong> giải thích effective rate khác statutory là:
+      Dưới <strong>IFRS</strong>, một asset có carrying value <strong>$800,000</strong>. Fair value − costs to sell là <strong>$650,000</strong>, và value in use (PV future cash flows) là <strong>$700,000</strong>. Undiscounted future cash flows tổng <strong>$900,000</strong>. Impairment loss công ty phải ghi nhận <strong>gần nhất</strong> với:
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Temporary difference từ accelerated tax depreciation.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Tax-exempt municipal bond interest income (permanent difference).</span></li>
-    <li><span class="lbl">C</span><span class="opt">Thay đổi DTL balance trong kỳ.</span></li>
+    <li><span class="lbl">A</span><span class="opt">$0 — không impairment vì undiscounted cash flows vượt carrying value.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$100,000 — carrying value trừ value in use.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$150,000 — carrying value trừ fair value less costs to sell.</span></li>
+    <li><span class="lbl">D</span><span class="opt">$250,000 — carrying value trừ lower của fair value hoặc value in use.</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
   </div>
 </section>
 
 
-<!-- 24 · Q2 EXPLANATION -->
+<!-- 23 · Q2 EXPLANATION -->
 <section data-label="Q2 Explanation" class="slide">
   <div class="run-header">
-    <span>04.07 — Income Taxes</span>
+    <span>04.07 — Long-Lived Assets</span>
     <span class="rule"></span>
-    <span>24 / 30</span>
+    <span>23 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Permanent diff.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $100,000.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">Effective rate = 144 / 800 = <b>18%</b> &lt; statutory 21%. Chỉ <b>permanent differences</b> mới làm effective ≠ statutory bền vững. Tax-exempt interest tạo book income mà không bị tax → income tax expense thấp hơn → effective rate &lt; statutory. Permanent → KHÔNG tạo DTA/DTL, chỉ ảnh hưởng rate.</div>
+      <div class="rtext">IFRS IAS 36: Impairment Loss = Carrying − Recoverable Amount. <b>Recoverable = HIGHER</b> of (fair value − costs to sell, value in use) = max($650k, $700k) = <b>$700k</b>. Loss = $800k − $700k = <b>$100k</b>. Asset write down xuống $700k; loss hit P&amp;L.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Temporary differences (accelerated depreciation) chỉ <em>shift timing</em> của tax payable. Tax expense (book) vẫn tính theo statutory rate × pre-tax book income. Effective rate KHÔNG bị temporary diffs làm lệch — đó là điểm phân biệt cốt lõi.</div>
+      <div class="rtext">Undiscounted cash flows ($900k > $800k carrying) là test của <em>US GAAP step 1</em>, KHÔNG áp dụng cho IFRS. Dưới IFRS, không có recoverability test — đi thẳng vào one-step measurement.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">Thay đổi DTL chỉ phản ánh temporary diffs đang tạo / reverse. Trên IS: tax expense = tax payable + ΔDTL − ΔDTA. Việc DTL thay đổi không tự nó làm effective rate lệch statutory.</div>
+      <div class="rtag">✗ Wrong — C / D</div>
+      <div class="rtext">C ($150k) lấy fair value − costs to sell ($650k) làm recoverable — sai vì IFRS lấy HIGHER, không phải FV. D ($250k) dùng LOWER ($650k) — ngược định nghĩa recoverable. Cả hai đều over-state loss.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Mnemonic: <em>Permanent</em> moves the rate. <em>Temporary</em> moves the timing. Effective &lt; Statutory thường do tax-exempt income, tax credits, lower foreign rate. Effective &gt; Statutory do non-deductible expenses, valuation allowance increase.</div>
+    <div class="ttext">IFRS impairment: <em>Carrying − HIGHER of (FV − costs to sell, Value in use)</em>. US GAAP impairment: 2 bước — bước 1 so undiscounted CF, bước 2 đo loss = Carrying − FV. Nhớ nhãn: IFRS = "recoverable amount", US GAAP = "fair value".</div>
   </div>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
   </div>
 </section>
 
 
-<!-- 25 · Q3 EN -->
+<!-- 24 · Q3 EN -->
 <section data-label="Q3 Original" class="slide">
   <div class="run-header">
-    <span>04.07 — Income Taxes</span>
+    <span>04.07 — Long-Lived Assets</span>
     <span class="rule"></span>
-    <span>25 / 30</span>
+    <span>24 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Valuation allowance</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Capitalize</em> vs expense effects.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Under <strong>US GAAP</strong>, a firm has a gross deferred tax asset of <strong>$300M</strong> from net operating loss carryforwards. Management determines it is <strong>more likely than not</strong> that only <strong>$120M</strong> of the DTA will be realized. The <strong>most appropriate</strong> accounting treatment is:
+      Two companies are identical except Company X <strong>capitalizes</strong> a $10M expenditure with a 10-year useful life, while Company Y <strong>expenses</strong> the entire $10M in Year 1. In <strong>Year 1</strong>, compared with Company Y, Company X will <strong>most likely</strong> report:
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Reduce the gross DTA on the balance sheet to $120M; the unrealizable portion is written off and does not appear on the BS.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Maintain the gross DTA at $300M and record a valuation allowance of $180M, reducing net DTA to $120M.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Reclassify $180M of the DTA as a deferred tax liability, since it cannot be realized.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Higher net income, higher operating cash flow, and lower total assets.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Higher net income, higher operating cash flow, and higher total assets.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Lower net income, lower operating cash flow, and higher total assets.</span></li>
+    <li><span class="lbl">D</span><span class="opt">Higher net income, lower operating cash flow, and higher total assets.</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
   </div>
 </section>
 
 
-<!-- 26 · Q3 HINT -->
+<!-- 25 · Q3 HINT -->
 <section data-label="Q3 Hint" class="slide">
   <div class="run-header">
-    <span>04.07 — Income Taxes</span>
+    <span>04.07 — Long-Lived Assets</span>
     <span class="rule"></span>
-    <span>26 / 30</span>
+    <span>25 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 03</div>
@@ -963,35 +891,35 @@
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>US GAAP</mark>. <mark>Valuation allowance</mark> = mechanism của US GAAP. <mark>More likely than not</mark> = ngưỡng &gt; 50%. IFRS sẽ <em>không recognize</em> luôn — đây là điểm khác.
+    <mark>Capitalize</mark> vs <mark>expense</mark>. <mark>Year 1</mark>. Cần check 3 chiều: <mark>NI</mark>, <mark>Operating CF</mark>, <mark>Total Assets</mark>.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">US GAAP <em>two-step</em>: (1) recognize <em>full gross DTA</em>, (2) offset bằng <em>valuation allowance</em> nếu portion không realizable.</span>
+      <span class="htxt">NI: Company X chỉ ghi $1M depreciation/năm (10/10) thay vì $10M expense → NI X <em>cao hơn</em> $9M (pre-tax).</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Net DTA on BS = Gross DTA − Valuation allowance = 300 − 180 = $120M. Match expected realization.</span>
+      <span class="htxt">Operating CF: Company X classify $10M outflow vào <em>CFI</em> (capex). Company Y ghi expense → outflow vào <em>CFO</em>. Vì vậy CFO X <em>cao hơn</em> $10M.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Allowance "transparent" — analyst thấy gross 300 và allowance 180 trong tax footnote. Khác với IFRS chỉ thấy net 120 trên BS, gross 300 nằm trong disclosure narrative.</span>
+      <span class="htxt">Total Assets: X tạo $10M asset, depreciate $1M → carrying $9M. Y không có asset (expensed). Total Assets X <em>cao hơn</em>. → Đáp án B.</span>
     </li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
   </div>
 </section>
 
 
-<!-- 27 · Q3 VN -->
+<!-- 26 · Q3 VN -->
 <section data-label="Q3 Dịch đề" class="slide">
   <div class="run-header">
-    <span>04.07 — Income Taxes</span>
+    <span>04.07 — Long-Lived Assets</span>
     <span class="rule"></span>
-    <span>27 / 30</span>
+    <span>26 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
@@ -1000,63 +928,64 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Theo <strong>US GAAP</strong>, một firm có gross DTA <strong>$300M</strong> từ NOL carryforwards. Management xác định <strong>more likely than not</strong> chỉ <strong>$120M</strong> của DTA sẽ được realize. Cách hạch toán <strong>phù hợp nhất</strong> là:
+      Hai công ty giống hệt nhau ngoại trừ Company X <strong>capitalize</strong> chi tiêu $10M với useful life 10 năm, trong khi Company Y <strong>expense</strong> toàn bộ $10M trong Year 1. Trong <strong>Year 1</strong>, so với Company Y, Company X <strong>most likely</strong> sẽ báo cáo:
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Giảm gross DTA xuống $120M; phần không realizable bị write off và không xuất hiện trên BS.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Giữ gross DTA ở $300M và ghi valuation allowance $180M, giảm net DTA xuống $120M.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Reclassify $180M của DTA thành deferred tax liability, vì không realize được.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Net income cao hơn, operating cash flow cao hơn, và total assets thấp hơn.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Net income cao hơn, operating cash flow cao hơn, và total assets cao hơn.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Net income thấp hơn, operating cash flow thấp hơn, và total assets cao hơn.</span></li>
+    <li><span class="lbl">D</span><span class="opt">Net income cao hơn, operating cash flow thấp hơn, và total assets cao hơn.</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
   </div>
 </section>
 
 
-<!-- 28 · Q3 EXPLANATION -->
+<!-- 27 · Q3 EXPLANATION -->
 <section data-label="Q3 Explanation" class="slide">
   <div class="run-header">
-    <span>04.07 — Income Taxes</span>
+    <span>04.07 — Long-Lived Assets</span>
     <span class="rule"></span>
-    <span>28 / 30</span>
+    <span>27 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — VA $180M.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — NI ↑, CFO ↑, Assets ↑.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">US GAAP <b>two-step</b>: recognize gross DTA $300M, sau đó tạo <b>valuation allowance $180M</b> (contra-asset) để giảm net DTA xuống $120M — bằng amount expected realizable. Allowance trở thành expense trên IS, hit tax expense trong kỳ. Đặc điểm: gross DTA và allowance đều disclose riêng, transparent cho analyst.</div>
+      <div class="rtext">Capitalize vs expense year 1: (1) <b>NI</b> — X ghi depreciation $1M; Y ghi expense $10M → NI X cao hơn $9M (pre-tax). (2) <b>CFO</b> — X classify outflow vào <em>CFI</em> (capex); Y vào <em>CFO</em> → CFO X cao hơn $10M. (3) <b>Total Assets</b> — X có asset $9M (sau 1 năm dep); Y không có → Total Assets X cao hơn.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Đây là cách <em>IFRS</em> handle — only recognize amount probable to realize. Câu hỏi specify <b>US GAAP</b>, dùng allowance thay vì write-down direct. Phân biệt rõ giữa hai chuẩn là điểm exam thường test.</div>
+      <div class="rtext">Sai ở "lower total assets". Capitalization tạo asset on BS; expensing không tạo. Do đó X PHẢI có total assets cao hơn Y. Logic NI và CFO của A đúng nhưng phần Assets ngược.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">DTA và DTL có bản chất kinh tế đối lập (asset vs liability). Không thể "reclassify" DTA thành DTL chỉ vì không realizable. DTA không realizable → giảm bằng allowance (GAAP) hoặc derecognize (IFRS), không biến thành DTL.</div>
+      <div class="rtag">✗ Wrong — C / D</div>
+      <div class="rtext">C có "lower NI và CFO" — sai chiều của capitalization. D có "lower CFO" — sai vì capex không hit CFO. Capitalization làm CFO trông tốt hơn (đó là incentive aggressive accounting hay chuyển expense sang capex).</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">US GAAP: <em>gross DTA + valuation allowance</em> (two-step, transparent). IFRS: <em>recognize only probable portion</em> (one-step, net). Cùng economic effect — net DTA $120M — nhưng visibility cho analyst khác hẳn.</div>
+    <div class="ttext">Year 1 capitalize vs expense: <em>NI ↑, CFO ↑, CFI ↓, Total Assets ↑, Equity ↑, ROA ↓ (denominator effect dominates), Debt/Equity ↓</em>. Lifetime total NI bằng nhau — chỉ khác timing. Analyst flag: aggressive capitalization (e.g. WorldCom) có thể inflate NI &amp; CFO ngắn hạn.</div>
   </div>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
   </div>
 </section>
 
 
-<!-- 29 · WRAP -->
+<!-- 28 · WRAP -->
 <section data-label="Wrap" class="slide">
   <div class="run-header">
-    <span>04.07 — Income Taxes</span>
+    <span>04.07 — Long-Lived Assets</span>
     <span class="rule"></span>
-    <span>29 / 30</span>
+    <span>28 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Recap</div>
@@ -1066,42 +995,48 @@
   <ol class="num-list tight" style="margin-top: 16px;">
     <li>
       <span>
-        <span class="step-title">Two profits — accounting vs taxable</span>
-        <span class="step-body">Income tax expense (IS) ≠ tax payable (cash). Difference flows to deferred tax. Permanent diffs move the rate; temporary diffs move the timing.</span>
+        <span class="step-title">Capitalize khi benefit &gt; 1 năm; expense còn lại</span>
+        <span class="step-body">Capitalize: NI ↑ year 1 (rồi drag), CFO ↑ (capex ở CFI), Assets ↑. Lifetime total NI giống nhau.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Tax base + carrying amount → DTA / DTL</span>
-        <span class="step-body">Asset CA &gt; tax base → DTL. Asset tax base &gt; CA → DTA. Liability CA &gt; tax base → DTA. Multiply difference by tax rate.</span>
+        <span class="step-title">3 phương pháp depreciation</span>
+        <span class="step-body">SL = (Cost − Salvage)/Life · DDB = 2/Life × Carrying (no salvage in formula) · Units = (Cost − Salvage) × Units/Total. Tổng lifetime giống nhau, chỉ timing khác.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Effective rate = tax expense / pre-tax income</span>
-        <span class="step-body">Reconciliation: statutory ± permanent diffs ± credits ± foreign rate diff ± valuation allowance change = effective.</span>
+        <span class="step-title">Goodwill: only from M&amp;A, no amortize, annual impairment</span>
+        <span class="step-body">Indefinite intangibles + goodwill — annual impairment test, no reversal cho goodwill. Finite intangibles — amortize.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">IFRS probability vs US GAAP valuation allowance</span>
-        <span class="step-body">IFRS: recognize chỉ portion probable. US GAAP: recognize gross + offset bằng allowance. NOL carryforward = DTA điển hình.</span>
+        <span class="step-title">Impairment: IFRS one-step vs US GAAP two-step</span>
+        <span class="step-body">IFRS: Carrying − max(FV − costs, value in use). GAAP: step 1 undiscounted CF; step 2 Carrying − FV. IFRS reverse được (non-goodwill); GAAP không.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Revaluation (IFRS) &amp; investment property</span>
+        <span class="step-body">Revaluation gain → OCI/surplus. Investment property fair value model → gain/loss thẳng P&amp;L. US GAAP không có category này.</span>
       </span>
     </li>
   </ol>
 
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.07 — Income Taxes</span>
+    <span>FSA · 04.07 — Long-Lived Assets</span>
   </div>
 </section>
 
 
-<!-- 30 · END -->
+<!-- 29 · END -->
 <section data-label="End" class="slide end-slide">
   <div>
     <h1>04.07 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
-    <div class="hint">Tiếp theo · Lesson 04.08 — Non-current (Long-term) Liabilities</div>
+    <div class="hint">Tiếp theo · Lesson 04.07 — Income Taxes</div>
   </div>
 </section>
 

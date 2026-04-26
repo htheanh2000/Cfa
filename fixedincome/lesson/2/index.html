@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>CFA L1 · Fixed Income 08.02 — Bond Valuation & Yields</title>
+<title>CFA L1 · Fixed Income 08.02 — FI Cash Flows and Types</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/assets/cfa-theme.css">
 <style>
   .title-slide .left { background: var(--accent); }
-  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main { font-size: 96px; line-height: 0.98; }
   .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
   .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
 </style>
@@ -24,18 +24,18 @@
 <section data-label="Title" class="slide title-slide">
   <div class="left">
     <div class="mark">CFA Institute · Level I</div>
-    <h1 class="main">Bond<br>Valuation<br><em>&amp; Yields.</em></h1>
+    <h1 class="main">FI Cash Flows<br><em>&amp; Types.</em></h1>
     <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 08 · Lesson 08.02 · Fixed Income</div>
   </div>
   <div class="right">
-    <div class="mark">Module 02 · Pricing &amp; yield measures</div>
+    <div class="mark">Module 02 · Cấu trúc cash flow &amp; phân loại bond</div>
     <dl class="meta-grid">
       <div><dt>Môn</dt><dd>Fixed Income</dd></div>
       <div><dt>Module</dt><dd>02</dd></div>
       <div><dt>Lesson</dt><dd>08.02</dd></div>
       <div><dt>Thời lượng</dt><dd>90 min</dd></div>
     </dl>
-    <div class="mark">PV of CF · YTM · Yield curve · Spot &amp; forward</div>
+    <div class="mark">Principal · FRN · Inflation-linked · Contingency · Coupon frequency</div>
   </div>
 </section>
 
@@ -45,437 +45,687 @@
   <div class="band">
     <div class="lbl">PART</div>
     <div class="n">02</div>
-    <div class="lbl">Price &amp; Yield</div>
+    <div class="lbl">Cash Flows &amp; Types</div>
   </div>
   <div class="content">
     <div class="eyebrow">Today's lesson</div>
-    <h2>Price is <em>PV</em><br>of future cash flows.</h2>
+    <h2>Bond = chuỗi <em>cash flow</em><br>được thiết kế linh hoạt.</h2>
     <ul class="toc">
-      <li class="active">01 · Bond price = PV of coupons + face value</li>
-      <li>02 · Price ↔ yield — the inverse relationship</li>
-      <li>03 · Premium · discount · par — coupon vs yield</li>
-      <li>04 · Pull-to-par as maturity nears</li>
-      <li>05 · Yield measures — current, YTM, YTC, nominal</li>
-      <li>06 · Yield curve · spot rates · forward rates</li>
-      <li>07 · Practice — 3 CFA-style questions</li>
+      <li class="active">01 · Bullet vs amortizing — cách hoàn trả principal</li>
+      <li>02 · Sinking fund provisions</li>
+      <li>03 · Floating-rate notes (FRN) — reference rate + spread</li>
+      <li>04 · Step-up / step-down &amp; credit-linked coupons</li>
+      <li>05 · Inflation-linked bonds (TIPS) &amp; index-linked bonds</li>
+      <li>06 · Contingency provisions — callable / putable / convertible</li>
+      <li>07 · Coupon payment frequency &amp; zero-coupon</li>
+      <li>08 · Practice — 3 CFA-style questions</li>
     </ul>
   </div>
 </section>
 
 
-<!-- 03 · BOND PRICE = PV -->
-<section data-label="Bond price PV" class="slide">
+<!-- 03 · BULLET VS AMORTIZING -->
+<section data-label="Principal repayment" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.02</span>
+    <span>08.02 — FI Cash Flows and Types</span>
     <span class="rule"></span>
-    <span>03 / 24</span>
+    <span>03 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Pricing · fundamentals</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Price = <em class="hi">PV</em> of cash flows.</h2>
+    <div class="eyebrow">Principal · repayment structure</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Bullet</em> vs amortizing principal.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Bond chỉ đơn giản là chuỗi CF tương lai. Giá = tổng PV của mỗi CF, discount bằng market yield (YTM).
+      Cách issuer hoàn trả principal quyết định toàn bộ cash flow profile của bond. Ba structure phổ biến nhất trong CFA L1.
     </p>
   </div>
 
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Bullet bond</em></div>
+      <dl>
+        <dt>Principal</dt>
+        <dd>Trả <em>toàn bộ một lần</em> tại maturity. Coupon payments đều đặn trong suốt kỳ hạn.</dd>
+        <dt>Ví dụ</dt>
+        <dd>US Treasury 10-year: coupon 6 tháng/lần, par $1,000 nhận về ngày đáo hạn.</dd>
+        <dt>Rủi ro investor</dt>
+        <dd>Concentration risk — nếu issuer default vào cuối kỳ, mất toàn bộ principal.</dd>
+        <dt>Phổ biến</dt>
+        <dd>Treasuries, most corporate bonds, sovereign bonds.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Amortizing bond</em></div>
+      <dl>
+        <dt>Fully amortizing</dt>
+        <dd>Mỗi kỳ trả cả <em>lãi + một phần gốc</em>. Tổng payment đều nhau (như mortgage). Cuối kỳ: principal = 0.</dd>
+        <dt>Partially amortizing</dt>
+        <dd>Trả một phần gốc định kỳ, nhưng cuối kỳ vẫn còn <em>balloon payment</em> (khoản gốc lớn còn lại).</dd>
+        <dt>Rủi ro investor</dt>
+        <dd>Reinvestment risk — principal nhận về sớm phải reinvest ở rate thị trường.</dd>
+        <dt>Phổ biến</dt>
+        <dd>MBS, auto ABS, equipment loans. Balloon phổ biến ở commercial real estate.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.02 — FI Cash Flows and Types</span>
+  </div>
+</section>
+
+
+<!-- 04 · AMORTIZING SCHEDULE DETAIL -->
+<section data-label="Amortizing detail" class="slide">
+  <div class="run-header">
+    <span>08.02 — FI Cash Flows and Types</span>
+    <span class="rule"></span>
+    <span>04 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Amortizing · cash flow mechanics</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Fully vs <em class="hi">partially amortizing</em> — cash flow.</h2>
+  </div>
+
   <div class="formula-box">
-    <span class="fmt-label">§ Bond pricing — annual coupon</span>
-    <div class="eq"><span class="var">Price</span> = Σ <sup>n</sup><sub>t=1</sub> [<span class="var">C</span> / (1+<span class="var">r</span>)<sup>t</sup>] + <span class="var">FV</span> / (1+<span class="var">r</span>)<sup>n</sup></div>
-    <div class="note"><b>Price</b> = market price · <b>C</b> = periodic coupon ($) · <b>FV</b> = face / par value · <b>r</b> = periodic market discount rate (YTM) · <b>n</b> = number of periods.</div>
+    <span class="fmt-label">§ Fully amortizing — constant payment</span>
+    <div class="eq"><span class="var">PMT</span> = <span class="var">PV</span> × [<span class="var">r</span> (1+<span class="var">r</span>)<sup>n</sup>] / [(1+<span class="var">r</span>)<sup>n</sup> − 1]</div>
+    <div class="note">Mỗi payment = <b>coupon interest</b> (= outstanding balance × r) + <b>principal reduction</b>. Portion gốc tăng dần qua thời gian; interest giảm dần — giống mortgage schedule. <em>Outstanding balance giảm về 0</em> đúng ngày maturity.</div>
   </div>
 
   <div class="formula-box" style="margin-top: 14px;">
-    <span class="fmt-label">§ Semi-annual convention (US bonds)</span>
-    <div class="eq"><span class="var">C</span> = (<span class="var">coupon rate</span> × <span class="var">FV</span>) / 2 · <span class="var">r</span> = <span class="var">YTM</span> / 2 · <span class="var">n</span> = years × 2</div>
-    <div class="note">US corporate/Treasury trả coupon 2 lần/năm. Chia coupon và YTM cho 2; nhân số năm cho 2 để ra n.</div>
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.02 — PRICE PV</span>
-  </div>
-</section>
-
-
-<!-- 04 · WORKED EXAMPLE -->
-<section data-label="Worked example" class="slide">
-  <div class="run-header">
-    <span>Fixed Income · 08.02</span>
-    <span class="rule"></span>
-    <span>04 / 24</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Pricing · example</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Worked <em class="hi">calculation</em>.</h2>
-  </div>
-
-  <div class="rule-box">
-    <span class="tag">§ Scenario</span>
-    Bond 3-year, par <b>$1,000</b>, coupon <b>5%</b> annual ($50/năm), YTM <b>4%</b>. Find price.
-  </div>
-
-  <div class="formula-box" style="margin-top: 18px;">
-    <span class="fmt-label">§ Step-by-step PV</span>
-    <div class="eq"><span class="var">Price</span> = 50/1.04<sup>1</sup> + 50/1.04<sup>2</sup> + (50+1000)/1.04<sup>3</sup></div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">Price</span> = 48.08 + 46.23 + 933.45 = <b>$1,027.75</b></div>
-    <div class="note">Price &gt; Par = <b>$1,000</b> → bond trading at <em>premium</em>. Lý do: coupon (5%) &gt; yield (4%) → bond hấp dẫn hơn market → giá cao hơn par.</div>
+    <span class="fmt-label">§ Partially amortizing — balloon</span>
+    <div class="eq"><span class="var">CF</span><sub>1..n-1</sub> = nhỏ hơn fully amortizing &nbsp;|&nbsp; <span class="var">CF</span><sub>n</sub> = <span class="var">Balloon</span> + <span class="var">last interest</span></div>
+    <div class="note"><b>Balloon</b> = phần principal chưa được trả hết tính đến maturity. Ví dụ: bond 5-năm amortize 30% principal, balloon 70% par còn lại ở Y5. Issuer có thể <em>refinance balloon</em> trước khi đến hạn.</div>
   </div>
 
   <p class="fine-muted-sm">
-    § Shortcut calculator — TI BA II+ TVM: N=3, I/Y=4, PMT=50, FV=1000, CPT PV → −1027.75. Negative vì cash outflow khi mua.
+    § Key distinction — bullet: principal CF duy nhất = 1 lần cuối. Fully amortizing: many small principal CF + 0 balloon. Partially amortizing: intermediate — vừa amortize, vừa có balloon.
   </p>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.02 — EXAMPLE</span>
+    <span class="footer-topic">Fixed Income · 08.02 — FI Cash Flows and Types</span>
   </div>
 </section>
 
 
-<!-- 05 · INVERSE RELATIONSHIP -->
-<section data-label="Price-yield inverse" class="slide">
+<!-- 05 · SINKING FUND -->
+<section data-label="Sinking fund" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.02</span>
+    <span>08.02 — FI Cash Flows and Types</span>
     <span class="rule"></span>
-    <span>05 / 24</span>
+    <span>05 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Price ↔ yield</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">inverse</em> relationship.</h2>
+    <div class="eyebrow">Principal · sinking fund</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Sinking fund</em> provisions.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Đây là nguyên tắc fundamental nhất của fixed income. Price và yield di chuyển <em>ngược chiều</em>.
+      Sinking fund = điều khoản yêu cầu issuer <em>tích lũy tiền định kỳ</em> để mua lại (retire) một phần bond trước maturity. Bảo vệ investor khỏi default risk bằng cách giảm dần outstanding debt.
     </p>
-  </div>
-
-  <ol class="num-list" style="margin-top: 16px;">
-    <li>
-      <span>
-        <span class="step-title">Yield tăng → Price giảm</span>
-        <span class="step-body">Discount rate cao hơn → PV của future CF thấp hơn → price giảm. Thị trường demand higher yield → sell bond → price ↓.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Yield giảm → Price tăng</span>
-        <span class="step-body">Discount rate thấp hơn → PV cao hơn → price tăng. Fixed coupon trở nên hấp dẫn → buy bond → price ↑.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Convex relationship — không tuyến tính</span>
-        <span class="step-body">Price-yield curve cong (convex to origin). Price ↑ nhiều hơn khi yield giảm so với price ↓ khi yield tăng cùng magnitude. Convexity = benefit of long bond.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Magnitude tuỳ duration</span>
-        <span class="step-body">Long-maturity + low-coupon bond nhạy với yield nhất. Zero-coupon có duration = maturity (max sensitivity).</span>
-      </span>
-    </li>
-  </ol>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.02 — INVERSE</span>
-  </div>
-</section>
-
-
-<!-- 06 · PREMIUM/DISCOUNT/PAR -->
-<section data-label="Premium discount par" class="slide">
-  <div class="run-header">
-    <span>Fixed Income · 08.02</span>
-    <span class="rule"></span>
-    <span>06 / 24</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Pricing · classification</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Premium</em>, discount, par.</h2>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Classification rules</span>
-    <div class="eq"><span class="var">Coupon</span> &gt; <span class="var">YTM</span>  →  <span class="var">Price</span> &gt; <span class="var">Par</span>  →  <b>Premium</b></div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">Coupon</span> &lt; <span class="var">YTM</span>  →  <span class="var">Price</span> &lt; <span class="var">Par</span>  →  <b>Discount</b></div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">Coupon</span> = <span class="var">YTM</span>  →  <span class="var">Price</span> = <span class="var">Par</span>  →  <b>Par</b></div>
-    <div class="note">Intuition — nếu coupon rate cao hơn market yield, bond pay "nhiều hơn thị trường" → investors bid up giá (premium). Nếu thấp hơn, phải discount giá để return match market yield.</div>
-  </div>
-
-  <div class="compare" style="margin-top: 20px;">
-    <div class="cc">
-      <div class="head">Premium bond</div>
-      <dl>
-        <dt>Điều kiện</dt>
-        <dd>Coupon &gt; market YTM</dd>
-        <dt>Over life</dt>
-        <dd>Price <em>giảm dần</em> về par (pull-to-par)</dd>
-        <dt>Gain/loss</dt>
-        <dd>Capital loss mỗi period; bù bằng coupon cao</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head">Discount bond</div>
-      <dl>
-        <dt>Điều kiện</dt>
-        <dd>Coupon &lt; market YTM</dd>
-        <dt>Over life</dt>
-        <dd>Price <em>tăng dần</em> lên par (pull-to-par)</dd>
-        <dt>Gain/loss</dt>
-        <dd>Capital gain mỗi period; bù coupon thấp</dd>
-      </dl>
-    </div>
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.02 — PREM/DISC</span>
-  </div>
-</section>
-
-
-<!-- 07 · PULL TO PAR -->
-<section data-label="Pull to par" class="slide">
-  <div class="run-header">
-    <span>Fixed Income · 08.02</span>
-    <span class="rule"></span>
-    <span>07 / 24</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Price dynamics · time</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Pull-to-par</em> effect.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Giả sử yield không đổi — khi maturity approaches, bond price <em>converge về par</em>. Premium giảm về par, discount tăng về par.
-    </p>
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 16px;">
-    <li>
-      <span>
-        <span class="step-title">Premium bond — pull down to par</span>
-        <span class="step-body">Price bắt đầu &gt; par, giảm dần mỗi năm. Tại maturity, chỉ còn par + cuối coupon → price chính xác bằng par. Holder chịu capital loss từng năm.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Discount bond — pull up to par</span>
-        <span class="step-body">Price bắt đầu &lt; par, tăng dần. Tại maturity, nhận par → price tiến tới par. Holder hưởng capital gain từng năm (bù cho coupon thấp).</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Par bond — stay flat</span>
-        <span class="step-body">Price = par suốt đời (nếu YTM = coupon suốt). Không có pull effect vì không có divergence.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Total return vẫn = YTM (nếu hold to maturity)</span>
-        <span class="step-body">Coupon cao + capital loss (premium) = coupon thấp + capital gain (discount) = YTM của investor. Pull-to-par reconcile coupon rate với yield.</span>
-      </span>
-    </li>
-  </ol>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.02 — PULL PAR</span>
-  </div>
-</section>
-
-
-<!-- 08 · YIELD MEASURES -->
-<section data-label="Yield measures" class="slide">
-  <div class="run-header">
-    <span>Fixed Income · 08.02</span>
-    <span class="rule"></span>
-    <span>08 / 24</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Yields · measures</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">4 loại <em class="hi">yield</em>.</h2>
   </div>
 
   <div class="tenets-grid" style="margin-top: 16px;">
     <div class="tenet">
       <span class="n">01</span>
       <div>
-        <div class="t"><em class="hi">Nominal / Coupon</em> yield</div>
-        <div class="d">= coupon rate (fixed khi issue). Chỉ dùng để tính coupon $; không phản ánh return thực.</div>
+        <div class="t"><em class="hi">Cơ chế hoạt động</em></div>
+        <div class="d">Issuer nộp tiền vào <b>trustee account</b> theo lịch định kỳ (hàng năm). Trustee dùng tiền này để <em>retire một phần bonds</em> — thường mua lại trên open market (nếu price ≤ par) hoặc call at par (lottery từ outstanding bonds).</div>
       </div>
     </div>
     <div class="tenet">
       <span class="n">02</span>
       <div>
-        <div class="t"><em class="hi">Current</em> yield</div>
-        <div class="d">= annual coupon / current price. Simple; bỏ qua capital gain/loss và reinvestment. Overstate cho discount, understate cho premium.</div>
+        <div class="t">Lợi ích cho <em class="hi">investor</em></div>
+        <div class="d">Giảm credit risk — outstanding principal giảm dần → likelihood default thấp hơn. Institutional investors (insurance, pension) ưa chuộng sinking fund bonds vì predictable principal reduction matching ALM.</div>
       </div>
     </div>
     <div class="tenet">
       <span class="n">03</span>
       <div>
-        <div class="t"><em class="hi">Yield to Maturity (YTM)</em></div>
-        <div class="d">IRR của bond CF. Giả định: (1) hold to maturity, (2) receive all CF đúng hạn, (3) reinvest coupons at YTM. Most common measure.</div>
+        <div class="t">Rủi ro cho <em class="hi">investor</em></div>
+        <div class="d">Nếu sinking fund dùng <b>lottery call</b>: investor có thể bị "called" tại par ngay cả khi bond đang trade <em>at premium</em> (mất capital gain). Đây là embedded <em>call-like risk</em>.</div>
       </div>
     </div>
     <div class="tenet">
       <span class="n">04</span>
       <div>
-        <div class="t"><em class="hi">Yield to Call (YTC)</em></div>
-        <div class="d">Giống YTM nhưng tính tới first (hoặc each) call date thay vì maturity. Dùng call price làm terminal CF.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">+</span>
-      <div>
-        <div class="t">Yield to Worst (YTW)</div>
-        <div class="d">= min(YTM, YTC1, YTC2, ...). Conservative measure cho callable bond — assume issuer call khi bất lợi nhất cho holder.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">++</span>
-      <div>
-        <div class="t">Option-adjusted yield (OAY)</div>
-        <div class="d">YTM đã hiệu chỉnh cho embedded option value. Dùng OAS trên spot curve. Apparatus chuẩn cho callable/putable.</div>
+        <div class="t">Accelerated sinking fund</div>
+        <div class="d">Một số indenture cho phép issuer <b>double up</b> — retire nhiều hơn scheduled amount nếu muốn. Useful khi issuer có excess cash flow. Investor phải consider accelerated retirement risk.</div>
       </div>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.02 — YIELDS</span>
+    <span class="footer-topic">Fixed Income · 08.02 — FI Cash Flows and Types</span>
   </div>
 </section>
 
 
-<!-- 09 · YIELD FORMULAS -->
-<section data-label="Yield formulas" class="slide">
+<!-- 06 · FLOATING-RATE NOTES OVERVIEW -->
+<section data-label="FRN overview" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.02</span>
+    <span>08.02 — FI Cash Flows and Types</span>
     <span class="rule"></span>
-    <span>09 / 24</span>
+    <span>06 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Yields · formulas</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">The key <em class="hi">equations</em>.</h2>
+    <div class="eyebrow">Coupon · floating-rate notes</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Floating-rate</em> notes (FRN).</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      FRN có coupon <em>biến đổi theo thị trường</em>, reset định kỳ dựa trên reference rate + spread cố định. Khác hoàn toàn với fixed-rate bond.
+    </p>
   </div>
 
   <div class="formula-box">
-    <span class="fmt-label">§ Current yield</span>
-    <div class="eq"><span class="var">Current yield</span> = <span class="var">Annual coupon</span> / <span class="var">Current price</span></div>
-    <div class="note">Ví dụ: coupon $60/năm, price $950 → current yield = 60/950 = <b>6.32%</b>. Bỏ qua capital appreciation tới par.</div>
+    <span class="fmt-label">§ FRN coupon formula</span>
+    <div class="eq"><span class="var">Coupon</span> = <span class="var">Reference rate</span> + <span class="var">Quoted margin (spread)</span></div>
+    <div class="note"><b>Reference rate</b> (lịch sử: LIBOR; hiện tại: SOFR ở US, EURIBOR ở EU, SONIA ở UK). <b>Quoted margin</b> = credit spread cố định khi issue, phản ánh credit risk của issuer. Ví dụ: SOFR + 150 bps.</div>
   </div>
 
-  <div class="formula-box" style="margin-top: 12px;">
-    <span class="fmt-label">§ YTM — implicit definition</span>
-    <div class="eq"><span class="var">Price</span> = Σ <sup>n</sup><sub>t=1</sub> [<span class="var">C</span> / (1+<span class="var">YTM</span>)<sup>t</sup>] + <span class="var">FV</span> / (1+<span class="var">YTM</span>)<sup>n</sup></div>
-    <div class="note">YTM là <b>r</b> solve equation ngược lại khi biết Price. No closed form; dùng calculator IRR hoặc trial-and-error.</div>
-  </div>
-
-  <div class="formula-box" style="margin-top: 12px;">
-    <span class="fmt-label">§ YTC — to first call date</span>
-    <div class="eq"><span class="var">Price</span> = Σ <sup>n*</sup><sub>t=1</sub> [<span class="var">C</span> / (1+<span class="var">YTC</span>)<sup>t</sup>] + <span class="var">CallPrice</span> / (1+<span class="var">YTC</span>)<sup>n*</sup></div>
-    <div class="note"><b>n*</b> = periods tới first call · <b>CallPrice</b> thường ≥ par (vd: 103% of par). Callable bond: YTW = min(YTM, YTC).</div>
-  </div>
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Reset frequency</span>
+        <span class="step-body">Coupon reset theo lịch — quarterly, semi-annual, hoặc monthly. Mỗi reset date, reference rate được "set" từ thị trường và áp dụng cho kỳ tiếp theo (in-advance). Ví dụ: SOFR 3m reset mỗi 3 tháng.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Cap — bảo vệ issuer</span>
+        <span class="step-body">Maximum coupon rate được thanh toán. Nếu reference rate tăng vọt, coupon không vượt quá cap. <em>Có lợi cho issuer, bất lợi cho investor</em> khi rates tăng mạnh.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Floor — bảo vệ investor</span>
+        <span class="step-body">Minimum coupon rate. Nếu reference rate giảm dưới 0, coupon không xuống dưới floor (vd: floor 0%). <em>Có lợi cho investor, bất lợi cho issuer</em> trong môi trường rates thấp.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Collar</span>
+        <span class="step-body">Kết hợp cap + floor — coupon dao động trong biên độ [floor, cap]. Thường gặp trong structured notes và CLO tranches.</span>
+      </span>
+    </li>
+  </ol>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.02 — YIELD EQ</span>
+    <span class="footer-topic">Fixed Income · 08.02 — FI Cash Flows and Types</span>
   </div>
 </section>
 
 
-<!-- 10 · YIELD CURVE -->
-<section data-label="Yield curve" class="slide">
+<!-- 07 · FRN SPREAD MEASURES -->
+<section data-label="FRN spread" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.02</span>
+    <span>08.02 — FI Cash Flows and Types</span>
     <span class="rule"></span>
-    <span>10 / 24</span>
+    <span>07 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Yield curve · shapes</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Yield vs <em class="hi">maturity</em>.</h2>
+    <div class="eyebrow">FRN · spread measures</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Quoted margin vs <em class="hi">discount margin</em>.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Yield curve = graph của yield theo maturity (cho cùng issuer, cùng credit quality). Shape của curve phản ánh market expectation về rates, inflation, recession.
+      FRN có hai loại spread quan trọng: <em>quoted margin</em> (cố định) và <em>discount margin</em> (thị trường). Nắm vững để giải CFA mock questions.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Quoted margin (QM)</em></div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>Spread cố định trên reference rate, <em>được ấn định khi issue</em>. Không thay đổi suốt đời bond.</dd>
+        <dt>Ví dụ</dt>
+        <dd>SOFR + 150 bps → QM = 150 bps.</dd>
+        <dt>Ý nghĩa</dt>
+        <dd>Phản ánh credit quality của issuer <em>tại thời điểm phát hành</em>.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Discount margin (DM)</em></div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>Spread cần thiết để discount future CF về <em>current market price</em>. Analog của YTM cho FRN.</dd>
+        <dt>So sánh với QM</dt>
+        <dd>DM = QM → FRN trade at par.<br>DM &gt; QM → FRN trade below par (credit deteriorated).<br>DM &lt; QM → FRN trade above par (credit improved).</dd>
+        <dt>Tính toán</dt>
+        <dd>Trial-and-error hoặc calculator — tương tự YTM nhưng CF phụ thuộc reference rate forecast.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.02 — FI Cash Flows and Types</span>
+  </div>
+</section>
+
+
+<!-- 08 · STEP-UP / STEP-DOWN & CREDIT-LINKED -->
+<section data-label="Step-up credit-linked" class="slide">
+  <div class="run-header">
+    <span>08.02 — FI Cash Flows and Types</span>
+    <span class="rule"></span>
+    <span>08 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Coupon · step &amp; contingent</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Step-up</em>, step-down &amp; credit-linked.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">SU</span>
+      <div>
+        <div class="t"><em class="hi">Step-up coupon</em></div>
+        <div class="d">Coupon rate <b>tăng theo lịch định sẵn</b> trong indenture. Ví dụ: năm 1-3 coupon 4%, năm 4-7 tăng lên 5.5%, năm 8-10 tăng 7%. Lợi ích: compensate investor cho time uncertainty. Phổ biến ở structured products, hybrid securities, và bonds có call feature — nếu không bị call, coupon step up như incentive cho issuer to call.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SD</span>
+      <div>
+        <div class="t">Step-down coupon</div>
+        <div class="d">Coupon rate <b>giảm</b> theo thời gian. Ít phổ biến hơn step-up. Thường gặp ở supranational bonds hoặc bonds designed để giảm issuer's interest burden khi tài chính được cải thiện theo kế hoạch.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CL</span>
+      <div>
+        <div class="t"><em class="hi">Credit-linked coupon</em></div>
+        <div class="d">Coupon thay đổi <em>dựa trên credit rating của issuer</em>. Nếu rating bị downgrade, coupon <b>tăng</b> (bù cho elevated risk). Nếu upgrade, coupon giảm. Ví dụ: coupon = base rate + 50 bps nếu A-rated; + 100 bps nếu BBB-rated.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CC</span>
+      <div>
+        <div class="t">Contingent coupon (payment-in-kind)</div>
+        <div class="d">Coupon có thể được trả bằng <em>thêm bonds</em> thay vì tiền mặt (PIK — payment-in-kind). Cho phép issuer bảo tồn cash trong giai đoạn stress. Rủi ro: dilution và tăng leverage. Phổ biến ở leveraged buyout HY bonds.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.02 — FI Cash Flows and Types</span>
+  </div>
+</section>
+
+
+<!-- 09 · INFLATION-LINKED BONDS (TIPS) -->
+<section data-label="TIPS inflation-linked" class="slide">
+  <div class="run-header">
+    <span>08.02 — FI Cash Flows and Types</span>
+    <span class="rule"></span>
+    <span>09 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Bond types · inflation protection</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Inflation-linked</em> bonds — TIPS structure.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Treasury Inflation-Protected Securities (TIPS) của US là ví dụ điển hình nhất. CFA L1 cần nắm rõ cơ chế indexing principal.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ TIPS mechanics — principal indexed to CPI</span>
+    <div class="eq"><span class="var">Indexed principal</span> = <span class="var">Par value</span> × (<span class="var">CPI<sub>t</sub></span> / <span class="var">CPI<sub>issue</sub></span>)</div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Coupon payment</span> = <span class="var">Coupon rate</span> × <span class="var">Indexed principal</span></div>
+    <div class="note"><b>Coupon rate cố định</b>, nhưng áp dụng lên <b>indexed principal thay đổi theo CPI</b>. Khi lạm phát tăng, principal tăng → coupon $ tăng. Khi deflation, principal giảm nhưng tại maturity investor nhận <em>max(indexed principal, original par)</em> — deflation protection.</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Ví dụ minh họa</span>
+    TIPS par $1,000, coupon 1.5% real, CPI tăng 8% sau năm 1. Indexed principal = $1,080. Coupon năm 1 = 1.5% × $1,080 = <b>$16.20</b> (thay vì $15 nếu không có inflation). Maturity value = $1,080 (inflation compounded).
+  </div>
+
+  <p class="fine-muted-sm">
+    § Real yield vs nominal yield — TIPS yield là <em>real</em> yield; break-even inflation rate = nominal bond yield − TIPS yield. Nếu actual inflation &gt; break-even → TIPS outperform nominal bond.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.02 — FI Cash Flows and Types</span>
+  </div>
+</section>
+
+
+<!-- 10 · INDEX-LINKED / EQUITY-LINKED / COMMODITY-LINKED -->
+<section data-label="Index equity commodity linked" class="slide">
+  <div class="run-header">
+    <span>08.02 — FI Cash Flows and Types</span>
+    <span class="rule"></span>
+    <span>10 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Bond types · linked instruments</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Index-, equity-, commodity</em>-linked bonds.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Ngoài inflation, CF của bond có thể liên kết với equity index, commodity prices, hoặc các underlying assets khác — tạo ra <em>hybrid payoff</em> giữa bond và derivative.
     </p>
   </div>
 
   <div class="tenets-grid" style="margin-top: 16px;">
     <div class="tenet">
-      <span class="n">A</span>
+      <span class="n">EQ</span>
       <div>
-        <div class="t"><em class="hi">Normal</em> (upward-sloping)</div>
-        <div class="d">Long yield &gt; short yield. Phản ánh term premium + expectations rates tăng. Shape thường thấy trong expansion economy.</div>
+        <div class="t"><em class="hi">Equity-linked bonds</em></div>
+        <div class="d"><b>Convertible bond</b>: bondholder có option chuyển thành shares tại conversion ratio. <b>Equity-linked note (ELN)</b>: return liên kết với equity index (vd: S&amp;P 500) nhưng capital protection at maturity. Coupon có thể = 0, upside từ index participation rate.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">B</span>
+      <span class="n">CM</span>
       <div>
-        <div class="t"><em class="hi">Inverted</em> (downward-sloping)</div>
-        <div class="d">Short yield &gt; long yield. Historically <b>recession signal</b> mạnh. Fed tighten short rates khi inflation cao; market kỳ vọng rate cắt trong tương lai.</div>
+        <div class="t"><em class="hi">Commodity-linked bonds</em></div>
+        <div class="d">Coupon hoặc principal liên kết với <b>commodity price</b> (vàng, dầu, nông sản). Ví dụ: oil-linked bond của National Oil Company — coupon tăng nếu Brent &gt; $80. Cho phép issuer hedge natural revenue exposure trong indenture.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">C</span>
+      <span class="n">CR</span>
       <div>
-        <div class="t"><em class="hi">Flat</em></div>
-        <div class="d">Short ≈ long yield. Transitional — giữa normal và inverted. Uncertainty về direction của economy.</div>
+        <div class="t"><em class="hi">Credit-linked notes (CLN)</em></div>
+        <div class="d">Return liên kết với credit event của reference entity. Embedded credit default swap — nếu reference entity default, investor mất một phần principal (= recovery value). Higher coupon = compensation cho credit risk taken. Phổ biến trong structured credit.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">D</span>
+      <span class="n">CPI</span>
       <div>
-        <div class="t">Humped</div>
-        <div class="d">Middle maturities (5-7y) có yield cao nhất. Rare; thường market expectation về near-term tightening sau đó ease.</div>
+        <div class="t">Inflation-linked (non-TIPS)</div>
+        <div class="d">Nhiều sovereign bonds liên kết với CPI local: UK linkers (RPI), France OATi (CPI Eurozone), Brazil NTN-B (IPCA). Mechanism tương tự TIPS nhưng index khác nhau. Một số có coupon indexed thay vì principal.</div>
       </div>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.02 — CURVE</span>
+    <span class="footer-topic">Fixed Income · 08.02 — FI Cash Flows and Types</span>
   </div>
 </section>
 
 
-<!-- 11 · SPOT & FORWARD -->
-<section data-label="Spot forward" class="slide">
+<!-- 11 · CONTINGENCY PROVISIONS OVERVIEW -->
+<section data-label="Contingency provisions" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.02</span>
+    <span>08.02 — FI Cash Flows and Types</span>
     <span class="rule"></span>
-    <span>11 / 24</span>
+    <span>11 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Rate · spot &amp; forward</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Spot</em> &amp; forward rates.</h2>
+    <div class="eyebrow">Provisions · embedded options</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Contingency</em> provisions — overview.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Contingency provisions = điều khoản trong indenture cho phép một bên thực hiện hành động khi điều kiện xảy ra. Module 05 sẽ đi sâu — ở đây nắm khái niệm cốt lõi.
+    </p>
   </div>
 
-  <div class="rule-box">
-    <span class="tag">§ Spot rate</span>
-    Yield của <b>zero-coupon bond</b> cho mỗi maturity — rate dùng discount single CF tại time <em>t</em>. Được "built" từ market prices của STRIPS (stripped Treasuries). Chính xác hơn YTM vì không giả định reinvestment.
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">CALL</span>
+      <div>
+        <div class="t"><em class="hi">Callable bond</em> — quyền của issuer</div>
+        <div class="d">Issuer có <em>quyền mua lại bond</em> trước maturity tại call price (≥ par). Issuer sẽ call khi market rates giảm — refinance rẻ hơn. Investor chịu <b>call risk</b> và <b>reinvestment risk</b>. Bù lại: callable bond có <em>higher coupon</em> hơn straight bond cùng terms. Yield to Call (YTC) &lt; YTM nếu bond trên par.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PUT</span>
+      <div>
+        <div class="t"><em class="hi">Putable bond</em> — quyền của investor</div>
+        <div class="d">Investor có <em>quyền bán lại bond cho issuer</em> tại put price (thường par) trước maturity. Investor sẽ put khi rates tăng (bond price giảm) — lock in và reinvest at higher rates. Bù lại: putable bond có <em>lower coupon</em> / higher price. Embedded put = benefit to investor.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CONV</span>
+      <div>
+        <div class="t"><em class="hi">Convertible bond</em> — quyền của investor</div>
+        <div class="d">Investor có quyền <em>convert bond thành equity</em> tại conversion ratio. Upside: tham gia equity appreciation. Downside protection: nếu không convert, vẫn nhận coupon + par. Lower coupon là "cost" cho option value. Giá trị phụ thuộc equity volatility, conversion premium, parity.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">NOTE</span>
+      <div>
+        <div class="t">Impact lên pricing</div>
+        <div class="d"><b>Callable</b>: Price ≤ straight bond (issuer holds option). <b>Putable</b>: Price ≥ straight bond (investor holds option). <b>Convertible</b>: Price ≥ straight bond. Formula: <em>V<sub>callable</sub> = V<sub>straight</sub> − V<sub>call option</sub></em>. Chi tiết sẽ phân tích trong Module 05.</div>
+      </div>
+    </div>
   </div>
-
-  <div class="rule-box" style="margin-top: 14px;">
-    <span class="tag">§ Forward rate</span>
-    <b>Implied future rate</b> giữa 2 future dates. Derive từ spot curve. Ví dụ: 1y1y forward = rate implied cho 1-year loan bắt đầu 1 năm nữa.
-  </div>
-
-  <div class="formula-box" style="margin-top: 16px;">
-    <span class="fmt-label">§ No-arbitrage forward rate</span>
-    <div class="eq">(1+<span class="var">S</span><sub>2</sub>)<sup>2</sup> = (1+<span class="var">S</span><sub>1</sub>) × (1+<span class="var">f</span><sub>1,1</sub>)</div>
-    <div class="note"><b>S<sub>1</sub></b>, <b>S<sub>2</sub></b> = 1y và 2y spot rates · <b>f<sub>1,1</sub></b> = 1-year forward rate starting in year 1. Investing 2y spot phải = rolling strategy (1y spot + 1y1y forward).</div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Example — S<sub>1</sub> = 3%, S<sub>2</sub> = 4% → (1.04)² = 1.03 × (1+f<sub>1,1</sub>) → f<sub>1,1</sub> = 1.0816/1.03 − 1 = <b>5.01%</b>.
-  </p>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.02 — SPOT/FWD</span>
+    <span class="footer-topic">Fixed Income · 08.02 — FI Cash Flows and Types</span>
   </div>
 </section>
 
 
-<!-- 12 · TRANSITION -->
+<!-- 12 · COUPON PAYMENT FREQUENCY -->
+<section data-label="Coupon frequency" class="slide">
+  <div class="run-header">
+    <span>08.02 — FI Cash Flows and Types</span>
+    <span class="rule"></span>
+    <span>12 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Coupon · payment frequency</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Tần suất <em class="hi">trả coupon</em> ảnh hưởng pricing.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Cùng coupon rate nhưng frequency khác nhau → CF pattern khác nhau → price và reinvestment assumption khác nhau. CFA L1 cần nắm từng convention.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Fixed-rate coupon frequencies</em></div>
+      <dl>
+        <dt>Annual</dt>
+        <dd>Phổ biến ở châu Âu (Eurobonds, German Bunds). 1 payment/năm. Khi tính price: r = YTM, n = years.</dd>
+        <dt>Semi-annual</dt>
+        <dd>Convention chuẩn của US — Treasuries, corporate, agency. 2 payments/năm. r = YTM/2, n = years × 2.</dd>
+        <dt>Quarterly</dt>
+        <dd>Một số MBS, structured notes, ABS. 4 payments/năm. r = YTM/4, n = years × 4.</dd>
+        <dt>Monthly</dt>
+        <dd>Mortgage-backed securities (MBS) thường monthly principal + interest. r = YTM/12, n = months.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Zero-coupon bonds</em></div>
+      <dl>
+        <dt>Cơ chế</dt>
+        <dd>Không trả coupon định kỳ. Issue at deep discount, redeem at par. Return = difference (price discount vs par).</dd>
+        <dt>Pricing</dt>
+        <dd>Price = FV / (1 + r)<sup>n</sup>. Pure PV calculation — một cash flow duy nhất tại maturity.</dd>
+        <dt>Duration</dt>
+        <dd>Duration = maturity (tối đa so với bất kỳ bond nào cùng maturity). Max interest rate sensitivity.</dd>
+        <dt>Ví dụ</dt>
+        <dd>US STRIPS, zero-coupon Treasuries. Zero issued at $600, redeemed $1,000 after 10 years → YTM = (1000/600)^(1/10) − 1 = 5.24%.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.02 — FI Cash Flows and Types</span>
+  </div>
+</section>
+
+
+<!-- 13 · COUPON FREQUENCY — REINVESTMENT IMPACT -->
+<section data-label="Reinvestment impact" class="slide">
+  <div class="run-header">
+    <span>08.02 — FI Cash Flows and Types</span>
+    <span class="rule"></span>
+    <span>13 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Coupon frequency · reinvestment</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Frequency &amp; <em class="hi">effective annual yield</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Nominal yield (annual basis) so sánh được khi chuẩn hóa sang <em>effective annual rate (EAR)</em>. Tần suất trả coupon càng cao → reinvestment nhiều hơn → EAR có thể khác nominal YTM.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Bond Equivalent Yield (BEY) &amp; EAR</span>
+    <div class="eq"><span class="var">BEY</span> = <span class="var">Semi-annual yield</span> × 2 &nbsp; (US convention — simple annualization)</div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">EAR</span> = (1 + <span class="var">BEY</span>/2)<sup>2</sup> − 1 &nbsp; (compounded — more accurate)</div>
+    <div class="note">Ví dụ: semi-annual yield = 3% mỗi 6 tháng → BEY = 6%. EAR = (1.03)² − 1 = <b>6.09%</b>. Khi so sánh annual-pay vs semi-annual bond, phải convert về cùng basis. CFA thường dùng BEY làm chuẩn.</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Zero-coupon — no reinvestment assumption issue</span>
+    Zero-coupon không có intermediate CF → không cần giả định reinvestment rate → YTM chính xác hơn về realized return (nếu hold to maturity). Đây là lý do spot rates được derive từ zero-coupon bonds — "pure" rate không bị reinvestment distortion.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.02 — FI Cash Flows and Types</span>
+  </div>
+</section>
+
+
+<!-- 14 · DEFERRED & ACCRUED COUPON STRUCTURES -->
+<section data-label="Deferred accrued" class="slide">
+  <div class="run-header">
+    <span>08.02 — FI Cash Flows and Types</span>
+    <span class="rule"></span>
+    <span>14 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Coupon · special structures</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Deferred</em>, accrued &amp; other structures.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">DC</span>
+      <div>
+        <div class="t"><em class="hi">Deferred coupon bonds</em></div>
+        <div class="d">Không trả coupon trong giai đoạn đầu (lock-out period). Coupon <b>tích lũy</b> và trả sau. Dùng khi issuer cần thời gian để generate cash flow (project finance, startup) trước khi có khả năng service debt. Phổ biến ở HY và EM.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">AC</span>
+      <div>
+        <div class="t"><em class="hi">Accrued interest</em></div>
+        <div class="d">Khi mua bond giữa 2 coupon dates, buyer phải trả <em>accrued interest</em> cho seller (phần coupon seller đã "earn" nhưng chưa nhận). <b>Dirty price</b> = clean price + accrued interest. Thị trường quote <em>clean price</em>; settlement = dirty price.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PIK</span>
+      <div>
+        <div class="t">Payment-in-kind (PIK)</div>
+        <div class="d">Coupon trả bằng <b>thêm bonds</b> (PIK notes) thay vì cash. Outstanding principal tăng theo thời gian. Phổ biến ở leveraged buyout bonds khi cash flow tight. Investor nhận bonds → compound interest effect → higher face value tại maturity.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">TC</span>
+      <div>
+        <div class="t">Toggle coupon</div>
+        <div class="d">Hybrid — issuer có quyền <em>chọn</em> trả coupon cash hoặc PIK mỗi kỳ. Thường phải notify trước 10-15 ngày trước coupon date. Flexibility cho issuer nhưng thêm uncertainty cho investor. Được coi là sign of distress nếu issuer toggle sang PIK liên tục.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.02 — FI Cash Flows and Types</span>
+  </div>
+</section>
+
+
+<!-- 15 · TỔNG HỢP TAXONOMY -->
+<section data-label="Bond taxonomy" class="slide">
+  <div class="run-header">
+    <span>08.02 — FI Cash Flows and Types</span>
+    <span class="rule"></span>
+    <span>15 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Summary · taxonomy</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Bond types</em> — quick taxonomy.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Tổng hợp toàn bộ các loại bond theo hai chiều: <em>principal structure</em> và <em>coupon type</em>.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Phân loại theo principal</em></div>
+      <dl>
+        <dt>Bullet</dt>
+        <dd>Par nhận về 1 lần tại maturity. Ví dụ: Treasuries, IG corporate.</dd>
+        <dt>Fully amortizing</dt>
+        <dd>Principal giảm đều mỗi kỳ, 0 balloon. Ví dụ: mortgage, auto loan ABS.</dd>
+        <dt>Partially amortizing</dt>
+        <dd>Trả một phần, balloon còn lại. Ví dụ: commercial mortgage.</dd>
+        <dt>Sinking fund</dt>
+        <dd>Periodic retirement qua trustee, lottery hay market buy. Ví dụ: older utility bonds.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Phân loại theo coupon</em></div>
+      <dl>
+        <dt>Fixed rate</dt>
+        <dd>Coupon cố định suốt đời. Annual / semi-annual / quarterly.</dd>
+        <dt>Floating rate (FRN)</dt>
+        <dd>Reference rate + spread. Cap / floor / collar. Reset quarterly / semi-annual.</dd>
+        <dt>Zero coupon</dt>
+        <dd>Không coupon, deep discount. STRIPS, zero-coupon corporates.</dd>
+        <dt>Inflation-linked</dt>
+        <dd>Principal indexed to CPI (TIPS), real coupon rate cố định.</dd>
+        <dt>Structured / contingent</dt>
+        <dd>Step-up/down, credit-linked, PIK, toggle, equity/commodity-linked.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.02 — FI Cash Flows and Types</span>
+  </div>
+</section>
+
+
+<!-- 16 · TAKEAWAYS -->
+<section data-label="Takeaways" class="slide">
+  <div class="run-header">
+    <span>08.02 — FI Cash Flows and Types</span>
+    <span class="rule"></span>
+    <span>16 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Module 02 · key takeaways</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Những điểm <em class="hi">không được quên</em>.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Bullet vs amortizing</span>
+        <span class="step-body">Bullet = 1 principal CF tại maturity. Fully amortizing = principal spread đều, 0 balloon. Partially amortizing = intermediate + balloon. Sinking fund = periodic mandatory retirement qua trustee.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">FRN = reference rate + quoted margin</span>
+        <span class="step-body">Cap bảo vệ issuer, floor bảo vệ investor. Discount margin (DM) là YTM equivalent cho FRN. DM = QM → at par; DM &gt; QM → below par.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">TIPS — principal indexed to CPI</span>
+        <span class="step-body">Real coupon rate cố định, áp lên indexed principal. Coupon tăng khi CPI tăng. Tại maturity: max(indexed principal, par) — deflation protection. Break-even inflation = nominal yield − TIPS yield.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Contingency: callable (issuer) vs putable/convertible (investor)</span>
+        <span class="step-body">Callable → investor demand higher coupon (issuer holds option = negative for investor). Putable/convertible → investor pays premium / accepts lower coupon (investor holds option = positive). V<sub>callable</sub> = V<sub>straight</sub> − V<sub>call option</sub>.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Coupon frequency &amp; zero-coupon</span>
+        <span class="step-body">US convention = semi-annual. BEY = periodic yield × periods/year. EAR accounts for compounding. Zero-coupon: max duration, no reinvestment risk, deep discount pricing = FV/(1+r)^n.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.02 — FI Cash Flows and Types</span>
+  </div>
+</section>
+
+
+<!-- 17 · TRANSITION TO PRACTICE -->
 <section data-label="Practice begins" class="slide end-slide">
   <div>
     <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
@@ -484,41 +734,44 @@
 </section>
 
 
-<!-- 13 · Q1 EN — Price calc -->
+<!-- ====================================================== -->
+<!-- PRACTICE Q1 — FRN Discount Margin                      -->
+<!-- ====================================================== -->
+
+<!-- 18 · Q1 ORIGINAL -->
 <section data-label="Q1 Original" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.02</span>
+    <span>08.02 — FI Cash Flows and Types</span>
     <span class="rule"></span>
-    <span>13 / 24</span>
+    <span>18 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Calculate <em class="hi">bond price</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">FRN — <em class="hi">discount margin</em>.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      A 3-year bond has a par value of <strong>$1,000</strong>, pays an <strong>8% annual coupon</strong>, and has a market yield (YTM) of <strong>6%</strong>. Assuming annual compounding and annual coupon payments, what is the bond's price?
+      A floating-rate note (FRN) has a par value of <strong>$1,000</strong>, a quoted margin of <strong>120 basis points</strong> over the 6-month reference rate (currently <strong>3.40%</strong>), and matures in 2 years. The FRN is currently priced at <strong>$993.50</strong>. Relative to its quoted margin, the discount margin on this FRN is <em>most likely</em>:
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">$946.54.</span></li>
-    <li><span class="lbl">B</span><span class="opt">$1,000.00.</span></li>
-    <li><span class="lbl">C</span><span class="opt">$1,053.46.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Less than 120 bps, because the bond trades below par.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Greater than 120 bps, because the bond trades below par.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Equal to 120 bps, because the quoted margin is fixed at issuance.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.02 — Q1 ORIGINAL</span>
+    <span class="footer-topic">Fixed Income · 08.02 — Q1 ORIGINAL</span>
   </div>
 </section>
 
 
-<!-- 14 · Q1 HINT -->
+<!-- 19 · Q1 HINT -->
 <section data-label="Q1 Hint" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.02</span>
+    <span>08.02 — FI Cash Flows and Types</span>
     <span class="rule"></span>
-    <span>14 / 24</span>
+    <span>19 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 01</div>
@@ -526,35 +779,34 @@
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    3 years · par <mark>$1,000</mark> · coupon <mark>8%</mark> · YTM <mark>6%</mark> · annual. Coupon &gt; yield → <mark>premium</mark>.
+    Quoted margin <mark>120 bps</mark> (cố định). Price = <mark>$993.50 &lt; par $1,000</mark>. Hỏi discount margin (DM) so với QM.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">Annual coupon = 8% × $1,000 = <em>$80</em>. CF: Y1 $80, Y2 $80, Y3 $80 + $1,000 = $1,080.</span>
+      <span class="htxt">Discount margin (DM) = spread cần thiết để discount future CF về <em>current price</em>. Tương tự YTM cho fixed-rate bond — khi price &lt; par, yield (và spread) &gt; stated rate.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Price = 80/1.06 + 80/1.06² + 1080/1.06³ = 75.47 + 71.20 + 906.79 = <em>$1,053.46</em>.</span>
+      <span class="htxt">Quy tắc analog với fixed-rate bond: Price &lt; par → investor mua rẻ → implied return CAO hơn coupon stated. Cho FRN: price &lt; par → DM <em>lớn hơn</em> QM.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Sanity check — coupon (8%) &gt; YTM (6%) → bond <em>premium</em>, price &gt; par. Loại ngay A ($946 là discount) và B ($1,000 là par).</span>
+      <span class="htxt">Loại C ngay — QM cố định nhưng DM thay đổi theo market price. Loại A — lý luận ngược chiều. Answer = B.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.02 — Q1 HINT</span>
+    <span class="footer-topic">Fixed Income · 08.02 — Q1 HINT</span>
   </div>
 </section>
 
 
-<!-- 15 · Q1 Dịch đề -->
+<!-- 20 · Q1 DICH DE -->
 <section data-label="Q1 Dịch đề" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.02</span>
+    <span>08.02 — FI Cash Flows and Types</span>
     <span class="rule"></span>
-    <span>15 / 24</span>
+    <span>20 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
@@ -563,95 +815,93 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một bond kỳ hạn 3 năm có par <strong>$1,000</strong>, trả coupon <strong>8% annual</strong>, market yield (YTM) là <strong>6%</strong>. Giả sử compounding annual và trả coupon mỗi năm, price của bond là bao nhiêu?
+      Một floating-rate note (FRN) có par value <strong>$1,000</strong>, quoted margin <strong>120 basis points</strong> trên reference rate 6 tháng (hiện tại <strong>3.40%</strong>), đáo hạn sau 2 năm. FRN đang giao dịch ở mức <strong>$993.50</strong>. So với quoted margin, discount margin của FRN này <em>nhiều khả năng nhất</em> là:
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">$946.54.</span></li>
-    <li><span class="lbl">B</span><span class="opt">$1,000.00.</span></li>
-    <li><span class="lbl">C</span><span class="opt">$1,053.46.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Thấp hơn 120 bps, vì bond giao dịch dưới par.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Cao hơn 120 bps, vì bond giao dịch dưới par.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Bằng 120 bps, vì quoted margin được cố định khi phát hành.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.02 — Q1 VIỆT</span>
+    <span class="footer-topic">Fixed Income · 08.02 — Q1 VIỆT</span>
   </div>
 </section>
 
 
-<!-- 16 · Q1 EXPLANATION -->
+<!-- 21 · Q1 EXPLANATION -->
 <section data-label="Q1 Explanation" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.02</span>
+    <span>08.02 — FI Cash Flows and Types</span>
     <span class="rule"></span>
-    <span>16 / 24</span>
+    <span>21 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — $1,053.46.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — DM &gt; 120 bps.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
-      <div class="rtag">✓ Correct — C</div>
-      <div class="rtext">Coupon = 8% × $1,000 = $80. Price = 80/(1.06) + 80/(1.06)² + (80+1000)/(1.06)³ = 75.47 + 71.20 + 906.79 = <b>$1,053.46</b>. Calculator: N=3, I/Y=6, PMT=80, FV=1000 → PV = −1,053.46. Premium price vì coupon (8%) &gt; yield (6%).</div>
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Discount margin (DM) là spread cần thiết để PV của future coupon CF bằng current market price. Khi price = $993.50 &lt; par $1,000, investor mua bond rẻ hơn intrinsic value tại QM → <b>implied return lớn hơn</b> QM. Cụ thể: DM phải &gt; 120 bps để discount CF về $993.50. Analog: bond fixed-rate discount → YTM &gt; coupon rate.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">$946.54 là kết quả nếu đảo ngược coupon và YTM (coupon 6%, YTM 8%). Bond trong case này là <em>premium</em>, không phải discount. Common error: nhầm lẫn giữa rate cao (coupon) và rate discount (YTM).</div>
+      <div class="rtext">Lập luận ngược chiều. Nếu DM &lt; QM thì price &gt; par (premium). Price $993.50 &lt; $1,000 → bond at discount → DM phải <em>cao hơn</em>, không phải thấp hơn. Confusion giữa premium/discount logic.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — B</div>
-      <div class="rtext">$1,000 chỉ đúng khi coupon = YTM (bond at par). Ở đây coupon ≠ YTM → price ≠ par. Nếu chọn $1,000 do lazy hoặc nhầm "par value always price", sẽ sai.</div>
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Quoted margin (120 bps) là cố định — đúng. Nhưng <em>discount margin khác quoted margin</em>. DM = QM chỉ khi FRN trade at par. Câu C nhầm lẫn giữa QM (contractual, cố định) và DM (market-derived, thay đổi theo price).</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Process: (1) Calc CF từng period, (2) Discount bằng YTM, (3) Sum lại. Sanity check: compare coupon vs YTM để predict premium/par/discount, loại câu sai ngay trước khi tính.</div>
+    <div class="ttext">FRN: QM cố định, DM biến động theo price. <em>DM = QM → par. DM &gt; QM → discount (price &lt; par). DM &lt; QM → premium (price &gt; par).</em> Quy tắc này mirror hoàn toàn với coupon vs YTM của fixed-rate bond.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.02 — ANSWER Q1</span>
+    <span class="footer-topic">Fixed Income · 08.02 — ANSWER Q1</span>
   </div>
 </section>
 
 
-<!-- 17 · Q2 EN — Premium/discount ID -->
+<!-- ====================================================== -->
+<!-- PRACTICE Q2 — TIPS / Inflation-linked                  -->
+<!-- ====================================================== -->
+
+<!-- 22 · Q2 ORIGINAL -->
 <section data-label="Q2 Original" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.02</span>
+    <span>08.02 — FI Cash Flows and Types</span>
     <span class="rule"></span>
-    <span>17 / 24</span>
+    <span>22 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Identify <em class="hi">premium vs discount</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">TIPS — <em class="hi">coupon payment</em>.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Four bonds with identical maturities and credit quality have the following characteristics:
-      <br>&bull; Bond W: coupon 5%, YTM 5% &nbsp;&nbsp; &bull; Bond X: coupon 4%, YTM 6%
-      <br>&bull; Bond Y: coupon 7%, YTM 5% &nbsp;&nbsp; &bull; Bond Z: coupon 6%, YTM 8%
-      <br>Which bond is <strong>most likely</strong> trading at the <strong>largest premium</strong> to par?
+      An investor purchases a TIPS (Treasury Inflation-Protected Security) with a par value of <strong>$10,000</strong>, a real coupon rate of <strong>1.50%</strong> (paid semi-annually), and a remaining term of 5 years. The reference CPI was <strong>260.0</strong> at issuance. After 6 months, the CPI index has risen to <strong>266.5</strong>. The coupon payment the investor will receive at the end of the first semi-annual period is <em>closest to</em>:
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Bond W (coupon = YTM = 5%).</span></li>
-    <li><span class="lbl">B</span><span class="opt">Bond Y (coupon 7%, YTM 5% — gap +2%).</span></li>
-    <li><span class="lbl">C</span><span class="opt">Bond Z (coupon 6%, YTM 8% — gap −2%).</span></li>
+    <li><span class="lbl">A</span><span class="opt">$75.00</span></li>
+    <li><span class="lbl">B</span><span class="opt">$76.88</span></li>
+    <li><span class="lbl">C</span><span class="opt">$153.75</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.02 — Q2 ORIGINAL</span>
+    <span class="footer-topic">Fixed Income · 08.02 — Q2 ORIGINAL</span>
   </div>
 </section>
 
 
-<!-- 18 · Q2 HINT -->
+<!-- 23 · Q2 HINT -->
 <section data-label="Q2 Hint" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.02</span>
+    <span>08.02 — FI Cash Flows and Types</span>
     <span class="rule"></span>
-    <span>18 / 24</span>
+    <span>23 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 02</div>
@@ -659,35 +909,34 @@
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>Largest premium</mark>. Premium = <mark>coupon &gt; YTM</mark>. Largest gap = largest premium.
+    Real coupon <mark>1.50%</mark> · semi-annual → mỗi kỳ = 0.75%. CPI từ <mark>260.0 → 266.5</mark>. Principal indexed = par × (CPI<sub>t</sub>/CPI<sub>0</sub>).
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">Classify từng bond: W (C=Y) → par. X (C&lt;Y) → discount. Y (C&gt;Y) → premium. Z (C&lt;Y) → discount.</span>
+      <span class="htxt">TIPS formula: Indexed principal = $10,000 × (266.5 / 260.0) = $10,000 × 1.025 = <em>$10,250</em>.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Chỉ Y là premium (coupon 7% &gt; YTM 5%, gap +2%). Z là discount (coupon 6% &lt; YTM 8%, gap −2%) — cùng magnitude nhưng ngược direction.</span>
+      <span class="htxt">Semi-annual coupon = (1.50% / 2) × Indexed principal = 0.75% × $10,250 = <em>$76.875</em> ≈ <em>$76.88</em>.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Câu hỏi yêu cầu "largest premium" → phải premium trước, sau đó mới so magnitude. Z không phải premium, loại ngay. Answer = Y.</span>
+      <span class="htxt">Loại A ($75 = 0.75% × $10,000 = sai vì dùng par chưa indexed). Loại C ($153.75 = annual coupon, không chia 2). Answer = B.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.02 — Q2 HINT</span>
+    <span class="footer-topic">Fixed Income · 08.02 — Q2 HINT</span>
   </div>
 </section>
 
 
-<!-- 19 · Q2 Dịch đề -->
+<!-- 24 · Q2 DICH DE -->
 <section data-label="Q2 Dịch đề" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.02</span>
+    <span>08.02 — FI Cash Flows and Types</span>
     <span class="rule"></span>
-    <span>19 / 24</span>
+    <span>24 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
@@ -696,95 +945,97 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Bốn bonds cùng maturity và credit quality:
-      <br>&bull; Bond W: coupon 5%, YTM 5% &nbsp;&nbsp; &bull; Bond X: coupon 4%, YTM 6%
-      <br>&bull; Bond Y: coupon 7%, YTM 5% &nbsp;&nbsp; &bull; Bond Z: coupon 6%, YTM 8%
-      <br>Bond nào <strong>có khả năng cao nhất</strong> đang trade với <strong>premium lớn nhất</strong> so với par?
+      Một nhà đầu tư mua TIPS với par value <strong>$10,000</strong>, real coupon rate <strong>1.50%</strong> (trả semi-annually), còn lại 5 năm. CPI tham chiếu khi phát hành là <strong>260.0</strong>. Sau 6 tháng, CPI tăng lên <strong>266.5</strong>. Khoản coupon nhà đầu tư sẽ nhận cuối kỳ 6 tháng đầu tiên <em>gần nhất</em> với:
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Bond W (coupon = YTM = 5%).</span></li>
-    <li><span class="lbl">B</span><span class="opt">Bond Y (coupon 7%, YTM 5% — gap +2%).</span></li>
-    <li><span class="lbl">C</span><span class="opt">Bond Z (coupon 6%, YTM 8% — gap −2%).</span></li>
+    <li><span class="lbl">A</span><span class="opt">$75.00</span></li>
+    <li><span class="lbl">B</span><span class="opt">$76.88</span></li>
+    <li><span class="lbl">C</span><span class="opt">$153.75</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.02 — Q2 VIỆT</span>
+    <span class="footer-topic">Fixed Income · 08.02 — Q2 VIỆT</span>
   </div>
 </section>
 
 
-<!-- 20 · Q2 EXPLANATION -->
+<!-- 25 · Q2 EXPLANATION -->
 <section data-label="Q2 Explanation" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.02</span>
+    <span>08.02 — FI Cash Flows and Types</span>
     <span class="rule"></span>
-    <span>20 / 24</span>
+    <span>25 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Bond Y.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $76.88.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">Bond Y là bond duy nhất có <b>coupon (7%) &gt; YTM (5%)</b> → premium. Gap = +2% → đủ để đẩy price &gt; par. Trong 4 bonds, chỉ Y thoả điều kiện "premium" + có gap lớn nhất về direction đúng.</div>
+      <div class="rtext"><b>Step 1:</b> Inflation ratio = 266.5 / 260.0 = 1.025 (tăng 2.5%). <b>Step 2:</b> Indexed principal = $10,000 × 1.025 = <b>$10,250</b>. <b>Step 3:</b> Semi-annual coupon = (1.50%/2) × $10,250 = 0.75% × $10,250 = <b>$76.875 ≈ $76.88</b>. TIPS mechanism: real coupon rate cố định, áp lên principal đã được index theo CPI.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Bond W: coupon = YTM = 5% → <em>par bond</em>, price = $1,000. Không phải premium. Premium yêu cầu coupon &gt; YTM, không bằng.</div>
+      <div class="rtext">$75.00 = 0.75% × $10,000 — lỗi vì dùng par gốc thay vì <em>indexed principal</em>. Đây là trap phổ biến nhất trong TIPS questions: quên bước index principal trước khi nhân coupon rate.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">Bond Z: coupon 6% &lt; YTM 8% → <em>discount</em>, price &lt; par. Dù gap có magnitude 2%, direction ngược lại → không phải premium. Common trap: confuse "largest gap" với "largest premium".</div>
+      <div class="rtext">$153.75 = 1.50% × $10,250 — đây là annual coupon (chưa chia 2). Bond trả semi-annual → mỗi kỳ chỉ nhận <em>nửa</em> annual coupon. Không được dùng annual rate trực tiếp khi đề bài nói semi-annual.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Quy tắc 3 dòng: Coupon &gt; YTM → <em>premium</em>. Coupon &lt; YTM → <em>discount</em>. Coupon = YTM → <em>par</em>. "Largest premium" = largest <em>positive</em> gap (coupon − YTM), không phải largest absolute gap.</div>
+    <div class="ttext">TIPS two-step: (1) Index principal = Par × (CPI<sub>t</sub>/CPI<sub>0</sub>). (2) Coupon = (annual rate / frequency) × indexed principal. Đừng quên điều chỉnh frequency — đây là nơi exam đặt trap thường xuyên nhất.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.02 — ANSWER Q2</span>
+    <span class="footer-topic">Fixed Income · 08.02 — ANSWER Q2</span>
   </div>
 </section>
 
 
-<!-- 21 · Q3 EN — Yield curve -->
+<!-- ====================================================== -->
+<!-- PRACTICE Q3 — Sinking fund / callable / putable        -->
+<!-- ====================================================== -->
+
+<!-- 26 · Q3 ORIGINAL -->
 <section data-label="Q3 Original" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.02</span>
+    <span>08.02 — FI Cash Flows and Types</span>
     <span class="rule"></span>
-    <span>21 / 24</span>
+    <span>26 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Interpret <em class="hi">yield curve</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Contingency provisions — <em class="hi">who benefits</em>.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      An analyst observes the US Treasury yield curve: 3-month yield <strong>5.25%</strong>, 2-year yield <strong>4.50%</strong>, 10-year yield <strong>3.95%</strong>, 30-year yield <strong>4.10%</strong>. Which description <strong>best</strong> characterises the curve and its common economic interpretation?
+      A fixed-income analyst is reviewing three bonds issued by the same company:
+      <br>&bull; Bond A: callable at par after year 3, currently trading at <strong>$1,045</strong>.
+      <br>&bull; Bond B: putable at par after year 3, currently trading at <strong>$1,012</strong>.
+      <br>&bull; Bond C: straight bond (no embedded options), priced at <strong>$1,000</strong>.
+      <br>All three bonds have identical coupon, maturity, and credit quality. Which statement about these bonds is <em>most accurate</em>?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Normal curve — signals robust economic expansion ahead.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Inverted curve — historically associated with a higher probability of recession.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Flat curve — market expects no change in policy rates.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Bond A should trade at a higher price than Bond C because the call option benefits the issuer.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Bond B should trade at a higher price than Bond C because the put option benefits the investor.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Bond A should trade at a higher price than Bond B because callable bonds are less risky for investors.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.02 — Q3 ORIGINAL</span>
+    <span class="footer-topic">Fixed Income · 08.02 — Q3 ORIGINAL</span>
   </div>
 </section>
 
 
-<!-- 22 · Q3 HINT -->
+<!-- 27 · Q3 HINT -->
 <section data-label="Q3 Hint" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.02</span>
+    <span>08.02 — FI Cash Flows and Types</span>
     <span class="rule"></span>
-    <span>22 / 24</span>
+    <span>27 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 03</div>
@@ -792,104 +1043,100 @@
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    3m <mark>5.25%</mark> &gt; 2y <mark>4.50%</mark> &gt; 10y <mark>3.95%</mark>. Short &gt; long. Yield curve <mark>inverted</mark>.
+    Callable (issuer has option) vs putable (investor has option) vs straight. <mark>Option belongs to A → A gets compensated, B pays</mark>.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">Plot curve — yield giảm từ 3m đến 10y, hơi lên ở 30y. Dominant feature: <em>short-end &gt; long-end</em> → inverted.</span>
+      <span class="htxt">Ai nắm option? Call option → <em>issuer</em>. Put option → <em>investor</em>. Straight → không ai. Option có giá trị → bên bán option nhận compensation.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Inverted curve historically precede recession trong 6-18 tháng. Fed đang tighten (short rates cao); market kỳ vọng cutting + growth yếu → long yields thấp.</span>
+      <span class="htxt">Callable: investor "bán" call cho issuer → investor bị disadvantaged → cần higher coupon hoặc LOWER price để compensate. V<sub>callable</sub> = V<sub>straight</sub> − V<sub>call</sub> → price callable &lt; straight. Bond A ($1,045) &gt; $1,000 — data trong câu này có vẻ ngược, nhưng đề hỏi statement nào đúng về nguyên tắc.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Normal curve = upward slope (long &gt; short). Flat curve = slope ≈ 0. Ở đây có slope rõ ràng, và ngược → inverted.</span>
+      <span class="htxt">Putable: investor nắm put → có lợi thế → chấp nhận lower coupon hoặc PAY MORE → price putable &gt; straight. Bond B $1,012 &gt; Bond C $1,000 — đúng. Statement B: "Bond B trade cao hơn C vì put benefit investor" → Chính xác. Answer = B.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.02 — Q3 HINT</span>
+    <span class="footer-topic">Fixed Income · 08.02 — Q3 HINT</span>
   </div>
 </section>
 
 
-<!-- 23 · Q3 Dịch đề + Explanation combined (use 2 slides) -->
+<!-- 28 · Q3 DICH DE -->
 <section data-label="Q3 Dịch đề" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.02</span>
+    <span>08.02 — FI Cash Flows and Types</span>
     <span class="rule"></span>
-    <span>23 / 24</span>
+    <span>28 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Practice · Question 03 · Tiếng Việt + Answer</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Dịch đề + <em class="hi">đáp án</em>.</h2>
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
   </div>
   <div class="q-card">
-    <span class="q-tag">§ Vignette (VN)</span>
+    <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Analyst quan sát UST yield curve: 3m <strong>5.25%</strong>, 2y <strong>4.50%</strong>, 10y <strong>3.95%</strong>, 30y <strong>4.10%</strong>. Mô tả nào <strong>phù hợp nhất</strong> với curve này và ý nghĩa kinh tế thông thường?
+      Một analyst đang xem xét ba bonds cùng công ty:
+      <br>&bull; Bond A: callable tại par sau năm 3, đang giao dịch ở <strong>$1,045</strong>.
+      <br>&bull; Bond B: putable tại par sau năm 3, đang giao dịch ở <strong>$1,012</strong>.
+      <br>&bull; Bond C: straight bond (không có embedded option), giá <strong>$1,000</strong>.
+      <br>Ba bonds có coupon, maturity, và credit quality giống nhau. Nhận định nào về ba bonds này là <em>chính xác nhất</em>?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Normal curve — tín hiệu kinh tế mở rộng mạnh phía trước.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Inverted curve — historically gắn với xác suất recession cao hơn.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Flat curve — market kỳ vọng không đổi policy rate.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Bond A nên giao dịch cao hơn Bond C vì call option có lợi cho issuer.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Bond B nên giao dịch cao hơn Bond C vì put option có lợi cho investor.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Bond A nên giao dịch cao hơn Bond B vì callable bonds ít rủi ro hơn cho investor.</span></li>
   </ol>
-  <div class="reasoning" style="margin-top: 16px;">
-    <div class="rblock">
-      <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">Short yields (3m 5.25%, 2y 4.50%) <b>cao hơn</b> long yields (10y 3.95%) → curve <b>inverted</b>. Historically, 2s-10s inversion precede mỗi recession Mỹ từ 1950s (với lead 6-18 tháng). Đây là signal được Fed và analyst theo dõi chặt.</div>
-    </div>
-  </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.02 — Q3 VIỆT+ANS</span>
+    <span class="footer-topic">Fixed Income · 08.02 — Q3 VIỆT</span>
   </div>
 </section>
 
 
-<!-- 24 · Q3 EXPLANATION + TAKEAWAY -->
-<section data-label="Q3 Takeaway" class="slide">
+<!-- 29 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.02</span>
+    <span>08.02 — FI Cash Flows and Types</span>
     <span class="rule"></span>
-    <span>24 / 28</span>
+    <span>29 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Answer · Question 03 · deep</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Why <em class="hi">inversion</em> matters.</h2>
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Bond B &gt; Bond C.</h2>
   </div>
   <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Put option <b>thuộc về investor</b> → investor có right bán lại bond tại par khi rates tăng. Option này có giá trị thực sự → investor sẵn sàng trả <em>premium</em> (accept lower yield) để có protection. V<sub>putable</sub> = V<sub>straight</sub> + V<sub>put option</sub> → price putable <b>cao hơn</b> straight. Bond B ($1,012) &gt; Bond C ($1,000) — consistent với theory.</div>
+    </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Normal curve = upward slope (long yield &gt; short). Ở đây là ngược. "Robust expansion" thường đi kèm normal curve + growing term premium.</div>
+      <div class="rtext">Statement đúng một phần về fact (call option có lợi cho issuer) nhưng <em>sai về pricing</em>. Vì issuer nắm option, investor bị thiệt → investor demand higher coupon hoặc THẤP price. V<sub>callable</sub> = V<sub>straight</sub> − V<sub>call</sub> → callable phải &lt; straight, không phải cao hơn. Dữ liệu đề ($1,045) không phản ánh nguyên tắc này — đây là trap của câu.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">Flat curve = yields gần bằng nhau across maturities. Ở đây có spread 130 bps (5.25% − 3.95%) — không thể gọi flat. Flat là transition giữa normal và inverted.</div>
+      <div class="rtext">Callable bonds <em>rủi ro hơn</em> cho investor (call risk + reinvestment risk), không phải ít rủi ro hơn. Issuer call khi rates giảm, bắt investor reinvest at lower rates. Do đó callable phải có higher coupon (higher yield) và lower price so với putable. Câu C sai hoàn toàn về hướng risk.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Yield curve shapes: <em>Normal</em> (up-sloping, expansion). <em>Inverted</em> (down-sloping, recession warning). <em>Flat</em> (transitional). <em>Humped</em> (middle high, rare). Quan trọng nhất cho CFA L1: biết interpret shape + hiểu <em>2s-10s spread</em> là benchmark recession indicator.</div>
+    <div class="ttext">Embedded options: <em>Ai nắm option → ai có lợi thế → bên kia compensate.</em> Call → issuer holds → investor bị thiệt → V<sub>callable</sub> &lt; V<sub>straight</sub>. Put → investor holds → investor có lợi → V<sub>putable</sub> &gt; V<sub>straight</sub>. Convertible → investor holds → V<sub>convertible</sub> &gt; V<sub>straight</sub>.</div>
   </div>
-  <p class="fine-muted-sm">
-    § Recession lead time — Inversion thường precede recession 6-18 tháng. Yield curve inverted liên tục từ 2022-07 đến 2024; US chính thức enter recession 2024 H2 (NBER dating).
-  </p>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.02 — TAKEAWAY</span>
+    <span class="footer-topic">Fixed Income · 08.02 — ANSWER Q3</span>
   </div>
 </section>
 
 
-<!-- 25 · END -->
+<!-- 30 · END -->
 <section data-label="End" class="slide end-slide">
   <div>
     <h1>08.02 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
-    <div class="hint">Tiếp theo · Lesson 08.03 — Fixed-Income Risk: Duration &amp; Convexity</div>
+    <div class="hint">Tiếp theo · Lesson 08.03 — FI Issuance and Trading</div>
   </div>
 </section>
 

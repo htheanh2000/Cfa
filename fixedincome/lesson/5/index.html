@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>CFA L1 · Fixed Income 08.05 — Term Structure</title>
+<title>CFA L1 · Fixed Income 08.05 — FI Markets for Government Issuers</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/assets/cfa-theme.css">
 <style>
   .title-slide .left { background: var(--accent); }
-  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main { font-size: 96px; line-height: 0.98; }
   .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
   .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
 </style>
@@ -24,18 +24,18 @@
 <section data-label="Title" class="slide title-slide">
   <div class="left">
     <div class="mark">CFA Institute · Level I</div>
-    <h1 class="main">Term<br>Structure<br><em>of rates.</em></h1>
+    <h1 class="main">FI Markets<br><em>for Gov't<br>Issuers.</em></h1>
     <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 08 · Lesson 08.05 · Fixed Income</div>
   </div>
   <div class="right">
-    <div class="mark">Module 05 · Yield curve &amp; forwards</div>
+    <div class="mark">Module 05 · Sovereign · Non-Sovereign · Agency · Supranational</div>
     <dl class="meta-grid">
       <div><dt>Môn</dt><dd>Fixed Income</dd></div>
       <div><dt>Module</dt><dd>05</dd></div>
       <div><dt>Lesson</dt><dd>08.05</dd></div>
       <div><dt>Thời lượng</dt><dd>90 min</dd></div>
     </dl>
-    <div class="mark">Spot · Par · Forward · Theories · Spreads</div>
+    <div class="mark">Sovereign · Auction · On/Off-the-run · Municipal · Agency · Supranational · VGB</div>
   </div>
 </section>
 
@@ -45,574 +45,696 @@
   <div class="band">
     <div class="lbl">PART</div>
     <div class="n">05</div>
-    <div class="lbl">Term structure</div>
+    <div class="lbl">Government Issuers</div>
   </div>
   <div class="content">
     <div class="eyebrow">Today's lesson</div>
-    <h2>Yield <em>curve</em> —<br>spot, par, forward.</h2>
+    <h2>Ai phát hành <em>trái phiếu</em><br>Chính phủ?</h2>
     <ul class="toc">
-      <li class="active">01 · Yield curve — 3 loại (spot, par, forward)</li>
-      <li>02 · Spot–forward no-arbitrage relationship</li>
-      <li>03 · Bootstrapping &amp; par yield derivation</li>
-      <li>04 · Yield curve shapes — normal, inverted, flat, humped</li>
-      <li>05 · Theories — Pure Expectations, Liquidity, Segmented, Preferred Habitat</li>
-      <li>06 · Swap rate curve &amp; yield spreads (G, Z, OAS)</li>
-      <li>07 · Practice — 3 CFA-style questions</li>
+      <li class="active">01 · Sovereign bonds — T-bills, T-notes, T-bonds, TIPS; Bunds, Gilts, JGB, VGB</li>
+      <li>02 · Sovereign auction — Dutch single-price vs discriminatory multiple-price</li>
+      <li>03 · Primary dealers + bid-to-cover ratio</li>
+      <li>04 · On-the-run vs off-the-run treasuries — liquidity differential</li>
+      <li>05 · Non-sovereign: state/provincial bonds, municipal (GO vs revenue)</li>
+      <li>06 · Agency bonds: Ginnie Mae, Fannie Mae, Freddie Mac</li>
+      <li>07 · Supranational: World Bank, IMF, ADB, EIB · Quasi-government</li>
+      <li>08 · Vietnam Government Bonds — VGB context, SBV auction, foreign limits</li>
+      <li>09 · Practice — 3 CFA-style questions</li>
     </ul>
   </div>
 </section>
 
 
-<!-- 03 · YIELD CURVE DEFINITION -->
-<section data-label="Yield curve" class="slide">
+<!-- 03 · SOVEREIGN BONDS OVERVIEW -->
+<section data-label="Sovereign overview" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.05</span>
+    <span>08.05 — FI Markets for Government Issuers</span>
     <span class="rule"></span>
-    <span>03 / 28</span>
+    <span>03 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Curve · definition</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Yield <em class="hi">curve</em>?</h2>
+    <div class="eyebrow">Sovereign bonds · overview</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Sovereign bonds</em> — chính phủ trung ương vay.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      <em>Yield curve</em> = đồ thị <b>yield trên trục Y</b> và <b>maturity trên trục X</b> cho một nhóm bonds cùng credit quality. Là công cụ quan trọng nhất để price bonds và đo kỳ vọng thị trường về lãi suất tương lai.
+      <em>Sovereign bond</em> = nợ do chính phủ trung ương (central government) phát hành bằng đồng nội tệ hoặc ngoại tệ. Đây là tài sản <b>risk-free benchmark</b> cho thị trường trái phiếu toàn cầu vì backed bởi taxing power và sovereign authority.
     </p>
   </div>
 
   <div class="rule-box" style="margin-top: 16px;">
-    <span class="tag">§ Key idea</span>
-    Yield curve phản ánh <b>time value of money theo maturity</b>. Cùng một issuer (vd US Treasury), bonds khác maturity sẽ có yield khác nhau. Phân tích term structure = giải mã expectations về inflation, growth, và risk premium.
+    <span class="tag">§ Tại sao sovereign bond "risk-free"?</span>
+    Chính phủ phát hành đồng nội tệ có thể <em>in tiền</em> để trả nợ (local-currency debt). Tuy nhiên, risk-free về <b>default</b> KHÔNG có nghĩa risk-free về <em>inflation</em> hay <em>purchasing power</em>. Sovereign ngoại tệ (Eurobonds EM) vẫn có default risk.
   </div>
 
   <div class="tenets-grid" style="margin-top: 18px;">
     <div class="tenet">
-      <span class="n">X</span>
+      <span class="n">US</span>
       <div>
-        <div class="t"><em class="hi">Maturity</em> (trục X)</div>
-        <div class="d">Thời gian đến maturity — từ 1M, 3M, 6M, 1Y, 2Y, 5Y, 10Y, 30Y.</div>
+        <div class="t"><em class="hi">US Treasuries</em></div>
+        <div class="d">Benchmark toàn cầu số một. Phát hành bởi US Treasury Department, backed bởi "full faith and credit" của US government. Thị trường lớn nhất thế giới (~$26T outstanding).</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">Y</span>
+      <span class="n">EU</span>
       <div>
-        <div class="t"><em class="hi">Yield</em> (trục Y)</div>
-        <div class="d">Lãi suất annualized — có thể là spot, par, forward, hay YTM tuỳ loại curve.</div>
+        <div class="t"><em class="hi">Bunds · Gilts</em></div>
+        <div class="d">Bunds = German government bonds (Bundesanleihen) — benchmark EUR. Gilts = UK government bonds — benchmark GBP. Cả hai là sovereign debt AAA/AA+, lợi suất thấp, thanh khoản cao.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">=</span>
+      <span class="n">JP</span>
       <div>
-        <div class="t">Cùng credit quality</div>
-        <div class="d">Bonds phải cùng issuer / rating để loại credit risk khỏi biến động yield.</div>
+        <div class="t"><em class="hi">JGB</em></div>
+        <div class="d">Japan Government Bonds — sovereign JPY, outstanding ~$9T (lớn nhất tính theo % GDP thế giới, gần 250%). BOJ sở hữu majority. Yield lịch sử gần bằng 0 do YCC (Yield Curve Control).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">VN</span>
+      <div>
+        <div class="t"><em class="hi">VGB</em></div>
+        <div class="d">Vietnam Government Bonds — phát hành bởi Kho bạc Nhà nước (KBNN), đấu thầu qua Sở Giao dịch Ngân hàng Nhà nước (SBV). Kỳ hạn phổ biến 2Y–30Y. Chi tiết slide 17.</div>
       </div>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — YIELD CURVE</span>
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
   </div>
 </section>
 
 
-<!-- 04 · 3 KEY CURVES -->
-<section data-label="3 curves" class="slide">
+<!-- 04 · US TREASURY INSTRUMENTS -->
+<section data-label="US Treasury types" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.05</span>
+    <span>08.05 — FI Markets for Government Issuers</span>
     <span class="rule"></span>
-    <span>04 / 28</span>
+    <span>04 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Three · curves</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">3 loại <em class="hi">yield curves</em>.</h2>
+    <div class="eyebrow">US Treasuries · instrument types</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">T-bills · T-notes · T-bonds · <em class="hi">TIPS</em>.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      CFA L1 yêu cầu phân biệt rõ spot, par, và forward curve. Cả ba đều mô tả cùng term structure nhưng từ 3 góc nhìn khác nhau — và cùng thoả mãn <em>no-arbitrage</em>.
+      US Treasury phát hành 4 loại instrument khác nhau về maturity và cơ chế trả lãi. CFA L1 yêu cầu phân biệt rõ.
     </p>
   </div>
 
   <div class="tenets-grid" style="margin-top: 16px;">
     <div class="tenet">
-      <span class="n">S</span>
+      <span class="n">TB</span>
       <div>
-        <div class="t"><em class="hi">Spot rate curve</em> (zero curve)</div>
-        <div class="d">Yield trên <em>zero-coupon bonds</em> ở mỗi maturity. S_n = discount rate cho single CF tại năm n. Foundation để price mọi bond.</div>
+        <div class="t"><em class="hi">Treasury Bills</em> (T-bills)</div>
+        <div class="d">Maturity ≤ 1 year (4W, 8W, 13W, 26W, 52W). Phát hành <b>at discount</b> — không trả coupon, investor nhận par tại maturity. Yield tính theo <em>bank discount basis</em>.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">P</span>
+      <span class="n">TN</span>
       <div>
-        <div class="t"><em class="hi">Par curve</em></div>
-        <div class="d">Coupon rate làm cho bond price = par tại mỗi maturity. Par yield n = coupon mà bond n-year trade at par trên market.</div>
+        <div class="t"><em class="hi">Treasury Notes</em> (T-notes)</div>
+        <div class="d">Maturity 2Y, 3Y, 5Y, 7Y, 10Y. Trả <b>semi-annual coupon</b>. Benchmark 10Y T-note là tham chiếu lãi suất quan trọng nhất toàn cầu ("10Y yield", "risk-free rate").</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">F</span>
+      <span class="n">TBD</span>
       <div>
-        <div class="t"><em class="hi">Forward curve</em></div>
-        <div class="d">Implied future short rates — F_{a,b} = rate agreed hôm nay cho khoản vay giữa năm a và năm b. Derived từ spot rates.</div>
+        <div class="t"><em class="hi">Treasury Bonds</em> (T-bonds)</div>
+        <div class="d">Maturity 20Y và 30Y. Trả semi-annual coupon. Long end của yield curve. Nhạy cảm cao với inflation expectations và duration risk.</div>
       </div>
     </div>
-  </div>
-
-  <div class="rule-box" style="margin-top: 18px;">
-    <span class="tag">§ Relationship</span>
-    Nếu có <b>spot curve</b> đầy đủ → có thể tính <b>par curve</b> và <b>forward curve</b>. Cả 3 đều được link qua <em>no-arbitrage</em>. Reverse: từ market price của coupon bonds có thể <em>bootstrap</em> spot curve.
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — 3 CURVES</span>
-  </div>
-</section>
-
-
-<!-- 05 · SPOT RATE DETAIL -->
-<section data-label="Spot rates" class="slide">
-  <div class="run-header">
-    <span>Fixed Income · 08.05</span>
-    <span class="rule"></span>
-    <span>05 / 28</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Spot rates · zero curve</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Spot rate</em> = yield của zero-coupon.</h2>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Price of zero-coupon bond</span>
-    <div class="eq"><span class="var">P_n</span> = <span class="var">FV</span> / (1 + <span class="var">S_n</span>)<sup>n</sup></div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">S_n</span> = (<span class="var">FV</span> / <span class="var">P_n</span>)<sup>1/n</sup> − 1</div>
-    <div class="note"><b>S_n</b> = spot rate n-year · <b>FV</b> = face value · <b>P_n</b> = hiện giá của $1 nhận được sau n năm (discount factor = 1/(1+S_n)^n).</div>
-  </div>
-
-  <div class="rule-box" style="margin-top: 18px;">
-    <span class="tag">§ Pricing any coupon bond with spot rates</span>
-    <div style="font-family: var(--mono); font-size: 22px; margin-top: 6px;">
-      P = <big>Σ</big><sub>t=1..n</sub> [ C / (1 + S_t)<sup>t</sup> ] + FV / (1 + S_n)<sup>n</sup>
+    <div class="tenet">
+      <span class="n">TIPS</span>
+      <div>
+        <div class="t"><em class="hi">TIPS</em> — Treasury Inflation-Protected Securities</div>
+        <div class="d">Principal được điều chỉnh theo CPI. Coupon (%) cố định nhưng tính trên principal đã adjust → coupon payment tăng theo lạm phát. Yield TIPS = <em>real yield</em>. TIPS Breakeven = nominal yield − TIPS yield = implied inflation.</div>
+      </div>
     </div>
-    Mỗi cash flow được discount bằng <em>spot rate đúng maturity của nó</em> — không dùng YTM đồng nhất. Đây là cách <em>arbitrage-free pricing</em>.
-  </div>
-
-  <p class="fine-muted-sm">
-    § Spot curve thường upward-sloping (dài hơn = yield cao hơn) vì liquidity/term premium. Spot rate là <em>geometric average</em> của forward rates, không phải arithmetic.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — SPOT</span>
-  </div>
-</section>
-
-
-<!-- 06 · NO-ARBITRAGE SPOT-FORWARD -->
-<section data-label="Spot-forward" class="slide">
-  <div class="run-header">
-    <span>Fixed Income · 08.05</span>
-    <span class="rule"></span>
-    <span>06 / 28</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">No-arbitrage · spot ↔ forward</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot <em class="hi">xác định</em> forward.</h2>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ 2-year case</span>
-    <div class="eq">(1 + <span class="var">S₂</span>)<sup>2</sup> = (1 + <span class="var">S₁</span>) × (1 + <span class="var">F<sub>1,2</sub></span>)</div>
-    <div class="note">Invest 2 năm ở spot S₂ PHẢI bằng invest 1 năm ở S₁ rồi roll-over 1 năm ở F<sub>1,2</sub>. Nếu khác → arbitrage.</div>
-  </div>
-
-  <div class="formula-box" style="margin-top: 16px;">
-    <span class="fmt-label">§ General n-year</span>
-    <div class="eq">(1 + <span class="var">S_n</span>)<sup>n</sup> = (1 + <span class="var">S₁</span>)(1 + <span class="var">F<sub>1,2</sub></span>)(1 + <span class="var">F<sub>2,3</sub></span>) … (1 + <span class="var">F<sub>n−1,n</sub></span>)</div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">F<sub>a,b</sub></span> = [ (1 + S_b)<sup>b</sup> / (1 + S_a)<sup>a</sup> ]<sup>1/(b−a)</sup> − 1</div>
-    <div class="note">F<sub>a,b</sub> = annualized forward rate agreed hôm nay cho period từ năm a đến năm b. Luôn có thể tính từ 2 spot rates.</div>
   </div>
 
   <div class="rule-box" style="margin-top: 16px;">
-    <span class="tag">§ Quick example</span>
-    S₁ = 3%, S₂ = 4% → (1.04)² / (1.03) − 1 = 1.0816 / 1.03 − 1 ≈ <b>5.01%</b>. F<sub>1,2</sub> ≈ 5.01% &gt; S₂ vì spot là geometric mean của S₁ và F<sub>1,2</sub>.
+    <span class="tag">§ TIPS Breakeven Inflation</span>
+    10Y nominal T-note yield = 4.50%; 10Y TIPS yield = 2.10% → Breakeven inflation = <b>2.40%</b>. Nếu actual inflation &gt; 2.40%, TIPS outperforms nominal bond, và ngược lại.
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — NO-ARBITRAGE</span>
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
   </div>
 </section>
 
 
-<!-- 07 · BOOTSTRAPPING -->
-<section data-label="Bootstrapping" class="slide">
+<!-- 05 · GLOBAL SOVEREIGN COMPARISON -->
+<section data-label="Global sovereign" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.05</span>
+    <span>08.05 — FI Markets for Government Issuers</span>
     <span class="rule"></span>
-    <span>07 / 28</span>
+    <span>05 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Bootstrapping · spot từ coupon</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Bootstrap</em> spot curve.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Market quote hầu hết là <em>coupon bonds</em>, không phải zeros. Bootstrapping = iterative procedure trích spot rates từ market prices của coupon bonds liên tiếp maturity.
-    </p>
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 8px;">
-    <li>
-      <span>
-        <span class="step-title">Bắt đầu với maturity ngắn nhất</span>
-        <span class="step-body">1-year bond (hoặc T-bill) có duy nhất 1 CF tại year 1 → YTM = S₁ directly. Đây là anchor.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Bond 2 năm trả coupon par</span>
-        <span class="step-body">Price = par = C/(1+S₁) + (C+FV)/(1+S₂)² → giải ra S₂. (S₁ đã biết từ step 1.)</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Bond 3 năm trả coupon par</span>
-        <span class="step-body">Price = par = C/(1+S₁) + C/(1+S₂)² + (C+FV)/(1+S₃)³ → giải ra S₃.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Lặp lại cho n = 4, 5, …</span>
-        <span class="step-body">Mỗi maturity mới chỉ có 1 unknown (S_n) vì tất cả spot ngắn hơn đã có. Từng bước build full zero curve.</span>
-      </span>
-    </li>
-  </ol>
-
-  <p class="fine-muted-sm">
-    § Par curve quote coupon rate mà làm bond price = par. Nếu C = S_n (giả thuyết flat) thì bond par. Ngược lại, dùng bootstrap để pop spots ra từ par yields hoặc market prices.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — BOOTSTRAP</span>
-  </div>
-</section>
-
-
-<!-- 08 · PAR YIELD -->
-<section data-label="Par yield" class="slide">
-  <div class="run-header">
-    <span>Fixed Income · 08.05</span>
-    <span class="rule"></span>
-    <span>08 / 28</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Par yield · derivation</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Par yield</em> formula.</h2>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Condition: bond trades at par</span>
-    <div class="eq">100 = <big>Σ</big><sub>t=1..n</sub> [ <span class="var">PMT</span> / (1 + <span class="var">S_t</span>)<sup>t</sup> ] + 100 / (1 + <span class="var">S_n</span>)<sup>n</sup></div>
-    <div class="note">Giả sử par = 100. PMT = par yield coupon ta cần tìm. Giải PMT:</div>
-    <div class="eq" style="margin-top: 10px;"><span class="var">PMT</span> = [ 100 − 100 / (1 + <span class="var">S_n</span>)<sup>n</sup> ] / <big>Σ</big><sub>t=1..n</sub> [ 1 / (1 + <span class="var">S_t</span>)<sup>t</sup> ]</div>
-  </div>
-
-  <div class="rule-box" style="margin-top: 18px;">
-    <span class="tag">§ Example · 3-year par yield</span>
-    Spot rates: S₁ = 3%, S₂ = 4%, S₃ = 5%.<br>
-    Discount factors: 1/1.03 = 0.9709 · 1/1.04² = 0.9246 · 1/1.05³ = 0.8638.<br>
-    → PMT = (100 − 86.38) / (0.9709 + 0.9246 + 0.8638) = 13.62 / 2.7593 ≈ <b>4.94%</b>.
-  </div>
-
-  <p class="fine-muted-sm">
-    § Par yield thường <em>nằm giữa</em> S₁ và S_n khi curve upward. Là rate để price chuẩn cho bond mới phát hành at par.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — PAR YIELD</span>
-  </div>
-</section>
-
-
-<!-- 09 · CURVE SHAPES -->
-<section data-label="Curve shapes" class="slide">
-  <div class="run-header">
-    <span>Fixed Income · 08.05</span>
-    <span class="rule"></span>
-    <span>09 / 28</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Shapes · interpretation</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">4 <em class="hi">shapes</em> của yield curve.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Hình dáng yield curve là <em>signal</em> về expectations của thị trường. Mỗi shape có hàm ý macro khác nhau.
-    </p>
-  </div>
-
-  <div class="tenets-grid" style="margin-top: 16px;">
-    <div class="tenet">
-      <span class="n">↗</span>
-      <div>
-        <div class="t"><em class="hi">Normal</em> (upward-sloping)</div>
-        <div class="d">Longer maturity → higher yield. Phổ biến nhất. Hàm ý: kỳ vọng growth tích cực, inflation ổn định, term premium dương.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">↘</span>
-      <div>
-        <div class="t"><em class="hi">Inverted</em> (downward-sloping)</div>
-        <div class="d">Short yield &gt; long yield. <b>Recession signal</b> lịch sử — thị trường kỳ vọng Fed cut rates trong tương lai do suy thoái.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">—</span>
-      <div>
-        <div class="t"><em class="hi">Flat</em></div>
-        <div class="d">Yields roughly equal qua các maturity. Transition phase — giữa normal và inverted. Thị trường uncertainty cao.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">∩</span>
-      <div>
-        <div class="t"><em class="hi">Humped</em></div>
-        <div class="d">Mid-term yield cao nhất (peak ở 2-7Y). Hiếm. Có thể là giai đoạn rate hike cycle peak gần đỉnh.</div>
-      </div>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § <b>10Y − 2Y Treasury spread</b> là proxy phổ biến nhất cho curve slope. Spread âm (inversion) đã đi trước mọi US recession từ 1970 ít nhất 6-18 tháng.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — SHAPES</span>
-  </div>
-</section>
-
-
-<!-- 10 · THEORIES -->
-<section data-label="Theories" class="slide">
-  <div class="run-header">
-    <span>Fixed Income · 08.05</span>
-    <span class="rule"></span>
-    <span>10 / 28</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Term structure · theories</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">4 <em class="hi">theories</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Theories giải thích <em>tại sao</em> yield curve có hình dạng như vậy. CFA L1 test phân biệt 4 theories, đặc biệt Pure Expectations vs Liquidity Preference.
-    </p>
-  </div>
-
-  <div class="tenets-grid" style="margin-top: 16px;">
-    <div class="tenet">
-      <span class="n">01</span>
-      <div>
-        <div class="t"><em class="hi">Pure Expectations</em> Hypothesis</div>
-        <div class="d">Forward rate = <em>expected future spot rate</em>. LT rate = geometric avg of expected ST rates. KHÔNG có risk premium. Investors risk-neutral.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">02</span>
-      <div>
-        <div class="t"><em class="hi">Liquidity Preference</em></div>
-        <div class="d">Expectations + <em>liquidity premium</em>. Longer maturity = riskier → yield bao gồm premium tăng theo maturity. Forward rate &gt; expected future spot.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">03</span>
-      <div>
-        <div class="t"><em class="hi">Segmented Markets</em></div>
-        <div class="d">Different investor groups có preference riêng cho từng maturity (insurance → long, bank → short). Supply/demand từng segment xác định yield. KHÔNG substitute.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">04</span>
-      <div>
-        <div class="t"><em class="hi">Preferred Habitat</em></div>
-        <div class="d">Giống Segmented nhưng <em>softer</em> — investors prefer specific maturity nhưng <b>willing to switch</b> nếu được compensate đủ (yield spread).</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — THEORIES</span>
-  </div>
-</section>
-
-
-<!-- 11 · PE vs LP COMPARE -->
-<section data-label="PE vs LP" class="slide">
-  <div class="run-header">
-    <span>Fixed Income · 08.05</span>
-    <span class="rule"></span>
-    <span>11 / 28</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Compare · Pure Expectations vs Liquidity</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">PE vs <em class="hi">LP</em>.</h2>
+    <div class="eyebrow">Global · sovereign comparison</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Bunds · Gilts · JGB</em> — so sánh.</h2>
   </div>
 
   <div class="compare" style="margin-top: 16px;">
     <div class="cc">
-      <div class="head">Pure Expectations</div>
+      <div class="head">Bunds (Germany)</div>
       <dl>
-        <dt>Risk premium</dt>
-        <dd>KHÔNG có</dd>
-        <dt>Forward rate</dt>
-        <dd>= Expected future spot rate (unbiased estimator)</dd>
-        <dt>Upward curve hàm ý</dt>
-        <dd>Market kỳ vọng rates TĂNG</dd>
-        <dt>Flat curve</dt>
-        <dd>Rates kỳ vọng giữ nguyên</dd>
-        <dt>Inverted</dt>
-        <dd>Rates kỳ vọng GIẢM</dd>
+        <dt>Cơ quan phát hành</dt>
+        <dd>Bundesrepublik Deutschland Finanzagentur GmbH (Finance Agency)</dd>
+        <dt>Kỳ hạn</dt>
+        <dd>Schätze (2Y), Bobls (5Y), Bunds (10Y, 30Y)</dd>
+        <dt>Benchmark</dt>
+        <dd>10Y Bund = risk-free rate benchmark EUR zone</dd>
+        <dt>Rating</dt>
+        <dd>AAA (S&amp;P, Fitch), Aaa (Moody's)</dd>
+        <dt>Đặc điểm</dt>
+        <dd>Yield thường thấp hơn US (safe-haven trong EUR). Spread của sovereign khác EU thường tính vs Bunds.</dd>
       </dl>
     </div>
     <div class="cc">
-      <div class="head">Liquidity Preference</div>
+      <div class="head">Gilts (UK)</div>
       <dl>
-        <dt>Risk premium</dt>
-        <dd>Positive, TĂNG theo maturity</dd>
-        <dt>Forward rate</dt>
-        <dd>= Expected future spot + liquidity premium (upward bias)</dd>
-        <dt>Upward curve hàm ý</dt>
-        <dd>Có thể do premium một mình, KHÔNG nhất thiết rates kỳ vọng tăng</dd>
-        <dt>Flat curve</dt>
-        <dd>Rates kỳ vọng GIẢM (premium bù lại)</dd>
-        <dt>Inverted</dt>
-        <dd>Rates kỳ vọng giảm MẠNH</dd>
+        <dt>Cơ quan phát hành</dt>
+        <dd>UK Debt Management Office (DMO)</dd>
+        <dt>Kỳ hạn</dt>
+        <dd>Short (≤7Y), Medium (7-15Y), Long (&gt;15Y), Index-linked Gilts</dd>
+        <dt>Đặc điểm UK</dt>
+        <dd>Index-linked Gilts: tương tự TIPS, principal adjust theo RPI (Retail Price Index). UK có longest-dated gilts (50Y, 55Y).</dd>
+        <dt>JGB (Japan)</dt>
+        <dd>Kỳ hạn 2Y-40Y. BOJ nắm &gt;50% outstanding qua QE. YCC (Yield Curve Control): BOJ cap 10Y yield ở mức target. Yield thấp lịch sử dù debt/GDP cao nhất G7.</dd>
       </dl>
     </div>
   </div>
 
   <p class="fine-muted-sm">
-    § Key distinction: dưới LP, không thể suy diễn trực tiếp "upward curve = rates sẽ tăng" — phải trừ liquidity premium trước.
+    § Spread của sovereign bond so với Bund (gọi là "spread over Bund") = chỉ số rủi ro của sovereign EUR zone. Vd: BTP Italy 10Y − Bund 10Y = BTP-Bund spread, barometer rủi ro EU.
   </p>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — PE vs LP</span>
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
   </div>
 </section>
 
 
-<!-- 12 · SWAP RATE CURVE -->
-<section data-label="Swap curve" class="slide">
+<!-- 06 · SOVEREIGN AUCTION PROCESS -->
+<section data-label="Sovereign auction" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.05</span>
+    <span>08.05 — FI Markets for Government Issuers</span>
     <span class="rule"></span>
-    <span>12 / 28</span>
+    <span>06 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Swap rate curve</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Swap curve</em> — benchmark.</h2>
-  </div>
-
-  <div class="rule-box">
-    <span class="tag">§ Swap rate curve definition</span>
-    <em>Swap rate</em> = fixed rate trong <b>fixed-for-floating</b> interest rate swap làm cho swap value = 0 tại initiation. Swap curve = plot swap rate vs maturity. Là benchmark quan trọng bên cạnh Treasury curve, đặc biệt trong EU và Asia.
-  </div>
-
-  <div class="compare" style="margin-top: 20px;">
-    <div class="cc">
-      <div class="head">Treasury curve</div>
-      <dl>
-        <dt>Credit</dt>
-        <dd>Risk-free (sovereign, local currency)</dd>
-        <dt>Dùng ở</dt>
-        <dd>US thị trường chính</dd>
-        <dt>Liquidity</dt>
-        <dd>Cao nhất</dd>
-        <dt>Benchmark cho</dt>
-        <dd>Government + agency bonds</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head">Swap curve</div>
-      <dl>
-        <dt>Credit</dt>
-        <dd>Interbank credit (historically LIBOR, nay SOFR/OIS)</dd>
-        <dt>Dùng ở</dt>
-        <dd>EU, Asia, corporate market toàn cầu</dd>
-        <dt>Liquidity</dt>
-        <dd>Rất cao ở maturity 2-10Y</dd>
-        <dt>Benchmark cho</dt>
-        <dd>Corporate bonds, structured products</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § <b>Swap spread</b> = swap rate − Treasury yield cùng maturity. Dương trong điều kiện bình thường; phản ánh credit + liquidity khác biệt.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — SWAP</span>
-  </div>
-</section>
-
-
-<!-- 13 · SPREADS -->
-<section data-label="Spreads" class="slide">
-  <div class="run-header">
-    <span>Fixed Income · 08.05</span>
-    <span class="rule"></span>
-    <span>13 / 28</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Yield spread · measures</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">4 <em class="hi">spread measures</em>.</h2>
+    <div class="eyebrow">Auction · process</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Sovereign <em class="hi">auction</em> — cơ chế phát hành.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Spread = yield premium của bond so với benchmark risk-free. Đo credit + liquidity + option risk. 4 measures theo thứ tự precision tăng dần.
+      Chính phủ phát hành sovereign bond chủ yếu qua <em>auction</em> (đấu thầu). Có 2 cơ chế auction chính: <em>Dutch single-price</em> và <em>discriminatory multiple-price</em>. Hiểu rõ hai cơ chế này là điểm hay bị hỏi trong CFA L1.
     </p>
   </div>
 
   <ol class="num-list tight" style="margin-top: 8px;">
     <li>
       <span>
-        <span class="step-title">Nominal spread — YTM(bond) − YTM(Treasury) cùng maturity</span>
-        <span class="step-body">Đơn giản nhất. Dùng <em>single YTM</em> cho cả 2 → bỏ qua shape của curve. Crude nhưng phổ biến trong báo cáo.</span>
+        <span class="step-title">Thông báo đấu thầu (Announcement)</span>
+        <span class="step-body">Treasury/KBNN công bố: amount offered, settlement date, kỳ hạn, coupon (nếu có). Primary dealers và investors chuẩn bị submit bids.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">G-spread — YTM(bond) − YTM(on-the-run Treasury)</span>
-        <span class="step-body">"G" = Government. Gần giống nominal nhưng strict hơn ở benchmark (phải on-the-run Treasury cùng maturity). Interpolate nếu cần.</span>
+        <span class="step-title">Bidding period</span>
+        <span class="step-body">Bidders submit competitive bids (chỉ định price/yield + amount) hoặc non-competitive bids (accept any clearing price, thường retail). Primary dealers obligated to bid.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Z-spread — constant spread added to spot curve</span>
-        <span class="step-body">"Z" = zero-volatility. Constant spread mà khi cộng vào từng spot rate, PV(CFs) = market price. Accounts for curve shape. KHÔNG adjust cho embedded options.</span>
+        <span class="step-title">Clearing price / stop-out yield</span>
+        <span class="step-body">Bids được xếp từ lowest yield (highest price) xuống cao nhất. Cộng dần cho đến khi đủ amount offered → <em>stop-out yield</em> = clearing rate.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">OAS — option-adjusted spread</span>
-        <span class="step-body">Z-spread sau khi loại bỏ option value. OAS = Z-spread − option cost (callable) hoặc + option value (putable). Gold standard cho bonds có embedded option.</span>
+        <span class="step-title">Phân bổ và kết quả</span>
+        <span class="step-body">Công bố: stop-out yield, bid-to-cover ratio, % awarded at stop, % competitive vs non-competitive. Settlement thường T+1 (US Treasuries).</span>
       </span>
     </li>
   </ol>
 
-  <div class="rule-box" style="margin-top: 16px;">
-    <span class="tag">§ Relationship</span>
-    Cho <b>callable bond</b>: OAS = Z-spread − Call option value. Cho <b>putable</b>: OAS = Z-spread + Put option value. Cho <b>option-free</b>: OAS ≈ Z-spread.
-  </div>
-
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — SPREADS</span>
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
   </div>
 </section>
 
 
-<!-- 14 · TAKEAWAY / RECAP -->
+<!-- 07 · DUTCH vs DISCRIMINATORY AUCTION -->
+<section data-label="Auction types" class="slide">
+  <div class="run-header">
+    <span>08.05 — FI Markets for Government Issuers</span>
+    <span class="rule"></span>
+    <span>07 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Auction · two mechanisms</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Dutch single-price</em> vs <em class="hi">discriminatory multiple-price</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Dutch Auction — Single-Price</div>
+      <dl>
+        <dt>Cơ chế</dt>
+        <dd>Tất cả người thắng đều nhận <em>cùng một giá</em> — clearing price (stop-out yield). Dù bạn bid thấp hơn, bạn vẫn pay clearing price.</dd>
+        <dt>Ưu điểm</dt>
+        <dd>Khuyến khích bidders bid aggressively (trang thật sự ý muốn). Giảm "winner's curse" — không bị thiệt khi thắng. Wider participation.</dd>
+        <dt>Dùng ở</dt>
+        <dd><b>US Treasuries</b> (từ 1998), UK Gilts, Bunds (phần lớn). Phổ biến nhất hiện nay trên thị trường developed.</dd>
+        <dt>Ví dụ</dt>
+        <dd>Stop-out yield = 4.25%. Bidder A bid 4.20%, Bidder B bid 4.25%, cả hai đều pay price tương ứng yield 4.25%.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Discriminatory — Multiple-Price</div>
+      <dl>
+        <dt>Cơ chế</dt>
+        <dd>Mỗi người thắng <em>pay giá mình bid</em> (pay-your-own-bid). Không có một clearing price chung.</dd>
+        <dt>Nhược điểm</dt>
+        <dd>"Winner's curse" — ai bid cao nhất (lowest yield = highest price) sẽ bị thiệt nhất nếu clearing rẻ hơn. Xu hướng bid thấp → chính phủ thu ít revenue hơn.</dd>
+        <dt>Dùng ở</dt>
+        <dd>Một số EM markets, VGB trước đây (nay đã chuyển dần sang Dutch). Italy đã từng dùng cho BOT bills.</dd>
+        <dt>Ví dụ</dt>
+        <dd>Bidder A bid 4.20% → pay price tương ứng 4.20%. Bidder B bid 4.25% → pay price tương ứng 4.25% (rẻ hơn A).</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 08 · PRIMARY DEALERS & BID-TO-COVER -->
+<section data-label="Primary dealers" class="slide">
+  <div class="run-header">
+    <span>08.05 — FI Markets for Government Issuers</span>
+    <span class="rule"></span>
+    <span>08 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Primary dealers · bid-to-cover</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Primary dealers</em> — backbone của sovereign market.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Primary dealers là gì?</span>
+    <em>Primary dealers</em> = các tổ chức tài chính được chỉ định (authorized) có quyền và <b>nghĩa vụ</b> tham gia vào sovereign bond auctions và có thể giao dịch trực tiếp với central bank. Ở US: ~24 primary dealers (Goldman, JPMorgan, Citi, BofA, …). Ở VN: khoảng 15 ngân hàng được KBNN chỉ định.
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 18px;">
+    <div class="tenet">
+      <span class="n">DT</span>
+      <div>
+        <div class="t">Quyền và nghĩa vụ</div>
+        <div class="d"><b>Quyền</b>: giao dịch trực tiếp với Fed/central bank (repo, open market ops). <b>Nghĩa vụ</b>: phải bid trong mọi auction, phải make market (quote bid/ask), phải report position cho central bank.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">B/C</span>
+      <div>
+        <div class="t"><em class="hi">Bid-to-cover ratio</em></div>
+        <div class="d">= Tổng amount bid / Amount offered. Vd: offered $30B, total bids $75B → B/C = <b>2.5×</b>. Chỉ số sức cầu auction. B/C &gt; 2.0 = strong; &lt; 2.0 = weak (signal rủi ro fiscal). US 10Y T-note lịch sử B/C ≈ 2.3–2.7×.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">WT</span>
+      <div>
+        <div class="t">Auction weakness signals</div>
+        <div class="d">Low B/C + high stop-out yield (tail) + high % awarded at stop → "weak auction". Signal: investors demand higher yield premium, fiscal concern, hoặc market already long. Ảnh hưởng ngay đến secondary market yield.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § <b>Tail</b> = stop-out yield − yield của when-issued (WI) trading trước auction. Tail dương (stop &gt; WI) = unexpected weak demand → yield burst after auction.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 09 · ON-THE-RUN vs OFF-THE-RUN -->
+<section data-label="On vs off the run" class="slide">
+  <div class="run-header">
+    <span>08.05 — FI Markets for Government Issuers</span>
+    <span class="rule"></span>
+    <span>09 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Liquidity · on vs off the run</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">On-the-run</em> vs <em class="hi">off-the-run</em> — liquidity gap.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Phân biệt on-the-run/off-the-run là một trong những concept quan trọng nhất về <em>Treasury liquidity</em>. Cả hai đều là US government bonds cùng maturity nhưng yield khác nhau do liquidity premium.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">On-the-run Treasury</div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>Trái phiếu <em>mới nhất</em> được phát hành cho từng kỳ hạn (2Y, 5Y, 10Y, 30Y). Vừa qua auction gần nhất.</dd>
+        <dt>Liquidity</dt>
+        <dd><b>Cao nhất</b>: bid-ask spread chỉ 1/32 hay 1/64 của par. Khối lượng giao dịch lớn, dễ vào/ra position. Primary dealers actively make market.</dd>
+        <dt>Yield</dt>
+        <dd>Thấp hơn off-the-run cùng maturity (liquidity premium → investors chấp nhận yield thấp hơn để có liquidity).</dd>
+        <dt>Benchmark</dt>
+        <dd>Dùng làm <em>benchmark yield</em> — vd "10Y Treasury yield" = on-the-run 10Y T-note. G-spread tính vs on-the-run.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Off-the-run Treasury</div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>Mọi trái phiếu <em>cũ hơn</em> cùng kỳ hạn danh nghĩa — đã có on-the-run mới thay thế.</dd>
+        <dt>Liquidity</dt>
+        <dd><b>Thấp hơn</b>: bid-ask spread rộng hơn, volume thấp hơn. Nhiều bonds bị "locked up" trong portfolios dài hạn.</dd>
+        <dt>Yield</dt>
+        <dd>Cao hơn on-the-run (liquidity discount). Spread thường 3-10 bps. Cung cấp value cho buy-and-hold investors không cần intraday liquidity.</dd>
+        <dt>Arb trade</dt>
+        <dd>"On/off-the-run spread trade": long off-the-run (cheap) + short on-the-run (expensive). LTCM nổi tiếng bị blow-up năm 1998 từ trade này khi spread nới ra thay vì hội tụ.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 10 · NON-SOVEREIGN: STATE & PROVINCIAL -->
+<section data-label="Non-sovereign" class="slide">
+  <div class="run-header">
+    <span>08.05 — FI Markets for Government Issuers</span>
+    <span class="rule"></span>
+    <span>10 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Non-sovereign · state &amp; provincial bonds</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Non-sovereign</em> government bonds.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      <em>Non-sovereign</em> = bonds phát hành bởi government entities cấp dưới quốc gia: tiểu bang, tỉnh, thành phố, hay các cơ quan được chính phủ ủy quyền. Khác sovereign ở chỗ <b>không có taxing power cấp quốc gia</b> và thường không có lựa chọn "in tiền".
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">ST</span>
+      <div>
+        <div class="t"><em class="hi">State / Provincial bonds</em></div>
+        <div class="d">Phát hành bởi tiểu bang (US states) hoặc tỉnh (Canadian provinces). Vd: California General Obligation bonds, Ontario Province bonds. Yield cao hơn Treasuries vì không backed by full faith US gov. Nhiều tiểu bang có taxing power địa phương.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">MU</span>
+      <div>
+        <div class="t"><em class="hi">Municipal bonds</em> (Munis)</div>
+        <div class="d">Phát hành bởi city, county, school district, port authority ở US. Đặc điểm: <b>tax-exempt</b> — interest income miễn thuế liên bang, và thường cả state tax nếu resident. Yield thấp hơn taxable equivalent → attractive cho high-tax-bracket investors.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">TE</span>
+      <div>
+        <div class="t">Tax-equivalent yield</div>
+        <div class="d">TEY = Muni yield / (1 − marginal tax rate). Vd: Muni 3.5% yield, tax bracket 37% → TEY = 3.5% / 0.63 = <b>5.56%</b>. Nếu taxable bond yield &lt; 5.56%, muni attractive hơn về tax-adjusted return.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 11 · GO vs REVENUE BONDS -->
+<section data-label="GO vs Revenue" class="slide">
+  <div class="run-header">
+    <span>08.05 — FI Markets for Government Issuers</span>
+    <span class="rule"></span>
+    <span>11 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Municipal · GO vs Revenue</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">General Obligation</em> vs <em class="hi">Revenue bonds</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Hai loại muni bond khác nhau về <em>nguồn trả nợ</em>. Đây là điểm thường bị hỏi trong CFA — phải phân biệt rõ credit backing.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">General Obligation (GO) Bonds</div>
+      <dl>
+        <dt>Backed bởi</dt>
+        <dd><em>Full faith and credit</em> + <b>taxing power</b> của issuer (city/state). Chính phủ địa phương có thể tăng thuế để trả nợ.</dd>
+        <dt>Credit quality</dt>
+        <dd>Thường cao hơn Revenue bonds cùng issuer vì backed bởi broad tax base, không phụ thuộc dự án cụ thể.</dd>
+        <dt>Ví dụ</dt>
+        <dd>City of New York GO bonds (backed by NYC tax revenue). School district bonds backed bởi property tax.</dd>
+        <dt>Risk</dt>
+        <dd>Phụ thuộc vào sức mạnh tài khóa của địa phương — population decline, economic base erosion (Detroit 2013 default là GO bonds!).</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Revenue Bonds</div>
+      <dl>
+        <dt>Backed bởi</dt>
+        <dd>Revenue từ <em>dự án cụ thể</em> — toll, utility, airport, stadium. Chỉ revenue của project đó trả nợ, không phải general tax.</dd>
+        <dt>Credit quality</dt>
+        <dd>Phụ thuộc vào dự án. Có thể rất tốt (essential utility như water/sewer) hoặc kém (hospital, stadium).</dd>
+        <dt>Ví dụ</dt>
+        <dd>Port Authority of NY/NJ bonds (backed by tolls + fees). Hospital revenue bonds. Toll road bonds.</dd>
+        <dt>Risk</dt>
+        <dd>Revenue risk — nếu traffic/usage giảm, debt service coverage ratio giảm → default risk tăng.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 12 · AGENCY BONDS -->
+<section data-label="Agency bonds" class="slide">
+  <div class="run-header">
+    <span>08.05 — FI Markets for Government Issuers</span>
+    <span class="rule"></span>
+    <span>12 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Agency bonds · US context</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Agency bonds</em> — Ginnie, Fannie, Freddie.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      <em>Agency bonds</em> = bonds phát hành bởi US government agencies hoặc government-sponsored enterprises (GSEs). Đây là market lớn thứ hai sau Treasuries, tổng outstanding ~$9T. Điểm cốt lõi: phân biệt <b>explicit guarantee</b> (Ginnie) vs <b>implicit guarantee</b> (Fannie, Freddie).
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">GNMA</span>
+      <div>
+        <div class="t"><em class="hi">Ginnie Mae</em> — Government National Mortgage Association</div>
+        <div class="d">Cơ quan chính phủ (government agency) — thuộc HUD. MBS của Ginnie Mae backed bởi <b>"full faith and credit" của US government</b> — explicit guarantee. Credit risk = zero. Underlying mortgages là FHA/VA loans.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">FNMA</span>
+      <div>
+        <div class="t"><em class="hi">Fannie Mae</em> — Federal National Mortgage Association</div>
+        <div class="d">GSE — Government-Sponsored Enterprise. Tư nhân sở hữu nhưng được charter bởi Congress. KHÔNG có explicit government guarantee. Tuy nhiên "implicit" (2008: US Treasury bailout, hiện vẫn trong conservatorship). Credit risk thấp nhưng không bằng Ginnie.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">FHLMC</span>
+      <div>
+        <div class="t"><em class="hi">Freddie Mac</em> — Federal Home Loan Mortgage Corp</div>
+        <div class="d">GSE tương tự Fannie Mae. Cùng bị nationalized 2008 financial crisis, vẫn trong conservatorship của FHFA. Mission: mua mortgage từ lenders, securitize thành MBS → tạo thanh khoản thị trường mortgage.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">YLD</span>
+      <div>
+        <div class="t">Agency yield vs Treasury</div>
+        <div class="d">Agency bonds yield thường <em>cao hơn</em> Treasuries cùng maturity 15-50 bps — phản ánh lack of explicit guarantee (Fannie/Freddie) + prepayment risk (MBS). Ginnie spread nhỏ hơn vì có explicit guarantee.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 13 · SUPRANATIONAL ISSUERS -->
+<section data-label="Supranational" class="slide">
+  <div class="run-header">
+    <span>08.05 — FI Markets for Government Issuers</span>
+    <span class="rule"></span>
+    <span>13 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Supranational · issuers</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Supranational bonds</em> — tổ chức đa quốc gia.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      <em>Supranational entities</em> = các tổ chức tài chính quốc tế được thành lập bởi nhiều quốc gia member với mục tiêu phát triển kinh tế, ổn định tài chính, hoặc hợp tác khu vực. Bonds của họ thường rated <b>AAA</b> nhờ capital support từ member states.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">WB</span>
+      <div>
+        <div class="t"><em class="hi">World Bank Group</em> (IBRD + IDA)</div>
+        <div class="d">IBRD (International Bank for Reconstruction and Development) cho vay middle-income countries. IDA cho vay poorest countries. Bonds rated AAA, issued in USD, EUR, JPY, và nhiều currencies. Một trong những issuer supranational lớn nhất toàn cầu.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">IMF</span>
+      <div>
+        <div class="t"><em class="hi">IMF</em> — International Monetary Fund</div>
+        <div class="d">Chủ yếu lending (không phải bond issuer truyền thống). Funding từ member quotas. Phát hành SDRs (Special Drawing Rights). Cho vay emergency balance of payments support — vd Greece, Argentina, Ukraine.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">ADB</span>
+      <div>
+        <div class="t"><em class="hi">ADB</em> — Asian Development Bank</div>
+        <div class="d">Phục vụ Asia-Pacific region. 68 member countries. Rated AAA. Phát hành bonds toàn cầu để fund infrastructure, education, climate projects tại Asia. VN là thành viên và nhận nhiều khoản vay ADB.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">EIB</span>
+      <div>
+        <div class="t"><em class="hi">EIB</em> — European Investment Bank</div>
+        <div class="d">Tổ chức tài chính của EU. Issuer supranational lớn nhất thế giới theo volume. Rated AAA. Phát hành climate bonds, green bonds. Tài trợ infrastructure, SMEs trong EU và ngoài EU.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 14 · QUASI-GOVERNMENT -->
+<section data-label="Quasi-government" class="slide">
+  <div class="run-header">
+    <span>08.05 — FI Markets for Government Issuers</span>
+    <span class="rule"></span>
+    <span>14 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Quasi-government bonds</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Quasi-government</em> — "không hoàn toàn chính phủ".</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      <em>Quasi-government bonds</em> (còn gọi là government-related bonds) = bonds phát hành bởi các thực thể <b>liên kết chặt với chính phủ</b> nhưng không phải government entity thuần túy. Thường có implicit hoặc explicit government support.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Đặc điểm chung</span>
+    Quasi-government bonds thường yield <em>cao hơn</em> sovereign bonds của cùng quốc gia (vì thiếu explicit guarantee) nhưng <em>thấp hơn</em> pure corporate bonds (vì government backing). Rating thường AA đến AAA nếu strong government support.
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 18px;">
+    <div class="tenet">
+      <span class="n">CN</span>
+      <div>
+        <div class="t">Ví dụ — China / EM</div>
+        <div class="d">China Development Bank, Export-Import Bank of China — policy banks, quasi-sovereign. Dù không có explicit PRC guarantee, thị trường treat như near-sovereign. Bonds được dùng fund BRI (Belt and Road Initiative) projects.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">VN</span>
+      <div>
+        <div class="t">Ví dụ — Vietnam</div>
+        <div class="d">Trái phiếu do Ngân hàng Phát triển Việt Nam (VDB), VBSP phát hành — được Chính phủ bảo lãnh. EVN, Vietnam Airlines bonds có implicit government support nhưng KHÔNG được nhà nước bảo lãnh trực tiếp → credit risk cao hơn KBNN bonds.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">US</span>
+      <div>
+        <div class="t">Ví dụ — US Federal agencies</div>
+        <div class="d">Federal Home Loan Banks (FHLBs), Farm Credit System — GSEs issue bonds backed by their assets/capital. Không có explicit US Treasury guarantee nhưng thị trường price gần sovereign do perceived support. Yield cao hơn Treasuries 10-30 bps.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 15 · VIETNAM GOVERNMENT BONDS -->
+<section data-label="VGB context" class="slide">
+  <div class="run-header">
+    <span>08.05 — FI Markets for Government Issuers</span>
+    <span class="rule"></span>
+    <span>15 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Vietnam · Government Bond context</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">VGB</em> — trái phiếu Chính phủ Việt Nam.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Vietnam Government Bonds (VGB) là sovereign bonds phát hành bởi Chính phủ VN qua <b>Kho bạc Nhà nước</b> (KBNN/State Treasury), đấu thầu qua <em>Sở Giao dịch Ngân hàng Nhà nước Việt Nam</em> (Vietnam Bond Market Association — VBMA và HNX). Thị trường VGB là thị trường trái phiếu lớn nhất Việt Nam.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">KH</span>
+      <div>
+        <div class="t">Kỳ hạn phổ biến</div>
+        <div class="d">Phát hành đa dạng kỳ hạn: 2Y, 3Y, 5Y, 7Y, 10Y, 15Y, 20Y, 30Y. Benchmark thị trường thường là 5Y và 10Y. Coupon trả semi-annual hoặc annual tùy loại.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">DT</span>
+      <div>
+        <div class="t">Cơ chế đấu thầu</div>
+        <div class="d">Sử dụng phương thức <em>đấu thầu cạnh tranh lãi suất</em> (competitive yield auction) — gần với Dutch single-price. Thành viên đấu thầu (primary dealers) gồm các ngân hàng thương mại lớn: Vietcombank, BIDV, Vietinbank, MB, Techcombank...</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">NN</span>
+      <div>
+        <div class="t">Foreign holding limits</div>
+        <div class="d">Nhà đầu tư nước ngoài (FII) được phép mua VGB nhưng có <em>giới hạn tỷ lệ sở hữu</em>. Thực tế tỷ lệ foreign holding còn thấp (~5% outstanding) do: VND non-convertible freely, FX hedging cost cao, room limit. Rào cản làm VGB chưa vào global bond indices lớn.</dd>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">YLD</span>
+      <div>
+        <div class="t">Term structure VGB</div>
+        <div class="d">Yield curve VGB thường <em>upward-sloping</em>. 5Y VGB yield lịch sử dao động 3-7% tùy cycle. Spread VGB 10Y so với US Treasury 10Y phản ánh VN sovereign credit risk + FX risk premium của nhà đầu tư nước ngoài.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 16 · RECAP / SUMMARY -->
 <section data-label="Recap" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.05</span>
+    <span>08.05 — FI Markets for Government Issuers</span>
     <span class="rule"></span>
-    <span>14 / 28</span>
+    <span>16 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Module · recap</div>
@@ -621,23 +743,24 @@
 
   <div class="take" style="margin-top: 16px;">
     <ul>
-      <li><b>3 curves</b> — spot (zero), par (coupon at par), forward (implied future short). All linked by no-arbitrage.</li>
-      <li><b>Core identity</b> — (1 + S_n)<sup>n</sup> = Π(1 + F<sub>t−1,t</sub>). Spot = geometric mean of forwards.</li>
-      <li><b>Bootstrap</b> — iterative: from short to long, solve one unknown S_n per step from coupon bond prices.</li>
-      <li><b>4 shapes</b> — normal (common), inverted (recession signal), flat (transition), humped.</li>
-      <li><b>4 theories</b> — PE (no premium), LP (+ positive term premium), Segmented (isolated markets), Preferred Habitat (soft Segmented).</li>
-      <li><b>Spreads</b> — Nominal &lt; G-spread &lt; Z-spread &lt; OAS in precision. OAS = Z − option cost (callable).</li>
+      <li><b>Sovereign bonds</b> — US (T-bills/notes/bonds/TIPS), Bunds (DE), Gilts (UK), JGB (JP), VGB (VN). Backed bởi "full faith and credit" của central government local currency.</li>
+      <li><b>TIPS</b> — inflation-protected: principal adjust theo CPI. Yield TIPS = real yield. Breakeven = nominal − TIPS yield.</li>
+      <li><b>Auction</b> — Dutch single-price (all winners pay clearing price, US/Bunds) vs discriminatory multiple-price (pay-your-own-bid). Bid-to-cover &gt; 2.0 = strong demand.</li>
+      <li><b>On-the-run</b> = newest issue, most liquid, lower yield. <b>Off-the-run</b> = older issue, less liquid, higher yield (liquidity premium).</li>
+      <li><b>Municipal bonds</b> — GO (backed by taxing power) vs Revenue (backed by project revenues). Tax-exempt → TEY = muni yield / (1 − tax rate).</li>
+      <li><b>Agency</b> — Ginnie Mae = explicit US guarantee (full faith). Fannie/Freddie = GSE, implicit (2008 bailout). Yield &gt; Treasuries.</li>
+      <li><b>Supranational</b> — World Bank, ADB, EIB. AAA rated. Fund development projects globally.</li>
+      <li><b>VGB</b> — KBNN issuer, Dutch-style auction qua HNX, 2Y-30Y, foreign holding limits chưa vào global indices.</li>
     </ul>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — RECAP</span>
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
   </div>
 </section>
 
 
-<!-- 15 · TRANSITION -->
+<!-- 17 · TRANSITION TO PRACTICE -->
 <section data-label="Practice begins" class="slide end-slide">
   <div>
     <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
@@ -646,41 +769,40 @@
 </section>
 
 
-<!-- 16 · Q1 EN — Forward rate calc -->
+<!-- 18 · Q1 ORIGINAL — Dutch vs Discriminatory -->
 <section data-label="Q1 Original" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.05</span>
+    <span>08.05 — FI Markets for Government Issuers</span>
     <span class="rule"></span>
-    <span>16 / 28</span>
+    <span>18 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Forward</em> from spot.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Auction</em> mechanism.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      The current <strong>1-year spot rate</strong> is <strong>2.50%</strong> and the <strong>2-year spot rate</strong> is <strong>3.20%</strong>. Assuming no-arbitrage, the <strong>1-year forward rate 1 year from today</strong> (F<sub>1,2</sub>) is <strong>closest to</strong>:
+      The US Treasury conducts an auction for <strong>$30 billion</strong> of 10-year notes. Three competitive bids are submitted: Dealer A bids <strong>$10B at 4.20%</strong>, Dealer B bids <strong>$12B at 4.25%</strong>, and Dealer C bids <strong>$10B at 4.30%</strong>. The auction uses a <strong>Dutch (single-price)</strong> format. Which of the following statements is <strong>most accurate</strong>?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">2.85%.</span></li>
-    <li><span class="lbl">B</span><span class="opt">3.20%.</span></li>
-    <li><span class="lbl">C</span><span class="opt">3.90%.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Dealer A pays a yield of 4.20%, Dealer B pays 4.25%, and Dealer C pays 4.30%.</span></li>
+    <li><span class="lbl">B</span><span class="opt">All winning bidders pay the stop-out yield of 4.25%, and Dealer C receives no allocation.</span></li>
+    <li><span class="lbl">C</span><span class="opt">All bidders pay the stop-out yield of 4.30%, and the full $30B is awarded.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — Q1 ORIGINAL</span>
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
   </div>
 </section>
 
 
-<!-- 17 · Q1 HINT -->
+<!-- 19 · Q1 HINT -->
 <section data-label="Q1 Hint" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.05</span>
+    <span>08.05 — FI Markets for Government Issuers</span>
     <span class="rule"></span>
-    <span>17 / 28</span>
+    <span>19 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 01</div>
@@ -688,35 +810,34 @@
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>1-year spot</mark> 2.50% · <mark>2-year spot</mark> 3.20% · <mark>no-arbitrage</mark> · <mark>F<sub>1,2</sub></mark>.
+    <mark>$30B offered</mark> · <mark>Dutch single-price</mark> · Bids: A=$10B@4.20%, B=$12B@4.25%, C=$10B@4.30%.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">No-arbitrage identity: (1 + S₂)² = (1 + S₁) × (1 + F<sub>1,2</sub>). Giải cho F<sub>1,2</sub>.</span>
+      <span class="htxt">Xếp bids từ lowest yield (highest price) lên: A 4.20% → B 4.25% → C 4.30%. Cộng dần: 10B + 12B = 22B, chưa đủ. Thêm C: 22B + 10B = 32B ≥ 30B → stop-out yield = 4.30%? Không — kiểm tra lại: 10+12=22B, cần thêm 8B từ C (không phải toàn bộ 10B). Stop-out = 4.30%.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">F<sub>1,2</sub> = (1 + S₂)² / (1 + S₁) − 1 = (1.032)² / (1.025) − 1.</span>
+      <span class="htxt">Dutch auction: TẤT CẢ winners pay cùng stop-out yield = 4.25%? Sai — hãy cộng lại: A=10B, B=12B → 22B. Cần 8B thêm → vào C một phần. Stop-out = 4.25% (B là điểm đủ 22B, nhưng cần thêm).</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Khi curve upward, forward luôn <em>cao hơn</em> cả S₁ và S₂ (vì spot là geometric mean). Loại A (2.85% &lt; S₁) và B (= S₂).</span>
+      <span class="htxt">10B (A) + 12B (B) = 22B → cần thêm 8B → lấy từ C (4.25% đã đủ 22B, chưa đủ 30B, vào C). Vậy stop-out = 4.25%? Không phải 4.30%? Đọc lại: 10+12=22, cần thêm 8B nữa từ Dealer C (4.30%) → stop-out = 4.30%. Tất cả winners pay 4.30%? Đọc Option B — nói stop-out 4.25%, C không được allocation. Cẩn thận: đây là trap!</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — Q1 HINT</span>
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
   </div>
 </section>
 
 
-<!-- 18 · Q1 Dịch đề -->
+<!-- 20 · Q1 DICH DE -->
 <section data-label="Q1 Dịch đề" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.05</span>
+    <span>08.05 — FI Markets for Government Issuers</span>
     <span class="rule"></span>
-    <span>18 / 28</span>
+    <span>20 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
@@ -725,92 +846,89 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      <strong>1-year spot rate</strong> hiện tại là <strong>2.50%</strong> và <strong>2-year spot rate</strong> là <strong>3.20%</strong>. Giả sử no-arbitrage, <strong>1-year forward rate cách hôm nay 1 năm</strong> (F<sub>1,2</sub>) <strong>gần nhất</strong> với giá trị nào?
+      US Treasury đấu thầu <strong>$30 tỷ</strong> trái phiếu kỳ hạn 10 năm. Ba dealer nộp competitive bids: Dealer A bid <strong>$10B tại yield 4.20%</strong>, Dealer B bid <strong>$12B tại 4.25%</strong>, Dealer C bid <strong>$10B tại 4.30%</strong>. Auction dùng hình thức <strong>Dutch (single-price)</strong>. Phát biểu nào sau đây <strong>chính xác nhất</strong>?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">2.85%.</span></li>
-    <li><span class="lbl">B</span><span class="opt">3.20%.</span></li>
-    <li><span class="lbl">C</span><span class="opt">3.90%.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Dealer A trả yield 4.20%, Dealer B trả 4.25%, và Dealer C trả 4.30%.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Tất cả winners trả stop-out yield 4.25%, và Dealer C không được phân bổ.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Tất cả winners trả stop-out yield 4.30%, và toàn bộ $30B được phân bổ.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — Q1 VIỆT</span>
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
   </div>
 </section>
 
 
-<!-- 19 · Q1 EXPLANATION -->
+<!-- 21 · Q1 EXPLANATION -->
 <section data-label="Q1 Explanation" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.05</span>
+    <span>08.05 — FI Markets for Government Issuers</span>
     <span class="rule"></span>
-    <span>19 / 28</span>
+    <span>21 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — 3.90%.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — Stop-out 4.30%, all $30B awarded.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — C</div>
-      <div class="rtext">No-arbitrage: (1 + S₂)² = (1 + S₁)(1 + F<sub>1,2</sub>). Thay số: (1.032)² = 1.065024. Chia cho (1 + S₁) = 1.025 → 1.065024 / 1.025 = <b>1.03905</b>. Trừ 1 → F<sub>1,2</sub> = <b>3.905% ≈ 3.90%</b>. Với upward curve (S₂ &gt; S₁), forward phải cao hơn S₂, consistent với kết quả.</div>
+      <div class="rtext">Xếp từ lowest yield: A 4.20% ($10B) + B 4.25% ($12B) = $22B. Còn thiếu $8B → lấy từ C bid 4.30%. Stop-out yield = <b>4.30%</b> (yield của marginal bid). Trong Dutch auction, TẤT CẢ winners (A, B, C) đều trả price tương ứng yield <b>4.30%</b> (giá thấp nhất / yield cao nhất được chấp nhận). C nhận partial fill: $8B/$10B. Tổng $10B + $12B + $8B = $30B = offered amount. Đúng.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">2.85% thấp hơn cả S₁ (2.50%) và S₂ (3.20%). Impossible nếu yield curve upward-sloping — forward phải &gt; S₂. Có thể nhầm công thức thành (S₁ + S₂) / 2 kiểu arithmetic average (≈ 2.85%).</div>
+      <div class="rtext">A mô tả <em>discriminatory/multiple-price</em> auction — mỗi dealer pay giá mình bid. Dutch auction NGƯỢC lại: tất cả pay cùng clearing price. A sẽ đúng nếu đề hỏi về pay-your-own-bid format.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — B</div>
-      <div class="rtext">3.20% = S₂, chưa tính forward. Nhầm "2-year spot" thành "forward rate" — hai khái niệm khác nhau. Spot phủ từ năm 0 đến năm 2; forward 1,2 chỉ phủ từ năm 1 đến năm 2.</div>
+      <div class="rtext">Stop-out 4.25% là sai — tại yield 4.25%, tổng allocation chỉ $22B (A+B), chưa đủ $30B. Phải vào C (4.30%) mới đủ. B cũng sai khi nói C không được allocation — C được $8B partial fill. Đây là common trap: nhầm giữa "bid tại stop-out" và "stop-out là yield mà tại đó đủ amount".</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Công thức cốt lõi: <em>F<sub>a,b</sub> = [(1+S_b)<sup>b</sup> / (1+S_a)<sup>a</sup>]<sup>1/(b−a)</sup> − 1</em>. Khi curve upward, forward &gt; spot dài; khi inverted, forward &lt; spot dài. Đây là câu CFA L1 test nhiều lần.</div>
+    <div class="ttext">Dutch auction: xếp bids từ lowest yield → cộng dần → stop-out = yield của <em>marginal bid</em> (bid cuối cùng cần để fill toàn bộ offer). Tất cả winners pay <em>cùng stop-out yield</em>. Phân biệt rõ với discriminatory (pay-your-own-bid) — US Treasury dùng Dutch từ 1998.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — ANSWER Q1</span>
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
   </div>
 </section>
 
 
-<!-- 20 · Q2 EN — Inverted yield curve -->
+<!-- 22 · Q2 ORIGINAL — GO vs Revenue -->
 <section data-label="Q2 Original" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.05</span>
+    <span>08.05 — FI Markets for Government Issuers</span>
     <span class="rule"></span>
-    <span>20 / 28</span>
+    <span>22 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Inverted</em> curve — what signal?</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Municipal</em> bond credit source.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      The US Treasury yield curve has become <strong>inverted</strong>: the 2-year yield is 4.80% while the 10-year yield is 4.10%. Under the <strong>Pure Expectations Hypothesis</strong>, which interpretation is <strong>most appropriate</strong>?
+      A city issues bonds to finance a new <strong>toll highway</strong>. Debt service will be paid <strong>solely from toll revenues</strong> collected on the highway. If traffic volumes decline significantly, the city's <strong>property tax revenues are not pledged</strong> to bondholders. This bond is <strong>best described</strong> as:
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">The market expects short-term interest rates to rise in the future.</span></li>
-    <li><span class="lbl">B</span><span class="opt">The market expects short-term interest rates to decline in the future.</span></li>
-    <li><span class="lbl">C</span><span class="opt">The liquidity premium for 10-year bonds has turned negative.</span></li>
+    <li><span class="lbl">A</span><span class="opt">A general obligation bond backed by the city's full faith and taxing power.</span></li>
+    <li><span class="lbl">B</span><span class="opt">A revenue bond backed by a specific revenue stream from the project.</span></li>
+    <li><span class="lbl">C</span><span class="opt">An agency bond with an implicit government guarantee.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — Q2 ORIGINAL</span>
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
   </div>
 </section>
 
 
-<!-- 21 · Q2 HINT -->
+<!-- 23 · Q2 HINT -->
 <section data-label="Q2 Hint" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.05</span>
+    <span>08.05 — FI Markets for Government Issuers</span>
     <span class="rule"></span>
-    <span>21 / 28</span>
+    <span>23 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 02</div>
@@ -818,35 +936,34 @@
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>Inverted</mark> (2Y 4.80% &gt; 10Y 4.10%) · <mark>Pure Expectations</mark> Hypothesis.
+    <mark>toll highway</mark> · <mark>solely from toll revenues</mark> · <mark>property tax revenues are NOT pledged</mark>.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">PE: LT rate = geometric average expected ST rates. KHÔNG có risk/liquidity premium.</span>
+      <span class="htxt">GO bond = backed bởi <em>taxing power</em> của issuer. Đề nói "property tax NOT pledged" → loại A.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Nếu 10Y yield &lt; 2Y yield, trung bình expected short rates tương lai phải &lt; short rate hiện tại → expected ST rates <em>giảm</em>.</span>
+      <span class="htxt">Agency bond = phát hành bởi agency hoặc GSE (Ginnie, Fannie...), không phải city issuing for specific project → loại C.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">C nói về liquidity premium — thuộc Liquidity Preference theory, không phải Pure Expectations. Loại C.</span>
+      <span class="htxt">Revenue bond = trả nợ từ revenue của <em>specific project</em> (toll, utility, airport). "Solely from toll revenues" = định nghĩa revenue bond.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — Q2 HINT</span>
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
   </div>
 </section>
 
 
-<!-- 22 · Q2 Dịch đề -->
+<!-- 24 · Q2 DICH DE -->
 <section data-label="Q2 Dịch đề" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.05</span>
+    <span>08.05 — FI Markets for Government Issuers</span>
     <span class="rule"></span>
-    <span>22 / 28</span>
+    <span>24 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
@@ -855,92 +972,89 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      US Treasury yield curve đang <strong>inverted</strong>: 2-year yield = 4.80% trong khi 10-year yield = 4.10%. Dưới <strong>Pure Expectations Hypothesis</strong>, cách diễn giải nào <strong>phù hợp nhất</strong>?
+      Một thành phố phát hành trái phiếu để tài trợ <strong>đường cao tốc thu phí mới</strong>. Tiền trả nợ <strong>chỉ lấy từ doanh thu phí cầu đường</strong>. Nếu lưu lượng xe giảm mạnh, <strong>thuế bất động sản của thành phố không được cam kết</strong> cho trái chủ. Loại trái phiếu này được <strong>mô tả đúng nhất</strong> là:
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Thị trường kỳ vọng short-term rates sẽ TĂNG trong tương lai.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Thị trường kỳ vọng short-term rates sẽ GIẢM trong tương lai.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Liquidity premium cho 10-year bonds đã chuyển sang âm.</span></li>
+    <li><span class="lbl">A</span><span class="opt">General obligation bond backed bởi toàn bộ uy tín và quyền đánh thuế của thành phố.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Revenue bond backed bởi dòng doanh thu cụ thể từ dự án.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Agency bond với implicit government guarantee.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — Q2 VIỆT</span>
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
   </div>
 </section>
 
 
-<!-- 23 · Q2 EXPLANATION -->
+<!-- 25 · Q2 EXPLANATION -->
 <section data-label="Q2 Explanation" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.05</span>
+    <span>08.05 — FI Markets for Government Issuers</span>
     <span class="rule"></span>
-    <span>23 / 28</span>
+    <span>25 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Rates expected to fall.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Revenue bond.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">Dưới PE, LT rate = geometric average expected ST rates trong period đó. Nếu 10Y = 4.10% &lt; 2Y = 4.80%, expected ST rates trong năm 3-10 phải <em>thấp hơn</em> 4.80%. Đây là signal <b>expected rate declines</b> — thường đồng nghĩa với kỳ vọng Fed <em>cut rates</em> do slowdown/recession sắp tới.</div>
+      <div class="rtext"><b>Revenue bond</b> = trái phiếu được trả nợ từ <em>doanh thu của một dự án cụ thể</em>. Đây là định nghĩa: "solely from toll revenues" = chỉ dựa vào phí cầu đường. Không có recourse sang tax revenue của thành phố. Rủi ro phụ thuộc vào traffic volume, project viability — không phải creditworthiness tổng thể của city. Classic revenue bond structure.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Ngược lại — nếu rates kỳ vọng TĂNG, LT yield phải &gt; ST yield (normal upward curve), không phải inverted. A đúng cho normal curve, không phải cho inverted.</div>
+      <div class="rtext">GO bond được backed bởi <em>taxing power</em> — chính phủ địa phương có thể raise taxes để trả nợ. Đề rõ ràng nói "property tax NOT pledged" → không phải GO. Nếu đây là GO, city sẽ phải trả dù toll revenues bằng 0.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">C đề cập "liquidity premium" — khái niệm của <em>Liquidity Preference</em> theory, không phải PE. PE explicitly giả định <em>no risk premium</em>. Dù inverted curve có thể hàm ý negative term premium trong thực tế, interpretation này không nằm trong PE framework.</div>
+      <div class="rtext">Agency bond phát hành bởi các agency như Ginnie Mae, Fannie Mae, FHLBs — không phải municipal project bonds. Agency bonds không phụ thuộc vào một dự án toll cụ thể. Đây là city issuing municipal debt cho infrastructure project.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Dưới PE: <em>upward curve</em> = rates expected to rise; <em>flat curve</em> = rates expected to stay; <em>inverted curve</em> = rates expected to fall. Dưới LP: cùng shape hàm ý expected-rate-decline <em>mạnh hơn</em> (vì premium bù lại một phần). Luôn đọc kỹ theory được hỏi.</div>
+    <div class="ttext"><em>GO bond</em> = backed by taxing power, broader credit base, higher quality. <em>Revenue bond</em> = backed only by project revenues, rủi ro phụ thuộc project cashflow. Keywords: "solely from [specific revenue]" + "tax not pledged" = revenue bond. Thường revenue bond yield cao hơn GO cùng city vì rủi ro concentrated hơn.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — ANSWER Q2</span>
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
   </div>
 </section>
 
 
-<!-- 24 · Q3 EN — Theory identification -->
+<!-- 26 · Q3 ORIGINAL — Agency guarantee -->
 <section data-label="Q3 Original" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.05</span>
+    <span>08.05 — FI Markets for Government Issuers</span>
     <span class="rule"></span>
-    <span>24 / 28</span>
+    <span>26 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Theory <em class="hi">identification</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Agency</em> guarantee classification.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      An analyst observes that pension funds strongly prefer <strong>long-duration bonds</strong> to match long-dated liabilities, while commercial banks prefer <strong>short-duration</strong> assets. However, each group <strong>will switch</strong> to other maturities <strong>if the yield differential is large enough</strong>. Which term-structure theory is <strong>best described</strong>?
+      An analyst is comparing mortgage-backed securities (MBS) issued by three US entities. <strong>Entity X</strong> issues MBS backed by FHA and VA loans with an <strong>explicit guarantee</strong> from the US federal government. <strong>Entity Y</strong> is a <strong>government-sponsored enterprise</strong> that was placed in federal conservatorship in 2008 but has <strong>no formal statutory guarantee</strong>. <strong>Entity Z</strong> is a <strong>multilateral development bank</strong> owned by sovereign member states, rated AAA. Which <strong>entity matches Ginnie Mae, Fannie Mae, and the World Bank</strong>, respectively?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Pure Expectations Hypothesis.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Segmented Markets Theory.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Preferred Habitat Theory.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Entity X = Ginnie Mae; Entity Y = Fannie Mae; Entity Z = World Bank.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Entity X = Fannie Mae; Entity Y = Ginnie Mae; Entity Z = World Bank.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Entity X = Ginnie Mae; Entity Y = World Bank; Entity Z = Fannie Mae.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — Q3 ORIGINAL</span>
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
   </div>
 </section>
 
 
-<!-- 25 · Q3 HINT -->
+<!-- 27 · Q3 HINT -->
 <section data-label="Q3 Hint" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.05</span>
+    <span>08.05 — FI Markets for Government Issuers</span>
     <span class="rule"></span>
-    <span>25 / 28</span>
+    <span>27 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 03</div>
@@ -948,35 +1062,34 @@
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>Prefer</mark> specific maturity · <mark>will switch</mark> if <mark>yield differential</mark> large enough.
+    <mark>explicit guarantee from US federal</mark> · <mark>GSE + conservatorship 2008, no formal guarantee</mark> · <mark>multilateral development bank, AAA</mark>.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">PE: hoàn toàn dựa expectations, không có "preference" — loại A.</span>
+      <span class="htxt">Ginnie Mae = government agency, EXPLICIT guarantee "full faith and credit" US gov. → Entity X = Ginnie Mae (explicit).</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Segmented Markets: preference <em>strict</em>, <b>không</b> switch dù spread thế nào. Nhưng đề nói "will switch" → loại B.</span>
+      <span class="htxt">Fannie Mae = GSE, 2008 conservatorship, NO formal/statutory guarantee. → Entity Y = Fannie Mae (GSE + 2008 + no formal guarantee).</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Preferred Habitat: prefer specific maturity nhưng <b>willing to switch</b> nếu compensation đủ. Keyword "will switch if yield differential is large enough" match 100%.</span>
+      <span class="htxt">World Bank = multilateral development bank, owned by sovereign members, AAA. → Entity Z = World Bank (supranational). Answer = A.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — Q3 HINT</span>
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
   </div>
 </section>
 
 
-<!-- 26 · Q3 Dịch đề -->
+<!-- 28 · Q3 DICH DE -->
 <section data-label="Q3 Dịch đề" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.05</span>
+    <span>08.05 — FI Markets for Government Issuers</span>
     <span class="rule"></span>
-    <span>26 / 28</span>
+    <span>28 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
@@ -985,62 +1098,60 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một analyst quan sát thấy pension funds rất thích <strong>long-duration bonds</strong> để match long-dated liabilities, trong khi commercial banks thích <strong>short-duration</strong> assets. Tuy nhiên, mỗi nhóm <strong>sẽ switch</strong> sang maturity khác <strong>nếu yield differential đủ lớn</strong>. Theory nào <strong>mô tả đúng nhất</strong>?
+      Một analyst so sánh MBS phát hành bởi ba tổ chức tại Mỹ. <strong>Entity X</strong> phát hành MBS backed bởi FHA/VA loans với <strong>bảo lãnh trực tiếp (explicit guarantee)</strong> từ chính phủ liên bang US. <strong>Entity Y</strong> là <strong>GSE</strong> được đưa vào conservatorship 2008, <strong>không có bảo lãnh pháp lý chính thức</strong>. <strong>Entity Z</strong> là <strong>ngân hàng phát triển đa phương</strong> sở hữu bởi các quốc gia thành viên, rated AAA. Đối chiếu: Ginnie Mae, Fannie Mae, World Bank theo thứ tự X, Y, Z là?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Pure Expectations Hypothesis.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Segmented Markets Theory.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Preferred Habitat Theory.</span></li>
+    <li><span class="lbl">A</span><span class="opt">X = Ginnie Mae; Y = Fannie Mae; Z = World Bank.</span></li>
+    <li><span class="lbl">B</span><span class="opt">X = Fannie Mae; Y = Ginnie Mae; Z = World Bank.</span></li>
+    <li><span class="lbl">C</span><span class="opt">X = Ginnie Mae; Y = World Bank; Z = Fannie Mae.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — Q3 VIỆT</span>
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
   </div>
 </section>
 
 
-<!-- 27 · Q3 EXPLANATION -->
+<!-- 29 · Q3 EXPLANATION -->
 <section data-label="Q3 Explanation" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.05</span>
+    <span>08.05 — FI Markets for Government Issuers</span>
     <span class="rule"></span>
-    <span>27 / 28</span>
+    <span>29 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — Preferred Habitat.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — Ginnie / Fannie / World Bank.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
-      <div class="rtag">✓ Correct — C</div>
-      <div class="rtext"><b>Preferred Habitat Theory</b> nói investors có preference cho specific maturity (để match liability hay business need) NHƯNG <em>will switch</em> sang maturity khác nếu yield incentive đủ lớn để compensate. Đề mô tả chính xác: pension funds prefer long + banks prefer short + both switch khi yield differential hấp dẫn → classic Preferred Habitat.</div>
-    </div>
-    <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Pure Expectations giả định tất cả investors risk-neutral, KHÔNG có preference về maturity. Yield differential chỉ phản ánh expected future rates. Không match "pension prefer long, banks prefer short".</div>
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext"><b>Entity X = Ginnie Mae</b>: MBS backed FHA/VA loans + <em>explicit "full faith and credit" guarantee</em> từ US federal government — chỉ Ginnie Mae có. <b>Entity Y = Fannie Mae</b>: GSE, 2008 bailout vào conservatorship của FHFA, KHÔNG có formal statutory guarantee — classic Fannie/Freddie description. <b>Entity Z = World Bank</b> (IBRD): multilateral development bank sở hữu bởi 189 member countries, rated AAA — supranational entity, không phải US agency hay GSE.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — B</div>
-      <div class="rtext">Segmented Markets cũng có preference theo maturity, NHƯNG không substitute — investors <em>không switch</em> dù yield chênh lệch. Đề nói "will switch if differential is large enough" → <b>trái với</b> Segmented. Preferred Habitat là "softer" version có flexibility.</div>
+      <div class="rtext">B swap Ginnie và Fannie. Nhưng Fannie Mae KHÔNG có explicit guarantee — nếu X có explicit guarantee, X phải là Ginnie, không phải Fannie. Nhầm lẫn phổ biến: nghĩ Fannie cũng được government guarantee rõ ràng — thực tế chỉ là "implicit" (thị trường tin nhưng không được written guarantee trước 2008).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">C đặt World Bank vào Y (GSE + conservatorship) và Fannie vào Z (multilateral development bank). Rõ ràng sai — World Bank không phải GSE, không bị đưa vào conservatorship 2008, không liên quan US mortgage market. Fannie Mae không phải multilateral development bank (không có sovereign member countries).</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Chọn theory bằng <em>keywords</em>: "no preference, expectations only" → PE; "premium rising with maturity" → LP; "preference rigid, no switching" → Segmented; "preference + willing to switch for yield" → Preferred Habitat. Preferred Habitat là theory flexible nhất, gần thực tế nhất.</div>
+    <div class="ttext">Ba loại entities khác nhau rõ: <em>Ginnie Mae</em> = true government agency, explicit guarantee, zero credit risk; <em>Fannie/Freddie</em> = GSE, implicit support, 2008 conservatorship; <em>World Bank/ADB/EIB</em> = supranational, AAA, owned by sovereign members. Keywords "explicit guarantee + FHA/VA" → Ginnie. "GSE + conservatorship + no formal guarantee" → Fannie/Freddie.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.05 — ANSWER Q3</span>
+    <span class="footer-topic">Fixed Income · 08.05 — FI Markets for Government Issuers</span>
   </div>
 </section>
 
 
-<!-- 28 · END -->
+<!-- 30 · END -->
 <section data-label="End" class="slide end-slide">
   <div>
     <h1>08.05 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
-    <div class="hint">Tiếp theo · Lesson 08.06 — Credit Analysis &amp; Ratings</div>
+    <div class="hint">Tiếp theo · Lesson 08.06 — Bond Valuation: Prices and Yields</div>
   </div>
 </section>
 

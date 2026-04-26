@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>CFA L1 · FSA 04.05 — Inventory Analysis</title>
+<title>CFA L1 · FSA 04.05 — Cash Flow Statement (Part II): Analysis</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/assets/cfa-theme.css">
 <style>
   .title-slide .left { background: var(--accent); }
-  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main { font-size: 96px; line-height: 0.98; }
   .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
   .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
 </style>
@@ -24,18 +24,18 @@
 <section data-label="Title" class="slide title-slide">
   <div class="left">
     <div class="mark">CFA Institute · Level I</div>
-    <h1 class="main">Inventory<br><em>Analysis.</em></h1>
-    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 04 · Lesson 04.05 · FSA</div>
+    <h1 class="main">Cash Flow Statement<br><em>Part II.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 04 · Lesson 04.05 · Financial Statement Analysis</div>
   </div>
   <div class="right">
-    <div class="mark">Module 05 · Cost flow assumptions &amp; valuation</div>
+    <div class="mark">Module 05 · FCFF · FCFE · ratios · CF quality</div>
     <dl class="meta-grid">
       <div><dt>Môn</dt><dd>FSA</dd></div>
       <div><dt>Module</dt><dd>05</dd></div>
       <div><dt>Lesson</dt><dd>04.05</dd></div>
       <div><dt>Thời lượng</dt><dd>90 min</dd></div>
     </dl>
-    <div class="mark">FIFO · LIFO · WA · LIFO reserve · NRV</div>
+    <div class="mark">Free cash flow · common-size · coverage · red flags</div>
   </div>
 </section>
 
@@ -45,531 +45,460 @@
   <div class="band">
     <div class="lbl">PART</div>
     <div class="n">05</div>
-    <div class="lbl">Inventory</div>
+    <div class="lbl">CF Part II</div>
   </div>
   <div class="content">
     <div class="eyebrow">Today's lesson</div>
-    <h2>Cost flows, <em>reserves</em>,<br>and write-downs.</h2>
+    <h2>Read CF <em>like an analyst</em>,<br>not a bookkeeper.</h2>
     <ul class="toc">
-      <li class="active">01 · Inventory components — COGS, WIP, raw materials</li>
-      <li>02 · 4 cost flow assumptions — FIFO, LIFO, WA, Specific ID</li>
-      <li>03 · LIFO reserve &amp; restatement to FIFO</li>
-      <li>04 · LIFO liquidation &amp; IFRS vs US GAAP</li>
-      <li>05 · Lower of cost or NRV — write-downs</li>
-      <li>06 · Practice — 3 CFA-style questions</li>
+      <li class="active">01 · Why analyze CF — beyond preparation</li>
+      <li>02 · Common-size CF analysis</li>
+      <li>03 · Free Cash Flow — FCFF + FCFE</li>
+      <li>04 · CF performance ratios</li>
+      <li>05 · CF coverage ratios</li>
+      <li>06 · Quality of cash flow</li>
+      <li>07 · CF profile by company stage + red flags</li>
+      <li>08 · Practice — 3 CFA-style questions</li>
     </ul>
   </div>
 </section>
 
 
-<!-- 03 · INVENTORY COMPONENTS -->
-<section data-label="Inventory components" class="slide">
+<!-- 03 · WHY ANALYZE CF -->
+<section data-label="Why analyze CF" class="slide">
   <div class="run-header">
-    <span>FSA · 04.05</span>
+    <span>04.05 — CF Part II</span>
     <span class="rule"></span>
-    <span>03 / 26</span>
+    <span>03 / 28</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Inventory · concept</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">What sits in <em class="hi">Inventory</em>.</h2>
+    <div class="eyebrow">Beyond preparation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Why <em class="hi">analyze</em> CF?</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Inventory là current asset — hàng hóa giữ để bán (hoặc sẽ bán). Khi bán, cost chuyển từ BS sang IS dưới dạng <em>COGS</em>. Cách định giá inventory ảnh hưởng trực tiếp đến earnings.
+      Preparation (m04) tells <em>what numbers are</em>. Analysis (m05) tells <em>what numbers mean</em>. CF analysis answer 4 questions: <b>(1)</b> Is CFO healthy + sustainable? <b>(2)</b> Where is cash going? <b>(3)</b> Can company cover obligations? <b>(4)</b> Is reported earnings backed by cash?
     </p>
   </div>
 
   <div class="tenets-grid" style="margin-top: 16px;">
     <div class="tenet">
-      <span class="n">RM</span>
+      <span class="n">α</span>
       <div>
-        <div class="t"><em class="hi">Raw Materials</em></div>
-        <div class="d">Nguyên vật liệu chưa đưa vào sản xuất. Vd: thép, bông, hạt nhựa.</div>
+        <div class="t">Source &amp; use of cash</div>
+        <div class="d">Identify primary source (CFO operations? CFI divestment? CFF debt?). Identify primary use (capex growth? debt paydown? dividend?). Match story tells thesis.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">WIP</span>
+      <span class="n">β</span>
       <div>
-        <div class="t"><em class="hi">Work-in-Progress</em></div>
-        <div class="d">Đang trong quá trình sản xuất, chưa hoàn thiện. Bao gồm material + labor + overhead đã incur.</div>
+        <div class="t">Sustainability lens</div>
+        <div class="d">CF healthy = company can self-fund. Reliant on external financing = vulnerable to credit cycle. Free cash flow excess = optionality (dividend, buyback, M&amp;A, debt paydown).</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">FG</span>
+      <span class="n">γ</span>
       <div>
-        <div class="t"><em class="hi">Finished Goods</em></div>
-        <div class="d">Hoàn thiện, sẵn sàng bán. Khi bán → chuyển thành <em>COGS</em> trên Income Statement.</div>
+        <div class="t">Solvency assessment</div>
+        <div class="d">CF coverage ratios determine ability service debt + interest. Bond analyst, credit rating agency rely heavily on CF metrics, không chỉ income.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">$</span>
+      <span class="n">δ</span>
       <div>
-        <div class="t"><em class="hi">Capitalized costs</em></div>
-        <div class="d">Material + direct labor + manufacturing overhead. Loại trừ: abnormal waste, storage (trừ WIP), admin, selling.</div>
+        <div class="t">Earnings quality verification</div>
+        <div class="d">CFO/NI is the headline quality ratio. Track over time + compare peer. Sustained &lt; 1 = warning; &gt;= 1 = high quality.</div>
       </div>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — COMPONENTS</span>
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
   </div>
 </section>
 
 
-<!-- 04 · COST FLOW EQUATION -->
-<section data-label="Cost flow equation" class="slide">
+<!-- 04 · COMMON-SIZE CF -->
+<section data-label="Common-size CF" class="slide">
   <div class="run-header">
-    <span>FSA · 04.05</span>
+    <span>04.05 — CF Part II</span>
     <span class="rule"></span>
-    <span>04 / 26</span>
+    <span>04 / 28</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Cost flow · identity</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">inventory equation</em>.</h2>
+    <div class="eyebrow">Common-size analysis</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Common-size</em> CF.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Express each CF line item as % of some base. Two methods phổ biến: % of revenue (CFO line) hoặc % of total cash inflow / outflow. Make companies of different size comparable + reveal trend over time.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Method 1</em> — % of Revenue</div>
+      <dl>
+        <dt>Application</dt>
+        <dd>Each CF line / Revenue. Vd CFO/Rev, Capex/Rev, FCF/Rev. Compare across companies of different size. Compare across years.</dd>
+        <dt>Useful for</dt>
+        <dd>Operating efficiency benchmark. Capex intensity benchmark. FCF margin track.</dd>
+        <dt>Example</dt>
+        <dd>Software firm: CFO/Rev typically 30-40%. Industrial: 8-15%. Restaurant: 6-10%. Trend ↑ = improving cash conversion.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Method 2</em> — % of Total Cash Flows</div>
+      <dl>
+        <dt>Application</dt>
+        <dd>Inflows: each inflow / total inflow. Outflows: each outflow / total outflow. Reveal source &amp; use mix.</dd>
+        <dt>Useful for</dt>
+        <dd>Identify primary source of cash: CFO 80% + CFI 5% + CFF 15% = healthy operating-funded. CFO 20% + CFF 70% = debt-dependent.</dd>
+        <dt>Example</dt>
+        <dd>Mature: CFO ~ 100% of inflow; outflows split capex 40% + dividend 30% + buyback 20% + debt 10%.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
+  </div>
+</section>
+
+
+<!-- 05 · FCFF -->
+<section data-label="FCFF" class="slide">
+  <div class="run-header">
+    <span>04.05 — CF Part II</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Free cash flow · FCFF</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">FCFF</em> — Free Cash Flow to Firm.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      FCFF = cash flow available to <em>all capital providers</em> (debt + equity holders) sau khi trang trải operating expenses + working capital + capex. Foundation cho enterprise valuation (DCF firm-level).
+    </p>
   </div>
 
   <div class="formula-box">
-    <span class="fmt-label">§ The identity</span>
-    <div class="eq"><span class="var">COGS</span> = <span class="var">Beg Inv</span> + <span class="var">Purchases</span> − <span class="var">End Inv</span></div>
-    <div class="note">Cost flow tổng cộng là hằng số: tổng cost available = beginning + purchases. Phần đã bán → COGS. Phần còn lại → ending inventory. <b>Cost flow assumption</b> quyết định tỷ lệ chia, không phải tổng.</div>
+    <span class="fmt-label">§ FCFF formulas (3 equivalent paths)</span>
+    <div class="eq"><span class="var">FCFF</span> = CFO + Interest × (1 − tax) − Capex</div>
+    <div class="eq"><span class="var">FCFF</span> = NI + NCC + Interest × (1 − tax) − ΔWC − Capex</div>
+    <div class="eq"><span class="var">FCFF</span> = EBIT × (1 − tax) + NCC − ΔWC − Capex</div>
+    <div class="note">
+      <b>NCC</b> = Non-Cash Charges (D&amp;A, deferred tax, etc.). <b>Interest × (1 − tax)</b> = after-tax interest. Khi start từ CFO, must add back (interest đã treat as CFO under US GAAP, but FCFF excludes financing). Khi start từ EBIT, không cần add (EBIT pre-interest).
+    </div>
   </div>
 
-  <p class="fine-muted-sm" style="margin-top: 20px;">
-    § Trade-off — Gán cost cao vào COGS → ending inventory thấp, COGS cao, NI thấp. Gán cost cao vào ending inv → COGS thấp, NI cao. Chọn lựa này phụ thuộc cost flow assumption (FIFO/LIFO/WA).
+  <p class="fine-muted-sm">
+    § Why add back interest? Vì FCFF dành cho <em>both</em> debt + equity providers — interest đã "captured" cho debt holders, nhưng FCFF đo cash available to ALL providers <em>before</em> distributing to either.
   </p>
 
-  <ol class="num-list tight" style="margin-top: 20px;">
-    <li>
-      <span>
-        <span class="step-title">Rising prices → FIFO và LIFO cho kết quả rất khác</span>
-        <span class="step-body">FIFO gán oldest (rẻ) cost vào COGS → COGS thấp, NI cao. LIFO gán newest (đắt) cost vào COGS → COGS cao, NI thấp, tax thấp.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Falling prices → pattern đảo ngược</span>
-        <span class="step-body">FIFO gán oldest (đắt) vào COGS → NI thấp hơn. LIFO gán newest (rẻ) vào COGS → NI cao hơn.</span>
-      </span>
-    </li>
-  </ol>
-
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — EQUATION</span>
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
   </div>
 </section>
 
 
-<!-- 05 · 4 COST FLOW ASSUMPTIONS -->
-<section data-label="4 cost flow methods" class="slide">
+<!-- 06 · FCFE -->
+<section data-label="FCFE" class="slide">
   <div class="run-header">
-    <span>FSA · 04.05</span>
+    <span>04.05 — CF Part II</span>
     <span class="rule"></span>
-    <span>05 / 26</span>
+    <span>06 / 28</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Cost flow · 4 methods</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">4 assumptions</em>.</h2>
+    <div class="eyebrow">Free cash flow · FCFE</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">FCFE</em> — Free Cash Flow to Equity.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Cost flow assumption không cần match physical flow. Là lựa chọn <em>accounting</em>, quyết định cost nào gán vào COGS và cost nào giữ lại trong ending inventory.
+      FCFE = cash flow available to <em>equity holders only</em> sau khi pay debt obligations (interest + principal). Foundation cho equity valuation (DCF equity-level, dividend discount model).
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ FCFE formulas (2 equivalent paths)</span>
+    <div class="eq"><span class="var">FCFE</span> = CFO − Capex + Net Borrowing</div>
+    <div class="eq"><span class="var">FCFE</span> = FCFF − Interest × (1 − tax) + Net Borrowing</div>
+    <div class="note">
+      <b>Net Borrowing</b> = New debt issued − Debt repaid. <em>Positive</em> = debt finance helps cash; <em>negative</em> = debt paydown drains cash. Add back vì equity holders benefit khi company can borrow.
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ FCFF vs FCFE — when to use which</span>
+    <b>FCFF</b>: dùng khi capital structure <em>changing</em> hoặc <em>uncertain</em> (vd LBO target, growth company adjusting leverage). Discount với WACC. <br>
+    <b>FCFE</b>: dùng khi capital structure <em>stable</em> (mature company). Discount với cost of equity (Re). FCFE simpler nhưng less robust khi leverage changing.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
+  </div>
+</section>
+
+
+<!-- 07 · PERFORMANCE RATIOS -->
+<section data-label="Performance ratios" class="slide">
+  <div class="run-header">
+    <span>04.05 — CF Part II</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">CF performance ratios</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Cash <em class="hi">performance</em> ratios.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Performance ratios</span>
+    <div class="eq"><span class="var">Cash flow to revenue</span> = CFO / Revenue</div>
+    <div class="eq"><span class="var">Cash return on assets</span> = CFO / Avg Total Assets</div>
+    <div class="eq"><span class="var">Cash return on equity</span> = CFO / Avg Common Equity</div>
+    <div class="eq"><span class="var">Cash to income</span> = CFO / Operating Income</div>
+    <div class="eq"><span class="var">Cash flow per share</span> = (CFO − Preferred Dividends) / Weighted Avg Shares</div>
+    <div class="note">
+      Same logic như profitability ratios (ROA, ROE, profit margin) nhưng với <b>CFO numerator</b> thay vì NI. Rationale: cash là "harder" measure than accrual income.
+    </div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 16px;">
+    § Compare CFO/Rev với Net Margin (NI/Rev). Sustained CFO/Rev &lt; Net Margin = quality issue (NI inflated by accruals). CFO/Rev &gt; Net Margin = high quality (cash exceeds reported earnings, often due to D&amp;A non-cash + working capital release).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
+  </div>
+</section>
+
+
+<!-- 08 · COVERAGE RATIOS -->
+<section data-label="Coverage ratios" class="slide">
+  <div class="run-header">
+    <span>04.05 — CF Part II</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">CF coverage ratios</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Cash <em class="hi">coverage</em> ratios.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Coverage ratios</span>
+    <div class="eq"><span class="var">Debt coverage</span> = CFO / Total Debt</div>
+    <div class="eq"><span class="var">Interest coverage</span> = (CFO + Interest paid + Taxes paid) / Interest paid</div>
+    <div class="eq"><span class="var">Reinvestment coverage</span> = CFO / Capex</div>
+    <div class="eq"><span class="var">Dividend coverage</span> = CFO / Dividends paid</div>
+    <div class="eq"><span class="var">Investing &amp; financing coverage</span> = CFO / (Capex + Dividends + Debt repayment)</div>
+    <div class="note">
+      <b>≥ 1</b> = CFO covers obligation. <b>&lt; 1</b> sustained = relying on external funding to cover. Bond analysts focus on Debt coverage + Interest coverage as key solvency metrics.
+    </div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 16px;">
+    § Note interest coverage uses <em>(CFO + Interest + Taxes)</em> ÷ Interest — vì CFO is <em>after</em> interest paid (under US GAAP), need to add back interest + taxes to get cash available before financing. Tương tự EBIT-based interest coverage on income statement.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
+  </div>
+</section>
+
+
+<!-- 09 · QUALITY OF CASH FLOW -->
+<section data-label="Quality of CF" class="slide">
+  <div class="run-header">
+    <span>04.05 — CF Part II</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Quality assessment</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Quality</em> of cash flow.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      "High quality CFO" = sustainable, recurring, derived from <em>core operations</em>. "Low quality CFO" = boosted by one-offs, working capital release, accounting choices. Quality ≠ size.
     </p>
   </div>
 
   <div class="tenets-grid" style="margin-top: 16px;">
     <div class="tenet">
-      <span class="n">01</span>
+      <span class="n">Q1</span>
       <div>
-        <div class="t"><em class="hi">FIFO</em> · First-In-First-Out</div>
-        <div class="d">Oldest costs → COGS. Newest costs → ending inv. Rising prices: <em>low COGS, high NI, high ending inv</em>.</div>
+        <div class="t">Sustainable source</div>
+        <div class="d">CFO from <em>recurring</em> operations is high quality. CFO boosted by one-time items (litigation settlement, asset sale gain reclassified) is low quality. Investigate footnote.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">02</span>
+      <span class="n">Q2</span>
       <div>
-        <div class="t"><em class="hi">LIFO</em> · Last-In-First-Out</div>
-        <div class="d">Newest costs → COGS. Oldest → ending inv. Rising prices: <em>high COGS, low NI, low tax, LOW ending inv</em>. Chỉ US GAAP.</div>
+        <div class="t">Working capital release ≠ recurring</div>
+        <div class="d">Pulling DSO faster, cutting inventory, stretching DPO can spike CFO temporarily — but limit. Cannot keep stretching forever. CFO boost từ working capital is <em>low quality</em> (one-time).</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">03</span>
+      <span class="n">Q3</span>
       <div>
-        <div class="t"><em class="hi">Weighted Average</em></div>
-        <div class="d">Blended cost = Total cost available / Total units. COGS và ending inv dùng cùng unit cost trung bình.</div>
+        <div class="t">CFO &gt; NI sustained = good</div>
+        <div class="d">D&amp;A contribute (non-cash). Healthy WC management. Ratio stable above 1 across cycle.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">04</span>
+      <span class="n">Q4</span>
       <div>
-        <div class="t"><em class="hi">Specific Identification</em></div>
-        <div class="d">Gán cost trực tiếp lên từng unit. Dùng cho hàng unique: xe hơi, bất động sản, tác phẩm nghệ thuật.</div>
+        <div class="t">CFO &lt; NI sustained = bad</div>
+        <div class="d">Earnings driven by accruals. Receivables building, inventory bloating. Likely write-down or earnings reset coming.</div>
       </div>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — 4 METHODS</span>
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
   </div>
 </section>
 
 
-<!-- 06 · FIFO vs LIFO COMPARE -->
-<section data-label="FIFO vs LIFO" class="slide">
+<!-- 10 · CF PROFILE BY STAGE -->
+<section data-label="CF by stage" class="slide">
   <div class="run-header">
-    <span>FSA · 04.05</span>
+    <span>04.05 — CF Part II</span>
     <span class="rule"></span>
-    <span>06 / 26</span>
+    <span>10 / 28</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Comparison · rising prices</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">FIFO</em> vs <em class="hi">LIFO</em>.</h2>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head">FIFO — rising prices</div>
-      <dl>
-        <dt>COGS</dt>
-        <dd>Lower (oldest/cheapest costs)</dd>
-        <dt>Net Income</dt>
-        <dd>Higher</dd>
-        <dt>Tax</dt>
-        <dd>Higher</dd>
-        <dt>Ending Inventory</dt>
-        <dd>Higher (newest/priciest costs on BS)</dd>
-        <dt>Working capital</dt>
-        <dd>Higher (inv component lớn hơn)</dd>
-        <dt>Gross margin</dt>
-        <dd>Phóng đại — COGS không phản ánh replacement cost</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head">LIFO — rising prices</div>
-      <dl>
-        <dt>COGS</dt>
-        <dd>Higher (newest/priciest costs)</dd>
-        <dt>Net Income</dt>
-        <dd>Lower</dd>
-        <dt>Tax</dt>
-        <dd>Lower — <em>cash flow advantage</em></dd>
-        <dt>Ending Inventory</dt>
-        <dd>Lower — understated (oldest/cheapest)</dd>
-        <dt>Working capital</dt>
-        <dd>Lower</dd>
-        <dt>Gross margin</dt>
-        <dd>Realistic — COGS gần current replacement cost</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Key trade-off — LIFO cho <em>better matching</em> trên IS (COGS hiện thời) nhưng <em>worse BS</em> (inv understated). FIFO ngược lại: BS current, IS "stale" cost matching.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — FIFO vs LIFO</span>
-  </div>
-</section>
-
-
-<!-- 07 · LIFO RESERVE -->
-<section data-label="LIFO reserve" class="slide">
-  <div class="run-header">
-    <span>FSA · 04.05</span>
-    <span class="rule"></span>
-    <span>07 / 26</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">LIFO reserve · definition</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">LIFO reserve</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      US GAAP yêu cầu firm dùng LIFO phải disclose <em>LIFO reserve</em> trong footnotes — cho phép analyst restate về FIFO để so sánh cross-company.
-    </p>
+    <div class="eyebrow">CF profile · company stage</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">CF profile by <em class="hi">company stage</em>.</h2>
   </div>
 
   <div class="formula-box">
-    <span class="fmt-label">§ Definition</span>
-    <div class="eq"><span class="var">LIFO Reserve</span> = <span class="var">Inv<sub>FIFO</sub></span> − <span class="var">Inv<sub>LIFO</sub></span></div>
-    <div class="note">Là khoản chênh lệch giữa inventory LIFO (trên BS) và inventory FIFO (hypothetical). Trong rising-price environment, reserve dương và tăng theo thời gian.</div>
-  </div>
-
-  <div class="rule-box" style="margin-top: 16px;">
-    <span class="tag">§ Interpretation</span>
-    LIFO reserve lớn = có <em>cumulative tax saving</em> đáng kể. ΔLIFO reserve (change) = khác biệt giữa COGS<sub>FIFO</sub> và COGS<sub>LIFO</sub> trong năm.
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — RESERVE</span>
-  </div>
-</section>
-
-
-<!-- 08 · RESTATEMENT FORMULAS -->
-<section data-label="Restatement formulas" class="slide">
-  <div class="run-header">
-    <span>FSA · 04.05</span>
-    <span class="rule"></span>
-    <span>08 / 26</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Restatement · LIFO → FIFO</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Convert <em class="hi">LIFO to FIFO</em>.</h2>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Balance Sheet adjustments</span>
-    <div class="eq"><span class="var">Inv<sub>FIFO</sub></span> = <span class="var">Inv<sub>LIFO</sub></span> + <span class="var">LIFO Reserve</span></div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">Cash</span> −= <span class="var">LIFO Reserve</span> · <span class="var">t</span>  ·  <span class="var">Equity</span> += <span class="var">LIFO Reserve</span> · (1 − <span class="var">t</span>)</div>
-    <div class="note">Tăng inventory = tăng BS assets. Nhưng phải trừ deferred tax (reserve × t) từ cash/liabilities; phần còn lại (1−t) chảy vào retained earnings.</div>
-  </div>
-
-  <div class="formula-box" style="margin-top: 16px;">
-    <span class="fmt-label">§ Income Statement adjustments</span>
-    <div class="eq"><span class="var">COGS<sub>FIFO</sub></span> = <span class="var">COGS<sub>LIFO</sub></span> − <span class="var">Δ LIFO Reserve</span></div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">Δ NI</span> = <span class="var">Δ LIFO Reserve</span> · (1 − <span class="var">t</span>)</div>
-    <div class="note">Nếu reserve tăng trong năm → COGS<sub>LIFO</sub> &gt; COGS<sub>FIFO</sub> → restating giảm COGS, tăng NI bởi ΔReserve·(1−t).</div>
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — RESTATE</span>
-  </div>
-</section>
-
-
-<!-- 09 · LIFO LIQUIDATION -->
-<section data-label="LIFO liquidation" class="slide">
-  <div class="run-header">
-    <span>FSA · 04.05</span>
-    <span class="rule"></span>
-    <span>09 / 26</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">LIFO · liquidation</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">LIFO liquidation</em> distortion.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Xảy ra khi firm LIFO bán quá khối lượng purchase trong năm → "moi" vào LIFO layers cũ có cost rất thấp → COGS artificially low → margin và NI phóng đại, <em>không sustainable</em>.
-    </p>
-  </div>
-
-  <ol class="num-list" style="margin-top: 16px;">
-    <li>
-      <span>
-        <span class="step-title">Trigger — inventory quantities giảm</span>
-        <span class="step-body">Firm sell more than they purchase (demand spike, plant shutdown, strategy change). Old low-cost layers exposed.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Impact — COGS artificially low</span>
-        <span class="step-body">Cost từ decade cũ match với current revenue → gross margin và NI tăng vọt. Analyst phải <em>remove</em> hiệu ứng này khi đánh giá sustainable earnings.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Red flag — tax consequence</span>
-        <span class="step-body">Management có incentive giảm inv trước tax cut (để realize low-cost layers ở rate cũ). Cũng có thể signal firm đang shrinking business.</span>
-      </span>
-    </li>
-  </ol>
-
-  <p class="fine-muted-sm">
-    § Adjustment — Analyst nên exclude LIFO liquidation gain khi forecast future earnings. Disclosure thường ở footnote "Inventories" trong 10-K.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — LIQUIDATION</span>
-  </div>
-</section>
-
-
-<!-- 10 · IFRS vs US GAAP -->
-<section data-label="IFRS vs US GAAP" class="slide">
-  <div class="run-header">
-    <span>FSA · 04.05</span>
-    <span class="rule"></span>
-    <span>10 / 26</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Standards comparison</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">IFRS</em> vs <em class="hi">US GAAP</em>.</h2>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head">IFRS</div>
-      <dl>
-        <dt>Cost methods</dt>
-        <dd>FIFO &amp; Weighted Average <em>only</em> — <b>LIFO prohibited</b></dd>
-        <dt>Valuation rule</dt>
-        <dd>Lower of <em>cost</em> or <em>NRV</em> (Net Realizable Value)</dd>
-        <dt>Write-down</dt>
-        <dd>Required khi cost &gt; NRV</dd>
-        <dt>Reversal</dt>
-        <dd><em>Allowed</em> — reverse up to original cost nếu NRV phục hồi</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head">US GAAP</div>
-      <dl>
-        <dt>Cost methods</dt>
-        <dd>FIFO, LIFO, WA, Specific ID — <em>all allowed</em></dd>
-        <dt>Valuation rule</dt>
-        <dd>Lower of <em>cost</em> or <em>market</em> (LCM) cho LIFO/retail;<br>Lower of cost or NRV cho các method khác</dd>
-        <dt>Write-down</dt>
-        <dd>Required khi cost &gt; market (hoặc NRV)</dd>
-        <dt>Reversal</dt>
-        <dd><em>Prohibited</em> — once written down, stays down</dd>
-      </dl>
+    <span class="fmt-label">§ CF signature by stage</span>
+    <div class="eq"><span class="var">Startup</span>: CFO − · CFI − · CFF + (cash burn, heavy capex, equity/debt funding)</div>
+    <div class="eq"><span class="var">Growth</span>: CFO + · CFI − · CFF + or − (positive ops, heavy capex, funding still needed)</div>
+    <div class="eq"><span class="var">Mature</span>: CFO + + · CFI − · CFF − (strong ops fund capex + return to investors)</div>
+    <div class="eq"><span class="var">Decline</span>: CFO + or − · CFI + · CFF − (asset sales, debt paydown, dividend cut)</div>
+    <div class="note">
+      Pattern <b>− − +</b> = startup. <b>+ − −</b> = mature. <b>+ + −</b> hoặc <b>− + −</b> = decline (asset divestment + debt paydown). Detect mismatch giữa stated strategy &amp; actual signature → flag.
     </div>
   </div>
 
-  <p class="fine-muted-sm">
-    § Comparability issue — US firm dùng LIFO không thể so sánh trực tiếp với EU firm FIFO. Analyst restate LIFO → FIFO dùng LIFO reserve trước khi so sánh ratios.
+  <p class="fine-muted-sm" style="margin-top: 16px;">
+    § Investment implication — mature company với startup signature (− − +) = warning sign (operations deteriorating, requires external funding). Startup với mature signature (+ − −) = unusual and bullish (strong ops + returning cash).
   </p>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — IFRS vs GAAP</span>
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
   </div>
 </section>
 
 
-<!-- 11 · LOWER OF COST OR NRV -->
-<section data-label="Lower of cost or NRV" class="slide">
+<!-- 11 · CF RED FLAGS -->
+<section data-label="CF red flags" class="slide">
   <div class="run-header">
-    <span>FSA · 04.05</span>
+    <span>04.05 — CF Part II</span>
     <span class="rule"></span>
-    <span>11 / 26</span>
+    <span>11 / 28</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Valuation · write-down</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Lower of <em class="hi">cost or NRV</em>.</h2>
+    <div class="eyebrow">Warning signs</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">CF <em class="hi">red flags</em>.</h2>
   </div>
 
-  <div class="formula-box">
-    <span class="fmt-label">§ NRV definition (IFRS)</span>
-    <div class="eq"><span class="var">NRV</span> = <span class="var">Selling price</span> − <span class="var">Completion costs</span> − <span class="var">Selling costs</span></div>
-    <div class="note">Giá có thể thu được ròng từ việc bán hàng trong bình thường. Nếu cost &gt; NRV → inventory impaired, viết xuống = NRV.</div>
-  </div>
-
-  <div class="rule-box" style="margin-top: 16px;">
-    <span class="tag">§ Effect của write-down</span>
-    Giảm ending inventory trên BS. Tăng COGS (hoặc ghi "loss on inventory") trên IS → giảm gross margin và NI. Current ratio giảm. Inventory turnover tăng (COGS cao hơn, inv thấp hơn).
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 20px;">
-    <li>
-      <span>
-        <span class="step-title">IFRS — reversal allowed</span>
-        <span class="step-body">Nếu NRV phục hồi, có thể reverse write-down, nhưng không vượt quá original cost. Gain ghi vào IS.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">US GAAP — no reversal</span>
-        <span class="step-body">Write-down tạo "new cost basis" mới — không reverse dù NRV hồi. Conservative approach.</span>
-      </span>
-    </li>
-  </ol>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — NRV</span>
-  </div>
-</section>
-
-
-<!-- 12 · INVENTORY TURNOVER -->
-<section data-label="Inventory turnover" class="slide">
-  <div class="run-header">
-    <span>FSA · 04.05</span>
-    <span class="rule"></span>
-    <span>12 / 26</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Ratios · efficiency</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Inventory turnover</em>.</h2>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Core ratios</span>
-    <div class="eq"><span class="var">Inv Turnover</span> = <span class="var">COGS</span> / <span class="var">Avg Inventory</span></div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">Days Inv on Hand (DOH)</span> = 365 / <span class="var">Inv Turnover</span></div>
-    <div class="note">Turnover cao = firm efficient, bán nhanh. Nhưng quá cao có thể signal <em>inadequate inventory</em> → lost sales. Compare với ngành + historical trend.</div>
-  </div>
-
-  <p class="fine-muted-sm" style="margin-top: 20px;">
-    § LIFO bias — Firm LIFO có COGS cao hơn và Inv thấp hơn → turnover phóng đại so với FIFO. Khi peer comparison cross-standard, restate cả numerator và denominator về FIFO.
-  </p>
-
-  <div class="rule-box" style="margin-top: 20px;">
-    <span class="tag">§ Diagnostic</span>
-    Turnover <em>giảm</em> + DOH <em>tăng</em> → có thể là dấu hiệu obsolete inventory, demand yếu, hoặc channel stuffing. Check raw materials vs finished goods composition trong footnotes.
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">R1</span>
+      <div>
+        <div class="t">CFO &lt; NI persistent</div>
+        <div class="d">Earnings không backed bằng cash. Accruals building. Investigate AR + inventory + accrued reserves. Possible channel-stuffing, aggressive revenue recognition.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">R2</span>
+      <div>
+        <div class="t">CFO declining + NI rising</div>
+        <div class="d">Divergence widening. Definite quality issue. Earnings being inflated, cash collapsing.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">R3</span>
+      <div>
+        <div class="t">Capex &lt; Depreciation chronic</div>
+        <div class="d">Under-investing in maintenance. Asset base eroding. Eventually capacity constraint or product obsolescence. Sustainable only short-term.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">R4</span>
+      <div>
+        <div class="t">Working capital release boosting CFO</div>
+        <div class="d">CFO spike từ DPO stretching, inventory cut. One-time gain. Not repeatable. Track CFO ex-WC change cho true operating CF.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">R5</span>
+      <div>
+        <div class="t">Reclassifying items between sections</div>
+        <div class="d">Mid-year reclass capex from CFI to CFO (or vice versa). Boost CFO artificially. Read footnote for change in classification.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">R6</span>
+      <div>
+        <div class="t">Heavy reliance on CFF</div>
+        <div class="d">CFO insufficient → constant debt issuance / equity raise. Vulnerable khi credit cycle tightens. Not sustainable for mature company.</div>
+      </div>
+    </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — TURNOVER</span>
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
   </div>
 </section>
 
 
-<!-- 13 · KEY TAKEAWAYS -->
-<section data-label="Key takeaways" class="slide">
+<!-- 12 · TAKEAWAYS -->
+<section data-label="Takeaways" class="slide">
   <div class="run-header">
-    <span>FSA · 04.05</span>
+    <span>04.05 — CF Part II</span>
     <span class="rule"></span>
-    <span>13 / 26</span>
+    <span>12 / 28</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Summary · before practice</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">5 takeaways</em>.</h2>
+    <div class="eyebrow">Recap · big picture</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
   </div>
 
-  <ol class="num-list" style="margin-top: 16px;">
-    <li>
-      <span>
-        <span class="step-title">Rising prices — FIFO vs LIFO mirror-image</span>
-        <span class="step-body">FIFO: low COGS, high NI, high ending inv. LIFO: high COGS, low NI, low tax, LOW ending inv.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">LIFO reserve = bridge</span>
-        <span class="step-body">Inv<sub>FIFO</sub> = Inv<sub>LIFO</sub> + reserve. ΔNI restated = ΔReserve · (1 − t).</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">LIFO liquidation — unsustainable margin</span>
-        <span class="step-body">Inventory drop → old low-cost layers expose → artificial NI boost. Exclude khi forecast.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">IFRS prohibits LIFO</span>
-        <span class="step-body">IFRS: FIFO + WA only, NRV rule, reversal allowed. US GAAP: tất cả 4 methods, LCM for LIFO, no reversal.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Write-down → lower inv, lower NI, higher turnover</span>
-        <span class="step-body">NRV = selling price − completion − selling costs. Compare cost vs NRV each period.</span>
-      </span>
-    </li>
-  </ol>
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">α</span>
+      <div>
+        <div class="t">FCFF vs FCFE</div>
+        <div class="d">FCFF = cash for all capital providers; discount with WACC. FCFE = cash for equity only; discount with Re. FCFE = FCFF − Interest(1−t) + Net Borrowing.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">β</span>
+      <div>
+        <div class="t">Performance + Coverage ratios</div>
+        <div class="d">Performance: CFO/Revenue, CFO/Assets, CFO/Equity. Coverage: CFO/Debt, CFO/Capex, CFO/Dividends. ≥ 1 coverage = self-fund.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">γ</span>
+      <div>
+        <div class="t">CFO/NI quality test</div>
+        <div class="d">CFO/NI ≥ 1 sustained = high quality. &lt; 1 sustained = accrual-driven, red flag. Track over time + peer benchmark.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">δ</span>
+      <div>
+        <div class="t">Stage signature</div>
+        <div class="d">Startup: − − +. Growth: + − ±. Mature: + − −. Decline: ± + −. Mismatch giữa stated stage &amp; actual signature = flag.</div>
+      </div>
+    </div>
+  </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — TAKEAWAYS</span>
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
   </div>
 </section>
 
 
-<!-- 14 · TRANSITION -->
+<!-- 13 · TRANSITION -->
 <section data-label="Practice begins" class="slide end-slide">
   <div>
     <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
@@ -578,77 +507,75 @@
 </section>
 
 
-<!-- 15 · Q1 EN — FIFO vs LIFO IS impact -->
+<!-- 14 · Q1 EN — FCFF computation -->
 <section data-label="Q1 Original" class="slide">
   <div class="run-header">
-    <span>FSA · 04.05</span>
+    <span>04.05 — CF Part II</span>
     <span class="rule"></span>
-    <span>15 / 26</span>
+    <span>14 / 28</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">FIFO vs LIFO</em> — rising prices.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">FCFF</em> computation.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      A manufacturer has been operating in a <strong>rising-price environment</strong> for the past five years, with inventory quantities remaining stable. Compared with FIFO, using <strong>LIFO</strong> will <em>most likely</em> result in which combination of effects on the firm's financial statements?
+      A US-listed company reports the following data for the year (in millions): Cash Flow from Operations (CFO) = 500; Interest paid = 100; Tax rate = 25%; Capital Expenditures = 200; Net Borrowing (new debt − repayment) = 50. What is the company's <em>Free Cash Flow to the Firm (FCFF)</em>?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Higher COGS, lower Net Income, higher ending inventory.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Higher COGS, lower Net Income, lower ending inventory.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Lower COGS, higher Net Income, lower ending inventory.</span></li>
+    <li><span class="lbl">A</span><span class="opt">300 — calculated as CFO − Capex = 500 − 200 = 300.</span></li>
+    <li><span class="lbl">B</span><span class="opt">375 — calculated as CFO + Interest × (1 − tax) − Capex = 500 + 100 × 0.75 − 200 = 500 + 75 − 200 = 375.</span></li>
+    <li><span class="lbl">C</span><span class="opt">425 — calculated as CFO + Interest paid − Capex + Net Borrowing = 500 + 100 − 200 + 50 = 450 (and adjusted slightly).</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — Q1 ORIGINAL</span>
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
   </div>
 </section>
 
 
-<!-- 16 · Q1 HINT -->
+<!-- 15 · Q1 HINT -->
 <section data-label="Q1 Hint" class="slide">
   <div class="run-header">
-    <span>FSA · 04.05</span>
+    <span>04.05 — CF Part II</span>
     <span class="rule"></span>
-    <span>16 / 26</span>
+    <span>15 / 28</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">add-back</em>.</h2>
   </div>
   <div class="hint-card">
-    <span class="h-tag">§ Keywords</span>
-    <mark>Rising prices</mark>. <mark>Stable quantities</mark>. Compare LIFO vs FIFO on <mark>COGS</mark>, <mark>NI</mark>, <mark>ending inventory</mark>.
+    <span class="h-tag">§ Formula</span>
+    FCFF = CFO + Interest × (1 − tax) − Capex. Note: <mark>after-tax interest</mark>, <mark>not pre-tax</mark>.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">LIFO = Last-In-First-Out. Newest (priciest) cost → COGS → <em>COGS cao</em> → Gross profit thấp → <em>NI thấp</em>.</span>
+      <span class="htxt">CFO under US GAAP is <em>after</em> interest paid (interest treated as CFO). FCFF dành cho all capital providers (debt + equity), should be <em>before</em> any payments to providers → add interest back.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Ending inventory giữ lại <em>oldest costs</em> (đầu chu kỳ, rẻ nhất). So với FIFO (giữ newest, đắt), LIFO ending inv <em>thấp hơn</em>.</span>
+      <span class="htxt">Interest paid was <em>tax-deductible</em>, so true cash impact = Interest × (1 − tax). Adding back full pre-tax interest would overstate FCFF.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Nhớ quy tắc: LIFO trong rising prices = "high COGS, low NI, low tax, low inventory". Bonus effect: cash flow tốt hơn do tax saving.</span>
+      <span class="htxt">Net Borrowing relevant cho FCFE (equity holders), KHÔNG cho FCFF (firm-level). FCFF formula does not use Net Borrowing.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — Q1 HINT</span>
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
   </div>
 </section>
 
 
-<!-- 17 · Q1 Dịch đề -->
+<!-- 16 · Q1 Dịch đề -->
 <section data-label="Q1 Dịch đề" class="slide">
   <div class="run-header">
-    <span>FSA · 04.05</span>
+    <span>04.05 — CF Part II</span>
     <span class="rule"></span>
-    <span>17 / 26</span>
+    <span>16 / 28</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
@@ -657,128 +584,124 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một nhà sản xuất hoạt động trong môi trường <strong>giá đầu vào tăng</strong> suốt 5 năm qua, với inventory quantities ổn định. So với FIFO, dùng <strong>LIFO</strong> sẽ <em>most likely</em> gây ra kết hợp tác động nào trên financial statements?
+      Một công ty niêm yết US báo cáo dữ liệu cả năm (triệu): CFO = 500; Interest paid = 100; Tax rate = 25%; Capital Expenditures = 200; Net Borrowing (new debt − repayment) = 50. <em>Free Cash Flow to the Firm (FCFF)</em> của công ty là?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">COGS cao hơn, NI thấp hơn, ending inventory cao hơn.</span></li>
-    <li><span class="lbl">B</span><span class="opt">COGS cao hơn, NI thấp hơn, ending inventory thấp hơn.</span></li>
-    <li><span class="lbl">C</span><span class="opt">COGS thấp hơn, NI cao hơn, ending inventory thấp hơn.</span></li>
+    <li><span class="lbl">A</span><span class="opt">300 — tính bằng CFO − Capex = 500 − 200 = 300.</span></li>
+    <li><span class="lbl">B</span><span class="opt">375 — tính bằng CFO + Interest × (1 − tax) − Capex = 500 + 100 × 0.75 − 200 = 500 + 75 − 200 = 375.</span></li>
+    <li><span class="lbl">C</span><span class="opt">425 — tính bằng CFO + Interest paid − Capex + Net Borrowing = 500 + 100 − 200 + 50 = 450 (đã adjust nhẹ).</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — Q1 VIỆT</span>
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
   </div>
 </section>
 
 
-<!-- 18 · Q1 EXPLANATION -->
+<!-- 17 · Q1 EXPLANATION -->
 <section data-label="Q1 Explanation" class="slide">
   <div class="run-header">
-    <span>FSA · 04.05</span>
+    <span>04.05 — CF Part II</span>
     <span class="rule"></span>
-    <span>18 / 26</span>
+    <span>17 / 28</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — higher COGS, lower NI, lower inv.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 375.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">LIFO gán <em>newest (priciest)</em> cost vào COGS → <b>COGS cao hơn</b> FIFO → Gross margin và NI <b>thấp hơn</b>. Ending inventory giữ <em>oldest (cheapest)</em> costs → <b>inv thấp hơn</b> FIFO. Đây là mirror-image kinh điển trong rising prices.</div>
+      <div class="rtext">FCFF = CFO + Interest × (1 − tax) − Capex = <em>500 + 100 × 0.75 − 200 = 500 + 75 − 200 = <b>375</b></em>. Logic: CFO under US GAAP đã trừ interest paid (interest classified as CFO). FCFF dành cho all capital providers — phải add interest back để get cash <em>before</em> any payment to providers. Add back chỉ <em>after-tax</em> portion vì interest tax-deductible (tax shield đã capture trong CFO). Nếu add full pre-tax 100 → overstate FCFF by 25 (the tax saved).</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Ending inventory "cao hơn" là sai. LIFO giữ <em>oldest</em> costs trong ending inv → trong rising-price environment, những cost này nhỏ hơn newest costs mà FIFO giữ → LIFO inv luôn <em>thấp hơn</em>.</div>
+      <div class="rtext">Sai cốt lõi — bỏ qua add-back interest. CFO − Capex là <em>FCFE phổ biến</em> approximation, không phải FCFF. FCFF cần thêm after-tax interest add-back. Khi tax rate = 0%, A = B; nhưng khi tax positive, B luôn cao hơn A.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">"Lower COGS, higher NI" là mô tả FIFO trong rising prices, không phải LIFO. Combo này có trong FIFO vì oldest (cheap) costs flow to COGS.</div>
+      <div class="rtext">Multiple errors: (1) added pre-tax interest (100 instead of 75) — overstates by tax shield. (2) Net Borrowing không thuộc FCFF formula (đó là FCFE input). (3) Arithmetic mismatched (says 450 but lists 425). Đáp án mix FCFF + FCFE inputs.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Thuộc lòng bảng LIFO trong rising prices: <em>COGS ↑, NI ↓, Tax ↓, Ending Inv ↓, Cash Flow ↑</em>. Trong falling prices, đảo ngược mọi arrow.</div>
+    <div class="ttext">FCFF formula 3 paths: <em>(1) CFO + Int(1−t) − Capex</em>; <em>(2) NI + NCC + Int(1−t) − ΔWC − Capex</em>; <em>(3) EBIT(1−t) + NCC − ΔWC − Capex</em>. Khi start từ CFO hoặc NI, must add Int(1−t). Khi start từ EBIT (pre-interest), không cần. FCFE = FCFF − Int(1−t) + Net Borrowing.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — ANSWER Q1</span>
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
   </div>
 </section>
 
 
-<!-- 19 · Q2 EN — LIFO Reserve restatement -->
+<!-- 18 · Q2 EN — Coverage ratio -->
 <section data-label="Q2 Original" class="slide">
   <div class="run-header">
-    <span>FSA · 04.05</span>
+    <span>04.05 — CF Part II</span>
     <span class="rule"></span>
-    <span>19 / 26</span>
+    <span>18 / 28</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Apply the <em class="hi">LIFO reserve</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Interest coverage</em>.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Acme Corp reports under US GAAP using LIFO. At year-end: <strong>Inventory (LIFO) = $400m</strong>, <strong>LIFO reserve = $120m</strong> (up from $100m last year). Tax rate = <strong>25%</strong>. An analyst restates Acme's inventory and retained earnings to a FIFO basis. The <em>most likely</em> adjustments are:
+      A company reports CFO of $400 million, interest paid of $80 million, and taxes paid of $120 million during the year. The company is US GAAP-compliant. What is the <em>cash flow interest coverage ratio</em>?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Inventory increases by $120m; Retained Earnings increases by $90m.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Inventory increases by $120m; Retained Earnings increases by $120m.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Inventory increases by $20m; Retained Earnings increases by $15m.</span></li>
+    <li><span class="lbl">A</span><span class="opt">5.0× — calculated as CFO / Interest = 400 / 80 = 5.0.</span></li>
+    <li><span class="lbl">B</span><span class="opt">7.5× — calculated as (CFO + Interest paid + Taxes paid) / Interest paid = (400 + 80 + 120) / 80 = 600 / 80 = 7.5.</span></li>
+    <li><span class="lbl">C</span><span class="opt">6.0× — calculated as (CFO + Interest paid) / Interest paid = (400 + 80) / 80 = 480 / 80 = 6.0.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — Q2 ORIGINAL</span>
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
   </div>
 </section>
 
 
-<!-- 20 · Q2 HINT -->
+<!-- 19 · Q2 HINT -->
 <section data-label="Q2 Hint" class="slide">
   <div class="run-header">
-    <span>FSA · 04.05</span>
+    <span>04.05 — CF Part II</span>
     <span class="rule"></span>
-    <span>20 / 26</span>
+    <span>19 / 28</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">add-backs</em>.</h2>
   </div>
   <div class="hint-card">
-    <span class="h-tag">§ Keywords</span>
-    <mark>LIFO reserve = $120m</mark> (total cumulative). <mark>t = 25%</mark>. Asking for <mark>BS adjustments</mark> — inventory và retained earnings.
+    <span class="h-tag">§ Formula</span>
+    Interest coverage (CF basis) = <mark>(CFO + Interest paid + Taxes paid)</mark> / Interest paid
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">Inv<sub>FIFO</sub> = Inv<sub>LIFO</sub> + LIFO reserve = 400 + 120 = <em>520m</em>. Tức inventory tăng bằng <em>toàn bộ</em> LIFO reserve, không phải ΔReserve.</span>
+      <span class="htxt">CFO under US GAAP is <em>after</em> interest paid + taxes paid. To compute "cash available before financing/tax obligations", add both back.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Retained Earnings adjustment = LIFO reserve · (1 − t) = 120 × 0.75 = <em>$90m</em>. Phần (reserve · t) là deferred tax liability.</span>
+      <span class="htxt">Numerator = (400 + 80 + 120) = 600. Denominator = 80. Ratio = 600/80 = <em>7.5×</em>. Interpretation: company generated 7.5× the interest needed.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">$20m là <em>ΔReserve</em> trong năm — dùng cho adjustment NI, không phải adjustment cumulative BS. Đọc kỹ câu hỏi: "restate inventory và retained earnings" → BS total.</span>
+      <span class="htxt">Đáp án A (CFO/Int) bỏ qua add-back. Đáp án C add interest only without taxes. Both miss key adjustment vì US GAAP CFO already deducted both.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — Q2 HINT</span>
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
   </div>
 </section>
 
 
-<!-- 21 · Q2 Dịch đề -->
+<!-- 20 · Q2 Dịch đề -->
 <section data-label="Q2 Dịch đề" class="slide">
   <div class="run-header">
-    <span>FSA · 04.05</span>
+    <span>04.05 — CF Part II</span>
     <span class="rule"></span>
-    <span>21 / 26</span>
+    <span>20 / 28</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
@@ -787,128 +710,124 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Acme Corp báo cáo theo US GAAP với LIFO. Cuối năm: <strong>Inventory (LIFO) = $400m</strong>, <strong>LIFO reserve = $120m</strong> (tăng từ $100m năm trước). Tax rate = <strong>25%</strong>. Analyst restate inventory và retained earnings về FIFO basis. Các điều chỉnh <em>most likely</em> là:
+      Một công ty báo cáo CFO $400 triệu, interest paid $80 triệu, taxes paid $120 triệu trong năm. Công ty US GAAP-compliant. <em>Cash flow interest coverage ratio</em> là?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Inventory tăng $120m; Retained Earnings tăng $90m.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Inventory tăng $120m; Retained Earnings tăng $120m.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Inventory tăng $20m; Retained Earnings tăng $15m.</span></li>
+    <li><span class="lbl">A</span><span class="opt">5.0× — tính bằng CFO / Interest = 400 / 80 = 5.0.</span></li>
+    <li><span class="lbl">B</span><span class="opt">7.5× — tính bằng (CFO + Interest paid + Taxes paid) / Interest paid = (400 + 80 + 120) / 80 = 600 / 80 = 7.5.</span></li>
+    <li><span class="lbl">C</span><span class="opt">6.0× — tính bằng (CFO + Interest paid) / Interest paid = (400 + 80) / 80 = 480 / 80 = 6.0.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — Q2 VIỆT</span>
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
   </div>
 </section>
 
 
-<!-- 22 · Q2 EXPLANATION -->
+<!-- 21 · Q2 EXPLANATION -->
 <section data-label="Q2 Explanation" class="slide">
   <div class="run-header">
-    <span>FSA · 04.05</span>
+    <span>04.05 — CF Part II</span>
     <span class="rule"></span>
-    <span>22 / 26</span>
+    <span>21 / 28</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — +$120m inv, +$90m RE.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 7.5×.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
-      <div class="rtag">✓ Correct — A</div>
-      <div class="rtext"><b>Inventory:</b> Inv<sub>FIFO</sub> = Inv<sub>LIFO</sub> + LIFO Reserve = 400 + 120 = <b>$520m</b> → tăng <b>$120m</b>. <b>Retained Earnings:</b> = LIFO Reserve · (1 − t) = 120 · 0.75 = <b>$90m</b>. Còn $30m (=120 × 25%) ghi vào deferred tax liability.</div>
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Cash flow interest coverage = (CFO + Interest paid + Taxes paid) / Interest paid = <em>(400 + 80 + 120) / 80 = 600 / 80 = <b>7.5×</b></em>. Logic: CFO under US GAAP đã deduct cả interest và taxes. Để measure "cash available trước any financing &amp; tax obligation", phải add both back. Tử số = pre-interest, pre-tax operating cash. Mẫu = interest required to service debt. Ratio &gt; 1 = cover được interest; 7.5× = comfortable cushion.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — B</div>
-      <div class="rtext">RE = $120m là quên nhân với (1 − t). Nếu không adjust tax, RE bị <em>overstated</em>. Logic: nếu firm không dùng LIFO, tax đã phải trả → giảm equity tương ứng.</div>
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Sai cốt lõi — CFO/Int bỏ qua add-back của cả interest + taxes. Understate true cash available cho debt service. Sự khác biệt với EBIT-based interest coverage (EBIT/Int): EBIT pre-interest pre-tax; CFO post-both → cần add back.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">$20m = ΔLIFO reserve (120 − 100) dùng để adjust <em>current-year NI</em> (tăng COGS restatement → ΔNI = 20·0.75 = $15m). KHÔNG phải BS stock adjustment.</div>
+      <div class="rtext">Một nửa đúng — add back interest nhưng quên taxes. CFO is also <em>after</em> taxes, so taxes paid phải được add back as well để get pre-tax pre-interest cash. Common error → underestimate coverage.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Phân biệt <em>stock</em> (toàn bộ reserve) cho BS adjustment và <em>flow</em> (ΔReserve) cho IS adjustment. BS: Inv += reserve, RE += reserve·(1−t), DTL += reserve·t. IS: COGS −= ΔReserve, NI += ΔReserve·(1−t).</div>
+    <div class="ttext">Cash flow interest coverage = <em>(CFO + Interest paid + Taxes paid) / Interest paid</em>. Logic: CFO post-interest post-tax under US GAAP, so add both back. Compare với EBIT-based interest coverage = EBIT / Interest paid (pre-tax, pre-interest natural cho IS-based formula). Both used by credit analysts; CF-based is harder to manipulate.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — ANSWER Q2</span>
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
   </div>
 </section>
 
 
-<!-- 23 · Q3 EN — LIFO liquidation -->
+<!-- 22 · Q3 EN — Stage signature -->
 <section data-label="Q3 Original" class="slide">
   <div class="run-header">
-    <span>FSA · 04.05</span>
+    <span>04.05 — CF Part II</span>
     <span class="rule"></span>
-    <span>23 / 26</span>
+    <span>22 / 28</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">LIFO liquidation</em> effect.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">CF stage</em> signature.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      BlueSteel uses LIFO under US GAAP. Input prices have been rising steadily for a decade. This year, BlueSteel sold far more tonnes than it purchased, <strong>reducing inventory quantities by 30%</strong>. Other things equal, the <em>most likely</em> effect on BlueSteel's gross margin <strong>and</strong> the sustainability of that margin is:
+      A 30-year-old industrial conglomerate reports the following for the past 3 years: CFO consistently strongly positive ($600M, $650M, $700M); CFI consistently large negative (−$400M, −$420M, −$450M, mostly capex); CFF consistently negative (−$200M, −$230M, −$250M, mix of dividend + debt paydown + share buyback). Which life cycle stage signature does this <em>most likely</em> represent?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Margin falls; unchanged sustainability.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Margin rises; sustainable going forward.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Margin rises; not sustainable (LIFO liquidation).</span></li>
+    <li><span class="lbl">A</span><span class="opt">Startup stage — heavy investment in capex (CFI very negative) shows the company is still scaling its asset base.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Mature stage — strong recurring CFO (positive growing) funds reinvestment (CFI negative) and returns to shareholders + debt paydown (CFF negative). Classic + − − pattern of mature, self-funding firm.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Decline stage — three years of negative CFI and CFF indicates the firm is winding down operations and returning cash to investors before exit.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — Q3 ORIGINAL</span>
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
   </div>
 </section>
 
 
-<!-- 24 · Q3 HINT -->
+<!-- 23 · Q3 HINT -->
 <section data-label="Q3 Hint" class="slide">
   <div class="run-header">
-    <span>FSA · 04.05</span>
+    <span>04.05 — CF Part II</span>
     <span class="rule"></span>
-    <span>24 / 26</span>
+    <span>23 / 28</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">signature</em>.</h2>
   </div>
   <div class="hint-card">
-    <span class="h-tag">§ Keywords</span>
-    <mark>LIFO</mark>, <mark>rising prices</mark>, <mark>sold more than purchased</mark>, <mark>inventory ↓ 30%</mark>. Ask về <em>margin</em> và <em>sustainability</em>.
+    <span class="h-tag">§ Stage signatures</span>
+    Startup: <mark>− − +</mark> · Growth: <mark>+ − ±</mark> · Mature: <mark>+ − −</mark> · Decline: <mark>± + −</mark>
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">Quantities giảm + LIFO → <em>LIFO liquidation</em>. Old (cheap) layers expose → COGS artificially low → gross margin <em>tăng</em>.</span>
+      <span class="htxt">Đề: CFO + (strong, growing). CFI − (heavy capex). CFF − (dividend + buyback + debt paydown). Pattern = <em>+ − −</em> = mature.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Sustainability: cost inventory cũ (decade trước) chỉ có limited amount. Once exhausted, firm quay lại match newest (high) costs → margin <em>sẽ sụp xuống</em>.</span>
+      <span class="htxt">30-year industrial = mature company (age confirms stage). Strong CFO funds reinvestment + return to investors → self-funded, classic mature signature.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Analyst thường <em>exclude</em> LIFO liquidation gain khi forecast earnings. Disclosure trong 10-K footnote "Inventories".</span>
+      <span class="htxt">Startup (đáp án A) signature is − − + (cash burn + capex + external funding). Decline (đáp án C) signature is ± + − (asset divestment, not capex). Both fail to match.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — Q3 HINT</span>
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
   </div>
 </section>
 
 
-<!-- 25 · Q3 Dịch đề -->
+<!-- 24 · Q3 Dịch đề -->
 <section data-label="Q3 Dịch đề" class="slide">
   <div class="run-header">
-    <span>FSA · 04.05</span>
+    <span>04.05 — CF Part II</span>
     <span class="rule"></span>
-    <span>25 / 26</span>
+    <span>24 / 28</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
@@ -917,62 +836,60 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      BlueSteel dùng LIFO theo US GAAP. Input prices tăng đều suốt 1 thập kỷ. Năm nay, BlueSteel bán nhiều tấn hơn số mua, <strong>giảm inventory quantities 30%</strong>. Các yếu tố khác không đổi, tác động <em>most likely</em> lên gross margin <strong>và</strong> tính sustainability của margin đó là:
+      Một industrial conglomerate 30 tuổi báo cáo 3 năm gần đây: CFO consistently strongly positive ($600M, $650M, $700M); CFI consistently large negative (−$400M, −$420M, −$450M, chủ yếu capex); CFF consistently negative (−$200M, −$230M, −$250M, mix of dividend + debt paydown + share buyback). Stage life cycle nào <em>nhiều khả năng</em> represent signature này?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Margin giảm; sustainability không đổi.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Margin tăng; sustainable going forward.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Margin tăng; không sustainable (LIFO liquidation).</span></li>
+    <li><span class="lbl">A</span><span class="opt">Startup stage — heavy investment trong capex (CFI rất âm) cho thấy công ty vẫn scaling asset base.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Mature stage — CFO recurring mạnh (positive growing) fund reinvestment (CFI negative) và return to shareholders + debt paydown (CFF negative). Pattern + − − classic của mature self-funding firm.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Decline stage — 3 năm CFI và CFF negative cho thấy firm đang winding down operations và return cash trước exit.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — Q3 VIỆT</span>
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
   </div>
 </section>
 
 
-<!-- 26 · Q3 EXPLANATION + END merged into explanation then END -->
+<!-- 25 · Q3 EXPLANATION -->
 <section data-label="Q3 Explanation" class="slide">
   <div class="run-header">
-    <span>FSA · 04.05</span>
+    <span>04.05 — CF Part II</span>
     <span class="rule"></span>
-    <span>26 / 26</span>
+    <span>25 / 28</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — margin rises, not sustainable.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Mature.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
-      <div class="rtag">✓ Correct — C</div>
-      <div class="rtext">Inventory quantities giảm 30% trong rising-price LIFO environment → <b>LIFO liquidation</b>. Firm "moi" vào old layers có cost rất thấp → COGS artificially low → <b>gross margin tăng</b> đột biến. Nhưng old layers sẽ cạn → khi buy lại ở current prices, COGS trở về normal → margin sụp xuống. <b>Không sustainable</b>.</div>
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Pattern <b>+ − −</b> = classic mature stage signature. <em>(1) CFO strongly positive + growing</em> = healthy recurring operations. <em>(2) CFI negative</em> from capex = continuing to reinvest in business but at sustainable rate. <em>(3) CFF negative</em> from dividend + buyback + debt paydown = returning cash to investors, no need for external funding. Self-funded. 30-year industrial age confirms stage. Mature company excellent profile cho dividend investor + bond investor (low solvency risk).</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Margin giảm là sai. Logic đảo ngược: nếu LIFO liquidation exposes <em>old cheap</em> costs, COGS giảm → margin <em>tăng</em>. Chỉ có trong falling-price LIFO mới ngược.</div>
+      <div class="rtext">Sai pattern — startup signature là <em>− − +</em> (cash burn → CFO negative; heavy capex → CFI negative; raise funds → CFF positive). Đề có CFO <em>positive</em> và CFF <em>negative</em>, opposite of startup. Heavy capex alone không đủ để label startup; many mature companies có heavy maintenance capex.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — B</div>
-      <div class="rtext">Margin đúng là tăng, nhưng "sustainable" sai. Artificial boost chỉ kéo dài khi còn cheap layers. Analyst phải <em>exclude</em> LIFO liquidation gain khi forecast.</div>
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Sai pattern — decline signature là <em>CFI positive</em> (asset divestments, sale of business units), không phải negative. Decline firms typically <em>shrink</em> asset base, not invest. CFI heavily negative confirms continued reinvestment, not winding down. Also CFO growing không phù hợp decline.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">LIFO liquidation = "ghost earnings". Dấu hiệu: inventory quantities giảm dưới LIFO + rising prices. Impact: COGS ↓, GM ↑, NI ↑, Tax ↑ — tất cả <em>one-time, not recurring</em>. Check footnote disclosure.</div>
+    <div class="ttext">CF stage signatures: <em>Startup − − +</em> (burn + capex + external funding); <em>Growth + − ±</em> (positive ops + heavy capex + funding still needed); <em>Mature + − −</em> (strong ops fund reinvestment + return); <em>Decline ± + −</em> (asset divestment + debt paydown). Read all 3 sections together; signature reveals stage even khi mgmt presents differently.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.05 — ANSWER Q3</span>
+    <span class="footer-topic">FSA · 04.05 — Cash Flow Statement (Part II)</span>
   </div>
 </section>
 
 
-<!-- 27 · END -->
+<!-- 26 · END -->
 <section data-label="End" class="slide end-slide">
   <div>
     <h1>04.05 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
-    <div class="hint">Tiếp theo · Lesson 04.06 — Long-Lived Assets</div>
+    <div class="hint">Tiếp theo · Lesson 04.06 — Inventory Analysis</div>
   </div>
 </section>
 

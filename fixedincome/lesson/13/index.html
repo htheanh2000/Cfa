@@ -1,0 +1,1401 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Fixed Income 08.13 — Curve-Based and Empirical Fixed-Income Risk Measures</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 80px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Curve-Based &amp;<br><em>Empirical Risk.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 08 · Lesson 08.13 · Fixed Income</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 13 · Effective Duration · KRD · Empirical Duration · Curve Risk</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Fixed Income</dd></div>
+      <div><dt>Module</dt><dd>13</dd></div>
+      <div><dt>Lesson</dt><dd>08.13</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Effective Duration · Convexity · Key Rate Duration · Empirical Duration · Twist · Butterfly</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">13</div>
+    <div class="lbl">Curve-Based Risk Measures</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>Đo lường <em>rủi ro lãi suất</em><br>theo đường cong yield.</h2>
+    <ul class="toc">
+      <li class="active">01 · Effective duration vs Analytical (yield-based) duration — khi nào dùng cái nào</li>
+      <li>02 · Effective duration cho bonds có embedded options (callable, putable, MBS)</li>
+      <li>03 · Effective convexity — dương/âm, ý nghĩa cho từng loại bond</li>
+      <li>04 · Key rate duration (KRD) — độ nhạy với từng điểm trên đường cong</li>
+      <li>05 · KRD sum ≈ effective duration — điều kiện parallel shift</li>
+      <li>06 · Empirical duration — ước lượng từ hồi quy, dùng khi nào</li>
+      <li>07 · Rủi ro đường cong: parallel shift · steepening/flattening · butterfly</li>
+      <li>08 · Ứng dụng: quản lý rủi ro curve, hedging, immunization</li>
+      <li>09 · Practice — 4 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · DURATION TAXONOMY -->
+<section data-label="Duration taxonomy" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>03 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Tổng quan · phân loại duration</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Các loại <em class="hi">duration</em>: bản đồ khái niệm.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 16px;">
+      Duration không phải một khái niệm duy nhất. CFA L1 phân biệt ít nhất <em>ba nhóm</em>: analytical (yield-based), curve-based (effective, KRD), và empirical. Mỗi loại có giả định khác nhau — dùng sai sẽ cho kết quả sai lệch nghiêm trọng.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 12px;">
+    <div class="tenet">
+      <span class="n">ANA</span>
+      <div>
+        <div class="t"><em class="hi">Analytical (Yield-Based) Duration</em></div>
+        <div class="d">Modified duration và Macaulay duration. Giả định <b>yield to maturity thay đổi song song và đồng đều</b> toàn bộ cash flows. Chỉ chính xác cho <em>option-free, fixed-rate bonds</em>. Tính bằng công thức đóng — đơn giản, nhanh.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">EFF</span>
+      <div>
+        <div class="t"><em class="hi">Effective Duration</em></div>
+        <div class="d">Dùng <b>mô hình định giá</b> (binomial tree, OAS model) để tính PV+ và PV− khi benchmark yield curve dịch lên/xuống Δy. Không giả định cash flows cố định — phù hợp cho bonds có embedded options (callable, putable, MBS).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">KRD</span>
+      <div>
+        <div class="t"><em class="hi">Key Rate Duration</em></div>
+        <div class="d">Đo độ nhạy của bond price với thay đổi tại <b>một điểm cụ thể</b> trên yield curve (e.g., 5Y, 10Y, 30Y), giữ nguyên các điểm còn lại. Bắt buộc khi yield curve <em>không dịch song song</em> (twist, butterfly).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">EMP</span>
+      <div>
+        <div class="t"><em class="hi">Empirical Duration</em></div>
+        <div class="d">Ước lượng bằng <b>hồi quy</b>: thay đổi giá thực tế (%) ~ thay đổi yield thực tế. Không dựa vào model — phản ánh hành vi thị trường. Hữu ích khi effective duration không đáng tin (e.g., high-yield bonds, structured products).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 04 · EFFECTIVE vs ANALYTICAL -->
+<section data-label="Effective vs Analytical" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>04 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">So sánh · Effective vs Analytical</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Effective duration</em> vs Analytical duration.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Sự khác biệt cốt lõi: <em>analytical duration</em> giả định cash flows <b>không đổi</b> khi lãi suất thay đổi; <em>effective duration</em> cho phép cash flows <b>thay đổi</b> — phản ánh embedded options.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Analytical (Modified) Duration</em></div>
+      <dl>
+        <dt>Công thức</dt>
+        <dd>D<sub>mod</sub> = D<sub>mac</sub> / (1 + y/m). Tính bằng Macaulay duration chia (1 + periodic yield).</dd>
+        <dt>Giả định</dt>
+        <dd>Cash flows <em>cố định</em>: coupon và principal không thay đổi theo lãi suất. YTM dịch chuyển song song và tức thì.</dd>
+        <dt>Phù hợp</dt>
+        <dd><b>Option-free bonds</b>: straight bonds, government bonds, investment-grade corporate (không có call/put).</dd>
+        <dt>Hạn chế</dt>
+        <dd>Không áp dụng được cho callable bonds, putable bonds, MBS/ABS vì cash flows thực tế thay đổi khi lãi suất thay đổi (prepayment, early call).</dd>
+        <dt>Tính toán</dt>
+        <dd>Công thức đóng — tính được bằng tay nhanh chóng, không cần model.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Effective Duration</em></div>
+      <dl>
+        <dt>Công thức</dt>
+        <dd>D<sub>eff</sub> = (PV− − PV+) / (2 × ΔCurve × PV<sub>0</sub>). Dùng giá từ mô hình.</dd>
+        <dt>Giả định</dt>
+        <dd>Benchmark <em>yield curve</em> dịch lên/xuống Δy. Cash flows <b>có thể thay đổi</b> theo lãi suất (model tính lại theo từng scenario).</dd>
+        <dt>Phù hợp</dt>
+        <dd><b>Mọi loại bond</b> — đặc biệt bắt buộc cho callable bonds, putable bonds, MBS, floaters, convertibles.</dd>
+        <dt>Hạn chế</dt>
+        <dd>Phụ thuộc vào <em>chất lượng model</em>: binomial tree, OAS model, Monte Carlo. Model error → duration error.</dd>
+        <dt>Tính toán</dt>
+        <dd>Cần pricing model — không tính bằng tay được với bonds phức tạp.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 05 · EFFECTIVE DURATION FORMULA & MECHANICS -->
+<section data-label="Effective duration formula" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>05 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Công thức · Effective duration</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Tính <em class="hi">Effective Duration</em> bằng mô hình.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Công thức Effective Duration</span>
+    D<sub>eff</sub> = (PV− − PV+) / (2 × ΔCurve × PV<sub>0</sub>)<br>
+    Trong đó: <b>PV−</b> = giá bond khi yield curve giảm Δy · <b>PV+</b> = giá bond khi yield curve tăng Δy · <b>PV<sub>0</sub></b> = giá bond hiện tại · <b>ΔCurve</b> = mức dịch chuyển (thường 25bps hoặc 100bps).
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 18px;">
+    <li>
+      <span>
+        <span class="step-title">Bước 1 — Dịch benchmark curve lên +Δy</span>
+        <span class="step-body">Chạy pricing model (binomial tree hoặc OAS model) với toàn bộ benchmark spot rates tăng Δy. Kết quả = <b>PV+</b>. Với callable bond: nếu rates tăng, call ít có khả năng xảy ra hơn → cash flows dài hơn → PV+ giảm ít hơn so với bond thường.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Bước 2 — Dịch benchmark curve xuống −Δy</span>
+        <span class="step-body">Chạy lại model với rates giảm Δy → <b>PV−</b>. Với callable bond: rates giảm → call likely → issuer gọi bond → cash flows rút ngắn → PV− tăng ít hơn bond thường (price compression, negative convexity).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Bước 3 — Tính D<sub>eff</sub></span>
+        <span class="step-body">Áp dụng công thức. Ví dụ: PV<sub>0</sub> = 100, ΔCurve = 0.005 (50bps), PV− = 102.5, PV+ = 97.8 → D<sub>eff</sub> = (102.5 − 97.8) / (2 × 0.005 × 100) = 4.7 / 1.0 = <b>4.7 năm</b>.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="small body--soft" style="max-width: 1440px; margin: 16px 0 0;">
+    Lưu ý: D<sub>eff</sub> phụ thuộc vào <em>Δy được chọn</em> — nên dùng Δy nhỏ (25–50bps) để tránh nonlinearity. Với option-free bond, D<sub>eff</sub> ≈ D<sub>mod</sub>.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 06 · EFFECTIVE DURATION FOR OPTIONED BONDS -->
+<section data-label="Effective duration — embedded options" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>06 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Effective duration · embedded options</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Callable, Putable, MBS — <em class="hi">tại sao phải dùng D<sub>eff</sub></em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Khi bond có embedded option, <b>cash flows phụ thuộc vào lãi suất</b>. Analytical duration sẽ bỏ qua sự thay đổi này — cho kết quả sai. Effective duration capture đúng hành vi thực tế.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 12px;">
+    <div class="tenet">
+      <span class="n">CALL</span>
+      <div>
+        <div class="t"><em class="hi">Callable bond</em></div>
+        <div class="d">Issuer có quyền <em>call back</em> (mua lại) bond khi rates giảm. Khi rates giảm mạnh, giá callable không tăng nhiều như straight bond vì thị trường expect early redemption. D<sub>eff</sub> (callable) &lt; D<sub>eff</sub> (straight) cùng maturity. Ở low rates: D<sub>eff</sub> rất thấp.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PUT</span>
+      <div>
+        <div class="t"><em class="hi">Putable bond</em></div>
+        <div class="d">Investor có quyền <em>put back</em> (bán lại) bond cho issuer khi rates tăng. Khi rates tăng mạnh, giá putable không giảm nhiều vì investor có thể put. D<sub>eff</sub> (putable) &lt; D<sub>eff</sub> (straight) — option cushions downside. Put option có giá trị khi rates tăng.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">MBS</span>
+      <div>
+        <div class="t"><em class="hi">MBS / Mortgage-Backed Securities</em></div>
+        <div class="d">Homeowners có quyền <em>prepay</em> (trả trước) mortgage. Khi rates giảm, prepayment tăng vọt → cash flows về sớm hơn dự kiến → D<sub>eff</sub> giảm mạnh. Khi rates tăng, prepayment chậm lại → duration kéo dài (<em>extension risk</em>). Cần model Monte Carlo.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">KEY</span>
+      <div>
+        <div class="t">Nguyên tắc so sánh</div>
+        <div class="d">D<sub>eff</sub> (callable) ≤ D<sub>eff</sub> (straight) ≤ D<sub>eff</sub> (putable) — <em>KHÔNG đúng hoàn toàn</em>. Thực tế: callable &lt; straight; putable &lt; straight. Cả hai option đều <em>rút ngắn</em> effective duration vì option giới hạn price sensitivity ở một đầu. Putable &lt; straight ở high-rate environment.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 07 · EFFECTIVE CONVEXITY -->
+<section data-label="Effective convexity" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>07 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Convexity · curve-based</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Effective Convexity</em> — dương vs âm.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Convexity đo <em>độ cong</em> của đường price–yield. Effective convexity tính tương tự effective duration — dùng PV+, PV−, PV<sub>0</sub> từ model. Dấu của convexity có ý nghĩa thực tiễn lớn.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-bottom: 16px;">
+    <span class="tag">§ Công thức Effective Convexity</span>
+    Cvx<sub>eff</sub> = (PV− + PV+ − 2×PV<sub>0</sub>) / (ΔCurve² × PV<sub>0</sub>)<br>
+    Điều chỉnh giá đầy đủ: ΔP/P ≈ −D<sub>eff</sub> × ΔCurve + ½ × Cvx<sub>eff</sub> × ΔCurve²
+  </div>
+
+  <div class="compare" style="margin-top: 10px;">
+    <div class="cc">
+      <div class="head"><em>Convexity dương (+)</em></div>
+      <dl>
+        <dt>Loại bond</dt>
+        <dd>Option-free bonds (straight bonds, government bonds). Putable bonds (luôn dương). MBS ở <em>high rate environment</em> (prepayment thấp).</dd>
+        <dt>Ý nghĩa</dt>
+        <dd>Đường price–yield <em>lõm về phía trên</em> (convex). Giá tăng nhiều hơn giá giảm khi rates dịch cùng biên độ. Có lợi cho holder — mọi thứ khác bằng nhau, convexity cao hơn = tốt hơn.</dd>
+        <dt>Ứng dụng</dt>
+        <dd>Investor sẵn sàng trả <em>convexity premium</em> (yield thấp hơn) cho bond có positive convexity cao. Dùng trong immunization để tăng surplus khi rates biến động.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Convexity âm (−)</em></div>
+      <dl>
+        <dt>Loại bond</dt>
+        <dd>Callable bonds (khi rates thấp, near-call). MBS ở <em>low rate environment</em> (prepayment cao → negative convexity). IO strips (Interest-Only MBS).</dd>
+        <dt>Ý nghĩa</dt>
+        <dd>Đường price–yield <em>lồi về phía dưới</em> (concave). Giá tăng ít hơn khi rates giảm (bị "cap" bởi call option / prepayment). Kém có lợi — holder bị disadvantaged ở cả hai chiều.</dd>
+        <dt>Price compression</dt>
+        <dd>Callable: khi rates giảm sâu, giá bond tiếp cận <em>call price</em> và "dán" ở đó. MBS: prepayment tăng → WAL rút ngắn → price bị nén. OAS spread tăng để bù đắp negative convexity.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 08 · NUMERICAL EXAMPLE -->
+<section data-label="Numerical example — effective duration &amp; convexity" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>08 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Ví dụ số · Effective Duration &amp; Convexity</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">Tính D<sub>eff</sub> và Cvx<sub>eff</sub> — <em class="hi">callable bond</em>.</h2>
+  </div>
+
+  <div class="rule-box" style="margin-bottom: 14px;">
+    <span class="tag">§ Dữ liệu đề bài</span>
+    Callable bond: PV<sub>0</sub> = <b>101.50</b> · ΔCurve = <b>50 bps (0.005)</b> · PV− (rates −50bps) = <b>103.20</b> · PV+ (rates +50bps) = <b>100.10</b>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 10px;">
+    <div class="tenet">
+      <span class="n">D</span>
+      <div>
+        <div class="t">Tính Effective Duration</div>
+        <div class="d">
+          D<sub>eff</sub> = (PV− − PV+) / (2 × ΔCurve × PV<sub>0</sub>)<br>
+          = (103.20 − 100.10) / (2 × 0.005 × 101.50)<br>
+          = 3.10 / 1.015<br>
+          = <b>3.054 năm</b><br><br>
+          So sánh: nếu đây là straight bond cùng coupon/maturity, D<sub>mod</sub> có thể là 6–7 năm. Callable option đã rút ngắn effective duration đáng kể.
+        </div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">Cvx</span>
+      <div>
+        <div class="t">Tính Effective Convexity</div>
+        <div class="d">
+          Cvx<sub>eff</sub> = (PV− + PV+ − 2×PV<sub>0</sub>) / (ΔCurve² × PV<sub>0</sub>)<br>
+          = (103.20 + 100.10 − 2×101.50) / (0.005² × 101.50)<br>
+          = (203.30 − 203.00) / (0.000025 × 101.50)<br>
+          = 0.30 / 0.002538<br>
+          = <b>+118.2</b> (mildly positive — rates chưa quá thấp so với call price)
+        </div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">ΔP</span>
+      <div>
+        <div class="t">Ước tính % price change nếu rates tăng 100bps</div>
+        <div class="d">
+          ΔP/P ≈ −D<sub>eff</sub> × ΔCurve + ½ × Cvx<sub>eff</sub> × ΔCurve²<br>
+          = −3.054 × 0.01 + ½ × 118.2 × (0.01)²<br>
+          = −0.03054 + 0.00591<br>
+          = <b>−2.46%</b><br><br>
+          Duration-only (linear): −3.054% → convexity correction: +0.59%
+        </div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">NOTE</span>
+      <div>
+        <div class="t">Nhận xét quan trọng</div>
+        <div class="d">Nếu rates giảm thêm 100bps (gần call price hơn), convexity callable bond sẽ trở thành <em>âm</em> — PV− không tăng nhiều do price compression (call price ceiling). Effective convexity phụ thuộc vào <em>mức rates hiện tại</em> relative to call price.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 09 · KEY RATE DURATION — CONCEPT -->
+<section data-label="Key rate duration — concept" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>09 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Key rate duration · khái niệm</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Key Rate Duration</em> — độ nhạy từng điểm trên curve.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Effective duration giả định <em>parallel shift</em> — toàn bộ curve dịch cùng biên độ. Thực tế, curve thường <em>twist hoặc butterfly</em>. Key rate duration (KRD) giải quyết hạn chế này bằng cách đo độ nhạy với từng "key rate" riêng lẻ.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 12px;">
+    <div class="tenet">
+      <span class="n">DEF</span>
+      <div>
+        <div class="t">Định nghĩa KRD</div>
+        <div class="d">KRD<sub>k</sub> = −(1/P) × (∂P / ∂r<sub>k</sub>) trong đó r<sub>k</sub> là spot rate tại tenor k (e.g., 2Y, 5Y, 10Y, 30Y). Các spot rates khác được <em>giữ nguyên</em>. KRD đo lường mức % giảm giá khi chỉ rate tại một điểm tăng 1 bps.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">KEY</span>
+      <div>
+        <div class="t">Key tenors thông dụng</div>
+        <div class="d">Thường chọn: <b>3M · 6M · 1Y · 2Y · 3Y · 5Y · 7Y · 10Y · 20Y · 30Y</b>. Portfolio managers dùng 6–10 key points. KRD tại mỗi key rate cho biết bond nhạy với phần nào của curve nhất — thông tin mà effective duration không cho.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SUM</span>
+      <div>
+        <div class="t">KRD sum ≈ Effective Duration</div>
+        <div class="d">Σ KRD<sub>k</sub> (tổng tất cả key rate durations) ≈ D<sub>eff</sub> khi yield curve dịch <em>song song</em>. Đây là consistency check quan trọng. Nếu tổng KRD khác xa D<sub>eff</sub>, có thể model error hoặc key rates không đủ bao phủ toàn bộ curve.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PROF</span>
+      <div>
+        <div class="t">KRD profile của bond thông dụng</div>
+        <div class="d">Zero-coupon 10Y: KRD tập trung hoàn toàn tại 10Y, zero tại các điểm khác. Bullet bond 10Y: KRD chủ yếu tại 10Y, nhỏ tại 5Y (coupon). Barbell portfolio (2Y + 30Y): KRD lớn ở hai đầu. Ladder: KRD trải đều. KRD profile = "fingerprint" của portfolio.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 10 · KRD — NUMERICAL ILLUSTRATION -->
+<section data-label="KRD numerical illustration" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>10 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Key rate duration · ví dụ số</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">KRD profile của <em class="hi">bullet vs barbell</em> — cùng effective duration.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 10px;">
+      Hai portfolio có cùng D<sub>eff</sub> = 5.0 năm nhưng KRD profile hoàn toàn khác nhau — hành vi rất khác khi curve twist.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-bottom: 14px;">
+    <span class="tag">§ KRD Comparison Table (D<sub>eff</sub> = 5.0 cho cả hai)</span>
+    <table style="width:100%; border-collapse:collapse; font-family: var(--mono); font-size: 16px; margin-top:8px;">
+      <thead>
+        <tr style="border-bottom: 2px solid var(--accent);">
+          <th style="text-align:left; padding:4px 8px;">Tenor</th>
+          <th style="text-align:right; padding:4px 8px;">Bullet (5Y bond)</th>
+          <th style="text-align:right; padding:4px 8px;">Barbell (2Y + 10Y)</th>
+          <th style="text-align:left; padding:4px 12px;">Nhận xét</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="padding:4px 8px;">2Y</td><td style="text-align:right; padding:4px 8px;">0.15</td><td style="text-align:right; padding:4px 8px;">2.20</td><td style="padding:4px 12px;">Barbell nhạy hơn nhiều tại 2Y</td></tr>
+        <tr><td style="padding:4px 8px;">5Y</td><td style="text-align:right; padding:4px 8px;">4.70</td><td style="text-align:right; padding:4px 8px;">0.10</td><td style="padding:4px 12px;">Bullet tập trung tại 5Y</td></tr>
+        <tr><td style="padding:4px 8px;">10Y</td><td style="text-align:right; padding:4px 8px;">0.15</td><td style="text-align:right; padding:4px 8px;">2.70</td><td style="padding:4px 12px;">Barbell nhạy hơn nhiều tại 10Y</td></tr>
+        <tr style="border-top: 2px solid var(--accent); font-weight:700;">
+          <td style="padding:6px 8px;">Tổng KRD</td>
+          <td style="text-align:right; padding:6px 8px;">5.00</td>
+          <td style="text-align:right; padding:6px 8px;">5.00</td>
+          <td style="padding:6px 12px;">Bằng nhau — parallel shift</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="compare" style="margin-top: 8px;">
+    <div class="cc">
+      <div class="head"><em>Nếu curve steepens (2Y giảm, 10Y tăng)</em></div>
+      <dl>
+        <dt>Bullet (5Y)</dt>
+        <dd>Ít bị ảnh hưởng — KRD tại 2Y và 10Y đều nhỏ. Giá gần như không đổi theo chiều ngang.</dd>
+        <dt>Barbell (2Y+10Y)</dt>
+        <dd>KRD lớn ở cả hai đầu: 2Y tăng (giá phần 2Y tăng), 10Y giảm (giá phần 10Y giảm). Net effect phụ thuộc magnitude. Twist risk cao.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Kết luận thực tiễn</em></div>
+      <dl>
+        <dt>Effective duration không đủ</dt>
+        <dd>Chỉ dùng D<sub>eff</sub> để hedge một portfolio → sẽ bị exposed với non-parallel shifts. Cần KRD để hedge từng điểm trên curve.</dd>
+        <dt>Portfolio matching</dt>
+        <dd>Immunization đầy đủ yêu cầu match cả KRD profile, không chỉ tổng duration. Classical immunization chỉ match D<sub>eff</sub> — chưa đủ khi curve twist.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 11 · EMPIRICAL DURATION — CONCEPT -->
+<section data-label="Empirical duration — concept" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>11 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Empirical duration · khái niệm</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Empirical Duration</em> — hồi quy từ dữ liệu thực tế.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Effective duration dùng mô hình lý thuyết. Nhưng với <em>high-yield bonds, emerging market bonds, structured products</em>, model có thể không phản ánh đúng hành vi giá thực tế. Empirical duration dùng <em>hồi quy thống kê</em> từ dữ liệu lịch sử.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-bottom: 14px;">
+    <span class="tag">§ Mô hình Empirical Duration</span>
+    %ΔPrice<sub>i</sub> = α + β × Δr<sub>benchmark,i</sub> + ε<sub>i</sub><br>
+    Trong đó: <b>β = −D<sub>empirical</sub></b> · Δr = thay đổi benchmark yield (e.g., 10Y Treasury) · Hồi quy trên dữ liệu lịch sử hàng ngày/tuần. D<sub>emp</sub> = |β̂|
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 8px;">
+    <div class="tenet">
+      <span class="n">WHY</span>
+      <div>
+        <div class="t">Tại sao cần empirical duration?</div>
+        <div class="d">Với <b>high-yield corporate bonds</b>: giá phụ thuộc nhiều vào <em>credit spread</em>, không chỉ benchmark rate. Khi recession risk tăng, credit spreads widening có thể lớn hơn nhiều rate movement → effective duration (model-based) overstate sensitivity. Empirical duration cho ra ước lượng thực tế hơn.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">EMP</span>
+      <div>
+        <div class="t">Empirical &lt; Effective — tại sao?</div>
+        <div class="d">Với HY bonds: khi rates giảm (economic stress), credit spreads thường <em>tăng đồng thời</em> (flight to quality). Hai lực ngược chiều triệt tiêu → giá HY bond ít nhạy với rates hơn model dự đoán. D<sub>emp</sub> (HY) thường thấp hơn đáng kể so với D<sub>eff</sub> (HY).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">LIM</span>
+      <div>
+        <div class="t">Hạn chế của empirical duration</div>
+        <div class="d">1) Phụ thuộc vào <em>chất lượng và độ dài</em> dữ liệu lịch sử — cần đủ observations, phải include các market cycles khác nhau. 2) <em>Parameter instability</em>: β thay đổi theo regime (crisis vs calm). 3) Không dự đoán được tốt cho <em>unprecedented scenarios</em>.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">USE</span>
+      <div>
+        <div class="t">Khi nào dùng empirical duration</div>
+        <div class="d">Ưu tiên empirical khi: 1) bond có credit risk đáng kể (HY, EM). 2) Structured products phức tạp (CDO, CLO). 3) Cần cross-check mô hình. 4) Thị trường có <em>credit-rate correlation</em> cao. Dùng song song với effective duration để kiểm tra tính hợp lý.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 12 · ONE-FACTOR vs MULTI-FACTOR CURVE RISK -->
+<section data-label="One-factor vs multi-factor" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>12 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Rủi ro đường cong · phân loại</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">One-factor</em> vs <em class="hi">Multi-factor</em> yield curve risk.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Yield curve không chỉ dịch song song — nghiên cứu thực nghiệm cho thấy 3 "factors" giải thích &gt;95% biến động curve: <em>Level · Slope · Curvature</em>. Hiểu đúng từng factor để hedge hiệu quả.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 12px;">
+    <div class="tenet">
+      <span class="n">LVL</span>
+      <div>
+        <div class="t"><em class="hi">Factor 1: Level (Parallel shift)</em></div>
+        <div class="d">Toàn bộ yield curve dịch lên hoặc xuống cùng biên độ. Chiếm ~80–85% tổng biến động curve. <b>Captured by: Duration (D<sub>eff</sub>)</b>. Ví dụ: Fed tăng rates 25bps → toàn bộ curve dịch lên. Portfolio hedge: match duration liability.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SLP</span>
+      <div>
+        <div class="t"><em class="hi">Factor 2: Slope (Twist / Steepening/Flattening)</em></div>
+        <div class="d">Phần ngắn hạn và dài hạn của curve dịch ngược chiều. <em>Steepening</em>: long rates tăng, short rates giảm (hoặc short tăng ít hơn). <em>Flattening</em>: ngược lại. Chiếm ~10–15% biến động. <b>Captured by: Key Rate Duration</b>. Hedge: barbell vs bullet trade.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CVT</span>
+      <div>
+        <div class="t"><em class="hi">Factor 3: Curvature (Butterfly)</em></div>
+        <div class="d">Mid-section của curve (e.g., 5Y–10Y) thay đổi khác với hai đầu (2Y và 30Y). <em>Positive butterfly</em>: mid yields tăng hơn hai đầu (curve humped). <em>Negative butterfly</em>: mid yields giảm hơn hai đầu. Chiếm ~3–5% biến động. <b>Captured by: multi-factor KRD</b>.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PCA</span>
+      <div>
+        <div class="t">Principal Component Analysis (PCA)</div>
+        <div class="d">PCA của yield changes xác định 3 orthogonal factors này một cách tự động từ dữ liệu lịch sử. Factor loadings cho biết từng tenor phản ứng thế nào với mỗi factor. Portfolio managers dùng PCA để đo <em>factor exposure</em> và tính hedging ratios chính xác hơn.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 13 · YIELD CURVE SHIFTS — VISUAL TAXONOMY -->
+<section data-label="Yield curve shifts taxonomy" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>13 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Dạng thay đổi đường cong · phân loại đầy đủ</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">Ba dạng thay đổi curve — <em class="hi">parallel · twist · butterfly</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 14px;">
+    <div class="cc">
+      <div class="head"><em>Parallel Shift (Level)</em></div>
+      <dl>
+        <dt>Mô tả</dt>
+        <dd>Mọi tenor dịch cùng biên độ: Δr<sub>2Y</sub> = Δr<sub>5Y</sub> = Δr<sub>10Y</sub> = Δr<sub>30Y</sub> = +50bps</dd>
+        <dt>Risk measure phù hợp</dt>
+        <dd><b>Effective Duration</b> — đủ để capture 80–85% rủi ro</dd>
+        <dt>Thực tiễn</dt>
+        <dd>Fed funds target rate hike → toàn bộ curve lift. Thông thường nhất trong ngắn hạn.</dd>
+        <dt>Hedge</dt>
+        <dd>Match portfolio duration với liability duration. Treasury futures, interest rate swaps.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Twist (Steepening / Flattening)</em></div>
+      <dl>
+        <dt>Steepening</dt>
+        <dd>Long-end rates tăng nhiều hơn short-end (hoặc short giảm, long không đổi). Curve dốc hơn. Ví dụ: inflation expectations tăng.</dd>
+        <dt>Flattening</dt>
+        <dd>Short-end rates tăng nhiều hơn long-end (Fed hike mạnh, inflation trong tầm kiểm soát). Curve phẳng hơn, có thể inverted.</dd>
+        <dt>Risk measure</dt>
+        <dd><b>Key Rate Duration</b> — cần KRD ở từng tenor để hedge twist risk</dd>
+        <dt>Hedge</dt>
+        <dd>Bullet vs barbell trade. Swap spread trades. Long 5Y, short 2Y + 10Y.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Butterfly shift</span>
+    Mid-curve yields thay đổi so với hai đầu: <b>Positive butterfly</b> = mid-yields tăng hơn wings → curve trở nên "humped" mạnh hơn. <b>Negative butterfly</b> = mid-yields giảm hơn wings → curve phẳng ở giữa. Hedge bằng <em>butterfly trade</em>: long wings (2Y + 30Y), short belly (10Y) hoặc ngược lại. Cần at least 3 KRD points để measure.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 14 · APPLICATION — MANAGING CURVE RISK -->
+<section data-label="Application — managing curve risk" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>14 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Ứng dụng thực tiễn · quản lý rủi ro</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Quản lý <em class="hi">curve risk</em> và <em class="hi">immunization</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Sau khi đo lường, bước tiếp theo là <em>quản lý</em> exposure. Các chiến lược khác nhau phù hợp với từng loại rủi ro.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 12px;">
+    <div class="tenet">
+      <span class="n">IMM</span>
+      <div>
+        <div class="t"><em class="hi">Immunization</em> — match duration</div>
+        <div class="d">Mục tiêu: portfolio value đủ để cover liability bất kể rates thay đổi. Điều kiện cơ bản: <b>D<sub>portfolio</sub> = D<sub>liability</sub></b>. Với single liability: dùng D<sub>mod</sub> hoặc D<sub>eff</sub>. Với multiple liabilities: cash flow matching hoặc duration matching + convexity constraint.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">KRD</span>
+      <div>
+        <div class="t"><em class="hi">KRD Matching</em> — full curve immunization</div>
+        <div class="d">Classic immunization chỉ match tổng duration → exposed với twist. <em>Full KRD matching</em>: match KRD<sub>portfolio,k</sub> = KRD<sub>liability,k</sub> tại mọi key tenor k. Đòi hỏi nhiều instruments hơn nhưng robust hơn với non-parallel shifts. Dùng bởi pension funds, insurance companies.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">HED</span>
+      <div>
+        <div class="t">Hedging Twist Risk</div>
+        <div class="d">Nếu portfolio có KRD lớn tại 10Y nhưng nhỏ tại 2Y → exposed nếu 10Y rates tăng (steepening). Hedge: <em>short 10Y Treasury futures</em> hoặc enter <em>pay-fixed swap</em> ở 10Y. Alternatively: rebalance sang barbell hoặc bullet tùy hướng view.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">EMP</span>
+      <div>
+        <div class="t">Empirical Duration trong Risk Management</div>
+        <div class="d">Với HY bonds trong portfolio: dùng D<sub>emp</sub> thay D<sub>eff</sub> để tính hedge ratio thực tế. Nếu D<sub>emp</sub> (HY) = 3.0 trong khi D<sub>eff</sub> (HY) = 5.5 → hedge theo D<sub>eff</sub> sẽ <em>over-hedge</em> → basis risk lớn. Empirical gives a more realistic hedge ratio.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 15 · SUMMARY TABLE — ALL MEASURES COMPARED -->
+<section data-label="Summary — all risk measures" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>15 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Tổng kết · so sánh các risk measures</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">Bảng so sánh toàn diện — <em class="hi">khi nào dùng measure nào</em>.</h2>
+  </div>
+
+  <div class="rule-box" style="margin-bottom: 10px;">
+    <span class="tag">§ Risk Measure Selection Framework</span>
+    <table style="width:100%; border-collapse:collapse; font-size:15px; font-family:var(--mono); margin-top:8px;">
+      <thead>
+        <tr style="border-bottom:2px solid var(--accent);">
+          <th style="text-align:left;padding:4px 6px;">Measure</th>
+          <th style="text-align:left;padding:4px 6px;">Giả định shift</th>
+          <th style="text-align:left;padding:4px 6px;">Phù hợp nhất</th>
+          <th style="text-align:left;padding:4px 6px;">Không dùng cho</th>
+          <th style="text-align:left;padding:4px 6px;">Cần model?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="padding:3px 6px;">Modified Duration</td><td style="padding:3px 6px;">Parallel, YTM</td><td style="padding:3px 6px;">Option-free fixed bonds</td><td style="padding:3px 6px;">Callable, MBS, floaters</td><td style="padding:3px 6px;">Không</td></tr>
+        <tr><td style="padding:3px 6px;">Effective Duration</td><td style="padding:3px 6px;">Parallel, benchmark curve</td><td style="padding:3px 6px;">All bonds, embedded options</td><td style="padding:3px 6px;">Non-parallel shifts</td><td style="padding:3px 6px;">Có (binomial/OAS)</td></tr>
+        <tr><td style="padding:3px 6px;">Key Rate Duration</td><td style="padding:3px 6px;">Single-rate shift</td><td style="padding:3px 6px;">Twist, butterfly risk</td><td style="padding:3px 6px;">—</td><td style="padding:3px 6px;">Có (pricing model)</td></tr>
+        <tr><td style="padding:3px 6px;">Empirical Duration</td><td style="padding:3px 6px;">Observed market data</td><td style="padding:3px 6px;">HY, EM, structured</td><td style="padding:3px 6px;">Unprecedented scenarios</td><td style="padding:3px 6px;">Không (regression)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="compare" style="margin-top: 8px;">
+    <div class="cc">
+      <div class="head"><em>Convexity Sign Quick Reference</em></div>
+      <dl>
+        <dt>Positive convexity (+)</dt>
+        <dd>Option-free bonds · Putable bonds · MBS tại high rates</dd>
+        <dt>Negative convexity (−)</dt>
+        <dd>Callable bonds (near call, low rates) · MBS tại low rates · IO strips</dd>
+        <dt>Higher convexity = better?</dt>
+        <dd>Ceteris paribus, <em>yes</em> — nhưng market compensates via lower yield (convexity premium). Free lunch không tồn tại.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>KRD Sum Check</em></div>
+      <dl>
+        <dt>Điều kiện</dt>
+        <dd>Σ KRD<sub>k</sub> ≈ D<sub>eff</sub> — đúng khi parallel shift</dd>
+        <dt>Nếu không bằng</dt>
+        <dd>Model inconsistency, key rates không đủ, hoặc interpolation error</dd>
+        <dt>Exam tip</dt>
+        <dd>CFA thường hỏi: "KRD tại 10Y = 4.5, tại 5Y = 0.8, tại 2Y = 0.2 → effective duration ≈ ?" → Đáp án: 5.5 (nếu parallel shift)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 16 · PRACTICE Q1 -->
+<section data-label="Practice Q1" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>16 / 29</span>
+  </div>
+  <div style="margin-top: 48px;">
+    <div class="eyebrow">Practice · Question 1 of 4</div>
+    <h2 class="h-section" style="margin-bottom: 24px;">CFA-Style · <em class="hi">Effective vs Analytical Duration</em></h2>
+  </div>
+
+  <div class="rule-box" style="margin-bottom: 20px;">
+    <span class="tag">Vignette</span>
+    A fixed-income portfolio manager holds a 10-year callable corporate bond with a 5% coupon. The bond's modified (analytical) duration is 7.2 years. Using an OAS-based binomial tree model with a 50 bps parallel shift, the manager calculates PV− = 104.80 and PV+ = 96.20. Current full price is 100.40.<br><br>
+    The manager states: "I will use modified duration to hedge my rate exposure because the bond has a fixed coupon."<br><br>
+    <b>Q: Which duration measure is more appropriate to hedge this position, and why?</b>
+    <ol type="A" style="margin-top:8px;">
+      <li>Modified duration, because the coupon is fixed and does not change with interest rates.</li>
+      <li>Effective duration, because the callable feature means cash flows may change with rates.</li>
+      <li>Modified duration, because effective duration requires assumptions about the OAS model.</li>
+      <li>Effective duration, but only if the bond is currently trading near its call price.</li>
+    </ol>
+  </div>
+
+  <p class="small body--soft"><em>Dịch đề:</em> Một portfolio manager nắm giữ trái phiếu callable 10 năm, coupon 5%. Modified duration = 7.2 năm. Dùng OAS model với shift 50bps: PV− = 104.80, PV+ = 96.20, PV<sub>0</sub> = 100.40. Manager muốn dùng modified duration để hedge vì coupon cố định. Hỏi: measure nào phù hợp hơn và tại sao?</p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 17 · PRACTICE Q1 ANSWER -->
+<section data-label="Practice Q1 — Answer" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>17 / 29</span>
+  </div>
+  <div style="margin-top: 48px;">
+    <div class="eyebrow">Practice · Answer 1 of 4</div>
+    <h2 class="h-section" style="margin-bottom: 20px;">Đáp án: <em class="hi">B — Effective Duration</em></h2>
+  </div>
+
+  <div class="rule-box" style="margin-bottom: 16px;">
+    <span class="tag">§ Tính Effective Duration</span>
+    D<sub>eff</sub> = (PV− − PV+) / (2 × ΔCurve × PV<sub>0</sub>) = (104.80 − 96.20) / (2 × 0.005 × 100.40) = 8.60 / 1.004 = <b>8.57 năm</b>
+  </div>
+
+  <ol class="num-list tight">
+    <li>
+      <span>
+        <span class="step-title">Tại sao B đúng</span>
+        <span class="step-body">Callable bond có embedded option: khi rates giảm, issuer <em>có thể call</em> bond trước maturity. Cash flows (và maturity) thực tế thay đổi theo lãi suất. Modified duration <em>giả định cash flows cố định</em> → không phản ánh đúng rủi ro thực tế. Effective duration (8.57 năm) bắt được sự thay đổi cash flows qua mô hình.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Tại sao A sai</span>
+        <span class="step-body">Coupon cố định không có nghĩa là cash flows cố định với callable bond — call option có thể làm thay đổi <em>timing và số lượng</em> cash flows. Đây là lỗi khái niệm phổ biến.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Tại sao C và D sai</span>
+        <span class="step-body">C: Việc effective duration cần model không làm nó kém phù hợp — đây là ưu điểm, không phải nhược điểm. D: Effective duration <em>luôn</em> phù hợp cho callable bonds, không chỉ khi near call price.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Lưu ý: Modified duration underestimates</span>
+        <span class="step-body">D<sub>mod</sub> = 7.2 năm nhưng D<sub>eff</sub> = 8.57 năm — tại sao effective lại cao hơn? Vì ở mức rates hiện tại, call option ít có khả năng xảy ra → callable bond gần giống straight bond. Nếu rates giảm sâu hơn (gần call price), D<sub>eff</sub> sẽ giảm xuống thấp hơn D<sub>mod</sub>.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 18 · PRACTICE Q2 -->
+<section data-label="Practice Q2" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>18 / 29</span>
+  </div>
+  <div style="margin-top: 48px;">
+    <div class="eyebrow">Practice · Question 2 of 4</div>
+    <h2 class="h-section" style="margin-bottom: 24px;">CFA-Style · <em class="hi">Key Rate Duration &amp; Curve Twist</em></h2>
+  </div>
+
+  <div class="rule-box" style="margin-bottom: 20px;">
+    <span class="tag">Vignette</span>
+    A bond portfolio has an effective duration of 6.0 years. The portfolio's key rate durations are: KRD<sub>2Y</sub> = 0.3, KRD<sub>5Y</sub> = 1.2, KRD<sub>10Y</sub> = 3.8, KRD<sub>30Y</sub> = 0.7. The portfolio's liability has the same effective duration of 6.0 years, but the liability's KRD<sub>10Y</sub> = 5.5 and other KRDs are near zero.<br><br>
+    <b>Q1: Is the portfolio fully immunized against all yield curve movements? Explain.</b><br>
+    <b>Q2: Describe one trade to reduce the KRD mismatch at the 10-year key rate.</b>
+  </div>
+
+  <p class="small body--soft"><em>Dịch đề:</em> Portfolio có D<sub>eff</sub> = 6.0 năm. KRD tại 2Y=0.3, 5Y=1.2, 10Y=3.8, 30Y=0.7. Liability có cùng D<sub>eff</sub> = 6.0 nhưng KRD tập trung tại 10Y = 5.5, các điểm khác ≈ 0. Hỏi: (1) Portfolio có được immunized hoàn toàn không? (2) Trade nào để giảm KRD mismatch tại 10Y?</p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 19 · PRACTICE Q2 ANSWER -->
+<section data-label="Practice Q2 — Answer" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>19 / 29</span>
+  </div>
+  <div style="margin-top: 48px;">
+    <div class="eyebrow">Practice · Answer 2 of 4</div>
+    <h2 class="h-section" style="margin-bottom: 20px;">Đáp án: <em class="hi">Not fully immunized — KRD mismatch</em></h2>
+  </div>
+
+  <ol class="num-list tight">
+    <li>
+      <span>
+        <span class="step-title">Q1: Immunization status</span>
+        <span class="step-body"><b>Không được immunized hoàn toàn.</b> Tổng KRD portfolio = 0.3+1.2+3.8+0.7 = 6.0 = D<sub>eff</sub> ✓ (consistent). Nhưng KRD profile <em>không khớp</em> với liability: Portfolio có KRD<sub>10Y</sub> = 3.8 trong khi liability KRD<sub>10Y</sub> = 5.5 → <b>deficit 1.7 năm tại 10Y</b>. Portfolio cũng dư KRD tại 5Y (1.2 vs ≈0) và 30Y (0.7 vs ≈0). Nếu 10Y yields tăng riêng lẻ (twist), portfolio underperforms liability.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Q2: Trade để giảm KRD mismatch tại 10Y</span>
+        <span class="step-body"><b>Trade: Mua 10Y Treasury + bán 5Y và 30Y Treasury.</b> Tăng KRD<sub>10Y</sub> portfolio từ 3.8 → gần 5.5. Đồng thời giảm KRD tại 5Y và 30Y về gần 0. Alternatively: <em>enter pay-fixed 5Y swap + receive-fixed 10Y swap</em> → tăng 10Y rate exposure, giảm 5Y exposure. Hoặc: <em>long 10Y Treasury futures</em> để tăng KRD<sub>10Y</sub>.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Bài học quan trọng</span>
+        <span class="step-body">Duration matching (D<sub>portfolio</sub> = D<sub>liability</sub>) là <em>cần nhưng chưa đủ</em> để immunize. Full immunization đòi hỏi KRD matching tại mọi key tenor. Đây là distinction quan trọng trong CFA curriculum: classical immunization vs contingent immunization vs full KRD matching.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 20 · PRACTICE Q3 -->
+<section data-label="Practice Q3" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>20 / 29</span>
+  </div>
+  <div style="margin-top: 48px;">
+    <div class="eyebrow">Practice · Question 3 of 4</div>
+    <h2 class="h-section" style="margin-bottom: 24px;">CFA-Style · <em class="hi">Empirical Duration vs Effective Duration</em></h2>
+  </div>
+
+  <div class="rule-box" style="margin-bottom: 20px;">
+    <span class="tag">Vignette</span>
+    An analyst runs a regression of weekly percentage price changes of a BB-rated (high-yield) corporate bond against weekly changes in the 10-year Treasury yield. The regression yields a slope coefficient of −3.1 (R² = 0.42). The bond's effective duration, calculated using an OAS model, is 6.8 years.<br><br>
+    The analyst uses effective duration to calculate the hedge ratio when shorting Treasury futures to hedge rate risk.<br><br>
+    <b>Q: Which statement best explains why using empirical duration would be more appropriate for this hedge?</b>
+    <ol type="A" style="margin-top:8px;">
+      <li>Effective duration uses a model that may overstate the bond's true price sensitivity to benchmark rate changes.</li>
+      <li>Empirical duration is always more accurate than effective duration for any type of bond.</li>
+      <li>The R² of 0.42 is too low, making empirical duration unreliable for this bond.</li>
+      <li>Empirical duration captures the call option value better than effective duration.</li>
+    </ol>
+  </div>
+
+  <p class="small body--soft"><em>Dịch đề:</em> Analyst hồi quy %ΔPrice của HY bond (BB) với Δ10Y Treasury yield → β = −3.1, R² = 0.42. Effective duration từ OAS model = 6.8 năm. Analyst dùng effective duration để tính hedge ratio. Hỏi: tại sao empirical duration (3.1) phù hợp hơn cho hedge này?</p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 21 · PRACTICE Q3 ANSWER -->
+<section data-label="Practice Q3 — Answer" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>20 / 29</span>
+  </div>
+  <div style="margin-top: 48px;">
+    <div class="eyebrow">Practice · Answer 3 of 4</div>
+    <h2 class="h-section" style="margin-bottom: 20px;">Đáp án: <em class="hi">A — Effective duration overstates sensitivity</em></h2>
+  </div>
+
+  <ol class="num-list tight">
+    <li>
+      <span>
+        <span class="step-title">Tại sao A đúng</span>
+        <span class="step-body">HY bonds có <em>credit risk đáng kể</em>. Khi benchmark rates giảm (thường xảy ra trong risk-off environment), credit spreads của HY bonds <em>thường tăng đồng thời</em> (flight to quality). Hai lực ngược chiều: rate giảm → giá tăng, nhưng spread tăng → giá giảm. Net effect: giá HY bond ít nhạy với benchmark rate hơn model dự đoán. D<sub>eff</sub> = 6.8 (OAS model) assume spread không đổi → <em>overstate</em> sensitivity. D<sub>emp</sub> = 3.1 phản ánh correlation thực tế. Dùng D<sub>eff</sub> = 6.8 để hedge → over-hedge → basis risk lớn.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Tại sao B sai</span>
+        <span class="step-body">Empirical duration <em>không phải luôn luôn</em> tốt hơn. Với investment-grade, option-free bonds, effective duration rất chính xác. Empirical chỉ tốt hơn khi có credit-rate correlation không được model capture.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Tại sao C sai</span>
+        <span class="step-body">R² = 0.42 không quá thấp cho bond analysis — nó có nghĩa là 42% biến động giá được giải thích bởi benchmark rate. Thấp vì phần còn lại là credit spread movement — đây chính là lý do dùng empirical, không phải lý do bỏ empirical.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Tại sao D sai</span>
+        <span class="step-body">Bond này là BB straight corporate — không có embedded call option. Empirical không liên quan đến call option ở đây. Effective duration đã bắt được option value nếu có.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 22 · PRACTICE Q4 -->
+<section data-label="Practice Q4" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>22 / 29</span>
+  </div>
+  <div style="margin-top: 48px;">
+    <div class="eyebrow">Practice · Question 4 of 4</div>
+    <h2 class="h-section" style="margin-bottom: 24px;">CFA-Style · <em class="hi">Convexity &amp; MBS</em></h2>
+  </div>
+
+  <div class="rule-box" style="margin-bottom: 20px;">
+    <span class="tag">Vignette</span>
+    A mortgage-backed security (MBS) is priced at par (100). When interest rates decline by 100 bps, the model price rises to 101.8. When interest rates increase by 100 bps, the model price falls to 96.2.<br><br>
+    A comparable straight (option-free) bond has the following model prices under the same scenarios: PV<sub>0</sub> = 100, PV− = 107.5, PV+ = 93.0.<br><br>
+    <b>Q: Which statement correctly describes the convexity characteristics of the MBS compared to the straight bond?</b>
+    <ol type="A" style="margin-top:8px;">
+      <li>The MBS has positive convexity, similar to the straight bond.</li>
+      <li>The MBS has negative convexity because prepayments accelerate when rates fall, compressing price gains.</li>
+      <li>The straight bond has negative convexity because its price falls when rates rise.</li>
+      <li>The MBS has higher effective duration than the straight bond because MBS prices are less sensitive to rate increases.</li>
+    </ol>
+  </div>
+
+  <p class="small body--soft"><em>Dịch đề:</em> MBS giá par=100. PV−(−100bps)=101.8, PV+(+100bps)=96.2. Straight bond: PV−=107.5, PV+=93.0. Hỏi: convexity của MBS so với straight bond như thế nào?</p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 23 · PRACTICE Q4 ANSWER -->
+<section data-label="Practice Q4 — Answer" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>23 / 29</span>
+  </div>
+  <div style="margin-top: 48px;">
+    <div class="eyebrow">Practice · Answer 4 of 4</div>
+    <h2 class="h-section" style="margin-bottom: 20px;">Đáp án: <em class="hi">B — MBS có negative convexity</em></h2>
+  </div>
+
+  <div class="rule-box" style="margin-bottom: 14px;">
+    <span class="tag">§ Tính toán so sánh</span>
+    <table style="width:100%; border-collapse:collapse; font-family:var(--mono); font-size:15px; margin-top:6px;">
+      <thead><tr style="border-bottom:2px solid var(--accent);"><th style="text-align:left;padding:3px 8px;">Metric</th><th style="text-align:right;padding:3px 8px;">MBS</th><th style="text-align:right;padding:3px 8px;">Straight Bond</th></tr></thead>
+      <tbody>
+        <tr><td style="padding:3px 8px;">PV<sub>0</sub></td><td style="text-align:right;padding:3px 8px;">100.0</td><td style="text-align:right;padding:3px 8px;">100.0</td></tr>
+        <tr><td style="padding:3px 8px;">PV− (−100bps)</td><td style="text-align:right;padding:3px 8px;">101.8</td><td style="text-align:right;padding:3px 8px;">107.5</td></tr>
+        <tr><td style="padding:3px 8px;">PV+ (+100bps)</td><td style="text-align:right;padding:3px 8px;">96.2</td><td style="text-align:right;padding:3px 8px;">93.0</td></tr>
+        <tr><td style="padding:3px 8px;">D<sub>eff</sub></td><td style="text-align:right;padding:3px 8px;">(101.8−96.2)/(2×0.01×100) = <b>2.80</b></td><td style="text-align:right;padding:3px 8px;">(107.5−93.0)/(2×0.01×100) = <b>7.25</b></td></tr>
+        <tr><td style="padding:3px 8px;">Cvx<sub>eff</sub></td><td style="text-align:right;padding:3px 8px;">(101.8+96.2−200)/(0.0001×100) = <b>−20.0</b></td><td style="text-align:right;padding:3px 8px;">(107.5+93.0−200)/(0.0001×100) = <b>+50.0</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ol class="num-list tight" style="margin-top:8px;">
+    <li>
+      <span>
+        <span class="step-title">Tại sao B đúng</span>
+        <span class="step-body">MBS Cvx<sub>eff</sub> = −20 (âm) — khi rates giảm, prepayments tăng mạnh → cash flows về sớm → giá không tăng nhiều (chỉ +1.8). Straight bond Cvx<sub>eff</sub> = +50 (dương) — giá tăng mạnh khi rates giảm (+7.5). Đây là định nghĩa của negative convexity: price appreciation bị giới hạn khi rates giảm.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Tại sao D sai</span>
+        <span class="step-body">D<sub>eff</sub> (MBS) = 2.80 &lt; D<sub>eff</sub> (Straight) = 7.25. MBS có <em>thấp hơn</em>, không phải cao hơn. Prepayment rút ngắn effective duration của MBS, không kéo dài.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 24 · EXAM FOCUS CHECKLIST -->
+<section data-label="Exam focus checklist" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>24 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Ôn thi · checklist trọng tâm</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Exam Focus</em> — những điểm thường ra thi.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 12px;">
+    <div class="tenet">
+      <span class="n">1</span>
+      <div>
+        <div class="t">Effective vs Modified Duration</div>
+        <div class="d">Câu hỏi thường: "Loại bond nào phải dùng effective duration?" → Mọi bond có embedded options: callable, putable, MBS, floaters, convertibles. Option-free bonds: có thể dùng modified, nhưng effective cũng okay. Điểm mấu chốt: cash flows có thể thay đổi → phải dùng effective.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">2</span>
+      <div>
+        <div class="t">Negative Convexity</div>
+        <div class="d">Biết ngay: callable bonds (ở low rates) và MBS (ở low rates, high prepayment) → negative convexity. Putable bonds → luôn positive convexity. Câu bẫy: "callable bond luôn có negative convexity" → SAI. Ở high rates, call unlikely, callable ≈ straight → positive convexity.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">3</span>
+      <div>
+        <div class="t">KRD Sum = Effective Duration</div>
+        <div class="d">Nếu đề cho KRD tại nhiều tenors → cộng lại = effective duration (parallel shift assumption). Câu tính toán thường: "KRD<sub>5Y</sub> = 2.3, KRD<sub>10Y</sub> = 3.8, KRD<sub>30Y</sub> = 0.9 → D<sub>eff</sub> = ?" → 7.0. Kiểm tra: Σ KRD ≠ D<sub>eff</sub> → model error hoặc non-parallel shift.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">4</span>
+      <div>
+        <div class="t">Empirical Duration — HY bonds</div>
+        <div class="d">D<sub>emp</sub> &lt; D<sub>eff</sub> cho HY bonds — lý do: credit spread và benchmark rate <em>positively correlated</em> (khi rates giảm, credit spreads tăng trong risk-off). Over-hedge nếu dùng D<sub>eff</sub>. R² của regression thường thấp (30–50%) vì credit spread cũng quan trọng. Không apply cho IG bonds.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 25 · COMMON ERRORS & TRAPS -->
+<section data-label="Common errors &amp; traps" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>25 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Lỗi thường gặp · exam traps</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Bẫy <em class="hi">thường gặp</em> trong đề thi.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Nhầm lẫn phổ biến</em></div>
+      <dl>
+        <dt>Callable bond luôn có D<sub>eff</sub> thấp hơn straight bond</dt>
+        <dd><em>ĐÚNG NHƯNG PHỤ THUỘC CONTEXT</em>: chỉ đúng khi call option có giá trị (in-the-money hoặc near-the-money). Khi rates cao, call out-of-the-money → callable ≈ straight → D<sub>eff</sub> gần bằng nhau.</dd>
+        <dt>D<sub>eff</sub> và D<sub>mod</sub> bằng nhau cho option-free bonds</dt>
+        <dd><em>GẦN ĐÚNG</em>: D<sub>eff</sub> ≈ D<sub>mod</sub> cho option-free bonds khi shift nhỏ. Khác nhau nhỏ do discretization (dùng Δy hữu hạn) vs công thức đóng. Không phải hoàn toàn bằng nhau.</dd>
+        <dt>KRD sum luôn bằng D<sub>eff</sub></dt>
+        <dd><em>CHỈ ĐÚNG KHI PARALLEL SHIFT</em>. Khi curve twist, tổng KRD có thể khác D<sub>eff</sub> trong thực tế vì effective duration đo parallel shift, KRD đo từng điểm riêng lẻ.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Bẫy từ ngữ trong đề</em></div>
+      <dl>
+        <dt>"Option-adjusted" vs "yield-based"</dt>
+        <dd>Effective duration = option-adjusted duration trong nhiều sách. Khi đề nói "OAS-based duration", đó là effective duration. "Yield-based" = analytical/modified duration.</dd>
+        <dt>"Steepening" không phải luôn là rates tăng</dt>
+        <dd>Steepening có thể xảy ra khi short rates giảm (bull steepening) hoặc long rates tăng (bear steepening). KRD tại từng điểm mới phân biệt được.</dd>
+        <dt>Convexity cao hơn KHÔNG phải lúc nào cũng tốt</dt>
+        <dd>Convexity có giá (investors trả yield thấp hơn cho positive convexity). Nếu rates ít biến động, convexity premium "bị lãng phí". Callable bond bù đắp negative convexity bằng yield cao hơn (OAS).</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 26 · FORMULA SHEET -->
+<section data-label="Formula sheet" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>26 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Tổng kết · công thức cần nhớ</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Formula Sheet</em> — Lesson 08.13</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 12px;">
+    <div class="tenet">
+      <span class="n">D</span>
+      <div>
+        <div class="t">Effective Duration</div>
+        <div class="d" style="font-family:var(--mono); font-size:15px;">
+          D<sub>eff</sub> = (PV− − PV+) / (2 × ΔCurve × PV<sub>0</sub>)<br><br>
+          · PV−: giá khi curve giảm Δy<br>
+          · PV+: giá khi curve tăng Δy<br>
+          · PV<sub>0</sub>: giá hiện tại<br>
+          · ΔCurve: biên độ dịch chuyển (thập phân)
+        </div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">Cvx</span>
+      <div>
+        <div class="t">Effective Convexity</div>
+        <div class="d" style="font-family:var(--mono); font-size:15px;">
+          Cvx<sub>eff</sub> = (PV− + PV+ − 2×PV<sub>0</sub>) / (ΔCurve² × PV<sub>0</sub>)<br><br>
+          Điều chỉnh giá đầy đủ:<br>
+          ΔP/P ≈ −D<sub>eff</sub>×ΔCurve + ½×Cvx<sub>eff</sub>×ΔCurve²<br><br>
+          · Cvx &gt; 0: option-free, putable<br>
+          · Cvx &lt; 0: callable, MBS (low rates)
+        </div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">KRD</span>
+      <div>
+        <div class="t">Key Rate Duration</div>
+        <div class="d" style="font-family:var(--mono); font-size:15px;">
+          KRD<sub>k</sub> = −(1/P) × ∂P/∂r<sub>k</sub><br>
+          (giữ các r khác cố định)<br><br>
+          Sum property:<br>
+          Σ KRD<sub>k</sub> ≈ D<sub>eff</sub> (parallel shift)<br><br>
+          ΔP/P ≈ −Σ KRD<sub>k</sub> × Δr<sub>k</sub>
+        </div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">Emp</span>
+      <div>
+        <div class="t">Empirical Duration</div>
+        <div class="d" style="font-family:var(--mono); font-size:15px;">
+          %ΔPrice<sub>i</sub> = α + β×Δr<sub>bench,i</sub> + ε<sub>i</sub><br>
+          D<sub>emp</sub> = |β̂|<br><br>
+          So sánh với D<sub>eff</sub>:<br>
+          · HY bonds: D<sub>emp</sub> &lt; D<sub>eff</sub><br>
+          · IG bonds: D<sub>emp</sub> ≈ D<sub>eff</sub><br>
+          · Low R² = credit spread dominant
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 27 · CONCEPT MAP -->
+<section data-label="Concept map" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>27 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Sơ đồ tư duy · toàn bộ lesson</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Concept Map</em> — Curve-Based Risk Measures.</h2>
+  </div>
+
+  <div class="rule-box" style="margin-bottom: 14px;">
+    <span class="tag">§ Decision Tree: Chọn risk measure phù hợp</span>
+    <div style="font-family:var(--mono); font-size:15px; line-height:1.8; margin-top:8px;">
+      Bond có embedded option? (callable/putable/MBS)<br>
+      ├── <b>CÓ</b> → Dùng <em>Effective Duration</em> (OAS/binomial model)<br>
+      │     ├── Callable/MBS tại low rates → Convexity âm → cẩn thận với price compression<br>
+      │     └── Putable → Convexity dương → cushion khi rates tăng<br>
+      └── <b>KHÔNG</b> (option-free) → Dùng Modified Duration hoặc Effective Duration<br>
+      <br>
+      Yield curve dịch song song?<br>
+      ├── <b>CÓ</b> (parallel shift) → Effective Duration đủ · Σ KRD = D<sub>eff</sub><br>
+      └── <b>KHÔNG</b> (twist/butterfly) → Phải dùng <em>Key Rate Duration</em><br>
+      <br>
+      Bond có credit risk đáng kể? (HY, EM, structured)<br>
+      ├── <b>CÓ</b> → Xem xét <em>Empirical Duration</em> (D<sub>emp</sub> &lt; D<sub>eff</sub>)<br>
+      └── <b>KHÔNG</b> (IG, government) → Effective Duration đáng tin
+    </div>
+  </div>
+
+  <div class="compare" style="margin-top: 8px;">
+    <div class="cc">
+      <div class="head"><em>Yield Curve Factor Hierarchy</em></div>
+      <dl>
+        <dt>Level (80–85%)</dt><dd>Parallel shift → Duration</dd>
+        <dt>Slope (10–15%)</dt><dd>Steepening/Flattening → KRD</dd>
+        <dt>Curvature (3–5%)</dt><dd>Butterfly → Multi-factor KRD</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Convexity Quick Guide</em></div>
+      <dl>
+        <dt>Option-free bonds</dt><dd>+ Convexity luôn dương</dd>
+        <dt>Callable (at/near call)</dt><dd>− Negative convexity</dd>
+        <dt>Putable bonds</dt><dd>+ Luôn positive convexity</dd>
+        <dt>MBS (low rates)</dt><dd>− Negative convexity (prepayment)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 28 · KEY TAKEAWAYS -->
+<section data-label="Key takeaways" class="slide">
+  <div class="run-header">
+    <span>08.13 — Curve-Based &amp; Empirical Risk Measures</span>
+    <span class="rule"></span>
+    <span>28 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Kết luận · Key takeaways</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">5 điểm cốt lõi</em> cần nhớ sau lesson này.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Effective Duration — công cụ đúng cho bonds có options</span>
+        <span class="step-body">Modified duration giả định cash flows cố định — sai cho callable, putable, MBS. Effective duration dùng mô hình định giá, cho phép cash flows thay đổi theo lãi suất. Luôn dùng effective duration khi bond có embedded options.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Convexity âm = giá tăng ít, giảm nhiều — kém có lợi</span>
+        <span class="step-body">Callable bonds và MBS (low rates) có negative convexity. Thị trường bù đắp bằng yield cao hơn (OAS spread). Không có free lunch: positive convexity có chi phí là yield thấp hơn.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">KRD cần thiết khi curve không dịch song song</span>
+        <span class="step-body">Duration chỉ capture parallel shift. KRD capture twist (steepening/flattening) và butterfly. Full immunization đòi hỏi KRD matching tại mọi key tenor, không chỉ tổng duration. Σ KRD ≈ D<sub>eff</sub> là consistency check.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Empirical duration — dùng khi model không đáng tin</span>
+        <span class="step-body">HY bonds, EM bonds, structured products: credit spread và benchmark rate correlated → D<sub>emp</sub> &lt; D<sub>eff</sub>. Dùng D<sub>eff</sub> để hedge → over-hedge → basis risk. Empirical duration từ hồi quy phản ánh hành vi giá thực tế.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">3 factors của yield curve: Level · Slope · Curvature</span>
+        <span class="step-body">PCA cho thấy 3 factors giải thích &gt;95% biến động. Level (parallel shift) → Duration. Slope (twist) → KRD. Curvature (butterfly) → Multi-factor KRD. Manager phải hiểu và hedge cả 3 factors để quản lý curve risk đầy đủ.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.13 — Curve-Based and Empirical Risk Measures</span>
+  </div>
+</section>
+
+
+<!-- 29 · NEXT LESSON -->
+<section data-label="Next lesson" class="slide section-break">
+  <div class="band">
+    <div class="lbl">NEXT</div>
+    <div class="n">14</div>
+    <div class="lbl">Credit Risk</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Tiếp theo · Lesson 08.14</div>
+    <h2>Tiếp theo · Lesson 08.14 —<br><em>Credit Risk.</em></h2>
+    <ul class="toc">
+      <li>Credit risk = default risk + credit spread risk</li>
+      <li>Expected loss = PD × LGD · Recovery rate · Loss given default</li>
+      <li>Credit ratings — investment grade vs high yield, rating agencies</li>
+      <li>Credit spread · OAS · Z-spread · credit spread duration</li>
+      <li>Structural models (Merton) vs reduced-form models</li>
+      <li>Credit default swaps (CDS) — protection buyer/seller, CDS spread</li>
+    </ul>
+  </div>
+</section>
+
+
+</deck-stage>
+</body>
+</html>

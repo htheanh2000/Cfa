@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>CFA L1 · FSA 04.06 — Long-Lived Assets</title>
+<title>CFA L1 · FSA 04.06 — Inventory Analysis</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -24,558 +24,552 @@
 <section data-label="Title" class="slide title-slide">
   <div class="left">
     <div class="mark">CFA Institute · Level I</div>
-    <h1 class="main">Long-Lived<br><em>Assets.</em></h1>
+    <h1 class="main">Inventory<br><em>Analysis.</em></h1>
     <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 04 · Lesson 04.06 · FSA</div>
   </div>
   <div class="right">
-    <div class="mark">Module 06 · Long-lived assets — capitalize, depreciate, impair, derecognize</div>
+    <div class="mark">Module 06 · Cost flow assumptions &amp; valuation</div>
     <dl class="meta-grid">
       <div><dt>Môn</dt><dd>FSA</dd></div>
       <div><dt>Module</dt><dd>06</dd></div>
       <div><dt>Lesson</dt><dd>04.06</dd></div>
       <div><dt>Thời lượng</dt><dd>90 min</dd></div>
     </dl>
-    <div class="mark">capitalize vs expense · depreciation · amortization · goodwill · impairment · revaluation · derecognition</div>
+    <div class="mark">FIFO · LIFO · WA · LIFO reserve · NRV</div>
   </div>
 </section>
 
 
-<!-- 02 · AGENDA / TOC -->
+<!-- 02 · AGENDA -->
 <section data-label="Agenda" class="slide section-break">
   <div class="band">
     <div class="lbl">PART</div>
     <div class="n">06</div>
-    <div class="lbl">Long-lived assets</div>
+    <div class="lbl">Inventory</div>
   </div>
   <div class="content">
-    <div class="eyebrow">Today's lesson · Table of contents</div>
-    <h2>Assets that <em>last</em><br>more than one year.</h2>
+    <div class="eyebrow">Today's lesson</div>
+    <h2>Cost flows, <em>reserves</em>,<br>and write-downs.</h2>
     <ul class="toc">
-      <li class="active">01 · Capitalization vs Expensing decisions</li>
-      <li>02 · Depreciation methods — SL, DDB, Units of production</li>
-      <li>03 · Amortization of finite-life intangibles</li>
-      <li>04 · Goodwill &amp; impairment (IFRS vs US GAAP)</li>
-      <li>05 · Revaluation model (IFRS) · Derecognition</li>
-      <li>06 · Investment property · Disclosures &amp; ratios</li>
-      <li>07 · Practice — 3 CFA-style questions</li>
+      <li class="active">01 · Inventory components — COGS, WIP, raw materials</li>
+      <li>02 · 4 cost flow assumptions — FIFO, LIFO, WA, Specific ID</li>
+      <li>03 · LIFO reserve &amp; restatement to FIFO</li>
+      <li>04 · LIFO liquidation &amp; IFRS vs US GAAP</li>
+      <li>05 · Lower of cost or NRV — write-downs</li>
+      <li>06 · Practice — 3 CFA-style questions</li>
     </ul>
   </div>
 </section>
 
 
-<!-- 03 · CAPITALIZE VS EXPENSE — concept -->
-<section data-label="Capitalize concept" class="slide">
+<!-- 03 · INVENTORY COMPONENTS -->
+<section data-label="Inventory components" class="slide">
   <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06</span>
     <span class="rule"></span>
-    <span>03 / 29</span>
+    <span>03 / 26</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Decision · accounting policy</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Capitalize</em> or expense?</h2>
+    <div class="eyebrow">Inventory · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What sits in <em class="hi">Inventory</em>.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Quyết định cốt lõi khi firm bỏ tiền mua / xây / phát triển một asset: ghi nhận như <em>asset</em> trên BS rồi spread cost qua nhiều năm, hay <em>expense</em> ngay vào IS kỳ này.
+      Inventory là current asset — hàng hóa giữ để bán (hoặc sẽ bán). Khi bán, cost chuyển từ BS sang IS dưới dạng <em>COGS</em>. Cách định giá inventory ảnh hưởng trực tiếp đến earnings.
     </p>
   </div>
 
-  <div class="rule-box">
-    <span class="tag">§ Capitalization criterion</span>
-    Capitalize khi (1) firm <b>controls</b> resource, (2) <b>future economic benefits</b> chảy về firm, (3) cost có thể <b>reliably measured</b>, và (4) benefit kéo dài <b>&gt; 1 năm</b>. Nếu thiếu điều kiện → <em>expense</em>.
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">RM</span>
+      <div>
+        <div class="t"><em class="hi">Raw Materials</em></div>
+        <div class="d">Nguyên vật liệu chưa đưa vào sản xuất. Vd: thép, bông, hạt nhựa.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">WIP</span>
+      <div>
+        <div class="t"><em class="hi">Work-in-Progress</em></div>
+        <div class="d">Đang trong quá trình sản xuất, chưa hoàn thiện. Bao gồm material + labor + overhead đã incur.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">FG</span>
+      <div>
+        <div class="t"><em class="hi">Finished Goods</em></div>
+        <div class="d">Hoàn thiện, sẵn sàng bán. Khi bán → chuyển thành <em>COGS</em> trên Income Statement.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">$</span>
+      <div>
+        <div class="t"><em class="hi">Capitalized costs</em></div>
+        <div class="d">Material + direct labor + manufacturing overhead. Loại trừ: abnormal waste, storage (trừ WIP), admin, selling.</div>
+      </div>
+    </div>
   </div>
-
-  <p class="fine-muted-sm">
-    § Borrowing costs gắn với <em>self-constructed asset</em> (qualifying asset) được capitalize trong giai đoạn xây — IFRS bắt buộc, US GAAP cũng yêu cầu cho qualifying assets. Sau khi asset ready for use → interest expense bình thường.
-  </p>
 
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06 — COMPONENTS</span>
   </div>
 </section>
 
 
-<!-- 04 · CAPITALIZE VS EXPENSE — compare -->
-<section data-label="Capitalize vs Expense" class="slide">
+<!-- 04 · COST FLOW EQUATION -->
+<section data-label="Cost flow equation" class="slide">
   <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06</span>
     <span class="rule"></span>
-    <span>04 / 29</span>
+    <span>04 / 26</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Financial statement effects</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Capitalize</em> vs <em class="hi">Expense</em>.</h2>
+    <div class="eyebrow">Cost flow · identity</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">inventory equation</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ The identity</span>
+    <div class="eq"><span class="var">COGS</span> = <span class="var">Beg Inv</span> + <span class="var">Purchases</span> − <span class="var">End Inv</span></div>
+    <div class="note">Cost flow tổng cộng là hằng số: tổng cost available = beginning + purchases. Phần đã bán → COGS. Phần còn lại → ending inventory. <b>Cost flow assumption</b> quyết định tỷ lệ chia, không phải tổng.</div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Trade-off — Gán cost cao vào COGS → ending inventory thấp, COGS cao, NI thấp. Gán cost cao vào ending inv → COGS thấp, NI cao. Chọn lựa này phụ thuộc cost flow assumption (FIFO/LIFO/WA).
+  </p>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Rising prices → FIFO và LIFO cho kết quả rất khác</span>
+        <span class="step-body">FIFO gán oldest (rẻ) cost vào COGS → COGS thấp, NI cao. LIFO gán newest (đắt) cost vào COGS → COGS cao, NI thấp, tax thấp.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Falling prices → pattern đảo ngược</span>
+        <span class="step-body">FIFO gán oldest (đắt) vào COGS → NI thấp hơn. LIFO gán newest (rẻ) vào COGS → NI cao hơn.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.06 — EQUATION</span>
+  </div>
+</section>
+
+
+<!-- 05 · 4 COST FLOW ASSUMPTIONS -->
+<section data-label="4 cost flow methods" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.06</span>
+    <span class="rule"></span>
+    <span>05 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Cost flow · 4 methods</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">4 assumptions</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Cost flow assumption không cần match physical flow. Là lựa chọn <em>accounting</em>, quyết định cost nào gán vào COGS và cost nào giữ lại trong ending inventory.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">FIFO</em> · First-In-First-Out</div>
+        <div class="d">Oldest costs → COGS. Newest costs → ending inv. Rising prices: <em>low COGS, high NI, high ending inv</em>.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">LIFO</em> · Last-In-First-Out</div>
+        <div class="d">Newest costs → COGS. Oldest → ending inv. Rising prices: <em>high COGS, low NI, low tax, LOW ending inv</em>. Chỉ US GAAP.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Weighted Average</em></div>
+        <div class="d">Blended cost = Total cost available / Total units. COGS và ending inv dùng cùng unit cost trung bình.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Specific Identification</em></div>
+        <div class="d">Gán cost trực tiếp lên từng unit. Dùng cho hàng unique: xe hơi, bất động sản, tác phẩm nghệ thuật.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.06 — 4 METHODS</span>
+  </div>
+</section>
+
+
+<!-- 06 · FIFO vs LIFO COMPARE -->
+<section data-label="FIFO vs LIFO" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.06</span>
+    <span class="rule"></span>
+    <span>06 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Comparison · rising prices</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">FIFO</em> vs <em class="hi">LIFO</em>.</h2>
   </div>
 
   <div class="compare" style="margin-top: 16px;">
     <div class="cc">
-      <div class="head">Capitalize</div>
+      <div class="head">FIFO — rising prices</div>
       <dl>
-        <dt>Balance sheet</dt>
-        <dd>Asset ↑, lifetime &gt; 1 năm. Cost được spread qua depreciation/amortization</dd>
-        <dt>Income statement</dt>
-        <dd>Year 1 NI <em>cao hơn</em> (chỉ tính 1 phần expense); những năm sau NI thấp hơn (depreciation drag)</dd>
-        <dt>Cash flow</dt>
-        <dd>Outflow đi vào <em>CFI</em> (investing), không phải CFO → CFO trông tốt hơn</dd>
-        <dt>Equity / ratios</dt>
-        <dd>Total assets ↑, equity ↑ ban đầu. ROA, ROE <em>thấp hơn</em> early years (denominator lớn)</dd>
+        <dt>COGS</dt>
+        <dd>Lower (oldest/cheapest costs)</dd>
+        <dt>Net Income</dt>
+        <dd>Higher</dd>
+        <dt>Tax</dt>
+        <dd>Higher</dd>
+        <dt>Ending Inventory</dt>
+        <dd>Higher (newest/priciest costs on BS)</dd>
+        <dt>Working capital</dt>
+        <dd>Higher (inv component lớn hơn)</dd>
+        <dt>Gross margin</dt>
+        <dd>Phóng đại — COGS không phản ánh replacement cost</dd>
       </dl>
     </div>
     <div class="cc">
-      <div class="head">Expense</div>
+      <div class="head">LIFO — rising prices</div>
       <dl>
-        <dt>Balance sheet</dt>
-        <dd>Không tạo asset. Cost hit ngay kỳ phát sinh</dd>
-        <dt>Income statement</dt>
-        <dd>Year 1 NI <em>thấp hơn</em> (full expense); những năm sau NI cao hơn (no drag)</dd>
-        <dt>Cash flow</dt>
-        <dd>Outflow đi vào <em>CFO</em> (operating) → CFO thấp hơn ngay năm đầu</dd>
-        <dt>Equity / ratios</dt>
-        <dd>Lower total assets &amp; equity. ROA, ROE <em>cao hơn</em> các năm sau (denominator nhỏ)</dd>
+        <dt>COGS</dt>
+        <dd>Higher (newest/priciest costs)</dd>
+        <dt>Net Income</dt>
+        <dd>Lower</dd>
+        <dt>Tax</dt>
+        <dd>Lower — <em>cash flow advantage</em></dd>
+        <dt>Ending Inventory</dt>
+        <dd>Lower — understated (oldest/cheapest)</dd>
+        <dt>Working capital</dt>
+        <dd>Lower</dd>
+        <dt>Gross margin</dt>
+        <dd>Realistic — COGS gần current replacement cost</dd>
       </dl>
     </div>
   </div>
 
   <p class="fine-muted-sm">
-    § Lifetime <em>total</em> NI giống nhau giữa 2 phương pháp — chỉ khác <b>timing</b>. Capitalization làm earnings smoother; expensing tạo earnings volatility nhưng conservative hơn.
+    § Key trade-off — LIFO cho <em>better matching</em> trên IS (COGS hiện thời) nhưng <em>worse BS</em> (inv understated). FIFO ngược lại: BS current, IS "stale" cost matching.
   </p>
 
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06 — FIFO vs LIFO</span>
   </div>
 </section>
 
 
-<!-- 05 · DEPRECIATION OVERVIEW -->
-<section data-label="Depreciation methods" class="slide">
+<!-- 07 · LIFO RESERVE -->
+<section data-label="LIFO reserve" class="slide">
   <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06</span>
     <span class="rule"></span>
-    <span>05 / 29</span>
+    <span>07 / 26</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Allocate cost over useful life</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Depreciation</em> methods.</h2>
+    <div class="eyebrow">LIFO reserve · definition</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">LIFO reserve</em>.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Sau khi capitalize PP&amp;E, firm phải <em>allocate</em> cost qua useful life. CFA L1 tập trung 3 phương pháp: Straight-line, Double-declining balance (DDB), và Units of production.
+      US GAAP yêu cầu firm dùng LIFO phải disclose <em>LIFO reserve</em> trong footnotes — cho phép analyst restate về FIFO để so sánh cross-company.
     </p>
   </div>
 
-  <ol class="num-list tight" style="margin-top: 12px;">
+  <div class="formula-box">
+    <span class="fmt-label">§ Definition</span>
+    <div class="eq"><span class="var">LIFO Reserve</span> = <span class="var">Inv<sub>FIFO</sub></span> − <span class="var">Inv<sub>LIFO</sub></span></div>
+    <div class="note">Là khoản chênh lệch giữa inventory LIFO (trên BS) và inventory FIFO (hypothetical). Trong rising-price environment, reserve dương và tăng theo thời gian.</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Interpretation</span>
+    LIFO reserve lớn = có <em>cumulative tax saving</em> đáng kể. ΔLIFO reserve (change) = khác biệt giữa COGS<sub>FIFO</sub> và COGS<sub>LIFO</sub> trong năm.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.06 — RESERVE</span>
+  </div>
+</section>
+
+
+<!-- 08 · RESTATEMENT FORMULAS -->
+<section data-label="Restatement formulas" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.06</span>
+    <span class="rule"></span>
+    <span>08 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Restatement · LIFO → FIFO</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Convert <em class="hi">LIFO to FIFO</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Balance Sheet adjustments</span>
+    <div class="eq"><span class="var">Inv<sub>FIFO</sub></span> = <span class="var">Inv<sub>LIFO</sub></span> + <span class="var">LIFO Reserve</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Cash</span> −= <span class="var">LIFO Reserve</span> · <span class="var">t</span>  ·  <span class="var">Equity</span> += <span class="var">LIFO Reserve</span> · (1 − <span class="var">t</span>)</div>
+    <div class="note">Tăng inventory = tăng BS assets. Nhưng phải trừ deferred tax (reserve × t) từ cash/liabilities; phần còn lại (1−t) chảy vào retained earnings.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Income Statement adjustments</span>
+    <div class="eq"><span class="var">COGS<sub>FIFO</sub></span> = <span class="var">COGS<sub>LIFO</sub></span> − <span class="var">Δ LIFO Reserve</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Δ NI</span> = <span class="var">Δ LIFO Reserve</span> · (1 − <span class="var">t</span>)</div>
+    <div class="note">Nếu reserve tăng trong năm → COGS<sub>LIFO</sub> &gt; COGS<sub>FIFO</sub> → restating giảm COGS, tăng NI bởi ΔReserve·(1−t).</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.06 — RESTATE</span>
+  </div>
+</section>
+
+
+<!-- 09 · LIFO LIQUIDATION -->
+<section data-label="LIFO liquidation" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.06</span>
+    <span class="rule"></span>
+    <span>09 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">LIFO · liquidation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">LIFO liquidation</em> distortion.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Xảy ra khi firm LIFO bán quá khối lượng purchase trong năm → "moi" vào LIFO layers cũ có cost rất thấp → COGS artificially low → margin và NI phóng đại, <em>không sustainable</em>.
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
     <li>
       <span>
-        <span class="step-title">Straight-line (SL) — phẳng đều mỗi năm</span>
-        <span class="step-body">Phù hợp asset cho benefit ổn định qua thời gian (buildings, office furniture). Đơn giản, dễ so sánh peer-to-peer.</span>
+        <span class="step-title">Trigger — inventory quantities giảm</span>
+        <span class="step-body">Firm sell more than they purchase (demand spike, plant shutdown, strategy change). Old low-cost layers exposed.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Double-declining balance (DDB) — accelerated</span>
-        <span class="step-body">Front-load expense vào early years. Phù hợp asset mất giá nhanh thời gian đầu (vehicles, tech equipment). Bỏ qua salvage value khi tính đến lúc carrying ≈ salvage.</span>
+        <span class="step-title">Impact — COGS artificially low</span>
+        <span class="step-body">Cost từ decade cũ match với current revenue → gross margin và NI tăng vọt. Analyst phải <em>remove</em> hiệu ứng này khi đánh giá sustainable earnings.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Units of production — gắn với output</span>
-        <span class="step-body">Expense biến đổi theo sản lượng thực tế (mining equipment, aircraft engine theo flight hours). Match revenue tốt, nhưng dao động.</span>
+        <span class="step-title">Red flag — tax consequence</span>
+        <span class="step-body">Management có incentive giảm inv trước tax cut (để realize low-cost layers ở rate cũ). Cũng có thể signal firm đang shrinking business.</span>
       </span>
     </li>
   </ol>
 
   <p class="fine-muted-sm">
-    § <b>Component depreciation</b> — IFRS bắt buộc tách asset thành parts có useful life khác nhau và depreciate riêng (e.g. aircraft: airframe vs engine). US GAAP cho phép nhưng không bắt buộc.
+    § Adjustment — Analyst nên exclude LIFO liquidation gain khi forecast future earnings. Disclosure thường ở footnote "Inventories" trong 10-K.
   </p>
 
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06 — LIQUIDATION</span>
   </div>
 </section>
 
 
-<!-- 06 · SL + DDB FORMULAS -->
-<section data-label="SL + DDB" class="slide">
+<!-- 10 · IFRS vs US GAAP -->
+<section data-label="IFRS vs US GAAP" class="slide">
   <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06</span>
     <span class="rule"></span>
-    <span>06 / 29</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Formulas · SL &amp; DDB</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Straight-line vs <em class="hi">Double-declining</em>.</h2>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Straight-line depreciation</span>
-    <div class="eq"><span class="var">Dep<sub>SL</sub></span> = ( <span class="var">Cost</span> − <span class="var">Salvage</span> ) / <span class="var">Useful Life</span></div>
-    <div class="note"><b>Cost</b> bao gồm purchase price + freight + installation + test runs. <b>Salvage value</b> là estimated residual tại cuối useful life. Mỗi năm expense bằng nhau.</div>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Double-declining balance (DDB)</span>
-    <div class="eq"><span class="var">Dep<sub>DDB,t</sub></span> = ( 2 / <span class="var">Useful Life</span> ) × <span class="var">Carrying Value<sub>t−1</sub></span></div>
-    <div class="note"><b>KHÔNG trừ salvage</b> trong công thức. Áp dụng rate cố định lên carrying value (declining mỗi năm). Khi carrying ≈ salvage → ngừng depreciate. Có thể switch sang SL ở cuối life để hoàn tất.</div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Ví dụ: Cost $100k, salvage $10k, life 5 năm. SL = (100−10)/5 = $18k/năm. DDB year 1 = (2/5) × 100 = $40k; year 2 = (2/5) × 60 = $24k → front-loaded.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
-  </div>
-</section>
-
-
-<!-- 07 · UNITS OF PRODUCTION -->
-<section data-label="Units of production" class="slide">
-  <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
-    <span class="rule"></span>
-    <span>07 / 29</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Formula · usage-based</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Units of production</em> method.</h2>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Units-of-production depreciation</span>
-    <div class="eq"><span class="var">Dep<sub>t</sub></span> = ( <span class="var">Cost</span> − <span class="var">Salvage</span> ) × ( <span class="var">Units<sub>t</sub></span> / <span class="var">Total Units</span> )</div>
-    <div class="note"><b>Total Units</b> = estimated lifetime output (barrels, miles, machine-hours). <b>Units<sub>t</sub></b> = actual output kỳ này. Expense biến đổi theo sản lượng — match revenue cycle tốt.</div>
-  </div>
-
-  <div class="take" style="margin-top: 16px;">
-    <b>When to use</b> — extractive industries (oil &amp; gas wells, mines), aircraft (flight hours), trucking fleets (miles driven). Khi useful life đo bằng <em>output</em>, không phải <em>time</em>.
-  </div>
-
-  <p class="fine-muted-sm">
-    § Tổng depreciation lifetime của cả 3 phương pháp đều = Cost − Salvage. Khác nhau chỉ ở <b>timing</b> — ảnh hưởng NI, ROA, ROE từng năm nhưng không thay đổi cumulative.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
-  </div>
-</section>
-
-
-<!-- 08 · AMORTIZATION INTANGIBLES -->
-<section data-label="Amortization" class="slide">
-  <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
-    <span class="rule"></span>
-    <span>08 / 29</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Intangibles · finite life</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Amortization</em> of intangibles.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Intangibles có useful life xác định (patent 20 năm, license 10 năm, software 5 năm) phải được amortize qua useful life. Concept giống depreciation nhưng áp cho intangibles.
-    </p>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Straight-line amortization (most common)</span>
-    <div class="eq"><span class="var">Amort<sub>annual</sub></span> = ( <span class="var">Cost</span> − <span class="var">Residual</span> ) / <span class="var">Useful Life</span></div>
-    <div class="note">Residual value của intangibles thường = 0 (patent expire không còn giá trị). Useful life = lower of <em>legal life</em> hoặc <em>economic life</em>.</div>
-  </div>
-
-  <div class="tenets-grid" style="margin-top: 14px;">
-    <div class="tenet">
-      <span class="n">FIN</span>
-      <div>
-        <div class="t"><em class="hi">Finite life</em> — amortize</div>
-        <div class="d">Patent, license, copyright, customer list, software. SL method dominant. Test impairment khi có triggering event.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">INF</span>
-      <div>
-        <div class="t"><em class="hi">Indefinite life</em> — không amortize</div>
-        <div class="d">Brand name, trademark renewable, broadcast license renewable. Tested annually for impairment. Goodwill thuộc nhóm này.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
-  </div>
-</section>
-
-
-<!-- 09 · GOODWILL -->
-<section data-label="Goodwill" class="slide">
-  <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
-    <span class="rule"></span>
-    <span>09 / 29</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">M&amp;A · indefinite-life intangible</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Goodwill</em> — không amortize.</h2>
-  </div>
-
-  <div class="rule-box">
-    <span class="tag">§ Goodwill rule</span>
-    Goodwill phát sinh <b>chỉ trong M&amp;A</b> khi <em>purchase price &gt; fair value of net identifiable assets</em>. <b>KHÔNG amortize</b> dưới cả IFRS và US GAAP. Tested for impairment <b>ít nhất annually</b> (và khi có indicator). Impairment loss <b>KHÔNG reverse</b> (kể cả IFRS).
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 18px;">
-    <li>
-      <span>
-        <span class="step-title">Purchase price allocation</span>
-        <span class="step-body">Acquirer trả $500M cho target. Fair value of identifiable net assets = $350M. Goodwill = <em>$150M</em> = premium for synergies, workforce, brand không ghi riêng được.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Internally generated goodwill — KHÔNG ghi nhận</span>
-        <span class="step-body">Brand value tự build, R&amp;D synergies, workforce expertise → expense ngay, không tạo goodwill on BS. Chỉ <em>acquired</em> goodwill mới capitalized.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Impairment test — annual</span>
-        <span class="step-body">IFRS: test cash-generating unit (CGU). US GAAP: test reporting unit. Loss = carrying − recoverable (IFRS) hoặc carrying − fair value (GAAP, post-2017 simplified).</span>
-      </span>
-    </li>
-  </ol>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
-  </div>
-</section>
-
-
-<!-- 10 · IMPAIRMENT FORMULA -->
-<section data-label="Impairment formula" class="slide">
-  <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
-    <span class="rule"></span>
-    <span>10 / 29</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Write-down · long-lived assets</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Impairment</em> — measurement.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Impairment xảy ra khi carrying value của asset vượt amount có thể recover. Khi đó firm phải write down asset xuống recoverable amount, ghi loss vào IS.
-    </p>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ IFRS — single-step (IAS 36)</span>
-    <div class="eq"><span class="var">Impairment Loss</span> = <span class="var">Carrying Value</span> − <span class="var">Recoverable Amount</span></div>
-    <div class="note"><b>Recoverable Amount</b> = <em>higher</em> of (a) fair value − costs to sell, (b) value in use (PV of future cash flows). Test khi có indicator. Recovery <em>được phép</em> reverse cho non-goodwill assets, capped tại original carrying.</div>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ US GAAP — two-step (ASC 360)</span>
-    <div class="eq"><span class="var">Step 1</span>: Carrying &gt; <span class="var">Undiscounted CF</span>?</div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">Step 2</span> if yes: Loss = <span class="var">Carrying</span> − <span class="var">Fair Value</span></div>
-    <div class="note">Step 1 = recoverability test (so undiscounted future CF). Nếu fail, step 2 đo loss bằng <em>fair value</em>, không phải undiscounted CF. Impairment <b>KHÔNG được reverse</b> dưới US GAAP (held for use).</div>
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
-  </div>
-</section>
-
-
-<!-- 11 · IFRS vs US GAAP IMPAIRMENT -->
-<section data-label="Impairment compare" class="slide">
-  <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
-    <span class="rule"></span>
-    <span>11 / 29</span>
+    <span>10 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Standards comparison</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">IFRS</em> vs <em class="hi">US GAAP</em> — impairment.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">IFRS</em> vs <em class="hi">US GAAP</em>.</h2>
   </div>
 
   <div class="compare" style="margin-top: 16px;">
     <div class="cc">
-      <div class="head">IFRS · IAS 36</div>
+      <div class="head">IFRS</div>
       <dl>
-        <dt>Trigger</dt>
-        <dd>Khi <em>indicator</em> xuất hiện (mọi kỳ); goodwill &amp; indefinite-life intangibles test annually</dd>
-        <dt>Test</dt>
-        <dd><b>One-step</b> — carrying vs recoverable amount</dd>
-        <dt>Recoverable</dt>
-        <dd>Higher of fair value − cost to sell, hoặc value in use (PV CF)</dd>
-        <dt>Loss</dt>
-        <dd>Carrying − Recoverable</dd>
+        <dt>Cost methods</dt>
+        <dd>FIFO &amp; Weighted Average <em>only</em> — <b>LIFO prohibited</b></dd>
+        <dt>Valuation rule</dt>
+        <dd>Lower of <em>cost</em> or <em>NRV</em> (Net Realizable Value)</dd>
+        <dt>Write-down</dt>
+        <dd>Required khi cost &gt; NRV</dd>
         <dt>Reversal</dt>
-        <dd><em>Cho phép</em> cho non-goodwill assets (capped). Goodwill: <em>không reverse</em></dd>
+        <dd><em>Allowed</em> — reverse up to original cost nếu NRV phục hồi</dd>
       </dl>
     </div>
     <div class="cc">
-      <div class="head">US GAAP · ASC 360</div>
+      <div class="head">US GAAP</div>
       <dl>
-        <dt>Trigger</dt>
-        <dd>Khi <em>indicator</em> xuất hiện; goodwill &amp; indefinite intangibles test annually</dd>
-        <dt>Test</dt>
-        <dd><b>Two-step</b> — recoverability test, sau đó đo loss</dd>
-        <dt>Step 1</dt>
-        <dd>Carrying vs <em>undiscounted</em> future cash flows</dd>
-        <dt>Loss</dt>
-        <dd>Carrying − Fair Value (chỉ nếu step 1 fail)</dd>
+        <dt>Cost methods</dt>
+        <dd>FIFO, LIFO, WA, Specific ID — <em>all allowed</em></dd>
+        <dt>Valuation rule</dt>
+        <dd>Lower of <em>cost</em> or <em>market</em> (LCM) cho LIFO/retail;<br>Lower of cost or NRV cho các method khác</dd>
+        <dt>Write-down</dt>
+        <dd>Required khi cost &gt; market (hoặc NRV)</dd>
         <dt>Reversal</dt>
-        <dd><em>KHÔNG cho phép</em> reverse cho assets held for use (kể cả non-goodwill)</dd>
+        <dd><em>Prohibited</em> — once written down, stays down</dd>
       </dl>
     </div>
   </div>
 
   <p class="fine-muted-sm">
-    § Hệ quả analyst — IFRS impairment thường <em>nhạy hơn</em> (one-step, test ngay khi carrying &gt; recoverable). US GAAP cho asset "miễn nhiễm" lâu hơn (chỉ impair khi carrying &gt; undiscounted CF — threshold lỏng hơn).
+    § Comparability issue — US firm dùng LIFO không thể so sánh trực tiếp với EU firm FIFO. Analyst restate LIFO → FIFO dùng LIFO reserve trước khi so sánh ratios.
   </p>
 
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06 — IFRS vs GAAP</span>
   </div>
 </section>
 
 
-<!-- 12 · REVALUATION MODEL -->
-<section data-label="Revaluation" class="slide">
+<!-- 11 · LOWER OF COST OR NRV -->
+<section data-label="Lower of cost or NRV" class="slide">
   <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06</span>
     <span class="rule"></span>
-    <span>12 / 29</span>
+    <span>11 / 26</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">IFRS-only · alternative model</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Revaluation</em> model (IFRS).</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      IFRS cho firm chọn giữa (1) <em>cost model</em> — historical cost − accumulated depreciation, hoặc (2) <em>revaluation model</em> — fair value tại revaluation date. US GAAP <b>chỉ cho phép cost model</b> (trừ một số financial assets).
-    </p>
-  </div>
-
-  <div class="rule-box">
-    <span class="tag">§ Revaluation rule (IAS 16 / IAS 38)</span>
-    <b>Gain</b> on revaluation: ghi vào <em>OCI</em> → tích luỹ vào <b>Revaluation Surplus</b> (equity). KHÔNG đi qua P&amp;L. <b>Loss</b>: hit <em>P&amp;L</em> trừ khi có surplus tồn tại từ trước (offset surplus trước, phần dư mới hit P&amp;L). Khi <em>reverse</em> loss đã hit P&amp;L → gain ghi vào P&amp;L (capped); phần dư mới qua OCI.
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 16px;">
-    <li>
-      <span>
-        <span class="step-title">Phải áp dụng cho <em>cả lớp</em> tài sản</span>
-        <span class="step-body">Không chọn lựa từng asset — toàn bộ class (e.g. land, buildings) phải dùng cùng model. Chống cherry-picking.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Tần suất revaluation</span>
-        <span class="step-body">Đủ thường xuyên để carrying value không lệch nhiều với fair value. Volatile assets → annually; stable → 3-5 năm.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Investment property — exception</span>
-        <span class="step-body">IAS 40 cho phép fair value model với gain/loss đi <em>thẳng vào P&amp;L</em> (không qua OCI) — khác revaluation model của PP&amp;E.</span>
-      </span>
-    </li>
-  </ol>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
-  </div>
-</section>
-
-
-<!-- 13 · DERECOGNITION + INVESTMENT PROPERTY -->
-<section data-label="Derecognition" class="slide">
-  <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
-    <span class="rule"></span>
-    <span>13 / 29</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">End of asset's life on books</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Derecognition</em> &amp; investment property.</h2>
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 16px;">
-    <li>
-      <span>
-        <span class="step-title">Sale — gain/loss vào P&amp;L</span>
-        <span class="step-body">Gain/Loss = <em>Sale price − Carrying value</em>. Asset removed khỏi BS; cash thu vào CFI (investing inflow).</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Abandonment / retirement — loss = carrying value</span>
-        <span class="step-body">Asset bỏ đi không thu được gì → ghi loss bằng carrying value. Không ảnh hưởng cash flow.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Exchange (asset for asset)</span>
-        <span class="step-body">Generally đo asset mới ở fair value. Gain/loss = FV asset cũ − carrying value. Khi exchange "lacks commercial substance" → carry over basis, no gain.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Held for sale — reclassified</span>
-        <span class="step-body">Khi firm commit bán trong &lt; 1 năm → reclassify ra <em>current assets</em>; depreciation <em>ngừng</em>. Đo lower of carrying hay fair value − cost to sell.</span>
-      </span>
-    </li>
-  </ol>
-
-  <div class="rule-box" style="margin-top: 18px;">
-    <span class="tag">§ Investment property (IFRS · IAS 40)</span>
-    Property held để <em>earn rental hoặc capital appreciation</em>, không dùng trong operations. Firm chọn (a) <b>cost model</b> (giống PP&amp;E), hoặc (b) <b>fair value model</b> — fair value mỗi kỳ, gain/loss vào <em>P&amp;L</em> trực tiếp. <b>US GAAP không có category này</b> — báo cáo như PP&amp;E thường.
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
-  </div>
-</section>
-
-
-<!-- 14 · DISCLOSURES & RATIOS -->
-<section data-label="Disclosures" class="slide">
-  <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
-    <span class="rule"></span>
-    <span>14 / 29</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Footnotes &amp; analyst ratios</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Disclosures</em> &amp; useful ratios.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      CFA L1 yêu cầu nhớ disclosures bắt buộc + 3 ratio rút từ chúng để estimate <em>asset age</em> và <em>useful life</em>.
-    </p>
+    <div class="eyebrow">Valuation · write-down</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Lower of <em class="hi">cost or NRV</em>.</h2>
   </div>
 
   <div class="formula-box">
-    <span class="fmt-label">§ Three asset-base ratios</span>
-    <div class="eq"><span class="var">Avg. Age</span> = <span class="var">Accumulated Dep</span> / <span class="var">Annual Dep Expense</span></div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">Avg. Useful Life</span> = <span class="var">Gross PP&amp;E</span> / <span class="var">Annual Dep Expense</span></div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">Remaining Life</span> = <span class="var">Net PP&amp;E</span> / <span class="var">Annual Dep Expense</span></div>
-    <div class="note"><b>Total Asset Turnover</b> = Revenue / Average Total Assets — đo efficiency. <b>Fixed Asset Turnover</b> = Revenue / Average Net PP&amp;E — đo cụ thể PP&amp;E productivity.</div>
+    <span class="fmt-label">§ NRV definition (IFRS)</span>
+    <div class="eq"><span class="var">NRV</span> = <span class="var">Selling price</span> − <span class="var">Completion costs</span> − <span class="var">Selling costs</span></div>
+    <div class="note">Giá có thể thu được ròng từ việc bán hàng trong bình thường. Nếu cost &gt; NRV → inventory impaired, viết xuống = NRV.</div>
   </div>
 
-  <div class="take" style="margin-top: 16px;">
-    <b>Required disclosures</b> — depreciation method, useful lives / rates, gross + accumulated dep, depreciation expense, reconciliation of opening/closing carrying. IFRS: thêm thông tin về <em>revaluation</em> nếu áp dụng (date, method, surplus). Impairment loss: amount, asset / CGU bị ảnh hưởng, recoverable basis.
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Effect của write-down</span>
+    Giảm ending inventory trên BS. Tăng COGS (hoặc ghi "loss on inventory") trên IS → giảm gross margin và NI. Current ratio giảm. Inventory turnover tăng (COGS cao hơn, inv thấp hơn).
   </div>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">IFRS — reversal allowed</span>
+        <span class="step-body">Nếu NRV phục hồi, có thể reverse write-down, nhưng không vượt quá original cost. Gain ghi vào IS.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">US GAAP — no reversal</span>
+        <span class="step-body">Write-down tạo "new cost basis" mới — không reverse dù NRV hồi. Conservative approach.</span>
+      </span>
+    </li>
+  </ol>
 
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06 — NRV</span>
   </div>
 </section>
 
 
-<!-- 15 · TRANSITION -->
+<!-- 12 · INVENTORY TURNOVER -->
+<section data-label="Inventory turnover" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.06</span>
+    <span class="rule"></span>
+    <span>12 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Ratios · efficiency</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Inventory turnover</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Core ratios</span>
+    <div class="eq"><span class="var">Inv Turnover</span> = <span class="var">COGS</span> / <span class="var">Avg Inventory</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">Days Inv on Hand (DOH)</span> = 365 / <span class="var">Inv Turnover</span></div>
+    <div class="note">Turnover cao = firm efficient, bán nhanh. Nhưng quá cao có thể signal <em>inadequate inventory</em> → lost sales. Compare với ngành + historical trend.</div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § LIFO bias — Firm LIFO có COGS cao hơn và Inv thấp hơn → turnover phóng đại so với FIFO. Khi peer comparison cross-standard, restate cả numerator và denominator về FIFO.
+  </p>
+
+  <div class="rule-box" style="margin-top: 20px;">
+    <span class="tag">§ Diagnostic</span>
+    Turnover <em>giảm</em> + DOH <em>tăng</em> → có thể là dấu hiệu obsolete inventory, demand yếu, hoặc channel stuffing. Check raw materials vs finished goods composition trong footnotes.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.06 — TURNOVER</span>
+  </div>
+</section>
+
+
+<!-- 13 · KEY TAKEAWAYS -->
+<section data-label="Key takeaways" class="slide">
+  <div class="run-header">
+    <span>FSA · 04.06</span>
+    <span class="rule"></span>
+    <span>13 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Summary · before practice</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">5 takeaways</em>.</h2>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Rising prices — FIFO vs LIFO mirror-image</span>
+        <span class="step-body">FIFO: low COGS, high NI, high ending inv. LIFO: high COGS, low NI, low tax, LOW ending inv.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">LIFO reserve = bridge</span>
+        <span class="step-body">Inv<sub>FIFO</sub> = Inv<sub>LIFO</sub> + reserve. ΔNI restated = ΔReserve · (1 − t).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">LIFO liquidation — unsustainable margin</span>
+        <span class="step-body">Inventory drop → old low-cost layers expose → artificial NI boost. Exclude khi forecast.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">IFRS prohibits LIFO</span>
+        <span class="step-body">IFRS: FIFO + WA only, NRV rule, reversal allowed. US GAAP: tất cả 4 methods, LCM for LIFO, no reversal.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Write-down → lower inv, lower NI, higher turnover</span>
+        <span class="step-body">NRV = selling price − completion − selling costs. Compare cost vs NRV each period.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>FSA · 04.06 — TAKEAWAYS</span>
+  </div>
+</section>
+
+
+<!-- 14 · TRANSITION -->
 <section data-label="Practice begins" class="slide end-slide">
   <div>
     <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
@@ -584,42 +578,41 @@
 </section>
 
 
-<!-- 16 · Q1 EN -->
+<!-- 15 · Q1 EN — FIFO vs LIFO IS impact -->
 <section data-label="Q1 Original" class="slide">
   <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06</span>
     <span class="rule"></span>
-    <span>16 / 29</span>
+    <span>15 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Compare <em class="hi">depreciation methods</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">FIFO vs LIFO</em> — rising prices.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      A company purchases equipment for <strong>$500,000</strong> with an estimated salvage value of <strong>$50,000</strong> and a useful life of <strong>5 years</strong>. Compared with using straight-line, in <strong>Year 1</strong> the use of the <strong>double-declining balance (DDB)</strong> method will <strong>most likely</strong> result in:
+      A manufacturer has been operating in a <strong>rising-price environment</strong> for the past five years, with inventory quantities remaining stable. Compared with FIFO, using <strong>LIFO</strong> will <em>most likely</em> result in which combination of effects on the firm's financial statements?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Higher net income and higher return on assets (ROA).</span></li>
-    <li><span class="lbl">B</span><span class="opt">Lower net income and lower return on assets (ROA).</span></li>
-    <li><span class="lbl">C</span><span class="opt">Lower net income but higher return on assets (ROA).</span></li>
-    <li><span class="lbl">D</span><span class="opt">Higher net income but lower return on assets (ROA).</span></li>
+    <li><span class="lbl">A</span><span class="opt">Higher COGS, lower Net Income, higher ending inventory.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Higher COGS, lower Net Income, lower ending inventory.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Lower COGS, higher Net Income, lower ending inventory.</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06 — Q1 ORIGINAL</span>
   </div>
 </section>
 
 
-<!-- 17 · Q1 HINT -->
+<!-- 16 · Q1 HINT -->
 <section data-label="Q1 Hint" class="slide">
   <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06</span>
     <span class="rule"></span>
-    <span>17 / 29</span>
+    <span>16 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 01</div>
@@ -627,35 +620,35 @@
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>Year 1</mark>. <mark>DDB</mark> vs <mark>straight-line</mark>. DDB là <mark>accelerated</mark> → front-load expense. Cả NI và assets đều ảnh hưởng — phải xét cả tử và mẫu của ROA.
+    <mark>Rising prices</mark>. <mark>Stable quantities</mark>. Compare LIFO vs FIFO on <mark>COGS</mark>, <mark>NI</mark>, <mark>ending inventory</mark>.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">SL Year 1 = (500−50)/5 = <em>$90k</em>. DDB Year 1 = (2/5) × 500 = <em>$200k</em> (không trừ salvage). DDB expense > SL expense → NI thấp hơn.</span>
+      <span class="htxt">LIFO = Last-In-First-Out. Newest (priciest) cost → COGS → <em>COGS cao</em> → Gross profit thấp → <em>NI thấp</em>.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">ROA = NI / Avg Assets. Tử số NI <em>giảm</em> dưới DDB. Mẫu số (Net PP&amp;E) cũng <em>giảm nhanh hơn</em> vì depreciation lớn hơn → cả 2 đều nhỏ hơn.</span>
+      <span class="htxt">Ending inventory giữ lại <em>oldest costs</em> (đầu chu kỳ, rẻ nhất). So với FIFO (giữ newest, đắt), LIFO ending inv <em>thấp hơn</em>.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Trong year 1, hiệu ứng <em>numerator (NI)</em> dominate hiệu ứng denominator (vì asset chỉ depreciate 1 năm) → ROA <em>giảm</em>. Cả NI và ROA đều thấp hơn dưới DDB year 1.</span>
+      <span class="htxt">Nhớ quy tắc: LIFO trong rising prices = "high COGS, low NI, low tax, low inventory". Bonus effect: cash flow tốt hơn do tax saving.</span>
     </li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06 — Q1 HINT</span>
   </div>
 </section>
 
 
-<!-- 18 · Q1 VN -->
+<!-- 17 · Q1 Dịch đề -->
 <section data-label="Q1 Dịch đề" class="slide">
   <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06</span>
     <span class="rule"></span>
-    <span>18 / 29</span>
+    <span>17 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
@@ -664,94 +657,92 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một công ty mua thiết bị giá <strong>$500,000</strong> với salvage value ước tính <strong>$50,000</strong> và useful life <strong>5 năm</strong>. So với straight-line, trong <strong>Year 1</strong> nếu dùng phương pháp <strong>double-declining balance (DDB)</strong> sẽ <strong>most likely</strong> dẫn tới:
+      Một nhà sản xuất hoạt động trong môi trường <strong>giá đầu vào tăng</strong> suốt 5 năm qua, với inventory quantities ổn định. So với FIFO, dùng <strong>LIFO</strong> sẽ <em>most likely</em> gây ra kết hợp tác động nào trên financial statements?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Net income cao hơn và return on assets (ROA) cao hơn.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Net income thấp hơn và return on assets (ROA) thấp hơn.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Net income thấp hơn nhưng return on assets (ROA) cao hơn.</span></li>
-    <li><span class="lbl">D</span><span class="opt">Net income cao hơn nhưng return on assets (ROA) thấp hơn.</span></li>
+    <li><span class="lbl">A</span><span class="opt">COGS cao hơn, NI thấp hơn, ending inventory cao hơn.</span></li>
+    <li><span class="lbl">B</span><span class="opt">COGS cao hơn, NI thấp hơn, ending inventory thấp hơn.</span></li>
+    <li><span class="lbl">C</span><span class="opt">COGS thấp hơn, NI cao hơn, ending inventory thấp hơn.</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06 — Q1 VIỆT</span>
   </div>
 </section>
 
 
-<!-- 19 · Q1 EXPLANATION -->
+<!-- 18 · Q1 EXPLANATION -->
 <section data-label="Q1 Explanation" class="slide">
   <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06</span>
     <span class="rule"></span>
-    <span>19 / 29</span>
+    <span>18 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — NI ↓ và ROA ↓.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — higher COGS, lower NI, lower inv.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">SL Year 1 expense = (500−50)/5 = <b>$90k</b>. DDB Year 1 expense = (2/5) × 500 = <b>$200k</b>. DDB expense lớn hơn → <b>NI thấp hơn</b>. ROA = NI / Avg Assets: tử số NI giảm $110k, mẫu giảm chỉ $110k đó × 0.5 (do trung bình BoP+EoP) → tử giảm % nhanh hơn mẫu → <b>ROA giảm</b> trong Year 1.</div>
+      <div class="rtext">LIFO gán <em>newest (priciest)</em> cost vào COGS → <b>COGS cao hơn</b> FIFO → Gross margin và NI <b>thấp hơn</b>. Ending inventory giữ <em>oldest (cheapest)</em> costs → <b>inv thấp hơn</b> FIFO. Đây là mirror-image kinh điển trong rising prices.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">DDB là <em>accelerated</em> — front-load expense → NI Year 1 không thể cao hơn SL. Đây là sai lầm phổ biến khi nhầm chiều của effect.</div>
+      <div class="rtext">Ending inventory "cao hơn" là sai. LIFO giữ <em>oldest</em> costs trong ending inv → trong rising-price environment, những cost này nhỏ hơn newest costs mà FIFO giữ → LIFO inv luôn <em>thấp hơn</em>.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — C / D</div>
-      <div class="rtext">Cả 2 đều giả định NI và ROA chuyển động ngược chiều. Trong year 1, NI hit DDB lớn hơn so với mức giảm của Avg Assets → ROA cũng giảm. Chỉ ở các năm sau (khi cumulative dep dưới DDB lớn) mà ROA có thể đảo chiều.</div>
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">"Lower COGS, higher NI" là mô tả FIFO trong rising prices, không phải LIFO. Combo này có trong FIFO vì oldest (cheap) costs flow to COGS.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">DDB year 1: <em>expense ↑, NI ↓, Net PP&amp;E ↓, ROA ↓, ROE ↓, asset turnover ↑</em>. Total lifetime depreciation = Cost − Salvage cho cả SL và DDB — chỉ khác <em>timing</em>. DDB không trừ salvage trong công thức.</div>
+    <div class="ttext">Thuộc lòng bảng LIFO trong rising prices: <em>COGS ↑, NI ↓, Tax ↓, Ending Inv ↓, Cash Flow ↑</em>. Trong falling prices, đảo ngược mọi arrow.</div>
   </div>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06 — ANSWER Q1</span>
   </div>
 </section>
 
 
-<!-- 20 · Q2 EN -->
+<!-- 19 · Q2 EN — LIFO Reserve restatement -->
 <section data-label="Q2 Original" class="slide">
   <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06</span>
     <span class="rule"></span>
-    <span>20 / 29</span>
+    <span>19 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Calculate <em class="hi">impairment loss</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Apply the <em class="hi">LIFO reserve</em>.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Under <strong>IFRS</strong>, an asset has a carrying value of <strong>$800,000</strong>. The fair value less costs to sell is <strong>$650,000</strong>, and the value in use (PV of expected future cash flows) is <strong>$700,000</strong>. The undiscounted future cash flows total <strong>$900,000</strong>. The impairment loss the company should recognize is <strong>closest to</strong>:
+      Acme Corp reports under US GAAP using LIFO. At year-end: <strong>Inventory (LIFO) = $400m</strong>, <strong>LIFO reserve = $120m</strong> (up from $100m last year). Tax rate = <strong>25%</strong>. An analyst restates Acme's inventory and retained earnings to a FIFO basis. The <em>most likely</em> adjustments are:
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">$0 — no impairment because undiscounted cash flows exceed carrying value.</span></li>
-    <li><span class="lbl">B</span><span class="opt">$100,000 — carrying value minus value in use.</span></li>
-    <li><span class="lbl">C</span><span class="opt">$150,000 — carrying value minus fair value less costs to sell.</span></li>
-    <li><span class="lbl">D</span><span class="opt">$250,000 — carrying value minus the lower of fair value or value in use.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Inventory increases by $120m; Retained Earnings increases by $90m.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Inventory increases by $120m; Retained Earnings increases by $120m.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Inventory increases by $20m; Retained Earnings increases by $15m.</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06 — Q2 ORIGINAL</span>
   </div>
 </section>
 
 
-<!-- 21 · Q2 HINT -->
+<!-- 20 · Q2 HINT -->
 <section data-label="Q2 Hint" class="slide">
   <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06</span>
     <span class="rule"></span>
-    <span>21 / 29</span>
+    <span>20 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 02</div>
@@ -759,35 +750,35 @@
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>IFRS</mark>. <mark>Recoverable amount</mark> = <mark>HIGHER</mark> of fair value − costs to sell và value in use. <mark>Undiscounted CF</mark> chỉ dùng cho US GAAP step 1, KHÔNG cho IFRS.
+    <mark>LIFO reserve = $120m</mark> (total cumulative). <mark>t = 25%</mark>. Asking for <mark>BS adjustments</mark> — inventory và retained earnings.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">IFRS one-step: Loss = Carrying − Recoverable. Recoverable = max($650k, $700k) = <em>$700k</em>. Đừng nhầm sang lower.</span>
+      <span class="htxt">Inv<sub>FIFO</sub> = Inv<sub>LIFO</sub> + LIFO reserve = 400 + 120 = <em>520m</em>. Tức inventory tăng bằng <em>toàn bộ</em> LIFO reserve, không phải ΔReserve.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Loss = $800k − $700k = <em>$100k</em>. Đáp án B.</span>
+      <span class="htxt">Retained Earnings adjustment = LIFO reserve · (1 − t) = 120 × 0.75 = <em>$90m</em>. Phần (reserve · t) là deferred tax liability.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Bẫy: option A dùng undiscounted CF (test US GAAP, không phải IFRS). Option C dùng FV − costs (sai vì recoverable lấy higher). Option D dùng lower (sai chiều).</span>
+      <span class="htxt">$20m là <em>ΔReserve</em> trong năm — dùng cho adjustment NI, không phải adjustment cumulative BS. Đọc kỹ câu hỏi: "restate inventory và retained earnings" → BS total.</span>
     </li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06 — Q2 HINT</span>
   </div>
 </section>
 
 
-<!-- 22 · Q2 VN -->
+<!-- 21 · Q2 Dịch đề -->
 <section data-label="Q2 Dịch đề" class="slide">
   <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06</span>
     <span class="rule"></span>
-    <span>22 / 29</span>
+    <span>21 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
@@ -796,94 +787,92 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Dưới <strong>IFRS</strong>, một asset có carrying value <strong>$800,000</strong>. Fair value − costs to sell là <strong>$650,000</strong>, và value in use (PV future cash flows) là <strong>$700,000</strong>. Undiscounted future cash flows tổng <strong>$900,000</strong>. Impairment loss công ty phải ghi nhận <strong>gần nhất</strong> với:
+      Acme Corp báo cáo theo US GAAP với LIFO. Cuối năm: <strong>Inventory (LIFO) = $400m</strong>, <strong>LIFO reserve = $120m</strong> (tăng từ $100m năm trước). Tax rate = <strong>25%</strong>. Analyst restate inventory và retained earnings về FIFO basis. Các điều chỉnh <em>most likely</em> là:
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">$0 — không impairment vì undiscounted cash flows vượt carrying value.</span></li>
-    <li><span class="lbl">B</span><span class="opt">$100,000 — carrying value trừ value in use.</span></li>
-    <li><span class="lbl">C</span><span class="opt">$150,000 — carrying value trừ fair value less costs to sell.</span></li>
-    <li><span class="lbl">D</span><span class="opt">$250,000 — carrying value trừ lower của fair value hoặc value in use.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Inventory tăng $120m; Retained Earnings tăng $90m.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Inventory tăng $120m; Retained Earnings tăng $120m.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Inventory tăng $20m; Retained Earnings tăng $15m.</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06 — Q2 VIỆT</span>
   </div>
 </section>
 
 
-<!-- 23 · Q2 EXPLANATION -->
+<!-- 22 · Q2 EXPLANATION -->
 <section data-label="Q2 Explanation" class="slide">
   <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06</span>
     <span class="rule"></span>
-    <span>23 / 29</span>
+    <span>22 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $100,000.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — +$120m inv, +$90m RE.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
-      <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">IFRS IAS 36: Impairment Loss = Carrying − Recoverable Amount. <b>Recoverable = HIGHER</b> of (fair value − costs to sell, value in use) = max($650k, $700k) = <b>$700k</b>. Loss = $800k − $700k = <b>$100k</b>. Asset write down xuống $700k; loss hit P&amp;L.</div>
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext"><b>Inventory:</b> Inv<sub>FIFO</sub> = Inv<sub>LIFO</sub> + LIFO Reserve = 400 + 120 = <b>$520m</b> → tăng <b>$120m</b>. <b>Retained Earnings:</b> = LIFO Reserve · (1 − t) = 120 · 0.75 = <b>$90m</b>. Còn $30m (=120 × 25%) ghi vào deferred tax liability.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Undiscounted cash flows ($900k > $800k carrying) là test của <em>US GAAP step 1</em>, KHÔNG áp dụng cho IFRS. Dưới IFRS, không có recoverability test — đi thẳng vào one-step measurement.</div>
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">RE = $120m là quên nhân với (1 − t). Nếu không adjust tax, RE bị <em>overstated</em>. Logic: nếu firm không dùng LIFO, tax đã phải trả → giảm equity tương ứng.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — C / D</div>
-      <div class="rtext">C ($150k) lấy fair value − costs to sell ($650k) làm recoverable — sai vì IFRS lấy HIGHER, không phải FV. D ($250k) dùng LOWER ($650k) — ngược định nghĩa recoverable. Cả hai đều over-state loss.</div>
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">$20m = ΔLIFO reserve (120 − 100) dùng để adjust <em>current-year NI</em> (tăng COGS restatement → ΔNI = 20·0.75 = $15m). KHÔNG phải BS stock adjustment.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">IFRS impairment: <em>Carrying − HIGHER of (FV − costs to sell, Value in use)</em>. US GAAP impairment: 2 bước — bước 1 so undiscounted CF, bước 2 đo loss = Carrying − FV. Nhớ nhãn: IFRS = "recoverable amount", US GAAP = "fair value".</div>
+    <div class="ttext">Phân biệt <em>stock</em> (toàn bộ reserve) cho BS adjustment và <em>flow</em> (ΔReserve) cho IS adjustment. BS: Inv += reserve, RE += reserve·(1−t), DTL += reserve·t. IS: COGS −= ΔReserve, NI += ΔReserve·(1−t).</div>
   </div>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06 — ANSWER Q2</span>
   </div>
 </section>
 
 
-<!-- 24 · Q3 EN -->
+<!-- 23 · Q3 EN — LIFO liquidation -->
 <section data-label="Q3 Original" class="slide">
   <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06</span>
     <span class="rule"></span>
-    <span>24 / 29</span>
+    <span>23 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Capitalize</em> vs expense effects.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">LIFO liquidation</em> effect.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Two companies are identical except Company X <strong>capitalizes</strong> a $10M expenditure with a 10-year useful life, while Company Y <strong>expenses</strong> the entire $10M in Year 1. In <strong>Year 1</strong>, compared with Company Y, Company X will <strong>most likely</strong> report:
+      BlueSteel uses LIFO under US GAAP. Input prices have been rising steadily for a decade. This year, BlueSteel sold far more tonnes than it purchased, <strong>reducing inventory quantities by 30%</strong>. Other things equal, the <em>most likely</em> effect on BlueSteel's gross margin <strong>and</strong> the sustainability of that margin is:
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Higher net income, higher operating cash flow, and lower total assets.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Higher net income, higher operating cash flow, and higher total assets.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Lower net income, lower operating cash flow, and higher total assets.</span></li>
-    <li><span class="lbl">D</span><span class="opt">Higher net income, lower operating cash flow, and higher total assets.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Margin falls; unchanged sustainability.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Margin rises; sustainable going forward.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Margin rises; not sustainable (LIFO liquidation).</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06 — Q3 ORIGINAL</span>
   </div>
 </section>
 
 
-<!-- 25 · Q3 HINT -->
+<!-- 24 · Q3 HINT -->
 <section data-label="Q3 Hint" class="slide">
   <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06</span>
     <span class="rule"></span>
-    <span>25 / 29</span>
+    <span>24 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 03</div>
@@ -891,35 +880,35 @@
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>Capitalize</mark> vs <mark>expense</mark>. <mark>Year 1</mark>. Cần check 3 chiều: <mark>NI</mark>, <mark>Operating CF</mark>, <mark>Total Assets</mark>.
+    <mark>LIFO</mark>, <mark>rising prices</mark>, <mark>sold more than purchased</mark>, <mark>inventory ↓ 30%</mark>. Ask về <em>margin</em> và <em>sustainability</em>.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">NI: Company X chỉ ghi $1M depreciation/năm (10/10) thay vì $10M expense → NI X <em>cao hơn</em> $9M (pre-tax).</span>
+      <span class="htxt">Quantities giảm + LIFO → <em>LIFO liquidation</em>. Old (cheap) layers expose → COGS artificially low → gross margin <em>tăng</em>.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Operating CF: Company X classify $10M outflow vào <em>CFI</em> (capex). Company Y ghi expense → outflow vào <em>CFO</em>. Vì vậy CFO X <em>cao hơn</em> $10M.</span>
+      <span class="htxt">Sustainability: cost inventory cũ (decade trước) chỉ có limited amount. Once exhausted, firm quay lại match newest (high) costs → margin <em>sẽ sụp xuống</em>.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Total Assets: X tạo $10M asset, depreciate $1M → carrying $9M. Y không có asset (expensed). Total Assets X <em>cao hơn</em>. → Đáp án B.</span>
+      <span class="htxt">Analyst thường <em>exclude</em> LIFO liquidation gain khi forecast earnings. Disclosure trong 10-K footnote "Inventories".</span>
     </li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06 — Q3 HINT</span>
   </div>
 </section>
 
 
-<!-- 26 · Q3 VN -->
+<!-- 25 · Q3 Dịch đề -->
 <section data-label="Q3 Dịch đề" class="slide">
   <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06</span>
     <span class="rule"></span>
-    <span>26 / 29</span>
+    <span>25 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
@@ -928,115 +917,62 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Hai công ty giống hệt nhau ngoại trừ Company X <strong>capitalize</strong> chi tiêu $10M với useful life 10 năm, trong khi Company Y <strong>expense</strong> toàn bộ $10M trong Year 1. Trong <strong>Year 1</strong>, so với Company Y, Company X <strong>most likely</strong> sẽ báo cáo:
+      BlueSteel dùng LIFO theo US GAAP. Input prices tăng đều suốt 1 thập kỷ. Năm nay, BlueSteel bán nhiều tấn hơn số mua, <strong>giảm inventory quantities 30%</strong>. Các yếu tố khác không đổi, tác động <em>most likely</em> lên gross margin <strong>và</strong> tính sustainability của margin đó là:
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Net income cao hơn, operating cash flow cao hơn, và total assets thấp hơn.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Net income cao hơn, operating cash flow cao hơn, và total assets cao hơn.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Net income thấp hơn, operating cash flow thấp hơn, và total assets cao hơn.</span></li>
-    <li><span class="lbl">D</span><span class="opt">Net income cao hơn, operating cash flow thấp hơn, và total assets cao hơn.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Margin giảm; sustainability không đổi.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Margin tăng; sustainable going forward.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Margin tăng; không sustainable (LIFO liquidation).</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06 — Q3 VIỆT</span>
   </div>
 </section>
 
 
-<!-- 27 · Q3 EXPLANATION -->
+<!-- 26 · Q3 EXPLANATION + END merged into explanation then END -->
 <section data-label="Q3 Explanation" class="slide">
   <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06</span>
     <span class="rule"></span>
-    <span>27 / 29</span>
+    <span>26 / 26</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — NI ↑, CFO ↑, Assets ↑.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — margin rises, not sustainable.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
-      <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">Capitalize vs expense year 1: (1) <b>NI</b> — X ghi depreciation $1M; Y ghi expense $10M → NI X cao hơn $9M (pre-tax). (2) <b>CFO</b> — X classify outflow vào <em>CFI</em> (capex); Y vào <em>CFO</em> → CFO X cao hơn $10M. (3) <b>Total Assets</b> — X có asset $9M (sau 1 năm dep); Y không có → Total Assets X cao hơn.</div>
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext">Inventory quantities giảm 30% trong rising-price LIFO environment → <b>LIFO liquidation</b>. Firm "moi" vào old layers có cost rất thấp → COGS artificially low → <b>gross margin tăng</b> đột biến. Nhưng old layers sẽ cạn → khi buy lại ở current prices, COGS trở về normal → margin sụp xuống. <b>Không sustainable</b>.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Sai ở "lower total assets". Capitalization tạo asset on BS; expensing không tạo. Do đó X PHẢI có total assets cao hơn Y. Logic NI và CFO của A đúng nhưng phần Assets ngược.</div>
+      <div class="rtext">Margin giảm là sai. Logic đảo ngược: nếu LIFO liquidation exposes <em>old cheap</em> costs, COGS giảm → margin <em>tăng</em>. Chỉ có trong falling-price LIFO mới ngược.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — C / D</div>
-      <div class="rtext">C có "lower NI và CFO" — sai chiều của capitalization. D có "lower CFO" — sai vì capex không hit CFO. Capitalization làm CFO trông tốt hơn (đó là incentive aggressive accounting hay chuyển expense sang capex).</div>
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Margin đúng là tăng, nhưng "sustainable" sai. Artificial boost chỉ kéo dài khi còn cheap layers. Analyst phải <em>exclude</em> LIFO liquidation gain khi forecast.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Year 1 capitalize vs expense: <em>NI ↑, CFO ↑, CFI ↓, Total Assets ↑, Equity ↑, ROA ↓ (denominator effect dominates), Debt/Equity ↓</em>. Lifetime total NI bằng nhau — chỉ khác timing. Analyst flag: aggressive capitalization (e.g. WorldCom) có thể inflate NI &amp; CFO ngắn hạn.</div>
+    <div class="ttext">LIFO liquidation = "ghost earnings". Dấu hiệu: inventory quantities giảm dưới LIFO + rising prices. Impact: COGS ↓, GM ↑, NI ↑, Tax ↑ — tất cả <em>one-time, not recurring</em>. Check footnote disclosure.</div>
   </div>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
+    <span>FSA · 04.06 — ANSWER Q3</span>
   </div>
 </section>
 
 
-<!-- 28 · WRAP -->
-<section data-label="Wrap" class="slide">
-  <div class="run-header">
-    <span>04.06 — Long-Lived Assets</span>
-    <span class="rule"></span>
-    <span>28 / 29</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Recap</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">What to <em class="hi">remember</em>.</h2>
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 16px;">
-    <li>
-      <span>
-        <span class="step-title">Capitalize khi benefit &gt; 1 năm; expense còn lại</span>
-        <span class="step-body">Capitalize: NI ↑ year 1 (rồi drag), CFO ↑ (capex ở CFI), Assets ↑. Lifetime total NI giống nhau.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">3 phương pháp depreciation</span>
-        <span class="step-body">SL = (Cost − Salvage)/Life · DDB = 2/Life × Carrying (no salvage in formula) · Units = (Cost − Salvage) × Units/Total. Tổng lifetime giống nhau, chỉ timing khác.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Goodwill: only from M&amp;A, no amortize, annual impairment</span>
-        <span class="step-body">Indefinite intangibles + goodwill — annual impairment test, no reversal cho goodwill. Finite intangibles — amortize.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Impairment: IFRS one-step vs US GAAP two-step</span>
-        <span class="step-body">IFRS: Carrying − max(FV − costs, value in use). GAAP: step 1 undiscounted CF; step 2 Carrying − FV. IFRS reverse được (non-goodwill); GAAP không.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Revaluation (IFRS) &amp; investment property</span>
-        <span class="step-body">Revaluation gain → OCI/surplus. Investment property fair value model → gain/loss thẳng P&amp;L. US GAAP không có category này.</span>
-      </span>
-    </li>
-  </ol>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.06 — Long-Lived Assets</span>
-  </div>
-</section>
-
-
-<!-- 29 · END -->
+<!-- 27 · END -->
 <section data-label="End" class="slide end-slide">
   <div>
     <h1>04.06 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
-    <div class="hint">Tiếp theo · Lesson 04.07 — Income Taxes</div>
+    <div class="hint">Tiếp theo · Lesson 04.06 — Long-Lived Assets</div>
   </div>
 </section>
 

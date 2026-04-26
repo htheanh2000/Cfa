@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>CFA L1 · FSA 04.04 — Cash Flow Statements</title>
+<title>CFA L1 · FSA 04.04 — Cash Flow Statement (Part I): Preparation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/assets/cfa-theme.css">
 <style>
   .title-slide .left { background: var(--accent); }
-  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main { font-size: 96px; line-height: 0.98; }
   .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
   .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
 </style>
@@ -24,18 +24,18 @@
 <section data-label="Title" class="slide title-slide">
   <div class="left">
     <div class="mark">CFA Institute · Level I</div>
-    <h1 class="main">Cash<br>&amp; <em>Flows.</em></h1>
-    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 04 · Lesson 04.04 · FSA</div>
+    <h1 class="main">Cash Flow Statement<br><em>Part I.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 04 · Lesson 04.04 · Financial Statement Analysis</div>
   </div>
   <div class="right">
-    <div class="mark">Module 04 · Analyzing Cash Flow Statements</div>
+    <div class="mark">Module 04 · Preparation · classification · direct vs indirect</div>
     <dl class="meta-grid">
       <div><dt>Môn</dt><dd>FSA</dd></div>
       <div><dt>Module</dt><dd>04</dd></div>
       <div><dt>Lesson</dt><dd>04.04</dd></div>
       <div><dt>Thời lượng</dt><dd>90 min</dd></div>
     </dl>
-    <div class="mark">CFO · CFI · CFF · FCFF · FCFE</div>
+    <div class="mark">CFO · CFI · CFF · IFRS vs US GAAP · linkages</div>
   </div>
 </section>
 
@@ -45,595 +45,587 @@
   <div class="band">
     <div class="lbl">PART</div>
     <div class="n">04</div>
-    <div class="lbl">Cash flow analysis</div>
+    <div class="lbl">CF Part I</div>
   </div>
   <div class="content">
     <div class="eyebrow">Today's lesson</div>
-    <h2>Following the <em>cash</em>,<br>not the accrual.</h2>
+    <h2>How <em>cash</em> moves<br>through 3 sections.</h2>
     <ul class="toc">
-      <li class="active">01 · CF vs NI — why cash matters</li>
-      <li>02 · 3 sections — CFO, CFI, CFF</li>
-      <li>03 · Direct vs Indirect method</li>
-      <li>04 · IFRS vs US GAAP — classification flexibility</li>
-      <li>05 · Free Cash Flow — FCFF &amp; FCFE</li>
-      <li>06 · Cash flow ratios &amp; red flags</li>
-      <li>07 · Practice — 3 CFA-style questions</li>
+      <li class="active">01 · Why CF — third statement role</li>
+      <li>02 · Cash basis vs accrual basis</li>
+      <li>03 · Three sections — CFO · CFI · CFF</li>
+      <li>04 · IFRS vs US GAAP classification differences</li>
+      <li>05 · Direct method — preparation</li>
+      <li>06 · Indirect method — preparation</li>
+      <li>07 · Linkages — IS · BS · CF integrated</li>
+      <li>08 · Practice — 3 CFA-style questions</li>
     </ul>
   </div>
 </section>
 
 
-<!-- 03 · CF vs NI -->
-<section data-label="CF vs NI" class="slide">
+<!-- 03 · WHY CF -->
+<section data-label="Why CF" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>03 / 28</span>
+    <span>03 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">CF · concept</div>
+    <div class="eyebrow">Third statement role</div>
     <h2 class="h-section" style="margin-bottom: 18px;">Why <em class="hi">cash flow</em> matters.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Net Income dựa trên <em>accrual accounting</em> — có thể bị manipulate bằng estimate, timing. Cash flow là <em>thực tế</em>: tiền vào, tiền ra. "Revenue is opinion, cash is fact."
-    </p>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head">Net Income (accrual)</div>
-      <dl>
-        <dt>Basis</dt>
-        <dd>Revenue recognized khi earned, expense khi incurred — không nhất thiết khi nhận/trả tiền</dd>
-        <dt>Manipulation risk</dt>
-        <dd>Cao — estimate cho depreciation, bad debt, revenue recognition timing</dd>
-        <dt>Non-cash items</dt>
-        <dd>D&amp;A, stock-based comp, deferred taxes — tất cả đều giảm NI nhưng không dùng cash</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head">Cash Flow (actual)</div>
-      <dl>
-        <dt>Basis</dt>
-        <dd>Tiền thực tế vào/ra — khó fake vì phải có bank confirmation</dd>
-        <dt>Manipulation risk</dt>
-        <dd>Thấp hơn — nhưng vẫn có (classification, timing of payments)</dd>
-        <dt>Solvency signal</dt>
-        <dd>Firm có đủ cash trả debt, dividends, reinvest? NI cao nhưng CFO âm là red flag</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Analyst rule — Khi NI và CFO diverge dài hạn, CFO thường đáng tin hơn. Accrual manipulation thường self-correct trong 2-3 năm, để lại dấu vết ở cash gap.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — CF vs NI</span>
-  </div>
-</section>
-
-
-<!-- 04 · 3 SECTIONS -->
-<section data-label="3 sections" class="slide">
-  <div class="run-header">
-    <span>FSA · 04.04</span>
-    <span class="rule"></span>
-    <span>04 / 28</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">CFS structure</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">3 sections</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Statement of Cash Flows chia thành 3 phần. Tổng của 3 = Net change in cash trong period. Mỗi phần trả lời 1 câu hỏi khác nhau.
+      Income statement = profit (accrual basis). Balance sheet = position at point in time. Cash flow statement = <em>actual cash movements</em> trong period — explain how cash position changed. "Profit là opinion; cash là fact" — không có CF statement, không thể assess liquidity, solvency, hoặc earnings quality.
     </p>
   </div>
 
   <div class="tenets-grid" style="margin-top: 16px;">
     <div class="tenet">
-      <span class="n">CFO</span>
+      <span class="n">α</span>
       <div>
-        <div class="t"><em class="hi">Operating</em></div>
-        <div class="d">Cash từ core business — collect from customers, pay suppliers, employees, interest, taxes. Sustainable cash generation quan trọng nhất.</div>
+        <div class="t">Profit ≠ Cash</div>
+        <div class="d">Revenue ghi nhận khi <em>earned</em> (accrual), không khi cash collected. Expense ghi khi <em>incurred</em>, không khi cash paid. Gap = working capital changes + non-cash items.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">CFI</span>
+      <span class="n">β</span>
       <div>
-        <div class="t"><em class="hi">Investing</em></div>
-        <div class="d">Mua/bán long-term assets — PP&amp;E (CapEx), acquisitions, investment securities. CFI âm = firm đang đầu tư cho tương lai.</div>
+        <div class="t">Solvency lens</div>
+        <div class="d">Profitable companies vẫn fail vì cash crunch. CF statement reveal liquidity status — đủ cash để pay bills, debt, dividend?</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">CFF</span>
+      <span class="n">γ</span>
       <div>
-        <div class="t"><em class="hi">Financing</em></div>
-        <div class="d">Raise/repay capital — issue/repurchase stock, borrow/repay debt, pay dividends. Cho thấy capital structure decisions.</div>
+        <div class="t">Earnings quality check</div>
+        <div class="d">CFO/NI ≥ 1 sustained = high quality (cash backs reported earnings). CFO/NI &lt; 1 sustained = red flag (accrual-driven earnings, may not last).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">δ</span>
+      <div>
+        <div class="t">Reconciliation engine</div>
+        <div class="d">CF integrate IS với BS — show how net income + asset/liab changes produce ending cash. Disciplined model exposes hidden inconsistencies.</div>
       </div>
     </div>
   </div>
 
-  <p class="fine-muted-sm">
-    § Pattern read — Mature healthy firm: CFO (+), CFI (−), CFF (−) → generate cash, invest, return to shareholders. Startup: CFO (−), CFI (−), CFF (+) → burn cash, raise funding.
-  </p>
-
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — 3 SECTIONS</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 05 · DIRECT vs INDIRECT -->
-<section data-label="Direct vs Indirect" class="slide">
+<!-- 04 · CASH VS ACCRUAL -->
+<section data-label="Cash vs accrual" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>05 / 28</span>
+    <span>04 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">CFO · presentation</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Direct vs <em class="hi">Indirect</em> method.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Chỉ khác nhau ở <em>CFO section</em>. CFI và CFF trình bày giống nhau. Cùng ra kết quả nhưng cách show khác.
-    </p>
+    <div class="eyebrow">Two accounting bases</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Cash basis</em> vs <em class="hi">accrual basis</em>.</h2>
   </div>
 
   <div class="compare" style="margin-top: 16px;">
     <div class="cc">
-      <div class="head">Direct method</div>
+      <div class="head"><em>Cash basis</em></div>
       <dl>
-        <dt>Starts with</dt>
-        <dd>Cash receipts từ customers</dd>
-        <dt>Format</dt>
-        <dd>List từng loại cash inflow/outflow: cash from customers, cash to suppliers, cash to employees, interest paid, taxes paid</dd>
+        <dt>Recognition</dt>
+        <dd>Revenue khi cash collected. Expense khi cash paid.</dd>
+        <dt>Use case</dt>
+        <dd>Small businesses (US allows for sole proprietors). Personal finance.</dd>
         <dt>Pros</dt>
-        <dd>Clearer — analyst thấy rõ nguồn cash</dd>
+        <dd>Simple; phản ánh actual cash position trực tiếp.</dd>
         <dt>Cons</dt>
-        <dd>Ít firms dùng (~1%) — tốn công compile</dd>
+        <dd>Misleading cho period matching. Vd ship product Dec 2025, collect Jan 2026 → revenue ghi nhận Jan 2026, không match với COGS Dec 2025.</dd>
       </dl>
     </div>
     <div class="cc">
-      <div class="head">Indirect method</div>
+      <div class="head"><em>Accrual basis</em></div>
       <dl>
-        <dt>Starts with</dt>
-        <dd>Net Income</dd>
-        <dt>Format</dt>
-        <dd>NI + non-cash items (D&amp;A) ± changes in working capital (AR, Inv, AP) ± gain/loss on asset sales</dd>
+        <dt>Recognition</dt>
+        <dd>Revenue khi <em>earned</em> (delivered). Expense khi <em>incurred</em> (matched với revenue).</dd>
+        <dt>Use case</dt>
+        <dd>All public companies (IFRS + US GAAP required). All material businesses.</dd>
         <dt>Pros</dt>
-        <dd>Dễ prepare — link với IS và BS trực tiếp</dd>
+        <dd>Better matching of revenue + expense → meaningful margin. Period comparable.</dd>
         <dt>Cons</dt>
-        <dd>Vast majority (~99%) firms dùng — CFA test nhiều ở đây</dd>
+        <dd>Cash position obscured. Cần CF statement để translate accrual income → cash impact.</dd>
       </dl>
     </div>
   </div>
 
   <p class="fine-muted-sm">
-    § Both IFRS và US GAAP cho phép cả hai methods, nhưng encourage direct. Thực tế, indirect dominant. CFA L1 exam heavy indirect method.
+    § Therefore: IS + BS = accrual story; CF = cash translation. Cả 3 statements together = complete financial picture. Drop bất kỳ statement nào = incomplete.
   </p>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — D vs I METHOD</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 06 · INDIRECT METHOD RECONCILIATION -->
-<section data-label="NI to CFO" class="slide">
+<!-- 05 · 3 SECTIONS OVERVIEW -->
+<section data-label="3 sections" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>06 / 28</span>
+    <span>05 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Indirect method · reconciliation</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">NI → <em class="hi">CFO</em> bridge.</h2>
+    <div class="eyebrow">CF structure</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Three <em class="hi">sections</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CF chia 3 sections theo activity type. Sum 3 = Net Change in Cash, reconcile với BS Cash beginning vs ending. Memorize section content — exam test "which goes in which section".
+    </p>
   </div>
 
   <div class="formula-box">
-    <span class="fmt-label">§ Indirect method formula</span>
-    <div class="eq"><span class="var">CFO</span> = <span class="var">NI</span> + <span class="var">NCC</span> − <span class="var">Gains</span> + <span class="var">Losses</span> − Δ<span class="var">WC</span></div>
-    <div class="note"><b>NCC</b> Non-Cash Charges (D&amp;A, amortization, impairment) · <b>Gains/Losses</b> on asset sales (reclass to CFI) · <b>ΔWC</b> change in working capital accounts.</div>
+    <span class="fmt-label">§ CF structure</span>
+    <div class="eq"><span class="var">CFO</span> — Cash from <em>Operating</em> activities (core business)</div>
+    <div class="eq"><span class="var">CFI</span> — Cash from <em>Investing</em> activities (long-term assets)</div>
+    <div class="eq"><span class="var">CFF</span> — Cash from <em>Financing</em> activities (debt + equity)</div>
+    <div class="eq"><span class="var">CFO + CFI + CFF</span> = Net change in Cash</div>
+    <div class="note">
+      <b>Beginning Cash + Net Change = Ending Cash</b> — reconcile với Balance Sheet Cash. CFO is the most-watched section (operating health). CFI shows reinvestment + divestment. CFF shows capital structure changes.
+    </div>
   </div>
 
-  <ol class="num-list tight" style="margin-top: 20px;">
-    <li>
-      <span>
-        <span class="step-title">Add back non-cash charges — D&amp;A, amortization, impairment, stock-comp</span>
-        <span class="step-body">Giảm NI nhưng không dùng cash → cộng lại. Đây là adjustment lớn nhất cho capital-intensive firms.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Remove gains/losses trên asset sales</span>
-        <span class="step-body">Gain on sale reported trong NI, nhưng total cash proceeds thuộc CFI section. Trừ gain khỏi CFO để tránh double-count.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Adjust working capital changes</span>
-        <span class="step-body">↑AR → trừ (sales ghi nhận nhưng chưa thu tiền). ↑Inv → trừ (mua hàng dùng cash). ↑AP → cộng (chưa trả supplier). ↑Unearned Rev → cộng (thu tiền trước).</span>
-      </span>
-    </li>
-  </ol>
-
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — RECONCILE</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 07 · WORKING CAPITAL RULES -->
-<section data-label="WC rules" class="slide">
+<!-- 06 · CFO -->
+<section data-label="CFO" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>07 / 28</span>
+    <span>06 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Indirect method · WC adjustments</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Working capital <em class="hi">signs</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Quy tắc vàng: <em>asset tăng → cash giảm (trừ)</em>. <em>Liability tăng → cash tăng (cộng)</em>. Memorize cho exam.
-    </p>
+    <div class="eyebrow">Section 1 · CFO</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">CFO</em> — Operating activities.</h2>
   </div>
 
   <div class="rule-box">
-    <span class="tag">§ The sign rule</span>
-    Current <b>Asset ↑</b> (AR, Inv, Prepaid) → <b>subtract</b> from NI · Current <b>Asset ↓</b> → <b>add</b>.<br>
-    Current <b>Liability ↑</b> (AP, Accrued, Unearned) → <b>add</b> to NI · Current <b>Liability ↓</b> → <b>subtract</b>.
+    <span class="tag">§ CFO contents</span>
+    <b>Inflows:</b> Cash from customers (sales), interest received (US GAAP — see classification slide), dividends received (US GAAP).<br>
+    <b>Outflows:</b> Cash to suppliers (COGS, inventory purchases), cash to employees (salary), cash for operating expenses (rent, utilities), interest paid (US GAAP), taxes paid.<br>
+    <b>Excludes:</b> Cash from selling long-term assets (CFI), cash from issuing debt/equity (CFF), dividends paid (CFF for US GAAP).
   </div>
 
-  <div class="formula-box" style="margin-top: 16px;">
-    <span class="fmt-label">§ Worked mini-example</span>
-    <div class="eq">NI = 100 · D&amp;A = 20 · ΔAR = +15 · ΔInv = −10 · ΔAP = +8</div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">CFO</span> = 100 + 20 − 15 + 10 + 8 = <b>123</b></div>
-    <div class="note">AR tăng 15 → trừ. Inv giảm 10 → cộng (bán hàng tồn kho). AP tăng 8 → cộng (chưa trả supplier).</div>
+  <p class="fine-muted-sm" style="margin-top: 16px;">
+    § CFO is the "heartbeat" — sustained healthy CFO = company can fund operations + reinvestment + financing without external help. Negative CFO sustained = warning sign (cash burn).
+  </p>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Quality framework</span>
+    <b>CFO &gt; NI</b> consistently → high earnings quality.<br>
+    <b>CFO &lt; NI</b> sustained → accrual-driven earnings, possible quality issue.<br>
+    <b>Negative CFO + Positive NI</b> = red flag (working capital build hidden in receivables / inventory; channel-stuffing risk).
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — WC SIGNS</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 08 · IFRS vs US GAAP -->
-<section data-label="IFRS vs GAAP" class="slide">
+<!-- 07 · CFI -->
+<section data-label="CFI" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>08 / 28</span>
+    <span>07 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Standards · classification</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">IFRS</em> vs US GAAP.</h2>
+    <div class="eyebrow">Section 2 · CFI</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">CFI</em> — Investing activities.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ CFI contents</span>
+    <b>Outflows (negative):</b> Cash for capex (PP&amp;E, plant, equipment), cash for acquisitions of other businesses, cash for purchases of intangible assets, cash for investments in marketable securities (long-term).<br>
+    <b>Inflows (positive):</b> Cash from sale of long-term assets, cash from sale of business units, cash from sale of investments, proceeds from collecting principal of loans receivable.<br>
+    <b>Excludes:</b> Interest/dividend received (CFO under US GAAP; either CFO or CFI under IFRS). Short-term investments may be in operating depending on classification.
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 16px;">
+    § CFI usually <em>negative</em> cho growing company (buying assets). <em>Positive</em> CFI = signal divestment hoặc winding down. Compare CFI vs depreciation: if capex (in CFI) ≈ depreciation → maintenance mode; if capex &gt; depreciation → growth mode.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
+  </div>
+</section>
+
+
+<!-- 08 · CFF -->
+<section data-label="CFF" class="slide">
+  <div class="run-header">
+    <span>04.04 — CF Part I</span>
+    <span class="rule"></span>
+    <span>08 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Section 3 · CFF</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">CFF</em> — Financing activities.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ CFF contents</span>
+    <b>Inflows:</b> Cash from issuing debt (bond, loan), cash from issuing equity (IPO, secondary offering).<br>
+    <b>Outflows:</b> Cash for debt repayment (principal only — interest is CFO under US GAAP), cash for share buybacks (treasury stock), dividends paid (US GAAP — IFRS allows either CFO or CFF).<br>
+    <b>Excludes:</b> Interest paid (CFO under US GAAP). Non-cash transactions like stock issued for acquisition (footnote disclosure only).
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 16px;">
+    § CFF reveals capital structure dynamics. Sustained net <em>positive</em> CFF = relying on external funding (raising debt/equity). Sustained net <em>negative</em> CFF = returning cash to investors (dividend + buyback + debt paydown). Mature companies typically negative CFF; growth companies positive.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
+  </div>
+</section>
+
+
+<!-- 09 · IFRS VS US GAAP -->
+<section data-label="IFRS vs US GAAP" class="slide">
+  <div class="run-header">
+    <span>04.04 — CF Part I</span>
+    <span class="rule"></span>
+    <span>09 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Classification differences</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">IFRS</em> vs <em class="hi">US GAAP</em>.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Khác biệt lớn nhất ở <em>interest &amp; dividends classification</em>. IFRS flexible, GAAP fixed.
+      Same items classified <em>different sections</em> theo IFRS vs US GAAP. CFA exam test thẳng — memorize chính xác.
     </p>
   </div>
 
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head">US GAAP — fixed</div>
-      <dl>
-        <dt>Interest paid</dt>
-        <dd><b>CFO</b> (operating)</dd>
-        <dt>Interest received</dt>
-        <dd><b>CFO</b> (operating)</dd>
-        <dt>Dividends received</dt>
-        <dd><b>CFO</b> (operating)</dd>
-        <dt>Dividends paid</dt>
-        <dd><b>CFF</b> (financing)</dd>
-        <dt>Taxes paid</dt>
-        <dd><b>CFO</b> (operating)</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head">IFRS — flexible</div>
-      <dl>
-        <dt>Interest paid</dt>
-        <dd>CFO hoặc <b>CFF</b></dd>
-        <dt>Interest received</dt>
-        <dd>CFO hoặc <b>CFI</b></dd>
-        <dt>Dividends received</dt>
-        <dd>CFO hoặc <b>CFI</b></dd>
-        <dt>Dividends paid</dt>
-        <dd>CFF hoặc <b>CFO</b></dd>
-        <dt>Taxes paid</dt>
-        <dd>CFO (default), có thể split</dd>
-      </dl>
+  <div class="formula-box">
+    <span class="fmt-label">§ Classification matrix</span>
+    <div class="eq"><span class="var">Interest paid</span>: US GAAP = CFO · IFRS = CFO <em>or</em> CFF</div>
+    <div class="eq"><span class="var">Interest received</span>: US GAAP = CFO · IFRS = CFO <em>or</em> CFI</div>
+    <div class="eq"><span class="var">Dividends received</span>: US GAAP = CFO · IFRS = CFO <em>or</em> CFI</div>
+    <div class="eq"><span class="var">Dividends paid</span>: US GAAP = CFF · IFRS = CFO <em>or</em> CFF</div>
+    <div class="eq"><span class="var">Taxes paid</span>: US GAAP = CFO · IFRS = CFO (default) <em>or</em> CFI/CFF if specifically identified</div>
+    <div class="note">
+      <b>Memorize US GAAP:</b> tất cả interest + dividends received + taxes vào CFO. Chỉ dividends paid vào CFF. <b>IFRS flexible</b>: phân loại theo policy choice nhưng phải nhất quán across periods.
     </div>
   </div>
 
   <p class="fine-muted-sm">
-    § Comparability issue — Khi so sánh IFRS firm với GAAP firm, analyst phải reclass về cùng standard. Ví dụ IFRS firm classify interest paid vào CFF sẽ có CFO cao hơn GAAP firm tương đương.
+    § Common exam trap — assume interest paid là CFF (giống debt repayment). Sai dưới US GAAP. Interest paid là <em>operating</em> theo US GAAP, nhưng dưới IFRS có thể được <em>chọn</em> CFF (logic là interest = financing cost).
   </p>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — IFRS vs GAAP</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 09 · FREE CASH FLOW — CONCEPT -->
-<section data-label="FCF concept" class="slide">
+<!-- 10 · DIRECT METHOD OVERVIEW -->
+<section data-label="Direct method" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>09 / 28</span>
+    <span>10 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Free Cash Flow · concept</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">What is <em class="hi">Free Cash Flow</em>.</h2>
+    <div class="eyebrow">CFO preparation · Method 1</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Direct</em> method.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      FCF là cash còn lại sau khi firm đã funded tất cả positive NPV operating investments. Đây là base cho valuation (DCF models).
+      Direct method shows actual cash receipts and payments. Bắt đầu với revenue/expense items từ IS, convert thành cash equivalents bằng cách điều chỉnh working capital changes.
     </p>
   </div>
 
-  <div class="tenets-grid" style="margin-top: 16px;">
-    <div class="tenet">
-      <span class="n">FCFF</span>
-      <div>
-        <div class="t"><em class="hi">Free Cash Flow to Firm</em></div>
-        <div class="d">Cash available cho <em>cả</em> debt holders và equity holders. Pre-debt payment. Dùng cho enterprise value (EV) valuation.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">FCFE</span>
-      <div>
-        <div class="t"><em class="hi">Free Cash Flow to Equity</em></div>
-        <div class="d">Cash available chỉ cho <em>equity holders</em>, sau khi đã trả debt obligations. Dùng cho equity valuation trực tiếp.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">Δ</span>
-      <div>
-        <div class="t"><em class="hi">Relationship</em></div>
-        <div class="d">FCFE = FCFF − Interest·(1−t) + Net Borrowing. Tháo interest (after-tax) và cộng/trừ net debt changes.</div>
-      </div>
+  <div class="formula-box">
+    <span class="fmt-label">§ Direct method CFO formula</span>
+    <div class="eq">Cash from customers = Revenue − ΔAR + ΔUnearned Revenue</div>
+    <div class="eq">Cash to suppliers = COGS − ΔInventory + ΔAP <em>(− sign)</em></div>
+    <div class="eq">Cash to employees = Salary expense − ΔAccrued Salaries</div>
+    <div class="eq">Cash for operating expense = Op Exp − ΔPrepaid Exp − ΔAccrued Liab</div>
+    <div class="eq">Cash for taxes = Tax expense − ΔDeferred Tax + ΔTax Payable</div>
+    <div class="eq">CFO = Cash from customers − Cash to suppliers − Cash to employees − Cash for op exp − Cash for taxes</div>
+    <div class="note">
+      Direct method preferred theo IFRS + US GAAP <em>(strongly recommended)</em>. Trên thực tế, &lt; 5% companies dùng direct method vì heavier work + reveal more granular detail than mgmt prefer.
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — FCF CONCEPT</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 10 · FCFF FORMULA -->
-<section data-label="FCFF formula" class="slide">
+<!-- 11 · DIRECT METHOD EXAMPLE -->
+<section data-label="Direct example" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>10 / 28</span>
+    <span>11 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">FCFF · formula</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">FCFF</em> calculation.</h2>
+    <div class="eyebrow">Direct method · numerical example</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Direct method <em class="hi">example</em>.</h2>
   </div>
 
-  <div class="formula-box">
-    <span class="fmt-label">§ From Net Income</span>
-    <div class="eq"><span class="var">FCFF</span> = <span class="var">NI</span> + <span class="var">NCC</span> + <span class="var">Int</span>·(1−<span class="var">t</span>) − <span class="var">FCInv</span> − <span class="var">WCInv</span></div>
-    <div class="note"><b>NI</b> Net Income · <b>NCC</b> Non-Cash Charges (D&amp;A) · <b>Int</b> Interest expense · <b>t</b> tax rate · <b>FCInv</b> Fixed Capital Investment (net CapEx) · <b>WCInv</b> Working Capital Investment.</div>
+  <div class="rule-box">
+    <span class="tag">§ Setup</span>
+    Revenue = 1,000B. AR start = 100B; AR end = 150B (ΔAR = +50B). Cash from customers = 1,000 − 50 = <b>950B</b>.<br>
+    COGS = 600B. Inventory: start 80B, end 120B (ΔInv = +40B). AP: start 60B, end 90B (ΔAP = +30B). Cash to suppliers = 600 + 40 − 30 = <b>610B</b>.<br>
+    Operating expenses = 200B. Accrued liab: start 20B, end 35B (ΔAccrued = +15B). Cash for op exp = 200 − 15 = <b>185B</b>.<br>
+    Tax expense = 50B. Tax payable: start 10B, end 8B (ΔPayable = −2B). Cash for taxes = 50 + 2 = <b>52B</b>.
   </div>
 
   <div class="formula-box" style="margin-top: 16px;">
-    <span class="fmt-label">§ From CFO (shortcut)</span>
-    <div class="eq"><span class="var">FCFF</span> = <span class="var">CFO</span> + <span class="var">Int</span>·(1−<span class="var">t</span>) − <span class="var">FCInv</span></div>
-    <div class="note">CFO đã bao gồm NI + NCC − WCInv (under US GAAP). Chỉ cần add back after-tax interest và trừ CapEx.</div>
+    <span class="fmt-label">§ CFO calculation</span>
+    <div class="eq">CFO = 950 − 610 − 185 − 52 = <span class="var">103B</span></div>
+    <div class="note">
+      <b>Sanity check:</b> Net Income = Revenue − COGS − OpEx − Tax = 1,000 − 600 − 200 − 50 = <em>150B</em>. Difference NI − CFO = 150 − 103 = 47B = ΔAR (50) + ΔInv (40) − ΔAP (30) − ΔAccrued (15) + ΔTax Payable (2) = 47B ✓.
+    </div>
   </div>
 
-  <p class="fine-muted-sm">
-    § Why add back Int·(1−t)? — Interest paid là cash cho debt holders. FCFF là cash cho ALL capital providers, nên phải "undo" interest payment. Nhân (1−t) vì interest đã save tax.
-  </p>
-
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — FCFF</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 11 · FCFE FORMULA -->
-<section data-label="FCFE formula" class="slide">
+<!-- 12 · INDIRECT METHOD -->
+<section data-label="Indirect method" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>11 / 28</span>
+    <span>12 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">FCFE · formula</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">FCFE</em> calculation.</h2>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ From FCFF</span>
-    <div class="eq"><span class="var">FCFE</span> = <span class="var">FCFF</span> − <span class="var">Int</span>·(1−<span class="var">t</span>) + <span class="var">Net Borrowing</span></div>
-    <div class="note"><b>Net Borrowing</b> = new debt issued − debt repaid. Positive nếu firm borrow thêm.</div>
-  </div>
-
-  <div class="formula-box" style="margin-top: 16px;">
-    <span class="fmt-label">§ From CFO (fastest)</span>
-    <div class="eq"><span class="var">FCFE</span> = <span class="var">CFO</span> − <span class="var">FCInv</span> + <span class="var">Net Borrowing</span></div>
-    <div class="note">Under US GAAP: CFO đã trừ interest (after-tax effect in NI). Chỉ cần trừ CapEx và cộng Net Borrowing.</div>
-  </div>
-
-  <div class="rule-box" style="margin-top: 20px;">
-    <span class="tag">§ Intuition</span>
-    FCFE = cash còn lại CHO equity sau khi: (1) trả operating expenses, (2) trả taxes, (3) đầu tư CapEx, (4) trả interest, (5) điều chỉnh net debt changes. Đây là cash firm CÓ THỂ pay dividend hoặc buy back stock.
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — FCFE</span>
-  </div>
-</section>
-
-
-<!-- 12 · COMMON-SIZE CFS -->
-<section data-label="Common-size CFS" class="slide">
-  <div class="run-header">
-    <span>FSA · 04.04</span>
-    <span class="rule"></span>
-    <span>12 / 28</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Analysis · common-size</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Common-size <em class="hi">CFS</em>.</h2>
+    <div class="eyebrow">CFO preparation · Method 2</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Indirect</em> method.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Chuẩn hoá mỗi line item thành % của <em>revenue</em> (hoặc % của total cash inflow). Cho phép so sánh firms khác size và theo thời gian.
+      Indirect method = start với <em>Net Income</em>, adjust để arrive at CFO. Adjustments: (a) add back non-cash items, (b) reverse gains/losses từ investing/financing items, (c) adjust for working capital changes.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Indirect method recipe</span>
+    <div class="eq"><span class="var">Net Income</span></div>
+    <div class="eq">+ <span class="var">Depreciation &amp; Amortization</span> (non-cash)</div>
+    <div class="eq">+ <span class="var">Stock-based compensation</span> (non-cash)</div>
+    <div class="eq">+ <span class="var">Deferred tax expense</span> (non-cash portion)</div>
+    <div class="eq">− <span class="var">Gain on sale of assets</span> (move to CFI; gain is non-cash within CFO)</div>
+    <div class="eq">+ <span class="var">Loss on sale of assets</span></div>
+    <div class="eq">− <span class="var">Increase in AR / Inventory</span> (cash tied up)</div>
+    <div class="eq">+ <span class="var">Decrease in AR / Inventory</span> (cash freed)</div>
+    <div class="eq">+ <span class="var">Increase in AP / Accrued Liab</span> (cash deferred)</div>
+    <div class="eq">− <span class="var">Decrease in AP / Accrued Liab</span></div>
+    <div class="eq">= <span class="var">CFO</span></div>
+    <div class="note">
+      <b>Mnemonic:</b> "Add non-cash, subtract gains, adjust working capital opposite of asset direction." Asset ↑ → cash ↓ (subtract). Liability ↑ → cash ↑ (add).
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
+  </div>
+</section>
+
+
+<!-- 13 · INDIRECT EXAMPLE + COMPARISON -->
+<section data-label="Indirect example" class="slide">
+  <div class="run-header">
+    <span>04.04 — CF Part I</span>
+    <span class="rule"></span>
+    <span>13 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Indirect method · same example + comparison</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Indirect <em class="hi">arrives at same CFO</em>.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Apply indirect to same data</span>
+    Net Income = 150B. ΔAR = +50B (cash tied). ΔInventory = +40B (cash tied). ΔAP = +30B (cash freed). ΔAccrued Liab = +15B (cash freed). ΔTax Payable = −2B (cash used). Assume no D&amp;A or other non-cash for simplicity.
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Indirect CFO calculation</span>
+    <div class="eq">NI = <span class="var">150</span></div>
+    <div class="eq">− ΔAR = <span class="var">−50</span></div>
+    <div class="eq">− ΔInventory = <span class="var">−40</span></div>
+    <div class="eq">+ ΔAP = <span class="var">+30</span></div>
+    <div class="eq">+ ΔAccrued Liab = <span class="var">+15</span></div>
+    <div class="eq">− ΔTax Payable = <span class="var">−2</span></div>
+    <div class="eq"><span class="var">CFO = 150 − 50 − 40 + 30 + 15 − 2 = 103B ✓</span></div>
+    <div class="note">
+      <b>Same answer như direct method.</b> Direct method shows source of cash (revenue, expense detail); indirect method shows reconciliation (NI vs CFO gap). Indirect is preferred trên thực tế (~95% companies).
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
+  </div>
+</section>
+
+
+<!-- 14 · LINKAGES -->
+<section data-label="Linkages" class="slide">
+  <div class="run-header">
+    <span>04.04 — CF Part I</span>
+    <span class="rule"></span>
+    <span>14 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Statement integration</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Linkages</em> — IS · BS · CF.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      3 statements không độc lập — chúng integrate. CF statement là "bridge" giữa IS (period activity) và BS (point in time). Disciplined model integration exposes inconsistency.
     </p>
   </div>
 
   <ol class="num-list tight" style="margin-top: 16px;">
     <li>
       <span>
-        <span class="step-title">Approach 1 — Express each item as % of revenue</span>
-        <span class="step-body">Tương tự common-size income statement. CFO/Revenue = cash generation efficiency per dollar of sales.</span>
+        <span class="step-title">IS → CF</span>
+        <span class="step-body">Net Income (from IS) → starting point CFO (indirect method). D&amp;A expense (IS) → add back trong CFO. Gain/loss on asset sale (IS) → reverse trong CFO, move to CFI.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Approach 2 — Inflows as % of total inflows, outflows as % of total outflows</span>
-        <span class="step-body">Cho thấy nguồn cash chủ yếu (operations? borrowing?) và sử dụng cash chủ yếu (CapEx? dividends?).</span>
+        <span class="step-title">BS Δ → CF adjustments</span>
+        <span class="step-body">Working capital changes (ΔAR, ΔInv, ΔAP) → CFO adjustments. ΔPP&amp;E (capex) → CFI. ΔDebt, ΔEquity, ΔRE (via dividend) → CFF.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Trend analysis — đọc theo 3-5 năm</span>
-        <span class="step-body">CFO/Revenue trending down → margin pressure hoặc WC bloat. CapEx/Revenue spike → major expansion cycle.</span>
+        <span class="step-title">CF → BS Cash</span>
+        <span class="step-body">Net change in cash (sum CFO + CFI + CFF) reconcile với BS Cash beginning vs ending. <em>Validation:</em> nếu không match, có error trong model. Most common error: missed non-cash item hoặc dual-counted item.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">RE roll-forward</span>
+        <span class="step-body">Retained Earnings end = RE begin + Net Income (IS) − Dividends declared. Dividends paid (CFF) ≠ dividends declared if there's a payable lag. Non-trivial cho companies với accrued dividends.</span>
       </span>
     </li>
   </ol>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — COMMON-SIZE</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 13 · CASH FLOW RATIOS -->
-<section data-label="CF ratios" class="slide">
+<!-- 15 · NON-CASH TRANSACTIONS -->
+<section data-label="Non-cash" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>13 / 28</span>
+    <span>15 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Analysis · ratios</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Cash flow <em class="hi">ratios</em>.</h2>
+    <div class="eyebrow">Non-cash transactions</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Non-cash</em> transactions disclosure.</h2>
   </div>
 
-  <div class="formula-box">
-    <span class="fmt-label">§ Performance ratios</span>
-    <div class="eq">Cash flow-to-revenue = <span class="var">CFO</span> / <span class="var">Revenue</span></div>
-    <div class="eq" style="margin-top: 8px;">Cash return on assets = <span class="var">CFO</span> / Avg Total Assets</div>
-    <div class="eq" style="margin-top: 8px;">Cash return on equity = <span class="var">CFO</span> / Avg Equity</div>
-    <div class="note">Cash-based versions của profitability ratios. Less manipulable than accrual-based ROA/ROE.</div>
+  <div class="rule-box">
+    <span class="tag">§ Material non-cash transactions</span>
+    Vì <em>không cash</em> liên quan, các transactions sau KHÔNG xuất hiện trong CF body. Phải disclose trong <b>footnote</b> hoặc supplementary schedule.
   </div>
 
-  <div class="formula-box" style="margin-top: 16px;">
-    <span class="fmt-label">§ Coverage ratios</span>
-    <div class="eq">Debt coverage = <span class="var">CFO</span> / Total Debt</div>
-    <div class="eq" style="margin-top: 8px;">Interest coverage = (<span class="var">CFO</span> + Int paid + Tax paid) / Int paid</div>
-    <div class="eq" style="margin-top: 8px;">Reinvestment ratio = <span class="var">CFO</span> / CapEx</div>
-    <div class="note">Coverage &gt; 1 → firm generate đủ cash to service obligations. Reinvestment &gt; 1 → CFO đủ fund CapEx internally.</div>
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">N1</span>
+      <div>
+        <div class="t">Stock-for-acquisition</div>
+        <div class="d">Acquire target by issuing acquirer's shares. Vd merger paid 100% in stock. No cash movement → not in CF body, but disclosed in footnote.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">N2</span>
+      <div>
+        <div class="t">Debt-for-asset swap</div>
+        <div class="d">Acquire equipment by issuing note payable directly to vendor. No cash exchange → not in CF body.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">N3</span>
+      <div>
+        <div class="t">Convertible debt to equity</div>
+        <div class="d">Bondholders convert bonds → equity. Reduces debt, increases equity, no cash. Footnote.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">N4</span>
+      <div>
+        <div class="t">Lease arrangements</div>
+        <div class="d">Capitalize finance lease → recognize asset + liability. No initial cash, but subsequent lease payments split CFO (interest portion under US GAAP) + CFF (principal).</div>
+      </div>
+    </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — CF RATIOS</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 14 · RED FLAGS -->
-<section data-label="Red flags" class="slide">
+<!-- 16 · TAKEAWAYS -->
+<section data-label="Takeaways" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>14 / 28</span>
+    <span>16 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Quality · red flags</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Cash flow <em class="hi">warning signs</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      CFS là last line of defense khi NI lừa. Các pattern sau thường precede accounting scandal hoặc financial distress.
-    </p>
-  </div>
-
-  <ol class="num-list" style="margin-top: 16px;">
-    <li>
-      <span>
-        <span class="step-title">CFO &lt; NI sustainably — accrual quality poor</span>
-        <span class="step-body">NI tăng mà CFO không theo → firm có thể inflate revenue (AR bloating) hoặc defer expenses. Case Enron, WorldCom đều show pattern này trước collapse.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">CapEx &lt; D&amp;A liên tục — underinvestment</span>
-        <span class="step-body">Firm không replace worn-out assets. Future productive capacity giảm. Có thể boost short-term CFO nhưng hỏng long-term.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">CFO phụ thuộc vào one-time items hoặc classification tricks</span>
-        <span class="step-body">Sell receivables (factoring) để boost CFO. Reclass interest từ CFO sang CFF (IFRS). Stretch payables aggressively.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Financing CFO — growth funded bằng debt/equity issuance</span>
-        <span class="step-body">CFF dương lớn và dai dẳng + CFO yếu = firm không self-sustain. OK cho startup, red flag cho mature firm.</span>
-      </span>
-    </li>
-  </ol>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — RED FLAGS</span>
-  </div>
-</section>
-
-
-<!-- 15 · SUMMARY -->
-<section data-label="Summary" class="slide">
-  <div class="run-header">
-    <span>FSA · 04.04</span>
-    <span class="rule"></span>
-    <span>15 / 28</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Module · synthesis</div>
+    <div class="eyebrow">Recap · big picture</div>
     <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
   </div>
 
-  <div class="take" style="margin-top: 16px;">
-    <ul>
-      <li><b>CF &gt; NI</b> khi đánh giá solvency — accrual can be manipulated, cash can't (dễ hơn).</li>
-      <li><b>3 sections</b> — CFO (core business), CFI (long-term assets), CFF (capital structure). Tổng = Δcash.</li>
-      <li><b>Indirect method</b> dominant (~99%) — start NI, add NCC, adjust WC. Signs: asset ↑ trừ, liability ↑ cộng.</li>
-      <li><b>IFRS flexible</b>, GAAP fixed on interest/dividend classification. Reclass khi so sánh cross-standard.</li>
-      <li><b>FCFF = NI + NCC + Int(1−t) − FCInv − WCInv</b>. <b>FCFE = CFO − FCInv + Net Borrowing</b>.</li>
-      <li><b>Red flags</b> — CFO &lt; NI sustainably, CapEx &lt; D&amp;A, CFO boosted by one-time items.</li>
-    </ul>
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">α</span>
+      <div>
+        <div class="t">3 sections + reconcile to BS Cash</div>
+        <div class="d">CFO (operating) + CFI (investing) + CFF (financing) = Net Change in Cash. Begin Cash + Net Change = End Cash, must reconcile to BS.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">β</span>
+      <div>
+        <div class="t">IFRS flexible · US GAAP rigid</div>
+        <div class="d">Memorize US GAAP: interest paid + interest received + dividends received → CFO. Dividends paid → CFF. IFRS allows interest paid → CFO or CFF; dividends paid → CFO or CFF; interest/div received → CFO or CFI.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">γ</span>
+      <div>
+        <div class="t">Direct vs Indirect — same CFO</div>
+        <div class="d">Direct = revenue/expense → cash items (granular). Indirect = NI + adjustments. Indirect dominant in practice (95%+). Both arrive at same CFO.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">δ</span>
+      <div>
+        <div class="t">Non-cash transactions → footnote</div>
+        <div class="d">Stock-for-acquisition, debt-for-asset, convertible conversion, lease capitalization. No cash → not in CF body, must disclose in footnote.</div>
+      </div>
+    </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — SUMMARY</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 16 · TRANSITION -->
+<!-- 17 · TRANSITION -->
 <section data-label="Practice begins" class="slide end-slide">
   <div>
     <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
@@ -642,77 +634,75 @@
 </section>
 
 
-<!-- 17 · Q1 EN — Reconcile NI to CFO -->
+<!-- 18 · Q1 EN — Classification IFRS vs US GAAP -->
 <section data-label="Q1 Original" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>17 / 28</span>
+    <span>18 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Reconcile NI to <em class="hi">CFO</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Interest paid</em> classification.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      A firm reports <strong>Net Income of $500</strong>. Additional data: Depreciation &amp; Amortization <strong>$80</strong>; Accounts Receivable <strong>increased $30</strong>; Inventory <strong>decreased $20</strong>; Accounts Payable <strong>increased $15</strong>; Gain on sale of equipment <strong>$10</strong>. Using the indirect method, what is <strong>CFO</strong>?
+      A US-listed company paid $50 million in interest on outstanding bonds during the year. Under <em>US GAAP</em>, where must this $50 million appear in the cash flow statement?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">$555.</span></li>
-    <li><span class="lbl">B</span><span class="opt">$575.</span></li>
-    <li><span class="lbl">C</span><span class="opt">$595.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Cash flow from operating activities (CFO) — interest paid is treated as an operating outflow under US GAAP.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Cash flow from financing activities (CFF) — interest is a financing cost related to debt, similar to dividends paid which are also CFF.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Either CFO or CFF — the company can choose its preferred classification, similar to IFRS flexibility.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — Q1 ORIGINAL</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 18 · Q1 HINT -->
+<!-- 19 · Q1 HINT -->
 <section data-label="Q1 Hint" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>18 / 28</span>
+    <span>19 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">standard</em>.</h2>
   </div>
   <div class="hint-card">
-    <span class="h-tag">§ Keywords</span>
-    NI <mark>$500</mark>, D&amp;A <mark>$80</mark>, AR <mark>+$30</mark>, Inv <mark>−$20</mark>, AP <mark>+$15</mark>, <mark>Gain $10</mark> on sale.
+    <span class="h-tag">§ Memorize</span>
+    US GAAP rigid: <mark>interest paid + interest/div received → CFO</mark>; dividends paid → CFF. IFRS flexible: choose policy.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">Start NI. Add back <em>non-cash</em> D&amp;A ($80). D&amp;A giảm NI nhưng không dùng cash → cộng lại.</span>
+      <span class="htxt">US GAAP treats interest expense as <em>operating</em> cost (vì interest goes through IS as expense reducing operating income). Hence cash payment for interest = CFO.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Apply sign rule: AR ↑ $30 → <em>trừ</em> (sales recognized but cash not collected). Inv ↓ $20 → <em>cộng</em>. AP ↑ $15 → <em>cộng</em>.</span>
+      <span class="htxt">IFRS more logical (interest = financing) — allows interest paid in either CFO or CFF. Nhưng đề specify <em>US GAAP</em> → no flexibility.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Gain on sale $10 — <em>trừ</em> khỏi CFO. Full sale proceeds thuộc CFI, nên remove gain để tránh double-count ở CFO.</span>
+      <span class="htxt">Common trap (đáp án B): logically interest should be financing, but US GAAP rule treats it as CFO. Memorize the rule, don't reason from logic.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — Q1 HINT</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 19 · Q1 DỊCH ĐỀ -->
+<!-- 20 · Q1 Dịch đề -->
 <section data-label="Q1 Dịch đề" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>19 / 28</span>
+    <span>20 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
@@ -721,128 +711,124 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Firm báo cáo <strong>Net Income $500</strong>. Data khác: Depreciation &amp; Amortization <strong>$80</strong>; Accounts Receivable <strong>tăng $30</strong>; Inventory <strong>giảm $20</strong>; Accounts Payable <strong>tăng $15</strong>; Gain on sale equipment <strong>$10</strong>. Dùng indirect method, <strong>CFO</strong> bằng bao nhiêu?
+      Một công ty niêm yết US trả $50 triệu tiền lãi vay trên bonds trong năm. Theo <em>US GAAP</em>, $50 triệu này phải xuất hiện ở section nào trong cash flow statement?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">$555.</span></li>
-    <li><span class="lbl">B</span><span class="opt">$575.</span></li>
-    <li><span class="lbl">C</span><span class="opt">$595.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Cash flow from operating activities (CFO) — interest paid được treat như operating outflow theo US GAAP.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Cash flow from financing activities (CFF) — interest là financing cost liên quan debt, tương tự dividends paid (cũng CFF).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Hoặc CFO hoặc CFF — công ty có thể chọn classification ưa thích, tương tự IFRS flexibility.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — Q1 VIỆT</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 20 · Q1 EXPLANATION -->
+<!-- 21 · Q1 EXPLANATION -->
 <section data-label="Q1 Explanation" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>20 / 28</span>
+    <span>21 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $575.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — CFO.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
-      <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">CFO = 500 + 80 (D&amp;A) − 30 (ΔAR) + 20 (ΔInv giảm) + 15 (ΔAP) − 10 (gain) = <b>$575</b>. Áp dụng đầy đủ các adjustment: non-cash back, WC signs, gain removal.</div>
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">US GAAP <b>requires</b> interest paid be classified as <em>CFO</em>. Logic: interest expense flows through IS as part of net income (reducing operating earnings); the corresponding cash payment is treated as operating outflow to maintain consistency với IS. Cùng quy tắc cho interest received + dividends received (both CFO under US GAAP). <em>Only dividends paid</em> goes to CFF under US GAAP. Memorize: US GAAP <b>rigid</b> classification — không có "company can choose".</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">$555 = quên cộng back ΔInv giảm ($20). Inventory giảm nghĩa là firm bán hàng tồn kho thành cash → cộng vào CFO.</div>
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Logically tempting (interest is a financing cost related to debt), nhưng US GAAP <em>không follow</em> economic logic — rule placed interest paid trong CFO. Đây là common conceptual trap. Note: under <em>IFRS</em>, B would be acceptable (IFRS allows CFO or CFF), but question specify US GAAP.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">$595 = quên trừ gain on sale ($10). Gain $10 đã được included trong NI; nhưng proceeds từ việc bán equipment thuộc CFI, nên phải remove $10 khỏi CFO.</div>
+      <div class="rtext">Sai cốt lõi — chỉ <em>IFRS</em> cho phép policy choice; US GAAP rigid. Đảo ngược nguyên tắc. Memorize matrix: US GAAP single classification per item; IFRS allows election (must be consistent).</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Indirect method 4-step: (1) Start NI → (2) +NCC → (3) ±ΔWC theo sign rule → (4) −gains/+losses trên asset sales. Missing bước nào cũng sai.</div>
+    <div class="ttext">US GAAP CF classification matrix: <em>Interest paid → CFO</em>; <em>Interest received → CFO</em>; <em>Dividends received → CFO</em>; <em>Dividends paid → CFF</em>; <em>Taxes paid → CFO</em>. IFRS allows election cho interest/dividends (CFO or CFF/CFI). Memorize US GAAP rigid rules — exam tests verbatim.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — ANSWER Q1</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 21 · Q2 EN — Classify transaction -->
+<!-- 22 · Q2 EN — Indirect method calc -->
 <section data-label="Q2 Original" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>21 / 28</span>
+    <span>22 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Classify the <em class="hi">transaction</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Indirect method</em> CFO.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Under <strong>US GAAP</strong>, a company pays <strong>$2 million in interest</strong> on its long-term bonds and <strong>$1 million in dividends</strong> to common shareholders during the year. How should these payments be classified on the Statement of Cash Flows?
+      A company reports the following data for the year (in millions): Net Income = 200; Depreciation = 80; Loss on sale of equipment = 15; Increase in accounts receivable = 40; Decrease in inventory = 25; Increase in accounts payable = 30; Decrease in accrued liabilities = 10. What is the <em>cash flow from operating activities</em> using the indirect method?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Both interest and dividends are classified as CFF (financing activities).</span></li>
-    <li><span class="lbl">B</span><span class="opt">Interest paid is CFO; dividends paid are CFF.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Interest paid is CFF; dividends paid are CFO.</span></li>
+    <li><span class="lbl">A</span><span class="opt">280 — calculated as 200 + 80 + 15 − 40 + 25 + 30 + 10 (all working capital changes added).</span></li>
+    <li><span class="lbl">B</span><span class="opt">300 — calculated as 200 + 80 + 15 − 40 + 25 + 30 − 10 (correct treatment: add non-cash, subtract gain, AR ↑ subtract, Inv ↓ add, AP ↑ add, Accrued ↓ subtract).</span></li>
+    <li><span class="lbl">C</span><span class="opt">240 — calculated as 200 + 80 − 15 + 40 − 25 − 30 + 10 (subtract loss, then reverse all working capital adjustments).</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — Q2 ORIGINAL</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 22 · Q2 HINT -->
+<!-- 23 · Q2 HINT -->
 <section data-label="Q2 Hint" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>22 / 28</span>
+    <span>23 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">signs</em>.</h2>
   </div>
   <div class="hint-card">
-    <span class="h-tag">§ Keywords</span>
-    <mark>US GAAP</mark> (fixed rules, không flexible). <mark>Interest paid</mark> và <mark>dividends paid</mark> — câu hỏi về classification.
+    <span class="h-tag">§ Recipe</span>
+    Indirect = NI + non-cash + losses − gains + (Asset ↓ → +) + (Liab ↑ → +). Asset ↑ → −. Liab ↓ → −.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">US GAAP rule cho <em>interest paid</em>: <b>CFO</b> (operating). Logic: interest là chi phí operating trong income statement, nên cash flow tương ứng cũng vào CFO.</span>
+      <span class="htxt">Non-cash items: Depreciation +80 (always add back). Loss on sale +15 (add back; would be subtracted if it were a gain).</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">US GAAP rule cho <em>dividends paid</em>: <b>CFF</b> (financing). Logic: dividend là return capital cho shareholders — financing decision, không phải operating.</span>
+      <span class="htxt">Working capital — Asset side: AR ↑ 40 → cash tied up → <em>−40</em>. Inventory ↓ 25 → cash freed → <em>+25</em>.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Đừng nhầm với IFRS (flexible — interest paid có thể CFO hoặc CFF). Câu hỏi nói rõ "Under US GAAP" → fixed rules apply.</span>
+      <span class="htxt">Working capital — Liability side: AP ↑ 30 → cash deferred → <em>+30</em>. Accrued Liab ↓ 10 → cash paid → <em>−10</em>. Sum: 200 + 80 + 15 − 40 + 25 + 30 − 10 = 300.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — Q2 HINT</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 23 · Q2 DỊCH ĐỀ -->
+<!-- 24 · Q2 Dịch đề -->
 <section data-label="Q2 Dịch đề" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>23 / 28</span>
+    <span>24 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
@@ -851,128 +837,124 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Dưới <strong>US GAAP</strong>, một công ty trả <strong>$2 triệu interest</strong> cho long-term bonds và <strong>$1 triệu dividends</strong> cho common shareholders trong năm. Các payments này được classify thế nào trên Statement of Cash Flows?
+      Một công ty báo cáo dữ liệu cả năm (triệu): Net Income = 200; Depreciation = 80; Loss on sale of equipment = 15; Increase in AR = 40; Decrease in inventory = 25; Increase in AP = 30; Decrease in accrued liabilities = 10. <em>Cash flow from operating activities</em> theo indirect method là?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Cả interest và dividends đều classify là CFF (financing activities).</span></li>
-    <li><span class="lbl">B</span><span class="opt">Interest paid là CFO; dividends paid là CFF.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Interest paid là CFF; dividends paid là CFO.</span></li>
+    <li><span class="lbl">A</span><span class="opt">280 — tính bằng 200 + 80 + 15 − 40 + 25 + 30 + 10 (cộng hết working capital changes).</span></li>
+    <li><span class="lbl">B</span><span class="opt">300 — tính bằng 200 + 80 + 15 − 40 + 25 + 30 − 10 (đúng: cộng non-cash, trừ gain, AR ↑ trừ, Inv ↓ cộng, AP ↑ cộng, Accrued ↓ trừ).</span></li>
+    <li><span class="lbl">C</span><span class="opt">240 — tính bằng 200 + 80 − 15 + 40 − 25 − 30 + 10 (trừ loss, sau đó đảo ngược tất cả working capital adjustments).</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — Q2 VIỆT</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 24 · Q2 EXPLANATION -->
+<!-- 25 · Q2 EXPLANATION -->
 <section data-label="Q2 Explanation" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>24 / 28</span>
+    <span>25 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — CFO &amp; CFF.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 300.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">Under US GAAP: <b>interest paid = CFO</b> (operating — tied to operating profitability in IS) and <b>dividends paid = CFF</b> (financing — return of capital to equity holders). Đây là fixed classification của GAAP, không flexible.</div>
+      <div class="rtext">Apply indirect method recipe step-by-step: <b>(1)</b> Start NI = <em>200</em>. <b>(2)</b> Add D&amp;A = <em>+80</em> (non-cash, always add). <b>(3)</b> Add loss on sale = <em>+15</em> (loss reduce NI but no cash; if gain, would subtract). <b>(4)</b> AR ↑ 40 → cash tied in receivables → <em>−40</em>. <b>(5)</b> Inventory ↓ 25 → cash freed (sold inventory) → <em>+25</em>. <b>(6)</b> AP ↑ 30 → cash deferred (delaying payment to suppliers) → <em>+30</em>. <b>(7)</b> Accrued Liab ↓ 10 → paid down accrued obligations → <em>−10</em>. Sum: 200 + 80 + 15 − 40 + 25 + 30 − 10 = <b>300</b>.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Phát biểu "cả hai là CFF" là <em>intuitive nhưng sai dưới GAAP</em>. Có thể đúng với một cách classification dưới IFRS, nhưng câu hỏi specify US GAAP. Interest paid vào CFO, không phải CFF.</div>
+      <div class="rtext">Sai phần Accrued Liab — Accrued Liab ↓ means company paid down → cash <em>out</em> → must subtract −10, không add +10. Adding all working capital changes ignores direction of asset vs liability.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">Swap ngược của đáp án đúng. Dividends paid luôn là CFF under GAAP. Interest paid là CFO. Nếu confuse, nhớ interest đã đi qua income statement → operating.</div>
+      <div class="rtext">Multiple errors: (1) loss should be added (+15), not subtracted; loss reduce NI but no actual cash outflow. (2) Working capital signs reversed — AR ↑ should be −, not +. Indirect recipe requires understanding direction of cash flow vs balance sheet movement.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">US GAAP fixed: interest paid/received = CFO, dividends received = CFO, dividends paid = CFF, taxes = CFO. IFRS flexible: interest paid có thể CFO hoặc CFF. Khi question đề "US GAAP", áp dụng fixed rules.</div>
+    <div class="ttext">Indirect method 4 sign rules: <em>(1) Non-cash items → add</em> (D&amp;A, SBC, deferred tax, losses); <em>(2) Gains → subtract</em> (gain reflected in NI but cash is in CFI); <em>(3) Asset ↑ → subtract, Asset ↓ → add</em> (working capital tied/freed); <em>(4) Liability ↑ → add, Liability ↓ → subtract</em> (cash deferred/paid). Memorize 4 rules → solve any indirect CFO problem.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — ANSWER Q2</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 25 · Q3 EN — FCFF Calculation -->
+<!-- 26 · Q3 EN — Direct method cash from customers -->
 <section data-label="Q3 Original" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>25 / 28</span>
+    <span>26 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Calculate <em class="hi">FCFF</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Direct method</em> — cash from customers.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      A firm reports: Net Income <strong>$400</strong>; Depreciation <strong>$100</strong>; Interest expense <strong>$50</strong>; Fixed Capital Investment (net CapEx) <strong>$150</strong>; Working Capital Investment <strong>$30</strong>; Tax rate <strong>25%</strong>. Calculate <strong>FCFF</strong>.
+      A company reports Revenue of $5,000 million. Beginning AR = $400 million; ending AR = $550 million. Beginning Unearned Revenue = $80 million; ending Unearned Revenue = $120 million. Using the direct method, what is the <em>cash collected from customers</em> for the year?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">$357.50.</span></li>
-    <li><span class="lbl">B</span><span class="opt">$370.00.</span></li>
-    <li><span class="lbl">C</span><span class="opt">$420.00.</span></li>
+    <li><span class="lbl">A</span><span class="opt">$4,810M — calculated as Revenue − ΔAR + ΔUnearned = 5,000 − 150 + (−40) = 4,810.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$4,890M — calculated as Revenue − ΔAR + ΔUnearned = 5,000 − 150 + 40 = 4,890.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$5,150M — calculated as Revenue + ΔAR + ΔUnearned = 5,000 + 150 + 40 = 5,190 (and adjusted slightly).</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — Q3 ORIGINAL</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 26 · Q3 HINT -->
+<!-- 27 · Q3 HINT -->
 <section data-label="Q3 Hint" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>26 / 28</span>
+    <span>27 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">signs</em>.</h2>
   </div>
   <div class="hint-card">
-    <span class="h-tag">§ Keywords</span>
-    NI <mark>$400</mark>, Dep <mark>$100</mark>, Int <mark>$50</mark>, FCInv <mark>$150</mark>, WCInv <mark>$30</mark>, tax <mark>25%</mark>. Tìm <mark>FCFF</mark>.
+    <span class="h-tag">§ Formula</span>
+    Cash from customers = Revenue <mark>−</mark> ΔAR <mark>+</mark> ΔUnearned Revenue
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">Formula từ NI: <em>FCFF = NI + NCC + Int·(1−t) − FCInv − WCInv</em>. Identify từng component trong câu hỏi.</span>
+      <span class="htxt">ΔAR = 550 − 400 = +150 (AR increased). Cash <em>not yet collected</em> went up by 150 → subtract 150 from revenue (cash less than revenue earned).</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Int·(1−t) = 50 × (1 − 0.25) = 50 × 0.75 = <em>$37.50</em>. Add back after-tax interest, vì FCFF là cash cho ALL capital providers.</span>
+      <span class="htxt">ΔUnearned Revenue = 120 − 80 = +40 (Unearned increased). Cash <em>received in advance</em> went up by 40 → add 40 (cash more than revenue earned).</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Plug in: FCFF = 400 + 100 + 37.50 − 150 − 30 = <em>$357.50</em>. Cẩn thận với sign: FCInv và WCInv là USES của cash → trừ.</span>
+      <span class="htxt">Cash from customers = 5,000 − 150 + 40 = <em>4,890</em>. Logic: AR ↑ = cash less; Unearned ↑ = cash more (collected upfront for future delivery).</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — Q3 HINT</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 27 · Q3 DỊCH ĐỀ -->
+<!-- 28 · Q3 Dịch đề -->
 <section data-label="Q3 Dịch đề" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>27 / 28</span>
+    <span>28 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
@@ -981,62 +963,60 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một firm báo cáo: Net Income <strong>$400</strong>; Depreciation <strong>$100</strong>; Interest expense <strong>$50</strong>; Fixed Capital Investment (net CapEx) <strong>$150</strong>; Working Capital Investment <strong>$30</strong>; Tax rate <strong>25%</strong>. Tính <strong>FCFF</strong>.
+      Một công ty báo cáo Revenue $5,000 triệu. AR đầu kỳ = $400 triệu; AR cuối kỳ = $550 triệu. Unearned Revenue đầu kỳ = $80 triệu; cuối kỳ = $120 triệu. Theo direct method, <em>cash collected from customers</em> trong năm là?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">$357.50.</span></li>
-    <li><span class="lbl">B</span><span class="opt">$370.00.</span></li>
-    <li><span class="lbl">C</span><span class="opt">$420.00.</span></li>
+    <li><span class="lbl">A</span><span class="opt">$4,810M — tính bằng Revenue − ΔAR + ΔUnearned = 5,000 − 150 + (−40) = 4,810.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$4,890M — tính bằng Revenue − ΔAR + ΔUnearned = 5,000 − 150 + 40 = 4,890.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$5,150M — tính bằng Revenue + ΔAR + ΔUnearned = 5,000 + 150 + 40 = 5,190 (đã adjust nhẹ).</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — Q3 VIỆT</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 28 · Q3 EXPLANATION -->
+<!-- 29 · Q3 EXPLANATION -->
 <section data-label="Q3 Explanation" class="slide">
   <div class="run-header">
-    <span>FSA · 04.04</span>
+    <span>04.04 — CF Part I</span>
     <span class="rule"></span>
-    <span>28 / 28</span>
+    <span>29 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — $357.50.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $4,890M.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
-      <div class="rtag">✓ Correct — A</div>
-      <div class="rtext">FCFF = NI + NCC + Int·(1−t) − FCInv − WCInv = 400 + 100 + 50·(0.75) − 150 − 30 = 400 + 100 + 37.50 − 150 − 30 = <b>$357.50</b>. Add back after-tax interest ($37.50), trừ FCInv và WCInv.</div>
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Direct method formula: Cash from customers = Revenue − ΔAR + ΔUnearned Revenue. <b>Step 1:</b> ΔAR = 550 − 400 = +150 (AR ↑ → less cash collected, subtract). <b>Step 2:</b> ΔUnearned Revenue = 120 − 80 = +40 (Unearned ↑ → more cash received in advance, add). <b>Step 3:</b> 5,000 − 150 + 40 = <em>4,890</em>. Intuition: revenue ghi nhận khi earned. Nếu AR ↑, có thêm revenue earned chưa collected → cash &lt; revenue. Nếu Unearned ↑, có thêm cash collected chưa earn → cash &gt; revenue. Kết hợp: cả 2 effects net.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — B</div>
-      <div class="rtext">$370 = add back full interest $50 thay vì after-tax $37.50. Common mistake — quên multiply by (1−t). Interest đã tạo tax shield, nên chỉ cộng portion after-tax.</div>
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Sai sign trên ΔUnearned — đề nói Unearned tăng từ 80 → 120 (positive +40), không phải −40. Nếu trừ −40 = subtract negative = effectively adding 40 (giống đáp án B), nhưng arithmetic ghi −40 là wrong notation. ΔUnearned = +40 (positive change).</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">$420 = quên trừ WCInv ($30), hoặc tính sai adjustment. FCInv VÀ WCInv đều là investments (uses of cash) → phải trừ cả hai.</div>
+      <div class="rtext">Sai sign trên ΔAR — AR ↑ should be subtracted (cash <em>tied up</em> in receivables). Adding ΔAR overstates cash collected. Logic: AR là claim chưa collected; AR ↑ = cash hasn't been received, must subtract from revenue.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Ghi nhớ 2 công thức FCFF: (1) từ NI: <em>NI + NCC + Int·(1−t) − FCInv − WCInv</em>; (2) từ CFO (under GAAP): <em>CFO + Int·(1−t) − FCInv</em>. Interest always after-tax. FCFE shortcut: <em>CFO − FCInv + Net Borrowing</em>.</div>
+    <div class="ttext">Direct method cash from customers = <em>Revenue − ΔAR + ΔUnearned Revenue</em>. Memorize signs: AR ↑ tied cash (subtract); Unearned ↑ cash received early (add). Same logic applies to other line items: <em>Cash to suppliers</em> = COGS + ΔInv − ΔAP; <em>Cash to employees</em> = Salary − ΔAccrued Salary; <em>Cash for taxes</em> = Tax expense − ΔDeferred Tax + ΔTax Payable.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FSA · 04.04 — ANSWER Q3</span>
+    <span class="footer-topic">FSA · 04.04 — Cash Flow Statement (Part I)</span>
   </div>
 </section>
 
 
-<!-- 29 · END -->
+<!-- 30 · END -->
 <section data-label="End" class="slide end-slide">
   <div>
     <h1>04.04 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
-    <div class="hint">Tiếp theo · Lesson 04.05 — Analysis of Inventories</div>
+    <div class="hint">Tiếp theo · Lesson 04.05 — Cash Flow Statement (Part II): Analysis</div>
   </div>
 </section>
 

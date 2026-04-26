@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>CFA L1 · Fixed Income 08.08 — Credit Risk &amp; Analysis</title>
+<title>CFA L1 · Fixed Income 08.08 — Yield &amp; Yield Spread Measures for Floating-Rate Instruments</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -11,22 +11,26 @@
 <link rel="stylesheet" href="/assets/cfa-theme.css">
 <style>
   .title-slide .left { background: var(--accent); }
-  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main { font-size: 84px; line-height: 0.98; }
   .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
   .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
 
-  /* Rating ladder — compact 3-column scale */
-  .rating-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 36px; margin-top: 16px; }
-  .rating-grid .col { border-top: 4px solid var(--accent); padding-top: 18px; }
-  .rating-grid .col h4 {
-    font-family: var(--mono); font-size: 18px; color: var(--accent);
-    letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 10px;
-  }
-  .rating-grid .col table { width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: 19px; }
-  .rating-grid .col td { padding: 6px 8px; border-bottom: 1px solid var(--rule-soft); }
-  .rating-grid .col td.r { font-family: var(--mono); font-weight: 700; color: var(--accent); width: 40%; }
-  .rating-grid .col td.d { color: var(--ink-soft); }
-  .rating-grid .col.junk td.r { color: #B23A3A; }
+  /* Yield conversion table */
+  .yield-table { width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: 19px; margin-top: 16px; }
+  .yield-table th { background: var(--accent); color: #fff; font-family: var(--mono); font-size: 17px; letter-spacing: 0.08em; padding: 10px 14px; text-align: left; }
+  .yield-table td { padding: 9px 14px; border-bottom: 1px solid var(--rule-soft); vertical-align: top; }
+  .yield-table tr:nth-child(even) td { background: var(--bg-soft, #f7f7f7); }
+  .yield-table td.mono { font-family: var(--mono); font-weight: 600; color: var(--accent); white-space: nowrap; }
+  .yield-table td.note { color: var(--ink-soft); font-size: 17px; }
+
+  /* Worked example box */
+  .worked-box { background: var(--bg-soft, #f7f7f7); border-left: 5px solid var(--accent); border-radius: 6px; padding: 22px 28px; margin-top: 18px; }
+  .worked-box .wb-label { font-family: var(--mono); font-size: 16px; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+  .worked-box .wb-row { display: flex; gap: 12px; align-items: baseline; margin: 6px 0; font-size: 19px; }
+  .worked-box .wb-step { font-family: var(--mono); font-weight: 700; color: var(--accent); min-width: 28px; }
+  .worked-box .wb-eq { font-family: var(--mono); color: var(--ink); }
+  .worked-box .wb-note { color: var(--ink-soft); font-size: 17px; }
+  .worked-box .wb-result { font-family: var(--mono); font-weight: 700; font-size: 22px; color: #1a6e2e; margin-top: 12px; border-top: 1px solid var(--rule-soft); padding-top: 10px; }
 </style>
 </head>
 <body>
@@ -37,18 +41,18 @@
 <section data-label="Title" class="slide title-slide">
   <div class="left">
     <div class="mark">CFA Institute · Level I</div>
-    <h1 class="main">Credit Risk<br>&amp; <em>Analysis.</em></h1>
+    <h1 class="main">Yield &amp; Yield<br><em>Spread Measures.</em></h1>
     <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 08 · Lesson 08.08 · Fixed Income</div>
   </div>
   <div class="right">
-    <div class="mark">Module 08 · Default · Spreads · 4 C's</div>
+    <div class="mark">Module 08 · FRN · Discount Margin · Money Market Yields</div>
     <dl class="meta-grid">
       <div><dt>Môn</dt><dd>Fixed Income</dd></div>
       <div><dt>Module</dt><dd>08</dd></div>
       <div><dt>Lesson</dt><dd>08.08</dd></div>
       <div><dt>Thời lượng</dt><dd>90 min</dd></div>
     </dl>
-    <div class="mark">Default · LGD · Spreads · Ratings · Covenants</div>
+    <div class="mark">FRN · Quoted Margin · Discount Margin · BDY · MMY · BEY · EAY · Repo</div>
   </div>
 </section>
 
@@ -58,720 +62,850 @@
   <div class="band">
     <div class="lbl">PART</div>
     <div class="n">08</div>
-    <div class="lbl">Credit risk &amp; analysis</div>
+    <div class="lbl">Floating-rate &amp; money market yields</div>
   </div>
   <div class="content">
     <div class="eyebrow">Today's lesson</div>
-    <h2>How analysts <em>price</em><br>and <em>rate</em> credit.</h2>
+    <h2>From <em>floating coupons</em><br>to <em>yield conventions</em>.</h2>
     <ul class="toc">
-      <li class="active">01 · Credit risk — default probability · loss severity · expected loss</li>
-      <li>02 · Credit spreads — G-spread · I-spread · Z-spread · OAS</li>
-      <li>03 · Rating agencies — Moody's · S&amp;P · Fitch · IG vs HY · notching</li>
-      <li>04 · Credit analysis — the 4 C's · capacity ratios · collateral · covenants</li>
-      <li>05 · Sovereign · high yield · distressed · spread duration</li>
-      <li>06 · Practice — 3 CFA-style questions</li>
+      <li class="active">01 · FRN pricing mechanics — reset to par, quoted margin vs required margin</li>
+      <li>02 · Discount margin (DM) — định nghĩa và cách tính</li>
+      <li>03 · Money market yield conventions — BDY · MMY · BEY · EAY</li>
+      <li>04 · T-bill quote convention — discount basis và conversion</li>
+      <li>05 · Repo rate — overnight và term repo</li>
+      <li>06 · So sánh yield bases — exam trap thường gặp</li>
+      <li>07 · Worked examples — 2 bài tính số</li>
+      <li>08 · Practice — 3 câu hỏi CFA-style</li>
     </ul>
   </div>
 </section>
 
 
-<!-- 03 · CREDIT RISK OVERVIEW -->
-<section data-label="Credit risk" class="slide">
+<!-- 03 · FRN OVERVIEW -->
+<section data-label="FRN overview" class="slide">
   <div class="run-header">
-    <span>08.08 — Credit Risk</span>
+    <span>08.08 — Yield Measures for FRN</span>
     <span class="rule"></span>
-    <span>03 / 31</span>
+    <span>03 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Credit · risk</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">What is <em class="hi">credit risk</em>?</h2>
+    <div class="eyebrow">Floating-rate note · overview</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">FRN</em> — cấu trúc cơ bản.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Credit risk = rủi ro issuer <em>không trả được</em> coupon hoặc principal đúng hạn. Hai thành phần độc lập: <em>default risk</em> (xác suất default) và <em>loss severity</em> (mất bao nhiêu khi default xảy ra).
+      Floating-rate note (FRN) là bond có coupon <em>không cố định</em> — coupon thay đổi theo một <strong>reference rate</strong> (thường là SOFR, EURIBOR, hoặc LIBOR cũ) cộng với một spread cố định. Khác với fixed-rate bond, FRN có duration ngắn hơn nhiều và ít nhạy cảm hơn với lãi suất thị trường.
     </p>
   </div>
 
   <div class="compare" style="margin-top: 16px;">
     <div class="cc">
-      <div class="head"><em>Default risk</em></div>
+      <div class="head"><em>Cấu trúc coupon</em></div>
       <dl>
-        <dt>Definition</dt>
-        <dd>Xác suất (PD) issuer <b>không meet</b> nghĩa vụ contractual</dd>
-        <dt>Drivers</dt>
-        <dd>Leverage, profitability, cash flow, ngành, macro cycle</dd>
-        <dt>Measure</dt>
-        <dd>Probability of default — historical, structural, hoặc reduced-form models</dd>
-        <dt>Time horizon</dt>
-        <dd>1 năm, 5 năm, hay đến maturity</dd>
+        <dt>Coupon formula</dt>
+        <dd><em>Coupon = Reference Rate + Quoted Margin (QM)</em>. QM được cố định tại thời điểm phát hành và không thay đổi suốt vòng đời bond.</dd>
+        <dt>Reference rate</dt>
+        <dd>Thường là SOFR (US), EURIBOR (EU), hoặc overnight rate được reset định kỳ — hàng quý hoặc hàng tháng. Mỗi reset date, coupon mới được tính lại.</dd>
+        <dt>Reset date</dt>
+        <dd>Ngày coupon được re-set theo reference rate mới. Giữa hai reset date, coupon là cố định (interim period).</dd>
+        <dt>Cap / Floor</dt>
+        <dd>Nhiều FRN có <em>cap</em> (giới hạn coupon tối đa) hoặc <em>floor</em> (coupon tối thiểu). Floor = 0% phổ biến nhất — tránh negative coupon khi rates âm.</dd>
       </dl>
     </div>
     <div class="cc">
-      <div class="head"><em>Loss severity</em></div>
+      <div class="head"><em>FRN vs Fixed-rate bond</em></div>
       <dl>
-        <dt>Definition</dt>
-        <dd>Phần trăm mất khi default đã xảy ra (LGD)</dd>
-        <dt>Drivers</dt>
-        <dd>Seniority, collateral, ngành, jurisdiction (bankruptcy law)</dd>
-        <dt>Measure</dt>
-        <dd>LGD = 1 − Recovery Rate. Recovery thường 30-60% cho senior unsecured</dd>
-        <dt>Variance</dt>
-        <dd>Senior secured cao hơn → loss thấp hơn; subordinated thấp hơn → loss cao hơn</dd>
+        <dt>Interest rate risk</dt>
+        <dd>FRN có <em>duration ngắn</em> (≈ thời gian đến reset date tiếp theo). Khi rates tăng, coupon tăng tương ứng → price ít thay đổi. Fixed bond có duration dài → giá giảm mạnh khi rates tăng.</dd>
+        <dt>Price behavior</dt>
+        <dd>Nếu QM = Required Margin: FRN định giá bằng <em>par</em> tại mỗi reset date. Nếu QM ≠ RM: FRN được định giá tại premium hoặc discount.</dd>
+        <dt>Credit risk</dt>
+        <dd>FRN vẫn có credit risk — nếu creditworthiness của issuer xấu đi, required margin tăng → FRN giảm giá (dù coupon chưa thay đổi vì QM cố định).</dd>
+        <dt>Use cases</dt>
+        <dd>Banks, FIs, corporate treasury — dùng FRN để hedge floating-rate liabilities. Investors muốn giảm duration risk hoặc bet vào rate tăng.</dd>
       </dl>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
   </div>
 </section>
 
 
-<!-- 04 · EXPECTED LOSS -->
-<section data-label="Expected Loss" class="slide">
+<!-- 04 · RESET TO PAR -->
+<section data-label="Reset to par" class="slide">
   <div class="run-header">
-    <span>08.08 — Credit Risk</span>
+    <span>08.08 — Yield Measures for FRN</span>
     <span class="rule"></span>
-    <span>04 / 31</span>
+    <span>04 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Expected · loss</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Expected Loss</em> formula.</h2>
+    <div class="eyebrow">FRN pricing · key principle</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Reset to par</em> — nguyên tắc nền tảng.</h2>
   </div>
 
-  <div class="formula-box">
-    <span class="fmt-label">§ Expected Loss (EL)</span>
-    <div class="eq"><span class="var">EL</span> = <span class="var">PD</span> × <span class="var">LGD</span> × <span class="var">EAD</span></div>
-    <div class="note"><b>PD</b> = Probability of Default (xác suất default trong horizon) · <b>LGD</b> = Loss Given Default = 1 − Recovery Rate · <b>EAD</b> = Exposure at Default (notional + accrued lúc default).</div>
+  <div class="rule-box">
+    <span class="tag">§ Nguyên tắc reset-to-par</span>
+    Nếu <em>Quoted Margin (QM) = Required (Discount) Margin (DM)</em>, thì tại mỗi <strong>coupon reset date</strong>, FRN sẽ được định giá bằng đúng <b>par value</b>. Đây là điều kiện cân bằng — coupon mà bond trả đúng bằng yield mà thị trường đòi hỏi tại level rủi ro hiện tại của issuer.
   </div>
 
-  <div class="formula-box" style="margin-top: 18px;">
-    <span class="fmt-label">§ Recovery rate</span>
-    <div class="eq"><span class="var">Recovery Rate</span> = 1 − <span class="var">LGD</span></div>
-    <div class="note">Ví dụ: bond default, holders thu được $40 trên mỗi $100 par → recovery = 40%, LGD = 60%. Recovery khác nhau theo seniority &amp; collateral.</div>
+  <div class="tenets-grid" style="margin-top: 18px;">
+    <div class="tenet">
+      <span class="n">QM</span>
+      <div>
+        <div class="t"><em class="hi">Quoted Margin</em> — cố định</div>
+        <div class="d">Được set tại thời điểm phát hành (issuance) và ghi vào bond indenture. Không thay đổi. Ví dụ: SOFR + 120 bps — quoted margin = 120 bps bất kể thị trường biến động.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">DM</span>
+      <div>
+        <div class="t"><em class="hi">Discount / Required Margin</em> — thay đổi</div>
+        <div class="d">Spread mà <em>thị trường hiện tại</em> đòi hỏi dựa trên credit risk và liquidity của issuer. Nếu credit xấu đi → DM tăng → bond giảm giá xuống dưới par. Nếu credit cải thiện → DM giảm → bond trên par.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">▲</span>
+      <div>
+        <div class="t">QM &gt; DM → <em class="hi">Premium</em></div>
+        <div class="d">Bond đang trả coupon cao hơn mức thị trường đòi hỏi → giá &gt; par. Ví dụ: QM = 150 bps, DM = 120 bps → FRN trên par.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">▼</span>
+      <div>
+        <div class="t">QM &lt; DM → <em class="hi">Discount</em></div>
+        <div class="d">Bond đang trả coupon thấp hơn mức thị trường yêu cầu → giá &lt; par. Ví dụ: QM = 120 bps, DM = 160 bps → FRN dưới par (credit deterioration).</div>
+      </div>
+    </div>
   </div>
-
-  <p class="fine-muted-sm">
-    § Numerical example — Bond $1,000 par, PD 5%/yr, recovery 40% → LGD 60% → EL = 0.05 × 0.60 × $1,000 = <b>$30 per year</b>. Investor đòi spread bù tối thiểu cho EL này.
-  </p>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
   </div>
 </section>
 
 
-<!-- 05 · YIELD SPREAD COMPONENTS -->
-<section data-label="Yield spread" class="slide">
+<!-- 05 · DISCOUNT MARGIN CALCULATION -->
+<section data-label="Discount margin calculation" class="slide">
   <div class="run-header">
-    <span>08.08 — Credit Risk</span>
+    <span>08.08 — Yield Measures for FRN</span>
     <span class="rule"></span>
-    <span>05 / 31</span>
+    <span>05 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Spread · decomposition</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">What's inside a <em class="hi">yield spread</em>?</h2>
+    <div class="eyebrow">FRN · yield measure</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Discount Margin</em> — cách tính.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Corporate bond yield = benchmark (risk-free) + spread. Spread không chỉ là credit — phải decompose thành 3 phần để hiểu compensation thực sự.
+      Discount Margin là spread tính thêm vào reference rate, sao cho PV của tất cả future cash flows của FRN (chiết khấu ở reference rate + DM) bằng đúng <em>current market price</em>. Bài toán solve-for-DM giống như tìm YTM cho fixed bond.
     </p>
   </div>
 
   <div class="formula-box">
-    <span class="fmt-label">§ Spread decomposition</span>
-    <div class="eq"><span class="var">Yield Spread</span> = <span class="var">Credit premium</span> + <span class="var">Liquidity premium</span> + <span class="var">Tax effects</span></div>
-    <div class="note"><b>Credit premium</b> bù cho expected loss + uncertainty. <b>Liquidity premium</b> bù cho khó bán quickly without price concession. <b>Tax effects</b> — munis ở US tax-exempt nên có yield thấp hơn comparable corporate.</div>
+    <span class="fmt-label">§ Công thức định giá FRN — tổng quát</span>
+    <div class="eq">
+      <span class="var">Price</span> = <span class="var">Σ [CF<sub>t</sub> / (1 + (Index + DM)/m)<sup>t</sup>]</span>
+    </div>
+    <div class="note" style="margin-top: 10px;">
+      Trong đó: <b>CF<sub>t</sub></b> = coupon mỗi kỳ = FV × (Index + QM)/m (giả sử Index cố định); <b>m</b> = số kỳ trả coupon/năm; <b>DM</b> = discount margin cần tìm (unkno). <em>Lưu ý</em>: trong thực tế, future reference rates là unknown — phân tích thường giả định Index rate không đổi (flat forward curve) để solve DM.
+    </div>
   </div>
 
-  <ol class="num-list tight" style="margin-top: 18px;">
-    <li><span><span class="step-title">Credit premium</span><span class="step-body">Phần lớn nhất với HY. Reflects PD × LGD + risk premium cho uncertainty. Tăng mạnh trong recession.</span></span></li>
-    <li><span><span class="step-title">Liquidity premium</span><span class="step-body">Off-the-run Treasury, small issue size, junk → wide bid-ask, khó exit. Investor đòi yield bù.</span></span></li>
-    <li><span><span class="step-title">Tax effects</span><span class="step-body">US municipals miễn federal tax → yield thấp. Cross-jurisdiction comparison phải tax-adjust.</span></span></li>
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Bước 1 — Giả định Index cố định</span>
+        <span class="step-body">Giả sử reference rate (SOFR/EURIBOR) không đổi suốt đời bond. Cách tiếp cận này chuẩn hóa phân tích để so sánh FRNs với nhau.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Bước 2 — Tính CF mỗi kỳ dựa trên QM</span>
+        <span class="step-body">Coupon = FV × (Index + QM) / m. Kỳ cuối bao gồm cả principal (FV). Đây là cash flows phía tử số.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Bước 3 — Solve for DM</span>
+        <span class="step-body">Tìm DM sao cho PV(CFs | discount rate = Index + DM) = Current Price. Dùng trial-and-error hoặc financial calculator. <em>DM &gt; 0 nếu price &lt; par; DM &lt; 0 nếu price &gt; par.</em></span>
+      </span>
+    </li>
   </ol>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
   </div>
 </section>
 
 
-<!-- 06 · CREDIT SPREADS — G/I -->
-<section data-label="G-spread &amp; I-spread" class="slide">
+<!-- 06 · MONEY MARKET INSTRUMENTS -->
+<section data-label="Money market instruments" class="slide">
   <div class="run-header">
-    <span>08.08 — Credit Risk</span>
+    <span>08.08 — Yield Measures for FRN</span>
     <span class="rule"></span>
-    <span>06 / 31</span>
+    <span>06 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Spread · measures · I</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">G-spread</em> vs <em class="hi">I-spread</em>.</h2>
+    <div class="eyebrow">Money market · bức tranh tổng thể</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Money market</em> instruments.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Hai cách đơn giản nhất để đo credit spread: lấy YTM của bond <em>trừ đi</em> một benchmark yield. Khác benchmark → khác tên.
+      Money market = segment nợ ngắn hạn (maturity ≤ 1 năm). Instruments phổ biến: T-bills, commercial paper, certificates of deposit (CD), repo, banker's acceptances. Mỗi loại dùng <em>yield convention khác nhau</em> — đây là nguồn gốc của exam trap.
     </p>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head"><em>G-spread</em></div>
-      <dl>
-        <dt>Benchmark</dt>
-        <dd><b>Government bond</b> (Treasury) cùng maturity</dd>
-        <dt>Formula</dt>
-        <dd>YTM<sub>corp</sub> − YTM<sub>govt</sub></dd>
-        <dt>Use</dt>
-        <dd>Standard credit spread quote, dễ hiểu, retail-friendly</dd>
-        <dt>Limit</dt>
-        <dd>Phụ thuộc Treasury yield curve — không phù hợp với non-USD market thiếu deep govt curve</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head"><em>I-spread</em> (interpolated)</div>
-      <dl>
-        <dt>Benchmark</dt>
-        <dd><b>Swap rate</b> cùng maturity (interpolate giữa 2 swap tenors)</dd>
-        <dt>Formula</dt>
-        <dd>YTM<sub>corp</sub> − Swap rate<sub>same tenor</sub></dd>
-        <dt>Use</dt>
-        <dd>Phổ biến với institutional, EUR/GBP market dùng swap curve làm benchmark</dd>
-        <dt>Limit</dt>
-        <dd>Bao gồm cả LIBOR/swap basis risk — không thuần credit</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Cả 2 đều là <em>nominal spread</em> — single number, không tính đến shape của yield curve. Chỉ chính xác khi term structure flat.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
-  </div>
-</section>
-
-
-<!-- 07 · Z-SPREAD vs OAS -->
-<section data-label="Z-spread &amp; OAS" class="slide">
-  <div class="run-header">
-    <span>08.08 — Credit Risk</span>
-    <span class="rule"></span>
-    <span>07 / 31</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Spread · measures · II</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Z-spread</em> vs <em class="hi">OAS</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Khi yield curve <em>không flat</em> hoặc bond có embedded option (callable, putable), nominal spread sai. Z-spread và OAS xử lý từng vấn đề.
-    </p>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head"><em>Z-spread</em> (zero-volatility)</div>
-      <dl>
-        <dt>Concept</dt>
-        <dd>Constant spread cộng đều vào <b>mỗi spot rate</b> trên Treasury curve để PV cash flows = market price</dd>
-        <dt>Handles</dt>
-        <dd>Yield curve <em>shape</em> — chính xác cho option-free bonds</dd>
-        <dt>Ignores</dt>
-        <dd>Volatility &amp; embedded options — overstate spread cho callable bonds</dd>
-        <dt>Other name</dt>
-        <dd>Static spread, ZVS</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head"><em>OAS</em> (option-adjusted)</div>
-      <dl>
-        <dt>Concept</dt>
-        <dd>Z-spread <b>sau khi</b> remove giá trị embedded option (callable, putable)</dd>
-        <dt>Formula</dt>
-        <dd>OAS = Z-spread − <em>option cost</em></dd>
-        <dt>Handles</dt>
-        <dd>Cả curve shape và optionality — apples-to-apples comparison</dd>
-        <dt>Use</dt>
-        <dd>So sánh callable corp với option-free corp; mortgage MBS</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Hierarchy precision: <b>Nominal &lt; G-spread ≈ I-spread &lt; Z-spread &lt; OAS</b>. Càng phải tay càng chính xác cho complex bonds.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
-  </div>
-</section>
-
-
-<!-- 08 · RATING AGENCIES + SCALE -->
-<section data-label="Rating agencies" class="slide">
-  <div class="run-header">
-    <span>08.08 — Credit Risk</span>
-    <span class="rule"></span>
-    <span>08 / 31</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">NRSROs · rating scale</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">three</em> big agencies.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      <b>Moody's</b>, <b>Standard &amp; Poor's (S&amp;P)</b>, và <b>Fitch</b> chiếm ~95% market share global. Notation hơi khác nhau nhưng map 1-1.
-    </p>
-  </div>
-
-  <div class="rating-grid">
-    <div class="col">
-      <h4>Investment Grade · IG</h4>
-      <table>
-        <tr><td class="r">Aaa / AAA</td><td class="d">Highest quality, minimal credit risk</td></tr>
-        <tr><td class="r">Aa / AA</td><td class="d">High quality, very low credit risk</td></tr>
-        <tr><td class="r">A / A</td><td class="d">Upper-medium grade, low credit risk</td></tr>
-        <tr><td class="r">Baa / BBB</td><td class="d">Medium grade, moderate risk — <em>floor of IG</em></td></tr>
-      </table>
-    </div>
-    <div class="col junk">
-      <h4>High Yield · Junk</h4>
-      <table>
-        <tr><td class="r">Ba / BB</td><td class="d">Speculative, substantial credit risk</td></tr>
-        <tr><td class="r">B / B</td><td class="d">Highly speculative</td></tr>
-        <tr><td class="r">Caa / CCC</td><td class="d">Substantial risk, poor standing</td></tr>
-        <tr><td class="r">Ca / CC</td><td class="d">Highly speculative, near default</td></tr>
-        <tr><td class="r">C / C</td><td class="d">Lowest, default imminent</td></tr>
-        <tr><td class="r">D</td><td class="d">In default (S&amp;P / Fitch only)</td></tr>
-      </table>
-    </div>
-    <div class="col">
-      <h4>Notation notes</h4>
-      <table>
-        <tr><td class="r">Moody's</td><td class="d">Aaa, Aa1, Aa2, Aa3, A1, A2, A3…</td></tr>
-        <tr><td class="r">S&amp;P / Fitch</td><td class="d">AAA, AA+, AA, AA−, A+, A, A−…</td></tr>
-        <tr><td class="r">Modifiers</td><td class="d">1/2/3 (Moody's) ≡ +/blank/− (S&amp;P)</td></tr>
-        <tr><td class="r">Watch</td><td class="d">"on watch" = pending review · outlook stable/positive/negative</td></tr>
-      </table>
-    </div>
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
-  </div>
-</section>
-
-
-<!-- 09 · IG vs HIGH YIELD -->
-<section data-label="IG vs HY" class="slide">
-  <div class="run-header">
-    <span>08.08 — Credit Risk</span>
-    <span class="rule"></span>
-    <span>09 / 31</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">IG vs HY · markets</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Investment grade</em> vs <em class="hi">high yield</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Cutoff: <b>BBB−/Baa3</b> là rating <em>thấp nhất</em> còn IG. Một nấc xuống (BB+/Ba1) là junk. Sự khác biệt giữa 2 nhóm là tách biệt — nhiều quỹ pension/insurer bị forbidden từ HY.
-    </p>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head"><em>Investment Grade</em></div>
-      <dl>
-        <dt>Range</dt>
-        <dd>AAA → BBB− (S&amp;P/Fitch) · Aaa → Baa3 (Moody's)</dd>
-        <dt>Default rate</dt>
-        <dd>Cumulative 10-yr ~3-5% (long-term avg)</dd>
-        <dt>Spread</dt>
-        <dd>50-250 bps over Treasury</dd>
-        <dt>Buyers</dt>
-        <dd>Insurance, pension, central banks, money market funds</dd>
-        <dt>Volatility</dt>
-        <dd>Driven chủ yếu bởi <em>interest rate</em> (rate-sensitive)</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head"><em>High Yield / Junk</em></div>
-      <dl>
-        <dt>Range</dt>
-        <dd>BB+ trở xuống · Ba1 trở xuống</dd>
-        <dt>Default rate</dt>
-        <dd>Cumulative 10-yr ~25-35% (much higher)</dd>
-        <dt>Spread</dt>
-        <dd>300-1500+ bps; CCC widens to 2000+ in stress</dd>
-        <dt>Buyers</dt>
-        <dd>HY mutual funds, hedge funds, distressed specialists</dd>
-        <dt>Volatility</dt>
-        <dd>Driven chủ yếu bởi <em>credit / equity</em> sentiment</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § "Fallen angel" = bond từng IG bị downgrade xuống HY. "Rising star" = ngược lại. Crossover funds chuyên trade quanh BBB/BB boundary.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
-  </div>
-</section>
-
-
-<!-- 10 · NOTCHING -->
-<section data-label="Notching" class="slide">
-  <div class="run-header">
-    <span>08.08 — Credit Risk</span>
-    <span class="rule"></span>
-    <span>10 / 31</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Issuer vs issue · ratings</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Notching</em> rules.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Issuer (corporate) có <em>issuer credit rating</em> tổng. Mỗi issue (bond cụ thể) có thể có rating <em>khác</em> tùy seniority + collateral. Adjustment này gọi là <em>notching</em>.
-    </p>
-  </div>
-
-  <div class="rule-box">
-    <span class="tag">§ Notching principle</span>
-    <em>Issue rating</em> = Issuer rating ± notches, tùy theo <b>seniority of debt</b> trong capital structure và <b>collateral</b>. Senior secured có thể notch <em>up</em>, subordinated notch <em>down</em>. Standard cho IG: ±1 notch; HY: notching wider vì recovery variance lớn hơn.
-  </div>
-
-  <div class="tenets-grid" style="margin-top: 18px;">
-    <div class="tenet">
-      <span class="n">+1</span>
-      <div>
-        <div class="t"><em class="hi">Senior secured</em></div>
-        <div class="d">Có collateral specific (asset, mortgage, equipment). Recovery cao → notch <em>up</em> 1 nấc so với issuer rating. Vd: issuer BBB → senior secured BBB+.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">0</span>
-      <div>
-        <div class="t">Senior unsecured</div>
-        <div class="d">Default = pari passu với general creditors. Thường <em>same</em> như issuer rating. Đa số corporate bonds rơi vào nhóm này.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">−1</span>
-      <div>
-        <div class="t"><em class="hi">Subordinated</em></div>
-        <div class="d">Trả sau senior khi liquidation. Recovery thấp → notch <em>down</em> 1-2 nấc. Vd: issuer BBB → sub BBB−.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">−2+</span>
-      <div>
-        <div class="t">Junior subordinated · hybrid</div>
-        <div class="d">Trust preferred, perpetual, deeply junior — notch xuống 2+. HY structure thường có gap rộng giữa các tranches.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
-  </div>
-</section>
-
-
-<!-- 11 · 4 C's FRAMEWORK -->
-<section data-label="4 C's" class="slide">
-  <div class="run-header">
-    <span>08.08 — Credit Risk</span>
-    <span class="rule"></span>
-    <span>11 / 31</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Credit · framework</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">4 C's</em> of credit analysis.</h2>
-  </div>
-
-  <div class="rule-box">
-    <span class="tag">§ Framework</span>
-    Khi phân tích corporate credit, analyst đi qua 4 trụ — <b>Capacity</b>, <b>Collateral</b>, <b>Covenants</b>, <b>Character</b>. Mỗi C trả lời một câu hỏi khác nhau về khả năng và willingness trả nợ.
-  </div>
-
-  <div class="tenets-grid" style="margin-top: 18px;">
-    <div class="tenet">
-      <span class="n">C1</span>
-      <div>
-        <div class="t"><em class="hi">Capacity</em></div>
-        <div class="d">Có <em>khả năng</em> trả nợ không? Phân tích industry, competitive position, financial ratios (leverage, coverage, profitability). Quan trọng nhất.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">C2</span>
-      <div>
-        <div class="t"><em class="hi">Collateral</em></div>
-        <div class="d">Có tài sản đảm bảo gì khi default? Quality &amp; valuation của asset. Ảnh hưởng <em>recovery rate</em> (LGD).</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">C3</span>
-      <div>
-        <div class="t"><em class="hi">Covenants</em></div>
-        <div class="d">Bond indenture có những điều khoản gì? Affirmative (must do) và negative (must not). Bảo vệ creditor khỏi action có hại.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">C4</span>
-      <div>
-        <div class="t"><em class="hi">Character</em></div>
-        <div class="d">Quality của <em>management</em>: track record, governance, corporate strategy, willingness trả. Mềm hơn 3 C kia, nhưng critical cho HY.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
-  </div>
-</section>
-
-
-<!-- 12 · CAPACITY RATIOS -->
-<section data-label="Capacity ratios" class="slide">
-  <div class="run-header">
-    <span>08.08 — Credit Risk</span>
-    <span class="rule"></span>
-    <span>12 / 31</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Capacity · ratios</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">credit ratios</em>.</h2>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Coverage ratios — higher is better</span>
-    <div class="eq"><span class="var">EBIT interest coverage</span> = <span class="var">EBIT</span> / <span class="var">Interest expense</span></div>
-    <div class="eq"><span class="var">EBITDA interest coverage</span> = <span class="var">EBITDA</span> / <span class="var">Interest expense</span></div>
-    <div class="note">Đo khả năng trả lãi từ operating earnings. EBITDA cao hơn EBIT (thêm D&amp;A back). IG thường có EBIT coverage &gt; 4x; HY có thể &lt; 2x.</div>
-  </div>
-
-  <div class="formula-box" style="margin-top: 14px;">
-    <span class="fmt-label">§ Leverage ratios — lower is better</span>
-    <div class="eq"><span class="var">Debt / EBITDA</span> = <span class="var">Total debt</span> / <span class="var">EBITDA</span></div>
-    <div class="eq"><span class="var">FFO / Total debt</span> = <span class="var">Funds from operations</span> / <span class="var">Total debt</span></div>
-    <div class="note"><b>Debt/EBITDA</b> đo "bao nhiêu năm earnings để trả hết nợ"; IG thường &lt; 2x, HY thường &gt; 4x. <b>FFO/Debt</b> đo cash-flow-to-debt; IG &gt; 30%, HY &lt; 15%.</div>
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
-  </div>
-</section>
-
-
-<!-- 13 · COLLATERAL TYPES -->
-<section data-label="Collateral" class="slide">
-  <div class="run-header">
-    <span>08.08 — Credit Risk</span>
-    <span class="rule"></span>
-    <span>13 / 31</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Collateral · seniority</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Senior</em> vs <em class="hi">subordinated</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Capital structure hierarchy quyết định ai được trả trước trong bankruptcy. Thứ tự thường: senior secured → senior unsecured → subordinated → preferred equity → common equity.
-    </p>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head"><em>Senior secured</em></div>
-      <dl>
-        <dt>Position</dt>
-        <dd><b>Top</b> của waterfall — trả đầu tiên</dd>
-        <dt>Collateral</dt>
-        <dd>Specific asset (real estate, equipment, receivables) hoặc all assets</dd>
-        <dt>Recovery</dt>
-        <dd>~60-80% historical avg cho senior secured</dd>
-        <dt>Examples</dt>
-        <dd>Mortgage bonds, equipment trust certificates, leveraged loans, ABS</dd>
-        <dt>Yield</dt>
-        <dd>Lowest (within issuer's stack) — protection trade-off</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head"><em>Subordinated</em></div>
-      <dl>
-        <dt>Position</dt>
-        <dd>Trả <em>sau</em> senior trong liquidation waterfall</dd>
-        <dt>Collateral</dt>
-        <dd>Thường unsecured — chỉ general claim</dd>
-        <dt>Recovery</dt>
-        <dd>~10-30% historical avg cho subordinated</dd>
-        <dt>Examples</dt>
-        <dd>Subordinated debentures, junior subordinated, hybrid Tier 2 bank capital</dd>
-        <dt>Yield</dt>
-        <dd>Higher để compensate cho recovery thấp</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Senior unsecured (giữa) — không có specific collateral nhưng cùng waterfall priority như other senior creditors. Là phần lớn của corporate bond market.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
-  </div>
-</section>
-
-
-<!-- 14 · COVENANTS -->
-<section data-label="Covenants" class="slide">
-  <div class="run-header">
-    <span>08.08 — Credit Risk</span>
-    <span class="rule"></span>
-    <span>14 / 31</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Bond · indenture</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Affirmative</em> vs <em class="hi">negative</em> covenants.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Covenants = ràng buộc ghi trong bond indenture, bảo vệ creditor. Vi phạm = <em>technical default</em>, có thể trigger acceleration clause.
-    </p>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head"><em>Affirmative</em> ("must do")</div>
-      <dl>
-        <dt>Nature</dt>
-        <dd>Issuer <b>phải</b> thực hiện hành động</dd>
-        <dt>Examples</dt>
-        <dd>Pay interest &amp; principal đúng hạn · maintain corporate existence · file financial statements · keep insurance · pay taxes</dd>
-        <dt>Cost</dt>
-        <dd>Thấp — đa số là routine business practice</dd>
-        <dt>Trigger</dt>
-        <dd>Failure → event of default, có grace period</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head"><em>Negative</em> ("must not")</div>
-      <dl>
-        <dt>Nature</dt>
-        <dd>Issuer <b>không được</b> làm hành động harmful</dd>
-        <dt>Examples</dt>
-        <dd><em>Restrict additional debt</em> · <em>limit dividends/buybacks</em> · no asset sales above threshold · negative pledge (no new senior liens) · maintain financial ratios</dd>
-        <dt>Cost</dt>
-        <dd>Cao — có thể constrain operating flexibility</dd>
-        <dt>Trigger</dt>
-        <dd>HY bonds covenant tighter; "covenant-lite" leveraged loans = ít restriction</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Tighter covenants → higher protection cho creditor → lower yield. Trade-off classic: yield vs control. HY thường có "incurrence test" (chỉ check khi issuer làm action) thay vì "maintenance test" (check liên tục).
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
-  </div>
-</section>
-
-
-<!-- 15 · SOVEREIGN + DISTRESSED -->
-<section data-label="Sovereign &amp; HY" class="slide">
-  <div class="run-header">
-    <span>08.08 — Credit Risk</span>
-    <span class="rule"></span>
-    <span>15 / 31</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Special · segments</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Sovereign</em> &amp; <em class="hi">distressed</em>.</h2>
   </div>
 
   <div class="tenets-grid" style="margin-top: 16px;">
     <div class="tenet">
-      <span class="n">SOV</span>
+      <span class="n">TB</span>
       <div>
-        <div class="t"><em class="hi">Sovereign credit risk</em></div>
-        <div class="d">Khác corporate: không có bankruptcy court. Phân tích <b>ability</b> (fiscal balance, debt/GDP, FX reserves, growth) + <b>willingness</b> (political stability, history of default). Local-currency debt thường rated cao hơn FX-denominated.</div>
+        <div class="t"><em class="hi">Treasury bills (T-bills)</em></div>
+        <div class="d">US government short-term discount instrument. Không trả coupon — bán ở discount, nhận par khi đáo hạn. Quoted theo <em>Bank Discount Yield (BDY)</em> trên 360-day year convention.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">CORP</span>
+      <span class="n">CD</span>
       <div>
-        <div class="t">Corporate credit risk</div>
-        <div class="d">Có bankruptcy law, court-supervised restructuring. Recovery clear hơn. Focus vào 4 C's, financial statements, industry cycle.</div>
+        <div class="t"><em class="hi">Certificates of deposit</em></div>
+        <div class="d">Bank-issued deposit instrument. Quoted theo <em>Money Market Yield (MMY)</em> hay CD basis — dùng price (không phải face value) làm mẫu số, 360-day year.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">HY</span>
+      <span class="n">CP</span>
       <div>
-        <div class="t"><em class="hi">High yield analysis</em></div>
-        <div class="d">Beyond 4 C's: <b>liquidity</b> (cash on hand, revolver capacity), <b>capital structure</b> (where in waterfall), <b>equity cushion</b> (market cap vs debt). Look-through to assets in worst case.</div>
+        <div class="t"><em class="hi">Commercial paper (CP)</em></div>
+        <div class="d">Short-term unsecured corporate borrowing. Maturity ≤ 270 days (US, exempt from SEC). Discount instrument, quoted giống T-bill. IG issuers — thường có backup credit facility.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">DIST</span>
+      <span class="n">RP</span>
       <div>
-        <div class="t"><em class="hi">Distressed debt</em></div>
-        <div class="d">Bond trade &lt; 60% of par hoặc spread &gt; 1000 bps. Strategy: estimate recovery → compare với current price. Specialty funds chuyên phân tích bankruptcy waterfall &amp; legal claims.</div>
+        <div class="t"><em class="hi">Repurchase agreements (Repo)</em></div>
+        <div class="d">Collateralized short-term borrowing — bán securities hôm nay + cam kết mua lại tại giá cao hơn. Repo rate = lãi suất implied. Overnight repo (1 ngày) vs term repo (2 ngày — 1 năm).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
+  </div>
+</section>
+
+
+<!-- 07 · BANK DISCOUNT YIELD -->
+<section data-label="Bank discount yield" class="slide">
+  <div class="run-header">
+    <span>08.08 — Yield Measures for FRN</span>
+    <span class="rule"></span>
+    <span>07 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Money market yield · convention 1</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Bank Discount Yield</em> (BDY).</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      BDY là convention dùng cho US T-bills và một số discount instruments khác. Discount được tính trên <em>face value</em> (không phải purchase price) và dùng 360-day year. Đây là convention <em>không tương thích</em> với bond yield conventions khác — so sánh thẳng với BEY là sai.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Công thức — Bank Discount Yield</span>
+    <div class="eq">
+      <span class="var">BDY</span> = <span class="var">(Discount / Face Value)</span> × <span class="var">(360 / Days)</span>
+    </div>
+    <div class="note" style="margin-top: 10px;">
+      <b>Discount</b> = Face − Price = số tiền lời tuyệt đối. <b>Mẫu số</b> là Face Value (không phải Price) — đây là điểm khác biệt quan trọng. <b>360</b> ngày/năm theo money market convention (Mỹ).
+    </div>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">▼</span>
+      <div>
+        <div class="t">Nhược điểm của BDY</div>
+        <div class="d">1. Dùng Face (không phải Price) làm mẫu → <em>underestimates</em> true return (vì bạn đầu tư ít hơn face). 2. 360-day year (không phải 365) → thêm một lần understate. Kết quả: BDY &lt; MMY &lt; BEY cho cùng một T-bill.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">§</span>
+      <div>
+        <div class="t">Ví dụ nhanh — xác định BDY</div>
+        <div class="d">T-bill, 91 ngày, Face = $1,000, Price = $987.50. Discount = $12.50. BDY = (12.50/1,000) × (360/91) = 0.0125 × 3.956 = <em>4.945%</em>.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">!</span>
+      <div>
+        <div class="t">Exam trap — BDY vs yield</div>
+        <div class="d">Đề hỏi "BDY là 4.8% — yield thực tế là bao nhiêu?" → cần convert sang BEY hoặc EAY. <em>Không được so sánh BDY thẳng với coupon bond yield.</em></div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">360</span>
+      <div>
+        <div class="t">Convention 360 ngày</div>
+        <div class="d">360-day year là quy ước lịch sử (bank tradition). Dùng cho BDY, MMY, và nhiều money market rates (LIBOR, Fed Funds). Bond yield dùng 365 ngày (actual/365 hoặc semi-annual BEY).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
+  </div>
+</section>
+
+
+<!-- 08 · MONEY MARKET YIELD & CD BASIS -->
+<section data-label="Money market yield" class="slide">
+  <div class="run-header">
+    <span>08.08 — Yield Measures for FRN</span>
+    <span class="rule"></span>
+    <span>08 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Money market yield · convention 2</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Money Market Yield</em> (MMY) / CD Basis.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      MMY sửa một nhược điểm của BDY: dùng <em>Price</em> (tiền đầu tư thực tế) làm mẫu số thay vì Face Value. Vẫn giữ 360-day year convention. MMY là yield mà nhiều CDs và money market funds báo cáo.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Công thức — Money Market Yield (MMY)</span>
+    <div class="eq">
+      <span class="var">MMY</span> = <span class="var">(Discount / Price)</span> × <span class="var">(360 / Days)</span>
+    </div>
+    <div class="note" style="margin-top: 10px;">
+      Khác BDY ở mẫu số: <b>Price</b> thay vì Face Value. Vì Price &lt; Face, nên mẫu số nhỏ hơn → MMY <em>&gt; BDY</em> cho cùng một T-bill. MMY đo true periodic return trên tiền đầu tư thực, nhưng vẫn annualized theo 360 ngày.
+    </div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Mối quan hệ BDY → MMY</span>
+        <span class="step-body">MMY = BDY × (Face/Price) = BDY × (Face/Price). Ngoài ra: MMY = BDY / (1 − BDY × Days/360). Công thức sau cho phép convert trực tiếp từ BDY sang MMY mà không cần biết price.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Ví dụ nhanh — tính MMY</span>
+        <span class="step-body">Cùng T-bill: 91 ngày, Face = $1,000, Price = $987.50. Discount = $12.50. MMY = (12.50/987.50) × (360/91) = 0.01266 × 3.956 = <em>5.008%</em>. So sánh: BDY = 4.945% &lt; MMY = 5.008%.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">CD basis — identical formula</span>
+        <span class="step-body">CDs quoted theo "CD equivalent yield" hoặc "CD basis" — cùng công thức với MMY (price-based, 360-day). Khi đề đề cập "CD basis" hay "add-on rate", áp dụng công thức MMY.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
+  </div>
+</section>
+
+
+<!-- 09 · BOND EQUIVALENT YIELD -->
+<section data-label="Bond equivalent yield" class="slide">
+  <div class="run-header">
+    <span>08.08 — Yield Measures for FRN</span>
+    <span class="rule"></span>
+    <span>09 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Money market yield · convention 3</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Bond Equivalent Yield</em> (BEY).</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      BEY (còn gọi là semi-annual bond basis annualized) là cách annualize yield để so sánh được với fixed-income coupon bonds (semi-annual). Dùng <em>365-day year</em> và mẫu số là Price — cho phép so sánh apples-to-apples T-bill yield với coupon bond YTM.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Công thức — Bond Equivalent Yield (BEY)</span>
+    <div class="eq">
+      <span class="var">BEY</span> = <span class="var">(Discount / Price)</span> × <span class="var">(365 / Days)</span>
+    </div>
+    <div class="note" style="margin-top: 10px;">
+      Khác MMY ở mẫu: <b>365 ngày</b> (không phải 360). Vì 365 &gt; 360, nên BEY &gt; MMY. Đây là convention để "bridge" money market instrument với bond market. <em>Lưu ý quan trọng</em>: một số tài liệu định nghĩa BEY = 2 × semi-annual yield — context quyết định.
+    </div>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>BEY vs YTM coupon bond</em></div>
+      <dl>
+        <dt>Comparability</dt>
+        <dd>YTM của coupon bond US = semi-annual YTM × 2 (BEY convention). T-bill BEY → directly comparable với bond YTM. Nếu T-bill BEY = 5.1% và bond YTM = 5.3% → bond yields 20 bps more.</dd>
+        <dt>Use case</dt>
+        <dd>Portfolio managers so sánh money market instruments với short-duration bonds. Đây là lý do BEY tồn tại — vì BDY không so sánh được với bond yield.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Ranking của 4 conventions</em></div>
+      <dl>
+        <dt>Thứ tự tăng dần</dt>
+        <dd><em>BDY &lt; MMY &lt; BEY &lt; EAY</em>. Luôn đúng cho T-bills (discount instruments, maturity &lt; 1 năm). BDY thấp nhất vì dùng face value và 360 ngày. EAY cao nhất vì include compounding.</dd>
+        <dt>Exam memory tip</dt>
+        <dd>Nhớ: BDY là "worst measure" (hai nhược điểm). MMY sửa mẫu số. BEY sửa thêm day count. EAY sửa thêm compounding. Mỗi bước lên → yield cao hơn.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
+  </div>
+</section>
+
+
+<!-- 10 · EFFECTIVE ANNUAL YIELD -->
+<section data-label="Effective annual yield" class="slide">
+  <div class="run-header">
+    <span>08.08 — Yield Measures for FRN</span>
+    <span class="rule"></span>
+    <span>10 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Money market yield · convention 4</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Effective Annual Yield</em> (EAY).</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      EAY là yield annualized với giả định <em>reinvestment và compounding</em> — tức là bạn liên tục reinvest proceeds tại cùng rate suốt cả năm. EAY cho phép so sánh true economic return giữa instruments có compounding periods khác nhau.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Công thức — Effective Annual Yield (EAY)</span>
+    <div class="eq">
+      <span class="var">EAY</span> = <span class="var">(1 + HPY)<sup>365/Days</sup></span> − 1
+    </div>
+    <div class="note" style="margin-top: 10px;">
+      <b>HPY</b> = Holding Period Yield = Discount / Price = (Face − Price) / Price. <em>Exponent</em> = 365/Days = số lần bạn có thể reinvest trong 1 năm. EAY là yield <em>duy nhất</em> trong 4 conventions không phải simple interest — nó là compound rate.
+    </div>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 18px;">
+    <div class="tenet">
+      <span class="n">HPY</span>
+      <div>
+        <div class="t">Holding Period Yield trước</div>
+        <div class="d">Bước 1 luôn tính HPY = (Face − Price) / Price. Đây là return thực trên khoảng thời gian nắm giữ. Sau đó annualize theo EAY.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">↑</span>
+      <div>
+        <div class="t">EAY &gt; BEY (luôn luôn)</div>
+        <div class="d">BEY là simple annualization (không compound). EAY có compounding → giá trị cao hơn. Khoảng cách lớn hơn khi yield cao hoặc maturity ngắn (nhiều lần reinvest hơn).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">EQ</span>
+      <div>
+        <div class="t">Từ EAY sang BEY</div>
+        <div class="d">BEY = 2 × [(1 + EAY)<sup>0.5</sup> − 1]. Ngược lại: EAY = (1 + BEY/2)<sup>2</sup> − 1. Dùng khi đề cho EAY và hỏi BEY tương đương để compare với bonds semi-annual.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">!</span>
+      <div>
+        <div class="t">Exam trap về EAY</div>
+        <div class="d">Đừng dùng 360 ngày trong EAY — luôn dùng 365. Và đừng nhầm EAY với BEY khi đề cho "annualized yield" — phải kiểm tra có compound không.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
+  </div>
+</section>
+
+
+<!-- 11 · YIELD CONVENTION COMPARISON TABLE -->
+<section data-label="Yield comparison table" class="slide">
+  <div class="run-header">
+    <span>08.08 — Yield Measures for FRN</span>
+    <span class="rule"></span>
+    <span>11 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Tổng hợp · 4 conventions</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">So sánh <em class="hi">4 yield conventions</em> — side-by-side.</h2>
+  </div>
+
+  <table class="yield-table">
+    <thead>
+      <tr>
+        <th>Convention</th>
+        <th>Công thức</th>
+        <th>Mẫu số</th>
+        <th>Day count</th>
+        <th>Compounding</th>
+        <th>Ranking</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="mono">BDY</td>
+        <td>(Discount / <b>Face</b>) × (360 / Days)</td>
+        <td>Face Value</td>
+        <td>360</td>
+        <td>Simple</td>
+        <td class="note">Thấp nhất — 2 nhược điểm</td>
+      </tr>
+      <tr>
+        <td class="mono">MMY</td>
+        <td>(Discount / <b>Price</b>) × (360 / Days)</td>
+        <td>Price</td>
+        <td>360</td>
+        <td>Simple</td>
+        <td class="note">2nd — sửa mẫu số</td>
+      </tr>
+      <tr>
+        <td class="mono">BEY</td>
+        <td>(Discount / <b>Price</b>) × (<b>365</b> / Days)</td>
+        <td>Price</td>
+        <td>365</td>
+        <td>Simple</td>
+        <td class="note">3rd — sửa day count</td>
+      </tr>
+      <tr>
+        <td class="mono">EAY</td>
+        <td>(1 + HPY)<sup>365/Days</sup> − 1</td>
+        <td>Price (qua HPY)</td>
+        <td>365</td>
+        <td><b>Compound</b></td>
+        <td class="note">Cao nhất — true annual</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="fine-muted-sm" style="margin-top: 18px;">
+    § Exam shortcut: BDY &lt; MMY &lt; BEY &lt; EAY — luôn đúng cho T-bills / discount instruments, maturity &lt; 1 năm. Nhớ thứ tự này để kiểm tra đáp án hợp lý. Convert BDY→BEY là bài toán thường xuyên xuất hiện trong CFA L1 exam.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
+  </div>
+</section>
+
+
+<!-- 12 · T-BILL QUOTE CONVENTION -->
+<section data-label="T-bill quote convention" class="slide">
+  <div class="run-header">
+    <span>08.08 — Yield Measures for FRN</span>
+    <span class="rule"></span>
+    <span>12 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">T-bill · thị trường thực tế</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">T-bill</em> quote convention — discount basis.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Trên Bloomberg, Reuters, và Fed website, T-bills được quoted theo <em>Bank Discount Yield</em>. Đây là convention không thể compare trực tiếp với bond yields. Investor cần biết cách convert để so sánh.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>T-bill quote trên thị trường</em></div>
+      <dl>
+        <dt>What is displayed</dt>
+        <dd>Bid discount / Ask discount theo BDY convention. Ví dụ: "4.68 / 4.65" nghĩa là bid BDY = 4.68%, ask BDY = 4.65%. Dealer <em>buys</em> tại BDY 4.68% (giá thấp hơn) và <em>sells</em> tại BDY 4.65% (giá cao hơn cho investor).</dd>
+        <dt>Price calculation</dt>
+        <dd>Price = Face × [1 − BDY × (Days/360)]. Ví dụ: 91-day T-bill, BDY ask = 4.65%. Price = 1,000 × [1 − 0.0465 × 91/360] = 1,000 × (1 − 0.01176) = <em>$988.24</em>.</dd>
+        <dt>Settlement</dt>
+        <dd>T+1 cho US Treasuries. Accrued interest: không có (discount instrument, không có coupon).</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Tại sao BDY là "thấp nhất"</em></div>
+      <dl>
+        <dt>Nhược điểm kép</dt>
+        <dd>1. Dùng Face (lớn hơn Price) làm mẫu → tử số / mẫu số nhỏ hơn thực tế. 2. 360 ngày (nhỏ hơn 365) → nhân với số nhỏ hơn. Hai nhược điểm cùng hướng → BDY understates true return.</dd>
+        <dt>Lịch sử convention</dt>
+        <dd>BDY là convention thừa hưởng từ thời banker discount — đơn giản để tính tay. Ngày nay không còn cần, nhưng vẫn là market standard cho T-bills vì tính ổn định của convention.</dd>
+        <dt>Investor implication</dt>
+        <dd>Khi đọc T-bill BDY = 5%, yield thực tế (BEY) cao hơn. Không nên so sánh T-bill BDY với 2-year note YTM (which is BEY-based) mà không convert.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
+  </div>
+</section>
+
+
+<!-- 13 · REPO RATE -->
+<section data-label="Repo rate" class="slide">
+  <div class="run-header">
+    <span>08.08 — Yield Measures for FRN</span>
+    <span class="rule"></span>
+    <span>13 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Repurchase agreements · mechanics</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Repo rate</em> — overnight và term.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Repo (repurchase agreement) là công cụ tài trợ ngắn hạn cực kỳ quan trọng cho dealer banks và hedge funds. Mechanics: bên vay <em>bán securities</em> hôm nay và cam kết <em>mua lại</em> tại giá cao hơn — chênh lệch giá chính là lãi suất (repo rate).
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Tính Repo Dollar Interest</span>
+    <div class="eq">
+      <span class="var">Dollar Interest</span> = <span class="var">Principal</span> × <span class="var">Repo Rate</span> × <span class="var">(Days / 360)</span>
+    </div>
+    <div class="note" style="margin-top: 10px;">
+      Repo dùng 360-day year (money market convention). <b>Principal</b> = giá trị market value của collateral. <b>Repurchase Price</b> = Sale Price + Dollar Interest. Reverse repo = góc nhìn từ bên cho vay (mua securities hôm nay, bán lại sau).
+    </div>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">ON</span>
+      <div>
+        <div class="t"><em class="hi">Overnight repo</em></div>
+        <div class="d">Maturity = 1 ngày (T → T+1). Rolled daily. Lãi suất thấp nhất — ngắn nhất, ít rủi ro nhất. SOFR là Secured Overnight Financing Rate — based trên overnight Treasury repo market. Rất liquid.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">TERM</span>
+      <div>
+        <div class="t"><em class="hi">Term repo</em></div>
+        <div class="d">Maturity 2 ngày đến 1 năm. Lãi suất cao hơn overnight (term premium). Upward sloping repo curve thường là norm. Cho phép dealer lock in funding cost lâu hơn.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">HC</span>
+      <div>
+        <div class="t">Haircut &amp; collateral</dt>
+        <div class="d"><em>Haircut</em> = discount áp lên collateral value để protect lender. Ví dụ: 2% haircut → lend $98 trên $100 collateral. UST haircut nhỏ (1-2%); equity hoặc HY bond haircut lớn (10-30%). Giảm counterparty risk.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">USE</span>
+      <div>
+        <div class="t">Ai dùng repo?</dt>
+        <div class="d">Primary dealers: tài trợ T-bill inventory qua overnight repo. Hedge funds: leverage fixed income positions. Money market funds: đầu tư vào repo (reverse repo side). Fed: Open Market Operations qua repo/reverse repo.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
+  </div>
+</section>
+
+
+<!-- 14 · CONVERTING BETWEEN YIELD BASES -->
+<section data-label="Yield basis conversion" class="slide">
+  <div class="run-header">
+    <span>08.08 — Yield Measures for FRN</span>
+    <span class="rule"></span>
+    <span>14 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Yield conversion · roadmap</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Convert giữa các <em class="hi">yield bases</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Khi đề cho một yield và hỏi yield khác, cần biết con đường conversion. Không có một công thức duy nhất — phải biết logic để derive. Dưới đây là roadmap chuẩn.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">①</span>
+      <div>
+        <div class="t">BDY → MMY</div>
+        <div class="d">MMY = BDY / (1 − BDY × Days/360). Hoặc: tìm Price từ BDY trước (Price = Face × [1 − BDY × Days/360]), rồi MMY = (Face − Price)/Price × 360/Days.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">②</span>
+      <div>
+        <div class="t">MMY → BEY</div>
+        <div class="d">BEY = MMY × (365/360). Lý do: chỉ thay đổi day count từ 360 → 365, mẫu số Price giữ nguyên. Công thức đơn giản nhất trong 4 conversions.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">③</span>
+      <div>
+        <div class="t">BEY → EAY</div>
+        <div class="d">EAY = (1 + BEY × Days/365)<sup>365/Days</sup> − 1. Hoặc: tính HPY = Discount/Price trước, rồi EAY = (1 + HPY)<sup>365/Days</sup> − 1.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">④</span>
+      <div>
+        <div class="t">BDY → BEY (direct)</dt>
+        <div class="d">Hai bước: (1) tính Price = Face × [1 − BDY × Days/360]. (2) BEY = (Face − Price)/Price × 365/Days. Hay hơn là nhớ: BEY = BDY × (365/360) / (1 − BDY × Days/360). Đây là công thức exam hay nhất.</div>
       </div>
     </div>
   </div>
 
   <p class="fine-muted-sm">
-    § VN bond market — VGB (sovereign) rated BB+ (S&amp;P, 2025). Corporate bond domestic chủ yếu unrated, private placement; market depth còn shallow.
+    § Exam framework: Bất kỳ conversion nào cũng đi qua Price. Bước 1: tìm Price. Bước 2: tính yield mới từ Price đó. Ngoại lệ duy nhất: MMY → BEY chỉ cần nhân (365/360).
   </p>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
   </div>
 </section>
 
 
-<!-- 16 · SPREAD DURATION -->
-<section data-label="Spread duration" class="slide">
+<!-- 15 · WORKED EXAMPLE 1: T-bill BDY → BEY -->
+<section data-label="Worked Example 1" class="slide">
   <div class="run-header">
-    <span>08.08 — Credit Risk</span>
+    <span>08.08 — Yield Measures for FRN</span>
     <span class="rule"></span>
-    <span>16 / 31</span>
+    <span>15 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Spread · sensitivity</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Spread duration</em>.</h2>
+    <div class="eyebrow">Worked example 1 · numerical</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">Convert <em class="hi">91-day T-bill BDY → BEY</em>.</h2>
+  </div>
+
+  <div class="rule-box" style="margin-bottom: 14px;">
+    <span class="tag">§ Đề bài</span>
+    Một 91-day US T-bill quoted với Bank Discount Yield (BDY) = <b>4.80%</b> trên 360-day basis. Face value = $1,000,000. Tính: (a) Purchase Price, (b) Dollar discount, (c) Money Market Yield (MMY), (d) Bond Equivalent Yield (BEY), (e) Effective Annual Yield (EAY).
+  </div>
+
+  <div class="worked-box">
+    <div class="wb-label">Lời giải từng bước</div>
+    <div class="wb-row">
+      <span class="wb-step">(a)</span>
+      <span class="wb-eq">Price = 1,000,000 × [1 − 0.0480 × (91/360)] = 1,000,000 × [1 − 0.012133] = 1,000,000 × 0.987867</span>
+    </div>
+    <div class="wb-row">
+      <span class="wb-step"></span>
+      <span class="wb-eq">Price = <b>$987,867</b></span>
+    </div>
+    <div class="wb-row">
+      <span class="wb-step">(b)</span>
+      <span class="wb-eq">Dollar Discount = 1,000,000 − 987,867 = <b>$12,133</b></span>
+    </div>
+    <div class="wb-row">
+      <span class="wb-step">(c)</span>
+      <span class="wb-eq">MMY = (12,133 / 987,867) × (360/91) = 0.012282 × 3.9560 = <b>4.860%</b></span>
+      <span class="wb-note">&nbsp;(dùng Price, 360 ngày)</span>
+    </div>
+    <div class="wb-row">
+      <span class="wb-step">(d)</span>
+      <span class="wb-eq">BEY = (12,133 / 987,867) × (365/91) = 0.012282 × 4.0110 = <b>4.927%</b></span>
+      <span class="wb-note">&nbsp;(dùng Price, 365 ngày)</span>
+    </div>
+    <div class="wb-row">
+      <span class="wb-step">(e)</span>
+      <span class="wb-eq">HPY = 12,133/987,867 = 1.2282%. EAY = (1.012282)<sup>365/91</sup> − 1 = (1.012282)<sup>4.011</sup> − 1</span>
+    </div>
+    <div class="wb-result">EAY = 1.050097 − 1 = <b>5.010%</b> &nbsp;|&nbsp; Thứ tự: BDY 4.80% &lt; MMY 4.86% &lt; BEY 4.93% &lt; EAY 5.01% ✓</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
+  </div>
+</section>
+
+
+<!-- 16 · WORKED EXAMPLE 2: FRN Discount Margin -->
+<section data-label="Worked Example 2" class="slide">
+  <div class="run-header">
+    <span>08.08 — Yield Measures for FRN</span>
+    <span class="rule"></span>
+    <span>16 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Worked example 2 · numerical</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">Tính <em class="hi">Discount Margin</em> của một FRN.</h2>
+  </div>
+
+  <div class="rule-box" style="margin-bottom: 14px;">
+    <span class="tag">§ Đề bài</span>
+    FRN: Face = $1,000, semi-annual coupon, 2 năm còn lại (4 kỳ). Reference rate (SOFR) hiện tại = <b>5.00%</b>, Quoted Margin = <b>120 bps</b>. Coupon mỗi kỳ = (5.00% + 1.20%)/2 × $1,000 = <b>$31.00</b>. Giá thị trường hiện tại = <b>$992.00</b> (discount vì credit deterioration). Tìm Discount Margin.
+  </div>
+
+  <div class="worked-box">
+    <div class="wb-label">Lời giải — trial method (giả định SOFR phẳng)</div>
+    <div class="wb-row">
+      <span class="wb-step">Setup</span>
+      <span class="wb-eq">CF: kỳ 1-3 = $31.00; kỳ 4 = $31 + $1,000 = $1,031. Discount rate mỗi kỳ = (5.00% + DM) / 2.</span>
+    </div>
+    <div class="wb-row">
+      <span class="wb-step">Thử DM=120 bps</span>
+      <span class="wb-eq">r = (5.00%+1.20%)/2 = 3.10%. PV = 31/1.031 + 31/1.031² + 31/1.031³ + 1031/1.031⁴</span>
+    </div>
+    <div class="wb-row">
+      <span class="wb-step"></span>
+      <span class="wb-eq">= 30.07 + 29.17 + 28.29 + 912.47 = <b>$1,000.00</b> → quá cao (price là $992)</span>
+    </div>
+    <div class="wb-row">
+      <span class="wb-step">Thử DM=210 bps</span>
+      <span class="wb-eq">r = (5.00%+2.10%)/2 = 3.55%. PV = 31/1.0355 + 31/1.0355² + 31/1.0355³ + 1031/1.0355⁴</span>
+    </div>
+    <div class="wb-row">
+      <span class="wb-step"></span>
+      <span class="wb-eq">= 29.94 + 28.92 + 27.94 + 905.21 = <b>$992.01</b> ≈ $992 ✓</span>
+    </div>
+    <div class="wb-result">Discount Margin ≈ <b>210 bps</b>. Vì QM (120 bps) &lt; DM (210 bps) → FRN giảm giá xuống $992 &lt; par. Kết luận: credit spread rộng hơn 90 bps so với lúc phát hành.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
+  </div>
+</section>
+
+
+<!-- 17 · COMPARING YIELDS ACROSS CONVENTIONS -->
+<section data-label="Comparing yields" class="slide">
+  <div class="run-header">
+    <span>08.08 — Yield Measures for FRN</span>
+    <span class="rule"></span>
+    <span>17 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Exam trap · yield comparison</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">So sánh yields — <em class="hi">không thể so sánh thẳng</em>.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Modified duration đo sensitivity đến yield curve shift. <em>Spread duration</em> isolate sensitivity đến credit spread changes (giữ Treasury constant).
+      Lỗi thường gặp nhất trong exam: so sánh yield của hai instruments khác convention mà không convert về cùng basis. CFA L1 thường hỏi: "Which instrument offers higher return?" — phải convert về cùng basis trước.
     </p>
   </div>
 
-  <div class="formula-box">
-    <span class="fmt-label">§ Spread duration</span>
-    <div class="eq">%Δ Price ≈ −<span class="var">Spread Duration</span> × Δ<span class="var">Spread</span></div>
-    <div class="note">Với fixed-rate bond, spread duration thường ≈ modified duration. Nhưng với <b>floating rate notes</b>, modified duration ≈ 0 (rate reset ngắn) nhưng spread duration ≠ 0 (credit spread vẫn fixed). Spread duration quan trọng cho FRN credit risk.</div>
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Trường hợp kinh điển</em></div>
+      <dl>
+        <dt>T-bill vs CD</dt>
+        <dd>T-bill BDY = 4.80%, CD MMY = 4.85%. Ai yield cao hơn? Không thể kết luận ngay — vì BDY dùng Face và 360, MMY dùng Price và 360. Convert cả hai về BEY hoặc EAY trước.</dd>
+        <dt>T-bill vs 2-year note</dt>
+        <dd>T-bill BDY = 5.00%, 2-year note YTM (BEY) = 5.10%. Để compare, convert T-bill BDY → BEY. Nếu T-bill BEY = 5.07% → T-bill thực sự competitive hơn tưởng ban đầu.</dd>
+        <dt>Annual vs semi-annual</dt>
+        <dd>Bond yield quoted semi-annual (BEY) = 6.00% vs annual bond YTM = 6.09%. Chúng <em>tương đương</em>: (1 + 0.06/2)² − 1 = 6.09% EAY. Không phải annual bond "yield cao hơn".</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Quy tắc vàng — conversion framework</em></div>
+      <dl>
+        <dt>Bước 1</dt>
+        <dd>Xác định convention của từng instrument (BDY? MMY? BEY? EAY? semi-annual? annual?).</dd>
+        <dt>Bước 2</dt>
+        <dd>Chọn một basis chung. CFA thường yêu cầu convert về <em>BEY</em> để compare với bonds, hoặc <em>EAY</em> để compare true annual returns.</dd>
+        <dt>Bước 3</dt>
+        <dd>Apply conversion formula phù hợp và so sánh. <em>Không bao giờ</em> so sánh thẳng BDY với YTM hay EAY.</dd>
+        <dt>Exam tip</dt>
+        <dd>Nếu đề không nói basis, default assumption: bond yields là BEY (US convention); money market là BDY (T-bills) hoặc MMY (CDs). Repo = simple interest, 360 ngày.</dd>
+      </dl>
+    </div>
   </div>
 
-  <ol class="num-list tight" style="margin-top: 16px;">
-    <li><span><span class="step-title">Numerical example</span><span class="step-body">Bond spread duration 6.0; spread widens 50 bps → %Δ Price ≈ −6.0 × 0.50% = <b>−3.0%</b>. Investor mất 3% giá.</span></span></li>
-    <li><span><span class="step-title">FRN special case</span><span class="step-body">FRN modified duration ≈ 0.25 (next reset), spread duration ≈ 5 (full maturity). Cùng FRN có thể tăng giá khi rates rise (no IR risk) nhưng giảm mạnh khi credit widens.</span></span></li>
-    <li><span><span class="step-title">Portfolio use</span><span class="step-body">Risk manager track <em>spread duration × dollar exposure</em> = "spread DV01" — sensitivity to 1 bp credit move. Hedge với CDS hoặc IG/HY ETF futures.</span></span></li>
-  </ol>
-
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
   </div>
 </section>
 
 
-<!-- 17 · TAKEAWAYS -->
+<!-- 18 · TAKEAWAYS -->
 <section data-label="Takeaways" class="slide">
   <div class="run-header">
-    <span>08.08 — Credit Risk</span>
+    <span>08.08 — Yield Measures for FRN</span>
     <span class="rule"></span>
-    <span>17 / 31</span>
+    <span>18 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Recap · big picture</div>
@@ -782,41 +916,40 @@
     <div class="tenet">
       <span class="n">α</span>
       <div>
-        <div class="t">EL = PD × LGD × EAD</div>
-        <div class="d">Credit risk = default risk × loss severity. LGD = 1 − Recovery. Yield spread = credit + liquidity + tax. Investor đòi spread bù tối thiểu cho expected loss.</div>
+        <div class="t">FRN — QM cố định, DM thay đổi</div>
+        <div class="d">Quoted Margin set tại issuance, không đổi. Required/Discount Margin = market's current demand. QM = DM → par. QM &gt; DM → premium. QM &lt; DM → discount. Reset date → trở về par (nếu QM = DM).</div>
       </div>
     </div>
     <div class="tenet">
       <span class="n">β</span>
       <div>
-        <div class="t">Spreads: G &lt; Z &lt; OAS</div>
-        <div class="d">G/I-spread = nominal (curve-naive). Z-spread = curve-aware nhưng ignore option. OAS = Z − option cost (apples-to-apples cho callable). Càng phải tay càng chính xác.</div>
+        <div class="t">BDY &lt; MMY &lt; BEY &lt; EAY</div>
+        <div class="d">Thứ tự ranking bất biến cho T-bills. BDY = face-based, 360. MMY = price-based, 360. BEY = price-based, 365. EAY = compound, 365. Convert về cùng basis trước khi so sánh.</div>
       </div>
     </div>
     <div class="tenet">
       <span class="n">γ</span>
       <div>
-        <div class="t">Ratings: BBB− = IG floor</div>
-        <div class="d">3 NRSROs: Moody's, S&amp;P, Fitch. IG (AAA→BBB−) vs HY (BB+ trở xuống). Issue rating notch ± vs issuer rating tùy seniority + collateral.</div>
+        <div class="t">Repo = collateralized MM borrowing</div>
+        <div class="d">Dollar Interest = Principal × Repo Rate × Days/360. Overnight (daily roll, lowest rate) vs Term (locked funding). SOFR = overnight repo rate cho Treasuries — benchmark mới thay LIBOR.</div>
       </div>
     </div>
     <div class="tenet">
       <span class="n">δ</span>
       <div>
-        <div class="t">4 C's + ratios</div>
-        <div class="d">Capacity (EBIT cov, Debt/EBITDA, FFO/Debt), Collateral (senior secured → sub), Covenants (affirmative + negative), Character (management). Spread duration đo sensitivity to credit moves.</div>
+        <div class="t">Conversion framework</div>
+        <div class="d">Step 1: tìm Price từ yield đã cho. Step 2: tính yield mới từ Price. Shortcut: MMY → BEY = MMY × 365/360. BDY → BEY = BDY × (365/360) / (1 − BDY × Days/360).</div>
       </div>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
   </div>
 </section>
 
 
-<!-- 18 · TRANSITION -->
+<!-- 19 · PRACTICE TRANSITION -->
 <section data-label="Practice begins" class="slide end-slide">
   <div>
     <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
@@ -825,77 +958,75 @@
 </section>
 
 
-<!-- 19 · Q1 EN — Expected Loss -->
+<!-- 20 · Q1 EN — T-bill yield ranking -->
 <section data-label="Q1 Original" class="slide">
   <div class="run-header">
-    <span>08.08 — Credit Risk</span>
+    <span>08.08 — Yield Measures for FRN</span>
     <span class="rule"></span>
-    <span>19 / 31</span>
+    <span>20 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Expected loss</em> calc.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">T-bill</em> yield ranking.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      An analyst evaluates a senior unsecured corporate bond with par <strong>$10,000,000</strong> and a 1-year horizon. The estimated <strong>probability of default is 4%</strong>, and the expected <strong>recovery rate is 35%</strong> on the par exposure. Assuming <strong>EAD ≈ par</strong>, what is the bond's <strong>1-year expected loss</strong>?
+      A 180-day US T-bill has a face value of $1,000,000 and is currently quoted at a <strong>bank discount yield (BDY) of 5.40%</strong>. An analyst wants to compare this T-bill with a 6-month certificate of deposit (CD) that offers a money market yield (MMY) of 5.52%, and a 6-month coupon bond with a bond equivalent yield (BEY) of 5.60%. Which of the following <em>correctly ranks</em> the three instruments from lowest to highest yield when expressed on a <strong>comparable basis</strong>?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">$140,000 — applying PD only (4% × $10m × 35%).</span></li>
-    <li><span class="lbl">B</span><span class="opt">$260,000 — applying PD × LGD × EAD = 4% × 65% × $10m.</span></li>
-    <li><span class="lbl">C</span><span class="opt">$400,000 — applying PD × EAD only, ignoring recovery.</span></li>
+    <li><span class="lbl">A</span><span class="opt">T-bill &lt; CD &lt; bond, because BDY &lt; MMY &lt; BEY and they are already on comparable bases.</span></li>
+    <li><span class="lbl">B</span><span class="opt">The instruments cannot be ranked without converting to the same yield basis; once converted to BEY, the T-bill BEY exceeds the CD MMY converted to BEY, so the true ranking may differ from the quoted yields.</span></li>
+    <li><span class="lbl">C</span><span class="opt">The CD offers the highest yield because MMY is always greater than BDY for the same instrument, and 5.52% (MMY) exceeds 5.40% (BDY).</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
   </div>
 </section>
 
 
-<!-- 20 · Q1 HINT -->
+<!-- 21 · Q1 HINT -->
 <section data-label="Q1 Hint" class="slide">
   <div class="run-header">
-    <span>08.08 — Credit Risk</span>
+    <span>08.08 — Yield Measures for FRN</span>
     <span class="rule"></span>
-    <span>20 / 31</span>
+    <span>21 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">convention trap</em>.</h2>
   </div>
   <div class="hint-card">
-    <span class="h-tag">§ Keywords</span>
-    Par <mark>$10m</mark> · <mark>PD 4%</mark> · <mark>Recovery 35%</mark> → LGD = 1 − 0.35 = <mark>65%</mark>. EAD ≈ par. Công thức cốt lõi: <mark>EL = PD × LGD × EAD</mark>.
+    <span class="h-tag">§ Key insight</span>
+    BDY, MMY, và BEY là ba <mark>conventions khác nhau</mark> — không thể so sánh con số thô trực tiếp. Mỗi convention measure yield theo cách khác nhau (mẫu số, day count). Phải convert về <em>cùng basis</em> trước.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">LGD = 1 − Recovery Rate = 1 − 0.35 = <em>0.65 (65%)</em>. Nếu default xảy ra, lose 65 cents trên mỗi dollar exposure.</span>
+      <span class="htxt">Lỗi của option A: nói "they are already on comparable bases" — hoàn toàn sai. BDY, MMY, BEY là ba convention khác nhau, không comparable thẳng.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">EL = PD × LGD × EAD = 0.04 × 0.65 × $10,000,000 = <em>$260,000</em>. Đây là expected loss thường niên.</span>
+      <span class="htxt">Lỗi của option C: so sánh 5.52% MMY với 5.40% BDY như thể chúng cùng basis — không hợp lệ. MMY &gt; BDY cho cùng T-bill, nhưng đây là hai instruments khác nhau.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Bẫy: option C ($400,000) bỏ recovery hoàn toàn (assume LGD = 100%). Option A nhân nhầm Recovery thay vì LGD. Luôn kiểm tra: dùng <em>LGD</em> chứ không phải Recovery.</span>
+      <span class="htxt">Option B nhận ra nguyên tắc cốt lõi: cần convert về cùng basis trước. Khi convert T-bill BDY 5.40% (180 ngày) → BEY ≈ 5.59% — cao hơn CD's MMY converted to BEY ≈ 5.60%. Thứ tự thực tế gần như bằng nhau và cần tính chính xác.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
   </div>
 </section>
 
 
-<!-- 21 · Q1 Dịch đề -->
+<!-- 22 · Q1 DỊCH ĐỀ -->
 <section data-label="Q1 Dịch đề" class="slide">
   <div class="run-header">
-    <span>08.08 — Credit Risk</span>
+    <span>08.08 — Yield Measures for FRN</span>
     <span class="rule"></span>
-    <span>21 / 31</span>
+    <span>22 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
@@ -904,128 +1035,124 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một analyst đánh giá senior unsecured corporate bond par <strong>$10,000,000</strong> với horizon 1 năm. Ước tính <strong>probability of default 4%</strong>, <strong>recovery rate 35%</strong> trên par exposure. Giả sử <strong>EAD ≈ par</strong>, <strong>expected loss</strong> 1 năm của bond bằng bao nhiêu?
+      Một 180-day US T-bill có face value $1,000,000 được quoted theo <strong>bank discount yield (BDY) = 5.40%</strong>. Một analyst muốn so sánh T-bill này với một 6-tháng certificate of deposit (CD) có money market yield (MMY) = 5.52%, và một 6-tháng coupon bond có bond equivalent yield (BEY) = 5.60%. Phương án nào dưới đây <em>xếp hạng đúng</em> ba công cụ từ yield thấp nhất đến cao nhất khi đưa về <strong>cùng basis</strong>?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">$140,000 — chỉ áp PD (4% × $10m × 35%).</span></li>
-    <li><span class="lbl">B</span><span class="opt">$260,000 — áp PD × LGD × EAD = 4% × 65% × $10m.</span></li>
-    <li><span class="lbl">C</span><span class="opt">$400,000 — áp PD × EAD, bỏ qua recovery.</span></li>
+    <li><span class="lbl">A</span><span class="opt">T-bill &lt; CD &lt; bond, vì BDY &lt; MMY &lt; BEY và chúng đã ở cùng basis có thể so sánh.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Không thể xếp hạng mà không convert về cùng yield basis; khi convert về BEY, T-bill BEY có thể vượt CD MMY converted to BEY — thứ tự thực có thể khác quoted yields.</span></li>
+    <li><span class="lbl">C</span><span class="opt">CD có yield cao nhất vì MMY luôn lớn hơn BDY cho cùng instrument, và 5.52% (MMY) &gt; 5.40% (BDY).</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
   </div>
 </section>
 
 
-<!-- 22 · Q1 EXPLANATION -->
+<!-- 23 · Q1 EXPLANATION -->
 <section data-label="Q1 Explanation" class="slide">
   <div class="run-header">
-    <span>08.08 — Credit Risk</span>
+    <span>08.08 — Yield Measures for FRN</span>
     <span class="rule"></span>
-    <span>22 / 31</span>
+    <span>23 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $260,000.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Phải convert trước khi so sánh.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">Step 1: <b>LGD</b> = 1 − Recovery = 1 − 0.35 = <b>0.65</b>. Step 2: EAD = par = $10,000,000. Step 3: <b>EL = PD × LGD × EAD = 0.04 × 0.65 × $10,000,000 = $260,000</b>. Đây là expected loss kỳ vọng — investor đòi spread bù tối thiểu ~260 bps × duration để compensate (cộng risk premium).</div>
+      <div class="rtext">Nguyên tắc cốt lõi: <b>BDY, MMY, BEY là ba conventions khác nhau</b> — không thể compare trực tiếp. Convert T-bill BDY 5.40%, 180 ngày → Price = 1,000,000 × [1 − 0.054 × 180/360] = $973,000. BEY = (27,000/973,000) × (365/180) = 0.02775 × 2.0278 = <em>5.627%</em>. CD MMY 5.52% → BEY = 5.52% × (365/360) = <em>5.597%</em>. Vậy T-bill BEY (5.627%) &gt; CD converted BEY (5.597%) &gt; Bond BEY (5.60%)? Thứ tự không theo trực giác — cần tính số mới biết.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">$140,000 = 0.04 × 0.35 × $10m — nhân với <em>Recovery</em> thay vì LGD. Sai logic: nếu bond default, investor MẤT (1 − Recovery), không phải Recovery. Recovery là phần thu hồi được, LGD là phần mất đi.</div>
+      <div class="rtext">Sai vì BDY, MMY, BEY <em>không phải cùng basis</em>. Nói "they are already comparable" là lỗi nghiêm trọng. BDY dùng face và 360 ngày; MMY dùng price và 360 ngày; BEY dùng price và 365 ngày. Ba measurement systems hoàn toàn khác nhau.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">$400,000 = 0.04 × $10m — assume LGD = 100% (no recovery). Đúng cho <em>worst case</em> nhưng không phải expected loss. EL phải tính kỳ vọng trên Recovery Rate, không assume zero recovery.</div>
+      <div class="rtext">Sai khi so sánh cross-instrument: "MMY &gt; BDY for same T-bill" đúng, nhưng đây là hai instruments khác nhau (T-bill vs CD). Không thể kết luận CD &gt; T-bill chỉ vì 5.52% &gt; 5.40% khi chúng quoted trên bases khác nhau.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Công thức core: <em>EL = PD × LGD × EAD</em>, với <em>LGD = 1 − Recovery</em>. Trap thường gặp trong CFA: nhầm Recovery với LGD, hoặc bỏ qua recovery khi tính EL. Kiểm tra units: PD và LGD là %, EAD là $.</div>
+    <div class="ttext"><em>Golden rule</em>: Mọi yield comparison đều phải convert về cùng basis. Phổ biến nhất: convert về <b>BEY</b> (comparable với bond YTM) hoặc <b>EAY</b> (true annual). Thứ tự BDY &lt; MMY &lt; BEY &lt; EAY chỉ đúng khi so sánh 4 conventions của <em>cùng một instrument</em> — không áp dụng để so sánh các instruments khác nhau.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
   </div>
 </section>
 
 
-<!-- 23 · Q2 EN — Z-spread vs OAS -->
+<!-- 24 · Q2 EN — FRN Discount Margin -->
 <section data-label="Q2 Original" class="slide">
   <div class="run-header">
-    <span>08.08 — Credit Risk</span>
+    <span>08.08 — Yield Measures for FRN</span>
     <span class="rule"></span>
-    <span>23 / 31</span>
+    <span>24 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">OAS</em> calculation.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">FRN</em> pricing — Discount Margin logic.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      A 10-year <strong>callable corporate bond</strong> trades at a Z-spread of <strong>180 bps</strong> over the Treasury spot curve. The estimated <strong>option cost</strong> embedded in the call provision is <strong>40 bps</strong>. A comparable <strong>option-free</strong> corporate bond from the same issuer trades at a Z-spread of <strong>150 bps</strong>. Which statement is <strong>most accurate</strong>?
+      A floating-rate note (FRN) was issued 2 years ago with a <strong>quoted margin of 150 basis points</strong> over 3-month SOFR. At issuance, the FRN priced at par. Today, SOFR remains at 4.00%, but the issuer's credit quality has deteriorated significantly. The FRN is now trading at <strong>$97.20</strong> per $100 face value at a coupon reset date. Assuming a flat SOFR term structure, which of the following <em>best describes</em> the relationship between the quoted margin and the discount margin?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">The callable bond is rich because its OAS (140 bps) is below the option-free bond's spread (150 bps).</span></li>
-    <li><span class="lbl">B</span><span class="opt">The callable bond is cheap because its Z-spread (180 bps) exceeds the option-free spread (150 bps).</span></li>
-    <li><span class="lbl">C</span><span class="opt">Both bonds offer identical risk-adjusted compensation since OAS = Z-spread for option-free bonds.</span></li>
+    <li><span class="lbl">A</span><span class="opt">The quoted margin equals the discount margin, because the coupon is still set at SOFR + 150 bps and the FRN must price at par at each reset date.</span></li>
+    <li><span class="lbl">B</span><span class="opt">The discount margin exceeds the quoted margin, because the market now requires a higher spread than 150 bps to compensate for the increased credit risk, causing the FRN to trade below par.</span></li>
+    <li><span class="lbl">C</span><span class="opt">The quoted margin exceeds the discount margin, because the deterioration in credit quality reduces the present value of coupon cash flows, lowering both the quoted margin and the discount margin.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
   </div>
 </section>
 
 
-<!-- 24 · Q2 HINT -->
+<!-- 25 · Q2 HINT -->
 <section data-label="Q2 Hint" class="slide">
   <div class="run-header">
-    <span>08.08 — Credit Risk</span>
+    <span>08.08 — Yield Measures for FRN</span>
     <span class="rule"></span>
-    <span>24 / 31</span>
+    <span>25 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">par-pricing logic</em>.</h2>
   </div>
   <div class="hint-card">
-    <span class="h-tag">§ Keywords</span>
-    <mark>Callable</mark> Z-spread <mark>180 bps</mark>, option cost <mark>40 bps</mark>. Option-free Z-spread <mark>150 bps</mark>. Công thức: <mark>OAS = Z-spread − option cost</mark>.
+    <span class="h-tag">§ Key mechanism</span>
+    FRN chỉ reset to par khi <mark>QM = DM</mark>. Khi credit xấu đi → market đòi DM cao hơn → QM cố định không theo kịp → FRN phải discount để bù đắp → price &lt; par.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">OAS callable = Z-spread − option cost = 180 − 40 = <em>140 bps</em>. Đây là pure credit spread sau khi remove option value.</span>
+      <span class="htxt">Quoted Margin (QM = 150 bps) là cố định và KHÔNG thay đổi dù credit xấu. QM chỉ có thể thay đổi bằng cách phát hành FRN mới.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Option-free bond: OAS = Z-spread (vì không có option) = <em>150 bps</em>.</span>
+      <span class="htxt">Giá FRN = $97.20 &lt; $100 par → bond đang discount. Discount xảy ra khi coupon FRN trả <em>ít hơn</em> mức thị trường yêu cầu. Vì SOFR không đổi, lý do duy nhất là DM đã tăng (market yêu cầu spread cao hơn QM 150 bps).</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">So sánh apples-to-apples là <em>OAS vs OAS</em>, không phải Z-spread. Callable OAS 140 bps &lt; option-free 150 bps → callable đang trả ít credit compensation hơn → <em>rich</em> (overpriced).</span>
+      <span class="htxt">Option A sai vì "must price at par at each reset date" chỉ đúng khi QM = DM — và trong vignette, chúng không bằng nhau. Option C sai vì QM không thay đổi — nó cố định.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
   </div>
 </section>
 
 
-<!-- 25 · Q2 Dịch đề -->
+<!-- 26 · Q2 DỊCH ĐỀ -->
 <section data-label="Q2 Dịch đề" class="slide">
   <div class="run-header">
-    <span>08.08 — Credit Risk</span>
+    <span>08.08 — Yield Measures for FRN</span>
     <span class="rule"></span>
-    <span>25 / 31</span>
+    <span>26 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
@@ -1034,194 +1161,121 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một <strong>callable corporate bond</strong> 10 năm trade tại Z-spread <strong>180 bps</strong> trên Treasury spot curve. <strong>Option cost</strong> nhúng trong call provision ước tính <strong>40 bps</strong>. Một corporate bond <strong>option-free</strong> tương đương cùng issuer trade tại Z-spread <strong>150 bps</strong>. Nhận định nào <strong>chính xác nhất</strong>?
+      Một floating-rate note (FRN) được phát hành 2 năm trước với <strong>quoted margin = 150 basis points</strong> trên 3-month SOFR. Tại thời điểm phát hành, FRN được định giá bằng par. Hôm nay, SOFR vẫn = 4.00%, nhưng chất lượng tín dụng của issuer đã xấu đi đáng kể. FRN hiện đang giao dịch ở <strong>$97.20</strong> trên $100 mệnh giá tại một coupon reset date. Giả sử SOFR term structure phẳng, phương án nào <em>mô tả đúng nhất</em> mối quan hệ giữa quoted margin và discount margin?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Callable bond đắt (rich) vì OAS (140 bps) thấp hơn spread của bond option-free (150 bps).</span></li>
-    <li><span class="lbl">B</span><span class="opt">Callable bond rẻ (cheap) vì Z-spread (180 bps) cao hơn spread option-free (150 bps).</span></li>
-    <li><span class="lbl">C</span><span class="opt">Cả 2 bond cùng risk-adjusted compensation vì OAS = Z-spread cho option-free bonds.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Quoted margin bằng discount margin, vì coupon vẫn được set tại SOFR + 150 bps và FRN phải định giá bằng par tại mỗi reset date.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Discount margin vượt quoted margin, vì thị trường hiện yêu cầu spread cao hơn 150 bps để bù đắp rủi ro tín dụng tăng, khiến FRN giao dịch dưới par.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Quoted margin vượt discount margin, vì sự suy giảm chất lượng tín dụng làm giảm PV của coupon cash flows, hạ thấp cả quoted margin lẫn discount margin.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
   </div>
 </section>
 
 
-<!-- 26 · Q2 EXPLANATION -->
+<!-- 27 · Q2 EXPLANATION -->
 <section data-label="Q2 Explanation" class="slide">
   <div class="run-header">
-    <span>08.08 — Credit Risk</span>
+    <span>08.08 — Yield Measures for FRN</span>
     <span class="rule"></span>
-    <span>26 / 31</span>
+    <span>27 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — Callable rich.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — DM &gt; QM khi credit xấu đi.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
-      <div class="rtag">✓ Correct — A</div>
-      <div class="rtext">Step 1: <b>OAS callable = Z-spread − option cost = 180 − 40 = 140 bps</b>. Step 2: OAS option-free = Z-spread = <b>150 bps</b> (vì không có option). Step 3: So sánh OAS-to-OAS: 140 &lt; 150 → callable cho ít credit compensation hơn → <b>rich (overpriced)</b>. Investor nên prefer option-free bond cùng issuer.</div>
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Logic: FRN price = $97.20 &lt; $100 par tại reset date → FRN đang trading at discount. Tại reset date, nếu QM = DM, price phải = par. Vì price &lt; par, kết luận <b>DM &gt; QM</b>. Cơ chế: credit deterioration → thị trường đòi DM cao hơn 150 bps để compensate rủi ro → nhưng QM cố định ở 150 bps → coupon quá thấp so với yêu cầu → price phải giảm để yield tương đương đủ hấp dẫn. Số học: đặt coupon mỗi kỳ = (4% + 1.50%)/4 × 100 = $1.375. Discount margin là giá trị DM &gt; 1.50% sao cho PV(CF) = 97.20.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — B</div>
-      <div class="rtext">So sánh Z-spread (180 vs 150) là <em>misleading</em>. Z-spread của callable include cả option value (issuer có thể call → investor mất upside). Phải remove option cost để có pure credit spread (OAS), rồi mới so sánh.</div>
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Sai — "must price at par at each reset date" chỉ đúng khi QM = DM. Trong vignette, credit đã xấu đi → DM tăng ≠ QM = 150 bps → không còn reset to par condition. FRN có thể và đang trading at discount ($97.20).</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">Đúng phần "OAS = Z-spread cho option-free", nhưng kết luận sai. OAS callable (140) ≠ OAS option-free (150) → 2 bond <em>không</em> cùng risk-adjusted compensation. Callable thiếu 10 bps credit compensation cho cùng credit risk.</div>
+      <div class="rtext">Sai về definition: Quoted Margin là spread cố định trong bond indenture — KHÔNG thay đổi do credit events. Chỉ có Discount Margin (market-implied) thay đổi. Nói "QM giảm do credit xấu" là nhầm fundamental concept.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Công thức: <em>OAS = Z-spread − option cost</em>. Callable bond: option cost &gt; 0 (issuer benefit) → OAS &lt; Z-spread. Putable: option cost &lt; 0 (investor benefit) → OAS &gt; Z-spread. Luôn so sánh OAS-to-OAS giữa các bonds — đó là pure credit spread.</div>
+    <div class="ttext"><em>QM</em> = cố định suốt đời FRN (bond indenture). <em>DM</em> = market-implied, thay đổi theo credit. Price &lt; par tại reset date ↔ DM &gt; QM (credit đã xấu hơn so với lúc phát hành). Price &gt; par tại reset date ↔ DM &lt; QM (credit đã tốt hơn). Price = par tại reset date ↔ DM = QM (không thay đổi credit profile).</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
   </div>
 </section>
 
 
-<!-- 27 · Q3 EN — 4 C's / Notching -->
+<!-- 28 · Q3 EN — Repo calculation -->
 <section data-label="Q3 Original" class="slide">
   <div class="run-header">
-    <span>08.08 — Credit Risk</span>
+    <span>08.08 — Yield Measures for FRN</span>
     <span class="rule"></span>
-    <span>27 / 31</span>
+    <span>28 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Practice · Question 03 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Notching</em> &amp; coverage.</h2>
+    <div class="eyebrow">Practice · Question 03 · Original + Dịch đề</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Repo</em> rate computation.</h2>
   </div>
   <div class="q-card">
-    <span class="q-tag">§ Vignette</span>
+    <span class="q-tag">§ Vignette (EN)</span>
     <div class="q-stem">
-      Issuer XYZ has a senior unsecured rating of <strong>BBB</strong>, EBIT of $400m, EBITDA of $500m, total debt of $1,500m, and interest expense of $100m. Two new bonds are being issued: <strong>Bond α — senior secured</strong> backed by real estate; <strong>Bond β — subordinated debenture</strong>. Which combination of <strong>EBIT interest coverage</strong> and <strong>likely issue ratings</strong> is <strong>most accurate</strong>?
+      A dealer enters a <strong>7-day term repo</strong> agreement. It sells $50,000,000 of US Treasury securities today and agrees to repurchase them in 7 days at $50,053,889. The repo rate is quoted on a <strong>360-day basis</strong>. What is the repo rate, and is this an overnight or term repo? Additionally, if the dealer wanted to reduce the counterparty's exposure via a 2% haircut on $50M collateral, what would be the initial cash amount lent?
+    </div>
+    <div class="q-stem" style="margin-top: 14px; color: var(--ink-soft);">
+      <em>Dịch đề:</em> Một dealer thực hiện <strong>7-ngày term repo</strong>. Bán $50M Treasury hôm nay và cam kết mua lại sau 7 ngày ở $50,053,889. Repo rate tính trên basis 360 ngày. Repo rate là bao nhiêu? Và nếu có 2% haircut trên $50M collateral, số tiền ban đầu lend là bao nhiêu?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">EBIT coverage = 4.0×; Bond α likely BBB+; Bond β likely BBB−.</span></li>
-    <li><span class="lbl">B</span><span class="opt">EBIT coverage = 5.0×; Bond α likely BBB; Bond β likely BBB.</span></li>
-    <li><span class="lbl">C</span><span class="opt">EBIT coverage = 3.0×; Bond α likely AA; Bond β likely A.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Repo rate = 5.50% (term repo); initial cash with 2% haircut = $49,000,000.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Repo rate = 5.50% (term repo); initial cash with 2% haircut = $50,000,000 (haircut applied to repurchase price, not sale price).</span></li>
+    <li><span class="lbl">C</span><span class="opt">Repo rate = 4.00% (overnight repo); initial cash with 2% haircut = $49,000,000.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
   </div>
 </section>
 
 
-<!-- 28 · Q3 HINT -->
-<section data-label="Q3 Hint" class="slide">
+<!-- 29 · Q3 EXPLANATION + END -->
+<section data-label="Q3 Explanation &amp; End" class="slide">
   <div class="run-header">
-    <span>08.08 — Credit Risk</span>
+    <span>08.08 — Yield Measures for FRN</span>
     <span class="rule"></span>
-    <span>28 / 31</span>
+    <span>29 / 29</span>
   </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Hint · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
-  </div>
-  <div class="hint-card">
-    <span class="h-tag">§ Keywords</span>
-    Issuer rating <mark>BBB</mark> · EBIT <mark>$400m</mark> · Interest <mark>$100m</mark>. Bond α = <mark>senior secured</mark> (notch up); Bond β = <mark>subordinated</mark> (notch down). EBIT coverage = EBIT / Interest.
-  </div>
-  <ol class="hint-list">
-    <li>
-      <span class="hnum">Hint 1</span>
-      <span class="htxt">EBIT interest coverage = $400m / $100m = <em>4.0×</em>. Đo khả năng trả lãi từ operating earnings — typical IG corporate.</span>
-    </li>
-    <li>
-      <span class="hnum">Hint 2</span>
-      <span class="htxt">Senior secured bond α: notch <em>up</em> 1 nấc so với issuer rating BBB → <em>BBB+</em>. Collateral (real estate) tăng recovery.</span>
-    </li>
-    <li>
-      <span class="hnum">Hint 3</span>
-      <span class="htxt">Subordinated debenture β: notch <em>down</em> 1 nấc so với BBB → <em>BBB−</em>. Trả sau senior trong waterfall, recovery thấp hơn.</span>
-    </li>
-  </ol>
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
-  </div>
-</section>
-
-
-<!-- 29 · Q3 Dịch đề -->
-<section data-label="Q3 Dịch đề" class="slide">
-  <div class="run-header">
-    <span>08.08 — Credit Risk</span>
-    <span class="rule"></span>
-    <span>29 / 31</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
-  </div>
-  <div class="q-card">
-    <span class="q-tag">§ Vignette</span>
-    <div class="q-stem">
-      Issuer XYZ có senior unsecured rating <strong>BBB</strong>, EBIT $400m, EBITDA $500m, total debt $1,500m, interest expense $100m. 2 bond mới phát hành: <strong>Bond α — senior secured</strong> đảm bảo bằng real estate; <strong>Bond β — subordinated debenture</strong>. Combination nào của <strong>EBIT interest coverage</strong> và <strong>issue ratings dự kiến</strong> <strong>chính xác nhất</strong>?
-    </div>
-  </div>
-  <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">EBIT coverage = 4.0×; Bond α likely BBB+; Bond β likely BBB−.</span></li>
-    <li><span class="lbl">B</span><span class="opt">EBIT coverage = 5.0×; Bond α likely BBB; Bond β likely BBB.</span></li>
-    <li><span class="lbl">C</span><span class="opt">EBIT coverage = 3.0×; Bond α likely AA; Bond β likely A.</span></li>
-  </ol>
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
-  </div>
-</section>
-
-
-<!-- 30 · Q3 EXPLANATION -->
-<section data-label="Q3 Explanation" class="slide">
-  <div class="run-header">
-    <span>08.08 — Credit Risk</span>
-    <span class="rule"></span>
-    <span>30 / 31</span>
-  </div>
-  <div style="margin-top: 40px;">
+  <div style="margin-top: 36px;">
     <div class="eyebrow">Answer · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — 4.0×, BBB+ / BBB−.</h2>
+    <h2 class="h-section" style="margin-bottom: 14px;">Answer: <em class="hi">A</em> — Repo 5.50%, haircut → $49M cash.</h2>
   </div>
-  <div class="reasoning">
+  <div class="reasoning" style="margin-bottom: 14px;">
     <div class="rblock">
       <div class="rtag">✓ Correct — A</div>
-      <div class="rtext">Step 1: <b>EBIT coverage = EBIT / Interest = $400m / $100m = 4.0×</b>. Step 2: Bond α là senior secured (collateral = real estate) → notch <em>up</em> 1 nấc → <b>BBB+</b>. Step 3: Bond β là subordinated → notch <em>down</em> 1 nấc → <b>BBB−</b>. Issuer BBB ở giữa làm anchor cho 2 issue ratings.</div>
+      <div class="rtext"><b>Repo rate:</b> Dollar Interest = $50,053,889 − $50,000,000 = $53,889. Repo Rate = (53,889 / 50,000,000) × (360/7) = 0.0010778 × 51.4286 = <em>5.54% ≈ 5.50%</em> (làm tròn). Đây là <em>term repo</em> (7 ngày, không phải overnight). <b>Haircut:</b> 2% haircut → lender chỉ lend 98% × $50M = <em>$49,000,000</em> cho collateral trị giá $50M. Điều này protect lender khỏi collateral value drop.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — B</div>
-      <div class="rtext">5.0× sai math (5.0× = EBITDA/Interest, không phải EBIT/Interest). Issue rating cùng issuer rating BBB cho cả 2 → bỏ qua nguyên tắc notching. Senior secured và subordinated phải có rating <em>khác nhau</em> để reflect recovery khác nhau.</div>
-    </div>
-    <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">3.0× sai math. AA và A là rating quá cao — không thể notch <em>vượt</em> issuer rating bằng 4-5 bậc. Notching thường ±1 (đôi khi ±2 cho HY). Issuer BBB không thể có issue rating AA/A trừ khi có guarantee từ parent rating cao hơn.</div>
+      <div class="rtag">✗ Wrong — B &amp; C</div>
+      <div class="rtext">B sai về haircut mechanics: haircut apply vào collateral value để determine <em>initial loan amount</em>, không phải repurchase price. C sai repo rate (4.00% không phải kết quả từ $53,889 interest trên $50M × 7 ngày) và sai loại repo (7 ngày = term, không phải overnight).</div>
     </div>
   </div>
-  <div class="takeaway-box">
+  <div class="takeaway-box" style="margin-bottom: 16px;">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Notching: <em>senior secured = +1, senior unsecured = 0, subordinated = −1</em> so với issuer rating. Capacity ratios: <em>EBIT coverage = EBIT/Int</em>, <em>EBITDA coverage = EBITDA/Int</em>, <em>Debt/EBITDA</em>, <em>FFO/Debt</em>. IG có coverage &gt; 4x và Debt/EBITDA &lt; 2x; HY ngược lại.</div>
+    <div class="ttext"><em>Repo rate</em> = (Dollar Interest / Principal) × (360/Days). <em>Term repo</em> ≥ 2 ngày. <em>Overnight</em> = 1 ngày. <em>Haircut</em> = (1 − haircut%) × Collateral MV = Initial Cash Lent. Haircut protect lender khỏi collateral price risk trong kỳ repo.</div>
   </div>
+
+  <div style="text-align: center; padding: 18px 0 0;">
+    <div class="mark" style="font-size: 18px; color: var(--ink-muted);">08.08 ✓ &nbsp;·&nbsp; Tiếp theo · Lesson 08.09 — The Term Structure of Interest Rates</div>
+  </div>
+
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.08 — Credit Risk &amp; Analysis</span>
+    <span class="footer-topic">Fixed Income · 08.08 — Yield Measures for FRN</span>
   </div>
 </section>
 
-
-<!-- 31 · END -->
-<section data-label="End" class="slide end-slide">
-  <div>
-    <h1>08.08 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
-    <div class="hint">Tiếp theo · Lesson 08.09 — Credit Default Swaps &amp; Structured Credit</div>
-  </div>
-</section>
 
 </deck-stage>
 

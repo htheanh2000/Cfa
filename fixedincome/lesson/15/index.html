@@ -1,0 +1,1161 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Fixed Income 08.15 — Credit Analysis: Government Issuers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 88px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Credit Analysis:<br><em>Government Issuers.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 08 · Lesson 08.15 · Fixed Income</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 15 · Sovereign · Municipal · GO vs Revenue · Vietnam Context</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Fixed Income</dd></div>
+      <div><dt>Module</dt><dd>fi-m15</dd></div>
+      <div><dt>Lesson</dt><dd>08.15</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Sovereign · 5 Pillars · Moody's · Municipal · GO · Revenue · Vietnam</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">15</div>
+    <div class="lbl">Credit of governments</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How analysts assess <em>government</em><br>credit risk.</h2>
+    <ul class="toc">
+      <li class="active">01 · Tại sao government credit analysis khác corporate</li>
+      <li>02 · Sovereign credit: 5 trụ cột Moody's framework</li>
+      <li>03 · Local currency vs foreign currency rating</li>
+      <li>04 · Sovereign default vs restructuring — Argentina &amp; Greece</li>
+      <li>05 · Non-sovereign: Municipal bonds — GO vs Revenue</li>
+      <li>06 · Tax considerations — US federal tax-exempt munis</li>
+      <li>07 · Vietnam sovereign credit context (BB+ 2025)</li>
+      <li>08 · Practice — 4 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · WHY GOVERNMENT CREDIT DIFFERS -->
+<section data-label="Why gov credit differs" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>03 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Sovereign credit · foundation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Government credit — <em class="hi">khác gì</em> corporate?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Credit analysis của sovereign (quốc gia) và municipal (địa phương) không thể dùng y chang framework cho corporate. Chính phủ có quyền lực đặc biệt mà corporate không có — nhưng cũng chịu ràng buộc đặc biệt.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Điểm khác biệt</em> của sovereign</div>
+      <dl>
+        <dt>Taxing power</dt>
+        <dd>Chính phủ có quyền đánh thuế — nguồn thu không giới hạn về mặt lý thuyết. Corporate phụ thuộc revenue từ thị trường.</dd>
+        <dt>Monetary power</dt>
+        <dd>Sovereign phát hành local currency có thể <em>in tiền</em> để trả nợ local-currency. Corporate không thể làm điều này.</dd>
+        <dt>No bankruptcy</dt>
+        <dd>Sovereign không phá sản theo nghĩa pháp lý — không có court process như Chapter 11. Restructuring là thương lượng chính trị.</dd>
+        <dt>Willingness to pay</dt>
+        <dd>Sovereign <em>có thể</em> trả nhưng <em>chọn không</em> (political decision). Corporate default thường vì không đủ tiền, không phải chủ ý.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Ràng buộc</em> của sovereign</div>
+      <dl>
+        <dt>FX constraint</dt>
+        <dd>Nợ ngoại tệ không thể "in thêm" để trả — phụ thuộc vào FX reserves và trade surplus. Đây là nguồn gốc của sovereign default thực sự.</dd>
+        <dt>Political risk</dt>
+        <dd>Thay đổi chính phủ, bầu cử, populism → policy bất ổn → credit risk tăng. Đặc biệt quan trọng ở EM.</dd>
+        <dt>Social contract</dt>
+        <dd>Chính phủ phải cân bằng trả nợ vs chi tiêu xã hội — austerity có thể gây bất ổn chính trị. Greece 2010–2015 là ví dụ điển hình.</dd>
+        <dt>Transparency</dt>
+        <dd>Data chất lượng thấp hơn corporate ở nhiều EM — off-balance sheet debt, SOE guarantees, hidden liabilities.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 04 · 5 PILLARS OVERVIEW -->
+<section data-label="5 Pillars overview" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>04 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Moody's framework · overview</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">5 trụ cột</em> phân tích sovereign credit.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Moody's (và các CRA khác — S&amp;P, Fitch) đánh giá sovereign rating qua framework đa chiều. Moody's công bố methodology rõ ràng với 5 nhóm yếu tố chính, mỗi nhóm được score và weighted để ra <em>scorecard rating</em>.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">1</span>
+      <div>
+        <div class="t"><em class="hi">Institutional Strength</em></div>
+        <div class="d">Governance, rule of law, corruption control, policy effectiveness, độc lập tư pháp. Nền tảng dài hạn nhất của credit quality.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">2</span>
+      <div>
+        <div class="t"><em class="hi">Economic Strength</em></div>
+        <div class="d">GDP growth, GDP per capita (PPP), đa dạng hoá kinh tế, khả năng cạnh tranh toàn cầu. Nền kinh tế mạnh = tax base rộng.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">3</span>
+      <div>
+        <div class="t"><em class="hi">Fiscal Strength</em></div>
+        <div class="d">Debt/GDP, deficit/GDP, cấu trúc nợ (FX vs local, maturity profile), debt service ratio, fiscal trajectory.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">4</span>
+      <div>
+        <div class="t"><em class="hi">Monetary Flexibility</em></div>
+        <div class="d">Độc lập NHTW, track record kiểm soát lạm phát, FX reserves, khả năng dùng chính sách tiền tệ như buffer.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Trụ cột 5 — Susceptibility to Event Risk</span>
+    Political risk (bầu cử, bạo loạn), banking sector risk (contingent liabilities), geopolitical risk (xung đột, sanctions), external vulnerability (current account, external debt). Đây là yếu tố <em>modifier</em> — có thể hạ rating đột ngột ngay cả khi 4 trụ cột kia ổn.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 05 · PILLAR 1: INSTITUTIONAL STRENGTH -->
+<section data-label="Pillar 1 — Institutional" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>05 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Trụ cột 1 · Institutional Strength</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Thể chế</em> — nền tảng của tín nhiệm.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Institutional strength là yếu tố <em>dài hạn nhất</em> và khó thay đổi nhất. Quốc gia có thể cải thiện fiscal trong 1–2 năm, nhưng xây dựng thể chế tốt mất nhiều thập kỷ. Đây là lý do vì sao AAA sovereign thường là các nền dân chủ lâu đời.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">GOV</span>
+      <div>
+        <div class="t">Governance quality</div>
+        <div class="d">World Bank Governance Indicators: Government Effectiveness, Regulatory Quality, Control of Corruption, Rule of Law, Political Stability, Voice &amp; Accountability. Dữ liệu định lượng từ 200+ quốc gia, Moody's dùng trực tiếp.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">POL</span>
+      <div>
+        <div class="t">Policy effectiveness</div>
+        <div class="d">Lịch sử implement chính sách đã công bố — cam kết fiscal consolidation có được thực hiện không? Budget framework credible không? Ví dụ: UK Office for Budget Responsibility (OBR) làm tăng credibility fiscal forecasts UK.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">LAW</span>
+      <div>
+        <div class="t">Rule of law &amp; judicial independence</div>
+        <div class="d">Tòa án có thể phán quyết chống chính phủ không? Contract enforcement? Nếu không → investor không dám đầu tư dài hạn → growth potential giảm → credit quality giảm dần.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">COR</span>
+      <div>
+        <div class="t">Corruption control</div>
+        <div class="d">Transparency International CPI (Corruption Perceptions Index). Tham nhũng cao → leakage ngân sách → fiscal metrics xấu hơn thực tế → hidden liabilities. Venezuela, Argentina score thấp liên tục trước khi default.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 06 · PILLAR 2: ECONOMIC STRENGTH -->
+<section data-label="Pillar 2 — Economic" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>06 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Trụ cột 2 · Economic Strength</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Sức mạnh kinh tế</em> — tax base &amp; resilience.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Chỉ số định lượng</em> key</div>
+      <dl>
+        <dt>GDP per capita (PPP)</dt>
+        <dd>Proxy cho income level và tax capacity. &gt;$25,000 PPP thường gắn với Aa/Aaa. VN ~$15,000 PPP (2024) → Ba range.</dd>
+        <dt>GDP growth trend</dt>
+        <dd>Nominal GDP growth giúp "grow out" debt — nếu growth &gt; interest rate, debt/GDP giảm tự nhiên (Domar condition). VN 6–7% nominal growth → dư địa tốt.</dd>
+        <dt>GDP diversification</dt>
+        <dd>Herfindahl-Hirschman Index trên export basket. Mono-commodity exporters (Angola dầu, Zambia đồng) cực kỳ nhạy cảm với commodity cycle.</dd>
+        <dt>Competitiveness</dt>
+        <dd>WEF Global Competitiveness Index, ease of doing business, FDI inflows. Nền kinh tế cạnh tranh = dễ duy trì trade surplus = FX accumulation.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Phân tích định tính</em> bổ sung</div>
+      <dl>
+        <dt>Economic diversification</dt>
+        <dd>Tỷ trọng manufacturing vs services vs commodity. Singapore &amp; South Korea: high value-added manufacturing + services → resilient. Nigeria: 90% export = oil → fragile.</dd>
+        <dt>Labor market</dt>
+        <dd>Demographics — aging population (Japan, Italy) làm potential growth giảm, pension liabilities tăng. Young population (VN median age 31) = demographic dividend.</dd>
+        <dt>Financial depth</dt>
+        <dd>Domestic bond market phát triển → sovereign có thể borrow local currency → giảm FX mismatch. VN: domestic bond market still developing.</dd>
+        <dt>External trade</dt>
+        <dd>Current account balance (surplus = FX accumulation) và terms of trade. Persistent CA deficit + high FX debt = vulnerable.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 07 · PILLAR 3: FISCAL STRENGTH -->
+<section data-label="Pillar 3 — Fiscal" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>07 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Trụ cột 3 · Fiscal Strength</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Sức mạnh tài chính công</em> — debt sustainability.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Fiscal strength là trụ cột "cứng" nhất — dữ liệu có thể đo lường định lượng. Analysts xây <em>debt sustainability model</em>: project debt/GDP ratio 5–10 năm dưới các kịch bản macro khác nhau.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">D/GDP</span>
+      <div>
+        <div class="t">Debt / GDP ratio</div>
+        <div class="d">Thước đo cơ bản nhất. Moody's Aaa thường: &lt;60% GDP. Nhưng Nhật Bản 250% GDP vẫn Aa3 vì nợ gần hết local-currency, held by domestic investors. <em>Composition quan trọng hơn level</em>.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">DEF</span>
+      <div>
+        <div class="t">Fiscal deficit / GDP</div>
+        <div class="d">EU Maastricht: &lt;3% GDP. Deficit cao → debt tích luỹ nhanh → path không bền vững. <em>Primary balance</em> (deficit trước interest) là indicator tốt hơn về fiscal effort. Primary surplus = đang tích cực trả nợ.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">STR</span>
+      <div>
+        <div class="t">Debt structure</div>
+        <div class="d">Local currency vs FX debt, maturity profile (front-loaded → refinancing risk), fixed vs floating (interest rate risk). Short-term FX debt = most dangerous combination. Greece: FX (EUR, de facto), đa phần thị trường.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SVC</span>
+      <div>
+        <div class="t">Debt service ratio</div>
+        <div class="d">Interest payments / revenue. &gt;15% revenue = significant burden. Angola, Egypt, Pakistan: debt service &gt;30% revenue → leaving little for investment. Interest/GDP trending up = warning sign.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Domar Condition: nếu nominal GDP growth (g) &gt; average interest rate trên nợ (r), thì debt/GDP giảm tự nhiên ngay khi có deficit nhỏ. g &gt; r = "good" fiscal dynamics; g &lt; r = "bad" dynamics, cần primary surplus để stabilise.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 08 · PILLAR 4: MONETARY FLEXIBILITY -->
+<section data-label="Pillar 4 — Monetary" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>08 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Trụ cột 4 · Monetary Flexibility</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Linh hoạt tiền tệ</em> — lá chắn cuối cùng.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Quốc gia có ngân hàng trung ương độc lập, lạm phát thấp ổn định, và FX reserves dồi dào có "room" để dùng chính sách tiền tệ như buffer khi có shock — không phải chỉ in tiền vô tội vạ.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Central bank independence</em></div>
+      <dl>
+        <dt>Structural independence</dt>
+        <dd>Mandated bởi luật, không bị chính phủ can thiệp vào lãi suất. Fed, ECB, BoE, RBA có independence cao. SBV (State Bank of Vietnam) chịu ảnh hưởng chính phủ nhiều hơn.</dd>
+        <dt>Inflation credibility</dt>
+        <dd>Lịch sử kiểm soát lạm phát &lt;4–5% trong nhiều thập kỷ → anchored expectations → sovereign có thể borrow local currency dài hạn. Hyperinflation history (Argentina, Zimbabwe, VN pre-2000) làm giảm confidence.</dd>
+        <dt>Lender of last resort</dt>
+        <dd>CB có thể mua sovereign bonds (QE) để support market trong stress. ECB "whatever it takes" (Draghi 2012) cứu eurozone. Nhưng chỉ effective nếu inflation không quá cao.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>FX Reserves &amp; Buffers</em></div>
+      <dl>
+        <dt>FX reserves level</dt>
+        <dd>IMF guideline: ≥3 tháng import cover. Moody's muốn ≥6 tháng cho EM. VN: ~$87B reserves (2024) ≈ 3.5 tháng import — đang build up. Reserves giảm mạnh = red flag (Egypt 2022, Sri Lanka 2022).</dd>
+        <dt>Reserve adequacy</dt>
+        <dd>Greenspan-Guidotti rule: reserves ≥ short-term external debt. Nếu short-term FX debt &gt; reserves → rollover risk. Argentina 2001: đây chính xác là vấn đề.</dd>
+        <dt>Exchange rate regime</dt>
+        <dd>Floating FX → automatic buffer (currency depreciates absorb shocks). Fixed/peg → khi peg breaks, crisis sharp hơn. VN: managed float (crawling peg thực tế).</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 09 · PILLAR 5: EVENT RISK -->
+<section data-label="Pillar 5 — Event Risk" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>09 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Trụ cột 5 · Susceptibility to Event Risk</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Event risk</em> — cú shock bất ngờ.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Event risk là "negative modifier" — có thể hạ rating đột ngột ngay cả khi 4 trụ cột kia tốt. Moody's chia thành 4 loại chính. Analysts phải scenario-test: "Điều gì xảy ra nếu sự kiện này materialise?"
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">POL</span>
+      <div>
+        <div class="t">Political event risk</div>
+        <div class="d">Bầu cử → chính phủ mới đảo ngược fiscal reform. Bạo loạn, đảo chính, populism. Ví dụ: Brazil 2018–2022 (Bolsonaro fiscal spending); Turkey (CBRT independence bị vi phạm 2021). Rating giảm ngay khi independent CB governor bị sa thải.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">BNK</span>
+      <div>
+        <div class="t">Banking sector risk</div>
+        <div class="d">Sovereign thường phải bail out ngân hàng lớn → contingent liability. Ireland 2010: bank bailout đẩy deficit lên 32% GDP overnight. Spain 2012: bank recapitalization. VN: NPL trong hệ thống ngân hàng là latent sovereign risk.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">GEO</span>
+      <div>
+        <div class="t">Geopolitical risk</div>
+        <div class="d">Chiến tranh (Ukraine 2022 → junk ngay), sanctions (Russia → isolate khỏi SWIFT), territorial disputes. Rating agencies thường downgrade ngay khi xung đột leo thang. Ảnh hưởng kép: GDP giảm + FX outflows + chi tiêu quốc phòng tăng.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">EXT</span>
+      <div>
+        <div class="t">External vulnerability</div>
+        <div class="d">Current account deficit lớn + external debt cao + FX reserves thấp = "triple threat". Net international investment position (NIIP) âm sâu = country owes more than it owns abroad. Pakistan, Sri Lanka 2022 là case studies điển hình.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 10 · LOCAL vs FOREIGN CURRENCY RATING -->
+<section data-label="LC vs FC rating" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>10 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Sovereign rating · two dimensions</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Local currency</em> vs <em class="hi">foreign currency</em> rating.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Moody's, S&amp;P, Fitch đều assign <em>hai</em> sovereign ratings riêng biệt: local-currency (LC) và foreign-currency (FC). LC thường cao hơn FC vì lý do cơ bản sau.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Local currency rating</em> — thường cao hơn</div>
+      <dl>
+        <dt>Tại sao thấp rủi ro hơn?</dt>
+        <dd>Sovereign <em>phát hành</em> chính đồng tiền mà mình nợ → có thể in thêm tiền để trả. Default trên LC debt là <em>willingness</em> vấn đề, không phải ability. Trường hợp LC default: hyperinflation (Zimbabwe 2008, Venezuela 2018) — in tiền nhiều đến mức debase currency.</dd>
+        <dt>Mechanism</dt>
+        <dd>Central bank có thể mua government bonds trực tiếp (monetization) hoặc gián tiếp (QE). Lạm phát tăng nhưng default avoided. Japan: nợ 250% GDP, tất cả JPY, domestic holders → Aa3 LC.</dd>
+        <dt>Ví dụ</dt>
+        <dd>US: AAA/Aaa LC — Fed có thể mua Treasury vô hạn lý thuyết. UK: AA LC — BoE QE trong crisis. Chỉ lạm phát mới là constraint thực sự.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Foreign currency rating</em> — thường thấp hơn</div>
+      <dl>
+        <dt>Tại sao rủi ro cao hơn?</dt>
+        <dd>Sovereign không thể "in" USD, EUR, JPY để trả nợ FX. Phải kiếm FX qua exports, FDI, hoặc reserves. Khi FX khan hiếm → default risk thực sự.</dd>
+        <dt>Notching</dt>
+        <dd>FC rating thường thấp hơn LC 1–3 notches ở EM. Ví dụ: VN LC = Ba2, FC = Ba2 (hiện gần nhau vì reserves đang tốt và FX debt moderate).</dd>
+        <dt>Eurozone exception</dt>
+        <dd>Greece, Italy, Spain không in được EUR → LC = FC rating, không có LC premium. Đây là vấn đề core của eurozone — mất monetary sovereignty khi join EMU.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 11 · SOVEREIGN DEFAULT AND RESTRUCTURING -->
+<section data-label="Default vs Restructuring" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>11 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Sovereign distress · mechanics</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Default</em> vs <em class="hi">Restructuring</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Sovereign "default" thường không phải hoàn toàn không trả — mà là thương lượng restructuring với creditors để giảm burden. Hai case điển hình CFA level I: <em>Argentina</em> và <em>Greece</em>.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Argentina</em> — hard default</div>
+      <dl>
+        <dt>2001 Default ($93B)</dt>
+        <dd>Largest sovereign default lịch sử tại thời điểm đó. Đồng peso cố định (peg USD 1:1) + nợ USD lớn + suy thoái + bank run. Chính phủ không thể trả USD khi reserves cạn. "Corralito" — đóng băng ngân hàng.</dd>
+        <dt>Restructuring 2005, 2010</dt>
+        <dd>Argentina offer exchange bonds với haircut ~66-70% NPV. Majority creditors accept. Một số "holdout" (vulture funds) từ chối → kiện ra tòa NY → Argentina phải trả full (2016 settlement $4.65B).</dd>
+        <dt>Bài học</dt>
+        <dd><em>Collective Action Clauses (CAC)</em> — binding majority vote để ngăn holdouts. CAC standard trong international sovereign bonds từ 2003. Argentina là bài học về FX peg + FX debt = dangerous combo.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Greece</em> — negotiated restructuring</div>
+      <dl>
+        <dt>2012 PSI ($206B)</dt>
+        <dd>Private Sector Involvement — largest debt restructuring lịch sử. Haircut ~53.5% nominal / ~75% NPV. Điều phối bởi EU/IMF (Troika). Greece: eurozone member → không thể devalue EUR, phải thực hiện "internal devaluation" (wage cuts).</dd>
+        <dt>Cơ chế</dt>
+        <dd>Greece retroactively inserted CAC vào domestic law bonds (không thể làm với foreign law bonds → giải thích vì sao holdout ít hơn Argentina). ESM (European Stability Mechanism) cung cấp bailout loans mới để Greece tiếp tục hoạt động.</dd>
+        <dt>Bài học</dt>
+        <dd>Eurozone membership = mất LC premium (không thể devalue). Austerity packages gây bất ổn xã hội nghiêm trọng. IMF conditionality = policy prescription kèm financing.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 12 · MUNICIPAL BONDS — OVERVIEW -->
+<section data-label="Municipal bonds" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>12 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Non-sovereign · Municipal bonds</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Municipal bonds</em> — non-sovereign analysis.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Municipal bonds (munis) = trái phiếu phát hành bởi state governments, cities, counties, school districts, special districts ở US. Thị trường ~$4 trillion. Hai loại cơ bản: <em>General Obligation</em> và <em>Revenue bonds</em>.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>General Obligation (GO) bonds</em></div>
+      <dl>
+        <dt>Backing</dt>
+        <dd>Backed by <em>full faith and credit</em> + taxing power của issuer. Nếu cần, issuer phải raise taxes để trả nợ. Strongest pledge — lý do GO thường rated cao nhất.</dd>
+        <dt>Loại unlimited vs limited</dt>
+        <dd><b>Unlimited tax GO</b>: issuer có thể raise tax không giới hạn để service debt (strongest). <b>Limited tax GO</b>: taxing power bị cap bởi luật hoặc constitution — slightly weaker.</dd>
+        <dt>Credit analysis</dt>
+        <dd>Tập trung vào: tax base (GDP địa phương, property values, income levels), budget flexibility, pension &amp; OPEB liabilities, management quality. Fiscal stress indicators: fund balance giảm, budget deficit.</dd>
+        <dt>Ví dụ default</dt>
+        <dd>Detroit 2013 ($18B) — GO bonds defaulted khi city filed bankruptcy. Cho thấy GO không hoàn toàn risk-free nếu taxing power không đủ.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Revenue bonds</em></div>
+      <dl>
+        <dt>Backing</dt>
+        <dd>Backed by <em>specific revenue stream</em> của một project/enterprise — không phải taxing power tổng quát. Nếu project fail → bondholders chịu loss, không phải taxpayers.</dd>
+        <dt>Loại phổ biến</dt>
+        <dd><b>Toll road/bridge</b>: cash flow từ phí. <b>Water/sewer utility</b>: essential service, stable demand. <b>Airport</b>: airline fees. <b>Hospital</b>: patient revenues. <b>University</b>: tuition + endowment. <b>Housing</b>: rental income.</dd>
+        <dt>Credit analysis</dt>
+        <dd>Tập trung vào: debt service coverage ratio (DSCR = net revenue / debt service, phải &gt;1.25× minimum). Rate covenant (issuer commit to maintain rates đủ để cover DS). Demand fundamentals (essential vs discretionary).</dd>
+        <dt>Rủi ro đặc trù</dt>
+        <dd>Toll road: traffic volume risk. Airport: airline bankruptcy, COVID-19 killed revenues. Hospital: reimbursement rate cuts (Medicare/Medicaid policy risk). University: enrollment decline.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 13 · MUNI TAX CONSIDERATIONS -->
+<section data-label="Muni tax" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>13 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Municipal bonds · tax advantage</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">US muni <em class="hi">tax exemption</em> — taxable-equivalent yield.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Đây là đặc điểm phân biệt quan trọng nhất của US munis: <em>interest income được exempt khỏi federal income tax</em> (và thường cả state tax nếu mua in-state). Investor cần tính <em>taxable-equivalent yield</em> để so sánh với corporate bonds.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Taxable-equivalent yield (TEY)</span>
+    <div class="eq"><span class="var">TEY</span> = <span class="var">Muni yield</span> / ( 1 − <span class="var">Marginal tax rate</span> )</div>
+    <div class="note">
+      Ví dụ: Muni yield = 3.5%, investor tax rate = 37% (top US federal bracket). TEY = 3.5% / (1 − 0.37) = <em>3.5% / 0.63 = 5.56%</em>. Vậy investor này nên mua muni 3.5% nếu corporate bond tương đương chỉ yield &lt;5.56%.
+    </div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 18px;">
+    <li>
+      <span>
+        <span class="step-title">Federal vs State exemption</span>
+        <span class="step-body">Interest từ US munis = <b>federal tax-exempt</b> theo Internal Revenue Code Section 103. State exemption: chỉ áp dụng nếu investor <em>mua muni của tiểu bang mình cư trú</em> (ví dụ: California investor mua California muni → exempt cả federal + state). Mua out-of-state = chỉ exempt federal.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">AMT (Alternative Minimum Tax)</span>
+        <span class="step-body">Một số "private activity bonds" (ví dụ: bonds tài trợ private projects như stadiums) subject to AMT — không phải hoàn toàn tax-exempt. AMT munis yield cao hơn "pure" munis để compensate. CFA L1 thường hỏi phân biệt AMT vs non-AMT.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Ai mua munis?</span>
+        <span class="step-body">High-income individuals (37% bracket) được lợi nhất. Tax-exempt institutions (pension funds, endowments) — KHÔNG hưởng lợi gì thêm từ tax exemption → họ mua corporate/Treasury thay vì muni vì yield cao hơn. Insurance companies (taxable) mua munis để after-tax yield tốt hơn.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 14 · GO vs REVENUE CREDIT ANALYSIS DEEP-DIVE -->
+<section data-label="GO vs Revenue analysis" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>14 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Municipal credit · deep-dive</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">GO vs Revenue — <em class="hi">credit metrics</em> so sánh.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">TAX</span>
+      <div>
+        <div class="t">GO: Tax base analysis</div>
+        <div class="d">Property tax base (assessed value per capita), income tax base (median household income), sales tax base (retail sales per capita). Đa dạng hoá nguồn thu = resilience. Một-source reliance (ví dụ: Detroit: auto industry) = vulnerable.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">PEN</span>
+      <div>
+        <div class="t">GO: Pension &amp; OPEB liabilities</div>
+        <div class="d">Unfunded pension = hidden debt. Net pension liability (NPL) so với revenue. Chicago: pension funding ratio ~25% = significant drag. OPEB (Other Post-Employment Benefits) = retiree healthcare. Moody's điều chỉnh debt/revenue ratio để include pension.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">DSC</span>
+      <div>
+        <div class="t">Revenue: DSCR</div>
+        <div class="d">Debt Service Coverage Ratio = Net Revenues / Annual Debt Service. Revenue bond indenture thường require minimum DSCR = 1.25× (125%). Dưới mức này → technical default hoặc rate increase covenant kicks in. Analysts stress-test DSCR trong downside scenarios.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">ESS</span>
+      <div>
+        <div class="t">Revenue: Essential service premium</div>
+        <div class="d">Water/sewer utility = highest-rated revenue bonds vì essential, inelastic demand. Người ta không thể không dùng nước. Toll roads: discretionary nếu có free alternative. Hospitals: Medicare/Medicaid policy risk. "Essential vs discretionary" là phân loại quan trọng nhất.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 15 · VIETNAM SOVEREIGN CREDIT -->
+<section data-label="Vietnam sovereign credit" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>15 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Case study · Vietnam 2025</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Vietnam sovereign credit — <em class="hi">BB+ Stable</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      S&amp;P: BB+/Stable (2024). Moody's: Ba2 (equiv BB)/Stable. Fitch: BB+/Positive (2024). Vietnam là investment-grade candidate nếu cải thiện thể chế và financial sector governance. Phân tích theo 5-pillar framework:
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Strengths</em> — drivers nâng rating</div>
+      <dl>
+        <dt>Economic strength ✓</dt>
+        <dd>GDP growth 6–7%/năm, manufacturing export diversification (Samsung, Intel, Nike), FDI inflows $18–23B/năm, young demographics (median 31). Tốt hơn nhiều Ba peers.</dd>
+        <dt>Fiscal strength ✓</dt>
+        <dd>Public debt/GDP ≈ 37% GDP (2024) — thấp so với BB peers. Deficit ~3.5% GDP. Debt structure: đa số local currency hoặc concessional long-term (ADB, WB). Debt service ratio thấp.</dd>
+        <dt>Monetary buffers ✓</dt>
+        <dd>FX reserves $87B (~3.5 tháng import). SBV managed float. Lạm phát 3–4% — kiểm soát tốt hơn nhiều EM peers.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Constraints</em> — barriers to IG</div>
+      <dl>
+        <dt>Institutional weakness ✗</dt>
+        <dd>Governance score thấp hơn investment-grade peers. Chống tham nhũng chiến dịch tích cực nhưng thể chế vẫn đang develop. Rule of law và judicial independence chưa đạt chuẩn BBB.</dd>
+        <dt>Banking sector risk ✗</dt>
+        <dd>NPL chính thức ~2% nhưng thực tế cao hơn (VAMC bonds). SCB crisis 2022 gây shock niềm tin. Contingent sovereign liability từ systemic bank bail-out là real risk.</dd>
+        <dt>Monetary credibility ✗</dt>
+        <dd>SBV không độc lập theo nghĩa pháp lý — chính phủ có ảnh hưởng lớn. USD hoá một phần — giảm monetary flexibility. FX reserves còn thấp hơn peers (Singapore, Thailand có reserves/GDP cao hơn nhiều).</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 16 · KEY TAKEAWAYS -->
+<section data-label="Takeaways" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>16 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap · big picture</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">α</span>
+      <div>
+        <div class="t">Sovereign credit = 5 pillars</div>
+        <div class="d">Institutional, Economic, Fiscal, Monetary, Event Risk susceptibility. Institutional = slowest to change, most fundamental. Fiscal = most measurable. Event risk = sudden downgrade catalyst. Tất cả 5 phải tốt để đạt AAA.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">β</span>
+      <div>
+        <div class="t">LC rating &gt; FC rating (EM)</div>
+        <div class="d">Local-currency debt: sovereign có thể in tiền → lower default risk (chỉ inflation risk). FC debt: cần kiếm FX → hard constraint. Eurozone exception: LC = FC vì member states không thể in EUR. Argentina/Greece illustrate FC debt danger.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">γ</span>
+      <div>
+        <div class="t">GO vs Revenue munis</div>
+        <div class="d">GO: full faith + taxing power → stronger pledge, nhưng Detroit showed limits. Revenue: project cash flow → DSCR metric key (&gt;1.25×). Essential services (water/sewer) highest quality revenue bonds. Tax exemption → TEY = muni yield / (1 − MTR).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">δ</span>
+      <div>
+        <div class="t">Willingness vs ability to pay</div>
+        <div class="d">Sovereign default often political choice, not inability. Argentina had FX = could pay, chose not to (1982, 2001, 2020). Russia 2022: had FX but blocked by sanctions. Default = ability <em>hoặc</em> willingness problem. Analysts must assess both dimensions.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 17 · TRANSITION TO PRACTICE -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 4 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 EN — Local vs Foreign Currency Rating -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>18 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Local vs foreign</em> currency rating.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Country Alpha is a developing economy with a GDP per capita of $8,000 (PPP). Its central bank is legally independent, with a 10-year track record of maintaining inflation below 5%. Foreign currency reserves stand at 4.5 months of import cover. Alpha has issued bonds in both domestic currency and USD. A credit analyst notes that Moody's assigns Alpha a <strong>local-currency rating of Ba1</strong> and a <strong>foreign-currency rating of Ba3</strong>. Which statement <em>best</em> explains the two-notch difference?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">The local-currency rating is higher because Alpha's central bank can create domestic currency to service local-currency obligations, reducing default risk relative to USD debt where Alpha must earn or hold foreign exchange.</span></li>
+    <li><span class="lbl">B</span><span class="opt">The local-currency rating is higher because domestic investors are more forgiving than foreign creditors and rarely trigger a default event on local bonds.</span></li>
+    <li><span class="lbl">C</span><span class="opt">The foreign-currency rating is lower because USD bonds trade on international markets where liquidity is lower and bid-ask spreads are wider, increasing market risk for investors.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>19 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">core mechanism</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Key concept</span>
+    Câu hỏi test bạn có hiểu tại sao LC và FC ratings khác nhau không. Không phải về <mark>investor behaviour</mark> hay <mark>market liquidity</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Loại B ngay: "domestic investors forgiving" không phải lý do Moody's dùng để notch. Rating agencies đánh giá khả năng tài chính, không phải investor psychology.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Loại C ngay: bid-ask spread và market liquidity là <em>market risk</em>, không phải <em>credit risk</em>. Rating đo probability of default và loss given default — không phải liquidity.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Đáp án A: LC rating cao hơn vì sovereign <em>có thể in domestic currency</em> để trả nợ LC (worst case = lạm phát, nhưng không default). FC debt (USD) → phải có USD thật → phụ thuộc reserves + export earnings → rủi ro thực sự hơn.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 DICH DE -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>20 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Quốc gia Alpha là nền kinh tế đang phát triển với GDP per capita $8,000 (PPP). Ngân hàng trung ương độc lập về mặt pháp lý, duy trì lạm phát dưới 5% trong 10 năm. FX reserves đạt 4.5 tháng nhập khẩu. Alpha phát hành trái phiếu cả nội tệ lẫn USD. Credit analyst ghi nhận Moody's assign Alpha <strong>local-currency rating Ba1</strong> và <strong>foreign-currency rating Ba3</strong>. Phát biểu nào <em>giải thích tốt nhất</em> sự chênh lệch 2 notches này?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">LC rating cao hơn vì NHTW của Alpha có thể tạo ra nội tệ để trả nợ LC — giảm rủi ro default so với nợ USD nơi Alpha phải kiếm hoặc giữ ngoại tệ.</span></li>
+    <li><span class="lbl">B</span><span class="opt">LC rating cao hơn vì nhà đầu tư trong nước dễ bỏ qua hơn nhà đầu tư nước ngoài và hiếm khi trigger default event trên trái phiếu nội địa.</span></li>
+    <li><span class="lbl">C</span><span class="opt">FC rating thấp hơn vì USD bonds giao dịch trên thị trường quốc tế có thanh khoản thấp hơn và bid-ask spread rộng hơn — tăng market risk cho nhà đầu tư.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>21 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — Printing press vs FX constraint.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext"><b>LC vs FC split</b>: Moody's rationale là sovereign <em>có thể in domestic currency</em> để service LC debt trong worst case — result là lạm phát chứ không phải default. Vì vậy LC rating thường cao hơn. FC debt (USD) đòi hỏi <em>thực sự có USD</em> — kiếm qua exports, FDI, hoặc rút reserves. Khi FX khan hiếm (như Argentina 2001, Sri Lanka 2022), không thể in USD → default thực sự xảy ra. Notch gap 1–3 notches là phổ biến cho EM Ba/B range sovereigns.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Sai hoàn toàn về methodology. Rating agencies không phân biệt "investor forgiveness". Moody's đánh giá <em>economic and financial capacity</em> của issuer — không phải investor psychology. Ngoài ra, local bond defaults hoàn toàn xảy ra (Russia 1998 defaulted on ruble GKOs).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Liquidity là market risk, không phải credit risk. Rating phản ánh probability of default và loss given default — không phải bid-ask spread hay trading volume. Câu C confuse market risk với credit risk — đây là trap thường gặp trong CFA exam.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext"><em>LC rating cao hơn FC</em> vì: sovereign có thể monetize LC debt (in tiền), FC debt cần FX thực. <em>Exception quan trọng</em>: Eurozone members (Greece, Italy) = LC rating bằng FC vì họ dùng EUR và không thể in EUR. <em>Russia 1998</em>: defaulted on local GKOs (LC default) — cho thấy LC default KHÔNG phải impossible, chỉ là ít likely hơn vì political cost (inflationary monetization thường preferred over outright default).</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q2 EN — GO vs Revenue Bonds -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>22 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">GO</em> vs <em class="hi">Revenue</em> bond analysis.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Westville County issues two types of municipal bonds: (1) a <strong>general obligation bond</strong> backed by its property tax base to fund public schools, and (2) a <strong>revenue bond</strong> backed solely by toll collections from a new bridge. A credit analyst reviewing both bonds notes that Westville County has declining population, falling property values, and the new bridge competes with a free public road 3 km away. Which bond is <em>most likely</em> to face the greater credit deterioration, and why?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">The GO bond, because declining population and falling property values directly erode the property tax base that backs the bond, weakening the primary revenue source for debt service.</span></li>
+    <li><span class="lbl">B</span><span class="opt">The revenue bond, because toll collections depend on traffic volume, which is highly vulnerable to the competing free road, making debt service coverage uncertain and potentially insufficient.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Both bonds face equal deterioration, since the county's overall fiscal health determines the credit quality of all debt it issues regardless of the specific backing.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>23 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">key risk</em> trong mỗi bond.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Two different risk profiles</span>
+    GO bond risk = <mark>tax base erosion</mark>. Revenue bond risk = <mark>project cash flow</mark>. Đọc kỹ vignette — mỗi stress factor affects WHICH bond?
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">GO bond: backing = property tax base. Vignette nói "declining population + falling property values" → tax base co lại → debt service capacity giảm. Đây là DIRECT hit vào GO bond backing.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Revenue bond: backing = toll collections. Vignette nói "competing free road 3km away" → drivers có thể dùng road miễn phí → traffic volume giảm → toll revenue giảm → DSCR giảm. Đây là DIRECT hit vào revenue bond.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Cả hai đều bị hit. Câu hỏi là "WHICH faces GREATER deterioration." Revenue bond có free alternative ngay cạnh = demand elasticity rất cao. Toll road discretionary (không essential) + có substitute = double weakness.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q2 DICH DE -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>24 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Hạt Westville phát hành hai loại municipal bonds: (1) <strong>general obligation bond</strong> backed by property tax base để tài trợ trường công, và (2) <strong>revenue bond</strong> backed chỉ bằng phí thu cầu (toll) từ một cây cầu mới. Analyst ghi nhận: Westville có dân số đang giảm, giá bất động sản đang sụt, và cây cầu mới cạnh tranh với một con đường miễn phí cách 3km. Bond nào <em>nhiều khả năng</em> chịu suy giảm credit lớn hơn và tại sao?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">GO bond, vì dân số giảm và giá bất động sản giảm trực tiếp xói mòn property tax base — nguồn thu chính để service nợ GO.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Revenue bond, vì thu phí cầu phụ thuộc vào lưu lượng xe — dễ bị ảnh hưởng bởi con đường miễn phí gần đó, khiến debt service coverage không chắc chắn và có thể không đủ.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Cả hai đều suy giảm tương đương, vì sức khoẻ tài chính tổng thể của hạt quyết định credit quality của tất cả nợ, bất kể backing cụ thể.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>25 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Revenue bond faces greater risk.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext"><b>Revenue bond</b>: Toll collections là nguồn DUY NHẤT để service nợ. Cây cầu phải cạnh tranh với free road 3km — một substitute gần như hoàn hảo. Traffic diversion có thể làm toll revenue giảm mạnh → DSCR có thể giảm dưới 1.0× → technical default. Revenue bond indenture không cho phép county dùng tax revenue để cover shortfall. Đây là <em>discretionary</em> toll road với strong free alternative = worst case scenario cho revenue bond. GO bond cũng bị hit (declining tax base) nhưng county vẫn có TAXING POWER (có thể raise rates) và nợ có thể được service từ nhiều nguồn thu khác nhau của county.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">A không sai về mặt logic (GO tax base bị ảnh hưởng) nhưng không phải bond "greater deterioration." GO còn có taxing power fallback — county có thể raise mill rates để compensate declining values (trong giới hạn pháp lý). Đặc biệt nếu là unlimited tax GO. Revenue bond không có fallback — chỉ dựa vào toll.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Sai về cấu trúc pháp lý. Revenue bonds được ring-fenced — county's general finances KHÔNG backup revenue bonds trừ khi có "moral obligation" pledge. GO và Revenue là legally separate obligations. C confuse "county fiscal health" với revenue bond backing — đây là fundamental misunderstanding của muni structure.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext"><em>Revenue bond credit</em> = strength of specific cash flow, không phải issuer's general finances. Key metrics: DSCR (&gt;1.25× min), demand fundamentals (essential vs discretionary), có substitute không? Toll road + free alternative = highest risk combo. <em>GO bond</em>: backed by full taxing power → more resilient nhưng không immune (Detroit 2013 proof). Always identify the <em>specific backing</em> trước khi assess credit risk của muni bond.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q3 EN — Taxable-Equivalent Yield -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>26 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Taxable-equivalent yield</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A high-net-worth individual in the top US federal income tax bracket (37%) is evaluating three bond alternatives: (X) a AAA-rated municipal bond yielding 3.60% (federal tax-exempt), (Y) a AA-rated corporate bond yielding 5.40%, and (Z) a AA-rated corporate bond yielding 5.50%. Assuming all bonds have similar credit quality after adjustment and the investor only considers federal taxes, which bond offers the <em>highest after-tax yield</em>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Bond X (municipal), because the taxable-equivalent yield of 5.71% exceeds the yields on both corporate bonds.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Bond Z (corporate 5.50%), because it has the highest stated yield of the three options presented.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Bond Y (corporate 5.40%), because it is rated AA and the municipal bond's AAA rating indicates lower risk, which should come with a yield penalty.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>27 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">calculation</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Formula</span>
+    TEY = Muni yield / (1 − MTR) = 3.60% / (1 − 0.37) = <mark>5.714%</mark>
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Tính TEY của muni X: 3.60% ÷ 0.63 = <em>5.714%</em>. Đây là yield tương đương trên taxable bond mà investor cần để có after-tax yield bằng muni 3.60%.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Corporate Y và Z: after-tax yield = 5.40% × (1 − 0.37) = <em>3.402%</em> và 5.50% × 0.63 = <em>3.465%</em>. Muni after-tax = 3.60% (fully exempt). So sánh: 3.60% &gt; 3.465% &gt; 3.402%.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Muni X có after-tax yield cao nhất. Option B sai vì so sánh pre-tax yield của corporate với tax-exempt muni — nhầm "apples and oranges." Option C sai vì dùng credit rating như yield signal — câu hỏi đã nói "similar credit quality after adjustment."</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q3 DICH DE -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>28 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một nhà đầu tư cá nhân ở top bracket thuế liên bang Mỹ (37%) đang xem xét ba lựa chọn: (X) Municipal bond AAA-rated yield 3.60% (miễn thuế liên bang), (Y) corporate bond AA-rated yield 5.40%, và (Z) corporate bond AA-rated yield 5.50%. Giả sử tất cả bonds có credit quality tương đương sau điều chỉnh và nhà đầu tư chỉ xét thuế liên bang — bond nào có <em>after-tax yield cao nhất</em>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Bond X (municipal), vì taxable-equivalent yield = 5.71% vượt trội so với cả hai corporate bonds.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Bond Z (corporate 5.50%), vì có stated yield cao nhất trong ba lựa chọn.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Bond Y (corporate 5.40%), vì rated AA và municipal bond AAA rating cho thấy rủi ro thấp hơn — lẽ ra yield phải thấp hơn.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 29 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>08.15 — Credit Analysis: Government Issuers</span>
+    <span class="rule"></span>
+    <span>29 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — Muni TEY = 5.714% wins.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext"><b>Calculation:</b> TEY = 3.60% / (1 − 0.37) = 3.60% / 0.63 = <em>5.714%</em>. After-tax comparison: Muni X = 3.60% (tax-exempt, full yield retained). Corporate Y = 5.40% × 0.63 = <em>3.402%</em>. Corporate Z = 5.50% × 0.63 = <em>3.465%</em>. Ranking after-tax: X (3.60%) &gt; Z (3.465%) &gt; Y (3.402%). Municipal bond wins despite lower stated yield because tax advantage is very significant at 37% MTR. Tax benefit = 3.60% − 3.465% = <em>13.5 bps advantage vs best corporate</em>.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Classic mistake: comparing muni tax-exempt yield directly với taxable corporate yield. 5.50% (taxable) &gt; 3.60% (tax-free) NOMINALLY, nhưng sau thuế 37%, corporate chỉ còn 3.465% — thấp hơn muni 3.60%. Bất cứ khi nào compare muni vs taxable bond, phải convert về cùng basis (either TEY hoặc after-tax yield).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Sai vì dùng credit rating AAA vs AA như signal về yield attractiveness — không phải methodology đúng. Câu hỏi đã explicitly nói "similar credit quality after adjustment" — tức là credit risk đã neutralised. C cũng sai về logic: AAA bond có thể có after-tax yield cao hơn AA corporate sau khi account for tax. Rating và tax status là hai dimensions độc lập nhau.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext"><em>TEY = Muni yield / (1 − MTR)</em>. Always convert to same after-tax basis before comparing muni vs taxable. Tax benefit lớn nhất cho investor ở bracket cao (37% &gt; 32% &gt; 24%). <em>Tax-exempt institutions</em> (pension, endowment) = 0% MTR → TEY = muni yield → no advantage → họ prefer higher-yielding taxable bonds. Rule: buy munis nếu TEY &gt; comparable taxable yield; chỉ attractive nếu MTR đủ cao.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.15 — Credit Analysis: Government Issuers</span>
+  </div>
+</section>
+
+
+<!-- 30 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>08.15 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 08.16 — Credit Analysis: Corporate Issuers</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

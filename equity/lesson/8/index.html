@@ -1,0 +1,1233 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Equity 07.08 — Equity Valuation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+  /* 3-col compare for approach grids */
+  .compare.c3 { grid-template-columns: 1fr 1fr 1fr; gap: 48px; }
+  .compare.c3 .cc dl { grid-template-columns: 130px 1fr; gap: 14px; row-gap: 18px; }
+  .compare.c3 .cc dt { font-size: 18px; }
+  .compare.c3 .cc dd { font-size: 22px; line-height: 1.4; }
+  .compare.c3 .cc .head { font-size: 48px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Equity<br><em>Valuation.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 07 · Lesson 07.08 · Equity Investments</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 08 · Equity valuation models</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Equity</dd></div>
+      <div><dt>Module</dt><dd>08</dd></div>
+      <div><dt>Lesson</dt><dd>07.08</dd></div>
+      <div><dt>Thời lượng</dt><dd>120 min</dd></div>
+    </dl>
+    <div class="mark">DDM · FCF · Multiples · NAV</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">08</div>
+    <div class="lbl">Equity valuation</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>What is a <em>share</em><br>truly worth?</h2>
+    <ul class="toc">
+      <li class="active">01 · Three valuation approaches — DCF · multiples · asset-based</li>
+      <li>02 · Dividend Discount Model — Gordon Growth, two-stage, three-stage</li>
+      <li>03 · Free Cash Flow models — FCFF &amp; FCFE</li>
+      <li>04 · Required return — CAPM, build-up, multifactor</li>
+      <li>05 · Price multiples — P/E, P/B, P/S, P/CF, EV/EBITDA</li>
+      <li>06 · Comparables vs forecasted fundamentals · NAV</li>
+      <li>07 · Choosing approach · reconciling valuations</li>
+      <li>08 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · WHY VALUATION -->
+<section data-label="Why valuation" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>03 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Equity valuation · the core question</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Estimate <em class="hi">intrinsic value</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      <em>Equity valuation</em> ước lượng <b>intrinsic value</b> của một share để so với <em>market price</em>. Khi market price &lt; intrinsic value → undervalued (buy); &gt; intrinsic value → overvalued (sell). Tất cả approach đều rơi vào ba nhóm.
+    </p>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <div class="rb-label">§ Three families of models</div>
+    <div class="rb-body">
+      <b>1. Present Value (DCF)</b> — chiết khấu dòng tiền tương lai về hiện tại (DDM cho dividend, FCFF/FCFE cho free cash flow).
+      <b>2. Multiplier (Relative)</b> — so sánh ratio giá vs fundamental (P/E, P/B, EV/EBITDA) với peers/history.
+      <b>3. Asset-based</b> — fair value của assets trừ liabilities (NAV).
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Practical — Một analyst tốt thường dùng &gt;1 approach để cross-check; mỗi method capture góc nhìn khác nhau (cash flow, market sentiment, balance sheet).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 04 · THREE APPROACHES COMPARE -->
+<section data-label="Three approaches" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>04 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Three valuation approaches</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">DCF · Multiples · Asset-based.</h2>
+  </div>
+
+  <div class="compare c3" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Present Value</div>
+      <dl>
+        <dt>Idea</dt>
+        <dd>V₀ = Σ CF<sub>t</sub>/(1+r)<sup>t</sup>. <b>Intrinsic</b> value từ <em>future cash flows</em>.</dd>
+        <dt>Models</dt>
+        <dd>DDM · FCFF · FCFE · Residual income.</dd>
+        <dt>Best for</dt>
+        <dd>Mature firms với cash flow predictable.</dd>
+        <dt>Weak when</dt>
+        <dd>Dòng tiền âm, growth không ổn định, terminal value chiếm &gt;70%.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Multiplier</div>
+      <dl>
+        <dt>Idea</dt>
+        <dd>Compare price ratio (P/E, P/B…) với <em>peers</em> hoặc <em>fundamentals</em>.</dd>
+        <dt>Models</dt>
+        <dd>P/E · P/B · P/S · P/CF · EV/EBITDA.</dd>
+        <dt>Best for</dt>
+        <dd>Quick comp, sector relative, market sentiment check.</dd>
+        <dt>Weak when</dt>
+        <dd>Negative earnings, peer set không homogeneous, accounting differences.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Asset-based</div>
+      <dl>
+        <dt>Idea</dt>
+        <dd>V₀ = fair value (Assets) − fair value (Liabilities). NAV approach.</dd>
+        <dt>Models</dt>
+        <dd>Liquidation value · Replacement cost · NAV.</dd>
+        <dt>Best for</dt>
+        <dd>Asset-rich firms (REITs, banks, holdings, natural resource).</dd>
+        <dt>Weak when</dt>
+        <dd>Service/tech firms — intangibles &amp; growth options không trên balance sheet.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 05 · DCF / DDM INTRO -->
+<section data-label="DCF intro" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>05 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Present value · discounted cash flow</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Three <em class="hi">cash flow</em> definitions.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      DCF khác nhau ở <em>cash flow</em> nào được chiết khấu. Mỗi loại CF cần discount rate <em>tương ứng</em>: dividend &amp; FCFE → cost of equity (r<sub>e</sub>); FCFF → WACC.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Generic DCF (intrinsic value of equity)</span>
+    <div class="eq"><span class="var">V₀</span> = Σ<sub>t=1..∞</sub> <span class="var">CF<sub>t</sub></span> / (1 + <span class="var">r</span>)<sup>t</sup></div>
+    <div class="note">CF = dividend (DDM), FCFE (equity-holders), hoặc FCFF (firm). r = cost of equity hoặc WACC tương ứng.</div>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 12px;">
+    <div class="tenet">
+      <span class="n">DDM</span>
+      <div>
+        <div class="t"><em class="hi">Dividend Discount Model</em></div>
+        <div class="d">CF = dividend đến shareholder. Tốt cho firm trả dividend ổn định, mature, payout policy rõ. Discount = r<sub>e</sub>.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">FCFE</span>
+      <div>
+        <div class="t"><em class="hi">Free Cash Flow to Equity</em></div>
+        <div class="d">CF = tiền equity-holder <em>có thể</em> nhận được, sau khi trả debt. Dùng khi firm không trả dividend hoặc dividend &lt;&lt; FCFE.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">FCFF</span>
+      <div>
+        <div class="t"><em class="hi">Free Cash Flow to Firm</em></div>
+        <div class="d">CF cho cả debt + equity holders. Discount bằng WACC → ra firm value, trừ debt → equity value. Dùng khi capital structure thay đổi.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 06 · GORDON GROWTH -->
+<section data-label="Gordon Growth" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>06 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Single-stage DDM · Gordon Growth Model</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Gordon Growth</em> — constant g.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Giả định dividend tăng với <b>tốc độ không đổi g</b> mãi mãi (perpetuity). Đơn giản, dùng cho firm mature trong stable industry. Yêu cầu <em>r &gt; g</em>; nếu không, công thức blow up.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Gordon Growth Model</span>
+    <div class="eq"><span class="var">V₀</span> = <span class="var">D₁</span> / (<span class="var">r</span> − <span class="var">g</span>)</div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">D₁</span> = <span class="var">D₀</span> · (1 + <span class="var">g</span>)</div>
+    <div class="note"><b>D₁</b> dividend kỳ tới · <b>r</b> required return on equity · <b>g</b> constant growth rate. Điều kiện bắt buộc: <em>r &gt; g</em>, g bền vững mãi mãi.</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <div class="rb-label">§ When Gordon Growth works</div>
+    <div class="rb-body">
+      <b>Yes</b> — mature, dividend-paying firms (utilities, consumer staples), payout ratio ổn định, ROE và g không biến động lớn.
+      <b>No</b> — high-growth firms (g có thể &gt; r tạm thời), no-dividend firms, cyclical earnings, startups. Với high-growth → dùng multi-stage.
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Sensitivity warning — V₀ rất nhạy với (r − g). Nếu r = 10%, g = 4%, D₁ = 2 → V₀ = 33.3. Nếu g tăng lên 5% → V₀ = 40 (+20%). Nhỏ thay đổi g, big impact giá.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 07 · MULTI-STAGE DDM -->
+<section data-label="Multi-stage DDM" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>07 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Two-stage &amp; three-stage DDM</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">When growth <em class="hi">isn't constant</em>.</h2>
+  </div>
+
+  <div class="formula-box" style="margin-top: 8px;">
+    <span class="fmt-label">§ Two-stage DDM</span>
+    <div class="eq"><span class="var">V₀</span> = Σ<sub>t=1..n</sub> <span class="var">D<sub>t</sub></span>/(1+<span class="var">r</span>)<sup>t</sup> + <span class="var">V<sub>n</sub></span>/(1+<span class="var">r</span>)<sup>n</sup></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">V<sub>n</sub></span> = <span class="var">D<sub>n+1</sub></span> / (<span class="var">r</span> − <span class="var">g<sub>L</sub></span>)</div>
+    <div class="note"><b>Stage 1</b> high-growth period (n năm) tính từng dividend. <b>Stage 2</b> stable growth g<sub>L</sub> → terminal value V<sub>n</sub> bằng Gordon Growth, sau đó discount về hiện tại.</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Two-stage</span>
+        <span class="step-body">Hai pha: <em>high growth (g<sub>S</sub>)</em> trong n năm → <em>stable growth (g<sub>L</sub>)</em> mãi mãi. Phù hợp firm trẻ chuyển sang mature, ví dụ tech profitable.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Three-stage (H-model variant)</span>
+        <span class="step-body">Ba pha: <em>high growth → declining transition → stable</em>. Phù hợp firm có growth peak rồi giảm dần (giai đoạn maturation). Realistic hơn 2-stage.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Terminal value caveat</span>
+        <span class="step-body">Terminal value thường chiếm <em>60-80%</em> tổng V₀ → assumption về g<sub>L</sub> cực quan trọng. g<sub>L</sub> ≤ tốc độ tăng trưởng GDP dài hạn (≈ 3-5%).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 08 · SUSTAINABLE GROWTH -->
+<section data-label="Sustainable g" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>08 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Where does g come from?</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Sustainable</em> growth rate.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      <em>Sustainable growth rate</em> = tốc độ tăng trưởng tối đa mà firm có thể duy trì <b>không cần huy động vốn ngoài</b> và giữ nguyên capital structure. Là input chuẩn cho g trong DDM.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Sustainable growth (PRAT model)</span>
+    <div class="eq"><span class="var">g</span> = <span class="var">ROE</span> · <span class="var">b</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">b</span> = 1 − payout ratio = (1 − <span class="var">D</span>/<span class="var">EPS</span>)</div>
+    <div class="note"><b>ROE</b> return on equity · <b>b</b> retention ratio (% earnings giữ lại). Logic: firm tái đầu tư b·EPS vào equity, kiếm ROE → equity tăng b·ROE → earnings tăng cùng tỷ lệ.</div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Example</span>
+        <span class="step-body">ROE = 15%, payout = 40% → b = 60%. g = 0.15 × 0.60 = <b>9%</b>. Nếu firm này trả 100% earnings (b=0) → g = 0% (không reinvest, không grow).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Implication</span>
+        <span class="step-body">High-growth firms thường có payout thấp (b cao) để fund growth. Mature firms có payout cao (b thấp) — growth đã chậm.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Trade-off</span>
+        <span class="step-body">Tăng b → g cao hơn nhưng D₁ thấp hơn. V₀ tối ưu phụ thuộc spread <em>ROE vs r</em>: ROE &gt; r → giữ lại earnings tạo giá trị; ROE &lt; r → trả dividend tốt hơn.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 09 · FCFF vs FCFE -->
+<section data-label="FCFF vs FCFE" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>09 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Free cash flow models</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">FCFF</em> vs <em class="hi">FCFE</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">FCFF · firm-level</div>
+      <dl>
+        <dt>Definition</dt>
+        <dd>Cash flow available cho <em>cả</em> debt + equity holders, <em>trước</em> khi trả interest.</dd>
+        <dt>Formula</dt>
+        <dd>FCFF = NI + Int·(1−t) + Dep − ΔWC − CapEx</dd>
+        <dt>Discount</dt>
+        <dd><b>WACC</b> → ra Firm Value. Trừ Debt → Equity Value.</dd>
+        <dt>Use</dt>
+        <dd>Capital structure thay đổi; firm có nhiều debt; firm không trả dividend ổn định.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">FCFE · equity-level</div>
+      <dl>
+        <dt>Definition</dt>
+        <dd>Cash flow chỉ available cho <em>equity holders</em> sau khi trả debt + reinvest.</dd>
+        <dt>Formula</dt>
+        <dd>FCFE = FCFF − Int·(1−t) + Net Borrowing</dd>
+        <dt>Discount</dt>
+        <dd><b>r<sub>e</sub></b> (cost of equity) → ra trực tiếp Equity Value.</dd>
+        <dt>Use</dt>
+        <dd>Capital structure ổn định; firm-level analysis không cần thiết; analyst muốn ra equity value direct.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Why FCF over DDM — Dividend là policy choice (firm có thể không trả). FCF là <em>economic</em> cash thực sự generate. Với firm không trả dividend (Berkshire, growth tech), FCF model phù hợp hơn.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 10 · REQUIRED RETURN -->
+<section data-label="Required return" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>10 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Discount rate · cost of equity</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Estimating <em class="hi">required return</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ CAPM — risk-based</span>
+    <div class="eq"><span class="var">r<sub>e</sub></span> = <span class="var">r<sub>f</sub></span> + <span class="var">β</span> · (<span class="var">r<sub>m</sub></span> − <span class="var">r<sub>f</sub></span>)</div>
+    <div class="note"><b>r<sub>f</sub></b> risk-free rate · <b>β</b> sensitivity to market · <b>(r<sub>m</sub> − r<sub>f</sub>)</b> equity risk premium (ERP). Single-factor — chỉ systematic (market) risk được pricing.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Build-up method</span>
+    <div class="eq"><span class="var">r<sub>e</sub></span> = <span class="var">r<sub>f</sub></span> + ERP + size premium + specific-company premium</div>
+    <div class="note">Cộng dồn các <em>premium</em>. Phù hợp <em>private companies</em> không có β observable. Size + idiosyncratic risk được thêm vào.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Multifactor (e.g. Fama-French)</span>
+    <div class="eq"><span class="var">r<sub>e</sub></span> = <span class="var">r<sub>f</sub></span> + β<sub>M</sub>·MRP + β<sub>SMB</sub>·SMB + β<sub>HML</sub>·HML</div>
+    <div class="note">Multiple risk factors. <b>SMB</b> size premium · <b>HML</b> value premium. Capture systematic risk mà CAPM bỏ sót.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 11 · P/E DETAIL -->
+<section data-label="P/E ratio" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>11 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Most common multiple · P/E</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">P/E</em> — three flavors.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Trailing &amp; Forward P/E</span>
+    <div class="eq">Trailing P/E = <span class="var">P₀</span> / <span class="var">EPS<sub>0</sub></span> (last 12 months)</div>
+    <div class="eq" style="margin-top: 8px;">Forward P/E = <span class="var">P₀</span> / <span class="var">E(EPS<sub>1</sub>)</span> (next 12 months)</div>
+    <div class="note"><b>Trailing</b> dùng EPS đã thực hiện · <b>Forward</b> dùng EPS dự báo. Forward P/E thường &lt; trailing nếu earnings tăng.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Justified P/E (forecasted fundamentals — Gordon Growth)</span>
+    <div class="eq">Justified leading P/E = <span class="var">P₀</span>/<span class="var">E₁</span> = (1 − <span class="var">b</span>) / (<span class="var">r</span> − <span class="var">g</span>)</div>
+    <div class="eq" style="margin-top: 8px;">Justified trailing P/E = <span class="var">P₀</span>/<span class="var">E₀</span> = (1 − <span class="var">b</span>)·(1 + <span class="var">g</span>) / (<span class="var">r</span> − <span class="var">g</span>)</div>
+    <div class="note">Derived từ Gordon Growth: V₀ = D₁/(r−g) = E₁·(1−b)/(r−g). <em>Higher</em> g, <em>lower</em> r → P/E cao hơn (justified).</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § EPS issues — Trailing EPS có thể gồm <em>non-recurring</em> items (writedown, one-off gain). Analyst nên dùng <em>core/normalized EPS</em>. Nếu EPS &lt; 0, P/E meaningless.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 13 · P/B + JUSTIFIED -->
+<section data-label="P/B ratio" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>12 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Price-to-Book · justified P/B</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">P/B</em> — book value lens.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      <b>Book value</b> = common equity (assets − liabilities − preferred). Phù hợp firm có assets mark-to-market (banks, insurance, REITs). Stable hơn EPS qua chu kỳ.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ P/B ratio</span>
+    <div class="eq">P/B = <span class="var">P₀</span> / <span class="var">BVPS</span> · BVPS = (Common equity) / (Shares outstanding)</div>
+    <div class="note"><b>BVPS</b> = book value per share. Loại trừ preferred + intangibles có thể không reliable.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Justified P/B (forecasted fundamentals)</span>
+    <div class="eq">Justified P/B = (<span class="var">ROE</span> − <span class="var">g</span>) / (<span class="var">r</span> − <span class="var">g</span>)</div>
+    <div class="note">Derive từ residual income: <em>ROE &gt; r</em> → P/B &gt; 1 (firm tạo value); ROE = r → P/B = 1; ROE &lt; r → P/B &lt; 1 (destroying value).</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <div class="rb-label">§ Decision rule</div>
+    <div class="rb-body">
+      So sánh <b>actual P/B</b> với <b>justified P/B</b>: actual &lt; justified → undervalued. ROE − r là <em>residual income spread</em> — driver chính của P/B premium.
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 14 · OTHER MULTIPLES -->
+<section data-label="Other multiples" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>13 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">P/S · P/CF · EV/EBITDA</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">When <em class="hi">EPS doesn't work</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Price-to-Sales · Price-to-Cash Flow</span>
+    <div class="eq">P/S = <span class="var">P₀</span> / Sales per share</div>
+    <div class="eq" style="margin-top: 8px;">P/CF = <span class="var">P₀</span> / CF per share (CFO, FCFE, or earnings + DA)</div>
+    <div class="note"><b>P/S</b> always positive, ít manipulation, tốt cho startup. <b>P/CF</b> avoid accounting earnings noise — quality-of-earnings issues.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Enterprise Value / EBITDA</span>
+    <div class="eq"><span class="var">EV</span> = Market cap + Debt − Cash</div>
+    <div class="eq" style="margin-top: 8px;">EV/EBITDA = <span class="var">EV</span> / EBITDA</div>
+    <div class="note"><b>Capital-structure neutral</b> — comparable across firms với leverage khác nhau. EBITDA = operating income + DA. Đo cash-generating capacity của <em>core ops</em>.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Caveats — P/S không reflect profit margin (high revenue, low margin có thể khó kiếm tiền). EV/EBITDA bỏ qua CapEx + working capital — không đại diện FCF thực sự cho asset-heavy firms.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 15 · COMPARE 3 MULTIPLES -->
+<section data-label="Compare multiples" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>14 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Choosing the right multiple</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">P/E · P/B · EV/EBITDA.</h2>
+  </div>
+
+  <div class="compare c3" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">P/E</div>
+      <dl>
+        <dt>Strength</dt>
+        <dd>Universal · close to investor return · good for stable earnings.</dd>
+        <dt>Weakness</dt>
+        <dd>Negative EPS broken · accounting earnings nhạy với choices · cyclical earnings biến động.</dd>
+        <dt>Best for</dt>
+        <dd>Mature, profitable firms với earnings stable: consumer, industrial blue chips.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">P/B</div>
+      <dl>
+        <dt>Strength</dt>
+        <dd>Stable across cycles · works với negative earnings · fits asset-heavy firms.</dd>
+        <dt>Weakness</dt>
+        <dd>Bị méo bởi intangibles, share buybacks, accounting differences (IFRS vs US GAAP).</dd>
+        <dt>Best for</dt>
+        <dd>Banks · insurance · REITs · holding companies — assets mark-to-market.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">EV/EBITDA</div>
+      <dl>
+        <dt>Strength</dt>
+        <dd>Capital structure neutral · compare across leverage · positive with negative NI.</dd>
+        <dt>Weakness</dt>
+        <dd>Ignore CapEx + WC — overstate FCF cho capital-intensive firms.</dd>
+        <dt>Best for</dt>
+        <dd>M&amp;A analysis · cross-border comparable · capital-intensive sectors (telecom, utilities).</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 16 · COMPARABLES VS FUNDAMENTALS -->
+<section data-label="Methods" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>15 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Two ways to apply multiples</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Comparables</em> vs <em class="hi">forecasted fundamentals</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Method of comparables</div>
+      <dl>
+        <dt>Approach</dt>
+        <dd>So sánh multiple của subject firm với <em>peer median</em> hoặc <em>historical avg</em>.</dd>
+        <dt>Logic</dt>
+        <dd>Law of one price — assets tương đồng nên giá tương đồng. Market đã price peers; subject nên align.</dd>
+        <dt>Strength</dt>
+        <dd>Đơn giản · market-based · dễ defend với client.</dd>
+        <dt>Weakness</dt>
+        <dd>Peer set có thể không homogeneous · cả market có thể overvalued (bubble) → comparables vẫn sai.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Forecasted fundamentals</div>
+      <dl>
+        <dt>Approach</dt>
+        <dd>Derive <em>justified multiple</em> từ DDM/FCF assumptions (r, g, ROE, b).</dd>
+        <dt>Logic</dt>
+        <dd>Multiple intrinsic không phụ thuộc market sentiment, chỉ phụ thuộc fundamentals.</dd>
+        <dt>Strength</dt>
+        <dd>Theory-based · explicit assumptions · phát hiện market mispricing.</dd>
+        <dt>Weakness</dt>
+        <dd>Sensitive với assumptions (g, r) · giả định Gordon Growth có thể không hold.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="take" style="margin-top: 20px;">
+    <b>Take</b> — Comparables trả lời "giá thị trường đang định bao nhiêu?". Forecasted fundamentals trả lời "giá <em>nên</em> bao nhiêu?". Dùng cả 2 để cross-check.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 17 · WHEN MULTIPLES MISLEAD -->
+<section data-label="Multiples mislead" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>16 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Caveats · when multiples deceive</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">When <em class="hi">multiples mislead</em>.</h2>
+  </div>
+
+  <div class="rule-box" style="margin-top: 8px;">
+    <div class="rb-label">§ Five red flags</div>
+    <div class="rb-body">
+      <b>1. Negative denominator</b> — EPS &lt; 0 hoặc BVPS &lt; 0 → P/E, P/B meaningless.
+      <b>2. One-off items</b> — gain/loss extraordinary làm méo trailing EPS.
+      <b>3. Different accounting</b> — IFRS vs US GAAP, capitalization vs expense → P/B, P/E khác nhau.
+      <b>4. Different growth</b> — peer cùng P/E nhưng g khác nhau → một bị undervalued, một fair.
+      <b>5. Different risk (β)</b> — peer có cost of equity khác → justified P/E khác.
+    </div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">PEG ratio fix</span>
+        <span class="step-body"><em>PEG = (P/E) / g (in %)</em>. Adjust P/E theo growth — peer cùng PEG = cùng valuation given growth. Caveat: PEG giả định linear, không capture risk.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Normalize earnings</span>
+        <span class="step-body">Strip non-recurring items, smooth qua chu kỳ (3-5 year average). Cyclically-adjusted P/E (CAPE / Shiller P/E) là extension của ý này.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Match the multiple to the metric</span>
+        <span class="step-body">Equity multiple (P/E, P/B) ↔ equity-level earnings. EV multiple (EV/EBITDA) ↔ firm-level metric. Mismatch → comparison vô nghĩa.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 18 · ASSET-BASED / NAV -->
+<section data-label="Asset-based" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>17 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Asset-based · NAV approach</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Value = <em class="hi">net assets</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      <em>Asset-based valuation</em> ước lượng equity value bằng <b>fair value (assets) − fair value (liabilities)</b>. Khác book value: dùng <em>market/fair value</em> của từng item, không phải book.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Net Asset Value (NAV)</span>
+    <div class="eq"><span class="var">NAV</span> = FV(Assets) − FV(Liabilities) − FV(Preferred)</div>
+    <div class="eq" style="margin-top: 8px;">NAV per share = <span class="var">NAV</span> / Shares outstanding</div>
+    <div class="note">Adjust each balance sheet item to <em>current market value</em>. Real estate, securities, inventory marked to fair value. Intangibles thường loại trừ (conservative).</div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <div class="rb-label">§ When asset-based works best</div>
+    <div class="rb-body">
+      <b>Yes</b> — REITs (real estate liquid), banks/insurance (assets mark-to-market), holdings/closed-end funds (assets là securities), natural resource (oil reserves quantifiable), liquidation scenarios.
+      <b>No</b> — service/tech firms (value ở intangibles, brand, R&amp;D pipeline), going concerns với high growth options, firms với synergies không trên balance sheet.
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Floor value — Asset-based thường được coi là <em>floor</em> cho equity value của going concern (firm value ≥ liquidation value). Premium trên NAV phản ánh franchise value, growth options.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 19 · RECONCILING + INDUSTRY FIT -->
+<section data-label="Reconciling" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>18 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Industry fit + reconciling</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Match · weight · <em class="hi">defend</em>.</h2>
+  </div>
+
+  <div class="rule-box" style="margin-top: 8px;">
+    <div class="rb-label">§ Industry fit cheat-sheet</div>
+    <div class="rb-body">
+      <b>Utilities · staples</b> → DDM (Gordon Growth). <b>Banks · insurance</b> → P/B + residual income. <b>High-growth tech</b> → multi-stage FCFE; nếu negative earnings → P/S, EV/Sales. <b>Cyclicals</b> → normalized P/E hoặc EV/EBITDA. <b>REITs · oil/gas</b> → NAV + P/FFO. <b>M&amp;A cross-border</b> → EV/EBITDA + DCF (FCFF).
+    </div>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 14px;">
+    <li>
+      <span>
+        <span class="step-title">Triangulate, đừng average</span>
+        <span class="step-body">Average mù quáng 3 estimates không phải best practice. Weight theo confidence: DCF cao confidence → weight cao; multiples thấp confidence (peer set thiếu) → weight thấp.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Explain divergence</span>
+        <span class="step-body">Nếu DCF &gt;&gt; multiples → market đang underprice growth/quality? Hoặc DCF assumptions quá optimistic (g quá cao)?</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Sensitivity &amp; scenario</span>
+        <span class="step-body">Run sensitivity trên (r, g, ROE) cho DCF; trên peer set selection cho multiples. Range thay vì point estimate.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Asset-based as floor</span>
+        <span class="step-body">NAV thường = floor (liquidation value). Going-concern value ≥ NAV; premium = franchise + growth. Nếu DCF &lt; NAV → red flag (firm destroying value, nên thanh lý).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="take" style="margin-top: 16px;">
+    <b>Take</b> — Valuation là <em>art + science</em>. Models là tools; judgment ở việc chọn model, set assumptions, weight evidence, và defend kết luận.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 21 · PRACTICE TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án (with full numerical calc)</div>
+  </div>
+</section>
+
+
+<!-- 22 · Q1 EN — Gordon Growth -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>20 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Apply <em class="hi">Gordon Growth</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A mature utility company just paid a dividend of <strong>D₀ = $2.00</strong> per share. Dividends are expected to grow at a constant rate of <strong>g = 4%</strong> indefinitely. The required return on equity is <strong>r = 10%</strong>. Using the Gordon Growth Model, the intrinsic value per share is <strong>closest</strong> to:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$33.33.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$34.67.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$50.00.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 23 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>21 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Just paid D₀ = $2.00</mark> · <mark>constant growth g = 4%</mark> · <mark>r = 10%</mark>. Gordon Growth công thức: V₀ = D₁/(r−g), <em>không</em> D₀/(r−g).
+  </div>
+  <ol class="hint-list">
+    <li><span class="hnum">Hint 1</span><span class="htxt">"Just paid" = <em>D₀</em>. Phải convert sang D₁ = D₀·(1+g) trước khi áp công thức. Quên bước này → ra $33.33 (đáp án A — bẫy).</span></li>
+    <li><span class="hnum">Hint 2</span><span class="htxt">D₁ = 2.00 × 1.04 = $2.08. Sau đó V₀ = D₁/(r−g) = 2.08/(0.10 − 0.04) = 2.08 / 0.06.</span></li>
+    <li><span class="hnum">Hint 3</span><span class="htxt">2.08 / 0.06 = $34.67. Đáp án B. C ($50) là kết quả nếu lỡ dùng D₀ = $3 hoặc r−g = 0.04 — không match data.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 24 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>22 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một công ty utility mature vừa trả dividend <strong>D₀ = $2.00</strong>/share. Dividend dự kiến tăng với tốc độ không đổi <strong>g = 4%</strong> mãi mãi. Required return on equity là <strong>r = 10%</strong>. Dùng Gordon Growth Model, intrinsic value per share <strong>gần nhất</strong> với:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$33.33.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$34.67.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$50.00.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 25 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>23 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $34.67.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Calculation</span>
+    <div class="eq"><span class="var">D₁</span> = D₀ · (1 + g) = 2.00 × 1.04 = <b>$2.08</b></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">V₀</span> = D₁ / (r − g) = 2.08 / (0.10 − 0.04) = 2.08 / 0.06 = <b>$34.67</b></div>
+  </div>
+
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Gordon Growth dùng <b>D₁</b> (dividend kỳ tới), không phải D₀. Convert: D₁ = 2.00·(1.04) = $2.08. Áp công thức V₀ = 2.08/(0.10−0.04) = $34.67. Điều kiện r &gt; g hold (10% &gt; 4%), perpetuity assumption phù hợp với mature utility.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">$33.33 = 2.00/0.06 — bẫy lớn nhất. Quên convert D₀ → D₁. Always remember: numerator phải là <em>next-period</em> dividend, không phải dividend vừa trả.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">$50 = 2.00/0.04 — sai cả tử lẫn mẫu (lỡ dùng D₀ và g thay cho r−g). Không match logic Gordon Growth.</div>
+    </div>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Gordon Growth: V₀ = D₁/(r−g). <em>"Just paid" = D₀</em>; convert sang D₁ = D₀·(1+g) trước. Đây là bẫy phổ biến nhất trong CFA L1 valuation. Always check: r &gt; g, mature firm, perpetuity assumption defendable.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 26 · Q2 EN — Justified P/B -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>24 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Compute <em class="hi">justified P/B</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A regional bank has the following profile: <strong>ROE = 14%</strong>, sustainable growth rate <strong>g = 6%</strong>, and required return on equity <strong>r = 10%</strong>. The bank currently trades at a <strong>P/B of 1.5×</strong>. Based on the justified P/B (forecasted fundamentals) approach, the bank is <strong>most likely</strong>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Overvalued; justified P/B is 1.4×.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Undervalued; justified P/B is 2.0×.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Fairly valued; justified P/B is 1.5×.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 27 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>25 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>ROE = 14%</mark> · <mark>g = 6%</mark> · <mark>r = 10%</mark>. Câu hỏi về <mark>justified P/B</mark>, công thức = (ROE − g)/(r − g).
+  </div>
+  <ol class="hint-list">
+    <li><span class="hnum">Hint 1</span><span class="htxt">Justified P/B = (ROE − g) / (r − g). Tử số = ROE − g = 14% − 6% = <em>8%</em>. Mẫu số = r − g = 10% − 6% = <em>4%</em>.</span></li>
+    <li><span class="hnum">Hint 2</span><span class="htxt">Justified P/B = 8% / 4% = <em>2.0×</em>. Bank đang trade ở 1.5× &lt; 2.0× (justified) → undervalued.</span></li>
+    <li><span class="hnum">Hint 3</span><span class="htxt">Decision rule: actual P/B &lt; justified P/B → undervalued (BUY). Actual &gt; justified → overvalued (SELL). Logic: ROE &gt; r (14% &gt; 10%) → firm tạo value → P/B &gt; 1.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 28 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>26 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một regional bank có profile: <strong>ROE = 14%</strong>, sustainable growth rate <strong>g = 6%</strong>, required return on equity <strong>r = 10%</strong>. Bank hiện trade ở <strong>P/B = 1.5×</strong>. Dựa trên justified P/B (forecasted fundamentals approach), bank <strong>nhiều khả năng</strong> là:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Overvalued; justified P/B = 1.4×.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Undervalued; justified P/B = 2.0×.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Fairly valued; justified P/B = 1.5×.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 29 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>27 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Undervalued, 2.0×.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Calculation</span>
+    <div class="eq">Justified P/B = (<span class="var">ROE</span> − <span class="var">g</span>) / (<span class="var">r</span> − <span class="var">g</span>)</div>
+    <div class="eq" style="margin-top: 8px;">= (0.14 − 0.06) / (0.10 − 0.06) = 0.08 / 0.04 = <b>2.0×</b></div>
+    <div class="eq" style="margin-top: 8px;">Actual P/B = 1.5× &lt; Justified 2.0× → <b>UNDERVALUED</b></div>
+  </div>
+
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Justified P/B = (ROE − g)/(r − g) = 0.08/0.04 = <b>2.0×</b>. Actual 1.5× &lt; justified 2.0× → market đang underprice bank. <em>ROE &gt; r</em> (14% &gt; 10%) confirms firm tạo value → P/B nên &gt; 1; cụ thể là 2× given growth profile.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">1.4× sai mathematically. Có thể từ lỗi tính (ROE+g)/(r+g) = 0.20/0.16 = 1.25 (vẫn không khớp 1.4). Justified P/B đúng dùng <em>spread</em> ở cả tử lẫn mẫu (subtract g).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">1.5× = market price hiện tại, không phải justified. "Fairly valued" yêu cầu actual = justified. Khi actual ≠ justified, cần BUY/SELL recommendation, không phải "fair".</div>
+    </div>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Justified P/B = (ROE − g)/(r − g). <em>Spread ROE − r</em> driver chính: ROE &gt; r → P/B &gt; 1; ROE = r → P/B = 1; ROE &lt; r → P/B &lt; 1. Decision: actual &lt; justified → buy. Đây là công cụ chuẩn cho banks &amp; insurance.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 30 · Q3 EN — Sustainable growth + DDM -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>28 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Sustainable g <em class="hi">+ DDM</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A consumer staples firm reports <strong>ROE = 12%</strong> and a <strong>payout ratio of 50%</strong>. Required return on equity is <strong>r = 9%</strong>. Last year's earnings per share was <strong>EPS₀ = $4.00</strong>, and the firm just paid a dividend equal to 50% of EPS₀. Using sustainable growth and the Gordon Growth Model, the intrinsic value per share is <strong>closest</strong> to:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$66.67.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$70.67.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$72.00.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 31 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>29 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>ROE = 12%</mark> · <mark>payout = 50%</mark> → b = 50%. <mark>EPS₀ = $4</mark>, <mark>D₀ = 0.5 × 4 = $2</mark>. Two-step: tính g rồi áp Gordon.
+  </div>
+  <ol class="hint-list">
+    <li><span class="hnum">Hint 1</span><span class="htxt">Sustainable g = ROE × b = 0.12 × 0.50 = <em>6%</em>. Đây là input cho Gordon Growth, không cho sẵn.</span></li>
+    <li><span class="hnum">Hint 2</span><span class="htxt">D₀ = 50% × $4 = $2. D₁ = D₀·(1+g) = 2 × 1.06 = <em>$2.12</em>. (Đừng quên bước convert D₀ → D₁ như Q1.)</span></li>
+    <li><span class="hnum">Hint 3</span><span class="htxt">V₀ = D₁/(r−g) = 2.12/(0.09 − 0.06) = 2.12/0.03 = <em>$70.67</em>. Đáp án B. A ($66.67) là bẫy nếu quên convert D₀ → D₁ (= 2/0.03).</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 32 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>30 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một consumer staples firm có <strong>ROE = 12%</strong> và <strong>payout ratio = 50%</strong>. Required return on equity <strong>r = 9%</strong>. EPS năm vừa rồi <strong>EPS₀ = $4.00</strong>, firm vừa trả dividend bằng 50% của EPS₀. Dùng sustainable growth và Gordon Growth Model, intrinsic value per share <strong>gần nhất</strong> với:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">$66.67.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$70.67.</span></li>
+    <li><span class="lbl">C</span><span class="opt">$72.00.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 33 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>07.08 — Equity Valuation</span>
+    <span class="rule"></span>
+    <span>31 / 32</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — $70.67.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Step-by-step calculation</span>
+    <div class="eq">Step 1 · <span class="var">b</span> = 1 − payout = 1 − 0.50 = <b>0.50</b></div>
+    <div class="eq" style="margin-top: 6px;">Step 2 · <span class="var">g</span> = ROE · b = 0.12 × 0.50 = <b>6%</b></div>
+    <div class="eq" style="margin-top: 6px;">Step 3 · <span class="var">D₀</span> = 0.50 × $4.00 = <b>$2.00</b></div>
+    <div class="eq" style="margin-top: 6px;">Step 4 · <span class="var">D₁</span> = D₀·(1+g) = 2.00 × 1.06 = <b>$2.12</b></div>
+    <div class="eq" style="margin-top: 6px;">Step 5 · <span class="var">V₀</span> = D₁/(r−g) = 2.12 / 0.03 = <b>$70.67</b></div>
+  </div>
+
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Bài 3-step: (1) <b>g từ sustainable growth</b> = ROE×b = 6%. (2) <b>D₁ từ D₀</b> = 2.00·1.06 = $2.12. (3) <b>V₀ Gordon</b> = 2.12/0.03 = $70.67. Tất cả check: r &gt; g (9% &gt; 6%), payout ổn định, mature consumer staples — Gordon Growth phù hợp.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">$66.67 = $2.00/0.03 — quên convert D₀ → D₁ (cùng bẫy như Q1). Hoặc dùng D₀ ($2) trực tiếp trong tử số. Always D₁, không bao giờ D₀.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">$72.00 = 2.16/0.03 — sai khi tính D₁ (2.00 × 1.08 thay vì 1.06). Lỗi rounding hoặc dùng g sai (8% thay vì 6%). Check sustainable g: 0.12 × 0.50 = 0.06, không phải 0.08.</div>
+    </div>
+  </div>
+
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Pattern phổ biến CFA L1: bài cho <em>ROE + payout</em> → tự derive <b>g = ROE × b</b>; cho <em>EPS + payout</em> → derive D₀; rồi convert D₀ → D₁ → áp Gordon Growth. 5 steps, 2 formulas. Skip step nào cũng vào bẫy.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>Equity · 07.08 — Equity Valuation</span>
+  </div>
+</section>
+
+
+<!-- 34 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>07.08 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Hết module Equity Investments · Tiếp theo · Topic 08 — Fixed Income</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

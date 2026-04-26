@@ -1,0 +1,1208 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Ethics 01.04 — Introduction to GIPS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 104px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 01 · TITLE -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Introduction<br>to <em>GIPS.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 01 · Lesson 01.04 · Ethics &amp; Professional Standards</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 04 · Global Investment Performance Standards</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Ethics</dd></div>
+      <div><dt>Module</dt><dd>04</dd></div>
+      <div><dt>Lesson</dt><dd>01.04</dd></div>
+      <div><dt>Thời lượng</dt><dd>75 min</dd></div>
+    </dl>
+    <div class="mark">Composites · TWR · MWR · Verification · Disclosures</div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 02 · AGENDA -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">04</div>
+    <div class="lbl">GIPS</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How firms <em>fairly present</em><br>investment performance.</h2>
+    <ul class="toc">
+      <li class="active">01 · Why GIPS — purpose · two principles · history</li>
+      <li>02 · Stakeholders — firms · asset owners · pooled funds · verifiers</li>
+      <li>03 · Compliance — firm-wide · all-or-nothing · 5-year minimum</li>
+      <li>04 · Nine sections of GIPS Firm Standards</li>
+      <li>05 · Composites — definition · construction · maintenance</li>
+      <li>06 · Returns — TWR (default) vs MWR (allowed cases)</li>
+      <li>07 · Fees · disclosures · verification</li>
+      <li>08 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 03 · WHY GIPS -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Why GIPS" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>03 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">GIPS · purpose</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Why <em class="hi">GIPS</em> exists.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Trước GIPS, mỗi asset manager <em>chọn cách trình bày</em> lợi nhuận có lợi nhất cho mình — chọn portfolio thắng (cherry-picking), chọn period tốt, ẩn portfolio thua. Prospective client không thể compare apples-to-apples giữa các firm.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">α</span>
+      <div>
+        <div class="t"><em class="hi">Fair representation</em></div>
+        <div class="d">Performance phải phản ánh đầy đủ kết quả thực, không cherry-pick. Mọi portfolio fee-paying discretionary phải được include vào ít nhất 1 composite.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">β</span>
+      <div>
+        <div class="t"><em class="hi">Full disclosure</em></div>
+        <div class="d">Cung cấp đủ context — fee structure, composite definition, benchmark, dispersion measures — để prospective client tự đánh giá.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">γ</span>
+      <div>
+        <div class="t">Voluntary, ethical</div>
+        <div class="d">GIPS không phải luật — firm tự nguyện claim compliance. Nhưng đã claim phải <em>tuân thủ tuyệt đối</em>; vi phạm = misrepresentation, vi phạm cả Standard I(C).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">δ</span>
+      <div>
+        <div class="t">Global comparability</div>
+        <div class="d">Một firm ở US, một ở UK, một ở Vietnam — nếu cùng claim GIPS, prospective client có cơ sở so sánh return theo cùng standard.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 04 · HISTORY -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="History" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>04 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Evolution</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">From <em class="hi">AIMR-PPS</em> to <em class="hi">GIPS 2020</em>.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">1987 · AIMR-PPS</span>
+        <span class="step-body">Association for Investment Management and Research (predecessor CFA Institute) ra <em>Performance Presentation Standards</em> — chỉ áp dụng tại US/Canada.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">1999 · GIPS Standards (1st edition)</span>
+        <span class="step-body">CFA Institute global hoá AIMR-PPS thành GIPS — single set of standards áp dụng toàn cầu, voluntary adoption.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">2010 · GIPS 2010</span>
+        <span class="step-body">Major revision — yêu cầu mới về risk metrics, fair value (thay historical cost), real estate &amp; private equity provisions chi tiết hơn.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">2020 · GIPS 2020 (current edition)</span>
+        <span class="step-body">Tách thành <em>3 standards documents</em>: <b>Firms</b>, <b>Asset Owners</b>, <b>Verifiers</b>. Cho phép MWR cho strategies có closed-end / illiquid. Effective 1 Jan 2020 cho periods bắt đầu từ đó.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § Memorize — GIPS được CFA Institute <em>own &amp; promote</em>, nhưng quản lý qua <b>GIPS Executive Committee</b> (industry representatives). Country sponsors (vd CFA Society Vietnam) hỗ trợ adoption tại địa phương.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 05 · STAKEHOLDERS -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Stakeholders" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>05 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Who claims · who reads</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Stakeholders</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      GIPS không quan tâm individual portfolio manager — mà yêu cầu compliance ở <em>firm level</em>. Stakeholders có 4 nhóm chính:
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Firms</em> (asset managers)</div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>Distinct business entity quản lý quỹ cho khách bên ngoài (third-party assets) — vd VinaCapital, BlackRock</dd>
+        <dt>Claim</dt>
+        <dd>Toàn bộ firm phải comply, không chỉ một sản phẩm hay desk</dd>
+        <dt>Document</dt>
+        <dd>GIPS Standards for <b>Firms</b></dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Asset owners</em></div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>Quản lý quỹ <em>cho chính mình</em> — pension fund, sovereign wealth, endowment, foundation, family office</dd>
+        <dt>Claim</dt>
+        <dd>Báo cáo cho <em>oversight body</em> (board, beneficiaries) chứ không chào prospective client</dd>
+        <dt>Document</dt>
+        <dd>GIPS Standards for <b>Asset Owners</b> (separate document)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Pooled funds (mutual fund, ETF, hedge fund) là <em>vehicle</em>, không phải stakeholder type — firm quản lý pooled fund vẫn comply ở firm level. Verifiers là third-party kiểm toán optional GIPS compliance.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 06 · COMPLIANCE FIRM-WIDE -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Firm-wide compliance" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>06 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Compliance · firm-level</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">All-or-nothing</em> at firm level.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Không có chuyện "Equity desk compliant, Fixed Income không" hoặc "US fund compliant, Asia fund không". Compliance là <em>firm-wide</em> — toàn bộ portfolio fee-paying discretionary phải đáp ứng standards.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Firm definition — chọn rộng đến mức nào?</span>
+    Firm có thể định nghĩa theo: <b>(a)</b> entity registered với regulator (SEC, SBV); <b>(b)</b> distinct business unit dưới holding company nếu autonomous về investment decision-making, marketing, quản lý nhân sự; <b>(c)</b> all offices using same investment process (vd "BlackRock Fundamental Equities — Global"). <em>Phải khai báo trong disclosures và không thay đổi tuỳ tiện.</em>
+  </div>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Cấm partial compliance</span>
+    <b>Vi phạm:</b> "BlueWave Fund of XYZ Capital is GIPS-compliant" — không hợp lệ vì compliance ở firm level chứ không ở fund level. <br>
+    <b>Đúng:</b> "XYZ Capital claims compliance with GIPS Standards. The BlueWave Composite is presented herein."
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 07 · 5-YEAR RULE -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="5-year rule" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>07 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Time horizon</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">5-year <em class="hi">minimum</em>, build to 10.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Year 1 of compliance</span>
+        <span class="step-body">Firm phải present <em>tối thiểu 5 năm</em> annual return của composite (hoặc since inception nếu composite trẻ hơn 5 năm).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Years 2–6 — build up</span>
+        <span class="step-body">Thêm 1 năm mỗi năm cho đến khi đủ <em>10 năm</em> track record.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Year 6+ — maintain 10-year</span>
+        <span class="step-body">Báo cáo rolling 10-year window. Period cũ hơn 10 năm được phép omit (nhưng có thể disclose).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Composite trẻ hơn 5 năm</span>
+        <span class="step-body">Present since inception. Phải chỉ rõ inception date và partial-year period đầu.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm">
+    § Lý do — 5 năm đủ short để new firm có thể adopt GIPS sớm; 10 năm đủ long để prospective client thấy performance qua nhiều market cycle. Cap 10 năm tránh firm khoe period quá xa quá khứ với đội ngũ đã đổi.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 08 · NINE SECTIONS -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="9 sections" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>08 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Firm Standards · structure</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">9 sections</em> of GIPS for firms.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      GIPS Firm Standards 2020 chia thành 9 phần — mỗi phần liệt kê <em>requirements</em> (must) và <em>recommendations</em> (should). Memorize order &amp; tên — exam có thể test thẳng.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ The 9 sections (in order)</span>
+    <div class="eq"><span class="var">1</span> Fundamentals of Compliance</div>
+    <div class="eq"><span class="var">2</span> Input Data &amp; Calculation Methodology</div>
+    <div class="eq"><span class="var">3</span> Composite &amp; Pooled Fund Maintenance</div>
+    <div class="eq"><span class="var">4</span> Composite Time-Weighted Return Report</div>
+    <div class="eq"><span class="var">5</span> Composite Money-Weighted Return Report</div>
+    <div class="eq"><span class="var">6</span> Pooled Fund Time-Weighted Return Report</div>
+    <div class="eq"><span class="var">7</span> Pooled Fund Money-Weighted Return Report</div>
+    <div class="eq"><span class="var">8</span> GIPS Advertising Guidelines</div>
+    <div class="eq"><span class="var">9</span> Verification</div>
+    <div class="note">
+      Sections 4–7 chia matrix theo (Composite / Pooled Fund) × (TWR / MWR). Mỗi loại report có required + recommended disclosures riêng.
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 09 · FUNDAMENTALS -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Fundamentals" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>09 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Section 1 · Fundamentals</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Fundamentals of <em class="hi">Compliance</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">F1</span>
+      <div>
+        <div class="t">Firm definition</div>
+        <div class="d">Firm phải define rõ entity và <em>không thay đổi tuỳ tiện</em>. Restructure có thể trigger break trong track record nếu firm definition đổi materially.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">F2</span>
+      <div>
+        <div class="t">All discretionary fee-paying portfolios</div>
+        <div class="d">Phải <em>included in at least one composite</em>. "Discretionary" = manager có quyền invest theo strategy đã thoả thuận; "fee-paying" = client trả phí (loại trừ proprietary).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">F3</span>
+      <div>
+        <div class="t">List of composites &amp; pooled funds</div>
+        <div class="d">Firm phải có <em>complete list</em> sẵn sàng cung cấp prospective client khi yêu cầu. Không được "chỉ show composite tốt nhất".</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">F4</span>
+      <div>
+        <div class="t">Provide GIPS Report on request</div>
+        <div class="d">Khi prospective client hỏi, firm phải cung cấp <em>compliant report</em> của composite tương ứng — không phải brochure marketing tự chế.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § "Provide on request" là một trong những phần dễ test nhất — firm không cần proactively gửi cho mọi người, nhưng <em>không được từ chối</em> khi prospective client hỏi.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 10 · INPUT DATA & CALCULATION -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Input data &amp; calc" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>10 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Section 2 · Input data</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Input data &amp; <em class="hi">fair value</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      GIPS yêu cầu <em>fair value</em> (mark-to-market hoặc model-based) cho mọi asset, không dùng historical cost. Trade-date accounting là default, đảm bảo position được record đúng thời điểm phát sinh.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Fair value hierarchy</span>
+        <span class="step-body">Tier 1: quoted price in active market (best). Tier 2: observable inputs (similar asset, model with market inputs). Tier 3: unobservable inputs (Level 3 — alternative, illiquid). Phải disclose % AUM theo từng tier.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Trade-date accounting</span>
+        <span class="step-body">Position record vào <em>trade date</em> (hoặc settle date nếu chênh lệch ≤ 3 ngày). Đảm bảo P&amp;L attribution chính xác về thời gian.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Accrual accounting cho fixed income</span>
+        <span class="step-body">Interest income phải accrue daily, không chờ coupon payment date. Dividend cho equity = ex-date hoặc settle.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Valuation frequency</span>
+        <span class="step-body">Tối thiểu <em>monthly</em>. Khi có <em>large external cash flow</em> (vd ≥ 10% portfolio), phải re-value tại ngày cash flow để tính TWR chính xác.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 11 · COMPOSITES -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Composites" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>11 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Composites · core concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What is a <em class="hi">composite</em>?</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Composite = <em>aggregation của ≥ 1 portfolio</em> được quản lý theo cùng investment mandate, objective, hoặc strategy. Đây là đơn vị reporting cơ bản — return của <em>composite</em> mới là thứ firm trình bày, không phải return một portfolio cá biệt.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Mandatory inclusion rule</span>
+    <em>All</em> actual, fee-paying, discretionary portfolios phải được assign vào <em>tối thiểu 1 composite</em>. Cấm cherry-pick (chọn portfolio thắng) hoặc survivorship bias (loại bỏ portfolio đã đóng).
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Composite-defining criteria</span>
+    Có thể nhóm portfolio theo: <b>(a)</b> investment strategy (vd "Vietnam Equity Growth"); <b>(b)</b> asset class (vd "Global Investment Grade FI"); <b>(c)</b> style (value/growth, large/small cap); <b>(d)</b> benchmark; <b>(e)</b> risk constraints (long-only, max leverage 1.5x). <em>Tiêu chí phải khách quan + áp dụng nhất quán.</em>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Non-discretionary portfolio (vd client yêu cầu cụ thể không cho manager tuỳ ý) — KHÔNG include vào composite. Proprietary money + employee assets cũng exclude trừ khi fee-paying.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 12 · TIME-WEIGHTED RETURN -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="TWR" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>12 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Returns · default method</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Time-Weighted Return</em> (TWR).</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      TWR là default method GIPS — vì nó loại trừ effect của <em>external cash flows</em> (tiền vào/ra do client deposit/withdraw). Đo <b>investment skill thuần</b>, không phụ thuộc timing tiền của client.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ TWR — sub-period chaining</span>
+    <div class="eq"><span class="var">r<sub>sub</sub></span> = (V<sub>end</sub> − V<sub>begin</sub> − CF) / V<sub>begin</sub></div>
+    <div class="eq"><span class="var">TWR</span> = (1 + r<sub>1</sub>)(1 + r<sub>2</sub>)···(1 + r<sub>n</sub>) − 1</div>
+    <div class="note">
+      <b>Bước 1</b>: chia period thành sub-periods tại mỗi external cash flow. <b>Bước 2</b>: tính return mỗi sub-period dựa trên valuation đầu kỳ và valuation ngay trước cash flow. <b>Bước 3</b>: geometric link tất cả sub-period returns. Cash flow <em>không</em> được counted trong return numerator.
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Approximation methods</span>
+    <b>Modified Dietz</b> = (V<sub>end</sub> − V<sub>begin</sub> − CF) / (V<sub>begin</sub> + Σ w<sub>i</sub>×CF<sub>i</sub>) — weight cash flow by % period. Acceptable nếu không có large flow. <br>
+    <b>Daily valuation</b> required khi có large flow (≥ 10%) hoặc effective ngày 1 Jan 2010 trở đi.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 13 · MONEY-WEIGHTED RETURN -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="MWR" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>13 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Returns · MWR allowance</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Money-Weighted Return</em> (MWR / IRR).</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      MWR = IRR của all cash flows. Khác TWR ở chỗ MWR <em>nhạy với timing</em> của tiền — hợp với strategy mà manager <em>quyết định</em> khi go-in/exit (không phải client).
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Khi nào MWR được allowed (GIPS 2020)</span>
+    Chỉ khi <em>cả 4 điều kiện</em> đúng: <br>
+    <b>(1)</b> Composite/fund có <em>fixed lifespan</em> (closed-end, có legal end date). <br>
+    <b>(2)</b> <em>Fixed commitment</em> capital (vốn cam kết upfront, không subscribe/redeem tự do). <br>
+    <b>(3)</b> Manager <em>controls timing</em> của capital calls và distributions. <br>
+    <b>(4)</b> Strategy <em>illiquid investments</em> là focus (private equity, private real estate, infrastructure, private debt).
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Why MWR cho PE / private investments?</span>
+    GP control timing — họ <em>chọn</em> khi call capital và khi distribute. TWR sẽ underestimate skill vì cash flow timing là <em>part of the strategy</em>, không phải noise. IRR (MWR) capture skill trọn vẹn hơn cho closed-end vehicles.
+  </div>
+
+  <p class="fine-muted-sm">
+    § Cho mọi composite không match 4 điều kiện trên → MUST use TWR. Equity mutual fund, hedge fund open-end, FI fund mở: TWR.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 14 · FEES -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Fees" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>14 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Fees · gross vs net</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Gross-of-fees vs <em class="hi">Net-of-fees</em>.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Gross-of-fees</em></div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>Return <em>trước khi</em> trừ investment management fee</dd>
+        <dt>Trừ ra cái gì</dt>
+        <dd>Trading expenses (commission, spread) — <em>luôn</em> trừ. Custody fee &amp; admin fee có thể không trừ.</dd>
+        <dt>Use case</dt>
+        <dd>Phản ánh investment skill thuần. Marketing đến institutional client (họ tự đàm phán fee).</dd>
+        <dt>GIPS</dt>
+        <dd>Allowed nhưng phải clearly label "gross-of-fees"</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Net-of-fees</em></div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>Return <em>sau khi</em> trừ investment management fee (thường cả performance fee)</dd>
+        <dt>Trừ ra cái gì</dt>
+        <dd>Trading + management + performance fee. Reflect "what investor actually received"</dd>
+        <dt>Use case</dt>
+        <dd>Marketing đến retail / wealth client. So sánh với benchmark "as-if-investable".</dd>
+        <dt>GIPS</dt>
+        <dd>Allowed; recommended cho prospective client retail. Phải dùng <em>actual fees</em> hoặc <em>highest fee schedule</em>.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Required disclosure — fee schedule (rate card). Nếu present gross-of-fees, vẫn phải disclose fee rate để client tự convert. Cấm "model fees" không phản ánh actual.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 15 · REQUIRED DISCLOSURES -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Disclosures" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>15 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">GIPS Report · required disclosures</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What must a <em class="hi">GIPS Report</em> include?</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Compliance statement</span>
+        <span class="step-body">Câu chính xác: <em>"[Insert name of firm] claims compliance with the Global Investment Performance Standards (GIPS®) and has prepared and presented this report in compliance with the GIPS standards…"</em></span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Composite description &amp; benchmark</span>
+        <span class="step-body">Mục tiêu, strategy, criteria thành lập composite. Benchmark phù hợp + lý do chọn. Nếu đổi benchmark phải disclose date &amp; reason.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Annual returns + dispersion</span>
+        <span class="step-body">≥ 5 năm annual return composite + benchmark. <em>Internal dispersion</em> (vd asset-weighted SD của member portfolios) — nếu composite có ≥ 6 portfolios cả năm. <em>3-year ex-post SD</em> của composite + benchmark.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Composite + firm AUM, # portfolios</span>
+        <span class="step-body">Composite assets &amp; firm assets cuối mỗi năm. Số portfolios trong composite (or "≤ 5" nếu nhỏ).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Fees + currency + verification</span>
+        <span class="step-body">Fee schedule. Reporting currency. Verification status (verified/not verified, period verified). Material errors corrected (with restated period).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 16 · VERIFICATION -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Verification" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>16 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Verification · third party</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Verification</em> &amp; performance examination.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Verification là <em>voluntary</em> — không bắt buộc để claim compliance. Nhưng prospective client thường <em>kỳ vọng</em>, đặc biệt với institutional mandate. Verifier phải là <em>independent</em> third-party (firm verification &amp; advisory specialty).
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Firm-wide verification</em></div>
+      <dl>
+        <dt>Scope</dt>
+        <dd>Verify <em>policies &amp; procedures</em> đáp ứng GIPS, áp dụng <em>firm-wide</em></dd>
+        <dt>Đảm bảo</dt>
+        <dd>List of composites đầy đủ; portfolio assigned đúng composite; fair value process consistent</dd>
+        <dt>Không đảm bảo</dt>
+        <dd>Tính chính xác return của <em>từng composite cụ thể</em></dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Performance examination</em></div>
+      <dl>
+        <dt>Scope</dt>
+        <dd>Deep-dive <em>1 specific composite</em> — kiểm tra return calculation, presentation chính xác</dd>
+        <dt>Yêu cầu</dt>
+        <dd>Phải thực hiện <em>sau</em> firm-wide verification (không thể standalone)</dd>
+        <dt>Use case</dt>
+        <dd>Khi prospective client / consultant yêu cầu evidence cho composite cụ thể được sale pitch</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Common confusion — "Verified" ≠ "examined". Verification chỉ ensure compliance ở firm level; examination là level cao hơn cho 1 composite. Firm phải disclose status của cả hai.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 17 · TAKEAWAYS -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Takeaways" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>17 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Recap · big picture</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Key <em class="hi">takeaways</em>.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">α</span>
+      <div>
+        <div class="t">Voluntary, ethical, firm-wide</div>
+        <div class="d">Two principles: <em>fair representation</em> + <em>full disclosure</em>. All-or-nothing — không có partial compliance. Vi phạm sau khi claim = misrepresentation.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">β</span>
+      <div>
+        <div class="t">Composite = unit of reporting</div>
+        <div class="d">Mọi discretionary fee-paying portfolio phải nằm ≥ 1 composite. Tiêu chí khách quan + nhất quán. List composites cung cấp on request.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">γ</span>
+      <div>
+        <div class="t">TWR default · MWR cho PE</div>
+        <div class="d">TWR loại bỏ effect cash flow timing — đo skill thuần. MWR (IRR) chỉ allowed khi: closed-end + fixed commitment + manager controls flow + illiquid focus.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">δ</span>
+      <div>
+        <div class="t">5y min · 10y build · verification optional</div>
+        <div class="d">Year 1 of compliance: 5 năm annual return. Build to 10. Verification = third-party check policies (firm) + optional examination (composite-level).</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 18 · TRANSITION -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 19 · Q1 EN — Compliance scope -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>19 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Partial <em class="hi">compliance</em>?</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Saigon Asset Management has three lines of business: (i) Vietnam equity, (ii) global fixed income managed out of its Singapore branch, and (iii) a private equity unit run as a separate legal entity. Senior management plans to claim GIPS compliance only for the Vietnam equity line because that line is the firm's primary marketing focus. Which statement is <em>most accurate</em>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">The plan is acceptable because GIPS allows compliance to be claimed at the product or strategy level when properly disclosed.</span></li>
+    <li><span class="lbl">B</span><span class="opt">The plan violates GIPS because compliance must be claimed on a firm-wide basis; only entities falling outside the defined firm boundary may be excluded.</span></li>
+    <li><span class="lbl">C</span><span class="opt">The plan is acceptable as long as the firm names the verifier of the Vietnam equity composite and discloses that no other lines are verified.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 20 · Q1 HINT -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>20 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Compliance only for Vietnam equity</mark>. Đây là partial compliance — GIPS có cho phép?
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">GIPS compliance là <em>firm-wide</em>, không phải product-wide hay strategy-wide. "All or nothing" — toàn firm comply hoặc không claim.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">PE unit là <em>separate legal entity</em> — có thể nằm ngoài "firm boundary" nếu định nghĩa firm theo entity. Singapore branch là cùng entity → phải included.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Verification (đáp án C) không thay thế requirement firm-wide. Đó là 2 layer khác nhau: claim compliance là ở firm; verification là third-party check policies.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 21 · Q1 Dịch đề -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>21 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Saigon Asset Management có 3 mảng kinh doanh: (i) cổ phiếu Việt Nam, (ii) trái phiếu toàn cầu quản lý từ chi nhánh Singapore, và (iii) một bộ phận private equity hoạt động dưới <em>pháp nhân riêng</em>. Ban lãnh đạo định claim GIPS compliance chỉ cho mảng cổ phiếu Việt Nam vì đây là focus marketing chính. Nhận định nào <em>chính xác nhất</em>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Kế hoạch chấp nhận được vì GIPS cho phép claim compliance ở cấp product hoặc strategy nếu disclose đúng.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Kế hoạch vi phạm GIPS vì compliance phải được claim ở firm-wide basis; chỉ những entity nằm ngoài firm definition mới được phép loại trừ.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Kế hoạch chấp nhận được nếu firm đặt tên verifier cho composite cổ phiếu Việt Nam và disclose rằng các mảng khác không được verify.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 22 · Q1 EXPLANATION -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>22 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — firm-wide.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">GIPS compliance là <b>all-or-nothing ở firm level</b>. Mảng cổ phiếu Việt Nam và Singapore branch <em>cùng pháp nhân</em> → phải included trong firm definition. PE unit là <em>separate legal entity</em> nên có thể (và nên) nằm ngoài firm definition — lúc đó được phép exclude. Disclosures phải làm rõ firm definition và lý do PE không nằm trong scope. Một khi đã claim, mọi composite của firm phải comply, không có chuyện "chỉ claim cho 1 product".</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Sai cốt lõi — GIPS <em>không cho phép</em> partial compliance ở product/strategy level. Hai principles "fair representation + full disclosure" sẽ bị phá vỡ nếu firm chỉ show product thắng. Đây là điểm test phổ biến nhất về GIPS.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Verification và compliance là 2 layer khác nhau. Verification là third-party check chính sách firm-wide. Không thể "verify chỉ 1 composite" để bypass yêu cầu firm-wide compliance. Lập luận này đảo lộn structure GIPS.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">GIPS = <em>firm-wide, all-or-nothing</em>. Cách <em>duy nhất</em> để loại 1 mảng business là đặt nó ngoài firm definition (vd separate legal entity, distinct business unit autonomous về investment decision). Phải disclose firm definition rõ ràng + nhất quán qua các năm.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 23 · Q2 EN — TWR vs MWR -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>23 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">TWR</em> or <em class="hi">MWR</em>?</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A GIPS-compliant firm manages two distinct strategies. <em>Strategy A</em> is a closed-end private equity fund with a fixed 10-year life, capital committed up front, and capital calls determined by the GP. <em>Strategy B</em> is an open-end Vietnamese equity mutual fund that allows daily subscriptions and redemptions. Which return methodology is <em>required</em> for each composite?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">TWR for both — TWR is the GIPS default and applies to all composites regardless of structure.</span></li>
+    <li><span class="lbl">B</span><span class="opt">MWR (IRR) for Strategy A; TWR for Strategy B — Strategy A meets all four GIPS conditions for MWR, while Strategy B does not.</span></li>
+    <li><span class="lbl">C</span><span class="opt">MWR for both — MWR captures investment skill more accurately when client cash flows are unpredictable.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 24 · Q2 HINT -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>24 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Closed-end · fixed life · GP controls calls</mark> vs <mark>open-end · daily subscriptions/redemptions</mark>. Hai bên có cùng allowance không?
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">GIPS 2020 cho phép MWR khi <em>cả 4 điều kiện</em>: (1) closed-end fixed life, (2) fixed commitment, (3) manager controls flow timing, (4) illiquid focus. Strategy A match cả 4.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Strategy B = open-end mutual fund — client tự subscribe/redeem hàng ngày. Manager <em>không control</em> timing → fail condition (3). MWR sẽ phản ánh client behavior chứ không phải skill.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">TWR là default — bất cứ khi nào không match 4 điều kiện MWR thì MUST use TWR. Không có chuyện "chọn cái nào ra số đẹp hơn".</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 25 · Q2 Dịch đề -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>25 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một firm GIPS-compliant quản lý 2 strategy khác nhau. <em>Strategy A</em> là private equity fund closed-end với life cố định 10 năm, vốn cam kết upfront, và capital calls do GP quyết định. <em>Strategy B</em> là quỹ mở cổ phiếu Việt Nam cho phép subscribe/redeem hàng ngày. Phương pháp tính return nào <em>bắt buộc</em> cho từng composite?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">TWR cho cả hai — TWR là default GIPS và áp dụng cho mọi composite bất kể cấu trúc.</span></li>
+    <li><span class="lbl">B</span><span class="opt">MWR (IRR) cho Strategy A; TWR cho Strategy B — Strategy A đáp ứng cả 4 điều kiện GIPS để dùng MWR, Strategy B thì không.</span></li>
+    <li><span class="lbl">C</span><span class="opt">MWR cho cả hai — MWR capture investment skill chính xác hơn khi client cash flow không dự đoán được.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 26 · Q2 EXPLANATION -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>26 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — MWR + TWR.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext"><b>Strategy A</b> (PE fund) match cả 4 điều kiện MWR: (1) closed-end fixed 10Y life ✓; (2) fixed commitment upfront ✓; (3) GP controls capital calls và distribution timing ✓; (4) illiquid private equity focus ✓ → <em>MWR (IRR)</em> được phép và phù hợp. <b>Strategy B</b> (open-end mutual fund) fail điều kiện (1) — không closed-end; fail (3) — client tự subscribe/redeem, manager không control timing; fail (4) — equity liquid → <em>TWR required</em>. TWR loại bỏ effect của client cash flow timing, đo skill thuần của manager.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Sai phần Strategy A — GIPS 2020 explicitly <em>cho phép</em> MWR cho closed-end illiquid composites match đủ 4 điều kiện. Không bắt buộc TWR cho mọi composite. Đây là update quan trọng từ GIPS 2010 → 2020.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Sai phần Strategy B — MWR cho open-end mutual fund sẽ bị méo bởi <em>client behavior</em> (subscribe lúc thị trường lên, redeem lúc xuống). MWR chỉ phù hợp khi <em>manager</em> control flow, không phải khi client control. TWR is required cho mọi composite không match 4 điều kiện MWR.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Memorize 4 điều kiện MWR: <em>closed-end + fixed commitment + manager controls + illiquid focus</em>. Match all 4 → MWR allowed. Miss any one → TWR required. PE / private RE / private debt thường match; mutual fund / hedge fund mở / SMA thường không match.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 27 · Q3 EN — Composite inclusion -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>27 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Composite</em> inclusion.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A GIPS-compliant firm has the following portfolios under Vietnam Equity Growth strategy: (i) 12 institutional fee-paying discretionary accounts; (ii) 1 large account where the client requires manager to hold ≥ 30% in cash at all times (overriding strategy); (iii) the founder's personal portfolio, managed pari passu but with <em>no fee</em>. Which set of portfolios <em>must</em> be included in the composite?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">All 14 portfolios — anything managed pari passu must be in the composite to avoid cherry-picking.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Only the 12 institutional accounts — the 30% cash account is non-discretionary and the founder account is non-fee-paying; both fall outside GIPS composite mandate.</span></li>
+    <li><span class="lbl">C</span><span class="opt">The 12 institutional accounts plus the founder's account — fee-paying status is irrelevant; only the 30% cash account is excluded as non-discretionary.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 28 · Q3 HINT -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>28 / 28</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>Discretionary</mark> + <mark>fee-paying</mark> = 2 điều kiện <em>đồng thời</em> để must include. Cả 2 phải đúng.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">12 institutional accounts: discretionary ✓ + fee-paying ✓ → must include.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Account 30% cash: client override strategy → non-discretionary → fail. Exclude khỏi composite (nhưng phải document tiêu chí non-discretionary).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Founder account: pari passu nhưng <em>no fee</em> → fail "fee-paying". Không bắt buộc include. Có thể include voluntary nhưng phải nhất quán policy + disclose.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 29 · Q3 Dịch đề -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>29 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một firm GIPS-compliant có các portfolio sau dưới strategy Vietnam Equity Growth: (i) 12 institutional account fee-paying discretionary; (ii) 1 account lớn mà client yêu cầu manager phải giữ ≥ 30% cash mọi lúc (override strategy); (iii) portfolio cá nhân của founder, quản lý pari passu nhưng <em>không phí</em>. Tập portfolio nào <em>phải</em> include vào composite?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">Cả 14 portfolio — bất cứ thứ gì quản lý pari passu đều phải vào composite để tránh cherry-picking.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Chỉ 12 institutional account — account 30% cash là non-discretionary và founder account là non-fee-paying; cả hai nằm ngoài composite mandate của GIPS.</span></li>
+    <li><span class="lbl">C</span><span class="opt">12 institutional account cộng founder account — fee-paying không phải tiêu chí; chỉ account 30% cash bị exclude vì non-discretionary.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 30 · Q3 EXPLANATION + END -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>01.04 — GIPS</span>
+    <span class="rule"></span>
+    <span>30 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — only the 12.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Mandate include = <b>discretionary AND fee-paying</b>. <em>(i)</em> 12 institutional: cả 2 ✓ → must include. <em>(ii)</em> 30% cash override = client constraint vượt strategy → <b>non-discretionary</b> → exclude. <em>(iii)</em> Founder account = no fee → <b>non-fee-paying</b> → không bắt buộc include. Firm có thể voluntary include nhưng phải có policy nhất quán và disclose.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Sai — pari passu management <em>không tự động</em> trigger include. Cả 2 điều kiện discretionary + fee-paying phải đồng thời đúng. "Avoid cherry-picking" áp dụng trong tập discretionary fee-paying — không phải mọi portfolio firm quản lý.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Sai vì cho rằng fee-paying irrelevant. GIPS Fundamental F2 yêu cầu rõ <em>fee-paying discretionary</em>. Founder account no-fee không bắt buộc. Đảo ngược: account 30% cash đúng là non-discretionary nên exclude — phần này C đoán đúng, nhưng kết luận tổng thể sai.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Memorize: <em>discretionary AND fee-paying</em> = mandatory include. Mất 1 điều kiện → exclude (non-discretionary) hoặc optional (non-fee-paying). Firm phải document criteria và áp dụng nhất quán — không được "linh hoạt" chọn portfolio thắng include, portfolio thua exclude.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">Ethics · 01.04 — Introduction to GIPS</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- 31 · END -->
+<!-- ═══════════════════════════════════════════════════ -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>01.04 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 01.05 — Ethics Application (case studies)</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>

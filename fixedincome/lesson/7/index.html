@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>CFA L1 · Fixed Income 08.07 — Convexity &amp; Risk Measures</title>
+<title>CFA L1 · Fixed Income 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/assets/cfa-theme.css">
 <style>
   .title-slide .left { background: var(--accent); }
-  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main { font-size: 88px; line-height: 0.98; }
   .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
   .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
 </style>
@@ -24,18 +24,18 @@
 <section data-label="Title" class="slide title-slide">
   <div class="left">
     <div class="mark">CFA Institute · Level I</div>
-    <h1 class="main">Convexity<br>&amp; <em>Risk.</em></h1>
+    <h1 class="main">Yield &amp; Yield<br><em>Spreads.</em></h1>
     <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 08 · Lesson 08.07 · Fixed Income</div>
   </div>
   <div class="right">
-    <div class="mark">Module 07 · Curvature · Bond Risk Measures</div>
+    <div class="mark">Module 07 · Yield Measures · Spread Measures · Fixed-Rate Bonds</div>
     <dl class="meta-grid">
       <div><dt>Môn</dt><dd>Fixed Income</dd></div>
       <div><dt>Module</dt><dd>07</dd></div>
       <div><dt>Lesson</dt><dd>08.07</dd></div>
       <div><dt>Thời lượng</dt><dd>90 min</dd></div>
     </dl>
-    <div class="mark">Convexity · Effective · Key-rate · Spread risk</div>
+    <div class="mark">YTM · Current yield · YTC · YTW · G/I/Z-spread · OAS · BEY</div>
   </div>
 </section>
 
@@ -45,723 +45,703 @@
   <div class="band">
     <div class="lbl">PART</div>
     <div class="n">07</div>
-    <div class="lbl">Beyond duration</div>
+    <div class="lbl">Yield &amp; spread</div>
   </div>
   <div class="content">
     <div class="eyebrow">Today's lesson</div>
-    <h2>Why <em>curvature</em><br>matters.</h2>
+    <h2>How to <em>measure</em> and<br><em>compare</em> bond yields.</h2>
     <ul class="toc">
-      <li class="active">01 · Curvature — duration is linear, convexity is the 2<sup>nd</sup>-order term</li>
-      <li>02 · Annual convexity formula · Effective convexity (embedded options)</li>
-      <li>03 · Total return ≈ −D·Δy + ½·C·(Δy)² · why positive convexity is "free"</li>
-      <li>04 · Negative convexity — callable bonds &amp; MBS at low yields</li>
-      <li>05 · Convexity properties · empirical vs analytical · yield volatility</li>
-      <li>06 · Key rate duration · curve risk · credit/spread risk</li>
-      <li>07 · Practice — 3 CFA-style questions</li>
+      <li class="active">01 · YTM — định nghĩa, công thức, cách tính</li>
+      <li>02 · Current yield — công thức và giới hạn</li>
+      <li>03 · Yield to call (YTC) · Yield to put (YTP) · Yield to worst (YTW)</li>
+      <li>04 · Bond equivalent yield (BEY) — annualization convention</li>
+      <li>05 · Yield curve — normal · inverted · flat · humped</li>
+      <li>06 · Spread measures — G-spread · I-spread · Z-spread · OAS</li>
+      <li>07 · Worked examples — tính YTM và Z-spread</li>
+      <li>08 · Practice — 3 CFA-style questions</li>
     </ul>
   </div>
 </section>
 
 
-<!-- 03 · CURVATURE CONCEPT + CHART -->
-<section data-label="Curvature" class="slide">
+<!-- 03 · YTM DEFINITION -->
+<section data-label="YTM definition" class="slide">
   <div class="run-header">
-    <span>08.07 — Convexity</span>
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
     <span class="rule"></span>
-    <span>03 / 32</span>
+    <span>03 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Why · convexity</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Price-yield is <em class="hi">curved</em>.</h2>
+    <div class="eyebrow">Yield to maturity · khái niệm cốt lõi</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Yield to Maturity (YTM)</em> — định nghĩa.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Quan hệ price–yield của option-free bond là một đường <em>lồi</em> (convex). Duration <em>tuyến tính hoá</em> đường này tại 1 điểm — tốt cho <em>small</em> Δy, sai lệch dần khi Δy lớn. Convexity là số đo của độ <em>cong</em> — bổ sung cho duration để cải thiện ước lượng.
-    </p>
-  </div>
-
-  <div class="chart-box" style="margin-top: 14px;">
-    <span class="chart-label">§ Chart · price-yield curvature vs duration line</span>
-    <svg viewBox="0 0 1500 460" xmlns="http://www.w3.org/2000/svg">
-      <!-- axes -->
-      <line x1="100" y1="60" x2="100" y2="400" stroke="#14365F" stroke-width="2"/>
-      <line x1="100" y1="400" x2="1450" y2="400" stroke="#14365F" stroke-width="2"/>
-      <text x="60" y="80" font-family="Roboto Mono" font-size="18" fill="#14365F">Price</text>
-      <text x="1380" y="430" font-family="Roboto Mono" font-size="18" fill="#14365F">Yield</text>
-
-      <!-- actual convex curve P = 1300 - 200y + 40 -->
-      <path d="M 150 110 Q 500 220 900 320 T 1430 395" fill="none" stroke="#14365F" stroke-width="4"/>
-      <text x="200" y="135" font-family="Roboto Slab" font-size="22" fill="#14365F" font-weight="700">Actual price (convex)</text>
-
-      <!-- duration tangent line at midpoint y0 -->
-      <line x1="200" y1="135" x2="1400" y2="430" stroke="#B85A3F" stroke-width="3" stroke-dasharray="10 6"/>
-      <text x="900" y="290" font-family="Roboto Slab" font-size="20" fill="#B85A3F" font-weight="600">Duration line (tangent at y₀)</text>
-
-      <!-- y0 marker -->
-      <circle cx="775" cy="282" r="7" fill="#14365F"/>
-      <line x1="775" y1="282" x2="775" y2="400" stroke="#14365F" stroke-width="1" stroke-dasharray="3 4"/>
-      <text x="755" y="425" font-family="Roboto Mono" font-size="18" fill="#14365F">y₀</text>
-
-      <!-- gaps showing convexity gain -->
-      <line x1="300" y1="155" x2="300" y2="195" stroke="#3C7A50" stroke-width="3"/>
-      <text x="245" y="150" font-family="Roboto Mono" font-size="16" fill="#3C7A50" font-weight="700">+ convexity</text>
-      <text x="245" y="100" font-family="Roboto Mono" font-size="14" fill="#3C7A50">(yield ↓ → bigger gain)</text>
-
-      <line x1="1200" y1="380" x2="1200" y2="405" stroke="#3C7A50" stroke-width="3"/>
-      <text x="1160" y="430" font-family="Roboto Mono" font-size="16" fill="#3C7A50" font-weight="700">+ convexity</text>
-      <text x="1130" y="450" font-family="Roboto Mono" font-size="14" fill="#3C7A50">(yield ↑ → smaller loss)</text>
-    </svg>
-    <div class="caption"><b>Key insight:</b> Duration tangent under-estimates price khi yield đi xuống VÀ over-estimates khi yield đi lên. Cả hai đều thiên về <em>price thấp hơn actual</em> → gap xanh = convexity gain. Chính vì vậy positive convexity luôn có lợi cho holder.</div>
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
-  </div>
-</section>
-
-
-<!-- 04 · ANNUAL CONVEXITY FORMULA -->
-<section data-label="Convexity formula" class="slide">
-  <div class="run-header">
-    <span>08.07 — Convexity</span>
-    <span class="rule"></span>
-    <span>04 / 32</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Formula · annual convexity</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Annual <em class="hi">convexity</em>.</h2>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Approximate (numerical) convexity</span>
-    <div class="eq"><span class="var">C</span> = (<span class="var">P₋</span> + <span class="var">P₊</span> − 2 × <span class="var">P₀</span>) / (<span class="var">P₀</span> × (<span class="var">Δy</span>)²)</div>
-    <div class="note"><b>P₀</b> = price hiện tại · <b>P₋</b> = price sau khi yield <em>giảm</em> Δy · <b>P₊</b> = price sau khi yield <em>tăng</em> Δy · <b>Δy</b> = small yield change (decimal, e.g. 0.0010 cho 10 bps). Tử số = "second difference" — đo độ <em>cong</em> của price-yield function. C dương cho option-free bonds.</div>
-  </div>
-
-  <div class="rule-box" style="margin-top: 18px;">
-    <span class="tag">§ Numerical example</span>
-    Bond P₀ = $100. Δy = 25 bps = 0.0025. Khi yield giảm 25 bps → P₋ = $101.85. Khi yield tăng 25 bps → P₊ = $98.20.<br>
-    → C = (101.85 + 98.20 − 200) / (100 × 0.0025²) = 0.05 / 0.000625 = <b>80</b>.<br>
-    → Convexity = 80 (đơn vị: per (decimal yield)²).
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
-  </div>
-</section>
-
-
-<!-- 05 · EFFECTIVE CONVEXITY -->
-<section data-label="Effective convexity" class="slide">
-  <div class="run-header">
-    <span>08.07 — Convexity</span>
-    <span class="rule"></span>
-    <span>05 / 32</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Embedded · options</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Effective</em> convexity.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Bond có embedded option (callable, putable, MBS) → cash flows <em>thay đổi</em> khi yield thay đổi (vd: issuer call khi yields giảm). Không thể dùng analytical convexity — phải tính bằng <em>scenario</em>: shock yield curve và re-price bằng option-adjusted model.
+      YTM là <em>single discount rate</em> mà khi dùng để discount toàn bộ cash flows (coupon + par) của bond về hiện tại, tổng PV đúng bằng <em>current market price</em>. Đây là IRR của bond — giả định bond được hold đến maturity và tất cả coupons được reinvest ở đúng rate này.
     </p>
   </div>
 
   <div class="formula-box">
-    <span class="fmt-label">§ Effective convexity</span>
-    <div class="eq"><span class="var">EffCon</span> = (<span class="var">PV₋</span> + <span class="var">PV₊</span> − 2 × <span class="var">PV₀</span>) / (<span class="var">PV₀</span> × (<span class="var">ΔCurve</span>)²)</div>
-    <div class="note">Khác với approximate convexity của option-free bond ở chỗ: shock <em>benchmark curve</em> (không phải YTM), PV₋ và PV₊ tính qua <b>option-adjusted</b> binomial/Monte-Carlo model — option có thể được exercised khi rate thay đổi → CF schedule biến đổi.</div>
+    <span class="fmt-label">§ YTM — General pricing equation (semi-annual coupon)</span>
+    <div class="eq">
+      <span class="var">P</span> = &sum;<span style="font-size:0.8em;">t=1 to 2N</span> <span class="frac"><span class="num">C/2</span><span class="den">(1 + YTM/2)<sup>t</sup></span></span> + <span class="frac"><span class="num">FV</span><span class="den">(1 + YTM/2)<sup>2N</sup></span></span>
+    </div>
+    <div class="note">
+      P = current dirty price · C = annual coupon · FV = face value (thường 100) · N = years to maturity.<br>
+      YTM solved by <em>trial-and-error</em> hoặc financial calculator. Không có closed-form algebraic solution.
+    </div>
   </div>
 
-  <p class="fine-muted-sm">
-    § Khi nào dùng — <b>Option-free bond</b>: approximate (modified) convexity = effective convexity (CF không đổi). <b>Callable / putable / MBS</b>: chỉ effective convexity mới đúng. CFA L1 luôn nhấn mạnh: callable → effective convexity có thể <em>negative</em> ở yield thấp.
-  </p>
+  <div class="tenets-grid" style="margin-top: 14px;">
+    <div class="tenet">
+      <span class="n">A1</span>
+      <div>
+        <div class="t">Hold to maturity</div>
+        <div class="d">YTM chỉ realized nếu investor giữ bond đến ngày đáo hạn và không bán trước — nếu bán sớm, actual return phụ thuộc vào market price lúc bán.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">A2</span>
+      <div>
+        <div class="t">Reinvestment assumption</div>
+        <div class="d">YTM giả định mọi coupon payment được <em>tái đầu tư</em> ở chính rate YTM. Nếu reinvestment rate thực tế thấp hơn, realized return sẽ thấp hơn YTM — đây là <em>reinvestment risk</em>.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">A3</span>
+      <div>
+        <div class="t">YTM vs coupon rate</div>
+        <div class="d">Bond at <em>par</em>: YTM = coupon rate. Bond at <em>discount</em> (P &lt; FV): YTM &gt; coupon. Bond at <em>premium</em> (P &gt; FV): YTM &lt; coupon. Inverse price–yield relationship.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">A4</span>
+      <div>
+        <div class="t">Market consensus</div>
+        <div class="d">YTM là yield được quote phổ biến nhất cho fixed-rate bonds. Dùng để compare bonds khác nhau — nhưng chỉ valid nếu bonds có cùng maturity và credit profile tương đương.</div>
+      </div>
+    </div>
+  </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
   </div>
 </section>
 
 
-<!-- 06 · TOTAL RETURN FORMULA -->
-<section data-label="Total return" class="slide">
+<!-- 04 · YTM WORKED EXAMPLE -->
+<section data-label="YTM example" class="slide">
   <div class="run-header">
-    <span>08.07 — Convexity</span>
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
     <span class="rule"></span>
-    <span>06 / 32</span>
+    <span>04 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Master · formula</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">%ΔPrice với <em class="hi">D + C</em>.</h2>
+    <div class="eyebrow">Worked example · Calculation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Tính YTM</em> — ví dụ số.</h2>
   </div>
 
-  <div class="formula-box">
-    <span class="fmt-label">§ Total %ΔPrice — Taylor 2<sup>nd</sup> order</span>
-    <div class="eq">%Δ<span class="var">P</span> ≈ −<span class="var">D<sub>Mod</sub></span> × <span class="var">Δy</span> + ½ × <span class="var">C</span> × (<span class="var">Δy</span>)²</div>
-    <div class="note"><b>Term 1</b> (linear) — duration impact, dấu âm vì price &amp; yield ngược chiều. <b>Term 2</b> (quadratic) — convexity adjustment, <em>luôn cộng thêm</em> nếu C&gt;0 (vì (Δy)² &gt; 0). Δy phải là decimal (e.g., 0.01 cho 100 bps). Đây là core formula CFA L1 test.</div>
-  </div>
-
-  <div class="rule-box" style="margin-top: 18px;">
-    <span class="tag">§ Tại sao convexity adjustment luôn dương cho option-free bond</span>
-    Với option-free bond, C &gt; 0 luôn, và (Δy)² &gt; 0 luôn → ½·C·(Δy)² &gt; 0 luôn. Vì vậy convexity <em>improves</em> total return cho cả Δy dương và Δy âm — tức upside lớn hơn downside, chính là "bend" giúp investor.
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
-  </div>
-</section>
-
-
-<!-- 07 · WORKED EXAMPLE -->
-<section data-label="Worked example" class="slide">
-  <div class="run-header">
-    <span>08.07 — Convexity</span>
-    <span class="rule"></span>
-    <span>07 / 32</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Example · combine D + C</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Worked <em class="hi">numerical</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Bond có Modified Duration = <b>7.5</b>, Convexity = <b>85</b>, current price $100. Yield tăng <b>100 bps</b> (Δy = +0.01). Tính %ΔP và new price.
-    </p>
+  <div class="rule-box">
+    <span class="tag">§ Setup</span>
+    Bond: FV = $1,000 · coupon rate 6% (semi-annual) · current price $950 · maturity 5 năm (10 kỳ). Tính YTM.
   </div>
 
   <ol class="num-list tight" style="margin-top: 16px;">
     <li>
       <span>
-        <span class="step-title">Step 1 — Duration impact</span>
-        <span class="step-body">−D × Δy = −7.5 × 0.01 = <em>−0.075</em> = −7.50%. Đây là first-order estimate.</span>
+        <span class="step-title">Xác định cash flows</span>
+        <span class="step-body">Coupon mỗi kỳ = $1,000 × 6% / 2 = <em>$30</em>. Có 10 kỳ. Cuối kỳ 10: nhận thêm FV = $1,000. Cần tìm rate r/kỳ sao cho: 950 = 30/(1+r) + 30/(1+r)² + … + 30/(1+r)¹⁰ + 1000/(1+r)¹⁰.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Step 2 — Convexity adjustment</span>
-        <span class="step-body">½ × C × (Δy)² = 0.5 × 85 × (0.01)² = 0.5 × 85 × 0.0001 = <em>+0.00425</em> = +0.425%. Cộng thêm vì C dương.</span>
+        <span class="step-title">Calculator keystrokes (BAII Plus)</span>
+        <span class="step-body">N = 10 · PV = −950 · PMT = 30 · FV = 1000 · CPT I/Y → <em>I/Y = 3.544%</em> (semi-annual rate). YTM annual = 3.544% × 2 = <em>7.09% (BEY)</em>.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Step 3 — Total %ΔP</span>
-        <span class="step-body">%ΔP ≈ −7.50% + 0.425% = <em>−7.075%</em>. Convexity giảm bớt loss khoảng 0.425 percentage points so với duration-only estimate.</span>
+        <span class="step-title">Kiểm tra logic</span>
+        <span class="step-body">Bond priced at discount ($950 &lt; $1,000) → YTM (7.09%) phải &gt; coupon rate (6%). Đúng. Capital gain = $50 (từ $950 lên $1,000) cộng vào coupon → total return cao hơn coupon rate.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Step 4 — New price</span>
-        <span class="step-body">P<sub>new</sub> ≈ $100 × (1 − 0.07075) = <em>$92.925</em>. Nếu chỉ dùng duration → $92.50, sai lệch $0.425.</span>
+        <span class="step-title">Tổng kết bằng số</span>
+        <span class="step-body">PV of coupons = 30 × [1−(1.03544)⁻¹⁰]/0.03544 ≈ $249.9. PV of par = 1000/(1.03544)¹⁰ ≈ $700.1. Total ≈ $950. ✓ Matches price — YTM = <em>7.09%</em> p.a. (BEY).</span>
       </span>
     </li>
   </ol>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
   </div>
 </section>
 
 
-<!-- 08 · MODIFIED VS EFFECTIVE -->
-<section data-label="Modified vs Effective" class="slide">
+<!-- 05 · CURRENT YIELD -->
+<section data-label="Current yield" class="slide">
   <div class="run-header">
-    <span>08.07 — Convexity</span>
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
     <span class="rule"></span>
-    <span>08 / 32</span>
+    <span>05 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Modified · vs · Effective</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Modified</em> vs <em class="hi">Effective</em>.</h2>
+    <div class="eyebrow">Yield measure · simplified</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Current Yield</em> — công thức và giới hạn.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Cả duration và convexity đều có 2 phiên bản. Sự khác biệt nằm ở <em>cash flows có cố định hay không</em> khi yield thay đổi.
+      Current yield là thước đo đơn giản nhất — chỉ tính income component (coupon), bỏ qua capital gain/loss và giá trị thời gian của tiền.
     </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Current yield formula</span>
+    <div class="eq">
+      <span class="var">Current yield</span> = <span class="frac"><span class="num">Annual coupon payment</span><span class="den">Current market price</span></span>
+    </div>
+    <div class="note">
+      Ví dụ: Bond coupon 6% × $1,000 = $60/year · current price $950.<br>
+      Current yield = $60 / $950 = <em>6.32%</em>.
+    </div>
   </div>
 
   <div class="compare" style="margin-top: 16px;">
     <div class="cc">
-      <div class="head"><em>Modified</em> (yield-based)</div>
+      <div class="head"><em>Ưu điểm</em></div>
       <dl>
-        <dt>Bond type</dt>
-        <dd><em>Option-free</em> bonds — cash flows fixed</dd>
-        <dt>Shock</dt>
-        <dd>Shock <b>YTM</b> trực tiếp ± Δy</dd>
-        <dt>CF assumption</dt>
-        <dd>Coupon + principal <em>không đổi</em> theo yield</dd>
-        <dt>Use case</dt>
-        <dd>Treasuries, plain corporate bonds, IG bonds không callable</dd>
+        <dt>Đơn giản</dt>
+        <dd>Tính nhanh bằng tay, không cần calculator. Cho thấy ngay <em>coupon income</em> relative to price — useful cho income-focused investors (vd retirees cần cash flow).</dd>
+        <dt>Directly observable</dt>
+        <dd>Chỉ cần biết coupon rate và current price — cả hai đều public. Không cần giả định về maturity hay reinvestment.</dd>
       </dl>
     </div>
     <div class="cc">
-      <div class="head"><em>Effective</em> (curve-based)</div>
+      <div class="head"><em>Nhược điểm (giới hạn)</em></div>
       <dl>
-        <dt>Bond type</dt>
-        <dd>Bonds <em>có embedded option</em></dd>
-        <dt>Shock</dt>
-        <dd>Shock <b>benchmark curve</b> ± Δy (parallel)</dd>
-        <dt>CF assumption</dt>
-        <dd>Cash flows <em>có thể thay đổi</em> (call, put, prepay)</dd>
-        <dt>Use case</dt>
-        <dd>Callable, putable bonds; MBS, ABS; convertibles</dd>
+        <dt>Bỏ qua capital gain/loss</dt>
+        <dd>Bond priced at discount ($950) sẽ tăng dần lên $1,000 khi đến maturity → capital gain $50 không được phản ánh vào current yield → <em>understates</em> total return.</dd>
+        <dt>Bỏ qua reinvestment</dt>
+        <dd>Coupon nhận về giữa kỳ được giả định không earn thêm gì — ignores time value of money. Current yield &lt; YTM khi bond at discount; Current yield &gt; YTM khi bond at premium.</dd>
+        <dt>Không comparable</dt>
+        <dd>Không thể so sánh fair giữa bonds khác nhau về maturity, coupon structure, hoặc price level.</dd>
       </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
+  </div>
+</section>
+
+
+<!-- 06 · YIELD TO CALL & PUT -->
+<section data-label="YTC and YTP" class="slide">
+  <div class="run-header">
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
+    <span class="rule"></span>
+    <span>06 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Callable &amp; putable bonds · yield measures</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Yield to Call</em> &amp; <em class="hi">Yield to Put</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Callable bonds: issuer có quyền redeem trước maturity tại <em>call price</em>. Putable bonds: investor có quyền bán lại cho issuer tại <em>put price</em>. Mỗi loại có yield measure riêng dựa trên date và price của option.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 14px;">
+    <div class="cc">
+      <div class="head"><em>Yield to Call (YTC)</em></div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>YTM tính đến <em>ngày call đầu tiên</em> (first call date) thay vì maturity. Dùng call price (không phải par) làm "redemption value" cuối kỳ.</dd>
+        <dt>Formula</dt>
+        <dd>P = &sum; [C/2 / (1+YTC/2)^t] + Call Price / (1+YTC/2)^T<br>T = số kỳ đến first call date.</dd>
+        <dt>Khi nào dùng</dt>
+        <dd>Issuer thường call khi interest rates giảm (refinance at lower rate) → YTC quan trọng hơn YTM trong môi trường lãi suất thấp. YTC thường &lt; YTM cho premium callable bond.</dd>
+        <dt>Ví dụ nhanh</dt>
+        <dd>Bond price $1,050 · coupon 8% · call price $1,020 · callable trong 3 năm (6 kỳ): N=6, PV=−1050, PMT=40, FV=1020 → CPT I/Y → ×2 = YTC.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Yield to Put (YTP)</em></div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>YTM tính đến <em>ngày put đầu tiên</em>. Dùng put price làm "redemption value".</dd>
+        <dt>Cơ chế</dt>
+        <dd>Investor exercise put khi rates <em>tăng</em> — sell bond back at put price (thường par) và reinvest tại rate cao hơn. Put feature = floor on price = ceiling on yield.</dd>
+        <dt>Yield relationship</dt>
+        <dd>YTP thường &gt; YTM cho discount putable bonds khi yield cao (investor likely to put). Putable bond luôn worth ≥ straight bond.</dd>
+        <dt>Ví dụ nhanh</dt>
+        <dd>Bond price $950 · coupon 5% · put price $1,000 · putable trong 2 năm (4 kỳ): N=4, PV=−950, PMT=25, FV=1000 → CPT I/Y → ×2 = YTP.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
+  </div>
+</section>
+
+
+<!-- 07 · YIELD TO WORST -->
+<section data-label="Yield to worst" class="slide">
+  <div class="run-header">
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
+    <span class="rule"></span>
+    <span>07 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Conservative yield measure · callable bonds</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Yield to Worst (YTW)</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      YTW = <em>minimum</em> của tất cả possible yields: YTM và mọi YTC tại từng call date. Là yield thực tế mà investor có thể nhận được trong worst case — khi issuer exercise call option ở thời điểm bất lợi nhất cho investor.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ YTW formula</span>
+    YTW = min (YTM, YTC₁, YTC₂, …, YTCₙ, YTP₁, YTP₂, …)
+    <br><em>Tính tất cả possible yields → lấy giá trị nhỏ nhất.</em>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">WHY</span>
+      <div>
+        <div class="t">Tại sao cần YTW?</div>
+        <div class="d">Callable bonds: issuer luôn call khi có lợi cho họ (rates thấp, họ refinance). Investor cần biết <em>minimum</em> yield họ sẽ nhận — tránh bị "lừa" bởi YTM cao hơn thực tế realized yield.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">CFA</span>
+      <div>
+        <div class="t">CFA exam rule</div>
+        <div class="d">CFA curriculum: <em>YTW là yield measure tiêu chuẩn cho callable bonds</em>. Investors nên luôn dùng YTW thay vì YTM khi bond có embedded call option. YTW = conservative, phù hợp với worst-case analysis.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">EX</span>
+      <div>
+        <div class="t">Ví dụ</div>
+        <div class="d">Bond: YTM = 7.2% · YTC (call in 2Y) = 5.8% · YTC (call in 4Y) = 6.5%. YTW = min(7.2%, 5.8%, 6.5%) = <em>5.8%</em>. Investor nên expect yield 5.8% trong worst case — nếu issuer calls in 2 years.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">NOTE</span>
+      <div>
+        <div class="t">Premium bonds</div>
+        <div class="d">Với callable bonds at premium: YTW thường = YTC (earliest call). Với discount callable bonds: YTW thường = YTM (issuer ít có incentive to call khi bond below par). Luôn tính hết rồi lấy min.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
+  </div>
+</section>
+
+
+<!-- 08 · BOND EQUIVALENT YIELD -->
+<section data-label="Bond equivalent yield" class="slide">
+  <div class="run-header">
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
+    <span class="rule"></span>
+    <span>08 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Annualization · convention</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Bond Equivalent Yield (BEY)</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Hầu hết bonds ở US và các markets lớn trả coupon <em>semi-annual</em>. Để so sánh với annual-pay bonds (vd EU bonds), cần một convention thống nhất. BEY là yield được annualized theo cách <em>double the semi-annual rate</em> — không compound.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ BEY và chuyển đổi</span>
+    <div class="eq">
+      <span class="var">BEY</span> = 2 × r<sub>semi</sub>
+    </div>
+    <div class="note">
+      r<sub>semi</sub> = semi-annual period yield từ calculator (I/Y). BEY là <em>nominal annual rate</em>, không compounded.<br>
+      Effective annual yield (EAY) = (1 + r<sub>semi</sub>)² − 1 — higher than BEY do compounding effect.
+    </div>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>BEY — semi-annual bonds</em></div>
+      <dl>
+        <dt>US Treasuries &amp; corporates</dt>
+        <dd>Semi-annual coupon là chuẩn. Calculator I/Y = r<sub>semi</sub>. BEY = I/Y × 2. Đây là "annual YTM" được quote trên Bloomberg, Reuters, financial press.</dd>
+        <dt>Ví dụ</dt>
+        <dd>r<sub>semi</sub> = 3.544% → BEY = 3.544% × 2 = <em>7.09%</em>. EAY = (1.03544)² − 1 = 7.22% — cao hơn 0.13% do semi-annual compounding.</dd>
+        <dt>Convention</dt>
+        <dd>Khi CFA exam hỏi "annual YTM" cho semi-annual bond → mặc định là BEY (không phải EAY) trừ khi đề nói rõ.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Cross-market comparison</em></div>
+      <dl>
+        <dt>Annual-pay bonds (EU)</dt>
+        <dd>European sovereign bonds (Bunds, OATs) thường annual coupon. Để compare với US bonds, chuyển annual yield → BEY: BEY = 2 × [(1 + annual yield)^0.5 − 1].</dd>
+        <dt>Money market vs bonds</dt>
+        <dd>T-bills: quoted on discount basis (bank discount yield). Để compare với bond yields, cần convert sang BEY. BEY<sub>T-bill</sub> = (Face − Price)/Price × (365/days).</dd>
+        <dt>CFA exam focus</dt>
+        <dd>Nắm: BEY = 2 × semi. EAY &gt; BEY. Annual bond yield phải convert trước khi so sánh. Đừng confuse BEY với EAY.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
+  </div>
+</section>
+
+
+<!-- 09 · YIELD CURVE -->
+<section data-label="Yield curve" class="slide">
+  <div class="run-header">
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
+    <span class="rule"></span>
+    <span>09 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Term structure · interpretation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Yield curve</em> — hình dạng và ý nghĩa.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Yield curve (hay <em>term structure of interest rates</em>) biểu thị relationship giữa YTM và maturity cho bonds cùng credit quality (thường US Treasury). Hình dạng của yield curve phản ánh market expectations về lãi suất tương lai, liquidity, và economic conditions.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">▲</span>
+      <div>
+        <div class="t"><em class="hi">Normal (upward-sloping)</em></div>
+        <div class="d">Long-term yields &gt; short-term yields. <em>Hình dạng phổ biến nhất.</em> Phản ánh: (1) Expectation rates sẽ tăng dần; (2) Term premium — investors đòi extra yield cho long-duration risk; (3) Kinh tế bình thường, không recession. Ví dụ: 2Y = 4.5%, 10Y = 5.2%, 30Y = 5.6%.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">▼</span>
+      <div>
+        <div class="t"><em class="hi">Inverted (downward-sloping)</em></div>
+        <div class="d">Short-term yields &gt; long-term yields. <em>Signal recession mạnh.</em> Xảy ra khi Fed tăng lãi suất mạnh → short rates cao; market expect rates sẽ giảm tương lai → long rates thấp hơn. Ví dụ: 2Y = 5.2%, 10Y = 4.0% (như 2023 US). Indicator recession trong 12-18 tháng.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">—</span>
+      <div>
+        <div class="t"><em class="hi">Flat</em></div>
+        <div class="d">Yields roughly equal across maturities. Thường xảy ra trong giai đoạn <em>transition</em> — khi moving from normal → inverted (Fed hiking cycle trung kỳ) hoặc ngược lại. Ít predictive power hơn inverted.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">∩</span>
+      <div>
+        <div class="t"><em class="hi">Humped (bell-shaped)</em></div>
+        <div class="d">Medium-term yields cao nhất, cả short và long yields thấp hơn. Ít phổ biến hơn. Xảy ra khi market có mixed signals — short rates cao do Fed tightening, long rates thấp do deflationary expectations. Intermediate maturities chịu cả hai forces.</div>
+      </div>
     </div>
   </div>
 
   <p class="fine-muted-sm">
-    § Quick rule — Hỏi: "Cash flow có biến đổi theo yield không?" Nếu KHÔNG → modified đủ. Nếu CÓ → bắt buộc effective. Option-free bond: modified = effective (numerical).
+    § Spot rate vs par yield vs forward rate: ba loại yield curve khác nhau. CFA L1 focus vào <em>par yield curve</em> (YTM của par-priced bonds). Spot rate curve = zero-coupon yield curve — fundamental building block cho bond pricing.
   </p>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
   </div>
 </section>
 
 
-<!-- 09 · POSITIVE VS NEGATIVE CONVEXITY -->
-<section data-label="Positive vs Negative" class="slide">
+<!-- 10 · G-SPREAD & I-SPREAD -->
+<section data-label="G-spread and I-spread" class="slide">
   <div class="run-header">
-    <span>08.07 — Convexity</span>
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
     <span class="rule"></span>
-    <span>09 / 32</span>
+    <span>10 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Sign · matters</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Positive</em> vs <em class="hi">Negative</em>.</h2>
-  </div>
-
-  <div class="compare" style="margin-top: 12px;">
-    <div class="cc">
-      <div class="head"><em>Positive</em> convexity</div>
-      <dl>
-        <dt>Shape</dt>
-        <dd>P-Y curve <em>convex</em> (cong xuống)</dd>
-        <dt>Bonds</dt>
-        <dd>Option-free, putable (luôn dương)</dd>
-        <dt>Asymmetry</dt>
-        <dd>Gain (yield ↓) <b>&gt;</b> loss (yield ↑)</dd>
-        <dt>Investor</dt>
-        <dd>Holder's friend — "free option" trên volatility</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head"><em>Negative</em> convexity</div>
-      <dl>
-        <dt>Shape</dt>
-        <dd>P-Y curve <em>concave</em> (cong lên) ở vùng yield thấp</dd>
-        <dt>Bonds</dt>
-        <dd>Callable bonds, MBS (ở yield thấp)</dd>
-        <dt>Asymmetry</dt>
-        <dd>Gain (yield ↓) <b>&lt;</b> loss (yield ↑)</dd>
-        <dt>Investor</dt>
-        <dd>Penalty — option đang short tới issuer/borrower</dd>
-      </dl>
-    </div>
-  </div>
-
-  <div class="chart-box" style="margin-top: 14px;">
-    <span class="chart-label">§ Chart · positive vs negative convexity</span>
-    <svg viewBox="0 0 1500 300" xmlns="http://www.w3.org/2000/svg">
-      <line x1="80" y1="40" x2="80" y2="260" stroke="#14365F" stroke-width="2"/>
-      <line x1="80" y1="260" x2="1450" y2="260" stroke="#14365F" stroke-width="2"/>
-      <text x="40" y="60" font-family="Roboto Mono" font-size="16" fill="#14365F">Price</text>
-      <text x="1390" y="285" font-family="Roboto Mono" font-size="16" fill="#14365F">Yield</text>
-
-      <!-- option-free convex curve -->
-      <path d="M 130 80 Q 500 160 900 220 T 1430 258" fill="none" stroke="#3C7A50" stroke-width="4"/>
-      <text x="180" y="105" font-family="Roboto Slab" font-size="18" fill="#3C7A50" font-weight="700">Option-free (positive convex)</text>
-
-      <!-- callable curve flattens then concaves at low yields -->
-      <path d="M 130 110 Q 280 110 420 130 Q 600 175 900 220 T 1430 258" fill="none" stroke="#B85A3F" stroke-width="4" stroke-dasharray="0"/>
-      <text x="160" y="145" font-family="Roboto Slab" font-size="18" fill="#B85A3F" font-weight="700">Callable (negative at low y)</text>
-
-      <!-- call price ceiling line -->
-      <line x1="130" y1="110" x2="450" y2="110" stroke="#B85A3F" stroke-width="1.5" stroke-dasharray="4 4"/>
-      <text x="200" y="100" font-family="Roboto Mono" font-size="13" fill="#B85A3F">call price ceiling</text>
-
-      <!-- y* mark -->
-      <line x1="430" y1="40" x2="430" y2="260" stroke="#14365F" stroke-width="1" stroke-dasharray="3 4"/>
-      <text x="395" y="285" font-family="Roboto Mono" font-size="15" fill="#14365F">y*</text>
-      <text x="450" y="40" font-family="Roboto Mono" font-size="13" fill="#14365F">callable curves bend below option-free above y*</text>
-    </svg>
-    <div class="caption"><b>Bend point y*</b> — Khi yield đủ thấp, callable bond bị "capped" bởi call price → curve flatten rồi concave (negative convexity). Ở high yield, callable hành xử giống option-free.</div>
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
-  </div>
-</section>
-
-
-<!-- 10 · NEGATIVE CONVEXITY DETAIL -->
-<section data-label="Negative convexity" class="slide">
-  <div class="run-header">
-    <span>08.07 — Convexity</span>
-    <span class="rule"></span>
-    <span>10 / 32</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Callable · MBS</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">When <em class="hi">negative</em> convexity occurs.</h2>
-  </div>
-
-  <div class="rule-box">
-    <span class="tag">§ Two scenarios</span>
-    Negative convexity xảy ra khi <em>holder đang short một option</em> đối với issuer/borrower. Khi market favorable cho option holder (issuer/borrower), giá bond không tăng tự do — bị capped → curve uốn ngược.
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 18px;">
-    <li>
-      <span>
-        <span class="step-title">Callable bonds — issuer's call option</span>
-        <span class="step-body">Khi yields giảm (refinance hấp dẫn), issuer <em>call</em> bond về ở call price. Investor không hưởng được full price appreciation → upside <em>capped</em>. Ở yield thấp, callable bond exhibits negative convexity.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">MBS — borrower's prepayment option</span>
-        <span class="step-body">Mortgage borrowers <em>prepay</em> (refinance) khi mortgage rates giảm. MBS investor nhận principal sớm khi reinvestment rate thấp — "prepayment risk". MBS có negative convexity ở vùng low rates.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">High yield zone</span>
-        <span class="step-body">Khi yields cao đủ, call/prepay không attractive → callable &amp; MBS hành xử giống option-free → positive convexity returns. Vì vậy negative convexity là <em>regime-dependent</em>.</span>
-      </span>
-    </li>
-  </ol>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
-  </div>
-</section>
-
-
-<!-- 11 · PUTABLE BONDS -->
-<section data-label="Putable bonds" class="slide">
-  <div class="run-header">
-    <span>08.07 — Convexity</span>
-    <span class="rule"></span>
-    <span>11 / 32</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Putable · always positive</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Putable</em> bonds.</h2>
+    <div class="eyebrow">Spread measures · nominal spreads</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">G-spread</em> &amp; <em class="hi">I-spread</em>.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Putable bond cho holder quyền bán lại bond cho issuer ở put price. Đây là option <em>thuộc về investor</em> → ngược chiều callable. Putable luôn có <b>positive convexity</b> (thậm chí cao hơn option-free ở yield cao).
+      Spread measures so sánh bond yield với một benchmark — phản ánh credit risk, liquidity premium, và đặc điểm khác của bond so với risk-free rate hoặc swap rate. G-spread và I-spread là <em>nominal spreads</em> — đơn giản nhất trong bộ spread measures.
     </p>
   </div>
 
-  <div class="rule-box">
-    <span class="tag">§ Putable mechanics</span>
-    Khi yields tăng (price giảm), holder có thể <em>put</em> bond về issuer ở put price (thường = par). Vì vậy giá bond bị <b>floored</b> ở put price → downside <em>limited</em>. Asymmetry này tăng cường convexity dương.
-  </div>
-
-  <div class="formula-box" style="margin-top: 18px;">
-    <span class="fmt-label">§ Convexity ranking (yield ↓ low region)</span>
-    <div class="eq"><span class="var">C<sub>callable</sub></span> &lt; <span class="var">C<sub>option-free</sub></span> &lt; <span class="var">C<sub>putable</sub></span></div>
-    <div class="note">Callable: capped upside → có thể negative. Option-free: standard convex. Putable: floored downside → tăng convexity. CFA L1 thường test ranking này.</div>
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
-  </div>
-</section>
-
-
-<!-- 12 · CONVEXITY PROPERTIES -->
-<section data-label="Convexity properties" class="slide">
-  <div class="run-header">
-    <span>08.07 — Convexity</span>
-    <span class="rule"></span>
-    <span>12 / 32</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Properties · convexity</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">What drives <em class="hi">C</em>.</h2>
-  </div>
-
-  <div class="rule-box">
-    <span class="tag">§ Convexity properties — option-free bonds</span>
-    Convexity tăng cùng những yếu tố làm tăng duration <em>và</em> tăng <em>dispersion</em> của cash flows quanh duration. Roughly, <b>C ≈ Duration² + dispersion term</b>.
-  </div>
-
-  <div class="tenets-grid" style="margin-top: 18px;">
-    <div class="tenet">
-      <span class="n">↑M</span>
-      <div>
-        <div class="t"><em class="hi">↑ với maturity</em></div>
-        <div class="d">Long-maturity bonds có cash flows xa → curvature lớn. 30-year bond convexity &gt;&gt; 5-year bond.</div>
-      </div>
+  <div class="compare" style="margin-top: 14px;">
+    <div class="cc">
+      <div class="head"><em>G-spread (Government spread)</em></div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>Difference giữa YTM của bond và YTM của <em>on-the-run Treasury</em> cùng maturity (hoặc gần nhất).</dd>
+        <dt>Formula</dt>
+        <dd>G-spread = YTM<sub>bond</sub> − YTM<sub>Treasury benchmark</sub></dd>
+        <dt>Ví dụ</dt>
+        <dd>Corporate bond 5Y YTM = 5.80%; Treasury 5Y YTM = 4.20%.<br><em>G-spread = 5.80% − 4.20% = 160 bps.</em></dd>
+        <dt>Limitation</dt>
+        <dd>Benchmark phải có cùng maturity — nhưng on-the-run Treasuries chỉ exist ở specific maturities (2Y, 3Y, 5Y, 7Y, 10Y, 30Y). Interpolation cần thiết cho odd maturities.</dd>
+        <dt>Dùng khi nào</dt>
+        <dd>Phổ biến ở US và UK markets. Simple to compute. Benchmark Treasury là liquid, risk-free reference. Dùng cho IG corporates, sovereign comparisons.</dd>
+      </dl>
     </div>
-    <div class="tenet">
-      <span class="n">↑D</span>
-      <div>
-        <div class="t"><em class="hi">↑ với duration²</em></div>
-        <div class="d">Convexity scale roughly với D². Bond duration 10 → C ≈ 100; duration 5 → C ≈ 25 (rough).</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">↑CF</span>
-      <div>
-        <div class="t"><em class="hi">↑ với CF dispersion</em></div>
-        <div class="d">Cash flows trải dài (low coupon, zero-coupon thấp dispersion; coupon-bearing trải đều dispersion cao) → C cao hơn.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">↓y</span>
-      <div>
-        <div class="t"><em class="hi">↓ với yield</em></div>
-        <div class="d">Khi yield tăng, discount factor cho CF xa tăng nhanh → present-value weight shift gần → convexity giảm.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">↓c</span>
-      <div>
-        <div class="t">↓ với coupon rate</div>
-        <div class="d">Cao coupon → CF tập trung sớm hơn → ít dispersion → C thấp. Zero-coupon có C cao nhất với same maturity.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">OPT</span>
-      <div>
-        <div class="t">Option giảm convexity (callable)</div>
-        <div class="d">Embedded short option (callable, MBS) trừ đi convexity từ option-free baseline. Putable thì cộng thêm.</div>
-      </div>
+    <div class="cc">
+      <div class="head"><em>I-spread (Interpolated swap spread)</em></div>
+      <dl>
+        <dt>Định nghĩa</dt>
+        <dd>Difference giữa YTM của bond và <em>swap rate</em> có cùng maturity (interpolated từ swap curve nếu cần).</dd>
+        <dt>Formula</dt>
+        <dd>I-spread = YTM<sub>bond</sub> − Swap rate<sub>same maturity</sub></dd>
+        <dt>Ví dụ</dt>
+        <dd>Corporate bond 5Y YTM = 5.80%; 5Y swap rate = 4.45%.<br><em>I-spread = 5.80% − 4.45% = 135 bps.</em></dd>
+        <dt>Ưu điểm vs G-spread</dt>
+        <dd>Swap curve continuous (mọi maturity đều có rate) — không cần limit vào specific Treasury maturities. Dùng rộng rãi trong Europe, EM, và credit markets toàn cầu.</dd>
+        <dt>Limitation</dt>
+        <dd>Swap rate không hoàn toàn risk-free — có counterparty credit risk. I-spread phản ánh spread over <em>bank credit quality</em>, không over pure risk-free rate.</dd>
+      </dl>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
   </div>
 </section>
 
 
-<!-- 13 · EMPIRICAL VS ANALYTICAL -->
-<section data-label="Empirical vs Analytical" class="slide">
+<!-- 11 · Z-SPREAD -->
+<section data-label="Z-spread" class="slide">
   <div class="run-header">
-    <span>08.07 — Convexity</span>
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
     <span class="rule"></span>
-    <span>13 / 32</span>
+    <span>11 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Empirical · vs · Analytical</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Empirical</em> vs <em class="hi">Analytical</em> measures.</h2>
+    <div class="eyebrow">Spread measures · spot rate based</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Z-spread</em> (Zero-volatility spread).</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Hai phương pháp đo duration/convexity. <em>Analytical</em>: từ pricing model (deterministic). <em>Empirical</em>: regress price changes thực tế lên yield changes thực tế (statistical).
+      Z-spread khắc phục nhược điểm của G-spread và I-spread bằng cách dùng toàn bộ <em>spot rate curve</em> (không phải single benchmark yield) để discount từng cash flow riêng lẻ. Đây là spread "thực chất" hơn — phản ánh credit risk qua mọi điểm trên curve.
     </p>
   </div>
 
-  <div class="compare" style="margin-top: 12px;">
+  <div class="formula-box">
+    <span class="fmt-label">§ Z-spread — định nghĩa và equation</span>
+    <div class="eq">
+      <span class="var">P</span> = <span class="frac"><span class="num">CF₁</span><span class="den">(1 + S₁ + Z)¹</span></span> + <span class="frac"><span class="num">CF₂</span><span class="den">(1 + S₂ + Z)²</span></span> + … + <span class="frac"><span class="num">CFₙ</span><span class="den">(1 + Sₙ + Z)ⁿ</span></span>
+    </div>
+    <div class="note">
+      S<sub>t</sub> = spot rate tại thời điểm t · Z = Z-spread (constant spread added to EVERY spot rate).<br>
+      Z-spread solved by trial-and-error — tìm Z sao cho PV của tất cả CFs = current market price.
+    </div>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 14px;">
+    <div class="tenet">
+      <span class="n">VS</span>
+      <div>
+        <div class="t">Z-spread vs G-spread</div>
+        <div class="d">G-spread: single benchmark yield. Z-spread: dùng <em>toàn bộ spot curve</em> — mỗi CF được discounted bởi spot rate phù hợp. Z-spread = more rigorous, accounts for shape of yield curve.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">INT</span>
+      <div>
+        <div class="t">Ý nghĩa kinh tế</div>
+        <div class="d">Z-spread = <em>constant spread over all spot rates</em> mà investor earn trên risk-free curve. Phản ánh credit risk + liquidity risk của bond — không phụ thuộc vào curve shape.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">USE</span>
+      <div>
+        <div class="t">Ứng dụng</div>
+        <div class="d">Z-spread là standard spread measure cho <em>non-callable bonds</em>. Cho callable bonds, dùng OAS (Z-spread minus option cost). Phổ biến trong credit analysis, bond relative value.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">LIM</span>
+      <div>
+        <div class="t">Giới hạn</div>
+        <div class="d">Z-spread <em>không điều chỉnh</em> cho embedded options (call/put). Nếu bond có option, Z-spread không thuần là credit spread — cần OAS để tách option cost ra.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
+  </div>
+</section>
+
+
+<!-- 12 · OAS -->
+<section data-label="OAS" class="slide">
+  <div class="run-header">
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
+    <span class="rule"></span>
+    <span>12 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Spread measures · option-adjusted</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">OAS</em> — Option-Adjusted Spread.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      OAS tách phần spread do option ra khỏi total spread — để đo <em>pure credit + liquidity spread</em> của bond. Đây là spread measure chính xác nhất cho callable và putable bonds, nhưng phụ thuộc vào <em>interest rate model</em> được dùng.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ OAS relationship</span>
+    <div class="eq">
+      <span class="var">Z-spread</span> = <span class="var">OAS</span> + <span class="var">Option cost (bps)</span>
+    </div>
+    <div class="note">
+      → OAS = Z-spread − Option cost.<br>
+      Option cost: giá trị của embedded option tính bằng bps. Callable: option cost &gt; 0 (issuer has valuable call) → OAS &lt; Z-spread. Putable: option cost &lt; 0 (investor has valuable put) → OAS &gt; Z-spread.
+    </div>
+  </div>
+
+  <div class="compare" style="margin-top: 14px;">
     <div class="cc">
-      <div class="head"><em>Analytical</em></div>
+      <div class="head"><em>Callable bonds</em></div>
       <dl>
-        <dt>Method</dt>
-        <dd>Closed-form / numerical from pricing model</dd>
-        <dt>Inputs</dt>
-        <dd>Coupon, maturity, YTM, embedded option model</dd>
-        <dt>Assumes</dt>
-        <dd>Yield curve <em>parallel</em> shift; constant spread</dd>
-        <dt>Strength</dt>
-        <dd>Forward-looking, không cần price history</dd>
+        <dt>Option cost &gt; 0</dt>
+        <dd>Call option thuộc về <em>issuer</em>. Investor bán option này cho issuer — nhận extra yield (wider Z-spread). Z-spread = OAS + option value.</dd>
+        <dt>OAS &lt; Z-spread</dt>
+        <dd>OAS loại bỏ call option cost → thấp hơn Z-spread. OAS = "pure credit spread" sau khi đã trừ phần yield đến từ call option.</dd>
+        <dt>So sánh</dt>
+        <dd>Dùng OAS để so sánh callable bond vs straight bond (không callable). OAS càng cao → bond rẻ hơn so với peers.</dd>
       </dl>
     </div>
     <div class="cc">
-      <div class="head"><em>Empirical</em></div>
+      <div class="head"><em>Putable bonds</em></div>
       <dl>
-        <dt>Method</dt>
-        <dd>Regression: <em>%ΔP = α + β · Δy</em> trên historical data</dd>
-        <dt>Inputs</dt>
-        <dd>Past prices, past yields (e.g., daily 1-year)</dd>
-        <dt>Assumes</dt>
-        <dd>Past relationship persists; spread/credit dynamics included</dd>
-        <dt>Strength</dt>
-        <dd>Captures actual co-movement (credit-yield link)</dd>
+        <dt>Option cost &lt; 0</dt>
+        <dd>Put option thuộc về <em>investor</em>. Investor trả cho option này bằng cách chấp nhận yield thấp hơn. Z-spread = OAS − |option value|.</dd>
+        <dt>OAS &gt; Z-spread</dt>
+        <dd>OAS cao hơn Z-spread vì Z-spread đã bị kéo xuống bởi valuable put. OAS phản ánh credit spread thuần.</dd>
+        <dt>Model dependency</dt>
+        <dd>OAS phụ thuộc vào interest rate model (Ho-Lee, Hull-White, BDT). Khác model → khác OAS. Phải consistent khi compare.</dd>
       </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
+  </div>
+</section>
+
+
+<!-- 13 · SPREAD MEASURES SUMMARY -->
+<section data-label="Spread measures summary" class="slide">
+  <div class="run-header">
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
+    <span class="rule"></span>
+    <span>13 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">So sánh · tổng hợp bốn spread</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Bốn spread measures</em> — so sánh và lựa chọn.</h2>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">G</span>
+      <div>
+        <div class="t"><em class="hi">G-spread</em> · nominal spread over Treasury</div>
+        <div class="d"><b>Benchmark:</b> on-the-run Treasury same maturity. <b>Method:</b> YTM − Treasury yield (single number). <b>Best for:</b> quick comparison, investment-grade US corporates, sovereign bonds. <b>Weakness:</b> needs exact maturity match; ignores curve shape.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">I</span>
+      <div>
+        <div class="t"><em class="hi">I-spread</em> · interpolated swap spread</div>
+        <div class="d"><b>Benchmark:</b> LIBOR/SOFR swap curve (continuous). <b>Method:</b> YTM − swap rate (interpolated). <b>Best for:</b> European bonds, global credit markets, any maturity. <b>Weakness:</b> swap rate not fully risk-free (bank credit quality).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">Z</span>
+      <div>
+        <div class="t"><em class="hi">Z-spread</em> · zero-volatility, spot curve based</div>
+        <div class="d"><b>Benchmark:</b> full spot rate curve. <b>Method:</b> constant spread added to each spot rate so PV = price. <b>Best for:</b> non-callable bonds (MBS, ABS, corporates without options). <b>Weakness:</b> does not adjust for embedded options.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">OAS</span>
+      <div>
+        <div class="t"><em class="hi">OAS</em> · option-adjusted spread</div>
+        <div class="d"><b>Benchmark:</b> full spot curve + option model. <b>Method:</b> Z-spread minus option cost (bps). <b>Best for:</b> callable bonds, putable bonds, MBS (with prepayment), convertibles. <b>Weakness:</b> model-dependent; requires interest rate tree/Monte Carlo.</div>
+      </div>
     </div>
   </div>
 
   <p class="fine-muted-sm">
-    § Why differ — Empirical duration của <em>high-yield bond</em> thường thấp hơn analytical, vì khi yields tăng do macro stress, credit spread <em>tightens</em> (flight to quality), partially offsetting price drop. Analytical không capture credit-yield correlation.
+    § Ranking by sophistication: G-spread &lt; I-spread &lt; Z-spread &lt; OAS. CFA exam: match spread to bond type — straight bond → Z-spread; callable/putable → OAS; quick quote → G-spread or I-spread.
   </p>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
   </div>
 </section>
 
 
-<!-- 14 · YIELD VOLATILITY -->
-<section data-label="Yield volatility" class="slide">
+<!-- 14 · Z-SPREAD WORKED EXAMPLE -->
+<section data-label="Z-spread example" class="slide">
   <div class="run-header">
-    <span>08.07 — Convexity</span>
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
     <span class="rule"></span>
-    <span>14 / 32</span>
+    <span>14 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Yield · volatility</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Volatility <em class="hi">σ(Δy)</em> matters.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Bond price risk = (sensitivity to Δy) × (size of Δy). Duration &amp; convexity đo <em>sensitivity</em>; yield volatility đo <em>magnitude</em> của Δy. Bond risk chỉ realize khi yields thực sự move.
-    </p>
+    <div class="eyebrow">Worked example · Z-spread calculation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Tính Z-spread</em> — ví dụ số step-by-step.</h2>
   </div>
 
-  <div class="formula-box">
-    <span class="fmt-label">§ Approximate price-return volatility</span>
-    <div class="eq"><span class="var">σ</span>(%Δ<span class="var">P</span>) ≈ <span class="var">D<sub>Mod</sub></span> × <span class="var">σ</span>(<span class="var">Δy</span>)</div>
-    <div class="note">First-order approx: price volatility ≈ duration × yield volatility. Vd: D = 7, σ(Δy) = 80 bps → σ(%ΔP) ≈ 7 × 0.008 = 5.6% per period. Convexity adjustment thêm cho large moves.</div>
+  <div class="rule-box">
+    <span class="tag">§ Setup</span>
+    Corporate bond: 3-year annual coupon 5%, face $100, current price $98.50. Spot rate curve (annual): S₁ = 3.50%, S₂ = 4.00%, S₃ = 4.40%. Tính Z-spread.
   </div>
 
-  <div class="rule-box" style="margin-top: 18px;">
-    <span class="tag">§ Term structure of yield volatility</span>
-    Short-end yields (2Y, 5Y) thường <em>volatile hơn</em> long-end (30Y) vì Fed policy dominate short rates. Một bond 5-year có thể có price vol comparable với 30-year nếu σ(Δy<sub>5Y</sub>) đủ lớn so với σ(Δy<sub>30Y</sub>) — duration 5 × σ_high vs duration 20 × σ_low.
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
-  </div>
-</section>
-
-
-<!-- 15 · BOND RETURN DECOMPOSITION -->
-<section data-label="Return decomposition" class="slide">
-  <div class="run-header">
-    <span>08.07 — Convexity</span>
-    <span class="rule"></span>
-    <span>15 / 32</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Total · return</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Bond <em class="hi">return</em> decomposition.</h2>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Total bond return — sources</span>
-    <div class="eq"><span class="var">R<sub>total</sub></span> = <span class="var">Coupon</span> + <span class="var">Roll-down</span> + <span class="var">Price</span> Δ + <span class="var">Reinvestment</span></div>
-    <div class="note"><b>Coupon</b> — cash income, periodic. <b>Roll-down</b> — gain do bond "rolls" xuống yield curve khi tiến tới maturity (assume curve unchanged). <b>Price Δ</b> — −D·Δy + ½·C·(Δy)² · (yield-driven). <b>Reinvestment</b> — return từ reinvest coupon ở prevailing rate.</div>
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 16px;">
+  <ol class="num-list tight" style="margin-top: 14px;">
     <li>
       <span>
-        <span class="step-title">Coupon income — predictable</span>
-        <span class="step-body">Đối với fixed-rate bond, đây là dòng tiền chắc chắn (assuming no default). Chiếm phần lớn return của HQ short-duration bonds.</span>
+        <span class="step-title">Cash flows</span>
+        <span class="step-body">CF₁ = $5 (coupon yr1) · CF₂ = $5 (coupon yr2) · CF₃ = $105 (coupon + par yr3).</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Roll-down — curve shape matters</span>
-        <span class="step-body">Trên upward-sloping curve, holding constant, bond moves từ điểm yield cao xuống điểm yield thấp → price tăng. Steeper curve → bigger roll-down.</span>
+        <span class="step-title">Pricing equation với Z-spread</span>
+        <span class="step-body">98.50 = 5/(1+0.035+Z)¹ + 5/(1+0.040+Z)² + 105/(1+0.044+Z)³. Tìm Z bằng trial-and-error.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Price change — D &amp; C drive</span>
-        <span class="step-body">Yield change effect: −D·Δy + ½·C·(Δy)². Đây là main mark-to-market source. Convexity benefit nổi bật khi yield volatility cao.</span>
+        <span class="step-title">Trial Z = 1.00% = 100 bps</span>
+        <span class="step-body">PV = 5/1.045 + 5/1.05² + 105/1.054³ = 4.785 + 4.535 + 89.92 = <em>99.24</em>. Too high (need 98.50) → Z phải lớn hơn (discount more).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Trial Z = 1.30% = 130 bps</span>
+        <span class="step-body">PV = 5/1.048 + 5/1.053² + 105/1.057³ = 4.771 + 4.509 + 89.20 = <em>98.48</em> ≈ 98.50. ✓ <em>Z-spread ≈ 130 bps</em>.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Interpretation</span>
+        <span class="step-body">Bond earn thêm <em>130 bps</em> trên mọi điểm của spot curve — đây là compensation cho credit risk + liquidity risk của corporate bond so với risk-free rate. G-spread (so sánh đơn giản) ≈ YTM − Treasury ≈ 120-125 bps — thấp hơn Z-spread vì ignores curve shape.</span>
       </span>
     </li>
   </ol>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
   </div>
 </section>
 
 
-<!-- 16 · KEY RATE DURATION -->
-<section data-label="Key rate duration" class="slide">
-  <div class="run-header">
-    <span>08.07 — Convexity</span>
-    <span class="rule"></span>
-    <span>16 / 32</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Curve · risk</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Key rate</em> duration.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Modified duration giả định <em>parallel shift</em> của yield curve. Nhưng curves thường <em>twist</em> (steepen / flatten) hoặc <em>butterfly</em> — short, mid, long rates di chuyển khác nhau. Key rate duration đo sensitivity đến shift ở <em>một maturity điểm cụ thể</em>.
-    </p>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Key rate (partial) duration</span>
-    <div class="eq"><span class="var">KRD<sub>k</sub></span> = −(1/<span class="var">P</span>) × ∂<span class="var">P</span>/∂<span class="var">y<sub>k</sub></span></div>
-    <div class="note"><b>k</b> = key maturity (vd 2Y, 5Y, 10Y, 30Y). Σ<sub>k</sub> KRD<sub>k</sub> ≈ Modified Duration. Mỗi KRD đo Δprice khi <em>chỉ</em> y<sub>k</sub> shift, các điểm khác hold constant. Useful cho hedge non-parallel curve risk.</div>
-  </div>
-
-  <div class="rule-box" style="margin-top: 18px;">
-    <span class="tag">§ Use case — barbell vs bullet</span>
-    Hai portfolios cùng modified duration. Bullet (5Y bond): KRD tập trung ở 5Y. Barbell (2Y + 10Y): KRD chia đều ở 2Y và 10Y. Khi curve flatten (10Y giảm, 2Y tăng): bullet ít bị, barbell có gain ở 10Y nhưng loss ở 2Y. KRD reveals sự khác biệt mà single-number duration giấu kín.
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
-  </div>
-</section>
-
-
-<!-- 17 · CREDIT/SPREAD RISK -->
-<section data-label="Credit/spread risk" class="slide">
-  <div class="run-header">
-    <span>08.07 — Convexity</span>
-    <span class="rule"></span>
-    <span>17 / 32</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Spread · risk</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Credit</em> &amp; yield spread risk.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      YTM của corporate bond = benchmark rate + <em>spread</em>. Risk có thể đến từ benchmark (term structure / interest rate risk) HOẶC từ spread (credit / liquidity risk). Cần đo riêng.
-    </p>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Yield decomposition</span>
-    <div class="eq"><span class="var">YTM<sub>corp</sub></span> = <span class="var">y<sub>benchmark</sub></span> + <span class="var">Spread</span></div>
-    <div class="note">Spread reflects credit risk + liquidity premium + tax/regulatory factors. Risk decomposition: %ΔP ≈ −D × Δy<sub>benchmark</sub> − D<sub>spread</sub> × ΔSpread + convexity terms. Spread duration ≈ modified duration cho fixed-coupon bonds.</div>
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 16px;">
-    <li>
-      <span>
-        <span class="step-title">Spread duration</span>
-        <span class="step-body">Sensitivity của price khi <em>chỉ spread</em> thay đổi (benchmark hold constant). Cho fixed-rate bonds, spread duration ≈ modified duration. Cho FRN, spread duration vẫn lớn nhưng yield duration nhỏ.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Credit migration vs default</span>
-        <span class="step-body">Bond rating downgrade (vd BBB → BB) → spread widen → price drop. Không cần default. Default là extreme case: recovery rate (typically 30-40%) determines loss.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Spread risk separate from term structure</span>
-        <span class="step-body">2008/2020 stress: rates giảm (Fed cuts) nhưng credit spreads widen mạnh → IG/HY corporates lỗ dù Treasury duration gain. Cần separate measure để hedge.</span>
-      </span>
-    </li>
-  </ol>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
-  </div>
-</section>
-
-
-<!-- 18 · RECAP -->
+<!-- 15 · KEY TAKEAWAYS -->
 <section data-label="Takeaways" class="slide">
   <div class="run-header">
-    <span>08.07 — Convexity</span>
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
     <span class="rule"></span>
-    <span>18 / 32</span>
+    <span>15 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Recap · big picture</div>
@@ -772,41 +752,40 @@
     <div class="tenet">
       <span class="n">α</span>
       <div>
-        <div class="t">Convexity = curvature of P-Y</div>
-        <div class="d">Duration = 1<sup>st</sup> derivative (linear). Convexity = 2<sup>nd</sup> derivative (quadratic). %ΔP ≈ −D·Δy + ½·C·(Δy)². Convexity adjustment luôn dương cho option-free bonds.</div>
+        <div class="t">YTM = IRR of bond</div>
+        <div class="d">Single rate equating PV of all CFs to price. Assumes hold-to-maturity + reinvest at YTM. BEY = 2 × semi-annual rate. Discount bond: YTM &gt; coupon. Premium: YTM &lt; coupon. Par: YTM = coupon.</div>
       </div>
     </div>
     <div class="tenet">
       <span class="n">β</span>
       <div>
-        <div class="t">Effective for embedded options</div>
-        <div class="d">Modified D&amp;C dùng cho option-free (CF fixed). Effective D&amp;C dùng curve shock cho callable, putable, MBS (CF biến đổi). Always positive cho putable; can turn negative cho callable/MBS ở low yields.</div>
+        <div class="t">Current yield = income only</div>
+        <div class="d">Annual coupon / price. Simple, ignores capital gain/loss và reinvestment. Understates total return for discount bonds; overstates for premium bonds. Quick proxy, not for rigorous comparison.</div>
       </div>
     </div>
     <div class="tenet">
       <span class="n">γ</span>
       <div>
-        <div class="t">Convexity ↑ với M, D², dispersion · ↓ với y, coupon</div>
-        <div class="d">Long maturity, low coupon, low yield → high convexity. Zero-coupon highest. Putable adds convexity, callable subtracts ở low-y region.</div>
+        <div class="t">YTC/YTP/YTW cho callable/putable</div>
+        <div class="d">YTC = YTM to call date with call price. YTP = YTM to put date with put price. YTW = min(YTM, all YTCs, all YTPs). <em>YTW là standard measure cho callable bonds</em> — conservative, worst-case yield.</div>
       </div>
     </div>
     <div class="tenet">
       <span class="n">δ</span>
       <div>
-        <div class="t">Beyond duration: KRD, spread, vol</div>
-        <div class="d">KRD đo non-parallel curve risk (steepen, flatten, twist). Spread duration đo credit risk separately. σ(Δy) magnify duration into actual price volatility. Empirical vs analytical: empirical capture credit-yield correlation.</div>
+        <div class="t">Spreads: G → I → Z → OAS</div>
+        <div class="d">G-spread: over Treasury (single point). I-spread: over swap curve (any maturity). Z-spread: over full spot curve (constant). OAS: Z-spread − option cost (callable bonds). OAS = most rigorous, model-dependent. Straight bond → Z-spread; callable → OAS.</div>
       </div>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
   </div>
 </section>
 
 
-<!-- 19 · TRANSITION -->
+<!-- 16 · TRANSITION -->
 <section data-label="Practice begins" class="slide end-slide">
   <div>
     <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
@@ -815,81 +794,75 @@
 </section>
 
 
-<!-- 20 · Q1 EN — Total return calc -->
+<!-- 17 · Q1 EN — YTM calculation -->
 <section data-label="Q1 Original" class="slide">
   <div class="run-header">
-    <span>08.07 — Convexity</span>
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
     <span class="rule"></span>
-    <span>20 / 32</span>
+    <span>17 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Total return</em> with D + C.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">YTM</em> computation.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      An option-free bond has a <strong>modified duration of 8.20</strong> and an <strong>annual convexity of 145</strong>. Its yield-to-maturity falls by <strong>75 basis points</strong>. Using the second-order Taylor approximation, the <strong>estimated percentage change in the bond's full price</strong> is <em>closest to</em>:
+      A fixed-rate corporate bond has a face value of $1,000, a coupon rate of 8% paid semi-annually, and a remaining maturity of 4 years. The bond is currently trading at $1,060. An analyst wants to compute the bond's yield to maturity (YTM) and compare it with the coupon rate. Which of the following is <em>closest</em> to the YTM, and how does it compare to the coupon rate?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">+6.15% — duration impact only, no convexity adjustment.</span></li>
-    <li><span class="lbl">B</span><span class="opt">+6.56% — duration impact plus convexity adjustment of +0.41 percentage points.</span></li>
-    <li><span class="lbl">C</span><span class="opt">+5.74% — duration impact minus convexity adjustment of 0.41 percentage points.</span></li>
+    <li><span class="lbl">A</span><span class="opt">YTM ≈ 6.28%; YTM is less than the coupon rate of 8%, consistent with the bond being priced at a premium.</span></li>
+    <li><span class="lbl">B</span><span class="opt">YTM ≈ 8.00%; YTM equals the coupon rate because the coupon is fixed, regardless of the price.</span></li>
+    <li><span class="lbl">C</span><span class="opt">YTM ≈ 9.54%; YTM exceeds the coupon rate because premium bonds always have higher yields than their stated coupon.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
   </div>
 </section>
 
 
-<!-- 21 · Q1 HINT -->
+<!-- 18 · Q1 HINT -->
 <section data-label="Q1 Hint" class="slide">
   <div class="run-header">
-    <span>08.07 — Convexity</span>
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
     <span class="rule"></span>
-    <span>21 / 32</span>
+    <span>18 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">key relationship</em>.</h2>
   </div>
   <div class="hint-card">
-    <span class="h-tag">§ Keywords</span>
-    Modified duration <mark>8.20</mark> · Convexity <mark>145</mark> · Yield <mark>falls 75 bps</mark> → Δy = <mark>−0.0075</mark>. Bond <mark>option-free</mark> → C dương → adjustment cộng thêm.
+    <span class="h-tag">§ Key principle</span>
+    Bond priced at <mark>premium</mark> ($1,060 &gt; $1,000) → investor trả nhiều hơn par → <mark>capital loss</mark> khi hold đến maturity → YTM phải &lt; coupon rate.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">Yield <em>falls</em> → Δy âm. Convert: −75 bps = −0.0075 (decimal). Đừng nhầm dấu — yield giảm thì price tăng (positive ΔP).</span>
+      <span class="htxt">Calculator keystrokes: N = 8 (kỳ semi-annual × 4 năm) · PV = −1060 · PMT = 40 (= $1,000 × 8% / 2) · FV = 1000 · CPT I/Y → semi-annual rate.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Duration term: −D × Δy = −8.20 × (−0.0075) = <em>+0.0615</em> = +6.15%.</span>
+      <span class="htxt">BEY = I/Y × 2. Semi-annual rate ≈ 3.14% → BEY = <em>6.28%</em>. So sánh: YTM 6.28% &lt; coupon 8% → bond at premium, logic nhất quán.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Convexity adjustment: ½ × C × (Δy)² = 0.5 × 145 × (0.0075)² = 0.5 × 145 × 0.00005625 = <em>+0.00408</em> ≈ +0.41%. Lưu ý (Δy)² luôn dương dù Δy âm.</span>
-    </li>
-    <li>
-      <span class="hnum">Hint 4</span>
-      <span class="htxt">Total %ΔP ≈ +6.15% + 0.41% = <em>+6.56%</em>. Convexity <em>cộng thêm</em> vào upside (đây là "convexity gift" của option-free).</span>
+      <span class="htxt">Loại B ngay: YTM = coupon rate chỉ đúng khi bond priced <em>at par</em>. Loại C: premium bond → YTM &lt; coupon, không phải &gt; coupon — C sai về direction.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
   </div>
 </section>
 
 
-<!-- 22 · Q1 Dịch đề -->
+<!-- 19 · Q1 Dịch đề -->
 <section data-label="Q1 Dịch đề" class="slide">
   <div class="run-header">
-    <span>08.07 — Convexity</span>
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
     <span class="rule"></span>
-    <span>22 / 32</span>
+    <span>19 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
@@ -898,137 +871,124 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một option-free bond có <strong>modified duration = 8.20</strong> và <strong>annual convexity = 145</strong>. YTM của bond <strong>giảm 75 basis points</strong>. Dùng Taylor 2<sup>nd</sup>-order approximation, ước lượng <strong>% thay đổi full price</strong> của bond gần nhất với giá trị nào?
+      Một corporate bond fixed-rate có mệnh giá $1,000, coupon rate 8% trả semi-annual, thời hạn còn lại 4 năm. Bond hiện đang giao dịch ở $1,060. Một analyst muốn tính YTM của bond và so sánh với coupon rate. Đáp án nào <em>gần đúng nhất</em> với YTM, và mối quan hệ với coupon rate là gì?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">+6.15% — chỉ duration impact, không có convexity adjustment.</span></li>
-    <li><span class="lbl">B</span><span class="opt">+6.56% — duration impact cộng convexity adjustment +0.41 percentage points.</span></li>
-    <li><span class="lbl">C</span><span class="opt">+5.74% — duration impact <em>trừ</em> convexity adjustment 0.41 percentage points.</span></li>
+    <li><span class="lbl">A</span><span class="opt">YTM ≈ 6.28%; YTM thấp hơn coupon rate 8%, nhất quán với việc bond được định giá ở mức premium.</span></li>
+    <li><span class="lbl">B</span><span class="opt">YTM ≈ 8.00%; YTM bằng coupon rate vì coupon là cố định, không phụ thuộc vào giá.</span></li>
+    <li><span class="lbl">C</span><span class="opt">YTM ≈ 9.54%; YTM cao hơn coupon rate vì premium bonds luôn có yield cao hơn coupon được công bố.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
   </div>
 </section>
 
 
-<!-- 23 · Q1 EXPLANATION -->
+<!-- 20 · Q1 EXPLANATION -->
 <section data-label="Q1 Explanation" class="slide">
   <div class="run-header">
-    <span>08.07 — Convexity</span>
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
     <span class="rule"></span>
-    <span>23 / 32</span>
+    <span>20 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — +6.56%.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — YTM ≈ 6.28%, thấp hơn coupon.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
-      <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">Step 1: Δy = −0.0075. Step 2: Duration term = −8.20 × (−0.0075) = <b>+0.0615</b> = +6.15%. Step 3: Convexity adjustment = 0.5 × 145 × (0.0075)² = 0.5 × 145 × 0.00005625 = <b>+0.00408</b> ≈ +0.41%. Step 4: Total %ΔP ≈ +6.15% + 0.41% = <b>+6.56%</b>. Convexity <em>improves</em> upside cho option-free bond — the "convexity gift".</div>
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext"><b>Tính YTM:</b> N=8, PV=−1060, PMT=40, FV=1000 → I/Y = 3.14% (semi-annual). BEY = 3.14% × 2 = <em>6.28%</em>. <b>Logic price–yield:</b> Bond tại $1,060 (premium over $1,000 par) → investor mua đắt hơn mệnh giá → khi đáo hạn nhận $1,000 = bị lỗ vốn $60. Yield bao gồm coupon income <em>trừ</em> capital loss → YTM = 6.28% &lt; coupon rate 8%. Đây là inverse price–yield relationship cốt lõi của fixed income.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">+6.15% chỉ là duration-only estimate (ignored convexity). Sai vì đề yêu cầu Taylor 2<sup>nd</sup>-order, phải include convexity term. Duration alone under-estimates price gain khi yield falls (vì curve convex).</div>
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">YTM = coupon rate (8%) chỉ xảy ra khi bond priced <em>at par</em> ($1,000). Khi bond at premium hoặc discount, YTM sẽ khác coupon rate. B confused YTM với coupon rate — đây là lỗi rất phổ biến.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">+5.74% = 6.15% − 0.41%. Sai vì <em>trừ</em> convexity adjustment. Nhớ: (Δy)² LUÔN dương, C dương cho option-free → ½·C·(Δy)² LUÔN dương → CỘNG vào duration term. Convexity cộng thêm cho cả Δy dương và Δy âm.</div>
+      <div class="rtext">C sai về direction hoàn toàn. Discount bond → YTM &gt; coupon (capital gain khi hold to maturity). Premium bond → YTM &lt; coupon (capital loss). Bond này $1,060 = premium → YTM phải &lt; 8%, không phải &gt; 8%.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Master formula: <em>%ΔP ≈ −D·Δy + ½·C·(Δy)²</em>. Δy theo decimal. Convexity adjustment luôn cộng cho option-free (vì C&gt;0 và (Δy)²&gt;0). Sign trick: yield ↓ → price ↑ → %ΔP dương; yield ↑ → price ↓ → %ΔP âm. Convexity giảm bớt downside, tăng upside.</div>
+    <div class="ttext"><em>Three price–yield scenarios:</em> (1) P = par → YTM = coupon. (2) P &lt; par (discount) → YTM &gt; coupon — capital gain component pulls yield up. (3) P &gt; par (premium) → YTM &lt; coupon — capital loss component pulls yield down. Calculator: N = periods, PV = −price (negative), PMT = coupon/period, FV = par → CPT I/Y = period yield → × frequency = BEY.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
   </div>
 </section>
 
 
-<!-- 24 · Q2 EN — Negative convexity -->
+<!-- 21 · Q2 EN — YTW for callable bond -->
 <section data-label="Q2 Original" class="slide">
   <div class="run-header">
-    <span>08.07 — Convexity</span>
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
     <span class="rule"></span>
-    <span>24 / 32</span>
+    <span>21 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Negative</em> convexity.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Yield to Worst</em> — callable bond.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Three bonds, each with the same modified duration of 6.0, are observed at the current yield environment of 3% (which is well below their original coupon rates):
-      <br><br>
-      • Bond X: a 10-year US Treasury (option-free)<br>
-      • Bond Y: a 10-year corporate bond callable at par at any time<br>
-      • Bond Z: a 10-year mortgage pass-through security (MBS)<br><br>
-      Which of the bonds is <strong>most likely</strong> to exhibit <strong>negative effective convexity</strong> at the current yield level?
+      A callable corporate bond has a face value of $1,000, a coupon rate of 7% (semi-annual), and a maturity of 10 years. The bond is currently priced at $1,080. The bond has two call dates: (1) callable in 3 years at $1,030, and (2) callable in 6 years at $1,010. An analyst computes the following: YTM = 6.15%, YTC (3-year) = 5.40%, YTC (6-year) = 5.78%. What is the <strong>yield to worst (YTW)</strong>, and which scenario does it represent?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Only Bond X — Treasuries always have positive convexity at any yield level.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Only Bond Y — callable bonds always exhibit negative convexity regardless of yield.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Both Bond Y and Bond Z — both have short-option exposure (call/prepayment) that becomes binding at low yields.</span></li>
+    <li><span class="lbl">A</span><span class="opt">YTW = 6.15% (YTM), because the issuer will always hold the bond to maturity to avoid paying the call premium.</span></li>
+    <li><span class="lbl">B</span><span class="opt">YTW = 5.40% (YTC at 3-year call), because this is the lowest yield among all possibilities and represents the worst outcome for the investor.</span></li>
+    <li><span class="lbl">C</span><span class="opt">YTW = 5.78% (YTC at 6-year call), because the issuer will prefer to call later to minimize the call premium paid.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
   </div>
 </section>
 
 
-<!-- 25 · Q2 HINT -->
+<!-- 22 · Q2 HINT -->
 <section data-label="Q2 Hint" class="slide">
   <div class="run-header">
-    <span>08.07 — Convexity</span>
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
     <span class="rule"></span>
-    <span>25 / 32</span>
+    <span>22 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">definition</em>.</h2>
   </div>
   <div class="hint-card">
-    <span class="h-tag">§ Keywords</span>
-    <mark>Yield 3%</mark> · <mark>below original coupon</mark> → low-yield regime. <mark>Treasury</mark> = option-free. <mark>Callable</mark> = issuer's option. <mark>MBS</mark> = borrower's prepay option.
+    <span class="h-tag">§ YTW definition</span>
+    YTW = <mark>minimum</mark> của tất cả possible yields. Không cần biết issuer sẽ thực sự call hay không — cứ lấy <mark>min(YTM, YTC₁, YTC₂, …)</mark>.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">Treasury là <em>option-free</em> → C luôn dương ở mọi yield. Loại X khỏi candidates cho negative convexity.</span>
+      <span class="htxt">Liệt kê tất cả yields: YTM = 6.15% · YTC(3Y) = 5.40% · YTC(6Y) = 5.78%. YTW = min(6.15%, 5.40%, 5.78%) = <em>5.40%</em>.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Callable: issuer call khi rates giảm → upside capped → negative convexity ở low-y. Yield 3% thấp → call attractive → Y có negative convexity.</span>
+      <span class="htxt">"Worst" = xấu nhất cho <em>investor</em>, không phải issuer. Yield thấp nhất = bad for investor (less return). YTW = 5.40% = scenario tệ nhất cho bondholder.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">MBS: borrower prepay khi mortgage rates giảm → MBS holder nhận cash sớm ở rate thấp. Y 3% (low) → prepay attractive → Z có negative convexity.</span>
-    </li>
-    <li>
-      <span class="hnum">Hint 4</span>
-      <span class="htxt">Cả Y lẫn Z đều có embedded option <em>short bởi investor</em>, exercised khi rates giảm. Cả 2 → negative convexity ở yield thấp này.</span>
+      <span class="htxt">Loại A: YTM không phải min. Loại C: 5.78% không phải min (5.40% thấp hơn). CFA exam không hỏi lý do issuer call — chỉ hỏi YTW = minimum yield.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
   </div>
 </section>
 
 
-<!-- 26 · Q2 Dịch đề -->
+<!-- 23 · Q2 Dịch đề -->
 <section data-label="Q2 Dịch đề" class="slide">
   <div class="run-header">
-    <span>08.07 — Convexity</span>
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
     <span class="rule"></span>
-    <span>26 / 32</span>
+    <span>23 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
@@ -1037,137 +997,124 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Ba bonds, mỗi cái có cùng modified duration = 6.0, đang được quan sát ở yield hiện tại 3% (thấp hơn nhiều so với coupon gốc):
-      <br><br>
-      • Bond X: 10-year US Treasury (option-free)<br>
-      • Bond Y: 10-year corporate bond callable at par bất cứ lúc nào<br>
-      • Bond Z: 10-year mortgage pass-through (MBS)<br><br>
-      Bond nào <strong>có khả năng cao nhất</strong> exhibit <strong>negative effective convexity</strong> ở yield level hiện tại?
+      Một callable corporate bond mệnh giá $1,000, coupon 7% (semi-annual), đáo hạn 10 năm, hiện giá $1,080. Bond có hai call dates: (1) callable sau 3 năm ở $1,030 và (2) callable sau 6 năm ở $1,010. Analyst tính được: YTM = 6.15%, YTC (3 năm) = 5.40%, YTC (6 năm) = 5.78%. <strong>Yield to worst (YTW)</strong> là bao nhiêu và scenario nào?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Chỉ Bond X — Treasuries luôn có positive convexity ở mọi yield.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Chỉ Bond Y — callable bonds luôn có negative convexity bất kể yield.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Cả Bond Y và Bond Z — đều có short-option exposure (call/prepayment) trở nên binding ở yield thấp.</span></li>
+    <li><span class="lbl">A</span><span class="opt">YTW = 6.15% (YTM), vì issuer sẽ luôn giữ bond đến maturity để tránh phải trả call premium.</span></li>
+    <li><span class="lbl">B</span><span class="opt">YTW = 5.40% (YTC tại call 3 năm), vì đây là yield thấp nhất trong tất cả các scenarios — kết quả xấu nhất cho investor.</span></li>
+    <li><span class="lbl">C</span><span class="opt">YTW = 5.78% (YTC tại call 6 năm), vì issuer sẽ muốn call muộn hơn để giảm thiểu call premium phải trả.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
   </div>
 </section>
 
 
-<!-- 27 · Q2 EXPLANATION -->
+<!-- 24 · Q2 EXPLANATION -->
 <section data-label="Q2 Explanation" class="slide">
   <div class="run-header">
-    <span>08.07 — Convexity</span>
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
     <span class="rule"></span>
-    <span>27 / 32</span>
+    <span>24 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — Bond Y &amp; Z.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — YTW = 5.40%, call in 3 years.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
-      <div class="rtag">✓ Correct — C</div>
-      <div class="rtext">Negative convexity occurs khi <em>holder short một option</em> trở nên in-the-money. (1) <b>Bond Y (callable)</b>: ở yield 3% &lt;&lt; coupon, issuer có incentive call và refinance ở rate thấp hơn → upside của holder bị <em>capped</em> ở call price → curve uốn ngược → negative convexity. (2) <b>Bond Z (MBS)</b>: ở mortgage rates thấp, borrowers prepay (refinance) → MBS holder nhận principal sớm ở reinvestment rate thấp → effective duration <em>shortens</em> đúng lúc holder không muốn → negative convexity. Cả 2 đều exhibit ở yield thấp.</div>
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext"><b>YTW = min(YTM, YTC₁, YTC₂)</b> = min(6.15%, 5.40%, 5.78%) = <em>5.40%</em>. Đây là YTC tại call date 3 năm — scenario trong đó issuer calls sớm nhất với call price $1,030. Investor chỉ nhận được 3 năm coupon + $1,030 call price → yield thấp nhất trong ba scenarios. "Worst" = from investor's perspective, minimum return. YTW là yield mà analyst nên quote cho callable bond — conservative, prudent measure.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Đảo ngược logic — Treasury (option-free) LUÔN có <em>positive</em> convexity, không phải negative. X là bond duy nhất KHÔNG có negative convexity. Sai vì câu hỏi yêu cầu negative convexity.</div>
+      <div class="rtext">YTM (6.15%) là yield cao nhất — không phải worst case. A lý luận sai: issuer call khi rates thấp (có lợi cho họ), không phải để "tránh call premium." Với premium bond ở lãi suất thấp, issuer có strong incentive to call và refinance cheaper.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — B</div>
-      <div class="rtext">Callable không phải LUÔN negative convex. Ở yield <em>cao</em> (yield &gt;&gt; coupon), call out-of-the-money → bond hành xử giống option-free → positive convexity. Negative chỉ xuất hiện ở low-yield region. Câu B sai vì khẳng định "regardless of yield" và bỏ sót MBS.</div>
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">5.78% (YTC 6-year) cao hơn 5.40% (YTC 3-year) → không phải minimum. C sai về mechanic: YTW không phụ thuộc vào lý do hay preference của issuer — chỉ cần lấy minimum. Lý luận "call muộn hơn để giảm call premium" không liên quan đến định nghĩa YTW.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Negative convexity = bond holder <em>short option</em>. Hai trường hợp chính: <em>callable bonds</em> (issuer's call) và <em>MBS</em> (borrower's prepay). Cả 2 binding ở <em>low yields</em>. Putable bonds ngược lại (long option) → positive convexity, có thể cao hơn option-free. Treasury option-free luôn positive convex.</div>
+    <div class="ttext"><em>YTW procedure:</em> (1) Tính YTM đến maturity. (2) Tính YTC cho mọi call date với respective call price. (3) YTW = minimum of all. YTW = standard quoted yield cho callable bonds trong CFA curriculum. Worst = lowest yield = worst for investor (less return). Premium callable bond: YTW thường = earliest YTC. Discount callable: YTW thường = YTM.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
   </div>
 </section>
 
 
-<!-- 28 · Q3 EN — Convexity formula -->
+<!-- 25 · Q3 EN — Spread measures -->
 <section data-label="Q3 Original" class="slide">
   <div class="run-header">
-    <span>08.07 — Convexity</span>
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
     <span class="rule"></span>
-    <span>28 / 32</span>
+    <span>25 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Approximate <em class="hi">convexity</em> calc.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Spread measures</em> — Z-spread vs OAS.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      An analyst observes the following prices of an option-free bond, currently priced at <strong>P₀ = $98.50</strong>:
-      <br><br>
-      • If yield rises by <strong>20 bps</strong>: P₊ = $97.05<br>
-      • If yield falls by <strong>20 bps</strong>: P₋ = $99.97<br><br>
-      The bond's <strong>approximate annual convexity</strong> is <em>closest to</em>:
+      An analyst is comparing two bonds with similar credit ratings and maturities. Bond X is a straight (option-free) corporate bond with a Z-spread of 145 bps. Bond Y is a callable corporate bond with a Z-spread of 165 bps and an OAS of 130 bps. The analyst concludes that Bond Y offers higher compensation for credit and liquidity risk. Is the analyst's conclusion correct, and which spread is most appropriate for this comparison?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">25.4 — using the formula (P₋ + P₊ − 2P₀) / (P₀ × Δy²) with Δy = 0.0020.</span></li>
-    <li><span class="lbl">B</span><span class="opt">50.8 — using the formula (P₋ + P₊ − 2P₀) / (P₀ × 2 × Δy²) and dropping the factor of 2.</span></li>
-    <li><span class="lbl">C</span><span class="opt">7.4 — using only the price difference (P₋ − P₊) / (2 × P₀ × Δy) (this is the duration formula, not convexity).</span></li>
+    <li><span class="lbl">A</span><span class="opt">Correct; Z-spread is the appropriate measure for both bonds and Bond Y's higher Z-spread (165 bps) confirms superior credit/liquidity compensation.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Incorrect; OAS is the appropriate measure for Bond Y (callable) because it removes the option cost. Bond Y's OAS (130 bps) is lower than Bond X's Z-spread (145 bps), so Bond X actually offers higher credit/liquidity compensation.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Incorrect; both bonds should be compared using the G-spread to ensure consistency with the government benchmark.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
   </div>
 </section>
 
 
-<!-- 29 · Q3 HINT -->
+<!-- 26 · Q3 HINT -->
 <section data-label="Q3 Hint" class="slide">
   <div class="run-header">
-    <span>08.07 — Convexity</span>
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
     <span class="rule"></span>
-    <span>29 / 32</span>
+    <span>26 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">comparison logic</em>.</h2>
   </div>
   <div class="hint-card">
-    <span class="h-tag">§ Keywords</span>
-    P₀ = <mark>$98.50</mark> · P₊ = <mark>$97.05</mark> (yield ↑) · P₋ = <mark>$99.97</mark> (yield ↓) · Δy = <mark>20 bps = 0.0020</mark>. Formula: <mark>(P₋ + P₊ − 2P₀) / (P₀ × Δy²)</mark>.
+    <span class="h-tag">§ Key concept</span>
+    Z-spread của callable bond <mark>includes option cost</mark> — không phải pure credit/liquidity spread. Để compare fair, dùng <mark>OAS</mark> cho callable bond vs <mark>Z-spread</mark> cho straight bond.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">Tử số (numerator) = P₋ + P₊ − 2P₀ = 99.97 + 97.05 − 2(98.50) = 197.02 − 197.00 = <em>0.02</em>. Đây là "second difference".</span>
+      <span class="htxt">Bond X (straight): Z-spread = OAS = 145 bps (không có option → Z-spread = OAS). Bond Y (callable): Z-spread = 165 bps nhưng OAS = 130 bps. Option cost = 165 − 130 = 35 bps.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Mẫu (denominator) = P₀ × (Δy)² = 98.50 × (0.0020)² = 98.50 × 0.000004 = <em>0.000394</em>.</span>
+      <span class="htxt">Compare <em>OAS to OAS</em>: Bond X OAS = 145 bps vs Bond Y OAS = 130 bps. Bond X offers MORE credit/liquidity compensation (145 &gt; 130). Analyst's conclusion sai.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Convexity = 0.02 / 0.000394 ≈ <em>50.8</em>. Lưu ý NO factor of 2 trong denominator (khác duration formula). Δy² là (0.0020)², không phải 2×Δy².</span>
+      <span class="htxt">Loại A: dùng Z-spread của callable bond để compare là sai — 165 bps includes 35 bps option premium. Loại C: G-spread less precise, không phải standard for this comparison.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
   </div>
 </section>
 
 
-<!-- 30 · Q3 Dịch đề -->
+<!-- 27 · Q3 Dịch đề -->
 <section data-label="Q3 Dịch đề" class="slide">
   <div class="run-header">
-    <span>08.07 — Convexity</span>
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
     <span class="rule"></span>
-    <span>30 / 32</span>
+    <span>27 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
@@ -1176,66 +1123,60 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một analyst quan sát các giá sau của option-free bond, hiện đang ở <strong>P₀ = $98.50</strong>:
-      <br><br>
-      • Nếu yield tăng <strong>20 bps</strong>: P₊ = $97.05<br>
-      • Nếu yield giảm <strong>20 bps</strong>: P₋ = $99.97<br><br>
-      <strong>Approximate annual convexity</strong> của bond gần nhất với giá trị nào?
+      Một analyst đang so sánh hai bonds có credit rating và maturity tương đương. Bond X là straight corporate bond (không có embedded option) với Z-spread = 145 bps. Bond Y là callable corporate bond với Z-spread = 165 bps và OAS = 130 bps. Analyst kết luận Bond Y cung cấp compensation cao hơn cho credit và liquidity risk. Kết luận của analyst có đúng không, và spread nào phù hợp nhất để so sánh?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">25.4 — dùng formula (P₋ + P₊ − 2P₀) / (P₀ × Δy²) với Δy nhân thêm hệ số 2 sai.</span></li>
-    <li><span class="lbl">B</span><span class="opt">50.8 — dùng formula (P₋ + P₊ − 2P₀) / (P₀ × Δy²) với Δy = 0.0020.</span></li>
-    <li><span class="lbl">C</span><span class="opt">7.4 — chỉ dùng (P₋ − P₊) / (2 × P₀ × Δy) (đây là công thức duration, không phải convexity).</span></li>
+    <li><span class="lbl">A</span><span class="opt">Đúng; Z-spread là thước đo phù hợp cho cả hai bonds và Z-spread cao hơn của Bond Y (165 bps) xác nhận compensation tốt hơn về credit/liquidity.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Sai; OAS là thước đo phù hợp cho Bond Y (callable) vì nó loại bỏ option cost. OAS của Bond Y (130 bps) thấp hơn Z-spread của Bond X (145 bps), nên Bond X thực ra cung cấp credit/liquidity compensation cao hơn.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Sai; cả hai bonds nên được so sánh bằng G-spread để đảm bảo tính nhất quán với government benchmark.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
   </div>
 </section>
 
 
-<!-- 31 · Q3 EXPLANATION -->
+<!-- 28 · Q3 EXPLANATION -->
 <section data-label="Q3 Explanation" class="slide">
   <div class="run-header">
-    <span>08.07 — Convexity</span>
+    <span>08.07 — Yield &amp; Yield Spread Measures</span>
     <span class="rule"></span>
-    <span>31 / 32</span>
+    <span>28 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 50.8.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Analyst sai; Bond X OAS &gt; Bond Y OAS.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">Step 1: Numerator = P₋ + P₊ − 2P₀ = 99.97 + 97.05 − 2(98.50) = 197.02 − 197.00 = <b>0.02</b>. Step 2: Δy = 0.0020 (decimal); (Δy)² = 4 × 10⁻⁶ = 0.000004. Step 3: Denominator = P₀ × (Δy)² = 98.50 × 0.000004 = <b>0.000394</b>. Step 4: Convexity = 0.02 / 0.000394 ≈ <b>50.8</b>. Đơn vị: per (decimal yield)². Convexity adjustment cho 100 bps move = ½ × 50.8 × 0.01² ≈ 0.0025 = 0.25%.</div>
+      <div class="rtext"><b>Fair comparison requires OAS vs OAS:</b> Bond X (straight): không có option → Z-spread = OAS = 145 bps. Bond Y (callable): Z-spread = 165 bps nhưng <em>35 bps là option cost</em> (issuer call option) — OAS = 165 − 35 = 130 bps. So sánh đúng: Bond X OAS 145 bps &gt; Bond Y OAS 130 bps → <em>Bond X</em> offers higher credit/liquidity compensation. Analyst bị lừa bởi Z-spread của callable bond — dùng Z-spread 165 bps mà không trừ option cost.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">25.4 = 50.8 / 2. Sai vì đã thêm hệ số 2 trong denominator (nhầm với formula duration: (P₋ − P₊) / (<em>2</em>P₀·Δy)). Formula convexity KHÔNG có factor 2 ở mẫu — chỉ P₀·(Δy)².</div>
+      <div class="rtext">Sai fundamental: Z-spread của callable bond includes option value (issuer call option). Investor receive wider Z-spread <em>vì đang bán call option cho issuer</em> — không phải vì bond có more credit risk. So sánh Z-spread straight vs Z-spread callable = apples to oranges. Phải dùng OAS (option-removed spread) để compare credit/liquidity compensation.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">7.4 = (99.97 − 97.05) / (2 × 98.50 × 0.0020) = 2.92 / 0.394 = 7.41 — đây là <em>approximate modified duration</em>, không phải convexity. Đề cho biết bond có duration ≈ 7.4 và convexity ≈ 50.8. Lưu ý phân biệt 2 formulas.</div>
+      <div class="rtext">G-spread (over Treasury) kém precise hơn Z-spread và OAS — không adjust cho yield curve shape và không remove option cost. G-spread là quick measure, không phải "best practice" cho credit comparison khi đã có Z-spread và OAS available. Dùng G-spread ở đây sẽ ignore cả option và curve effects.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Memorize 2 công thức: <em>D ≈ (P₋ − P₊) / (2 · P₀ · Δy)</em> — first difference, có factor 2. <em>C ≈ (P₋ + P₊ − 2P₀) / (P₀ · Δy²)</em> — second difference, KHÔNG có factor 2. Nhớ dấu: cả tử số convexity (P₋ + P₊ − 2P₀) thường rất nhỏ, nhưng (Δy)² cũng rất nhỏ → tỷ số có thể thành số vài chục đến vài trăm.</div>
+    <div class="ttext"><em>Correct spread pairing:</em> Straight bond → compare Z-spreads. Callable bond → use OAS (option-removed). Putable bond → use OAS. When comparing callable to straight: <em>compare OAS to OAS</em> — ensures apples-to-apples credit comparison. Higher Z-spread on callable does NOT mean more credit risk — it includes option premium. OAS = Z-spread − option cost (callable) or Z-spread + option value (putable).</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>Fixed Income · 08.07 — Convexity &amp; Risk Measures</span>
+    <span class="footer-topic">Fixed Income · 08.07 — Yield and Yield Spread Measures for Fixed-Rate Bonds</span>
   </div>
 </section>
 
 
-<!-- 32 · END -->
+<!-- 29 · END -->
 <section data-label="End" class="slide end-slide">
   <div>
     <h1>08.07 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
-    <div class="hint">Tiếp theo · Lesson 08.08 — Credit Analysis &amp; Yield Spreads</div>
+    <div class="hint">Tiếp theo · Lesson 08.08 — Yield Measures for Floating-Rate Instruments</div>
   </div>
 </section>
 

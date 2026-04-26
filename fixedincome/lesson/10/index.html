@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>CFA L1 · Fixed Income 08.10 — Mortgage-Backed Securities</title>
+<title>CFA L1 · Fixed Income 08.10 — Interest Rate Risk and Return</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/assets/cfa-theme.css">
 <style>
   .title-slide .left { background: var(--accent); }
-  .title-slide .main { font-size: 104px; line-height: 0.98; }
+  .title-slide .main { font-size: 96px; line-height: 0.98; }
   .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
   .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
 </style>
@@ -24,18 +24,18 @@
 <section data-label="Title" class="slide title-slide">
   <div class="left">
     <div class="mark">CFA Institute · Level I</div>
-    <h1 class="main">Mortgage<br>-Backed <em>Securities.</em></h1>
+    <h1 class="main">Interest Rate<br><em>Risk &amp; Return.</em></h1>
     <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 08 · Lesson 08.10 · Fixed Income</div>
   </div>
   <div class="right">
-    <div class="mark">Module 10 · MBS · CMO · Prepayment risk</div>
+    <div class="mark">Module 10 · Horizon yield · Reinvestment risk · Duration immunization</div>
     <dl class="meta-grid">
       <div><dt>Môn</dt><dd>Fixed Income</dd></div>
       <div><dt>Module</dt><dd>10</dd></div>
       <div><dt>Lesson</dt><dd>08.10</dd></div>
       <div><dt>Thời lượng</dt><dd>90 min</dd></div>
     </dl>
-    <div class="mark">Mortgage · Pass-through · CMO · Negative convexity</div>
+    <div class="mark">Sources of return · YTM vs realized return · Price risk · Macaulay duration</div>
   </div>
 </section>
 
@@ -45,645 +45,788 @@
   <div class="band">
     <div class="lbl">PART</div>
     <div class="n">10</div>
-    <div class="lbl">Securitized fixed income</div>
+    <div class="lbl">Risk &amp; return dynamics</div>
   </div>
   <div class="content">
     <div class="eyebrow">Today's lesson</div>
-    <h2>How <em>mortgages</em><br>become <em>bonds</em>.</h2>
+    <h2>What an investor <em>actually earns</em><br>from holding a bond.</h2>
     <ul class="toc">
-      <li class="active">01 · Mortgage basics — amortizing · fixed/ARM · prepayment</li>
-      <li>02 · RMBS vs CMBS · Agency vs Non-agency</li>
-      <li>03 · Pass-through structure · WAM · WAC</li>
-      <li>04 · Prepayment risk — contraction · extension · SMM · CPR · PSA</li>
-      <li>05 · CMO tranches — sequential · PAC · support · IO/PO</li>
-      <li>06 · CMBS · call protection · negative convexity · OAS</li>
+      <li class="active">01 · Three sources of bond return — coupon · reinvestment · capital gain/loss</li>
+      <li>02 · Horizon yield vs YTM — when they differ and why</li>
+      <li>03 · Reinvestment risk vs price risk — the two-sided rate exposure</li>
+      <li>04 · The offsetting effect — duration as the natural immunization horizon</li>
+      <li>05 · Inverse price-yield relationship &amp; convexity preview</li>
+      <li>06 · Worked example — computing horizon yield across reinvestment scenarios</li>
       <li>07 · Practice — 3 CFA-style questions</li>
     </ul>
   </div>
 </section>
 
 
-<!-- 03 · MORTGAGE BASICS -->
-<section data-label="Mortgage basics" class="slide">
+<!-- 03 · THREE SOURCES OF RETURN -->
+<section data-label="Three sources of return" class="slide">
   <div class="run-header">
-    <span>08.10 — MBS</span>
+    <span>08.10 — Interest Rate Risk and Return</span>
     <span class="rule"></span>
-    <span>03 / 30</span>
+    <span>03 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Mortgage · loan basics</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">What is a <em class="hi">mortgage</em>?</h2>
+    <div class="eyebrow">Bond return · three components</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Ba nguồn <em class="hi">sinh lời</em> của trái phiếu.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Mortgage = <em>loan có collateral là real estate</em>. Borrower trả monthly (P + I); nếu default, lender <em>foreclose</em> và bán property. Hầu hết là <b>amortizing</b> — mỗi kỳ trả một phần principal + interest, hết kỳ thì balance = 0.
+      Khi investor mua một coupon-bearing bond và giữ trong một khoảng thời gian, tổng return bao gồm <em>ba dòng giá trị</em> riêng biệt — không phải chỉ YTM. Hiểu rõ ba nguồn này là nền tảng để phân tích <b>realized return</b> vs <b>promised return</b>.
     </p>
   </div>
 
   <div class="tenets-grid" style="margin-top: 16px;">
     <div class="tenet">
-      <span class="n">FRM</span>
+      <span class="n">①</span>
       <div>
-        <div class="t"><em class="hi">Fixed-rate</em> mortgage</div>
-        <div class="d">Coupon rate cố định toàn life of loan (15Y/30Y phổ biến ở US). Monthly payment không đổi. Borrower được "lock in" rate — protected khi rates ↑.</div>
+        <div class="t"><em class="hi">Coupon income</em></div>
+        <div class="d">Dòng tiền coupon định kỳ (semi-annual hoặc annual) nhận trong suốt holding period. Đây là phần chắc chắn nhất — được contractually xác định ngay từ đầu. Với bond standard, coupon = coupon rate × face value.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">ARM</span>
+      <span class="n">②</span>
       <div>
-        <div class="t"><em class="hi">Adjustable-rate</em> (ARM)</div>
-        <div class="d">Rate reset định kỳ theo benchmark (SOFR, Treasury) + spread. Có cap/floor. Initial rate thấp hơn FRM nhưng borrower chịu rate risk.</div>
+        <div class="t"><em class="hi">Reinvestment income</em></div>
+        <div class="d">Lãi kiếm được từ việc tái đầu tư coupon đã nhận vào market rate hiện tại. Đây là phần <b>không chắc chắn</b> vì phụ thuộc vào lãi suất trong tương lai — nếu rates giảm, reinvestment income thấp hơn YTM implied.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">PRE</span>
+      <span class="n">③</span>
       <div>
-        <div class="t"><em class="hi">Prepayment option</em></div>
-        <div class="d">Borrower có quyền trả sớm bất cứ lúc nào (refinance, sell house, default). Đây là <b>American call option</b> embedded — tốt cho borrower, xấu cho investor.</div>
-      </div>
-    </div>
-    <div class="tenet">
-      <span class="n">AMR</span>
-      <div>
-        <div class="t">Amortizing schedule</div>
-        <div class="d">Đầu kỳ: payment chủ yếu là interest. Cuối kỳ: chủ yếu là principal. Curve uốn — quan trọng cho cash flow modeling MBS.</div>
+        <div class="t"><em class="hi">Capital gain / loss</em></div>
+        <div class="d">Chênh lệch giữa giá bán (hoặc face value lúc đáo hạn) và giá mua ban đầu. Nếu hold to maturity: bond trả đúng par → capital gain/loss = premium/discount amortized. Nếu bán trước maturity: giá phụ thuộc vào market rate lúc bán.</div>
       </div>
     </div>
   </div>
 
+  <p class="fine-muted-sm">
+    § Tổng return = coupon income + reinvestment income + capital gain/loss. Chỉ nguồn ① là cố định; ② và ③ đều phụ thuộc vào lãi suất thị trường trong tương lai.
+  </p>
+
   <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
   </div>
 </section>
 
 
-<!-- 04 · RMBS VS CMBS -->
-<section data-label="RMBS vs CMBS" class="slide">
+<!-- 04 · YTM — PROMISE VS REALITY -->
+<section data-label="YTM promise vs reality" class="slide">
   <div class="run-header">
-    <span>08.10 — MBS</span>
+    <span>08.10 — Interest Rate Risk and Return</span>
     <span class="rule"></span>
-    <span>04 / 30</span>
+    <span>04 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Asset class · split</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">RMBS</em> vs <em class="hi">CMBS</em>.</h2>
+    <div class="eyebrow">YTM · định nghĩa lại</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">YTM là <em class="hi">lời hứa</em>, không phải realized return.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      MBS chia 2 nhóm theo loại real estate underlying — <em>residential</em> (nhà ở) và <em>commercial</em> (toà văn phòng, retail, multifamily, hotel, industrial).
+      YTM = discount rate làm cho PV của tất cả cash flows (coupon + principal) bằng đúng giá thị trường hôm nay. Nó là <em>promised return</em> nếu hai điều kiện đều thỏa mãn đồng thời. Thực tế, hai điều kiện này hiếm khi cùng đúng.
     </p>
   </div>
 
   <div class="compare" style="margin-top: 16px;">
     <div class="cc">
-      <div class="head"><em>RMBS</em> — Residential</div>
+      <div class="head"><em>Điều kiện để YTM = Realized return</em></div>
       <dl>
-        <dt>Collateral</dt>
-        <dd>Pool nhiều mortgage <em>nhà ở</em> (1-4 family homes)</dd>
-        <dt>Borrower</dt>
-        <dd>Hộ gia đình · cá nhân — credit underwriting chuẩn hoá</dd>
-        <dt>Prepay</dt>
-        <dd><b>Cao</b> — borrower có quyền trả sớm tự do, không phạt</dd>
-        <dt>Recourse</dt>
-        <dd>Tuỳ state — non-recourse ở CA, FL; recourse ở nhiều state khác</dd>
+        <dt>Điều kiện 1</dt>
+        <dd>Bond được giữ <b>đến đáo hạn</b> (held to maturity). Không bán trước, không gọi lại.</dd>
+        <dt>Điều kiện 2</dt>
+        <dd>Tất cả coupon nhận được <b>tái đầu tư đúng tại mức YTM</b> — rate tái đầu tư không đổi suốt vòng đời bond.</dd>
+        <dt>Kết quả</dt>
+        <dd>Nếu cả 2 điều kiện thỏa: realized return = YTM. Nếu vi phạm 1 trong 2: realized return ≠ YTM.</dd>
       </dl>
     </div>
     <div class="cc">
-      <div class="head"><em>CMBS</em> — Commercial</div>
+      <div class="head"><em>Thực tế thị trường</em></div>
       <dl>
-        <dt>Collateral</dt>
-        <dd>Mortgage trên <em>income-producing</em> property (office, retail, hotel, multifamily)</dd>
-        <dt>Borrower</dt>
-        <dd>Doanh nghiệp · LLC sở hữu property</dd>
-        <dt>Prepay</dt>
-        <dd><b>Thấp</b> — bị lock-out, defeasance, yield maintenance, prepayment penalty</dd>
-        <dt>Recourse</dt>
-        <dd>Thường <b>non-recourse</b> — chỉ bám vào property, không tài sản cá nhân của sponsor</dd>
+        <dt>Rate thay đổi</dt>
+        <dd>Lãi suất thị trường liên tục biến động → reinvestment rate ≠ YTM tại thời điểm mua.</dd>
+        <dt>Bán trước hạn</dt>
+        <dd>Investor thường không hold to maturity — liability mismatch, cần cash, rebalancing portfolio.</dd>
+        <dt>Hệ quả</dt>
+        <dd>YTM chỉ là <em>benchmark</em> để so sánh bonds với nhau, không phải dự báo chính xác về lợi nhuận thực tế.</dd>
       </dl>
     </div>
   </div>
 
   <p class="fine-muted-sm">
-    § Key takeaway — RMBS investors lo <b>prepayment risk</b>; CMBS investors lo <b>credit risk</b> (DSCR, LTV) + <b>balloon risk</b>. CMBS có call protection mạnh nên prepay không phải vấn đề lớn.
+    § Exam tip — CFA hay hỏi: "Under what conditions does an investor realize the YTM?" → Hai điều kiện: (1) held to maturity, (2) coupons reinvested at YTM.
   </p>
 
   <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
   </div>
 </section>
 
 
-<!-- 05 · AGENCY VS NON-AGENCY -->
-<section data-label="Agency vs Non-agency" class="slide">
+<!-- 05 · HORIZON YIELD -->
+<section data-label="Horizon yield" class="slide">
   <div class="run-header">
-    <span>08.10 — MBS</span>
+    <span>08.10 — Interest Rate Risk and Return</span>
     <span class="rule"></span>
-    <span>05 / 30</span>
+    <span>05 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Issuer · guarantee</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Agency</em> vs <em class="hi">Non-agency</em> MBS.</h2>
+    <div class="eyebrow">Horizon yield · định nghĩa</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Horizon yield</em> — realized return thực tế.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      US RMBS market thống trị bởi 3 GSE/agency: <b>Ginnie Mae</b>, <b>Fannie Mae</b>, <b>Freddie Mac</b>. Phần còn lại = <em>non-agency</em> (private label) — không có guarantee, investor chịu credit risk.
-    </p>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head"><em>Agency</em> MBS</div>
-      <dl>
-        <dt>Issuers</dt>
-        <dd><b>Ginnie Mae</b> (GNMA) · <b>Fannie Mae</b> (FNMA) · <b>Freddie Mac</b> (FHLMC)</dd>
-        <dt>Guarantee</dt>
-        <dd>Ginnie = <em>full faith &amp; credit</em> US gov. Fannie/Freddie = <em>implicit</em> guarantee (GSE — conservatorship 2008+)</dd>
-        <dt>Credit risk</dt>
-        <dd><b>Negligible</b> — investor chỉ chịu prepayment/interest rate risk</dd>
-        <dt>Conforming</dt>
-        <dd>Loans phải đáp ứng standards (size, LTV, FICO, doc) để được pooled vào agency MBS</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head"><em>Non-agency</em> (Private label)</div>
-      <dl>
-        <dt>Issuers</dt>
-        <dd>Banks, dealers, REITs (vd: JPM, BAC tự issue)</dd>
-        <dt>Guarantee</dt>
-        <dd><b>Không</b> — chỉ dựa vào credit enhancement (subordination, over-collateralization, reserve fund, insurance)</dd>
-        <dt>Credit risk</dt>
-        <dd><b>Material</b> — investor chịu default risk + prepayment risk</dd>
-        <dt>Loans</dt>
-        <dd>Jumbo, sub-prime, Alt-A, non-conforming. Yield cao hơn agency để đền credit risk.</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Memorize — Ginnie Mae là cơ quan thuộc HUD (full faith). Fannie + Freddie là GSE (chartered nhưng publicly traded trước 2008). Sau crisis 2008, cả 2 vào federal conservatorship.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
-  </div>
-</section>
-
-
-<!-- 06 · PASS-THROUGH -->
-<section data-label="Pass-through" class="slide">
-  <div class="run-header">
-    <span>08.10 — MBS</span>
-    <span class="rule"></span>
-    <span>06 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Cash flow · structure</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">pass-through</em> structure.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Trong pass-through MBS đơn giản nhất, dòng tiền P+I từ borrowers <em>được "pass through"</em> đến investors theo tỷ lệ sở hữu, sau khi trừ <b>servicing fee</b> + <b>guarantee fee</b>.
-    </p>
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 16px;">
-    <li>
-      <span>
-        <span class="step-title">1 · Pool tạo ra</span>
-        <span class="step-body">Originator (bank) gom hàng trăm/ngàn mortgage tương đồng (cùng coupon, maturity gần nhau) → bán pool cho agency hoặc trust SPV.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">2 · Securitize</span>
-        <span class="step-body">Issuer phát hành <em>certificates</em> đại diện ownership trong pool. Mỗi investor nhận pro-rata share của P+I cash flow.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">3 · Servicer collect &amp; distribute</span>
-        <span class="step-body">Servicer thu monthly từ borrowers, trừ <em>servicing fee</em> (~25-50 bps) + <em>guarantee fee</em> (~5-25 bps), pass phần còn lại cho certificate holders.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">4 · Pass-through coupon</span>
-        <span class="step-body"><b>Pass-through rate</b> = WAC (gross mortgage rate) − servicing fee − guarantee fee. Đây là coupon investor thực sự nhận.</span>
-      </span>
-    </li>
-  </ol>
-
-  <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
-  </div>
-</section>
-
-
-<!-- 07 · WAM & WAC -->
-<section data-label="WAM &amp; WAC" class="slide">
-  <div class="run-header">
-    <span>08.10 — MBS</span>
-    <span class="rule"></span>
-    <span>07 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Pool · metrics</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">WAM</em> &amp; <em class="hi">WAC</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Hai metric đặc trưng cho pool of mortgages — weight by <em>outstanding principal balance</em>, không phải simple average.
+      <b>Horizon yield</b> (còn gọi là <em>holding period return</em> hoặc <em>realized return</em>) = IRR thực tế của investment trong holding period cho trước, với giả định cụ thể về reinvestment rate và giá bán cuối kỳ.
     </p>
   </div>
 
   <div class="formula-box">
-    <span class="fmt-label">§ WAM &amp; WAC formulas</span>
-    <div class="eq"><span class="var">WAM</span> = Σ <span class="var">w<sub>i</sub></span> × <span class="var">remaining_term<sub>i</sub></span></div>
-    <div class="eq"><span class="var">WAC</span> = Σ <span class="var">w<sub>i</sub></span> × <span class="var">mortgage_rate<sub>i</sub></span></div>
+    <span class="fmt-label">§ Công thức tổng quát — Horizon yield</span>
+    <div class="eq">
+      <span class="var">Total future value</span> = FV coupons reinvested + Sale price (hoặc par)
+    </div>
+    <div class="eq">
+      <span class="var">Horizon yield</span> = <span class="var">(Total FV / Price paid)<sup>1/n</sup></span> − 1
+    </div>
     <div class="note">
-      <b>w<sub>i</sub></b> = (outstanding principal of loan i) / (total pool principal). <b>WAM</b> = weighted average maturity (months). <b>WAC</b> = weighted average coupon (gross mortgage rate trước khi trừ servicing/guarantee fee).
+      Trong đó <b>n</b> = số periods trong holding period. Nếu semi-annual coupon: nhân 2 để ra annualized yield. <em>Total FV</em> = tổng tất cả coupon cộng với reinvestment income cộng với giá thu lại ở cuối holding period.
     </div>
   </div>
 
   <div class="rule-box" style="margin-top: 18px;">
-    <span class="tag">§ Quick example</span>
-    Pool 2 loans: Loan A $200k @ 6% with 25Y left; Loan B $300k @ 7% with 28Y left.<br>
-    → w<sub>A</sub> = 200/500 = 40%; w<sub>B</sub> = 300/500 = 60%.<br>
-    → <b>WAC</b> = 0.4 × 6% + 0.6 × 7% = <b>6.6%</b>.<br>
-    → <b>WAM</b> = 0.4 × 300 + 0.6 × 336 = <b>321.6 months</b> (≈ 26.8 năm).
+    <span class="tag">§ Tại sao quan trọng</span>
+    Horizon yield cho phép investor <em>so sánh các kịch bản lãi suất khác nhau</em> một cách nhất quán. Nếu rates tăng: giá bán thấp hơn nhưng reinvestment income cao hơn. Nếu rates giảm: ngược lại. Horizon yield tóm gọn cả hai hiệu ứng vào một con số duy nhất.
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
   </div>
 </section>
 
 
-<!-- 08 · PREPAYMENT RISK -->
-<section data-label="Prepayment risk" class="slide">
+<!-- 06 · REINVESTMENT RISK -->
+<section data-label="Reinvestment risk" class="slide">
   <div class="run-header">
-    <span>08.10 — MBS</span>
+    <span>08.10 — Interest Rate Risk and Return</span>
     <span class="rule"></span>
-    <span>08 / 30</span>
+    <span>06 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Prepayment · two faces</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Contraction vs <em class="hi">Extension</em> risk.</h2>
+    <div class="eyebrow">Risk · reinvestment</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Reinvestment risk</em> — khi rates giảm.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Prepayment option (American call) làm cash flow MBS <em>uncertain</em>. Khi rate thay đổi, borrowers tối ưu hành vi ngược chiều với investor.
-    </p>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head"><em>Contraction</em> risk</div>
-      <dl>
-        <dt>Trigger</dt>
-        <dd>Rates <em>↓</em> → borrowers <em>refinance</em> nhanh</dd>
-        <dt>Effect</dt>
-        <dd>Principal về <b>sớm hơn</b> expected → MBS rút ngắn duration</dd>
-        <dt>Reinvest</dt>
-        <dd>Investor nhận lại tiền gốc lớn nhưng phải reinvest tại <em>rates thấp mới</em></dd>
-        <dt>Analogy</dt>
-        <dd>Giống callable bond — issuer call khi rates ↓ (capped upside)</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head"><em>Extension</em> risk</div>
-      <dl>
-        <dt>Trigger</dt>
-        <dd>Rates <em>↑</em> → borrowers <em>không refinance</em>, hold mortgage</dd>
-        <dt>Effect</dt>
-        <dd>Principal về <b>chậm hơn</b> expected → MBS kéo dài duration</dd>
-        <dt>Reinvest</dt>
-        <dd>Investor kẹt với coupon thấp khi market đang offer high rate (opportunity cost)</dd>
-        <dt>Analogy</dt>
-        <dd>Giống putable bond reverse — không thể put lại khi unfavorable</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Hai risk đối nghịch — đó là lý do MBS có <b>negative convexity</b> ở rates thấp: cả hai chiều rate đều bất lợi cho investor.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
-  </div>
-</section>
-
-
-<!-- 09 · SMM & CPR -->
-<section data-label="SMM &amp; CPR" class="slide">
-  <div class="run-header">
-    <span>08.10 — MBS</span>
-    <span class="rule"></span>
-    <span>09 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Prepayment · measurement</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">SMM &amp; <em class="hi">CPR</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Để model prepayment, ta đo % principal được prepay <em>tự nguyện</em> mỗi kỳ — monthly (SMM) và annualized (CPR).
-    </p>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ Single Monthly Mortality (SMM)</span>
-    <div class="eq"><span class="var">SMM</span> = <span class="var">Prepayment in month</span> / (<span class="var">Beginning balance</span> − <span class="var">Scheduled principal</span>)</div>
-    <div class="note">
-      Tỉ lệ prepayment <b>monthly</b>. Mẫu = balance còn lại <em>sau khi trừ scheduled amortization</em> — tức là principal "có thể prepay" trong tháng.
-    </div>
-  </div>
-
-  <div class="formula-box" style="margin-top: 14px;">
-    <span class="fmt-label">§ Conditional Prepayment Rate (CPR)</span>
-    <div class="eq"><span class="var">CPR</span> = 1 − (1 − <span class="var">SMM</span>)<sup>12</sup></div>
-    <div class="eq"><span class="var">SMM</span> = 1 − (1 − <span class="var">CPR</span>)<sup>1/12</sup></div>
-    <div class="note">
-      CPR = annualized prepayment rate. Convert SMM ↔ CPR bằng compound — KHÔNG simple multiply by 12.
-    </div>
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
-  </div>
-</section>
-
-
-<!-- 10 · PSA BENCHMARK -->
-<section data-label="PSA" class="slide">
-  <div class="run-header">
-    <span>08.10 — MBS</span>
-    <span class="rule"></span>
-    <span>10 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">PSA · industry benchmark</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">PSA</em> prepayment model.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      <b>PSA</b> (Public Securities Association) = ramp prepayment benchmark được industry chuẩn hoá. Quote MBS prepay assumption thường ở dạng "<em>X% PSA</em>".
-    </p>
-  </div>
-
-  <div class="formula-box">
-    <span class="fmt-label">§ 100% PSA — base ramp</span>
-    <div class="eq">Months <span class="var">1–30</span>: <span class="var">CPR</span> = 0.2% × month <span class="var">t</span></div>
-    <div class="eq">Months <span class="var">≥ 30</span>: <span class="var">CPR</span> = <span class="var">6%</span> (flat)</div>
-    <div class="note">
-      Pool mới: prepay tăng dần từ 0.2% (month 1) lên 6% (month 30), sau đó giữ 6% mãi. Logic: borrower mới mua nhà ít refinance ngay; sau ~2.5 năm, "seasoning" đạt steady-state.
-    </div>
-  </div>
-
-  <div class="rule-box" style="margin-top: 16px;">
-    <span class="tag">§ Scaling — N% PSA</span>
-    <b>50% PSA</b> = half speed → CPR ramps 0.1% × t → flat 3%.<br>
-    <b>200% PSA</b> = double speed → CPR ramps 0.4% × t → flat 12%.<br>
-    Higher PSA = faster prepayment = more contraction risk khi rates ↓.
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
-  </div>
-</section>
-
-
-<!-- 11 · CMO INTRO -->
-<section data-label="CMO" class="slide">
-  <div class="run-header">
-    <span>08.10 — MBS</span>
-    <span class="rule"></span>
-    <span>11 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">CMO · structuring</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">CMO</em> — slicing the pool.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      <b>Collateralized Mortgage Obligation (CMO)</b> = restructure pass-through cash flows thành <em>multiple tranches</em> với prepayment risk khác nhau. Mục tiêu: bán cho investors khác nhau theo appetite.
+      Reinvestment risk là rủi ro mà coupon income nhận được phải được tái đầu tư tại mức lãi suất <em>thấp hơn YTM ban đầu</em> — làm giảm realized return so với dự kiến.
     </p>
   </div>
 
   <ol class="num-list tight" style="margin-top: 16px;">
     <li>
       <span>
-        <span class="step-title">Sequential pay (A → B → C → Z)</span>
-        <span class="step-body">Tất cả principal trả <em>tranche A trước</em> đến khi A retired, rồi đến B, C, Z. Tranche A có shortest WAL, Z dài nhất. Z thường accrual (không nhận coupon đến khi A-C retired).</span>
+        <span class="step-title">Cơ chế</span>
+        <span class="step-body">Investor mua bond YTM = 6%. Sau 1 năm, rates thị trường giảm còn 4%. Coupon nhận được trong năm 2, 3, ... chỉ có thể reinvest ở 4%, không còn là 6% như YTM giả định ban đầu.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Planned Amortization Class (PAC)</span>
-        <span class="step-body">PAC tranche có <em>schedule cố định</em> nếu prepay nằm trong <em>collar</em> (vd 100-300% PSA). Stable cash flow giống bullet bond.</span>
+        <span class="step-title">Hệ quả</span>
+        <span class="step-body">Reinvestment income thấp hơn → <em>total FV thấp hơn dự kiến</em> → horizon yield &lt; YTM tại thời điểm mua. Sự chênh lệch này tích luỹ theo thời gian và đặc biệt lớn với bond có coupon cao hoặc maturity dài.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Support / Companion tranches</span>
-        <span class="step-body"><em>Hấp thụ</em> volatility prepayment để bảo vệ PAC. Khi prepay > collar, support nhận thêm; khi < collar, support bị defer. Risk cao, yield cao.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">IO &amp; PO strips</span>
-        <span class="step-body"><em>Interest-only</em> nhận chỉ interest cash flow; <em>Principal-only</em> nhận chỉ principal. Cùng pool nhưng giá trị di chuyển <b>ngược nhau</b> theo prepayment speed.</span>
-      </span>
-    </li>
-  </ol>
-
-  <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
-  </div>
-</section>
-
-
-<!-- 12 · SEQUENTIAL VS PAC -->
-<section data-label="Sequential vs PAC" class="slide">
-  <div class="run-header">
-    <span>08.10 — MBS</span>
-    <span class="rule"></span>
-    <span>12 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">CMO · structures</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Sequential</em> vs <em class="hi">PAC</em>.</h2>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head"><em>Sequential pay</em></div>
-      <dl>
-        <dt>Rule</dt>
-        <dd>Principal trả lần lượt: A → B → C → Z</dd>
-        <dt>WAL</dt>
-        <dd>A: ngắn nhất · Z: dài nhất (accrual). Tranche A protected khỏi extension; Z protected khỏi contraction (one-sided).</dd>
-        <dt>Prepay risk</dt>
-        <dd>Chia <em>theo thứ tự thời gian</em> — không cố định cho tranche nào</dd>
-        <dt>Investor</dt>
-        <dd>Insurance co. (Z dài), money market fund (A ngắn). Linh hoạt match liability duration.</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head"><em>PAC</em> + Support</div>
-      <dl>
-        <dt>Rule</dt>
-        <dd>PAC nhận theo <em>schedule cố định</em> nếu prepay ∈ collar (vd 100-300% PSA)</dd>
-        <dt>WAL</dt>
-        <dd>PAC: <b>stable</b> across rate scenarios. Support: highly variable.</dd>
-        <dt>Prepay risk</dt>
-        <dd>Support hấp thụ <em>cả contraction lẫn extension</em>. PAC chỉ chịu risk khi prepay <em>vượt khỏi</em> collar (broken PAC).</dd>
-        <dt>Investor</dt>
-        <dd>Conservative cho PAC (yield thấp hơn, stability). Speculative cho support (yield cao hơn).</dd>
-      </dl>
-    </div>
-  </div>
-
-  <div class="rule-box" style="margin-top: 18px;">
-    <span class="tag">§ Prefer PAC when…</span>
-    Investor cần <em>predictable cash flow</em> (pension, insurance liability matching). Sẵn sàng accept yield thấp hơn để đổi stability. <b>Bị broken PAC</b> nếu prepay sustained ngoài collar — lúc đó PAC behaves giống sequential.
-  </div>
-
-  <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
-  </div>
-</section>
-
-
-<!-- 13 · IO VS PO -->
-<section data-label="IO vs PO" class="slide">
-  <div class="run-header">
-    <span>08.10 — MBS</span>
-    <span class="rule"></span>
-    <span>13 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">CMO · stripped securities</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">IO</em> vs <em class="hi">PO</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Stripping pass-through thành 2 securities: <em>Interest-only</em> nhận 100% interest cash flow; <em>Principal-only</em> nhận 100% principal. Cộng lại = pass-through gốc.
-    </p>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head"><em>IO</em> — Interest-only</div>
-      <dl>
-        <dt>Cash flow</dt>
-        <dd>Coupon × outstanding principal balance, mỗi tháng</dd>
-        <dt>Khi rates ↓ (prepay ↑)</dt>
-        <dd>Principal về sớm → balance shrink → <b>future interest cash flow giảm</b> → IO <em>mất giá</em></dd>
-        <dt>Khi rates ↑ (prepay ↓)</dt>
-        <dd>Balance kéo dài → IO nhận interest lâu hơn → IO <em>tăng giá</em></dd>
-        <dt>Đặc tính</dt>
-        <dd><b>Negative duration</b> — giá tăng khi rates tăng (rare).</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head"><em>PO</em> — Principal-only</div>
-      <dl>
-        <dt>Cash flow</dt>
-        <dd>Principal payments (scheduled + prepay), không nhận interest</dd>
-        <dt>Khi rates ↓ (prepay ↑)</dt>
-        <dd>Principal về sớm → PV cao hơn (discount nhỏ hơn) → PO <em>tăng giá mạnh</em></dd>
-        <dt>Khi rates ↑ (prepay ↓)</dt>
-        <dd>Principal về chậm → PV giảm (discount lớn hơn) → PO <em>mất giá</em></dd>
-        <dt>Đặc tính</dt>
-        <dd>Duration <b>rất dài + dương</b>, leveraged play on rates ↓.</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Tools — IO dùng để hedge mortgage portfolio (positive vs prepayment slowdown). PO dùng để leverage view "rates sẽ giảm". Cùng pool nhưng performance đối nghịch.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
-  </div>
-</section>
-
-
-<!-- 14 · CMBS DEEP DIVE -->
-<section data-label="CMBS" class="slide">
-  <div class="run-header">
-    <span>08.10 — MBS</span>
-    <span class="rule"></span>
-    <span>14 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">CMBS · structure &amp; protection</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">CMBS</em> mechanics.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      CMBS là pool of <em>commercial</em> mortgages — non-recourse, balloon at maturity, strong call protection. Investor lo <b>credit risk</b> nhiều hơn prepayment.
-    </p>
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 16px;">
-    <li>
-      <span>
-        <span class="step-title">Balloon payments</span>
-        <span class="step-body">CMBS loans thường <em>partial amortization + balloon</em>: trả monthly P+I theo 25-30Y schedule, nhưng maturity 7-10Y → balloon principal lớn refinance hoặc default risk.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Tranching by credit (waterfall)</span>
-        <span class="step-body">Senior (AAA) hấp thụ losses cuối; subordinated tranches (B-pieces) hấp thụ losses đầu. Tương tự CDO logic — <em>credit waterfall</em>, không phải prepayment waterfall.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">DSCR &amp; LTV</span>
-        <span class="step-body">Key metrics: <em>Debt Service Coverage Ratio</em> (NOI / debt service, target ≥ 1.25x) và <em>Loan-to-Value</em> (loan / appraised value, target ≤ 75%).</span>
+        <span class="step-title">Ai chịu nhiều nhất?</span>
+        <span class="step-body">Bond có coupon cao + maturity dài → dòng tiền coupon lớn và nhiều lần reinvest → reinvestment risk cao. Zero-coupon bond: <b>không có reinvestment risk</b> vì không có coupon để reinvest (chỉ một lần nhận lại par).</span>
       </span>
     </li>
   </ol>
 
   <div class="rule-box" style="margin-top: 16px;">
-    <span class="tag">§ CMBS call protection — 4 layers</span>
-    (1) <b>Lockout</b> — không cho prepay trong N năm đầu (vd 2-5 năm).<br>
-    (2) <b>Defeasance</b> — borrower phải mua Treasury portfolio replicate cash flow để thay thế collateral.<br>
-    (3) <b>Yield maintenance</b> — borrower trả penalty = PV của lost interest cho lender.<br>
-    (4) <b>Prepayment penalty points</b> — % declining (vd 5-4-3-2-1) qua các năm.
+    <span class="tag">§ Key insight</span>
+    Reinvestment risk và lãi suất <em>ngược chiều</em>: khi rates ↓ → reinvestment income ↓ → realized return bị tổn hại. Investor bị tổn thương khi rates giảm qua kênh reinvestment.
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
   </div>
 </section>
 
 
-<!-- 15 · NEGATIVE CONVEXITY & OAS -->
-<section data-label="Negative convexity &amp; OAS" class="slide">
+<!-- 07 · PRICE RISK -->
+<section data-label="Price risk" class="slide">
   <div class="run-header">
-    <span>08.10 — MBS</span>
+    <span>08.10 — Interest Rate Risk and Return</span>
     <span class="rule"></span>
-    <span>15 / 30</span>
+    <span>07 / 29</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Valuation · risk metric</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Negative convexity</em> &amp; OAS.</h2>
+    <div class="eyebrow">Risk · price</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Price risk</em> — khi rates tăng.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Embedded prepayment option làm price-yield curve uốn ngược ở rates thấp. Để compare MBS với option-free bond, dùng <b>option-adjusted spread (OAS)</b>.
+      Price risk là rủi ro giá trị thị trường của bond <em>giảm khi lãi suất tăng</em> — gây ra capital loss nếu investor buộc phải bán trước maturity.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Cơ chế</span>
+        <span class="step-body">Bond có fixed coupon — khi market rates tăng, investors có thể mua bond mới với coupon cao hơn → bond cũ kém hấp dẫn → giá thị trường bond cũ phải <em>giảm</em> để yield tương đương.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Hệ quả</span>
+        <span class="step-body">Nếu bán trước maturity khi rates đã tăng → nhận được giá thấp hơn giá mua → <em>capital loss</em>. Capital loss làm horizon yield &lt; YTM, thậm chí horizon yield có thể âm trong kịch bản rates tăng mạnh.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Ai chịu nhiều nhất?</span>
+        <span class="step-body">Bond có maturity dài + coupon thấp → duration cao → nhạy cảm nhất với price risk. Zero-coupon bond có duration = maturity → price risk cao nhất trong class cùng maturity.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="rule-box" style="margin-top: 16px;">
+    <span class="tag">§ Key insight</span>
+    Price risk và lãi suất <em>ngược chiều</em>: khi rates ↑ → giá bond ↓ → capital loss nếu bán. Investor bị tổn thương khi rates tăng qua kênh giá. Đây là lý do bond thường được coi là "safe" nhưng vẫn có rủi ro lớn về mark-to-market.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
+  </div>
+</section>
+
+
+<!-- 08 · OFFSETTING EFFECT -->
+<section data-label="Offsetting effect" class="slide">
+  <div class="run-header">
+    <span>08.10 — Interest Rate Risk and Return</span>
+    <span class="rule"></span>
+    <span>08 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Risk offset · hai chiều</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Reinvestment risk và price risk <em class="hi">bù trừ</em> nhau.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Đây là insight cốt lõi của immunization theory: <em>hai loại rủi ro chuyển động ngược chiều</em> theo lãi suất, nên tổng effect phụ thuộc vào holding period so với Macaulay duration.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Khi rates ↑</em></div>
+      <dl>
+        <dt>Reinvestment income</dt>
+        <dd><b>Tăng</b> — coupon reinvest được tại rate cao hơn → FV cuối kỳ cao hơn dự kiến (+)</dd>
+        <dt>Giá bán bond</dt>
+        <dd><b>Giảm</b> — market price thấp hơn par/expected → capital loss (−)</dd>
+        <dt>Net effect</dt>
+        <dd>Phụ thuộc vào thời gian: nếu holding period <b>ngắn</b>, price effect thắng → realized return thấp hơn YTM</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Khi rates ↓</em></div>
+      <dl>
+        <dt>Reinvestment income</dt>
+        <dd><b>Giảm</b> — coupon reinvest được tại rate thấp hơn → FV cuối kỳ thấp hơn dự kiến (−)</dd>
+        <dt>Giá bán bond</dt>
+        <dd><b>Tăng</b> — market price cao hơn → capital gain (+)</dd>
+        <dt>Net effect</dt>
+        <dd>Phụ thuộc vào thời gian: nếu holding period <b>dài</b>, reinvestment effect tích luỹ đủ để thắng price gain</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Điểm cân bằng = <b>Macaulay duration</b>. Tại horizon = Macaulay duration, hai hiệu ứng triệt tiêu nhau → realized return ≈ YTM ban đầu bất kể rates thay đổi. Đây là nền tảng của <em>immunization</em>.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
+  </div>
+</section>
+
+
+<!-- 09 · MACAULAY DURATION AS IMMUNIZATION HORIZON -->
+<section data-label="Macaulay duration immunization" class="slide">
+  <div class="run-header">
+    <span>08.10 — Interest Rate Risk and Return</span>
+    <span class="rule"></span>
+    <span>09 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Macaulay duration · immunization</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Macaulay duration</em> = điểm miễn nhiễm lãi suất.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Macaulay duration là <em>thời gian trung bình có trọng số</em> (weighted average time) của tất cả cash flows, với weight = PV của cash flow đó / tổng PV (= giá bond). Về mặt kinh tế, nó là horizon mà tại đó price effect và reinvestment effect hoàn toàn offset nhau.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Công thức Macaulay Duration</span>
+    <div class="eq">
+      <span class="var">MacDur</span> = Σ [ t × (PV<sub>t</sub> / Price) ]
+    </div>
+    <div class="note">
+      Với <b>t</b> = thời điểm nhận cash flow (tính bằng periods), <b>PV<sub>t</sub></b> = present value của cash flow tại thời điểm t. Kết quả tính bằng periods; chia cho m (số coupon mỗi năm) để ra số năm.
+    </div>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 14px;">
+    <div class="tenet">
+      <span class="n">→</span>
+      <div>
+        <div class="t">Holding period &lt; MacDur</div>
+        <div class="d">Price risk thắng reinvestment effect. Rates ↑ → realized return &lt; YTM. Investor chưa nhận đủ reinvestment income để bù capital loss.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">=</span>
+      <div>
+        <div class="t">Holding period = MacDur</div>
+        <div class="d"><em>Immunized</em> — hai hiệu ứng offset nhau. Realized return ≈ YTM ban đầu dù rates thay đổi (với giả định parallel shift nhỏ).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">←</span>
+      <div>
+        <div class="t">Holding period &gt; MacDur</div>
+        <div class="d">Reinvestment effect thắng. Rates ↑ → realized return &gt; YTM. Investor hưởng lợi từ coupon tái đầu tư ở rate cao hơn.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
+  </div>
+</section>
+
+
+<!-- 10 · INVERSE PRICE-YIELD RELATIONSHIP -->
+<section data-label="Inverse price-yield" class="slide">
+  <div class="run-header">
+    <span>08.10 — Interest Rate Risk and Return</span>
+    <span class="rule"></span>
+    <span>10 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Price-yield · mối quan hệ</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Giá bond và yield <em class="hi">ngược chiều</em> nhau.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Đây là nguyên lý cơ bản nhất của fixed income: giá bond và yield to maturity có mối quan hệ <em>nghịch biến</em>. Khi yields tăng → giá giảm; khi yields giảm → giá tăng. Mối quan hệ này là tất yếu về mặt toán học.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">↑</span>
+      <div>
+        <div class="t">Yield ↑ → Giá ↓</div>
+        <div class="d">Khi market discount rate tăng, PV của các cash flows cố định trong tương lai giảm → giá bond giảm. Bond đang trả coupon 5% bị mất hấp dẫn khi bonds mới offer 6%.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">↓</span>
+      <div>
+        <div class="t">Yield ↓ → Giá ↑</div>
+        <div class="d">Khi market discount rate giảm, PV của cash flows cố định tăng → giá bond tăng. Bond cũ trả 5% trở nên quý giá khi bonds mới chỉ offer 3%.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">≡</span>
+      <div>
+        <div class="t">Coupon rate = YTM → Par</div>
+        <div class="d">Khi coupon rate bằng yield yêu cầu của market, bond giao dịch tại đúng par (face value). Đây là điều kiện cân bằng tự nhiên.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">⊙</span>
+      <div>
+        <div class="t">Mức độ thay đổi giá ≠ tuyến tính</div>
+        <div class="d">Giá không di chuyển <em>tuyến tính</em> theo yield — đường cong price-yield lồi (convex). Giá tăng nhiều hơn khi yield giảm 1% so với giá giảm khi yield tăng 1% — đây là convexity lợi thế. Chi tiết ở m12.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
+  </div>
+</section>
+
+
+<!-- 11 · CONVEXITY PREVIEW -->
+<section data-label="Convexity preview" class="slide">
+  <div class="run-header">
+    <span>08.10 — Interest Rate Risk and Return</span>
+    <span class="rule"></span>
+    <span>11 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Convexity · preview</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Đường cong price-yield là <em class="hi">lồi</em> — convexity.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Đường price-yield không phải đường thẳng mà là <em>đường cong lồi về phía gốc tọa độ</em>. Đây gọi là <b>positive convexity</b> — một đặc tính có lợi tự nhiên của bond thông thường. Phân tích đầy đủ về convexity sẽ ở module 12; ở đây chỉ giới thiệu khái niệm.
     </p>
   </div>
 
   <div class="rule-box">
-    <span class="tag">§ Negative convexity — when it hurts</span>
-    Khi rates <em>giảm mạnh</em>: option-free bond price tăng theo lồi (positive convexity); MBS giá <em>bị capped</em> vì borrowers refinance, principal về sớm → upside limited. <br>
-    Khi rates <em>tăng mạnh</em>: MBS extends, hành xử giống bond duration cao hơn → downside không cap. <br>
-    <b>Heads I lose, tails I win less</b> — đó là cái giá investor trả khi short prepayment option.
+    <span class="tag">§ Ba điều cần nhớ về convexity ngay bây giờ</span>
+    <ol style="margin: 8px 0 0 16px; line-height: 1.9;">
+      <li><b>Đối xứng bị phá vỡ</b>: Khi yield giảm 1%, giá tăng <em>nhiều hơn</em> mức giá giảm khi yield tăng 1% — do độ cong của đường price-yield.</li>
+      <li><b>Duration là tiếp tuyến</b>: Modified duration ước lượng thay đổi giá <em>tuyến tính</em>; convexity điều chỉnh sai số của xấp xỉ đó cho yield moves lớn.</li>
+      <li><b>Positive convexity = lợi thế</b>: Investor luôn thích có positive convexity vì upside vượt downside. Bonds với callable feature hoặc MBS có thể có negative convexity — không còn lợi thế này.</li>
+    </ol>
   </div>
 
-  <div class="formula-box" style="margin-top: 18px;">
-    <span class="fmt-label">§ OAS — Option-adjusted spread</span>
-    <div class="eq"><span class="var">Z-spread</span> = <span class="var">OAS</span> + <span class="var">Option cost</span></div>
-    <div class="note">
-      Z-spread bao gồm cả compensation cho prepayment option. <b>OAS</b> = phần spread <em>sau khi removed</em> giá trị của option → so sánh trực tiếp với corporate bond spread cùng credit. <em>Option cost = Z − OAS</em>; càng cao thì prepayment risk càng đáng kể.
-    </div>
-  </div>
+  <p class="fine-muted-sm">
+    § Để xem đầy đủ: convexity formula, portfolio convexity, convexity adjustment → Module 08.12. Hiện tại chỉ cần nhớ: đường cong lồi, không phải thẳng.
+  </p>
 
   <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
   </div>
 </section>
 
 
-<!-- 16 · TAKEAWAYS -->
-<section data-label="Takeaways" class="slide">
+<!-- 12 · FACTORS AFFECTING REINVESTMENT RISK -->
+<section data-label="Factors reinvestment risk" class="slide">
   <div class="run-header">
-    <span>08.10 — MBS</span>
+    <span>08.10 — Interest Rate Risk and Return</span>
     <span class="rule"></span>
-    <span>16 / 30</span>
+    <span>12 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Reinvestment risk · determinants</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Yếu tố ảnh hưởng đến <em class="hi">mức độ</em> reinvestment risk.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Không phải tất cả bonds đều chịu reinvestment risk như nhau. Ba yếu tố cấu trúc quyết định mức độ tiếp xúc reinvestment risk của investor.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">C</span>
+      <div>
+        <div class="t"><em class="hi">Coupon rate</em> — cao hơn → risk cao hơn</div>
+        <div class="d">Coupon rate cao → dòng tiền coupon lớn hơn trong mỗi kỳ → phần tổng return phụ thuộc vào reinvestment nhiều hơn. Zero-coupon bond: coupon rate = 0 → <b>không có reinvestment risk</b> (lock-in YTM hoàn toàn).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">T</span>
+      <div>
+        <div class="t"><em class="hi">Time to maturity</em> — dài hơn → risk cao hơn</div>
+        <div class="d">Bond maturity càng dài → coupon nhận nhiều lần hơn → risk tích luỹ qua nhiều kỳ reinvestment. Bond 30 năm có reinvestment risk lớn hơn bond 3 năm rất nhiều.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">R</span>
+      <div>
+        <div class="t"><em class="hi">Rate volatility</em> — cao hơn → risk cao hơn</div>
+        <div class="d">Trong môi trường lãi suất biến động mạnh, sự chênh lệch giữa YTM tại thời điểm mua và reinvestment rate thực tế có thể rất lớn → reinvestment risk thực tế cao hơn.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Zero-coupon — phương án loại bỏ reinvestment risk</span>
+    Zero-coupon bond chỉ trả <em>một lần tại maturity</em>. Không có coupon → không có gì để reinvest → <b>realized return = YTM tại thời điểm mua</b> (nếu held to maturity). Lý tưởng cho liability matching chính xác.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
+  </div>
+</section>
+
+
+<!-- 13 · HOLDING PERIOD COMPARISON -->
+<section data-label="Holding period comparison" class="slide">
+  <div class="run-header">
+    <span>08.10 — Interest Rate Risk and Return</span>
+    <span class="rule"></span>
+    <span>13 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Holding period · so sánh</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">So sánh realized return theo <em class="hi">holding period</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Kịch bản: rates tăng ngay sau khi mua bond. Hiệu ứng lên realized return phụ thuộc vào <em>investor giữ bond bao lâu</em> so với Macaulay duration.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head"><em>Holding period ngắn hơn MacDur</em></div>
+      <dl>
+        <dt>Kịch bản rates ↑</dt>
+        <dd>Investor bán trước khi reinvestment income tích luỹ đủ → <b>capital loss thắng</b> → realized return &lt; YTM</dd>
+        <dt>Kịch bản rates ↓</dt>
+        <dd>Investor bán khi giá cao → capital gain → realized return &gt; YTM</dd>
+        <dt>Rủi ro chủ đạo</dt>
+        <dd><em>Price risk</em> — nhạy cảm với biến động giá ngắn hạn</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head"><em>Holding period dài hơn MacDur</em></div>
+      <dl>
+        <dt>Kịch bản rates ↑</dt>
+        <dd>Reinvestment income tích luỹ nhiều hơn giảm giá → <b>reinvestment effect thắng</b> → realized return &gt; YTM</dd>
+        <dt>Kịch bản rates ↓</dt>
+        <dd>Reinvestment income thấp không đủ bù → realized return &lt; YTM</dd>
+        <dt>Rủi ro chủ đạo</dt>
+        <dd><em>Reinvestment risk</em> — nhạy cảm với thay đổi reinvestment rate dài hạn</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Trực giác quan trọng: bond không "an toàn" tuyệt đối. Nó chuyển rủi ro từ dạng này sang dạng khác tùy theo holding period vs duration.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
+  </div>
+</section>
+
+
+<!-- 14 · IMMUNIZATION CONCEPT -->
+<section data-label="Immunization concept" class="slide">
+  <div class="run-header">
+    <span>08.10 — Interest Rate Risk and Return</span>
+    <span class="rule"></span>
+    <span>14 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Immunization · khái niệm</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Immunization</em> — phòng vệ bằng duration matching.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      <b>Immunization</b> là chiến lược đầu tư nhằm đảm bảo realized return ≥ YTM ban đầu <em>bất kể lãi suất thay đổi như thế nào</em> (với giả định parallel yield curve shift). Điều kiện cốt lõi: set <em>investment horizon = Macaulay duration</em>.
+    </p>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Điều kiện immunization (single liability)</span>
+        <span class="step-body">MacDur của portfolio = thời gian đến khi phải trả liability. Ví dụ: cần $1M sau đúng 5.2 năm → cần bond (hoặc portfolio bonds) có Macaulay duration = 5.2 năm.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Tại sao duration = horizon?</span>
+        <span class="step-body">Tại thời điểm horizon = MacDur: price effect và reinvestment effect triệt tiêu nhau. Bond portfolio "tự cân bằng" — ngay cả khi rates thay đổi, total accumulated value tại thời điểm đó gần bằng giá trị dự kiến ban đầu.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Rebalancing</span>
+        <span class="step-body">Macaulay duration thay đổi theo thời gian và khi rates thay đổi → cần rebalance định kỳ để duy trì duration = remaining horizon. Immunization không phải buy-and-hold hoàn toàn.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
+  </div>
+</section>
+
+
+<!-- 15 · WORKED EXAMPLE SETUP -->
+<section data-label="Worked example setup" class="slide">
+  <div class="run-header">
+    <span>08.10 — Interest Rate Risk and Return</span>
+    <span class="rule"></span>
+    <span>15 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Worked example · setup</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Ví dụ tính <em class="hi">horizon yield</em> — 3 kịch bản lãi suất.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Một bond 5 năm, annual coupon 6%, face $1,000, mua tại par (YTM = 6%). Investor giữ <b>3 năm</b> rồi bán. Tính horizon yield trong 3 kịch bản reinvestment rate khác nhau. (Annual periods để đơn giản hoá tính toán.)
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Thông tin bond</span>
+    <div class="eq">Coupon rate = 6% · Face = $1,000 · Maturity = 5 năm · YTM mua = 6% · Price mua = $1,000</div>
+    <div class="eq">Holding period = 3 năm · Coupon hàng năm = $60</div>
+    <div class="note">
+      Sau 3 năm, investor nhận 3 coupon ($60 mỗi năm) + giá bán bond (còn 2 năm đến maturity). Giá bán phụ thuộc vào lãi suất tại năm 3. Reinvestment income phụ thuộc vào rate tái đầu tư 3 năm.
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 18px;">
+    <span class="tag">§ Ba kịch bản</span>
+    <b>Scenario A</b>: Rates ổn định tại 6% suốt (base case). &nbsp;|&nbsp;
+    <b>Scenario B</b>: Rates tăng lên 8% ngay sau khi mua. &nbsp;|&nbsp;
+    <b>Scenario C</b>: Rates giảm xuống 4% ngay sau khi mua.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
+  </div>
+</section>
+
+
+<!-- 16 · WORKED EXAMPLE SCENARIO A -->
+<section data-label="Worked example Scenario A" class="slide">
+  <div class="run-header">
+    <span>08.10 — Interest Rate Risk and Return</span>
+    <span class="rule"></span>
+    <span>16 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Worked example · Scenario A</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Kịch bản A: Rates ổn định <em class="hi">6%</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Tính FV coupons reinvested tại 6%</span>
+    <div class="eq">Coupon năm 1 → reinvest 2 năm: $60 × (1.06)<sup>2</sup> = $60 × 1.1236 = <b>$67.42</b></div>
+    <div class="eq">Coupon năm 2 → reinvest 1 năm: $60 × (1.06)<sup>1</sup> = $60 × 1.0600 = <b>$63.60</b></div>
+    <div class="eq">Coupon năm 3 → không reinvest: $60 × 1.0000 = <b>$60.00</b></div>
+    <div class="eq">FV coupons = $67.42 + $63.60 + $60.00 = <b>$191.02</b></div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Giá bán cuối năm 3 (bond còn 2 năm, YTM = 6%)</span>
+    <div class="eq">P<sub>3</sub> = $60/1.06 + $1,060/1.06<sup>2</sup> = $56.60 + $943.40 = <b>$1,000.00</b></div>
+    <div class="eq">Total FV = $191.02 + $1,000.00 = <b>$1,191.02</b></div>
+    <div class="eq">Horizon yield = (1,191.02 / 1,000)<sup>1/3</sup> − 1 = 1.0600 − 1 = <b>6.00%</b></div>
+    <div class="note">Kết quả: Horizon yield = YTM ban đầu. Đúng như kỳ vọng khi rates không đổi.</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
+  </div>
+</section>
+
+
+<!-- 17 · WORKED EXAMPLE SCENARIO B -->
+<section data-label="Worked example Scenario B" class="slide">
+  <div class="run-header">
+    <span>08.10 — Interest Rate Risk and Return</span>
+    <span class="rule"></span>
+    <span>17 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Worked example · Scenario B</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Kịch bản B: Rates tăng lên <em class="hi">8%</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ FV coupons reinvested tại 8%</span>
+    <div class="eq">Coupon năm 1: $60 × (1.08)<sup>2</sup> = $60 × 1.1664 = <b>$69.98</b></div>
+    <div class="eq">Coupon năm 2: $60 × (1.08)<sup>1</sup> = $60 × 1.0800 = <b>$64.80</b></div>
+    <div class="eq">Coupon năm 3: $60 × 1.0000 = <b>$60.00</b></div>
+    <div class="eq">FV coupons = $69.98 + $64.80 + $60.00 = <b>$194.78</b></div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Giá bán cuối năm 3 (YTM thị trường = 8%)</span>
+    <div class="eq">P<sub>3</sub> = $60/1.08 + $1,060/1.08<sup>2</sup> = $55.56 + $908.78 = <b>$964.33</b></div>
+    <div class="eq">Total FV = $194.78 + $964.33 = <b>$1,159.11</b></div>
+    <div class="eq">Horizon yield = (1,159.11 / 1,000)<sup>1/3</sup> − 1 = 1.0504 − 1 = <b>5.04%</b></div>
+    <div class="note">
+      Horizon yield = <b>5.04%</b> &lt; YTM 6%. Holding period (3 năm) &lt; Macaulay duration → price effect (capital loss $35.67) thắng reinvestment gain ($3.76). Investor bị tổn thương.
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
+  </div>
+</section>
+
+
+<!-- 18 · WORKED EXAMPLE SCENARIO C -->
+<section data-label="Worked example Scenario C" class="slide">
+  <div class="run-header">
+    <span>08.10 — Interest Rate Risk and Return</span>
+    <span class="rule"></span>
+    <span>18 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Worked example · Scenario C</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Kịch bản C: Rates giảm xuống <em class="hi">4%</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ FV coupons reinvested tại 4%</span>
+    <div class="eq">Coupon năm 1: $60 × (1.04)<sup>2</sup> = $60 × 1.0816 = <b>$64.90</b></div>
+    <div class="eq">Coupon năm 2: $60 × (1.04)<sup>1</sup> = $60 × 1.0400 = <b>$62.40</b></div>
+    <div class="eq">Coupon năm 3: $60 × 1.0000 = <b>$60.00</b></div>
+    <div class="eq">FV coupons = $64.90 + $62.40 + $60.00 = <b>$187.30</b></div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 14px;">
+    <span class="fmt-label">§ Giá bán cuối năm 3 (YTM thị trường = 4%)</span>
+    <div class="eq">P<sub>3</sub> = $60/1.04 + $1,060/1.04<sup>2</sup> = $57.69 + $980.47 = <b>$1,038.17</b></div>
+    <div class="eq">Total FV = $187.30 + $1,038.17 = <b>$1,225.47</b></div>
+    <div class="eq">Horizon yield = (1,225.47 / 1,000)<sup>1/3</sup> − 1 = 1.0700 − 1 = <b>7.00%</b></div>
+    <div class="note">
+      Horizon yield = <b>7.00%</b> &gt; YTM 6%. Capital gain ($38.17) thắng reinvestment loss ($3.72). Investor hưởng lợi khi rates ↓ trong kịch bản bán trước maturity.
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
+  </div>
+</section>
+
+
+<!-- 19 · WORKED EXAMPLE SUMMARY -->
+<section data-label="Worked example summary" class="slide">
+  <div class="run-header">
+    <span>08.10 — Interest Rate Risk and Return</span>
+    <span class="rule"></span>
+    <span>19 / 29</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Worked example · tổng kết</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">So sánh ba kịch bản — <em class="hi">holding period &lt; duration</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Holding period = 3 năm; Macaulay duration của bond này ≈ 4.46 năm (tính bằng weighted average time of cash flows tại 6%). Vì 3 năm &lt; 4.46 năm → price risk chiếm ưu thế.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 14px;">
+    <div class="tenet">
+      <span class="n">A</span>
+      <div>
+        <div class="t">Rates ổn định 6%</div>
+        <div class="d">Horizon yield = <em>6.00%</em> = YTM. Cả hai hiệu ứng bằng 0 vì rates không thay đổi. Đây là base case.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">B</span>
+      <div>
+        <div class="t">Rates tăng lên 8%</div>
+        <div class="d">Horizon yield = <em>5.04%</em> &lt; 6% YTM. Capital loss ($35.67) &gt; reinvestment gain ($3.76). Net: tổn hại ~0.96%/năm.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">C</span>
+      <div>
+        <div class="t">Rates giảm xuống 4%</div>
+        <div class="d">Horizon yield = <em>7.00%</em> &gt; 6% YTM. Capital gain ($38.17) &gt; reinvestment loss ($3.72). Net: lợi thêm ~1.00%/năm.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rule-box" style="margin-top: 14px;">
+    <span class="tag">§ Kết luận then chốt</span>
+    Khi holding period &lt; MacDur: investor chịu <em>price risk chủ yếu</em>. Muốn loại bỏ rủi ro lãi suất → kéo dài holding period đến đúng MacDur (hoặc rút ngắn MacDur của bond về bằng holding period). Đó là <b>immunization logic</b>.
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
+  </div>
+</section>
+
+
+<!-- 20 · KEY TAKEAWAYS -->
+<section data-label="Key takeaways" class="slide">
+  <div class="run-header">
+    <span>08.10 — Interest Rate Risk and Return</span>
+    <span class="rule"></span>
+    <span>20 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Recap · big picture</div>
@@ -694,40 +837,40 @@
     <div class="tenet">
       <span class="n">α</span>
       <div>
-        <div class="t">Mortgages = amortizing + prepay option</div>
-        <div class="d">Borrower có American call (refinance bất cứ lúc nào). Pool nhiều mortgages → securitize → MBS. Coupon investor = WAC − servicing − guarantee.</div>
+        <div class="t">Ba nguồn return</div>
+        <div class="d">Coupon income (cố định) + Reinvestment income (biến đổi theo rate) + Capital gain/loss (biến đổi theo rate và holding period). YTM = tổng expected return chỉ khi held to maturity + reinvest at YTM.</div>
       </div>
     </div>
     <div class="tenet">
       <span class="n">β</span>
       <div>
-        <div class="t">Agency vs Non-agency · RMBS vs CMBS</div>
-        <div class="d">Ginnie (full faith) · Fannie/Freddie (implicit). Non-agency = credit risk. RMBS = prepay risk. CMBS = credit + balloon, call-protected (lockout, defeasance, YM, penalty).</div>
+        <div class="t">Hai rủi ro bù trừ</div>
+        <div class="d">Reinvestment risk (bất lợi khi rates ↓) và price risk (bất lợi khi rates ↑) chuyển động ngược chiều. Điểm cân bằng = Macaulay duration. Đây là cơ sở của immunization.</div>
       </div>
     </div>
     <div class="tenet">
       <span class="n">γ</span>
       <div>
-        <div class="t">SMM · CPR · PSA</div>
-        <div class="d">SMM monthly · CPR = 1−(1−SMM)<sup>12</sup>. 100% PSA: ramp 0.2% × t đến 30 tháng, flat 6%. N% PSA = scale linearly.</div>
+        <div class="t">Inverse price-yield</div>
+        <div class="d">Quan hệ nghịch biến là tất yếu toán học. Đường cong lồi (positive convexity) — upside &gt; downside cho yield change cùng biên độ. Full convexity analysis ở m12.</div>
       </div>
     </div>
     <div class="tenet">
       <span class="n">δ</span>
       <div>
-        <div class="t">CMO tranches · negative convexity · OAS</div>
-        <div class="d">Sequential (A/B/C/Z); PAC + support (collar); IO ↑ khi rates ↑, PO ↑ khi rates ↓. MBS có negative convexity → giá đo bằng OAS, không Z-spread thuần.</div>
+        <div class="t">Horizon yield ≠ YTM</div>
+        <div class="d">Horizon yield = realized return cho holding period và reinvestment rate nhất định. Tính bằng: (Total FV / Price paid)<sup>1/n</sup> − 1. Phản ánh thực tế thị trường hơn YTM.</div>
       </div>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
   </div>
 </section>
 
 
-<!-- 17 · TRANSITION -->
+<!-- 21 · TRANSITION TO PRACTICE -->
 <section data-label="Practice begins" class="slide end-slide">
   <div>
     <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
@@ -736,40 +879,40 @@
 </section>
 
 
-<!-- 18 · Q1 EN — SMM/CPR conversion -->
+<!-- 22 · Q1 EN — YTM conditions -->
 <section data-label="Q1 Original" class="slide">
   <div class="run-header">
-    <span>08.10 — MBS</span>
+    <span>08.10 — Interest Rate Risk and Return</span>
     <span class="rule"></span>
-    <span>18 / 30</span>
+    <span>22 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">CPR</em> from SMM.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">YTM</em> as realized return.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      A mortgage pool reports a <strong>Single Monthly Mortality (SMM)</strong> of <strong>0.55%</strong> for the most recent month. The portfolio manager wants to express prepayment activity on an annualized basis. The corresponding <strong>Conditional Prepayment Rate (CPR)</strong> is <em>closest</em> to:
+      An investor purchases a 10-year, 5% annual coupon bond at par. Under which set of conditions will the investor's <strong>realized return equal the bond's yield to maturity</strong> of 5%?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">6.60% — computed as 0.55% × 12 (simple annualization).</span></li>
-    <li><span class="lbl">B</span><span class="opt">6.41% — computed as 1 − (1 − 0.0055)<sup>12</sup>.</span></li>
-    <li><span class="lbl">C</span><span class="opt">5.34% — computed as (1 − 0.0055)<sup>12</sup> − 1.</span></li>
+    <li><span class="lbl">A</span><span class="opt">The bond is held to maturity and all coupon payments are reinvested at the market rate prevailing at the time of each payment.</span></li>
+    <li><span class="lbl">B</span><span class="opt">The bond is sold after 5 years at a price equal to the present value of remaining cash flows discounted at 5%, regardless of reinvestment rates.</span></li>
+    <li><span class="lbl">C</span><span class="opt">The bond is held to maturity and all coupon payments are reinvested at 5%.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
   </div>
 </section>
 
 
-<!-- 19 · Q1 HINT -->
+<!-- 23 · Q1 HINT -->
 <section data-label="Q1 Hint" class="slide">
   <div class="run-header">
-    <span>08.10 — MBS</span>
+    <span>08.10 — Interest Rate Risk and Return</span>
     <span class="rule"></span>
-    <span>19 / 30</span>
+    <span>23 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 01</div>
@@ -777,34 +920,34 @@
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>SMM 0.55%</mark> · annualize sang <mark>CPR</mark>. Lưu ý: prepayment là <em>compounding</em>, không phải simple sum.
+    <mark>Realized return = YTM</mark> — hai điều kiện đồng thời. Nhớ: (1) held to maturity, (2) reinvest at <mark>YTM rate</mark>, không phải market rate.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">CPR = 1 − (1 − SMM)<sup>12</sup>. <em>Khả năng survive</em> 12 tháng liên tiếp = (1 − SMM)<sup>12</sup>; phần bù = annual prepay rate.</span>
+      <span class="htxt">YTM được tính với <em>giả định cụ thể</em> về reinvestment: tất cả coupon phải reinvest đúng tại YTM = 5%. Không phải market rate bất kỳ.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">(1 − 0.0055)<sup>12</sup> = (0.9945)<sup>12</sup> ≈ 0.9359 → CPR ≈ <em>1 − 0.9359 = 6.41%</em>.</span>
+      <span class="htxt">Điều kiện "held to maturity" loại bỏ price risk — investor nhận đúng par value tại cuối. Không có capital gain hay loss bất ngờ.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Sai 0.55% × 12 = 6.6% (overstate vì không tính compounding decay). Sai (1−SMM)<sup>12</sup>−1 (negative number, formula đảo).</span>
+      <span class="htxt">Option A sai vì nói "market rate prevailing at each payment" — market rate thay đổi liên tục, không phải cố định 5%. Option B sai vì bán trước maturity là không đủ điều kiện.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
   </div>
 </section>
 
 
-<!-- 20 · Q1 Dịch đề -->
+<!-- 24 · Q1 Dịch đề -->
 <section data-label="Q1 Dịch đề" class="slide">
   <div class="run-header">
-    <span>08.10 — MBS</span>
+    <span>08.10 — Interest Rate Risk and Return</span>
     <span class="rule"></span>
-    <span>20 / 30</span>
+    <span>24 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
@@ -813,89 +956,89 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một pool mortgage báo cáo <strong>Single Monthly Mortality (SMM)</strong> = <strong>0.55%</strong> trong tháng gần nhất. Portfolio manager muốn quy đổi prepayment activity sang basis annualized. <strong>Conditional Prepayment Rate (CPR)</strong> tương ứng <em>gần nhất</em> với:
+      Một investor mua bond 10 năm, coupon 5% annual, tại par. Trong điều kiện nào thì <strong>realized return của investor sẽ bằng yield to maturity 5%</strong> của bond?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">6.60% — tính bằng 0.55% × 12 (annualize đơn giản).</span></li>
-    <li><span class="lbl">B</span><span class="opt">6.41% — tính bằng 1 − (1 − 0.0055)<sup>12</sup>.</span></li>
-    <li><span class="lbl">C</span><span class="opt">5.34% — tính bằng (1 − 0.0055)<sup>12</sup> − 1.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Bond được giữ đến đáo hạn và tất cả coupon được tái đầu tư tại market rate hiện hành tại thời điểm nhận mỗi khoản.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Bond được bán sau 5 năm tại giá bằng PV của các cash flows còn lại chiết khấu ở 5%, bất kể reinvestment rate là bao nhiêu.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Bond được giữ đến đáo hạn và tất cả coupon được tái đầu tư tại 5%.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
   </div>
 </section>
 
 
-<!-- 21 · Q1 EXPLANATION -->
+<!-- 25 · Q1 EXPLANATION -->
 <section data-label="Q1 Explanation" class="slide">
   <div class="run-header">
-    <span>08.10 — MBS</span>
+    <span>08.10 — Interest Rate Risk and Return</span>
     <span class="rule"></span>
-    <span>21 / 30</span>
+    <span>25 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 6.41%.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — held to maturity + reinvest at YTM.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
-      <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">Step 1: Survival 1 month = (1 − 0.0055) = 0.9945. Step 2: Survival 12 months compound = 0.9945<sup>12</sup> ≈ <b>0.9359</b>. Step 3: CPR = 1 − 0.9359 = <b>6.41%</b>. CPR là annualized prepayment rate dùng cho cash flow modeling và quote PSA speed.</div>
+      <div class="rtag">✓ Correct — C</div>
+      <div class="rtext">Hai điều kiện thiết yếu: (1) <b>Held to maturity</b> — loại bỏ price risk, investor nhận par value tại đáo hạn, không có capital gain/loss bất ngờ. (2) <b>Reinvest all coupons at YTM = 5%</b> — đây chính xác là giả định được sử dụng khi tính YTM. Kết quả: realized return = promised YTM = 5%.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">0.55% × 12 = 6.60% là simple annualization — overstate CPR vì không tính compounding decay (mỗi tháng base shrink). Sai về bản chất: prepayment giảm pool dần, không thể multiply tuyến tính.</div>
+      <div class="rtext">"Market rate prevailing at each payment" ≠ YTM cố định 5%. Nếu rates thay đổi theo thời gian (ví dụ: năm 1 là 4%, năm 2 là 6%), reinvestment income sẽ khác giả định YTM → realized return ≠ 5%. Điều kiện reinvestment phải cụ thể là <em>tại YTM</em>.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">(1 − 0.0055)<sup>12</sup> − 1 = 0.9359 − 1 = −6.41%. Sai dấu — đây là <em>negative</em> survival decline, không phải prepayment rate. Phải lấy 1 − survival, không phải survival − 1.</div>
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Bán sau 5 năm = không held to maturity, vi phạm điều kiện 1. Dù giá bán tương thích với 5% discount rate, nhưng reinvestment rate của 5 năm coupon không được kiểm soát → realized return ≠ YTM. Cần cả hai điều kiện đồng thời.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Công thức chuẩn: <em>CPR = 1 − (1 − SMM)<sup>12</sup></em> và ngược lại <em>SMM = 1 − (1 − CPR)<sup>1/12</sup></em>. Compound, không simple multiply. PSA speed quote luôn ở basis CPR (vd "100% PSA flat = 6% CPR").</div>
+    <div class="ttext">YTM = <em>ex-ante</em> measure (đo tại thời điểm mua). Realized return = <em>ex-post</em> measure. Hai con số bằng nhau chỉ khi (1) held to maturity VÀ (2) coupon reinvested at YTM. Thiếu một trong hai: sẽ có chênh lệch.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
   </div>
 </section>
 
 
-<!-- 22 · Q2 EN — Contraction risk / IO -->
+<!-- 26 · Q2 EN — Reinvestment vs price risk -->
 <section data-label="Q2 Original" class="slide">
   <div class="run-header">
-    <span>08.10 — MBS</span>
+    <span>08.10 — Interest Rate Risk and Return</span>
     <span class="rule"></span>
-    <span>22 / 30</span>
+    <span>26 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">IO/PO</em> response.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Risk dominance</em> by horizon.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Interest rates fall sharply, and prepayment speeds on a 30-year agency pass-through pool accelerate well above the dealer's prior PSA assumption. An investor holds <strong>both an Interest-Only (IO) strip</strong> and a <strong>Principal-Only (PO) strip</strong> from the same pool. Which statement most accurately describes the impact?
+      An investor purchases a bond with a Macaulay duration of <strong>6.2 years</strong> and intends to sell it after <strong>4 years</strong>. If interest rates rise immediately after purchase and remain at the new higher level, the investor's <strong>realized return will most likely</strong> be:
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Both IO and PO appreciate because faster cash flows pull all PVs forward.</span></li>
-    <li><span class="lbl">B</span><span class="opt">IO appreciates while PO depreciates because IO has positive duration and benefits from lower discount rates.</span></li>
-    <li><span class="lbl">C</span><span class="opt">PO appreciates because principal arrives sooner; IO depreciates because the shrinking balance reduces future interest cash flows.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Greater than YTM at purchase, because reinvestment income benefits from higher rates.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Equal to YTM at purchase, because duration matching ensures immunization.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Less than YTM at purchase, because the capital loss on sale dominates the reinvestment gain over the 4-year holding period.</span></li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
   </div>
 </section>
 
 
-<!-- 23 · Q2 HINT -->
+<!-- 27 · Q2 HINT -->
 <section data-label="Q2 Hint" class="slide">
   <div class="run-header">
-    <span>08.10 — MBS</span>
+    <span>08.10 — Interest Rate Risk and Return</span>
     <span class="rule"></span>
-    <span>23 / 30</span>
+    <span>27 / 29</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 02</div>
@@ -903,222 +1046,74 @@
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>Rates fall</mark> → <mark>prepayment speed ↑</mark>. Investor có <mark>IO + PO</mark>. Nhớ: IO &amp; PO chuyển động <em>ngược chiều</em> theo prepay.
+    <mark>MacDur = 6.2Y</mark> · <mark>Holding period = 4Y</mark> · <mark>Rates rise</mark>. Hỏi về realized return so với YTM.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">PO = chỉ nhận principal (không interest). Principal về sớm → discount factor nhỏ hơn → <em>PO tăng giá</em>. Bonus: rate giảm → discount càng thấp → PV càng cao.</span>
+      <span class="htxt">So sánh holding period (4Y) vs MacDur (6.2Y): holding period &lt; MacDur → <em>price risk dominant</em>.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">IO = nhận coupon × outstanding balance. Prepay nhanh → balance shrink → <em>future interest cash flow giảm</em> → IO mất giá. Đây là rare bond có <b>negative duration</b>.</span>
+      <span class="htxt">Rates rise → hai hiệu ứng: reinvestment income ↑ (+) và giá bán ↓ (−). Vì holding period &lt; MacDur, <em>price loss chưa được đủ reinvestment income bù đắp</em>.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Vì IO &amp; PO cùng pool nên cộng lại = pass-through gốc. Khi pool tăng giá nhẹ, PO tăng mạnh + IO giảm để tổng cân.</span>
+      <span class="htxt">Immunization (realized return ≈ YTM) chỉ xảy ra khi holding period = MacDur (4Y ≠ 6.2Y). Option B sai vì điều kiện duration matching chưa thỏa mãn.</span>
     </li>
   </ol>
   <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
   </div>
 </section>
 
 
-<!-- 24 · Q2 Dịch đề -->
-<section data-label="Q2 Dịch đề" class="slide">
+<!-- 28 · Q2 Dịch đề + Explanation -->
+<section data-label="Q2 Dịch đề + Answer" class="slide">
   <div class="run-header">
-    <span>08.10 — MBS</span>
+    <span>08.10 — Interest Rate Risk and Return</span>
     <span class="rule"></span>
-    <span>24 / 30</span>
+    <span>28 / 29</span>
   </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  <div style="margin-top: 28px;">
+    <div class="eyebrow">Question 02 · Tiếng Việt &amp; Answer</div>
+    <h2 class="h-section" style="margin-bottom: 14px;">Dịch đề &amp; Answer: <em class="hi">C</em> — capital loss thắng.</h2>
   </div>
-  <div class="q-card">
-    <span class="q-tag">§ Vignette</span>
+  <div class="q-card" style="margin-bottom: 12px;">
+    <span class="q-tag">§ Vignette (VI)</span>
     <div class="q-stem">
-      Lãi suất giảm mạnh, và prepayment speed trên một 30-year agency pass-through pool tăng vượt xa PSA assumption mà dealer đã giả định. Một investor đang giữ <strong>cả Interest-Only (IO) strip</strong> và <strong>Principal-Only (PO) strip</strong> từ cùng pool đó. Nhận định nào mô tả tác động <em>chính xác nhất</em>?
+      Investor mua bond có <strong>Macaulay duration = 6.2 năm</strong>, dự định bán sau <strong>4 năm</strong>. Nếu lãi suất tăng ngay sau khi mua và giữ ở mức cao đó, realized return của investor <em>nhiều khả năng</em> sẽ:
+      <br><br>
+      <b>A</b> Lớn hơn YTM, vì reinvestment income hưởng lợi từ rates cao hơn. &nbsp;|&nbsp;
+      <b>B</b> Bằng YTM, vì duration matching đảm bảo immunization. &nbsp;|&nbsp;
+      <b>C</b> Nhỏ hơn YTM, vì capital loss khi bán lấn át reinvestment gain trong 4 năm.
     </div>
-  </div>
-  <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Cả IO và PO đều tăng giá vì cash flow về nhanh hơn kéo PV lên.</span></li>
-    <li><span class="lbl">B</span><span class="opt">IO tăng còn PO giảm vì IO có positive duration và hưởng lợi từ discount rate thấp hơn.</span></li>
-    <li><span class="lbl">C</span><span class="opt">PO tăng vì principal về sớm hơn; IO giảm vì balance shrink làm future interest cash flow giảm.</span></li>
-  </ol>
-  <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
-  </div>
-</section>
-
-
-<!-- 25 · Q2 EXPLANATION -->
-<section data-label="Q2 Explanation" class="slide">
-  <div class="run-header">
-    <span>08.10 — MBS</span>
-    <span class="rule"></span>
-    <span>25 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Answer · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">C</em> — PO ↑, IO ↓.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — C</div>
-      <div class="rtext"><b>PO</b>: chỉ nhận principal cash flow. Khi prepay tăng, principal $X về <em>sớm hơn</em> → PV cao hơn (less discounting). Combined với rate ↓ → PO <b>tăng giá mạnh</b> (PO leveraged play on rate ↓). <b>IO</b>: nhận coupon × outstanding balance. Prepay nhanh → balance shrink quickly → <em>future interest stream giảm</em> → IO <b>mất giá</b> bất chấp rate ↓. IO có <em>negative duration</em> — một trong số ít securities tăng khi rates tăng.</div>
+      <div class="rtext">Holding period (4Y) &lt; MacDur (6.2Y) → <b>price risk dominant</b>. Khi rates ↑: giá bond giảm → capital loss lớn khi bán ở năm 4. Reinvestment income có tăng nhưng chỉ tích luỹ 4 năm — chưa đủ để bù đắp price loss. Net: realized return &lt; YTM ban đầu.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Sai cốt lõi — IO &amp; PO không cùng dấu. Cùng pool nên cộng = pass-through; nếu pool tăng nhẹ, PO tăng nhiều và IO giảm để tổng cân. Faster cash flow tốt cho PO nhưng <em>cắt</em> cash flow của IO.</div>
-    </div>
-    <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — B</div>
-      <div class="rtext">Đảo ngược — IO có <em>negative duration</em> (giá tăng khi rates ↑, không phải ↓). Reasoning "positive duration + lower discount rate" áp dụng cho option-free bond, không phải IO trong pool đang prepay nhanh.</div>
+      <div class="rtag">✗ Wrong — A / B</div>
+      <div class="rtext"><b>A</b>: Reinvestment gain có xảy ra nhưng bị price loss lấn át — holding period quá ngắn so với duration. <b>B</b>: Immunization chỉ đạt được khi holding period = MacDur = 6.2Y, không phải 4Y. Cần rebalance đúng horizon.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">IO &amp; PO là cặp hedge tự nhiên. <em>PO ↑ khi rates ↓</em> (cash về sớm + discount thấp). <em>IO ↑ khi rates ↑</em> (balance kéo dài, interest stream lâu hơn). Trader dùng IO để hedge mortgage portfolio chống prepayment slowdown; PO để leverage view rate ↓.</div>
+    <div class="ttext">Holding period &lt; MacDur → price risk thắng → rates ↑ gây realized return &lt; YTM. Holding period &gt; MacDur → reinvestment effect thắng → rates ↑ gây realized return &gt; YTM. Immunization chỉ khi bằng nhau.</div>
   </div>
   <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
+    <span class="footer-topic">Fixed Income · 08.10 — Interest Rate Risk and Return</span>
   </div>
 </section>
 
 
-<!-- 26 · Q3 EN — CMBS call protection -->
-<section data-label="Q3 Original" class="slide">
-  <div class="run-header">
-    <span>08.10 — MBS</span>
-    <span class="rule"></span>
-    <span>26 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Practice · Question 03 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">CMBS</em> protection.</h2>
-  </div>
-  <div class="q-card">
-    <span class="q-tag">§ Vignette</span>
-    <div class="q-stem">
-      An analyst is comparing prepayment risk between an <strong>agency RMBS pass-through</strong> and a <strong>CMBS senior tranche</strong>. Which of the following statements is <em>most accurate</em>?
-    </div>
-  </div>
-  <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Both securities expose investors to similar prepayment risk because the underlying loans amortize the same way.</span></li>
-    <li><span class="lbl">B</span><span class="opt">CMBS investors face significantly less prepayment risk because of features such as lockout periods, defeasance, yield maintenance, and prepayment penalties; CMBS investors instead focus on credit risk and balloon refinancing risk.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Agency RMBS investors face less prepayment risk than CMBS investors because the agency guarantee neutralizes the borrower's prepayment option.</span></li>
-  </ol>
-  <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
-  </div>
-</section>
-
-
-<!-- 27 · Q3 HINT -->
-<section data-label="Q3 Hint" class="slide">
-  <div class="run-header">
-    <span>08.10 — MBS</span>
-    <span class="rule"></span>
-    <span>27 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Hint · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
-  </div>
-  <div class="hint-card">
-    <span class="h-tag">§ Keywords</span>
-    <mark>Agency RMBS</mark> vs <mark>CMBS senior</mark>. Đối chiếu <em>prepayment risk</em> giữa residential và commercial.
-  </div>
-  <ol class="hint-list">
-    <li>
-      <span class="hnum">Hint 1</span>
-      <span class="htxt">RMBS borrower (cá nhân): prepay <em>tự do</em>, không phạt → high prepay risk cho investor (cả contraction + extension).</span>
-    </li>
-    <li>
-      <span class="hnum">Hint 2</span>
-      <span class="htxt">CMBS borrower (doanh nghiệp): bị 4 lớp call protection — <em>lockout</em>, <em>defeasance</em>, <em>yield maintenance</em>, <em>prepayment penalty</em>. Prepay rất hạn chế.</span>
-    </li>
-    <li>
-      <span class="hnum">Hint 3</span>
-      <span class="htxt">Bù lại, CMBS investor lo <b>credit risk</b> (DSCR, LTV) và <b>balloon refinancing risk</b> tại maturity. Agency RMBS có guarantee → no credit risk.</span>
-    </li>
-  </ol>
-  <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
-  </div>
-</section>
-
-
-<!-- 28 · Q3 Dịch đề -->
-<section data-label="Q3 Dịch đề" class="slide">
-  <div class="run-header">
-    <span>08.10 — MBS</span>
-    <span class="rule"></span>
-    <span>28 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
-  </div>
-  <div class="q-card">
-    <span class="q-tag">§ Vignette</span>
-    <div class="q-stem">
-      Một analyst so sánh prepayment risk giữa một <strong>agency RMBS pass-through</strong> và một <strong>CMBS senior tranche</strong>. Nhận định nào <em>chính xác nhất</em>?
-    </div>
-  </div>
-  <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Cả hai expose investor cho prepayment risk tương tự vì loans underlying đều amortize cùng cách.</span></li>
-    <li><span class="lbl">B</span><span class="opt">CMBS investor chịu prepayment risk thấp hơn đáng kể nhờ các features như lockout periods, defeasance, yield maintenance, và prepayment penalties; CMBS investor thay vào đó focus vào credit risk và balloon refinancing risk.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Agency RMBS investor chịu prepayment risk thấp hơn CMBS vì agency guarantee triệt tiêu prepayment option của borrower.</span></li>
-  </ol>
-  <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
-  </div>
-</section>
-
-
-<!-- 29 · Q3 EXPLANATION -->
-<section data-label="Q3 Explanation" class="slide">
-  <div class="run-header">
-    <span>08.10 — MBS</span>
-    <span class="rule"></span>
-    <span>29 / 30</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Answer · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — CMBS = call-protected.</h2>
-  </div>
-  <div class="reasoning">
-    <div class="rblock">
-      <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">CMBS borrowers (commercial real estate sponsors) bị ràng buộc 4 layer call protection: <b>(1) Lockout</b> không cho prepay vài năm đầu; <b>(2) Defeasance</b> phải mua Treasury portfolio thay collateral; <b>(3) Yield maintenance</b> trả PV của lost interest cho lender; <b>(4) Prepayment penalty</b> point declining (vd 5-4-3-2-1). Kết quả: cash flow CMBS rất predictable. Bù lại, investor lo <em>credit risk</em> (DSCR/LTV) + <em>balloon refinancing risk</em> tại maturity 7-10Y.</div>
-    </div>
-    <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Sai — bản chất borrower và call protection khác nhau hoàn toàn. RMBS borrower (cá nhân) prepay tự do; CMBS borrower (sponsor) bị restrict mạnh. Cùng amortization schedule không có nghĩa cùng prepayment behavior.</div>
-    </div>
-    <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">Agency guarantee chỉ neutralize <em>credit risk</em>, KHÔNG neutralize prepayment option. Borrower vẫn có quyền refinance/sell bất cứ lúc nào — đó là risk lớn nhất của RMBS investor. Đảo ngược thực tế.</div>
-    </div>
-  </div>
-  <div class="takeaway-box">
-    <div class="tlabel">Key takeaway</div>
-    <div class="ttext"><em>RMBS</em>: prepayment risk dominant (residential borrower prepay tự do). <em>CMBS</em>: credit + balloon risk dominant (commercial borrower bị 4 layer call protection). Agency RMBS = no credit risk; non-agency RMBS = credit + prepay; CMBS = credit + balloon, prepay rất nhỏ.</div>
-  </div>
-  <div class="run-footer">
-    <span class="footer-topic">Fixed Income · 08.10 — Mortgage-Backed Securities</span>
-  </div>
-</section>
-
-
-<!-- 30 · END -->
+<!-- 29 · END -->
 <section data-label="End" class="slide end-slide">
   <div>
     <h1>08.10 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
-    <div class="hint">Tiếp theo · Lesson 08.11 — Asset-Backed Securities (ABS) &amp; CDOs</div>
+    <div class="hint">Tiếp theo · Lesson 08.11 — Yield-Based Bond Duration Measures</div>
   </div>
 </section>
 

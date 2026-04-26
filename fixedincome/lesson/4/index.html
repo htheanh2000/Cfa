@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>CFA L1 · Fixed Income 08.04 — Corporate &amp; Govt Markets</title>
+<title>CFA L1 · Fixed Income 08.04 — FI Markets for Corporate Issuers</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/assets/cfa-theme.css">
 <style>
   .title-slide .left { background: var(--accent); }
-  .title-slide .main { font-size: 112px; line-height: 0.98; }
+  .title-slide .main { font-size: 96px; line-height: 0.98; }
   .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
   .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
 </style>
@@ -24,18 +24,18 @@
 <section data-label="Title" class="slide title-slide">
   <div class="left">
     <div class="mark">CFA Institute · Level I</div>
-    <h1 class="main">FI<br>Markets<br><em>Issuers.</em></h1>
+    <h1 class="main">FI Markets<br><em>Corporate.</em></h1>
     <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 08 · Lesson 08.04 · Fixed Income</div>
   </div>
   <div class="right">
-    <div class="mark">Module 04 · Corporate &amp; Government markets</div>
+    <div class="mark">Module 04 · FI Markets for Corporate Issuers</div>
     <dl class="meta-grid">
       <div><dt>Môn</dt><dd>Fixed Income</dd></div>
       <div><dt>Module</dt><dd>04</dd></div>
       <div><dt>Lesson</dt><dd>08.04</dd></div>
       <div><dt>Thời lượng</dt><dd>90 min</dd></div>
     </dl>
-    <div class="mark">Corporates · Sovereigns · Munis · Agencies · Repos</div>
+    <div class="mark">CP · CD · BA · Repo · Bonds · MTN · Syndicated Loans · Private Placement</div>
   </div>
 </section>
 
@@ -45,232 +45,176 @@
   <div class="band">
     <div class="lbl">PART</div>
     <div class="n">04</div>
-    <div class="lbl">FI markets</div>
+    <div class="lbl">Corporate FI markets</div>
   </div>
   <div class="content">
     <div class="eyebrow">Today's lesson</div>
-    <h2>Who issues <em>bonds</em><br>và bán như thế nào.</h2>
+    <h2>Doanh nghiệp huy động vốn<br><em>như thế nào.</em></h2>
     <ul class="toc">
-      <li class="active">01 · Corporate bonds — IG vs HY, seniority, covenants</li>
-      <li>02 · MTNs &amp; commercial paper — short-term funding</li>
-      <li>03 · Sovereign — T-bills, T-notes, T-bonds, TIPS</li>
-      <li>04 · Agency &amp; supranational — Fannie, World Bank</li>
-      <li>05 · Municipal bonds — GO vs Revenue</li>
-      <li>06 · Repo market &amp; credit ratings</li>
-      <li>07 · Practice — 3 CFA-style questions</li>
+      <li class="active">01 · Money market instruments — CP, CD, BA, Repo</li>
+      <li>02 · Long-term corporate bonds — debentures, secured, mortgage, ETC</li>
+      <li>03 · Bank loans &amp; syndicated loans — revolving, term, leveraged</li>
+      <li>04 · Medium-term notes (MTN) — shelf registration, flexible issuance</li>
+      <li>05 · Private placement vs public offering — Reg D, Rule 144A</li>
+      <li>06 · IG vs HY — credit quality và issuance implications</li>
+      <li>07 · Vietnam corporate bond market — VPB, Masan, Vingroup, SBV</li>
+      <li>08 · Practice — 3 CFA-style questions</li>
     </ul>
   </div>
 </section>
 
 
-<!-- 03 · CORPORATE — IG vs HY -->
-<section data-label="IG vs HY" class="slide">
+<!-- 03 · MONEY MARKET OVERVIEW -->
+<section data-label="Money market overview" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.04</span>
+    <span>08.04 — FI Markets for Corporate Issuers</span>
     <span class="rule"></span>
-    <span>03 / 28</span>
+    <span>03 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Corporate · credit quality</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Investment-grade</em> vs <em class="hi">High-yield</em>.</h2>
+    <div class="eyebrow">Corporate funding · short-term</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Money market</em> — bức tranh tổng quan.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Corporate bond được phân chia theo credit rating. Ngưỡng <em>BBB−/Baa3</em> là ranh giới quan trọng — quyết định khả năng mua của nhiều institutional investors.
-    </p>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head">Investment-grade (IG)</div>
-      <dl>
-        <dt>Rating</dt>
-        <dd>BBB−/Baa3 hoặc cao hơn (S&amp;P/Moody's)</dd>
-        <dt>Default risk</dt>
-        <dd>Thấp — credit spread hẹp</dd>
-        <dt>Yield</dt>
-        <dd>Thấp hơn — reflect lower risk premium</dd>
-        <dt>Buyer</dt>
-        <dd>Pension funds, insurance, mutual funds (mandate-eligible)</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head">High-yield / Junk</div>
-      <dl>
-        <dt>Rating</dt>
-        <dd>BB+/Ba1 hoặc thấp hơn</dd>
-        <dt>Default risk</dt>
-        <dd>Cao hơn — credit spread rộng</dd>
-        <dt>Yield</dt>
-        <dd>Cao hơn — compensate cho default risk</dd>
-        <dt>Buyer</dt>
-        <dd>HY funds, hedge funds, CLOs — specialist</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § "Fallen angel" — IG bond bị downgrade xuống HY. "Rising star" — HY bond upgrade lên IG. Crossover zone (BBB−/BB+) thường trade với volatility cao do forced selling/buying khi ratings thay đổi.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.04 — IG vs HY</span>
-  </div>
-</section>
-
-
-<!-- 04 · SECURITY TYPES — SENIORITY -->
-<section data-label="Seniority" class="slide">
-  <div class="run-header">
-    <span>Fixed Income · 08.04</span>
-    <span class="rule"></span>
-    <span>04 / 28</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Corporate · claim priority</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Seniority <em class="hi">ladder</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Khi issuer default, trái chủ được thanh toán theo thứ tự ưu tiên. Higher seniority → lower yield (ít risk hơn).
+      Money market = thị trường các công cụ nợ ngắn hạn, maturity ≤ 1 năm. Doanh nghiệp dùng để quản lý <em>working capital</em> và nhu cầu funding ngắn hạn. Rủi ro thấp hơn bonds dài hạn — nhưng phải rollover liên tục.
     </p>
   </div>
 
   <div class="tenets-grid" style="margin-top: 16px;">
     <div class="tenet">
-      <span class="n">01</span>
+      <span class="n">CP</span>
       <div>
-        <div class="t"><em class="hi">Senior Secured</em></div>
-        <div class="d">Cao nhất. Backed by <em>collateral</em> cụ thể. Mortgage bonds (bất động sản), equipment trust certificates. Nếu default, claim trên asset trước.</div>
+        <div class="t"><em class="hi">Commercial Paper</em></div>
+        <div class="d">Unsecured promissory note. Maturity ≤ 270 ngày (US). Phát hành theo <em>discount basis</em>. Chỉ large, high-rated issuers — cần IG credit để rollover được.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">02</span>
+      <span class="n">CD</span>
       <div>
-        <div class="t"><em class="hi">Senior Unsecured</em></div>
-        <div class="d">Debentures — dựa vào general creditworthiness của issuer, không có collateral cụ thể. Claim trên general asset pool sau secured.</div>
+        <div class="t"><em class="hi">Certificate of Deposit</em></div>
+        <div class="d">Bank phát hành, pay coupon. Negotiable CDs có thể trade trên secondary market. Doanh nghiệp là người <em>mua</em> CD để park tiền, không phải issuer.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">03</span>
+      <span class="n">BA</span>
       <div>
-        <div class="t"><em class="hi">Subordinated</em> (Junior)</div>
-        <div class="d">Thấp hơn senior. Chỉ được trả sau khi tất cả senior holders thanh toán xong. Yield cao nhất trong debt stack.</div>
+        <div class="t"><em class="hi">Banker's Acceptance</em></div>
+        <div class="d">Bank guarantee một time draft liên quan đến trade finance. Sau khi "accepted" bởi bank, trở thành obligation của bank — dễ discount và sell trong secondary market.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">04</span>
+      <span class="n">REPO</span>
       <div>
-        <div class="t"><em class="hi">Equity</em> (ref.)</div>
-        <div class="d">Không phải debt — residual claim. Được chia sau khi mọi creditor (kể cả junior) nhận đủ. Thường 0 trong bankruptcy.</div>
+        <div class="t"><em class="hi">Repurchase Agreement</em></div>
+        <div class="d">Sale + cam kết mua lại — economic = collateralized loan. Doanh nghiệp và financial institutions dùng repo để huy động tiền mặt ngắn hạn bằng cách thế chấp securities.</div>
       </div>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.04 — SENIORITY</span>
+    <span class="footer-topic">Fixed Income · 08.04 — FI Markets for Corporate Issuers</span>
   </div>
 </section>
 
 
-<!-- 05 · COVENANTS -->
-<section data-label="Covenants" class="slide">
+<!-- 04 · COMMERCIAL PAPER -->
+<section data-label="Commercial Paper" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.04</span>
+    <span>08.04 — FI Markets for Corporate Issuers</span>
     <span class="rule"></span>
-    <span>05 / 28</span>
+    <span>04 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Indenture · covenants</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Affirmative vs <em class="hi">negative</em> covenants.</h2>
+    <div class="eyebrow">Money market · CP</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Commercial Paper</em> — working capital tool.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Covenant là các cam kết trong <em>indenture</em> để bảo vệ bondholders. Violation = technical default → có thể accelerate debt.
+      CP là công cụ phổ biến nhất để doanh nghiệp huy động vốn ngắn hạn mà không cần đi qua ngân hàng. Phát hành trực tiếp hoặc qua dealer.
     </p>
   </div>
 
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Đặc điểm cơ bản</div>
+      <dl>
+        <dt>Maturity</dt>
+        <dd>1 → 270 ngày (US, exempt khỏi SEC). Phổ biến nhất 30–90 ngày.</dd>
+        <dt>Giá</dt>
+        <dd>Discount basis — không trả coupon, return = par − purchase price.</dd>
+        <dt>Backed by</dt>
+        <dd>Unsecured — chỉ dựa vào general creditworthiness của issuer.</dd>
+        <dt>Rating</dt>
+        <dd>A-1/P-1 (S&amp;P/Moody's) = top CP grade. HY firms thực tế không access được.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Rủi ro &amp; sử dụng</div>
+      <dl>
+        <dt>Rollover risk</dt>
+        <dd>Nếu market đóng băng hoặc credit quality xấu → không rollover được → liquidity crisis. Bài học từ 2008.</dd>
+        <dt>Backup line</dt>
+        <dd>Issuer thường duy trì <em>bank credit facility</em> bằng 100% CP outstanding để backup rollover risk.</dd>
+        <dt>Dùng cho</dt>
+        <dd>Tài trợ hàng tồn kho, khoản phải thu, seasonal peaks, bridge trước bond deal.</dd>
+        <dt>Buyers</dt>
+        <dd>Money market funds, corporate treasuries — yêu cầu short-term, high-quality.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Direct CP vs dealer CP — Issuer lớn (Ford, GE Capital, VinGroup Finance) phát hành <em>directly</em> cho buyers. Issuer nhỏ hơn dùng <em>dealer</em> (investment bank) phân phối. Direct rẻ hơn nhưng cần in-house distribution capability.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.04 — FI Markets for Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 05 · CD & BANKER'S ACCEPTANCE -->
+<section data-label="CD and BA" class="slide">
+  <div class="run-header">
+    <span>08.04 — FI Markets for Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>05 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Money market · CD &amp; BA</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Certificates of Deposit</em> &amp; Banker's Acceptances.</h2>
+  </div>
+
   <div class="rule-box">
-    <span class="tag">§ Affirmative covenants — "must do"</span>
-    Issuer phải thực hiện các hành động cụ thể. Ví dụ: <b>maintenance of insurance</b> trên collateral, <b>pay taxes</b> đúng hạn, <b>maintain assets</b> ở good condition, cung cấp <b>audited financials</b>.
+    <span class="tag">§ Negotiable Certificate of Deposit (NCD)</span>
+    Bank phát hành NCD — cam kết trả gốc + lãi vào maturity. Khác với regular bank CD, NCD có thể <b>trade trên secondary market</b> trước maturity. Denominations lớn ($100k+). Investors gồm money market funds, corporate treasuries. Maturity thường 14 ngày → 1 năm. Credit risk = risk của issuing bank.
   </div>
 
   <div class="rule-box" style="margin-top: 16px;">
-    <span class="tag">§ Negative covenants — "must not do"</span>
-    Issuer bị giới hạn các hành động có thể làm giảm credit quality. Ví dụ: <b>debt limits</b> (không được phát hành thêm senior debt), <b>dividend limits</b> (không chia cổ tức quá mức), <b>restrictions on asset sales</b>, <b>limits on M&amp;A</b>.
+    <span class="tag">§ Banker's Acceptance (BA) — trade finance</span>
+    <b>Cơ chế:</b> Importer yêu cầu bank "accept" (guarantee) một time draft sẽ trả tiền vào ngày cụ thể. Sau khi bank accept → BA = <em>bank's unconditional obligation</em>. BA có thể discounted và bán ngay — thực chất là credit của bank, không phải importer.<br><br>
+    <b>Vì sao dùng:</b> Xuất nhập khẩu cross-border — seller cần payment certainty; buyer cần thời gian nhận hàng. Bank bridging credit. Phổ biến trong trade finance châu Á.
   </div>
 
   <p class="fine-muted-sm">
-    § Trade-off — Covenants chặt hơn → yield thấp hơn (ít risk cho investor) nhưng hạn chế flexibility của management. HY bonds thường có covenants chặt; IG thì nới hơn do credit quality cao.
+    § BA vs CP — Cả hai đều short-term, discount instruments. Nhưng BA arise từ specific trade transaction và carry bank credit; CP là general corporate obligation. BA phổ biến hơn trong trade finance, CP phổ biến hơn trong domestic liquidity management.
   </p>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.04 — COVENANTS</span>
+    <span class="footer-topic">Fixed Income · 08.04 — FI Markets for Corporate Issuers</span>
   </div>
 </section>
 
 
-<!-- 06 · MTN & CP -->
-<section data-label="MTN and CP" class="slide">
+<!-- 06 · REPURCHASE AGREEMENTS -->
+<section data-label="Repo" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.04</span>
+    <span>08.04 — FI Markets for Corporate Issuers</span>
     <span class="rule"></span>
-    <span>06 / 28</span>
+    <span>06 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Corporate funding · instruments</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">MTNs</em> &amp; Commercial Paper.</h2>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head">Medium-Term Notes (MTNs)</div>
-      <dl>
-        <dt>Maturity</dt>
-        <dd>9 tháng → 30+ năm (flexible)</dd>
-        <dt>Issuance</dt>
-        <dd><em>Shelf registration</em> — đăng ký 1 lần, phát hành nhiều lần on-demand</dd>
-        <dt>Structure</dt>
-        <dd>Highly customizable — fixed/floating/structured</dd>
-        <dt>Use case</dt>
-        <dd>Fill funding gaps, match liability maturity</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head">Commercial Paper (CP)</div>
-      <dl>
-        <dt>Maturity</dt>
-        <dd>≤ 270 ngày (US) — unsecured, short-term</dd>
-        <dt>Issuance</dt>
-        <dd>Discount basis (no coupon), rollover liên tục</dd>
-        <dt>Issuer</dt>
-        <dd>Large, high-rated corporations (IG only thực tế)</dd>
-        <dt>Use case</dt>
-        <dd>Working capital, seasonal funding, bridge financing</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Rule 144A — Private placement cho qualified institutional buyers (QIBs). Không cần SEC registration → faster issuance, nhưng liquidity thấp hơn public bonds. Foreign issuers thường dùng 144A để tiếp cận US market nhanh.
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.04 — MTN &amp; CP</span>
-  </div>
-</section>
-
-
-<!-- 07 · SOVEREIGN OVERVIEW -->
-<section data-label="Sovereign" class="slide">
-  <div class="run-header">
-    <span>Fixed Income · 08.04</span>
-    <span class="rule"></span>
-    <span>07 / 28</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Sovereign · US Treasuries</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">T-bills · T-notes · <em class="hi">T-bonds</em>.</h2>
+    <div class="eyebrow">Money market · repo</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Repurchase Agreement</em> — thế chấp để vay tiền.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Trái phiếu chính phủ Mỹ là benchmark "risk-free" cho global markets. Phân loại chủ yếu theo <em>maturity</em>.
+      Repo = sale of securities + simultaneous agreement to repurchase later at higher price. Về mặt kinh tế = <em>collateralized short-term loan</em>. Leg 1: bán, nhận tiền. Leg 2: mua lại, trả tiền + lãi.
     </p>
   </div>
 
@@ -278,392 +222,469 @@
     <div class="tenet">
       <span class="n">01</span>
       <div>
-        <div class="t"><em class="hi">T-bills</em></div>
-        <div class="d">Maturity &lt; 1 năm (4, 13, 26, 52 tuần). Phát hành ở <em>discount</em>, không coupon. Return = par − purchase price.</div>
+        <div class="t">Overnight vs Term repo</div>
+        <div class="d"><em>Overnight repo</em>: 1 ngày, roll hằng ngày — linh hoạt nhưng có rollover risk. <em>Term repo</em>: 1 tuần → 3 tháng — certainty về funding duration.</div>
       </div>
     </div>
     <div class="tenet">
       <span class="n">02</span>
       <div>
-        <div class="t"><em class="hi">T-notes</em></div>
-        <div class="d">Maturity 2 → 10 năm. Semi-annual coupon. Benchmark 10Y T-note là reference rate cho mortgage, corporate pricing.</div>
+        <div class="t">Repo rate &amp; haircut</div>
+        <div class="d"><em>Repo rate</em> thấp hơn unsecured borrowing rate — có collateral. <em>Haircut</em>: % discount trên market value của collateral. Treasury haircut ~0–2%; IG corp ~2–5%; HY có thể 10%+.</div>
       </div>
     </div>
     <div class="tenet">
       <span class="n">03</span>
       <div>
-        <div class="t"><em class="hi">T-bonds</em></div>
-        <div class="d">Maturity 20 → 30 năm. Semi-annual coupon. Long-duration → high interest-rate sensitivity.</div>
+        <div class="t">Ai dùng repo</div>
+        <div class="d">Dealer banks: fund bond inventory. Hedge funds: lever up positions. Corporate treasuries: park cash qua <em>reverse repo</em> (lender side) để earn return tốt hơn money market.</div>
       </div>
     </div>
     <div class="tenet">
       <span class="n">04</span>
       <div>
-        <div class="t"><em class="hi">TIPS</em></div>
-        <div class="d">Treasury Inflation-Protected Securities. Principal adjust theo <em>CPI</em>. Coupon rate fixed nhưng coupon amount tăng khi principal tăng.</div>
+        <div class="t">Tri-party repo</div>
+        <div class="d">Custodian bank (BNY Mellon, JP Morgan) đứng giữa để manage collateral — đảm bảo valuation, margin calls, substitution. Giảm operational risk cho cả hai bên.</div>
       </div>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.04 — TREASURIES</span>
+    <span class="footer-topic">Fixed Income · 08.04 — FI Markets for Corporate Issuers</span>
   </div>
 </section>
 
 
-<!-- 08 · TIPS DEEP DIVE -->
-<section data-label="TIPS" class="slide">
+<!-- 07 · LONG-TERM CORPORATE BONDS OVERVIEW -->
+<section data-label="LT Corporate bonds" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.04</span>
+    <span>08.04 — FI Markets for Corporate Issuers</span>
     <span class="rule"></span>
-    <span>08 / 28</span>
+    <span>07 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Inflation-linked · mechanics</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">TIPS <em class="hi">mechanics</em>.</h2>
-  </div>
-
-  <div class="rule-box">
-    <span class="tag">§ Principal adjustment — core idea</span>
-    Principal được <b>index theo CPI</b>. Nếu CPI tăng 2% trong 6 tháng → principal từ $1,000 tăng lên $1,020. Coupon payment = <em>fixed coupon rate × adjusted principal</em>.
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 20px;">
-    <li>
-      <span>
-        <span class="step-title">Inflation up → holder hưởng lợi</span>
-        <span class="step-body">Principal tăng → coupon $ tăng → real return được bảo vệ. Maturity payment = adjusted principal.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Deflation floor</span>
-        <span class="step-body">Nếu CPI giảm, principal giảm — nhưng tại maturity, holder nhận <em>max(adjusted principal, original par)</em>. Có deflation protection.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">vs Nominal Treasuries</span>
-        <span class="step-body">Yield spread = nominal YTM − TIPS real yield ≈ <em>breakeven inflation rate</em>. Proxy cho market inflation expectation.</span>
-      </span>
-    </li>
-  </ol>
-
-  <p class="fine-muted-sm">
-    § Tax quirk (US) — Principal adjustment bị đánh thuế trong năm xảy ra, dù chưa nhận cash ("phantom income"). Nên TIPS thường nằm trong tax-advantaged account (IRA/401k).
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.04 — TIPS</span>
-  </div>
-</section>
-
-
-<!-- 09 · TREASURY AUCTION -->
-<section data-label="Auction" class="slide">
-  <div class="run-header">
-    <span>Fixed Income · 08.04</span>
-    <span class="rule"></span>
-    <span>09 / 28</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Primary market · auction</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Treasury <em class="hi">auction</em> process.</h2>
+    <div class="eyebrow">Corporate · long-term debt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Long-term corporate <em class="hi">bond types</em>.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      US Treasury phát hành new issue qua <em>single-price (Dutch) auction</em>. Primary dealers, institutions, và retail đều có thể bid.
-    </p>
-  </div>
-
-  <div class="compare" style="margin-top: 16px;">
-    <div class="cc">
-      <div class="head">Competitive bid</div>
-      <dl>
-        <dt>Ai</dt>
-        <dd>Institutional — primary dealers, banks</dd>
-        <dt>Cách</dt>
-        <dd>Specify <em>yield</em> muốn nhận + size</dd>
-        <dt>Kết quả</dt>
-        <dd>Allotted nếu yield ≤ stop-out (clearing) yield</dd>
-        <dt>Risk</dt>
-        <dd>Có thể không được fill nếu bid quá chặt</dd>
-      </dl>
-    </div>
-    <div class="cc">
-      <div class="head">Non-competitive bid</div>
-      <dl>
-        <dt>Ai</dt>
-        <dd>Retail, smaller investors</dd>
-        <dt>Cách</dt>
-        <dd>Chỉ specify <em>size</em>, accept bất kỳ yield</dd>
-        <dt>Kết quả</dt>
-        <dd>Guaranteed fill tại stop-out yield</dd>
-        <dt>Giới hạn</dt>
-        <dd>Max $10M/auction (US TreasuryDirect)</dd>
-      </dl>
-    </div>
-  </div>
-
-  <p class="fine-muted-sm">
-    § Single-price auction — Tất cả winning bidders (cả competitive và non-competitive) đều được allocate cùng một yield — yield cao nhất accepted (stop-out). Ngăn "winner's curse".
-  </p>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.04 — AUCTION</span>
-  </div>
-</section>
-
-
-<!-- 10 · AGENCY & SUPRANATIONAL -->
-<section data-label="Agency and supra" class="slide">
-  <div class="run-header">
-    <span>Fixed Income · 08.04</span>
-    <span class="rule"></span>
-    <span>10 / 28</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Quasi-sovereign · issuers</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Agency</em> &amp; Supranational.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Không phải sovereign thuần, nhưng backing hoặc sponsorship chính phủ → credit risk thấp, yield spread over Treasuries hẹp.
+      Khi doanh nghiệp cần vốn dài hạn (3–30+ năm), họ phát hành bonds. Phân loại chủ yếu theo <em>collateral</em> (secured vs unsecured) và <em>priority</em> (seniority). CFA L1 test các định nghĩa này.
     </p>
   </div>
 
   <div class="tenets-grid" style="margin-top: 16px;">
     <div class="tenet">
-      <span class="n">FNMA</span>
+      <span class="n">01</span>
       <div>
-        <div class="t"><em class="hi">Fannie Mae</em></div>
-        <div class="d">Government-Sponsored Enterprise (GSE). Mua residential mortgages → securitize. <em>Implicit</em> government guarantee (conservatorship từ 2008).</div>
+        <div class="t"><em class="hi">Debentures</em></div>
+        <div class="d">Unsecured bonds — chỉ dựa vào <em>general creditworthiness</em> của issuer, không có specific collateral. Phổ biến nhất trong IG corporate issuance. Senior unsecured = most common.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">FHLMC</span>
+      <span class="n">02</span>
       <div>
-        <div class="t"><em class="hi">Freddie Mac</em></div>
-        <div class="d">GSE tương tự Fannie. Focus hơi khác (smaller lenders). Cũng dưới conservatorship của FHFA.</div>
+        <div class="t"><em class="hi">Mortgage Bonds</em></div>
+        <div class="d">Secured bởi <em>real property</em> — nhà máy, đất, tòa nhà. Nếu default, holders có claim trên property trước unsecured holders. Phổ biến trong utility, manufacturing.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">GNMA</span>
+      <span class="n">03</span>
       <div>
-        <div class="t"><em class="hi">Ginnie Mae</em></div>
-        <div class="d">Government agency thực sự (HUD). <em>Full faith and credit</em> của US govt. Guarantee FHA/VA mortgage pools.</div>
+        <div class="t"><em class="hi">Equipment Trust Certificates (ETC)</em></div>
+        <div class="d">Secured bởi <em>specific equipment</em> — aircraft, railcars, ships. Trustee giữ legal title đến equipment cho đến khi debt repaid. Phổ biến trong transportation sector.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">SUPRA</span>
+      <span class="n">04</span>
       <div>
-        <div class="t"><em class="hi">Supranationals</em></div>
-        <div class="d"><b>World Bank (IBRD)</b>, <b>IFC</b>, <b>EIB</b>, ADB. Owned by multiple sovereigns. AAA rating, fund development lending.</div>
+        <div class="t"><em class="hi">Collateral Trust Bonds</em></div>
+        <div class="d">Secured bởi <em>financial assets</em> (stocks, bonds của subsidiaries) deposited với trustee. Holding companies thường dùng để pledge subsidiary equity làm collateral.</div>
       </div>
     </div>
   </div>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.04 — AGENCIES</span>
+    <span class="footer-topic">Fixed Income · 08.04 — FI Markets for Corporate Issuers</span>
   </div>
 </section>
 
 
-<!-- 11 · MUNICIPAL — GO vs Revenue -->
-<section data-label="Municipals" class="slide">
+<!-- 08 · SENIORITY LADDER -->
+<section data-label="Seniority ladder" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.04</span>
+    <span>08.04 — FI Markets for Corporate Issuers</span>
     <span class="rule"></span>
-    <span>11 / 28</span>
+    <span>08 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Municipal · sub-sovereign</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">GO</em> vs <em class="hi">Revenue</em> bonds.</h2>
+    <div class="eyebrow">Corporate · claim priority</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Seniority</em> ladder — ai được trả trước.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Munis phát hành bởi state, county, city, school district. Ưu đãi thuế lớn (typically federal-tax-exempt in US) → after-tax yield hấp dẫn cho high-income investors.
+      Khi issuer default, bondholders được thanh toán theo thứ tự ưu tiên. Seniority cao hơn = risk thấp hơn = yield thấp hơn. CFA hay hỏi thứ tự này.
     </p>
   </div>
 
   <div class="compare" style="margin-top: 16px;">
     <div class="cc">
-      <div class="head">General Obligation (GO)</div>
+      <div class="head">Thứ tự ưu tiên (cao → thấp)</div>
       <dl>
-        <dt>Backing</dt>
-        <dd><em>Full faith and credit</em> + <b>taxing power</b> của issuer</dd>
-        <dt>Revenue source</dt>
-        <dd>Tax receipts (property, income, sales)</dd>
-        <dt>Credit risk</dt>
-        <dd>Thấp hơn — broad revenue base</dd>
-        <dt>Use</dt>
-        <dd>General public projects — schools, government buildings</dd>
+        <dt>① Senior Secured</dt>
+        <dd>Mortgage bonds, ETC — collateral cụ thể, claim đầu tiên trên asset đó.</dd>
+        <dt>② Senior Unsecured</dt>
+        <dd>Debentures — claim trên general assets, sau secured holders.</dd>
+        <dt>③ Senior Subordinated</dt>
+        <dd>Thấp hơn senior unsecured nhưng vẫn trên junior sub.</dd>
+        <dt>④ Subordinated (Junior)</dt>
+        <dd>Claim sau tất cả senior. Yield cao nhất trong debt stack.</dd>
       </dl>
     </div>
     <div class="cc">
-      <div class="head">Revenue bonds</div>
+      <div class="head">Yield vs Priority</div>
       <dl>
-        <dt>Backing</dt>
-        <dd>Revenue từ <em>specific project</em> — không có taxing power</dd>
-        <dt>Revenue source</dt>
-        <dd>Tolls, utility fees, airport charges, stadium tickets</dd>
-        <dt>Credit risk</dt>
-        <dd>Cao hơn — phụ thuộc 1 project thành/bại</dd>
-        <dt>Use</dt>
-        <dd>Self-funding projects — toll roads, water utilities</dd>
+        <dt>Senior Secured yield</dt>
+        <dd>Thấp nhất — protection tốt nhất</dd>
+        <dt>Senior Unsecured yield</dt>
+        <dd>Thấp hơn sub — general assets backstop</dd>
+        <dt>Subordinated yield</dt>
+        <dd>Cao nhất — compensate cho junior claim</dd>
+        <dt>Equity (reference)</dt>
+        <dd>Residual claim — thường = 0 trong bankruptcy</dd>
       </dl>
     </div>
   </div>
 
   <p class="fine-muted-sm">
-    § Tax equivalent yield — To compare muni vs taxable bond: TEY = muni yield / (1 − marginal tax rate). Ex: 3% muni với 37% marginal tax = TEY 4.76%. Muni chỉ hấp dẫn cho high-bracket investors.
+    § Absolute priority rule — Trong US bankruptcy (Chapter 11), senior holders phải nhận recovery đầy đủ trước khi junior holders nhận gì. Thực tế đôi khi có negotiated deviations trong reorganization plans, nhưng tòa án có thể enforce absolute priority.
   </p>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.04 — MUNI</span>
+    <span class="footer-topic">Fixed Income · 08.04 — FI Markets for Corporate Issuers</span>
   </div>
 </section>
 
 
-<!-- 12 · REPO MARKET -->
-<section data-label="Repo market" class="slide">
+<!-- 09 · BANK LOANS & SYNDICATED LOANS -->
+<section data-label="Bank and syndicated loans" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.04</span>
+    <span>08.04 — FI Markets for Corporate Issuers</span>
     <span class="rule"></span>
-    <span>12 / 28</span>
+    <span>09 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Secondary · short-term funding</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">repo</em> market.</h2>
+    <div class="eyebrow">Corporate funding · bank debt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Bank loans</em> &amp; Syndicated loans.</h2>
     <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
-      Repo = <em>repurchase agreement</em>. Sale + cam kết mua lại sau với giá cao hơn. Economically = <em>collateralized loan</em>.
+      Bank loans là kênh huy động phổ biến cho mid-size và leveraged corporates — đặc biệt khi cần flexibility hoặc khi bond market khó tiếp cận. Syndicated loans chia risk giữa nhiều banks.
     </p>
-  </div>
-
-  <div class="rule-box">
-    <span class="tag">§ Repo mechanics — 2-leg transaction</span>
-    <b>Leg 1 (today)</b>: Dealer bán bond cho counterparty, nhận cash. <b>Leg 2 (tomorrow / next week)</b>: Dealer mua lại bond với giá cao hơn. Diff giữa 2 giá = <em>repo interest</em>, implied yearly rate = <b>repo rate</b>.
-  </div>
-
-  <ol class="num-list tight" style="margin-top: 20px;">
-    <li>
-      <span>
-        <span class="step-title">Ai dùng — dealers, banks, hedge funds</span>
-        <span class="step-body">Primary dealers fund trading inventory qua repo. Banks quản lý short-term liquidity. Money market funds lend cash qua reverse repo (lender side).</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Repo rate vs haircut</span>
-        <span class="step-body">Repo rate thấp hơn unsecured rate (có collateral). Haircut = % giảm giá collateral từ market value, bảo vệ lender. Treasury collateral haircut &lt; corporate.</span>
-      </span>
-    </li>
-    <li>
-      <span>
-        <span class="step-title">Overnight vs term repo</span>
-        <span class="step-body">Overnight repo = 1 ngày, rollover hằng ngày. Term repo = fixed longer period (1 tuần, 1 tháng). Overnight có rollover risk (funding có thể biến mất).</span>
-      </span>
-    </li>
-  </ol>
-
-  <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.04 — REPO</span>
-  </div>
-</section>
-
-
-<!-- 13 · CREDIT RATINGS & BID-ASK -->
-<section data-label="Ratings and spreads" class="slide">
-  <div class="run-header">
-    <span>Fixed Income · 08.04</span>
-    <span class="rule"></span>
-    <span>13 / 28</span>
-  </div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Ratings · liquidity</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Ratings &amp; <em class="hi">bid-ask</em> spreads.</h2>
-  </div>
-
-  <div class="rule-box">
-    <span class="tag">§ Big 3 credit rating agencies</span>
-    <b>S&amp;P</b> (AAA → D) · <b>Moody's</b> (Aaa → C) · <b>Fitch</b> (AAA → D). Ngưỡng investment-grade: <em>BBB−/Baa3</em>. Dưới = high-yield/speculative. Ratings là <em>opinion</em>, không phải guarantee.
   </div>
 
   <div class="tenets-grid" style="margin-top: 16px;">
     <div class="tenet">
-      <span class="n">GOV</span>
+      <span class="n">REV</span>
       <div>
-        <div class="t">Government bid-ask</div>
-        <div class="d">Rất <em>hẹp</em> — vài basis points. On-the-run Treasuries là liquid nhất thế giới. Heavy participation, high turnover.</div>
+        <div class="t"><em class="hi">Revolving Credit Facility</em></div>
+        <div class="d">Hạn mức tín dụng mà borrower có thể draw, repay, và draw lại. Linh hoạt — chỉ trả lãi trên phần đã draw + commitment fee trên phần chưa dùng. Backup cho CP rollover.</div>
       </div>
     </div>
     <div class="tenet">
-      <span class="n">CORP</span>
+      <span class="n">TERM</span>
       <div>
-        <div class="t">Corporate bid-ask</div>
-        <div class="d"><em>Rộng hơn</em> — reflect lower liquidity, dealer inventory risk. HY spread còn rộng hơn IG. Private placement / off-the-run = rộng nhất.</div>
+        <div class="t"><em class="hi">Term Loan</em></div>
+        <div class="d">Khoản vay cố định, amortize theo schedule. Term Loan A: amortize đều cho bank lenders. Term Loan B: bullet maturity, thường bán cho institutional investors (CLOs, hedge funds).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">LEV</span>
+      <div>
+        <div class="t"><em class="hi">Leveraged Loans</em></div>
+        <div class="d">Loans cho HY-rated borrowers (BB+ hoặc thấp hơn) hoặc heavily leveraged firms. Floating rate (SOFR + spread). Được packaged vào CLOs. Higher risk → spread rộng hơn IG loans.</dd>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">SYN</span>
+      <div>
+        <div class="t"><em class="hi">Syndicated Loans</em></div>
+        <div class="d">1 lead arranger (bookrunner) organize, nhiều banks/funds tham gia. Chia risk. Deal lớn ($500M+) thường phải syndicate. Secondary market cho syndicated loans: LSTA (US), LMA (Europe).</div>
       </div>
     </div>
   </div>
 
-  <p class="fine-muted-sm">
-    § Why wider corp spreads — (1) thousands of issuers vs 1 government, (2) heterogeneous — mỗi bond có structure riêng, (3) lower trading frequency per CUSIP, (4) dealer phải hold inventory risk lâu hơn trước khi match buyer.
-  </p>
-
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.04 — RATINGS</span>
+    <span class="footer-topic">Fixed Income · 08.04 — FI Markets for Corporate Issuers</span>
   </div>
 </section>
 
 
-<!-- 14 · TAKEAWAY SUMMARY -->
+<!-- 10 · MEDIUM-TERM NOTES -->
+<section data-label="MTN program" class="slide">
+  <div class="run-header">
+    <span>08.04 — FI Markets for Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>10 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Corporate funding · MTN</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Medium-Term Notes</em> — shelf registration linh hoạt.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      MTN program cho phép issuer đăng ký <em>một lần</em> với SEC (shelf registration S-3), rồi phát hành notes nhiều lần, on-demand, khi cần tiền — không cần full registration mỗi lần.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Shelf registration — cơ chế</span>
+    Issuer file S-3 shelf registration statement, approve 1 lần. Total shelf size (VD: $5 billion). Sau đó có thể "take off the shelf" — phát hành từng tranche bất cứ lúc nào trong 3 năm, size và terms tùy ý trong shelf. Prospectus supplement (pricing supplement) cho từng tranche.
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">MTN đặc điểm</div>
+      <dl>
+        <dt>Maturity</dt>
+        <dd>9 tháng → 30+ năm — "medium" là tên lịch sử, thực tế rất flexible</dd>
+        <dt>Structure</dt>
+        <dd>Fixed, floating, structured (callable, puttable, CMS-linked, FX-linked)</dd>
+        <dt>Issuance method</dt>
+        <dd>Continuous, qua dealer agent — không cần công bố trước như bond deal</dd>
+        <dt>Dùng cho</dt>
+        <dd>Fill specific liability gaps, match ALM của insurance/pension</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">So sánh MTN vs Bond</div>
+      <dl>
+        <dt>Tốc độ</dt>
+        <dd>MTN nhanh hơn nhiều — 1–2 ngày từ decision đến pricing</dd>
+        <dt>Size</dt>
+        <dd>MTN linh hoạt size nhỏ; bond thường benchmark-size ($500M+)</dd>
+        <dt>Customization</dt>
+        <dd>MTN rất customizable; bond thường vanilla cho liquidity</dd>
+        <dt>Liquidity</dt>
+        <dd>Bond thường liquid hơn MTN (standard terms, bigger size)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.04 — FI Markets for Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 11 · PRIVATE PLACEMENT vs PUBLIC OFFERING -->
+<section data-label="Private vs Public" class="slide">
+  <div class="run-header">
+    <span>08.04 — FI Markets for Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>11 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Issuance · method</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Private placement</em> vs Public offering.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Doanh nghiệp chọn giữa public offering (disclosure đầy đủ, investor base rộng) và private placement (ít disclosure, nhanh hơn, giới hạn investors). Hai exemption chính: Reg D và Rule 144A.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Public Offering</div>
+      <dl>
+        <dt>Registration</dt>
+        <dd>Phải register với SEC — prospectus, S-1/S-3 filing, review 3–6 tuần</dd>
+        <dt>Investors</dt>
+        <dd>Mở — retail + institutional, không giới hạn</dd>
+        <dt>Disclosure</dt>
+        <dd>Prospectus đầy đủ — financials, risk factors, use of proceeds</dd>
+        <dt>Liquidity</dt>
+        <dd>Cao hơn — công khai, nhiều buyers, TRACE reporting</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Private Placement</div>
+      <dl>
+        <dt>Reg D (Rule 506)</dt>
+        <dd>Exempt nếu bán cho accredited investors. Net worth &gt; $1M hoặc income &gt; $200k (cá nhân); &gt; $5M assets (institution).</dd>
+        <dt>Rule 144A</dt>
+        <dd>Resale sang QIBs (manage ≥ $100M). Tạo secondary market liquid cho private placements. EM/HY issuers dùng nhiều.</dd>
+        <dt>Disclosure</dt>
+        <dd>Offering memorandum (OM) — ngắn hơn prospectus, ít requirements</dd>
+        <dt>Liquidity</dt>
+        <dd>Thấp hơn — giới hạn buyers, no TRACE reporting ban đầu</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § 144A → Registered exchange offer — Nhiều HY issuers phát hành 144A trước (nhanh), cam kết trong indenture sẽ exchange sang registered bonds trong 180–365 ngày. Holders 144A nhận registered bonds với điều kiện tương đương và tăng liquidity. Gọi là "reg rights" deal.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.04 — FI Markets for Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 12 · IG vs HY ISSUANCE -->
+<section data-label="IG vs HY issuance" class="slide">
+  <div class="run-header">
+    <span>08.04 — FI Markets for Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>12 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Corporate credit · quality</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Investment-grade</em> vs <em class="hi">High-yield</em> — issuance khác nhau thế nào.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Ngưỡng <em>BBB−/Baa3</em> phân chia IG và HY. Sự khác biệt không chỉ là yield — còn là toàn bộ cách thức huy động vốn, investors, covenants và market access.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Investment-Grade (BBB−/Baa3 trở lên)</div>
+      <dl>
+        <dt>Công cụ</dt>
+        <dd>Public bonds, CP, MTN, revolving credit, term loans IG</dd>
+        <dt>Investors</dt>
+        <dd>Pension funds, insurance, mutual funds — mandate-eligible</dd>
+        <dt>Covenants</dt>
+        <dd>Nhẹ hơn — "covenant-lite" phổ biến, issuer có nhiều flexibility</dd>
+        <dt>Spread</dt>
+        <dd>Hẹp — 50–200 bps over Treasuries (tùy rating và sector)</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">High-Yield / Junk (BB+/Ba1 trở xuống)</div>
+      <dl>
+        <dt>Công cụ</dt>
+        <dd>HY bonds (144A hoặc public), leveraged loans, PIK notes</dd>
+        <dt>Investors</dt>
+        <dd>HY funds, hedge funds, CLOs — specialist, higher risk tolerance</dd>
+        <dt>Covenants</dt>
+        <dd>Chặt hơn — leverage ratios, interest coverage, capex limits</dd>
+        <dt>Spread</dt>
+        <dd>Rộng — 300–800+ bps tùy thị trường, phản ánh default risk</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Fallen angels &amp; rising stars — IG bond bị downgrade xuống HY = "fallen angel"; forced selling bởi mandate-constrained investors → price dip. HY bond upgrade lên IG = "rising star"; buying rush. Crossover zone (BBB−/BB+) volatile vì threshold effects.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.04 — FI Markets for Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 13 · VIETNAM CORPORATE BOND MARKET -->
+<section data-label="VN corporate bond market" class="slide">
+  <div class="run-header">
+    <span>08.04 — FI Markets for Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>13 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Bối cảnh · thị trường Việt Nam</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Thị trường trái phiếu doanh nghiệp <em class="hi">Việt Nam</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Thị trường TPDN VN phát triển nhanh 2018–2021, sau đó chịu cú sốc pháp lý 2022. Hiện tái cơ cấu dưới sự giám sát chặt của NHNN và UBCKNN. Tương đồng với nhiều cơ chế global nhưng có đặc thù riêng.
+    </p>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Khung pháp lý — Nghị định 65/2022 &amp; SBV oversight</span>
+    Nghị định 65/2022/NĐ-CP (sửa đổi NĐ 153/2020) siết điều kiện phát hành private placement: issuer phải có credit rating, sử dụng vốn đúng mục đích khai báo, giới hạn leverage. NHNN quản lý banks và NBFIs phát hành; UBCKNN quản lý công ty đại chúng và niêm yết.
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">VPB</span>
+      <div>
+        <div class="t">VPBank — bank bond</div>
+        <div class="d">Phát hành tier-2 subordinated bonds để tăng CAR (Capital Adequacy Ratio). Lãi suất thả nổi, callable sau 5 năm. Buyers: institutional, BHXH.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">MSN</span>
+      <div>
+        <div class="t">Masan — consumer staples</div>
+        <div class="d">Phát hành trái phiếu để tài trợ M&amp;A (WinCommerce, Vinmart acquisition). Mix fixed + floating. Một phần 144A cho offshore investors USD-denominated.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">VIC</span>
+      <div>
+        <div class="t">VinGroup — real estate &amp; auto</div>
+        <div class="d">Issuer lớn nhất TPDN VN một thời. Dùng để tài trợ BĐS, Vinfast, Vinschool. Sau 2022 phải đàm phán extend maturity với holders khi thị trường đóng băng.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">BDD</span>
+      <div>
+        <div class="t">Bài học 2022 — FLC, Tân Hoàng Minh</div>
+        <div class="d">Phát hành trái phiếu không tài sản đảm bảo, dùng sai mục đích, thiếu transparency. Các lãnh đạo bị khởi tố → thị trường mất niềm tin → liquidity đóng băng.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.04 — FI Markets for Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 14 · SUMMARY -->
 <section data-label="Summary" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.04</span>
+    <span>08.04 — FI Markets for Corporate Issuers</span>
     <span class="rule"></span>
-    <span>14 / 28</span>
+    <span>14 / 30</span>
   </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Module · synthesis</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Market <em class="hi">map</em> — who issues what.</h2>
+    <div class="eyebrow">Module · tổng kết</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Corporate FI market — <em class="hi">bức tranh tổng thể</em>.</h2>
   </div>
 
   <ol class="num-list" style="margin-top: 16px;">
     <li>
       <span>
-        <span class="step-title">Corporate — seniority và covenants quyết định risk</span>
-        <span class="step-body">Senior secured &gt; senior unsecured &gt; subordinated. IG vs HY chia theo BBB−/Baa3. MTNs linh hoạt, CP ≤ 270 ngày.</span>
+        <span class="step-title">Money market — ngắn hạn, rolling</span>
+        <span class="step-body">CP (≤270 ngày, unsecured, discount); CD (bank obligation, negotiable); BA (trade finance, bank credit); Repo (collateralized loan, overnight/term).</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Sovereign — Treasuries là benchmark</span>
-        <span class="step-body">T-bills discount &lt;1Y · T-notes 2-10Y · T-bonds 20-30Y · TIPS index CPI. Auction single-price Dutch với competitive + non-competitive bids.</span>
+        <span class="step-title">Long-term bonds — seniority quyết định risk</span>
+        <span class="step-body">Senior secured (mortgage, ETC) → Senior unsecured (debentures) → Subordinated. Collateral = protection, yield = risk compensation.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Quasi-sov &amp; muni — credit và tax cân nhắc</span>
-        <span class="step-body">Fannie/Freddie/Ginnie (Ginnie duy nhất full-faith). Supra (World Bank) AAA. Muni: GO (tax-backed) vs Revenue (project-backed), federal tax-exempt.</span>
+        <span class="step-title">Bank &amp; syndicated loans — flexibility cho corporates</span>
+        <span class="step-body">Revolver (draw/repay); Term A (amortizing, banks); Term B (bullet, institutional); Leveraged loans (HY, floating, CLO-eligible); Syndicated = nhiều lenders chia risk.</span>
       </span>
     </li>
     <li>
       <span>
-        <span class="step-title">Repo — dealer funding + rate benchmark</span>
-        <span class="step-body">Sale + repurchase = collateralized loan. Repo rate &lt; unsecured. Treasuries liquid nhất; corp bid-ask rộng hơn.</span>
+        <span class="step-title">MTN — shelf registration, issuance linh hoạt</span>
+        <span class="step-body">Register 1 lần, phát hành on-demand nhiều tranche. 9 tháng → 30+ năm. Highly customizable. So với bond: nhanh hơn, nhỏ hơn, ít liquid hơn.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Private placement vs public — disclosure trade-off</span>
+        <span class="step-body">Public: SEC registration, retail access, liquid. Reg D: accredited only, exempt. 144A: QIB resale, quasi-liquid secondary. IG → covenant-lite; HY → covenant-heavy.</span>
       </span>
     </li>
   </ol>
 
   <div class="run-footer">
-    <span class="footer-topic">CFA Level I</span>
-    <span>FIXED INCOME · 08.04 — SUMMARY</span>
+    <span class="footer-topic">Fixed Income · 08.04 — FI Markets for Corporate Issuers</span>
   </div>
 </section>
 
 
-<!-- 15 · TRANSITION -->
+<!-- 15 · TRANSITION TO PRACTICE -->
 <section data-label="Practice begins" class="slide end-slide">
   <div>
     <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
@@ -672,27 +693,27 @@
 </section>
 
 
-<!-- 16 · Q1 EN — Seniority -->
+<!-- 16 · Q1 ORIGINAL — Commercial Paper -->
 <section data-label="Q1 Original" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.04</span>
+    <span>08.04 — FI Markets for Corporate Issuers</span>
     <span class="rule"></span>
-    <span>16 / 28</span>
+    <span>16 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Classify <em class="hi">claim priority</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Commercial Paper</em> — characteristics.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      A corporation has issued three types of debt: (i) <strong>mortgage bonds backed by a manufacturing plant</strong>, (ii) <strong>debentures</strong>, and (iii) <strong>subordinated notes</strong>. In the event of bankruptcy, which ordering <strong>correctly</strong> ranks the debt from <strong>highest to lowest</strong> claim priority on the firm's assets?
+      A large investment-grade corporation regularly issues 90-day commercial paper to fund its working capital needs. Its CFO is concerned about <strong>rollover risk</strong>. Which of the following actions would <strong>best mitigate</strong> this risk?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Debentures → mortgage bonds → subordinated notes.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Mortgage bonds → debentures → subordinated notes.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Mortgage bonds → subordinated notes → debentures.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Extending the maturity of all commercial paper to 271 days to avoid SEC registration requirements.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Maintaining a committed bank revolving credit facility equal in size to its outstanding commercial paper.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Switching from direct-issued CP to dealer-placed CP to access a broader investor base.</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
@@ -704,9 +725,9 @@
 <!-- 17 · Q1 HINT -->
 <section data-label="Q1 Hint" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.04</span>
+    <span>08.04 — FI Markets for Corporate Issuers</span>
     <span class="rule"></span>
-    <span>17 / 28</span>
+    <span>17 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 01</div>
@@ -714,20 +735,20 @@
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>mortgage bonds</mark> (có collateral = plant). <mark>Debentures</mark> (senior unsecured). <mark>Subordinated</mark> (junior). Hỏi highest → lowest claim.
+    <mark>rollover risk</mark> = rủi ro không thể phát hành CP mới khi CP cũ đáo hạn. <mark>Committed bank facility</mark> = backup line. <mark>271 ngày</mark> vượt ngưỡng exempt → cần register.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">Mortgage bonds có <em>specific collateral</em> → senior <b>secured</b> → top rank. Được trả từ proceeds của plant trước khi claim trên general assets.</span>
+      <span class="htxt">Rollover risk = không rollover được khi thị trường đóng băng hoặc credit deteriorate. Cần <em>backup liquidity source</em> — ngân hàng là classic solution.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Debentures = senior <b>unsecured</b> → claim trên general assets, sau secured. Nhưng vẫn trên subordinated.</span>
+      <span class="htxt">Option A: 271 ngày &gt; 270 ngày → phải register với SEC. Đây là lý do CP được giữ ≤ 270 ngày. Extending không mitigate rollover risk; còn tạo thêm regulatory burden.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Subordinated notes = junior → trả <em>sau</em> tất cả senior (cả secured và unsecured). Ladder: secured → unsecured senior → subordinated → equity.</span>
+      <span class="htxt">Option C: Dealer vs direct chỉ là distribution method. Khi thị trường đóng băng, cả hai đều không rollover được. Không giải quyết rollover risk.</span>
     </li>
   </ol>
   <div class="run-footer">
@@ -740,9 +761,9 @@
 <!-- 18 · Q1 Dịch đề -->
 <section data-label="Q1 Dịch đề" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.04</span>
+    <span>08.04 — FI Markets for Corporate Issuers</span>
     <span class="rule"></span>
-    <span>18 / 28</span>
+    <span>18 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
@@ -751,13 +772,13 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một corporation đã phát hành 3 loại debt: (i) <strong>mortgage bonds backed by nhà máy sản xuất</strong>, (ii) <strong>debentures</strong>, và (iii) <strong>subordinated notes</strong>. Trong trường hợp phá sản, thứ tự nào <strong>đúng</strong> khi xếp các loại debt từ <strong>cao nhất đến thấp nhất</strong> về claim priority trên asset của firm?
+      Một công ty IG lớn thường xuyên phát hành commercial paper kỳ hạn 90 ngày để tài trợ nhu cầu vốn lưu động. CFO lo ngại về <strong>rollover risk</strong>. Hành động nào sau đây <strong>giảm thiểu tốt nhất</strong> rủi ro này?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Debentures → mortgage bonds → subordinated notes.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Mortgage bonds → debentures → subordinated notes.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Mortgage bonds → subordinated notes → debentures.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Kéo dài kỳ hạn CP lên 271 ngày để tránh yêu cầu đăng ký với SEC.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Duy trì hạn mức tín dụng ngân hàng cam kết (revolving credit facility) tương đương với CP đang lưu hành.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Chuyển từ phát hành trực tiếp sang phát hành qua dealer để tiếp cận investor base rộng hơn.</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
@@ -769,31 +790,31 @@
 <!-- 19 · Q1 EXPLANATION -->
 <section data-label="Q1 Explanation" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.04</span>
+    <span>08.04 — FI Markets for Corporate Issuers</span>
     <span class="rule"></span>
-    <span>19 / 28</span>
+    <span>19 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Mortgage → Debentures → Sub.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Committed revolving credit facility.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">Đúng ladder: <b>Senior secured (mortgage) → Senior unsecured (debentures) → Subordinated</b>. Mortgage có specific collateral (plant) → first claim trên asset đó. Debentures có claim trên general assets sau secured. Subordinated đứng cuối — trả sau tất cả senior.</div>
+      <div class="rtext">Committed revolving credit facility là <em>standard practice</em> để mitigate CP rollover risk. Khi thị trường CP đóng băng (như tháng 9/2008), issuer có thể draw trên revolving facility để repay CP đáo hạn. Facility phải <b>committed</b> (bank cam kết) — không phải uncommitted (bank có thể từ chối). Size = 100% CP outstanding là best practice.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Debentures là <em>unsecured</em> → KHÔNG thể trên mortgage bonds (secured). Collateral luôn tạo higher priority trên asset đó.</div>
+      <div class="rtext">US CP exempt khỏi SEC registration khi maturity ≤ 270 ngày. 271 ngày vượt ngưỡng → phải register → chậm hơn, tốn kém hơn. Hơn nữa, kéo dài maturity không giải quyết rollover risk — vẫn phải rollover, chỉ ít thường xuyên hơn.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">Subordinated theo định nghĩa là <em>junior</em> — luôn thấp hơn senior (cả secured và unsecured). Không thể trên debentures.</div>
+      <div class="rtext">Dealer vs direct là distribution mechanism. Khi thị trường đóng băng (systemic stress), cả hai đều thất bại như nhau — không có buyer. Changing distribution channel không tạo ra liquidity backstop mới.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">Claim priority ladder: <em>Senior secured → Senior unsecured → Subordinated → Equity</em>. Collateral boost priority trên asset đó; "subordinated" là keyword cho junior claim. Yield follows risk: lower priority = higher yield.</div>
+    <div class="ttext">CP rollover risk → backstop bằng <em>committed bank credit facility</em> (= backup line). CP phải ≤ 270 ngày để exempt SEC. Direct vs dealer = distribution choice, không giải quyết rollover risk. 2008 GFC: money market funds "broke the buck" → CP market freeze → revolving facilities được kéo.</div>
   </div>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
@@ -802,27 +823,27 @@
 </section>
 
 
-<!-- 20 · Q2 EN — TIPS vs Nominal -->
+<!-- 20 · Q2 ORIGINAL — MTN vs Bond -->
 <section data-label="Q2 Original" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.04</span>
+    <span>08.04 — FI Markets for Corporate Issuers</span>
     <span class="rule"></span>
-    <span>20 / 28</span>
+    <span>20 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">TIPS</em> vs nominal Treasury.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">MTN program</em> — shelf registration advantage.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      An investor holds a 10-year <strong>TIPS</strong> with a 1.0% real coupon rate and a 10-year <strong>nominal Treasury</strong> with a 3.5% coupon rate, both with $1,000 par. Over the next year, <strong>CPI inflation surges to 6%</strong> (higher than previously expected). Which statement about the two bonds over this period is <strong>most accurate</strong>?
+      A corporate treasurer is comparing two issuance methods: (i) a <strong>medium-term note (MTN) program</strong> using an existing shelf registration, and (ii) a <strong>benchmark public bond offering</strong> requiring a new SEC registration. She needs to raise $200 million quickly to fund an acquisition that closes in 10 days. Which statement about the <strong>MTN program</strong> is <strong>most accurate</strong>?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">The TIPS coupon payment in dollars will rise, while the nominal Treasury's coupon stays fixed at $35.</span></li>
-    <li><span class="lbl">B</span><span class="opt">The nominal Treasury will outperform TIPS because its stated coupon (3.5%) exceeds the TIPS real coupon (1.0%).</span></li>
-    <li><span class="lbl">C</span><span class="opt">TIPS principal is fixed at $1,000 while the nominal Treasury principal is inflation-adjusted.</span></li>
+    <li><span class="lbl">A</span><span class="opt">The MTN program requires a new SEC registration for each tranche, making it slower than a benchmark bond offering.</span></li>
+    <li><span class="lbl">B</span><span class="opt">The MTN program allows issuance within days by drawing on the existing shelf registration, making it better suited to the treasurer's time constraint.</span></li>
+    <li><span class="lbl">C</span><span class="opt">MTN programs are restricted to maturities of 5 to 10 years, while benchmark bonds can be issued at any maturity.</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
@@ -834,9 +855,9 @@
 <!-- 21 · Q2 HINT -->
 <section data-label="Q2 Hint" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.04</span>
+    <span>08.04 — FI Markets for Corporate Issuers</span>
     <span class="rule"></span>
-    <span>21 / 28</span>
+    <span>21 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 02</div>
@@ -844,20 +865,20 @@
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    <mark>TIPS</mark> real 1.0% + <mark>nominal</mark> 3.5%. <mark>CPI surges 6%</mark> (unexpected). So sánh 2 bond trong inflation spike.
+    <mark>shelf registration</mark> đã có sẵn. <mark>10 ngày</mark> = thời gian rất chặt. <mark>MTN</mark> vs <mark>new bond offering</mark> — tốc độ là yếu tố quyết định.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">TIPS: <em>principal adjust theo CPI</em>. Coupon $ = real rate × adjusted principal. Principal tăng → coupon $ tăng.</span>
+      <span class="htxt">Shelf registration = đăng ký <em>một lần</em>, phát hành nhiều lần. Không cần re-register mỗi tranche → chỉ cần pricing supplement → 1–2 ngày từ decision đến pricing.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">Nominal Treasury: coupon <em>fixed</em> ở $35 (3.5% × $1,000). Principal fixed. Unexpected inflation → real value giảm.</span>
+      <span class="htxt">Benchmark bond offering mới = phải file registration → SEC review (3–6 tuần nếu không có shelf). Không kịp cho 10-day deadline.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Option C đảo ngược sự thật — TIPS adjust, nominal thì không. Option B so sánh real vs nominal rates trực tiếp là sai (apples to oranges).</span>
+      <span class="htxt">Option C sai về maturity — MTN tên là "medium-term" nhưng thực tế flexible từ 9 tháng đến 30+ năm. Không bị giới hạn 5–10 năm.</span>
     </li>
   </ol>
   <div class="run-footer">
@@ -870,9 +891,9 @@
 <!-- 22 · Q2 Dịch đề -->
 <section data-label="Q2 Dịch đề" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.04</span>
+    <span>08.04 — FI Markets for Corporate Issuers</span>
     <span class="rule"></span>
-    <span>22 / 28</span>
+    <span>22 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
@@ -881,13 +902,13 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Nhà đầu tư hold 1 <strong>TIPS</strong> 10 năm với real coupon rate 1.0% và 1 <strong>nominal Treasury</strong> 10 năm với coupon rate 3.5%, cả hai par $1,000. Trong năm tới, <strong>CPI inflation tăng mạnh lên 6%</strong> (cao hơn kỳ vọng trước đó). Phát biểu nào về 2 bonds trong giai đoạn này là <strong>chính xác nhất</strong>?
+      Một corporate treasurer đang so sánh hai phương thức phát hành: (i) <strong>MTN program</strong> sử dụng shelf registration hiện có, và (ii) <strong>public bond offering</strong> mới yêu cầu đăng ký SEC mới. Cô cần huy động $200 triệu gấp để tài trợ thương vụ M&amp;A sẽ đóng trong 10 ngày. Phát biểu nào về <strong>MTN program</strong> là <strong>chính xác nhất</strong>?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Coupon payment của TIPS (tính bằng $) sẽ tăng, trong khi coupon của nominal Treasury giữ cố định ở $35.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Nominal Treasury sẽ outperform TIPS vì stated coupon (3.5%) cao hơn TIPS real coupon (1.0%).</span></li>
-    <li><span class="lbl">C</span><span class="opt">TIPS principal cố định ở $1,000 trong khi nominal Treasury principal được inflation-adjust.</span></li>
+    <li><span class="lbl">A</span><span class="opt">MTN program yêu cầu đăng ký SEC mới cho mỗi tranche, nên chậm hơn benchmark bond offering.</span></li>
+    <li><span class="lbl">B</span><span class="opt">MTN program cho phép phát hành trong vài ngày bằng cách draw trên shelf registration hiện có, phù hợp hơn với yêu cầu thời gian của treasurer.</span></li>
+    <li><span class="lbl">C</span><span class="opt">MTN program bị giới hạn kỳ hạn 5–10 năm, trong khi benchmark bonds có thể phát hành ở bất kỳ kỳ hạn nào.</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
@@ -899,31 +920,31 @@
 <!-- 23 · Q2 EXPLANATION -->
 <section data-label="Q2 Explanation" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.04</span>
+    <span>08.04 — FI Markets for Corporate Issuers</span>
     <span class="rule"></span>
-    <span>23 / 28</span>
+    <span>23 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — TIPS coupon rises.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — MTN shelf draws in days.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
-      <div class="rtag">✓ Correct — A</div>
-      <div class="rtext">TIPS có <b>principal adjust theo CPI</b>. Inflation 6% → principal từ $1,000 tăng lên ~$1,060. Coupon $ = 1.0% × adjusted principal ≈ $10.60 (vs $10 ban đầu). Nominal Treasury coupon <em>fixed</em> ở $35 = 3.5% × $1,000 constant, không thay đổi theo inflation. Unexpected inflation <em>erodes</em> real value của nominal Treasury, trong khi TIPS được bảo vệ.</div>
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">MTN program với shelf registration đã có = issuer chỉ cần file <b>pricing supplement</b> (1–2 trang) thay vì full registration. Thời gian từ decision đến settlement: 1–3 ngày. Với 10-day deadline để đóng M&amp;A, đây là lựa chọn duy nhất khả thi. Tranche $200M là bình thường với MTN program của large IG issuer.</div>
     </div>
     <div class="rblock wrong">
-      <div class="rtag">✗ Wrong — B</div>
-      <div class="rtext">So sánh 3.5% nominal với 1.0% real trực tiếp là lỗi. 3.5% nominal ≈ 1.0% real + 2.5% expected inflation. Khi actual inflation (6%) &gt; expected (2.5%) → TIPS <em>outperform</em>. Đây là unexpected inflation scenario — TIPS win.</div>
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Ngược hoàn toàn. Shelf registration là lý do MTN <em>không cần</em> re-register. Mỗi tranche chỉ cần pricing supplement — đây là lợi thế cốt lõi của shelf. Option A mô tả quy trình của benchmark bond mới (không có shelf).</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">Ngược hoàn toàn. TIPS principal <em>được</em> inflation-adjust; nominal principal <em>không</em>. Đây là đặc trưng cơ bản nhất của TIPS.</div>
+      <div class="rtext">"Medium-term" trong MTN là tên lịch sử, không phải constraint. Thực tế MTN flexible từ <em>9 tháng → 30+ năm</em>. Benchmark bonds cũng có maturity constraint theo market convention. Option C sai về định nghĩa MTN maturity.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">TIPS = principal index CPI, coupon $ tăng theo principal; fixed real return. Nominal Treasury = fixed coupon $, real return biến động với inflation. Unexpected inflation → TIPS outperform. Breakeven inflation = nominal yield − TIPS real yield.</div>
+    <div class="ttext">MTN shelf = register once, issue many times on-demand. Speed = 1–3 ngày vs 3–6 tuần cho new registration. "Medium-term" là misnomer — MTN có thể 9 tháng → 30+ năm. MTN là lựa chọn khi cần funding gấp, size nhỏ/vừa, hoặc specific maturity/structure.</div>
   </div>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
@@ -932,27 +953,27 @@
 </section>
 
 
-<!-- 24 · Q3 EN — GO vs Revenue -->
+<!-- 24 · Q3 ORIGINAL — Seniority & Private Placement -->
 <section data-label="Q3 Original" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.04</span>
+    <span>08.04 — FI Markets for Corporate Issuers</span>
     <span class="rule"></span>
-    <span>24 / 28</span>
+    <span>24 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">GO</em> vs <em class="hi">Revenue</em> muni.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Rule 144A</em> — private placement characteristics.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      A US city is issuing two municipal bonds: (i) Bond X, backed by the city's <strong>full faith, credit, and taxing power</strong>, to fund public school construction; and (ii) Bond Y, backed <strong>solely by the revenues of a new municipal toll bridge</strong>. Which statement is <strong>most accurate</strong>?
+      A high-yield issuer wants to raise $750 million in the US bond market quickly. Its investment bank recommends issuing the bonds under <strong>Rule 144A</strong>. The issuer's CFO asks: "Who can buy these bonds initially, and can they be resold freely?" Which answer is <strong>most accurate</strong>?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Bond X is a revenue bond; Bond Y is a general obligation (GO) bond.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Bond X is a GO bond and generally carries lower credit risk than Bond Y, a revenue bond.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Both are GO bonds because both are issued by the same municipality.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Rule 144A bonds can be sold to any US investor without restriction, and can be freely resold on public exchanges after issuance.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Rule 144A bonds are initially sold only to Qualified Institutional Buyers (QIBs), and can be resold to other QIBs without SEC registration, creating a liquid secondary market among institutions.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Rule 144A bonds must be converted to SEC-registered bonds within 30 days of issuance before any resale is permitted.</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
@@ -964,9 +985,9 @@
 <!-- 25 · Q3 HINT -->
 <section data-label="Q3 Hint" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.04</span>
+    <span>08.04 — FI Markets for Corporate Issuers</span>
     <span class="rule"></span>
-    <span>25 / 28</span>
+    <span>25 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 03</div>
@@ -974,20 +995,20 @@
   </div>
   <div class="hint-card">
     <span class="h-tag">§ Keywords</span>
-    Bond X: <mark>full faith + taxing power</mark> → GO. Bond Y: <mark>solely bridge revenues</mark> → revenue. Hỏi statement chính xác nhất.
+    <mark>Rule 144A</mark> = resale safe harbor. <mark>QIB</mark> = Qualified Institutional Buyer (manage ≥ $100M). <mark>Secondary market</mark> giữa QIBs. Không cần SEC registration.
   </div>
   <ol class="hint-list">
     <li>
       <span class="hnum">Hint 1</span>
-      <span class="htxt">"Full faith, credit, and taxing power" là <em>definition</em> của <b>General Obligation (GO)</b>. Issuer có thể raise taxes để pay holders.</span>
+      <span class="htxt">Rule 144A là <em>resale</em> exemption — securities phát hành privately có thể resell sang QIBs mà không cần SEC registration. Tạo quasi-liquid secondary market.</span>
     </li>
     <li>
       <span class="hnum">Hint 2</span>
-      <span class="htxt">"Solely by revenues of specific project" (toll bridge) = <b>revenue bond</b>. Chỉ project's cash flow trả debt, không có tax backing.</span>
+      <span class="htxt">QIB threshold = institution (bank, fund, insurance) manage ≥ $100M trong securities. Retail investors không đủ điều kiện. "Any US investor" (Option A) sai rõ ràng.</span>
     </li>
     <li>
       <span class="hnum">Hint 3</span>
-      <span class="htxt">Credit risk: GO thường thấp hơn revenue (broad tax base vs single project). Hai bonds cùng issuer không tự động cùng loại.</span>
+      <span class="htxt">Option C sai về timing — 144A không yêu cầu convert trong 30 ngày. Nhiều 144A tồn tại vô thời hạn trong 144A form. Registration exchange (reg-right) thường 180–365 ngày và là optional/contractual, không bắt buộc.</span>
     </li>
   </ol>
   <div class="run-footer">
@@ -1000,9 +1021,9 @@
 <!-- 26 · Q3 Dịch đề -->
 <section data-label="Q3 Dịch đề" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.04</span>
+    <span>08.04 — FI Markets for Corporate Issuers</span>
     <span class="rule"></span>
-    <span>26 / 28</span>
+    <span>26 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
@@ -1011,13 +1032,13 @@
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
     <div class="q-stem">
-      Một thành phố US đang phát hành 2 muni bonds: (i) Bond X, backed bởi <strong>full faith, credit, và taxing power</strong> của thành phố, để tài trợ xây trường công; và (ii) Bond Y, backed <strong>chỉ bằng revenues từ một municipal toll bridge mới</strong>. Phát biểu nào là <strong>chính xác nhất</strong>?
+      Một HY issuer muốn huy động $750 triệu trên thị trường bond Mỹ một cách nhanh chóng. Ngân hàng đầu tư khuyến nghị phát hành theo <strong>Rule 144A</strong>. CFO hỏi: "Ai có thể mua các bonds này ban đầu, và chúng có thể được resell tự do không?" Câu trả lời nào là <strong>chính xác nhất</strong>?
     </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Bond X là revenue bond; Bond Y là general obligation (GO) bond.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Bond X là GO bond và thường có credit risk thấp hơn Bond Y (revenue bond).</span></li>
-    <li><span class="lbl">C</span><span class="opt">Cả hai đều là GO bonds vì cùng được phát hành bởi cùng 1 municipality.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Bonds 144A có thể bán cho bất kỳ nhà đầu tư Mỹ nào không hạn chế, và có thể resell tự do trên sàn giao dịch công khai sau khi phát hành.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Bonds 144A ban đầu chỉ bán cho Qualified Institutional Buyers (QIBs), và có thể resell cho QIBs khác mà không cần đăng ký SEC, tạo ra secondary market liquid giữa các tổ chức.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Bonds 144A phải chuyển đổi thành bonds đã đăng ký SEC trong vòng 30 ngày sau phát hành trước khi được phép resell.</span></li>
   </ol>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
@@ -1029,31 +1050,31 @@
 <!-- 27 · Q3 EXPLANATION -->
 <section data-label="Q3 Explanation" class="slide">
   <div class="run-header">
-    <span>Fixed Income · 08.04</span>
+    <span>08.04 — FI Markets for Corporate Issuers</span>
     <span class="rule"></span>
-    <span>27 / 28</span>
+    <span>27 / 30</span>
   </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — GO lower risk than revenue.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — QIBs only, resale among QIBs.</h2>
   </div>
   <div class="reasoning">
     <div class="rblock">
       <div class="rtag">✓ Correct — B</div>
-      <div class="rtext">Bond X = <b>GO bond</b> (definition: full faith, credit, taxing power). Bond Y = <b>revenue bond</b> (solely project revenues). GO thường <em>lower credit risk</em> vì city có broad tax base (property, sales, income tax) để pay holders — diversified revenue. Revenue bond phụ thuộc 1 project — nếu traffic trên bridge thấp hơn forecast → không đủ revenue → default risk cao hơn.</div>
+      <div class="rtext">Rule 144A là <em>resale safe harbor</em> — cho phép privately placed securities được resold sang QIBs (Qualified Institutional Buyers, manage ≥ $100M) mà không cần SEC registration. Tạo ra quasi-liquid secondary market chỉ giữa institutions. HY issuer tiếp cận được large US institutional buyers (insurance, pension, HY funds) nhanh mà không cần full SEC filing. Đây là lý do 144A cực phổ biến cho HY và EM issuers.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — A</div>
-      <div class="rtext">Đảo ngược định nghĩa. "Taxing power" = GO; "project revenue only" = revenue bond. Option A ngược hoàn toàn.</div>
+      <div class="rtext">144A <em>không</em> mở cho all US investors. Chỉ QIBs. Retail investors không thể mua 144A bonds trực tiếp. Resale cũng chỉ giữa QIBs, không phải public exchanges. Option A mô tả public offering đã đăng ký SEC.</div>
     </div>
     <div class="rblock wrong">
       <div class="rtag">✗ Wrong — C</div>
-      <div class="rtext">Cùng issuer không có nghĩa là cùng loại bond. Phân loại dựa trên <em>source of repayment</em>, không phải issuer. 1 city có thể phát hành cả GO và revenue bonds cùng lúc.</div>
+      <div class="rtext">Không có yêu cầu pháp lý convert sang registered bonds trong 30 ngày. "Reg rights" (exchange offer) là <em>contractual obligation</em> trong indenture nếu issuer đồng ý — thường 180–365 ngày. Nhiều 144A bonds không bao giờ registered nếu indenture không có reg-right provision.</div>
     </div>
   </div>
   <div class="takeaway-box">
     <div class="tlabel">Key takeaway</div>
-    <div class="ttext">GO: full faith + taxing power → broad revenue base → lower risk. Revenue: specific project cash flows → concentration risk → higher yield. Muni thường federal-tax-exempt → tax equivalent yield = muni yield / (1 − tax rate) cho so sánh fair với taxable bonds.</div>
+    <div class="ttext">Rule 144A = resale của private placements sang QIBs (≥$100M AUM) mà không cần SEC registration. Tạo secondary market liquid giữa institutions. HY/EM issuers dùng 144A để access US capital nhanh. Reg-right = optional contractual exchange offer sang registered bonds sau 180–365 ngày, không bắt buộc pháp lý.</div>
   </div>
   <div class="run-footer">
     <span class="footer-topic">CFA Level I</span>
@@ -1062,11 +1083,119 @@
 </section>
 
 
-<!-- 28 · END -->
+<!-- 28 · BONUS SLIDE — Repo haircut calculation -->
+<section data-label="Repo mechanics deep-dive" class="slide">
+  <div class="run-header">
+    <span>08.04 — FI Markets for Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>28 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Bonus · Repo mechanics</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Repo <em class="hi">haircut</em> &amp; repo rate — tính toán.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Ví dụ số — Repo overnight</span>
+    Dealer hold $10M Treasury bonds (market value). Muốn vay tiền qua overnight repo.<br>
+    <b>Haircut</b> = 2% → Cash received = $10M × (1 − 2%) = <em>$9.8M</em>.<br>
+    <b>Repo rate</b> = 5.2% annual. Overnight interest = $9.8M × 5.2% / 360 = <em>$1,416.67</em>.<br>
+    Ngày mai: Dealer trả lại $9.8M + $1,416.67 = <em>$9,801,416.67</em> để nhận lại bonds.<br><br>
+    <b>Margin call</b>: Nếu bond price giảm → lender yêu cầu thêm collateral hoặc cash → variation margin.
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Lender (reverse repo) perspective</div>
+      <dl>
+        <dt>Lender làm gì</dt>
+        <dd>Lend cash, nhận bonds làm collateral. Return = repo rate.</dd>
+        <dt>Risk</dt>
+        <dd>Collateral value drop + counterparty default cùng lúc. Haircut buffer rủi ro này.</dd>
+        <dt>Buyer</dt>
+        <dd>Money market funds, corporate treasuries — safe short-term yield.</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Borrower (repo) perspective</div>
+      <dl>
+        <dt>Borrower làm gì</dt>
+        <dd>Sell bonds, nhận cash. Cost = repo rate (thấp hơn unsecured).</dd>
+        <dt>Risk</dt>
+        <dd>Rollover risk (overnight) + variation margin calls.</dd>
+        <dt>Seller</dt>
+        <dd>Dealers, hedge funds, banks — fund inventory cheap.</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.04 — FI Markets for Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 29 · BONUS SLIDE — Vietnam context update -->
+<section data-label="VN market 2024 update" class="slide">
+  <div class="run-header">
+    <span>08.04 — FI Markets for Corporate Issuers</span>
+    <span class="rule"></span>
+    <span>29 / 30</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Bonus · Việt Nam 2024</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">TPDN VN — phục hồi sau <em class="hi">cú sốc 2022</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Sau giai đoạn đóng băng 2022–2023, thị trường TPDN VN đang từng bước phục hồi với quy định mới chặt chẽ hơn. Liên hệ với các khái niệm đã học trong lesson này.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">NĐ65</span>
+      <div>
+        <div class="t">Nghị định 65/2022 — siết private placement</div>
+        <div class="d">Yêu cầu credit rating, giới hạn đối tượng mua (professional investors tương tự QIB khái niệm), xác nhận mục đích sử dụng vốn. Tương tự Reg D concept trong US.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">HNX</span>
+      <div>
+        <div class="t">HNX Bond Market — secondary market</div>
+        <div class="d">Sở GDCK Hà Nội vận hành trading platform cho TPDN. 2023–2024: tăng cường reporting requirements, real-time price transparency — tương tự TRACE concept.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">NHNN</span>
+      <div>
+        <div class="t">SBV — macro prudential</div>
+        <div class="d">NHNN giới hạn tỷ lệ bond investment của các ngân hàng thương mại (tránh concentration risk với BĐS issuer). Banks phải phân loại và trích lập dự phòng cho bond holdings.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">REPO</span>
+      <div>
+        <div class="t">Repo VN — kênh thanh khoản SBV</div>
+        <div class="d">NHNN dùng Open Market Operations (OMO) — mua/bán TPCP qua repo với các NHTM để inject/drain liquidity. Tương tự Fed's repo operations với primary dealers.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § VN vs Global — Thị trường VN đang phát triển theo hướng global best practices: credit ratings, prospectus requirements, secondary market reporting. Tuy nhiên còn thiếu: deep institutional investor base, proper HY market, derivatives hedging instruments.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">Fixed Income · 08.04 — FI Markets for Corporate Issuers</span>
+  </div>
+</section>
+
+
+<!-- 30 · END -->
 <section data-label="End" class="slide end-slide">
   <div>
     <h1>08.04 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
-    <div class="hint">Tiếp theo · Lesson 08.05 — Securitized debt &amp; ABS/MBS</div>
+    <div class="hint">Tiếp theo · Lesson 08.05 — FI Markets for Government Issuers</div>
   </div>
 </section>
 
