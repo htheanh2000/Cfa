@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<title>CFA L1 · Econ 03.01 — Demand &amp; Supply Analysis (Master)</title>
+<title>CFA L1 · Econ 03.01 — The Firm and Market Structures</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/assets/cfa-theme.css">
 <style>
   .title-slide .left { background: var(--accent); }
-  .title-slide .main { font-size: 124px; line-height: 0.98; }
+  .title-slide .main { font-size: 112px; line-height: 0.98; }
   .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
   .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
 </style>
@@ -24,1034 +24,924 @@
 <section data-label="Title" class="slide title-slide">
   <div class="left">
     <div class="mark">CFA Institute · Level I</div>
-    <h1 class="main">Demand &amp;<br><em>Supply.</em></h1>
-    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 03 · Lesson 03.01 · Master edition</div>
+    <h1 class="main">The Firm<br>&amp; <em>Markets.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 03 · Lesson 03.01 · Economics</div>
   </div>
   <div class="right">
-    <div class="mark">Module 01 · Microfoundations · full-depth</div>
+    <div class="mark">Module 02 · Firm behavior &amp; market structures</div>
     <dl class="meta-grid">
       <div><dt>Môn</dt><dd>Econ</dd></div>
-      <div><dt>Module</dt><dd>01</dd></div>
+      <div><dt>Module</dt><dd>02</dd></div>
       <div><dt>Lesson</dt><dd>03.01</dd></div>
-      <div><dt>Thời lượng</dt><dd>180 min</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
     </dl>
-    <div class="mark">D/S · Elasticity · Surplus · Tax · Utility · 4 practice</div>
+    <div class="mark">Costs · MR = MC · 4 market structures</div>
   </div>
 </section>
 
 
 <!-- 02 · AGENDA -->
 <section data-label="Agenda" class="slide section-break">
-  <div class="band"><div class="lbl">PART</div><div class="n">01</div><div class="lbl">Micro</div></div>
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">02</div>
+    <div class="lbl">Firm theory</div>
+  </div>
   <div class="content">
-    <div class="eyebrow">Today's lesson · 6 blocks</div>
-    <h2>Full coverage of<br><em>demand, supply &amp; beyond.</em></h2>
+    <div class="eyebrow">Today's lesson</div>
+    <h2>How <em>firms</em> decide<br>what to produce.</h2>
     <ul class="toc">
-      <li class="active">A · Demand &amp; Supply — laws, functions, determinants, extremes</li>
-      <li>B · Equilibrium — concept, example, shift scenarios</li>
-      <li>C · Elasticity — PED/IED/CPE + worked examples</li>
-      <li>D · Applications — TR test, Surplus/DWL, Tax/Ceiling/Floor/Subsidy</li>
-      <li>E · Consumer theory — utility, indifference, income/substitution</li>
-      <li>F · Practice — 4 CFA-exam questions</li>
+      <li class="active">01 · Cost concepts — fixed, variable, marginal</li>
+      <li>02 · Average costs — ATC, AVC, AFC</li>
+      <li>03 · Profit maximization — MR = MC</li>
+      <li>04 · 4 market structures — perfect competition → monopoly</li>
+      <li>05 · Practice — 3 CFA-style questions</li>
     </ul>
   </div>
 </section>
 
 
-<!-- 03 · LAW OF DEMAND -->
-<section data-label="Law of Demand" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>03 / 50</span></div>
+<!-- 03 · COST CONCEPTS -->
+<section data-label="Cost concepts" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>03 / 26</span>
+  </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Concept · Block A</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Law of <em class="hi">Demand</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">Khi P cao → Q thấp. Underlying 2 effects + 2 exceptions.</p>
+    <div class="eyebrow">Costs · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Fixed</em>, variable, marginal.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Ba loại cost cơ bản quyết định production decision của firm. Phân biệt quan trọng cho profit maximization.
+    </p>
   </div>
-  <ol class="num-list" style="margin-top: 12px;">
-    <li><span><span class="step-title">Substitution effect</span><span class="step-body">Giá A tăng relative to B → consumer switch sang B. Strength phụ thuộc availability of substitutes. Insulin không có substitute → substitution ≈ 0.</span></span></li>
-    <li><span><span class="step-title">Income effect</span><span class="step-body">Giá tăng → real income giảm → consumer cut consumption toàn bộ. Mạnh cho hàng % lớn của budget (housing, food).</span></span></li>
-    <li><span><span class="step-title">Exceptions — Giffen &amp; Veblen</span><span class="step-body"><em>Giffen</em>: staple food cho nghèo, income effect DOMINATES → P↑ thì Q↑. <em>Veblen</em>: luxury status, high P = prestige → Q↑.</span></span></li>
-  </ol>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — LAW OF DEMAND</span></div>
-</section>
 
-
-<!-- 04 · DEMAND FUNCTION -->
-<section data-label="Demand function" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>04 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Demand · formula</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">demand function</em>.</h2>
-  </div>
-  <div class="formula-box">
-    <span class="fmt-label">§ Linear form</span>
-    <div class="eq"><span class="var">Q</span><sub>d</sub> = <span class="var">a</span> − <span class="var">b</span> · <span class="var">P</span></div>
-    <div class="note"><b>a</b> = intercept (max demand at P=0). <b>b</b> = |slope| &gt; 0. Inverse: P = (a − Q)/b.</div>
-  </div>
-  <div class="formula-box" style="margin-top: 16px;">
-    <span class="fmt-label">§ General form — 7 variables</span>
-    <div class="eq"><span class="var">Q</span><sub>d</sub> = f(<span class="var">P</span>, <span class="var">I</span>, <span class="var">P</span><sub>s</sub>, <span class="var">P</span><sub>c</sub>, <span class="var">T</span>, <span class="var">E</span>, <span class="var">N</span>)</div>
-    <div class="note"><b>I</b> income · <b>P<sub>s</sub></b> substitute · <b>P<sub>c</sub></b> complement · <b>T</b> tastes · <b>E</b> expectations · <b>N</b> # buyers.</div>
-  </div>
-  <p class="fine-muted-sm">§ <b>Movement vs Shift</b> — P only → movement along. Other variable → shift.</p>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — DEMAND FUNC</span></div>
-</section>
-
-
-<!-- 05 · DETERMINANTS OF PED (NEW) -->
-<section data-label="Determinants of PED" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>05 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Determinants</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">What makes demand <em class="hi">elastic</em>?</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">5 yếu tố quyết định PED của một good. Exam trap hay test student về direction của each factor.</p>
-  </div>
-  <div class="tenets-grid" style="margin-top: 12px;">
-    <div class="tenet"><span class="n">01</span><div><div class="t"><em class="hi">Substitutes</em> availability</div><div class="d">Nhiều substitute gần gũi → elastic. Insulin (no subst) |PED|≈0.1; Coca-Cola (Pepsi, Dr Pepper) |PED|≈3.</div></div></div>
-    <div class="tenet"><span class="n">02</span><div><div class="t"><em class="hi">Share of income</em></div><div class="d">Hàng chiếm % lớn của budget → elastic (housing, cars). Salt (&lt;0.1% budget) → inelastic.</div></div></div>
-    <div class="tenet"><span class="n">03</span><div><div class="t"><em class="hi">Necessity</em> vs luxury</div><div class="d">Necessity (medicine, food) → inelastic. Luxury (vacation, high-end) → elastic.</div></div></div>
-    <div class="tenet"><span class="n">04</span><div><div class="t"><em class="hi">Time</em> horizon</div><div class="d">Longer time → more elastic (consumers adjust habits, find substitutes). SR oil PED ≈ −0.2, LR ≈ −0.6.</div></div></div>
-    <div class="tenet"><span class="n">05</span><div><div class="t"><em class="hi">Market</em> definition</div><div class="d">Narrow market → elastic ("bánh mì brand X"). Broad → inelastic ("bánh mì overall"). Exam trap về scope.</div></div></div>
-    <div class="tenet" style="border-top-color: var(--rule-soft);"><span class="n" style="color: var(--ink-muted);">§</span><div><div class="t" style="font-weight: 500; color: var(--ink-soft);">Combined effect</div><div class="d">Factors tương tác — narrow luxury market với nhiều subst = very elastic (iPhone Pro max |PED|≈5).</div></div></div>
-  </div>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — DETERMINANTS PED</span></div>
-</section>
-
-
-<!-- 06 · LAW OF SUPPLY -->
-<section data-label="Law of Supply" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>06 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Concept + formula</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Law of <em class="hi">Supply</em>.</h2>
-  </div>
-  <div class="formula-box">
-    <span class="fmt-label">§ Linear supply</span>
-    <div class="eq"><span class="var">Q</span><sub>s</sub> = <span class="var">c</span> + <span class="var">d</span> · <span class="var">P</span></div>
-    <div class="note"><b>c</b> thường âm (intercept). <b>d</b> &gt; 0 reflect law of supply. Slope magnitude = supply elasticity proxy.</div>
-  </div>
-  <ol class="num-list tight" style="margin-top: 18px;">
-    <li><span><span class="step-title">5 supply shifters</span><span class="step-body">(1) Input costs ↓ → supply right. (2) Technology ↑ → supply right. (3) Taxes/regulation ↑ → left. (4) # producers ↑ → right. (5) Price expectations ↑ → withhold → left.</span></span></li>
-    <li><span><span class="step-title">Short-run vs Long-run</span><span class="step-body">SR: capacity fixed, entry/exit limited → inelastic. LR: firms adjust → elastic.</span></span></li>
-  </ol>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — SUPPLY</span></div>
-</section>
-
-
-<!-- 07 · DETERMINANTS OF PES (NEW) -->
-<section data-label="Determinants of PES" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>07 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Determinants</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">What makes supply <em class="hi">flexible</em>?</h2>
-  </div>
   <div class="tenets-grid" style="margin-top: 16px;">
-    <div class="tenet"><span class="n">01</span><div><div class="t"><em class="hi">Time</em> horizon</div><div class="d">SR: fixed capacity → inelastic. LR: entry/exit + scale capacity → elastic. Main factor for PES.</div></div></div>
-    <div class="tenet"><span class="n">02</span><div><div class="t"><em class="hi">Input</em> availability</div><div class="d">Easy-access inputs (commodity labor, raw materials) → elastic. Specialized inputs (rare earth, expert) → inelastic.</div></div></div>
-    <div class="tenet"><span class="n">03</span><div><div class="t"><em class="hi">Storage</em> capability</div><div class="d">Non-perishable goods (grain, metals) → elastic (can stock up/release). Perishables (fresh fish, flowers) → inelastic.</div></div></div>
-    <div class="tenet"><span class="n">04</span><div><div class="t"><em class="hi">Spare</em> capacity</div><div class="d">Underutilized plants/firms → elastic. Running at 100% capacity → inelastic.</div></div></div>
+    <div class="tenet">
+      <span class="n">FC</span>
+      <div>
+        <div class="t"><em class="hi">Fixed Costs</em></div>
+        <div class="d">Không đổi theo output trong short run. Rent, salaries, depreciation. Vẫn phải trả dù sản xuất 0 unit.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">VC</span>
+      <div>
+        <div class="t"><em class="hi">Variable Costs</em></div>
+        <div class="d">Tỷ lệ theo output. Raw materials, hourly labor, utilities. Q=0 → VC=0.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">TC</span>
+      <div>
+        <div class="t"><em class="hi">Total Cost</em></div>
+        <div class="d">TC = FC + VC. Tổng cost firm bỏ ra để sản xuất Q units.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">MC</span>
+      <div>
+        <div class="t"><em class="hi">Marginal Cost</em></div>
+        <div class="d">MC = ΔTC / ΔQ. Cost của việc sản xuất thêm 1 unit. Key for profit decisions.</div>
+      </div>
+    </div>
   </div>
-  <p class="fine-muted-sm">§ Example — agricultural supply highly inelastic SR (crop already planted), elastic LR (next season adjust planting). Semiconductor supply even more inelastic SR (fabs take 2-3 years to build).</p>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — DETERMINANTS PES</span></div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — COSTS</span>
+  </div>
 </section>
 
 
-<!-- 08 · EXTREME CASES (NEW) -->
-<section data-label="Extreme elasticity" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>08 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Edge cases</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Perfectly <em class="hi">elastic vs inelastic</em>.</h2>
+<!-- 04 · AVERAGE COSTS -->
+<section data-label="Average costs" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>04 / 26</span>
   </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Costs · formulas</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Average <em class="hi">costs</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ The core relationships</span>
+    <div class="eq"><span class="var">ATC</span> = <span class="var">TC</span> / <span class="var">Q</span> = <span class="var">AVC</span> + <span class="var">AFC</span></div>
+    <div class="eq" style="margin-top: 8px;"><span class="var">AVC</span> = <span class="var">VC</span> / <span class="var">Q</span> · <span class="var">AFC</span> = <span class="var">FC</span> / <span class="var">Q</span></div>
+    <div class="note"><b>ATC</b> Average Total Cost · <b>AVC</b> Average Variable Cost · <b>AFC</b> Average Fixed Cost. Khi Q tăng, AFC giảm (spread fixed cost wider).</div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Cost curve shapes — MC cuts ATC và AVC từ dưới lên TẠI điểm minimum của chúng. Khi MC &lt; ATC, ATC đang giảm. Khi MC &gt; ATC, ATC đang tăng. Đây là property toán học quan trọng.
+  </p>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Economies of scale — scale up giảm cost</span>
+        <span class="step-body">ATC giảm khi output tăng. Nguyên nhân: fixed cost spread, bulk purchasing, specialization.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Diseconomies of scale — quá lớn tăng cost</span>
+        <span class="step-body">ATC tăng khi output rất lớn. Coordination cost, bureaucracy. Optimal firm size ở điểm minimum ATC.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — AVG COSTS</span>
+  </div>
+</section>
+
+
+<!-- 05 · PROFIT MAXIMIZATION — CONCEPT -->
+<section data-label="Profit max concept" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>05 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Profit max · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">MR = MC</em> rule.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Firm tối đa hóa lợi nhuận bằng cách sản xuất đến điểm <em>marginal revenue = marginal cost</em>. Đây là universal rule cho mọi market structure.
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Khi MR &gt; MC → sản xuất thêm có lợi</span>
+        <span class="step-body">Mỗi unit thêm mang về revenue nhiều hơn cost → tăng profit. Firm có incentive tăng production.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Khi MR &lt; MC → sản xuất thêm có hại</span>
+        <span class="step-body">Mỗi unit thêm mang về ít revenue hơn cost bỏ ra → giảm profit. Firm nên cắt production.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Khi MR = MC → optimal</span>
+        <span class="step-body">Marginal unit "break even" về mặt contribution. Profit đạt maximum tại đây. <em>Q optimal</em> = nơi 2 curve cắt nhau.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — PROFIT MAX</span>
+  </div>
+</section>
+
+
+<!-- 06 · PROFIT MAX — FORMULA -->
+<section data-label="Profit max formula" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>06 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Profit max · formula</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">equation</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Profit function</span>
+    <div class="eq"><span class="var">π</span> = <span class="var">TR</span> − <span class="var">TC</span> = (<span class="var">P</span> · <span class="var">Q</span>) − (<span class="var">FC</span> + <span class="var">VC</span>)</div>
+    <div class="note"><b>π</b> (pi) = profit · <b>TR</b> = total revenue = P × Q · <b>TC</b> = total cost.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Profit maximization condition</span>
+    <div class="eq"><span class="var">d</span><span class="var">π</span>/<span class="var">dQ</span> = <span class="var">MR</span> − <span class="var">MC</span> = 0  →  <span class="var">MR</span> = <span class="var">MC</span></div>
+    <div class="note">Derivative = 0 → <b>MR = MC</b>. Second-order condition: MC dốc lên nhanh hơn MR (cut from below).</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Perfect competition: P = MR (firm là price-taker). Monopoly: MR &lt; P (firm phải hạ giá để bán thêm). Cả hai đều max profit tại MR = MC, nhưng Q và P khác nhau.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — MR=MC FORMULA</span>
+  </div>
+</section>
+
+
+<!-- 07 · PROFIT MAX — EXAMPLE -->
+<section data-label="Profit max example" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>07 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Profit max · example</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Worked <em class="hi">example</em>.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Scenario · perfect competition firm</span>
+    Market price <b>$20</b>/unit (firm là price-taker, MR = P = $20). TC(Q) = 100 + 2Q + <em>Q²</em>. Tìm Q optimal để max profit.
+  </div>
+
+  <div class="formula-box" style="margin-top: 20px;">
+    <span class="fmt-label">§ Step 1 — Derive MC from TC</span>
+    <div class="eq"><span class="var">MC</span> = <span class="var">d</span>(<span class="var">TC</span>)/<span class="var">dQ</span> = 2 + 2<span class="var">Q</span></div>
+    <div class="note">Differentiate TC. Fixed cost (100) biến mất vì không phụ thuộc Q.</div>
+  </div>
+
+  <div class="formula-box" style="margin-top: 16px;">
+    <span class="fmt-label">§ Step 2 — Set MR = MC</span>
+    <div class="eq">20 = 2 + 2<span class="var">Q</span>  →  18 = 2<span class="var">Q</span>  →  <span class="var">Q*</span> = 9</div>
+    <div class="note">Firm nên sản xuất <b>9 units</b>. Verify profit: TR = 20×9 = 180; TC = 100 + 18 + 81 = 199 → π = −19. <em>Loss!</em> Nhưng vẫn better than shutting down (fixed cost 100 vẫn phải trả).</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Short-run rule — Firm continue operating nếu P &gt; AVC (cover variable costs). Shut down nếu P &lt; AVC (cut losses further).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — PROFIT EX</span>
+  </div>
+</section>
+
+
+<!-- 08 · 4 MARKET STRUCTURES OVERVIEW -->
+<section data-label="Market structures" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>08 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Market structures</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">4 market types</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CFA L1 test sự phân biệt giữa 4 structures theo 3 tiêu chí: <em>số firms</em>, <em>product differentiation</em>, <em>pricing power</em>.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Perfect Competition</em></div>
+        <div class="d">Nhiều firms · homogeneous products · no pricing power · P = MR. Ví dụ: commodities (wheat, gold).</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Monopolistic</em> Competition</div>
+        <div class="d">Nhiều firms · <em>differentiated</em> products · some pricing power · elastic demand. Ví dụ: restaurants, clothing brands.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Oligopoly</em></div>
+        <div class="d">Vài firms · products có thể differ or similar · strategic pricing · game theory. Ví dụ: airlines, telecom.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Monopoly</em></div>
+        <div class="d">1 firm · unique product · full pricing power · MR &lt; P. Ví dụ: utilities, patented drugs.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — MARKETS</span>
+  </div>
+</section>
+
+
+<!-- 09 · PERFECT COMPETITION -->
+<section data-label="Perfect Competition" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>09 / 26</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Structure 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Perfect Competition</em>.</h2>
+  </div>
+
   <div class="compare" style="margin-top: 16px;">
     <div class="cc">
-      <div class="head">Perfectly elastic <em>|PED| = ∞</em></div>
+      <div class="head">Characteristics</div>
       <dl>
-        <dt>Shape</dt><dd>Horizontal demand curve</dd>
-        <dt>Behavior</dt><dd>Any P change → Q jumps to 0 hoặc ∞</dd>
-        <dt>Example</dt><dd>Commodities in perfect competition (wheat, gold — firm price-taker)</dd>
-        <dt>Interpretation</dt><dd>Consumer có perfect substitute → không chịu $0.01 tăng</dd>
+        <dt>Firms</dt>
+        <dd>Many small firms — none can influence market price</dd>
+        <dt>Product</dt>
+        <dd>Homogeneous (identical)</dd>
+        <dt>Entry</dt>
+        <dd>Free entry &amp; exit — no barriers</dd>
+        <dt>Info</dt>
+        <dd>Perfect information among all participants</dd>
       </dl>
     </div>
     <div class="cc">
-      <div class="head">Perfectly inelastic <em>|PED| = 0</em></div>
+      <div class="head">Pricing &amp; profit</div>
       <dl>
-        <dt>Shape</dt><dd>Vertical demand curve</dd>
-        <dt>Behavior</dt><dd>Q giữ nguyên regardless of P</dd>
-        <dt>Example</dt><dd>Insulin (life-saving), addictive drugs, urgent medical care</dd>
-        <dt>Interpretation</dt><dd>Consumer không có alternative → buy at any price</dd>
+        <dt>Pricing</dt>
+        <dd>Price-taker: P = MR = market equilibrium</dd>
+        <dt>Demand</dt>
+        <dd>Perfectly elastic (horizontal line at P)</dd>
+        <dt>LR profit</dt>
+        <dd>Zero economic profit (normal profit only)</dd>
+        <dt>Example</dt>
+        <dd>Commodities: wheat, copper, gold</dd>
       </dl>
     </div>
   </div>
-  <p class="fine-muted-sm">§ Unit-elastic (|PED|=1): rectangular hyperbola. TR constant regardless of P. Rare trong thực tế nhưng theoretical benchmark.</p>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — EXTREMES</span></div>
+
+  <p class="fine-muted-sm">
+    § Long-run equilibrium — Firm entry đẩy price xuống đến P = minimum ATC. Firms chỉ earn "normal profit" (opportunity cost covered). Super-normal profit thu hút entry mới, erasing above-normal returns.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — PERFECT COMP</span>
+  </div>
 </section>
 
 
-<!-- 09 · EQUILIBRIUM CONCEPT -->
-<section data-label="Equilibrium" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>09 / 50</span></div>
-  <div style="margin-top: 30px;">
-    <div class="eyebrow">Block B · Equilibrium</div>
-    <h2 class="h-section" style="margin-bottom: 14px;">Where <em class="hi">D meets S</em>.</h2>
+<!-- 10 · MONOPOLISTIC COMPETITION -->
+<section data-label="Monopolistic Competition" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>10 / 26</span>
   </div>
-  <div class="chart-box">
-    <span class="chart-label">§ Market equilibrium — classic D/S cross</span>
-    <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg">
-      <line x1="70" y1="340" x2="750" y2="340" stroke="#1a1a1a" stroke-width="2"/>
-      <line x1="70" y1="340" x2="70" y2="30" stroke="#1a1a1a" stroke-width="2"/>
-      <polygon points="750,340 736,335 736,345" fill="#1a1a1a"/>
-      <polygon points="70,30 65,44 75,44" fill="#1a1a1a"/>
-      <text x="42" y="42" font-family="Roboto Mono" font-size="20" fill="#666">P</text>
-      <text x="760" y="346" font-family="Roboto Mono" font-size="20" fill="#666">Q</text>
-      <text x="57" y="355" font-family="Roboto Mono" font-size="14" fill="#666">0</text>
-      <!-- Demand (downward, from Y-axis top to X-axis right) -->
-      <line x1="120" y1="70" x2="680" y2="320" stroke="#14365F" stroke-width="3"/>
-      <text x="690" y="326" font-family="Roboto Slab" font-size="26" font-weight="700" fill="#14365F">D</text>
-      <!-- Supply (upward) -->
-      <line x1="120" y1="320" x2="680" y2="70" stroke="#14365F" stroke-width="3"/>
-      <text x="690" y="80" font-family="Roboto Slab" font-size="26" font-weight="700" fill="#14365F">S</text>
-      <!-- Equilibrium -->
-      <circle cx="400" cy="195" r="7" fill="#14365F"/>
-      <line x1="400" y1="195" x2="400" y2="340" stroke="#14365F" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.65"/>
-      <line x1="70" y1="195" x2="400" y2="195" stroke="#14365F" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.65"/>
-      <text x="400" y="362" font-family="Roboto Mono" font-size="18" fill="#14365F" text-anchor="middle" font-weight="700">Q*</text>
-      <text x="55" y="200" font-family="Roboto Mono" font-size="18" fill="#14365F" text-anchor="end" font-weight="700">P*</text>
-      <!-- Zone labels -->
-      <text x="400" y="140" font-family="Roboto Mono" font-size="13" fill="#8A8A8A" text-anchor="middle" letter-spacing="0.12em">SURPLUS (P &gt; P*, Qs &gt; Qd)</text>
-      <text x="400" y="265" font-family="Roboto Mono" font-size="13" fill="#8A8A8A" text-anchor="middle" letter-spacing="0.12em">SHORTAGE (P &lt; P*, Qd &gt; Qs)</text>
-    </svg>
-    <div class="caption"><b>Reading the chart</b> — Intersection P*, Q* là market-clearing point. Trên P*: sellers have excess inventory → cut price. Dưới P*: buyers bid up. Free market converges to P*.</div>
-  </div>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — EQUILIBRIUM</span></div>
-</section>
-
-
-<!-- 10 · EQUILIBRIUM EXAMPLE -->
-<section data-label="Equilibrium · Example" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>10 / 50</span></div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Equilibrium · example</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Worked <em class="hi">example</em>.</h2>
+    <div class="eyebrow">Structure 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Monopolistic Competition</em>.</h2>
   </div>
-  <div class="rule-box"><span class="tag">§ Scenario</span>Q<sub>d</sub> = 100 − 2P · Q<sub>s</sub> = −20 + 4P. Tìm P*, Q*. Off-equilibrium: P = $25 hoặc $15.</div>
-  <div class="formula-box" style="margin-top: 20px;">
-    <span class="fmt-label">§ Step 1 — Set Q<sub>d</sub> = Q<sub>s</sub></span>
-    <div class="eq">100 − 2<span class="var">P</span> = −20 + 4<span class="var">P</span> → <span class="var">P*</span> = 20</div>
-    <div class="eq" style="margin-top: 8px;"><span class="var">Q*</span> = 100 − 40 = <span class="var">60</span></div>
-  </div>
-  <div class="formula-box" style="margin-top: 14px;">
-    <span class="fmt-label">§ Step 2 — Off-equilibrium</span>
-    <div class="eq">P = $25 → Q<sub>d</sub>=50, Q<sub>s</sub>=80 → <span class="var">surplus 30</span></div>
-    <div class="eq" style="margin-top: 8px;">P = $15 → Q<sub>d</sub>=70, Q<sub>s</sub>=40 → <span class="var">shortage 30</span></div>
-  </div>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — EQUILIBRIUM EX</span></div>
-</section>
 
-
-<!-- 11 · DEMAND SHIFT SCENARIOS (NEW) -->
-<section data-label="Demand shift" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>11 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Shift dynamics</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">When <em class="hi">demand</em> shifts.</h2>
-  </div>
-  <div class="tenets-grid" style="margin-top: 14px;">
-    <div class="tenet"><span class="n">D →</span><div><div class="t"><em class="hi">Demand shifts RIGHT</em></div><div class="d">Causes: Income ↑ (normal good), tastes favorable, subst price ↑, complement price ↓. Result: <b>P*↑, Q*↑</b>.</div></div></div>
-    <div class="tenet"><span class="n">D ←</span><div><div class="t"><em class="hi">Demand shifts LEFT</em></div><div class="d">Causes: Income ↓ (recession), tastes unfavorable, subst price ↓. Result: <b>P*↓, Q*↓</b>.</div></div></div>
-    <div class="tenet"><span class="n">§</span><div><div class="t" style="font-weight: 500;">Magnitude rule</div><div class="d">Steeper (inelastic) supply → price bears more. Flatter (elastic) supply → quantity bears more.</div></div></div>
-    <div class="tenet" style="border-top-color: var(--rule-soft);"><span class="n" style="color: var(--ink-muted);">§</span><div><div class="t" style="font-weight: 500; color: var(--ink-soft);">Real example</div><div class="d">COVID: demand for masks shifted right dramatically → P spike (SR inelastic supply). LR: supply caught up, P fell.</div></div></div>
-  </div>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — D SHIFT</span></div>
-</section>
-
-
-<!-- 12 · SUPPLY SHIFT SCENARIOS (NEW) -->
-<section data-label="Supply shift" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>12 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Shift dynamics</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">When <em class="hi">supply</em> shifts.</h2>
-  </div>
-  <div class="tenets-grid" style="margin-top: 14px;">
-    <div class="tenet"><span class="n">S →</span><div><div class="t"><em class="hi">Supply shifts RIGHT</em></div><div class="d">Causes: Input costs ↓, tech advance, subsidies, more producers. Result: <b>P*↓, Q*↑</b>.</div></div></div>
-    <div class="tenet"><span class="n">S ←</span><div><div class="t"><em class="hi">Supply shifts LEFT</em></div><div class="d">Causes: Input costs ↑, disaster, taxes, exit of firms. Result: <b>P*↑, Q*↓</b>.</div></div></div>
-    <div class="tenet"><span class="n">§</span><div><div class="t" style="font-weight: 500;">Magnitude rule</div><div class="d">Steeper (inelastic) demand → price bears more (staple food shock). Flatter demand → quantity bears more.</div></div></div>
-    <div class="tenet" style="border-top-color: var(--rule-soft);"><span class="n" style="color: var(--ink-muted);">§</span><div><div class="t" style="font-weight: 500; color: var(--ink-soft);">Real example</div><div class="d">Semiconductor shortage 2021: supply left (COVID + Taiwan tensions), demand inelastic SR → P spike, Q small drop.</div></div></div>
-  </div>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — S SHIFT</span></div>
-</section>
-
-
-<!-- 13 · BOTH SHIFTS AMBIGUITY (NEW) -->
-<section data-label="Both shifts" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>13 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Dual shifts</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">When <em class="hi">both</em> shift.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">Khi D và S cả hai shift cùng lúc: luôn có <em>1 biến certain</em> và <em>1 biến ambiguous</em>. Exam favorite trap.</p>
-  </div>
-  <div class="tenets-grid" style="margin-top: 12px;">
-    <div class="tenet"><span class="n">01</span><div><div class="t">D right + S right</div><div class="d"><b>Q↑ certain</b> (both push up). <b>P ambiguous</b> (D pushes up, S pushes down).</div></div></div>
-    <div class="tenet"><span class="n">02</span><div><div class="t">D left + S left</div><div class="d"><b>Q↓ certain</b>. <b>P ambiguous</b>.</div></div></div>
-    <div class="tenet"><span class="n">03</span><div><div class="t">D right + S left</div><div class="d"><b>P↑ certain</b> (both push up). <b>Q ambiguous</b>.</div></div></div>
-    <div class="tenet"><span class="n">04</span><div><div class="t">D left + S right</div><div class="d"><b>P↓ certain</b>. <b>Q ambiguous</b>.</div></div></div>
-  </div>
-  <p class="fine-muted-sm">§ Cheat sheet — <em>Same direction</em>: quantity certain, price ambiguous. <em>Opposite directions</em>: price certain, quantity ambiguous. Magnitude of each shift determines ambiguous variable.</p>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — BOTH SHIFTS</span></div>
-</section>
-
-
-<!-- 14 · ELASTICITY CONCEPT -->
-<section data-label="Elasticity concept" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>14 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Block C · Elasticity</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">How <em class="hi">sensitive</em> is quantity?</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">3 loại elasticity, tất cả unit-free (% ratio), comparable across markets.</p>
-  </div>
-  <div class="tenets-grid" style="margin-top: 12px;">
-    <div class="tenet"><span class="n">PED</span><div><div class="t">Price Elasticity of <em class="hi">Demand</em></div><div class="d">%ΔQ<sub>d</sub>/%ΔP. Luôn âm. |PED|&gt;1 elastic, &lt;1 inelastic, =1 unit-elastic.</div></div></div>
-    <div class="tenet"><span class="n">IED</span><div><div class="t">Income Elasticity</div><div class="d">%ΔQ/%ΔI. &gt;0 normal, &lt;0 inferior. &gt;1 luxury, &lt;1 necessity.</div></div></div>
-    <div class="tenet"><span class="n">CPE</span><div><div class="t">Cross-Price Elasticity</div><div class="d">%ΔQ<sub>A</sub>/%ΔP<sub>B</sub>. &gt;0 substitutes, &lt;0 complements, ≈0 unrelated.</div></div></div>
-    <div class="tenet" style="border-top-color: var(--rule-soft);"><span class="n" style="color: var(--ink-muted);">§</span><div><div class="t" style="font-weight: 500; color: var(--ink-soft);">PED varies along linear curve</div><div class="d">Trên cùng linear demand, PED lớn ở phần trên (high P, low Q), nhỏ ở phần dưới. Không phải constant.</div></div></div>
-  </div>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — ELASTICITY CONCEPT</span></div>
-</section>
-
-
-<!-- 15 · ELASTICITY FORMULAS -->
-<section data-label="Elasticity formulas" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>15 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Elasticity · formulas</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">equations</em>.</h2>
-  </div>
-  <div class="formula-box">
-    <span class="fmt-label">§ PED — 2 methods</span>
-    <div class="eq">Simple: <span class="var">PED</span> = (Δ<span class="var">Q</span>/<span class="var">Q</span><sub>1</sub>) / (Δ<span class="var">P</span>/<span class="var">P</span><sub>1</sub>)</div>
-    <div class="eq" style="margin-top: 8px;">Midpoint/arc: <span class="var">PED</span> = [Δ<span class="var">Q</span>/avg(<span class="var">Q</span>)] / [Δ<span class="var">P</span>/avg(<span class="var">P</span>)]</div>
-    <div class="note">Midpoint accurate hơn cho large changes. Exam dùng cả 2 — đọc kỹ.</div>
-  </div>
-  <div class="formula-box" style="margin-top: 14px;">
-    <span class="fmt-label">§ IED &amp; CPE</span>
-    <div class="eq"><span class="var">IED</span> = (%Δ<span class="var">Q</span>)/(%Δ<span class="var">I</span>) · <span class="var">CPE</span><sub>A,B</sub> = (%Δ<span class="var">Q</span><sub>A</sub>)/(%Δ<span class="var">P</span><sub>B</sub>)</div>
-  </div>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — FORMULAS</span></div>
-</section>
-
-
-<!-- 16 · ELASTICITY EXAMPLE -->
-<section data-label="Elasticity example" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>16 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Elasticity · example</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Worked <em class="hi">example</em>.</h2>
-  </div>
-  <div class="rule-box"><span class="tag">§ Scenario</span>Coffee: P <b>$4→$5</b>, Q <b>100→85</b> ly/ngày. Tính PED bằng cả 2 methods.</div>
-  <div class="formula-box" style="margin-top: 18px;">
-    <span class="fmt-label">§ Method 1 — Simple</span>
-    <div class="eq">%ΔQ = −15%, %ΔP = +25%</div>
-    <div class="eq" style="margin-top: 6px;"><span class="var">PED</span> = −15/+25 = <span class="var">−0.60</span> → <b>inelastic</b></div>
-  </div>
-  <div class="formula-box" style="margin-top: 14px;">
-    <span class="fmt-label">§ Method 2 — Midpoint</span>
-    <div class="eq">%ΔQ = −15/92.5 ≈ −16.22%, %ΔP = 1/4.5 ≈ +22.22%</div>
-    <div class="eq" style="margin-top: 6px;"><span class="var">PED</span> ≈ <span class="var">−0.73</span> (same conclusion)</div>
-  </div>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — ELAST EX</span></div>
-</section>
-
-
-<!-- 17 · TR TEST -->
-<section data-label="TR test" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>17 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Block D · Applications</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Elasticity &amp; <em class="hi">Total Revenue</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">Pricing decision phụ thuộc PED. TR = P×Q — net effect phụ thuộc |PED|.</p>
-  </div>
-  <div class="compare" style="margin-top: 14px;">
+  <div class="compare" style="margin-top: 16px;">
     <div class="cc">
-      <div class="head">Elastic <em>— |PED| &gt; 1</em></div>
-      <dl><dt>P ↑</dt><dd>TR ↓</dd><dt>P ↓</dt><dd>TR ↑</dd><dt>Strategy</dt><dd>Lower prices</dd><dt>Examples</dt><dd>Airlines, luxury, dining</dd></dl>
+      <div class="head">Characteristics</div>
+      <dl>
+        <dt>Firms</dt>
+        <dd>Many firms — mỗi firm chiếm market share nhỏ</dd>
+        <dt>Product</dt>
+        <dd>Differentiated — branding, quality, features (close substitutes nhưng không giống hệt)</dd>
+        <dt>Entry</dt>
+        <dd>Low barriers — easy entry &amp; exit</dd>
+        <dt>Info</dt>
+        <dd>Imperfect — branding tạo information asymmetry</dd>
+      </dl>
     </div>
     <div class="cc">
-      <div class="head">Inelastic <em>— |PED| &lt; 1</em></div>
-      <dl><dt>P ↑</dt><dd>TR ↑</dd><dt>P ↓</dt><dd>TR ↓</dd><dt>Strategy</dt><dd>Raise prices</dd><dt>Examples</dt><dd>Gas, cigarettes, drugs</dd></dl>
+      <div class="head">Pricing &amp; profit</div>
+      <dl>
+        <dt>Pricing</dt>
+        <dd>Price-maker (limited) — pricing power nhỏ từ differentiation</dd>
+        <dt>Demand</dt>
+        <dd>Highly elastic, downward sloping (vì có close substitutes)</dd>
+        <dt>LR profit</dt>
+        <dd>Zero economic profit — entry erode super-normal profit</dd>
+        <dt>Example</dt>
+        <dd>Restaurants, retail clothing, toothpaste brands</dd>
+      </dl>
     </div>
   </div>
-  <p class="fine-muted-sm">§ OPEC, luxury brands, budget airlines — each exploits their demand curve shape strategically.</p>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — TR TEST</span></div>
+
+  <p class="fine-muted-sm">
+    § Differentiation là core — firms cạnh tranh không chỉ bằng giá mà bằng brand, quality, advertising. Short run có thể có economic profit, nhưng long run entry mới đẩy profit về zero (như perfect comp).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — MONOPOLISTIC COMP</span>
+  </div>
 </section>
 
 
-<!-- 18 · TR TEST WORKED EXAMPLE (NEW) -->
-<section data-label="TR test example" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>18 / 50</span></div>
+<!-- 11 · OLIGOPOLY -->
+<section data-label="Oligopoly" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>11 / 26</span>
+  </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">TR test · example</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">2 products — <em class="hi">opposite outcomes</em>.</h2>
+    <div class="eyebrow">Structure 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Oligopoly</em>.</h2>
   </div>
-  <div class="rule-box"><span class="tag">§ Scenario</span>Cùng raise price 10%. <b>Product A</b> (PED=−2.0): Q giảm 20%. <b>Product B</b> (PED=−0.5): Q giảm 5%. Starting P=$10, Q=1000 cả hai. So sánh TR.</div>
-  <div class="formula-box" style="margin-top: 18px;">
-    <span class="fmt-label">§ Product A — Elastic</span>
-    <div class="eq">TR<sub>0</sub> = 10×1000 = $10,000. TR<sub>1</sub> = 11×800 = $8,800</div>
-    <div class="eq" style="margin-top: 6px;">ΔTR = <span class="var">−$1,200</span> → elastic + P↑ → TR↓ ✓</div>
-  </div>
-  <div class="formula-box" style="margin-top: 14px;">
-    <span class="fmt-label">§ Product B — Inelastic</span>
-    <div class="eq">TR<sub>0</sub> = $10,000. TR<sub>1</sub> = 11×950 = $10,450</div>
-    <div class="eq" style="margin-top: 6px;">ΔTR = <span class="var">+$450</span> → inelastic + P↑ → TR↑ ✓</div>
-  </div>
-  <p class="fine-muted-sm">§ Insight — Same 10% price hike, opposite outcomes based on elasticity. Firm pricing strategy phải match demand elasticity.</p>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — TR EX</span></div>
-</section>
 
-
-<!-- 19 · SURPLUS + DWL -->
-<section data-label="Surplus & DWL" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>19 / 50</span></div>
-  <div style="margin-top: 30px;">
-    <div class="eyebrow">Welfare economics</div>
-    <h2 class="h-section" style="margin-bottom: 14px;">Consumer &amp; <em class="hi">Producer Surplus</em>.</h2>
-  </div>
-  <div class="chart-box">
-    <span class="chart-label">§ CS + PS triangles</span>
-    <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg">
-      <line x1="70" y1="340" x2="750" y2="340" stroke="#1a1a1a" stroke-width="2"/>
-      <line x1="70" y1="340" x2="70" y2="30" stroke="#1a1a1a" stroke-width="2"/>
-      <polygon points="750,340 736,335 736,345" fill="#1a1a1a"/>
-      <polygon points="70,30 65,44 75,44" fill="#1a1a1a"/>
-      <text x="42" y="42" font-family="Roboto Mono" font-size="20" fill="#666">P</text>
-      <text x="760" y="346" font-family="Roboto Mono" font-size="20" fill="#666">Q</text>
-      <!-- CS triangle (between demand, P*, and Y-axis) -->
-      <polygon points="70,70 70,195 400,195" fill="#14365F" opacity="0.22"/>
-      <!-- PS triangle (between supply, P*, and Y-axis) -->
-      <polygon points="70,320 70,195 400,195" fill="#14365F" opacity="0.10"/>
-      <!-- Demand curve -->
-      <line x1="70" y1="70" x2="680" y2="320" stroke="#14365F" stroke-width="3"/>
-      <text x="690" y="326" font-family="Roboto Slab" font-size="26" font-weight="700" fill="#14365F">D</text>
-      <!-- Supply -->
-      <line x1="70" y1="320" x2="680" y2="70" stroke="#14365F" stroke-width="3"/>
-      <text x="690" y="80" font-family="Roboto Slab" font-size="26" font-weight="700" fill="#14365F">S</text>
-      <!-- Equilibrium -->
-      <circle cx="400" cy="195" r="7" fill="#14365F"/>
-      <line x1="400" y1="195" x2="400" y2="340" stroke="#14365F" stroke-width="1.5" stroke-dasharray="5,4" opacity="0.55"/>
-      <line x1="70" y1="195" x2="400" y2="195" stroke="#14365F" stroke-width="1" opacity="0.45"/>
-      <text x="400" y="362" font-family="Roboto Mono" font-size="18" fill="#14365F" text-anchor="middle" font-weight="700">Q*</text>
-      <text x="55" y="200" font-family="Roboto Mono" font-size="18" fill="#14365F" text-anchor="end" font-weight="700">P*</text>
-      <!-- Triangle labels -->
-      <text x="180" y="155" font-family="Roboto Slab" font-size="24" font-weight="700" fill="#14365F">CS</text>
-      <text x="180" y="275" font-family="Roboto Slab" font-size="24" font-weight="700" fill="#14365F">PS</text>
-    </svg>
-    <div class="caption"><b>CS</b> (darker) = willingness to pay &minus; P* · <b>PS</b> (lighter) = P* &minus; marginal cost. <b>TS = CS + PS</b> maximized at competitive equilibrium. Any intervention (tax, ceiling, floor, monopoly) shrinks triangles → <b>Deadweight Loss (DWL)</b>.</div>
-  </div>
-  <p class="fine-muted-sm">§ 5 sources of DWL — tax wedge · price ceiling (shortage) · price floor (surplus) · monopoly (restrict Q) · trade barriers.</p>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — SURPLUS</span></div>
-</section>
-
-
-<!-- 20 · SURPLUS WORKED EXAMPLE (NEW) -->
-<section data-label="Surplus example" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>20 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Surplus · example</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Calculate <em class="hi">CS + PS</em>.</h2>
-  </div>
-  <div class="rule-box"><span class="tag">§ Scenario</span>Demand: P = 100 − Q. Supply: P = 20 + Q. Tính equilibrium, CS, PS, TS.</div>
-  <div class="formula-box" style="margin-top: 18px;">
-    <span class="fmt-label">§ Step 1 — Equilibrium</span>
-    <div class="eq">Set equal: 100 − Q = 20 + Q → <span class="var">Q*</span> = 40, <span class="var">P*</span> = 60</div>
-  </div>
-  <div class="formula-box" style="margin-top: 14px;">
-    <span class="fmt-label">§ Step 2 — CS &amp; PS (triangle areas)</span>
-    <div class="eq"><span class="var">CS</span> = ½ × 40 × (100 − 60) = <span class="var">$800</span></div>
-    <div class="eq" style="margin-top: 6px;"><span class="var">PS</span> = ½ × 40 × (60 − 20) = <span class="var">$800</span></div>
-    <div class="eq" style="margin-top: 6px;"><span class="var">TS</span> = CS + PS = <span class="var">$1,600</span></div>
-  </div>
-  <p class="fine-muted-sm">§ Geometric: CS triangle có base = Q* (40) và height = (max willingness to pay − P*). Tương tự PS.</p>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — SURPLUS EX</span></div>
-</section>
-
-
-<!-- 21 · TAX INCIDENCE CONCEPT -->
-<section data-label="Tax incidence" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>21 / 50</span></div>
-  <div style="margin-top: 30px;">
-    <div class="eyebrow">Tax incidence</div>
-    <h2 class="h-section" style="margin-bottom: 14px;">Who <em class="hi">bears</em> the tax?</h2>
-  </div>
-  <div class="chart-box">
-    <span class="chart-label">§ Tax wedge diagram</span>
-    <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg">
-      <line x1="70" y1="340" x2="750" y2="340" stroke="#1a1a1a" stroke-width="2"/>
-      <line x1="70" y1="340" x2="70" y2="30" stroke="#1a1a1a" stroke-width="2"/>
-      <polygon points="750,340 736,335 736,345" fill="#1a1a1a"/>
-      <polygon points="70,30 65,44 75,44" fill="#1a1a1a"/>
-      <text x="42" y="42" font-family="Roboto Mono" font-size="20" fill="#666">P</text>
-      <text x="760" y="346" font-family="Roboto Mono" font-size="20" fill="#666">Q</text>
-      <!-- Demand -->
-      <line x1="70" y1="90" x2="680" y2="320" stroke="#14365F" stroke-width="3"/>
-      <text x="690" y="326" font-family="Roboto Slab" font-size="24" font-weight="700" fill="#14365F">D</text>
-      <!-- Supply (pre-tax) -->
-      <line x1="70" y1="310" x2="680" y2="80" stroke="#14365F" stroke-width="3"/>
-      <text x="690" y="90" font-family="Roboto Slab" font-size="24" font-weight="700" fill="#14365F">S</text>
-      <!-- Supply after tax (shifted up = shifted left) -->
-      <line x1="70" y1="240" x2="680" y2="10" stroke="#14365F" stroke-width="2.5" stroke-dasharray="7,4"/>
-      <text x="580" y="35" font-family="Roboto Slab" font-size="19" font-weight="700" fill="#14365F">S + tax</text>
-      <!-- Pre-tax equilibrium (gray dot) -->
-      <circle cx="375" cy="200" r="5" fill="#14365F" opacity="0.35"/>
-      <text x="378" y="192" font-family="Roboto Mono" font-size="11" fill="#8A8A8A">pre-tax</text>
-      <!-- Post-tax: Pc on D at new Q, Pp on original S at new Q -->
-      <circle cx="305" cy="175" r="6" fill="#14365F"/>
-      <circle cx="305" cy="240" r="6" fill="#14365F"/>
-      <!-- Tax wedge bracket -->
-      <line x1="305" y1="175" x2="305" y2="240" stroke="#14365F" stroke-width="3.5"/>
-      <text x="320" y="215" font-family="Roboto Slab" font-size="17" font-weight="700" fill="#14365F">= tax</text>
-      <!-- Guides -->
-      <line x1="305" y1="175" x2="305" y2="340" stroke="#14365F" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
-      <line x1="70" y1="175" x2="305" y2="175" stroke="#14365F" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
-      <line x1="70" y1="240" x2="305" y2="240" stroke="#14365F" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
-      <text x="305" y="362" font-family="Roboto Mono" font-size="15" fill="#14365F" text-anchor="middle" font-weight="700">Qt</text>
-      <text x="55" y="180" font-family="Roboto Mono" font-size="15" fill="#14365F" text-anchor="end" font-weight="700">Pc</text>
-      <text x="55" y="245" font-family="Roboto Mono" font-size="15" fill="#14365F" text-anchor="end" font-weight="700">Pp</text>
-      <!-- DWL triangle (right of new Qt) -->
-      <polygon points="305,175 305,240 375,200" fill="#14365F" opacity="0.25"/>
-      <text x="395" y="208" font-family="Roboto Slab" font-size="15" font-weight="700" fill="#14365F">DWL</text>
-      <!-- Revenue rectangle hint -->
-      <rect x="70" y="175" width="235" height="65" fill="none" stroke="#14365F" stroke-width="1" stroke-dasharray="3,2" opacity="0.4"/>
-      <text x="150" y="213" font-family="Roboto Mono" font-size="12" fill="#8A8A8A" letter-spacing="0.08em">GOV. REVENUE</text>
-    </svg>
-    <div class="caption"><b>Tax shifts S curve up by tax amount</b>. New equilibrium: consumer pays <em>Pc</em>, producer receives <em>Pp</em>. <b>Wedge Pc − Pp = tax</b>. Split phụ thuộc elasticities — inelastic side (steeper curve) bears more. DWL triangle = welfare lost.</div>
-  </div>
-  <div class="formula-box" style="margin-top: 14px;">
-    <span class="fmt-label">§ Tax incidence formula</span>
-    <div class="eq">Consumer burden = <span class="var">PES</span> / (<span class="var">PES</span> + |<span class="var">PED</span>|) · Producer burden = |<span class="var">PED</span>| / (<span class="var">PES</span> + |<span class="var">PED</span>|)</div>
-    <div class="note">Inelastic side bears more. Gas, cigarettes, insulin (inelastic D) → 70–90% on consumer. Fresh produce (elastic D) → burden shifts to producer.</div>
-  </div>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — TAX INCIDENCE</span></div>
-</section>
-
-
-<!-- 22 · TAX INCIDENCE WORKED EXAMPLE (NEW) -->
-<section data-label="Tax example" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>22 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Tax · example</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">$10 tax <em class="hi">split</em>.</h2>
-  </div>
-  <div class="rule-box"><span class="tag">§ Scenario</span>Government imposes $10/unit tax. PED = −0.5, PES = +2.0. Initial P = $50, Q = 1,000. Compute burden split + post-tax prices.</div>
-  <div class="formula-box" style="margin-top: 18px;">
-    <span class="fmt-label">§ Step 1 — Burden shares</span>
-    <div class="eq">Consumer = 2.0 / (2.0 + 0.5) = <span class="var">80%</span> → $8 of the $10</div>
-    <div class="eq" style="margin-top: 6px;">Producer = 0.5 / 2.5 = <span class="var">20%</span> → $2 of the $10</div>
-  </div>
-  <div class="formula-box" style="margin-top: 14px;">
-    <span class="fmt-label">§ Step 2 — Post-tax prices</span>
-    <div class="eq">Consumer pays: $50 + $8 = <span class="var">$58</span></div>
-    <div class="eq" style="margin-top: 6px;">Producer receives: $50 − $2 = <span class="var">$48</span></div>
-    <div class="eq" style="margin-top: 6px;">Wedge = $10 = tax ✓</div>
-  </div>
-  <p class="fine-muted-sm">§ Q drops from 1000 → ~900 (price hike dampens demand). Tax revenue = $10 × 900 = $9,000. DWL = ½ × $10 × 100 = $500.</p>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — TAX EX</span></div>
-</section>
-
-
-<!-- 23 · PRICE CEILING (NEW) -->
-<section data-label="Price ceiling" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>23 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Government intervention</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Price <em class="hi">Ceiling</em> — rent control.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">Legal max price <em>below</em> P*. Intent: protect consumers. Effect: persistent shortage + welfare loss.</p>
-  </div>
-  <div class="rule-box" style="margin-top: 14px;"><span class="tag">§ Scenario</span>Market rent P* = $1,000. Government sets ceiling $700 (30% below market).</div>
-  <ol class="num-list tight" style="margin-top: 14px;">
-    <li><span><span class="step-title">Direct effect — shortage</span><span class="step-body">At $700: Q<sub>d</sub> &gt; Q<sub>s</sub>. More tenants want apartments than landlords willing to supply.</span></span></li>
-    <li><span><span class="step-title">Indirect effects — quality, black market</span><span class="step-body">Landlords reduce maintenance (lower quality to match lower P). Waiting lists. Illegal key fees. Under-the-table payments.</span></span></li>
-    <li><span><span class="step-title">Who benefits vs loses</span><span class="step-body">Existing tenants (before ceiling): benefit. New tenants: can't find housing. Landlords: lose PS. Market: DWL + reduced supply LR (fewer new buildings).</span></span></li>
-  </ol>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — CEILING</span></div>
-</section>
-
-
-<!-- 24 · PRICE FLOOR (NEW) -->
-<section data-label="Price floor" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>24 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Government intervention</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Price <em class="hi">Floor</em> — minimum wage.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">Legal min price <em>above</em> P*. Intent: protect workers/producers. Effect: persistent surplus + unemployment.</p>
-  </div>
-  <div class="rule-box" style="margin-top: 14px;"><span class="tag">§ Scenario</span>Market wage P* = $12/hour. Minimum wage $15 (25% above market).</div>
-  <ol class="num-list tight" style="margin-top: 14px;">
-    <li><span><span class="step-title">Direct effect — surplus of labor</span><span class="step-body">At $15: Q<sub>s</sub> (workers wanting to work) &gt; Q<sub>d</sub> (firms hiring). Surplus = unemployment.</span></span></li>
-    <li><span><span class="step-title">Who benefits vs loses</span><span class="step-body"><em>Retained workers</em>: benefit (higher wage). <em>Marginal workers</em>: priced out, unemployed. <em>Firms</em>: higher cost → automate, reduce hours, raise prices.</span></span></li>
-    <li><span><span class="step-title">Elasticity matters</span><span class="step-body">If labor demand inelastic (skilled workers): small unemployment, big wage gain. If elastic (unskilled, fast food): large unemployment.</span></span></li>
-  </ol>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — FLOOR</span></div>
-</section>
-
-
-<!-- 25 · SUBSIDY (NEW) -->
-<section data-label="Subsidy" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>25 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Government intervention</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Subsidy</em> — mirror of tax.</h2>
-  </div>
-  <div class="formula-box" style="margin-top: 14px;">
-    <span class="fmt-label">§ Subsidy benefit formula (mirror of tax incidence)</span>
-    <div class="eq">Consumer benefit = <span class="var">PES</span> / (<span class="var">PES</span> + |<span class="var">PED</span>|)</div>
-    <div class="note">Same logic: inelastic side benefits more. If demand inelastic, consumers get most subsidy via lower prices.</div>
-  </div>
-  <ol class="num-list tight" style="margin-top: 16px;">
-    <li><span><span class="step-title">EV subsidies — who benefits?</span><span class="step-body">If EV demand elastic (many alternatives), producers (Tesla, GM) benefit more. If inelastic (eco-conscious buyers), consumers benefit via lower prices.</span></span></li>
-    <li><span><span class="step-title">Agricultural subsidies</span><span class="step-body">Food demand inelastic → consumers benefit via lower food prices. Common policy but creates overproduction (surplus), DWL.</span></span></li>
-    <li><span><span class="step-title">Housing subsidies (affordable housing)</span><span class="step-body">Housing demand inelastic → renters benefit. But subsidy → demand curve shift right → price may rise overall, partial offsetting intended effect.</span></span></li>
-  </ol>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — SUBSIDY</span></div>
-</section>
-
-
-<!-- 26 · SR vs LR ELASTICITY -->
-<section data-label="SR vs LR" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>26 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Time horizon</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Short-run</em> vs Long-run.</h2>
-  </div>
-  <div class="compare" style="margin-top: 14px;">
+  <div class="compare" style="margin-top: 16px;">
     <div class="cc">
-      <div class="head">Short-run <em>— inelastic</em></div>
-      <dl><dt>Consumer</dt><dd>Locked into habits, contracts</dd><dt>Producer</dt><dd>Capacity fixed</dd><dt>Oil example</dt><dd>Giá gấp đôi → consumption chỉ giảm 10% (6 tháng)</dd></dl>
+      <div class="head">Characteristics</div>
+      <dl>
+        <dt>Firms</dt>
+        <dd>Few large firms — strategic interdependence (mỗi quyết định ảnh hưởng rivals)</dd>
+        <dt>Product</dt>
+        <dd>Identical (homogeneous) hoặc differentiated</dd>
+        <dt>Entry</dt>
+        <dd>High barriers — economies of scale, capital, brand, network effect</dd>
+        <dt>Behavior</dt>
+        <dd>Game-theoretic — Cournot, Stackelberg, kinked demand, collusion</dd>
+      </dl>
     </div>
     <div class="cc">
-      <div class="head">Long-run <em>— elastic</em></div>
-      <dl><dt>Consumer</dt><dd>Can switch, relocate, retrain</dd><dt>Producer</dt><dd>Entry/exit, scale capacity</dd><dt>Oil example</dt><dd>5 năm sau: buy EV, solar → consumption giảm 30-40%</dd></dl>
+      <div class="head">Pricing &amp; profit</div>
+      <dl>
+        <dt>Pricing</dt>
+        <dd>Price-maker — nhưng constrained bởi rivals' reactions</dd>
+        <dt>Demand</dt>
+        <dd>Kinked — rivals match price cuts nhưng không match increases</dd>
+        <dt>LR profit</dt>
+        <dd>Có thể earn positive economic profit (barriers + collusion)</dd>
+        <dt>Example</dt>
+        <dd>Airlines, telecom, automakers, OPEC</dd>
+      </dl>
     </div>
   </div>
-  <p class="fine-muted-sm">§ Investment implication — SR shocks give big P swings (OPEC). LR adjustments reshape industries (EV transition).</p>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — SR vs LR</span></div>
+
+  <p class="fine-muted-sm">
+    § Strategic interaction là khác biệt cốt lõi — không thể phân tích isolated. Collusion (overt: cartels như OPEC; tacit: price leadership) tạo super-normal profit nhưng bị antitrust law constrain ở hầu hết jurisdictions.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — OLIGOPOLY</span>
+  </div>
 </section>
 
 
-<!-- 27 · UTILITY THEORY INTRO (NEW) -->
-<section data-label="Utility theory" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>27 / 50</span></div>
+<!-- 12 · MONOPOLY -->
+<section data-label="Monopoly" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>12 / 26</span>
+  </div>
   <div style="margin-top: 40px;">
-    <div class="eyebrow">Block E · Consumer theory</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Utility &amp; <em class="hi">Diminishing MU</em>.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">Consumer theory giải thích microfoundation của law of demand. Utility = satisfaction từ consumption.</p>
+    <div class="eyebrow">Structure 04</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Monopoly</em>.</h2>
   </div>
-  <div class="formula-box" style="margin-top: 14px;">
-    <span class="fmt-label">§ Total Utility &amp; Marginal Utility</span>
-    <div class="eq"><span class="var">TU</span>(<span class="var">Q</span>) = tổng satisfaction tại level <span class="var">Q</span></div>
-    <div class="eq" style="margin-top: 6px;"><span class="var">MU</span>(<span class="var">Q</span>) = Δ<span class="var">TU</span>/Δ<span class="var">Q</span> = utility từ 1 unit thêm</div>
-    <div class="note"><b>Law of Diminishing MU</b>: mỗi additional unit provides <em>less MU</em> than previous. TU still rises but at decreasing rate.</div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Characteristics</div>
+      <dl>
+        <dt>Firms</dt>
+        <dd>One firm — controls entire market</dd>
+        <dt>Product</dt>
+        <dd>Unique — no close substitutes</dd>
+        <dt>Entry</dt>
+        <dd>High barriers: patents, licenses, economies of scale</dd>
+        <dt>Demand</dt>
+        <dd>Equals market demand curve (downward slope)</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Pricing &amp; profit</div>
+      <dl>
+        <dt>Pricing</dt>
+        <dd>Price-maker: chooses P to max profit</dd>
+        <dt>MR vs P</dt>
+        <dd>MR &lt; P (phải hạ giá để bán thêm, revenue từ unit mới &lt; price)</dd>
+        <dt>LR profit</dt>
+        <dd>Can earn persistent economic profit (barriers prevent entry)</dd>
+        <dt>Example</dt>
+        <dd>Utilities (local monopoly), patented drugs</dd>
+      </dl>
+    </div>
   </div>
-  <ol class="num-list tight" style="margin-top: 16px;">
-    <li><span><span class="step-title">Pizza example</span><span class="step-body">Slice 1 MU = 10 (hungry, delicious). Slice 2 MU = 7. Slice 3 MU = 3. Slice 4 MU = 0 (full). Slice 5 MU &lt; 0 (sick). TU maxes out where MU = 0.</span></span></li>
-    <li><span><span class="step-title">Links to demand curve</span><span class="step-body">Consumer buys thêm chỉ khi MU ≥ price. Diminishing MU → demand curve dốc xuống.</span></span></li>
-  </ol>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — UTILITY</span></div>
+
+  <p class="fine-muted-sm">
+    § Deadweight loss — Monopoly produce ít hơn và charge cao hơn perfect competition → consumer surplus giảm, dẫn đến deadweight loss (inefficiency). Đây là lý do regulators break up monopolies hoặc regulate prices.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — MONOPOLY</span>
+  </div>
 </section>
 
 
-<!-- 28 · INDIFFERENCE CURVES (NEW) -->
-<section data-label="Indifference curves" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>28 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Consumer theory</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Indifference</em> + Budget.</h2>
-  </div>
-  <div class="formula-box" style="margin-top: 14px;">
-    <span class="fmt-label">§ Indifference curve</span>
-    <div class="eq">Các combinations của (<span class="var">X</span>, <span class="var">Y</span>) cho cùng utility U</div>
-    <div class="eq" style="margin-top: 6px;">Slope = −<span class="var">MU</span><sub>X</sub>/<span class="var">MU</span><sub>Y</sub> = −<span class="var">MRS</span></div>
-    <div class="note"><b>MRS</b> (Marginal Rate of Substitution) = lượng Y consumer willing to give up for 1 more X. Diminishing MRS → curve convex to origin.</div>
-  </div>
-  <div class="formula-box" style="margin-top: 14px;">
-    <span class="fmt-label">§ Budget constraint</span>
-    <div class="eq"><span class="var">P</span><sub>X</sub> · <span class="var">X</span> + <span class="var">P</span><sub>Y</sub> · <span class="var">Y</span> = <span class="var">I</span></div>
-    <div class="eq" style="margin-top: 6px;">Slope = −<span class="var">P</span><sub>X</sub>/<span class="var">P</span><sub>Y</sub> = relative price ratio</div>
-    <div class="note">Line representing all affordable bundles given income I.</div>
-  </div>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — INDIFFERENCE</span></div>
-</section>
-
-
-<!-- 29 · CONSUMER EQUILIBRIUM (NEW) -->
-<section data-label="Consumer equilibrium" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>29 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Consumer theory</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Consumer <em class="hi">equilibrium</em>.</h2>
-  </div>
-  <div class="formula-box" style="margin-top: 14px;">
-    <span class="fmt-label">§ Equal marginal utility per dollar rule</span>
-    <div class="eq"><span class="var">MU</span><sub>X</sub> / <span class="var">P</span><sub>X</sub> = <span class="var">MU</span><sub>Y</sub> / <span class="var">P</span><sub>Y</sub> = ... = <span class="var">MU</span><sub>N</sub> / <span class="var">P</span><sub>N</sub></div>
-    <div class="note">Consumer maximizes utility khi MU per dollar spent <b>bằng nhau</b> cross all goods. Else: reallocate from low-MU/$ good to high-MU/$ good.</div>
-  </div>
-  <ol class="num-list tight" style="margin-top: 16px;">
-    <li><span><span class="step-title">Geometric interpretation</span><span class="step-body">Optimal bundle tại điểm indifference curve <em>tangent</em> to budget line. MRS = price ratio tại đây.</span></span></li>
-    <li><span><span class="step-title">Adjustment process</span><span class="step-body">Nếu MU<sub>X</sub>/P<sub>X</sub> &gt; MU<sub>Y</sub>/P<sub>Y</sub>: consumer buy thêm X, less Y. MU<sub>X</sub> giảm (diminishing), MU<sub>Y</sub> tăng → equilibrium restored.</span></span></li>
-    <li><span><span class="step-title">Effect of price change</span><span class="step-body">P<sub>X</sub> ↑ → MU<sub>X</sub>/P<sub>X</sub> ↓ → consumer buy less X. Đây là microfoundation của law of demand.</span></span></li>
-  </ol>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — EQUILIBRIUM</span></div>
-</section>
-
-
-<!-- 30 · INCOME vs SUBSTITUTION EFFECT (NEW) -->
-<section data-label="Income vs Sub effect" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>30 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Consumer theory</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Income vs <em class="hi">Substitution</em> effect.</h2>
-    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">Khi P thay đổi, total effect decomposes thành 2 parts — understanding này explain Giffen/inferior goods.</p>
-  </div>
-  <div class="tenets-grid" style="margin-top: 12px;">
-    <div class="tenet"><span class="n">SE</span><div><div class="t"><em class="hi">Substitution effect</em></div><div class="d">Same utility level, new relative prices. Consumer switches TOWARD cheaper good. <b>Always negative</b> (P↑ → Q↓).</div></div></div>
-    <div class="tenet"><span class="n">IE</span><div><div class="t"><em class="hi">Income effect</em></div><div class="d">Purchasing power change từ price move. Sign depends on good type.</div></div></div>
-    <div class="tenet"><span class="n">Normal</span><div><div class="t">Total effect</div><div class="d">SE (−) + IE (−) = total (−). P↑ → Q↓↓ (reinforcing). Standard law of demand.</div></div></div>
-    <div class="tenet"><span class="n">Inferior</span><div><div class="t">Partial offset</div><div class="d">SE (−) + IE (+) = total usually (−) but smaller. P↑ → Q↓ still, but less than normal.</div></div></div>
-    <div class="tenet"><span class="n">Giffen</span><div><div class="t">Reversal</div><div class="d">IE (+) DOMINATES SE (−) → total (+). P↑ → Q↑. Violates law of demand. Extreme inferior goods in poverty.</div></div></div>
-    <div class="tenet" style="border-top-color: var(--rule-soft);"><span class="n" style="color: var(--ink-muted);">§</span><div><div class="t" style="font-weight: 500; color: var(--ink-soft);">Exam trap</div><div class="d">Student thường confuse Giffen (income effect dominates) với Veblen (status effect dominates). Khác nhau về mechanism.</div></div></div>
-  </div>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — IE/SE</span></div>
-</section>
-
-
-<!-- 31 · NETWORK EFFECTS + VEBLEN EXPANDED (NEW) -->
-<section data-label="Network effects" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>31 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Demand curve anomalies</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Demand that <em class="hi">doesn't slope down</em>.</h2>
-  </div>
-  <div class="tenets-grid" style="margin-top: 14px;">
-    <div class="tenet"><span class="n">01</span><div><div class="t"><em class="hi">Giffen</em> goods</div><div class="d">Inferior staple + IE dominates. Irish potato famine 1845 (historical evidence). Rare modern.</div></div></div>
-    <div class="tenet"><span class="n">02</span><div><div class="t"><em class="hi">Veblen</em> goods</div><div class="d">Status/luxury. High P signals prestige → demand rises. Hermès, Rolex. "Conspicuous consumption" (Thorstein Veblen 1899).</div></div></div>
-    <div class="tenet"><span class="n">03</span><div><div class="t"><em class="hi">Network</em> effects</div><div class="d">Value increases with # users. Facebook, Uber, crypto. Early stage: P rise attracts buyers (hype + FOMO).</div></div></div>
-    <div class="tenet"><span class="n">04</span><div><div class="t"><em class="hi">Speculative</em> demand</div><div class="d">Asset bubbles: P↑ → more buying expected P will rise more. Bitcoin, housing 2006. Unsustainable but real.</div></div></div>
-  </div>
-  <p class="fine-muted-sm">§ Investment implication — Identifying upward-sloping demand segments helps investors (network effect stocks, luxury, commodities in shortage). But speculative bubbles eventually pop.</p>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — NETWORK</span></div>
-</section>
-
-
-<!-- 32 · EXAM FOCUS -->
-<section data-label="Exam focus" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>32 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Exam focus</div>
-    <h2 class="h-section">Demand &amp; Supply <em class="hi">on the exam</em>.</h2>
-  </div>
-  <div class="take" style="margin-top: 8px;">
-    <div class="item"><div class="k">Weight</div><div class="v">D/S + Elasticity chiếm ~25% câu Econ L1. Foundation cho Business Cycles, Monetary Policy, FX modules.</div></div>
-    <div class="item"><div class="k">PED-TR rule</div><div class="v">Elastic + P↑ → TR↓. Inelastic + P↑ → TR↑. Instant recall cần thiết.</div></div>
-    <div class="item"><div class="k">Tax incidence signature</div><div class="v">Consumer share = PES/(PES+|PED|). Inelastic side bears more. Common CFA pattern.</div></div>
-    <div class="item"><div class="k">Shift trap</div><div class="v">Same direction → quantity certain. Opposite → price certain. Cái kia depends on magnitudes.</div></div>
-  </div>
-  <p class="fine-muted-sm">§ 7 common traps — (1) PED reciprocal, (2) Bỏ sign IED/CPE, (3) PED constant assumption, (4) Movement vs shift confusion, (5) SR=LR treated equal, (6) Statutory vs economic tax incidence, (7) Giffen vs Veblen mechanism mix-up.</p>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — EXAM FOCUS</span></div>
-</section>
-
-
-<!-- 33 · TRANSITION -->
+<!-- 13 · TRANSITION -->
 <section data-label="Practice begins" class="slide end-slide">
   <div>
     <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
-    <div class="hint">Lý thuyết xong · 4 câu hỏi CFA-exam difficulty<br>EN Original → Hint → Dịch đề → Đáp án</div>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
   </div>
 </section>
 
 
-<!-- 34 · Q1 EN -->
+<!-- 14 · Q1 EN — Cost calculation -->
 <section data-label="Q1 Original" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>34 / 50</span></div>
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>14 / 26</span>
+  </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">PED + Revenue</em> test.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Calculate <em class="hi">Marginal Cost</em>.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
-    <div class="q-stem">A manufacturer raises wholesale price from <strong>$40</strong> to <strong>$44</strong> per unit. Monthly unit sales fall from <strong>2,500</strong> to <strong>2,200</strong>. Based on these data, the <strong>most accurate</strong> statement about price elasticity and total revenue (TR) is:</div>
+    <div class="q-stem">
+      A firm produces <strong>100 units</strong> at total cost of <strong>$5,000</strong>. When production increases to <strong>120 units</strong>, total cost rises to <strong>$5,800</strong>. What is the <strong>marginal cost (MC)</strong> of producing the additional 20 units?
+    </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Inelastic (|PED| ≈ 0.83); TR rose by $3,000 — profitable decision.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Elastic (|PED| ≈ 1.20); TR fell by $3,200 — price increase reduced revenue.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Unit-elastic (|PED| = 1.00); TR unchanged at $100,000.</span></li>
+    <li><span class="lbl">A</span><span class="opt">$40 per unit.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$48 per unit (average cost at 120 units).</span></li>
+    <li><span class="lbl">C</span><span class="opt">$50 per unit (average cost at 100 units).</span></li>
   </ol>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — Q1 ORIGINAL</span></div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — Q1 ORIGINAL</span>
+  </div>
 </section>
 
 
-<!-- 35 · Q1 HINT -->
+<!-- 15 · Q1 HINT -->
 <section data-label="Q1 Hint" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>35 / 50</span></div>
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>15 / 26</span>
+  </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">4-step <em class="hi">workflow</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
   </div>
-  <div class="hint-card"><span class="h-tag">§ Keywords</span>P <mark>$40 → $44</mark>. Q <mark>2,500 → 2,200</mark>. Tính <mark>PED</mark>, <mark>TR</mark> ở 2 points, link.</div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Q <mark>100 → 120</mark>. TC <mark>$5,000 → $5,800</mark>. Asking for <mark>marginal cost</mark> of additional units.
+  </div>
   <ol class="hint-list">
-    <li><span class="hnum">Step 1</span><span class="htxt">%ΔP = <em>+10%</em>. %ΔQ = <em>−12%</em>.</span></li>
-    <li><span class="hnum">Step 2</span><span class="htxt">PED = −1.20 → <b>elastic</b>.</span></li>
-    <li><span class="hnum">Step 3</span><span class="htxt">TR₀ = $100k. TR₁ = $96.8k → <em>−$3,200</em>.</span></li>
-    <li><span class="hnum">Step 4</span><span class="htxt">Elastic + P↑ → TR↓. Price <b>backfired</b>.</span></li>
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">MC = ΔTC / ΔQ. ΔTC = 5800 − 5000 = <em>$800</em>. ΔQ = 120 − 100 = <em>20 units</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">MC = $800 / 20 = <em>$40/unit</em>. Đây là cost để sản xuất thêm MỘT unit trong range 100-120.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Đừng nhầm với Average Total Cost (ATC = TC/Q). ATC@120 = 5800/120 ≈ $48 (option B). MC ≠ ATC khi có fixed cost.</span>
+    </li>
   </ol>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — Q1 HINT</span></div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — Q1 HINT</span>
+  </div>
 </section>
 
 
-<!-- 36 · Q1 Dịch đề -->
+<!-- 16 · Q1 Dịch đề -->
 <section data-label="Q1 Dịch đề" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>36 / 50</span></div>
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>16 / 26</span>
+  </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
     <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
   </div>
   <div class="q-card">
     <span class="q-tag">§ Vignette</span>
-    <div class="q-stem">Nhà sản xuất tăng wholesale price từ <strong>$40</strong> lên <strong>$44</strong>/unit. Số units bán/tháng giảm từ <strong>2,500</strong> xuống <strong>2,200</strong>. Statement <strong>chính xác nhất</strong> về price elasticity và TR là:</div>
+    <div class="q-stem">
+      Một firm sản xuất <strong>100 units</strong> với tổng chi phí <strong>$5,000</strong>. Khi production tăng lên <strong>120 units</strong>, total cost tăng lên <strong>$5,800</strong>. <strong>Marginal cost (MC)</strong> của 20 units thêm là bao nhiêu?
+    </div>
   </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Inelastic (|PED| ≈ 0.83); TR tăng $3,000 — quyết định có lợi.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Elastic (|PED| ≈ 1.20); TR giảm $3,200 — làm giảm revenue.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Unit-elastic (|PED| = 1.00); TR không đổi, $100,000.</span></li>
+    <li><span class="lbl">A</span><span class="opt">$40 per unit.</span></li>
+    <li><span class="lbl">B</span><span class="opt">$48 per unit (average cost tại 120 units).</span></li>
+    <li><span class="lbl">C</span><span class="opt">$50 per unit (average cost tại 100 units).</span></li>
   </ol>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — Q1 VIỆT</span></div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — Q1 VIỆT</span>
+  </div>
 </section>
 
 
-<!-- 37 · Q1 EXPLANATION -->
+<!-- 17 · Q1 EXPLANATION -->
 <section data-label="Q1 Explanation" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>37 / 50</span></div>
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>17 / 26</span>
+  </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 01</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Elastic, TR ↓ $3,200.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — $40/unit.</h2>
   </div>
   <div class="reasoning">
-    <div class="rblock"><div class="rtag">✓ Correct — B</div><div class="rtext">PED = −12/+10 = <b>−1.20</b> → elastic. TR₀ = $100k, TR₁ = $96.8k → <b>−$3,200</b>. Consistent với rule: elastic + P↑ → TR↓.</div></div>
-    <div class="rblock wrong"><div class="rtag">✗ Wrong — A</div><div class="rtext">|PED| = 0.83 là <em>reciprocal trap</em> (1/1.20). TR giảm, không tăng.</div></div>
-    <div class="rblock wrong"><div class="rtag">✗ Wrong — C</div><div class="rtext">Unit-elastic yêu cầu |%ΔQ| = |%ΔP|. Ở đây 12% ≠ 10%.</div></div>
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">MC = ΔTC / ΔQ = ($5,800 − $5,000) / (120 − 100) = $800 / 20 = <b>$40/unit</b>. Đây là cost incremental của mỗi unit thêm trong range Q = 100 → 120.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">$48 là <em>ATC at 120 units</em> ($5,800 / 120). ATC và MC khác nhau khi có fixed cost. Câu hỏi yêu cầu MC (marginal), không phải ATC.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">$50 là <em>ATC at 100 units</em> ($5,000 / 100). Cũng là average, không phải marginal. Common mistake confusing AC and MC.</div>
+    </div>
   </div>
-  <div class="takeaway-box"><div class="tlabel">Key takeaway</div><div class="ttext">PED-TR rule instant recall. Elastic + P↑ → TR↓. Option A trap double-error.</div></div>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — ANSWER Q1</span></div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">MC = <em>change in TC divided by change in Q</em>. ATC = <em>TC / Q</em>. Khi câu hỏi cho 2 điểm TC và Q khác nhau → dùng MC formula (delta). Một điểm duy nhất → ATC.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — ANSWER Q1</span>
+  </div>
 </section>
 
 
-<!-- 38 · Q2 EN -->
+<!-- 18 · Q2 EN — Market Structure ID -->
 <section data-label="Q2 Original" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>38 / 50</span></div>
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>18 / 26</span>
+  </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">CPE</em> + investment.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Identify <em class="hi">market structure</em>.</h2>
   </div>
-  <div class="q-card"><span class="q-tag">§ Vignette</span><div class="q-stem">Analyst Quan observes: (i) <strong>12%</strong> increase in price of <em>premium bottled water</em> → <strong>4%</strong> decrease in its Q; (ii) demand for <em>home water filters</em> rises <strong>8%</strong>; (iii) demand for <em>premium sparkling water</em> falls <strong>2%</strong>. Which conclusion is <strong>most supported</strong>?</div></div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      An industry has <strong>4 major firms</strong> holding a combined 85% market share. Products are slightly differentiated but highly substitutable. Each firm carefully monitors competitors' pricing and reactions before changing its own price. Which market structure best describes this industry?
+    </div>
+  </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Premium water elastic (|PED|≈3.0); filters complements (CPE&lt;0).</span></li>
-    <li><span class="lbl">B</span><span class="opt">Premium water inelastic (|PED|≈0.33); filters substitutes (CPE≈+0.67); sparkling complement (CPE≈−0.17).</span></li>
-    <li><span class="lbl">C</span><span class="opt">All three inelastic, same market segment.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Perfect competition — many firms with pricing power.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Oligopoly — few firms with strategic interdependence.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Monopolistic competition — many firms with differentiated products.</span></li>
   </ol>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — Q2 ORIGINAL</span></div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — Q2 ORIGINAL</span>
+  </div>
 </section>
 
 
-<!-- 39 · Q2 HINT -->
+<!-- 19 · Q2 HINT -->
 <section data-label="Q2 Hint" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>39 / 50</span></div>
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>19 / 26</span>
+  </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Classify <em class="hi">each relationship</em>.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
   </div>
-  <div class="hint-card"><span class="h-tag">§ Keywords</span>Premium water P <mark>+12%</mark>. Own Q <mark>−4%</mark>. Filters <mark>+8%</mark>. Sparkling <mark>−2%</mark>.</div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    <mark>4 major firms</mark>, <mark>85% market share</mark>. Products <mark>slightly differentiated</mark>. Each firm <mark>monitors competitors</mark> before pricing.
+  </div>
   <ol class="hint-list">
-    <li><span class="hnum">Step 1</span><span class="htxt">PED = <em>−0.33</em> → <b>inelastic</b>.</span></li>
-    <li><span class="hnum">Step 2</span><span class="htxt">CPE filters = <em>+0.67</em> → <b>substitute</b>.</span></li>
-    <li><span class="hnum">Step 3</span><span class="htxt">CPE sparkling = <em>−0.17</em> → <b>complement</b>.</span></li>
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">"Vài firms dominate" (4 firms, 85%) → KHÔNG phải perfect competition (cần <em>nhiều small firms</em>) hay monopolistic competition (<em>many firms</em>).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">"Monitor competitors before pricing" = <em>strategic interdependence</em> — dấu hiệu đặc trưng của oligopoly (game theory).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Trong monopolistic competition, firm KHÔNG quan tâm action của competitor (quá nhiều để monitor). Trong oligopoly, CÓ — vì few firms, action quan trọng.</span>
+    </li>
   </ol>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — Q2 HINT</span></div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — Q2 HINT</span>
+  </div>
 </section>
 
 
-<!-- 40 · Q2 Dịch đề -->
+<!-- 20 · Q2 Dịch đề -->
 <section data-label="Q2 Dịch đề" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>40 / 50</span></div>
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>20 / 26</span>
+  </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
     <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
   </div>
-  <div class="q-card"><span class="q-tag">§ Vignette</span><div class="q-stem">Analyst Quan quan sát: (i) giá <em>premium bottled water</em> tăng <strong>12%</strong> → own Q giảm <strong>4%</strong>; (ii) <em>home water filters</em> tăng <strong>8%</strong>; (iii) <em>premium sparkling water</em> giảm <strong>2%</strong>. Kết luận <strong>được hỗ trợ nhất</strong>?</div></div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một ngành có <strong>4 firms chính</strong> nắm tổng cộng 85% market share. Sản phẩm hơi differentiated nhưng có thể thay thế nhau cao. Mỗi firm theo dõi kỹ competitor pricing và phản ứng trước khi thay đổi giá mình. Market structure nào mô tả đúng nhất?
+    </div>
+  </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">Premium water elastic (|PED|≈3.0); filters là complements.</span></li>
-    <li><span class="lbl">B</span><span class="opt">Premium water inelastic (|PED|≈0.33); filters substitutes (+0.67); sparkling complement (−0.17).</span></li>
-    <li><span class="lbl">C</span><span class="opt">Cả 3 đều inelastic, cùng market segment.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Perfect competition — nhiều firms với pricing power.</span></li>
+    <li><span class="lbl">B</span><span class="opt">Oligopoly — vài firms với strategic interdependence.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Monopolistic competition — nhiều firms với differentiated products.</span></li>
   </ol>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — Q2 VIỆT</span></div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — Q2 VIỆT</span>
+  </div>
 </section>
 
 
-<!-- 41 · Q2 EXPLANATION -->
+<!-- 21 · Q2 EXPLANATION -->
 <section data-label="Q2 Explanation" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>41 / 50</span></div>
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>21 / 26</span>
+  </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 02</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 3 correct classifications.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Oligopoly.</h2>
   </div>
   <div class="reasoning">
-    <div class="rblock"><div class="rtag">✓ Correct — B</div><div class="rtext">PED = <b>−0.33</b> inelastic. CPE filters = <b>+0.67</b> substitute. CPE sparkling = <b>−0.17</b> complement. All 3 exact match.</div></div>
-    <div class="rblock wrong"><div class="rtag">✗ Wrong — A</div><div class="rtext">|PED|=3.0 reciprocal trap. Filters có CPE &gt; 0 (substitute), không phải complement.</div></div>
-    <div class="rblock wrong"><div class="rtag">✗ Wrong — C</div><div class="rtext">Filters Q tăng khi water đắt → KHÔNG phải inelastic behavior. Same segment là overreach.</div></div>
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Dấu hiệu của oligopoly: <b>few firms</b> (chỉ 4), <b>high market share concentration</b> (85%), và <b>strategic interdependence</b> (monitor competitors). Firm trong oligopoly phải tính toán reaction của rival vì action của mỗi firm ảnh hưởng đáng kể đến mọi firm khác.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Perfect competition yêu cầu <em>many small firms</em>, <em>homogeneous products</em>, và <em>no pricing power</em>. Option A tự mâu thuẫn ("many firms với pricing power") — perfect competition = price-takers, không có pricing power.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Monopolistic competition cần <em>many firms</em> (hàng chục/trăm), mỗi firm quá nhỏ để ảnh hưởng thị trường. 4 firms với 85% market share là oligopoly, không phải monopolistic.</div>
+    </div>
   </div>
-  <div class="takeaway-box"><div class="tlabel">Key takeaway</div><div class="ttext">Multi-product: tính elasticity riêng, verify sign, tránh reciprocal trap.</div></div>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — ANSWER Q2</span></div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Dấu hiệu oligopoly: <em>few firms</em> + <em>high concentration</em> + <em>strategic interdependence</em>. Test: nếu firm phải nghĩ về "đối thủ sẽ phản ứng thế nào" → oligopoly. Nếu không quan tâm đối thủ cụ thể → monopolistic competition hoặc perfect.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — ANSWER Q2</span>
+  </div>
 </section>
 
 
-<!-- 42 · Q3 EN -->
+<!-- 22 · Q3 EN — Profit maximization -->
 <section data-label="Q3 Original" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>42 / 50</span></div>
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>22 / 26</span>
+  </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Supply shock</em> + inelastic demand.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Profit max</em> decision.</h2>
   </div>
-  <div class="q-card"><span class="q-tag">§ Vignette</span><div class="q-stem">A severe drought reduces domestic corn supply by <strong>25%</strong>. Price elasticity of demand for corn = <strong>−0.4</strong> (staple food). Absent government intervention, equilibrium P and Q changes <strong>most consistent</strong> with:</div></div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A perfectly competitive firm produces 500 units at a market price of <strong>$10/unit</strong>. Its Marginal Cost at 500 units is <strong>$8</strong>, Average Variable Cost (AVC) is <strong>$7</strong>, and Average Total Cost (ATC) is <strong>$11</strong>. Which action <strong>should</strong> the firm take in the short run?
+    </div>
+  </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">P rises significantly; Q falls modestly — price bears adjustment.</span></li>
-    <li><span class="lbl">B</span><span class="opt">P rises modestly; Q falls significantly — quantity bears adjustment.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Both P and Q fall proportionally.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Shut down — the firm is incurring a loss (ATC &gt; P).</span></li>
+    <li><span class="lbl">B</span><span class="opt">Increase output — MR (= P = $10) &gt; MC ($8), and P &gt; AVC, so continue.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Decrease output — MC is rising and profit is shrinking.</span></li>
   </ol>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — Q3 ORIGINAL</span></div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — Q3 ORIGINAL</span>
+  </div>
 </section>
 
 
-<!-- 43 · Q3 HINT -->
+<!-- 23 · Q3 HINT -->
 <section data-label="Q3 Hint" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>43 / 50</span></div>
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>23 / 26</span>
+  </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Hint · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Who absorbs <em class="hi">shock</em>?</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
   </div>
-  <div class="hint-card"><span class="h-tag">§ Keywords</span>Drought <mark>25%</mark>. PED = <mark>−0.4</mark>. Ai chịu — <mark>P</mark> hay <mark>Q</mark>?</div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    P = <mark>$10</mark>, MC = <mark>$8</mark>, AVC = <mark>$7</mark>, ATC = <mark>$11</mark>. Perfect competition → <mark>P = MR</mark>. Short-run decision.
+  </div>
   <ol class="hint-list">
-    <li><span class="hnum">Hint 1</span><span class="htxt">|PED|=0.4 → %ΔP = %ΔQ / 0.4 = 2.5× larger.</span></li>
-    <li><span class="hnum">Hint 2</span><span class="htxt">Staple không substitute → consumer pay cao để maintain. Price spike.</span></li>
-    <li><span class="hnum">Hint 3</span><span class="htxt">Oil 1973, food shortages — P gấp đôi, Q giảm chỉ 10-15%.</span></li>
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">So sánh MR và MC: MR ($10) &gt; MC ($8) → sản xuất thêm vẫn có lời trên margin → <em>increase output</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Shutdown rule: shut down chỉ khi <em>P &lt; AVC</em>. Ở đây P ($10) &gt; AVC ($7) → continue operating, kể cả có loss.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">ATC &gt; P nghĩa là firm có economic loss. Nhưng P &gt; AVC nghĩa là firm cover được variable cost + một phần fixed cost → better than shutdown (mất 100% fixed).</span>
+    </li>
   </ol>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — Q3 HINT</span></div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — Q3 HINT</span>
+  </div>
 </section>
 
 
-<!-- 44 · Q3 Dịch đề -->
+<!-- 24 · Q3 Dịch đề -->
 <section data-label="Q3 Dịch đề" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>44 / 50</span></div>
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>24 / 26</span>
+  </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
     <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
   </div>
-  <div class="q-card"><span class="q-tag">§ Vignette</span><div class="q-stem">Hạn hán nghiêm trọng giảm domestic corn supply <strong>25%</strong>. PED cho corn = <strong>−0.4</strong> (staple food). Không can thiệp, thay đổi P và Q <strong>phù hợp nhất</strong>:</div></div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một firm trong perfect competition sản xuất 500 units ở market price <strong>$10/unit</strong>. MC tại 500 units = <strong>$8</strong>, AVC = <strong>$7</strong>, ATC = <strong>$11</strong>. Firm <strong>nên</strong> làm gì trong short run?
+    </div>
+  </div>
   <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">P tăng mạnh; Q giảm nhẹ — giá chịu phần lớn adjustment.</span></li>
-    <li><span class="lbl">B</span><span class="opt">P tăng nhẹ; Q giảm mạnh — quantity chịu adjustment.</span></li>
-    <li><span class="lbl">C</span><span class="opt">Cả P và Q đều giảm tỷ lệ.</span></li>
+    <li><span class="lbl">A</span><span class="opt">Shut down — firm đang chịu lỗ (ATC &gt; P).</span></li>
+    <li><span class="lbl">B</span><span class="opt">Tăng output — MR (= P = $10) &gt; MC ($8), và P &gt; AVC, nên continue.</span></li>
+    <li><span class="lbl">C</span><span class="opt">Giảm output — MC đang tăng và profit đang shrinking.</span></li>
   </ol>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — Q3 VIỆT</span></div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — Q3 VIỆT</span>
+  </div>
 </section>
 
 
-<!-- 45 · Q3 EXPLANATION -->
+<!-- 25 · Q3 EXPLANATION -->
 <section data-label="Q3 Explanation" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>45 / 50</span></div>
+  <div class="run-header">
+    <span>Econ · 03.01</span>
+    <span class="rule"></span>
+    <span>25 / 26</span>
+  </div>
   <div style="margin-top: 40px;">
     <div class="eyebrow">Answer · Question 03</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — P ↑↑, Q ↓.</h2>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — Increase output.</h2>
   </div>
   <div class="reasoning">
-    <div class="rblock"><div class="rtag">✓ Correct — A</div><div class="rtext">Inelastic demand → consumer không respond mạnh với P. Supply shock → <b>price spike</b>. Ratio 1/|PED| = 2.5. Q giảm 10% → P tăng ~25%.</div></div>
-    <div class="rblock wrong"><div class="rtag">✗ Wrong — B</div><div class="rtext">Pattern "Q↓↓, P↓" là elastic demand. Đề cho inelastic.</div></div>
-    <div class="rblock wrong"><div class="rtag">✗ Wrong — C</div><div class="rtext">Supply left shift → P↑, không phải P↓. Direction basics violated.</div></div>
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Hai điều kiện quan trọng: (1) <b>MR &gt; MC</b> ($10 &gt; $8) → sản xuất thêm 1 unit mang về $10 revenue với chi phí chỉ $8 → contribute $2 to profit. (2) <b>P &gt; AVC</b> ($10 &gt; $7) → firm cover variable cost + đóng góp vào fixed cost. Cả hai signals: <em>continue and increase</em>.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">Shutdown rule là P &lt; AVC, không phải ATC &gt; P. Ở đây P ($10) &gt; AVC ($7) → continue. Nếu shut down, firm mất TOÀN BỘ fixed cost. Operating ở loss còn tốt hơn — firm cover variable cost + một phần fixed.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Giảm output chỉ đúng khi MC &gt; MR. Ở đây MR (10) vẫn &gt; MC (8) → sản xuất thêm vẫn contribute. Giảm output = lose profit opportunity.</div>
+    </div>
   </div>
-  <div class="takeaway-box"><div class="tlabel">Key takeaway</div><div class="ttext">Supply shock + inelastic demand = large P, small Q. Ratio ≈ 1/|PED|.</div></div>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — ANSWER Q3</span></div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Short-run rules: <em>MR = MC</em> cho optimal Q. <em>Shut down</em> nếu P &lt; AVC. <em>Continue operating</em> ngay cả khi loss nếu P &gt; AVC. Fixed cost là sunk — không ảnh hưởng short-run decision.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.01 — ANSWER Q3</span>
+  </div>
 </section>
 
 
-<!-- 46 · Q4 EN -->
-<section data-label="Q4 Original" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>46 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Practice · Question 04 · Original</div>
-    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Tax incidence</em> calculation.</h2>
-  </div>
-  <div class="q-card"><span class="q-tag">§ Vignette</span><div class="q-stem">Government imposes <strong>$5/unit</strong> excise tax on sugar-sweetened beverages. PED = <strong>−0.3</strong> (highly inelastic); PES = <strong>+1.8</strong> (elastic). Approximately what <strong>percentage of tax burden</strong> falls on consumers?</div></div>
-  <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">14% — supply elastic → most burden on producers.</span></li>
-    <li><span class="lbl">B</span><span class="opt">86% — demand inelastic → consumers absorb most.</span></li>
-    <li><span class="lbl">C</span><span class="opt">50% — government taxes always split equally.</span></li>
-  </ol>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — Q4 ORIGINAL</span></div>
-</section>
-
-
-<!-- 47 · Q4 HINT -->
-<section data-label="Q4 Hint" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>47 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Hint · Question 04</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Apply <em class="hi">incidence formula</em>.</h2>
-  </div>
-  <div class="hint-card"><span class="h-tag">§ Keywords</span>Tax <mark>$5/unit</mark>. PED = <mark>−0.3</mark>. PES = <mark>+1.8</mark>. Tính consumer %.</div>
-  <ol class="hint-list">
-    <li><span class="hnum">Step 1</span><span class="htxt">Formula: consumer = <em>PES/(PES+|PED|)</em>.</span></li>
-    <li><span class="hnum">Step 2</span><span class="htxt">= 1.8/(1.8+0.3) = 1.8/2.1 = <em>85.7%</em>.</span></li>
-    <li><span class="hnum">Step 3</span><span class="htxt">Sanity: demand much more inelastic than supply → consumer bears most.</span></li>
-    <li><span class="hnum">Step 4</span><span class="htxt">Policy — sugar taxes regressive, hit low-income hardest.</span></li>
-  </ol>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — Q4 HINT</span></div>
-</section>
-
-
-<!-- 48 · Q4 Dịch đề -->
-<section data-label="Q4 Dịch đề" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>48 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Practice · Question 04 · Tiếng Việt</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
-  </div>
-  <div class="q-card"><span class="q-tag">§ Vignette</span><div class="q-stem">Chính phủ áp thuế excise <strong>$5/unit</strong> trên nước ngọt có đường. PED = <strong>−0.3</strong> (rất inelastic); PES = <strong>+1.8</strong> (elastic). <strong>Bao nhiêu % burden</strong> rơi vào consumers?</div></div>
-  <ol class="q-options">
-    <li><span class="lbl">A</span><span class="opt">14% — supply elastic, burden shift sang producers.</span></li>
-    <li><span class="lbl">B</span><span class="opt">86% — demand inelastic, consumers absorb phần lớn.</span></li>
-    <li><span class="lbl">C</span><span class="opt">50% — thuế luôn chia đều theo pháp luật.</span></li>
-  </ol>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — Q4 VIỆT</span></div>
-</section>
-
-
-<!-- 49 · Q4 EXPLANATION -->
-<section data-label="Q4 Explanation" class="slide">
-  <div class="run-header"><span>Econ · 03.01</span><span class="rule"></span><span>49 / 50</span></div>
-  <div style="margin-top: 40px;">
-    <div class="eyebrow">Answer · Question 04</div>
-    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 86% on consumers.</h2>
-  </div>
-  <div class="reasoning">
-    <div class="rblock"><div class="rtag">✓ Correct — B</div><div class="rtext">Formula: Consumer = PES/(PES+|PED|) = 1.8/2.1 = <b>85.7%</b>. Demand much more inelastic → consumers absorb most. Consumer pays ~$4.29/$5.</div></div>
-    <div class="rblock wrong"><div class="rtag">✗ Wrong — A</div><div class="rtext">14% là <em>producer burden</em>. Wrong side — inelastic side bears more, not less.</div></div>
-    <div class="rblock wrong"><div class="rtag">✗ Wrong — C</div><div class="rtext">Incidence KHÔNG depend on statutory (who charged) — chỉ market elasticities quyết định.</div></div>
-  </div>
-  <div class="takeaway-box"><div class="tlabel">Key takeaway</div><div class="ttext">Consumer burden = PES/(PES+|PED|). Inelastic side bears more. Sugar/cigarette/gas taxes regressive.</div></div>
-  <div class="run-footer"><span class="footer-topic">CFA Level I</span><span>ECON · 03.01 — ANSWER Q4</span></div>
-</section>
-
-
-<!-- 50 · END -->
+<!-- 26 · END -->
 <section data-label="End" class="slide end-slide">
   <div>
     <h1>03.01 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
-    <div class="hint">Tiếp theo · Lesson 03.02 — The Firm and Market Structures</div>
+    <div class="hint">Tiếp theo · Lesson 03.03 — Aggregate Output, Prices, and Economic Growth</div>
   </div>
 </section>
 
