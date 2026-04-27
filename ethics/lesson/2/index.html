@@ -14,6 +14,24 @@
   .title-slide .main { font-size: 96px; line-height: 0.98; }
   .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
   .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+
+  /* Lesson-2 overflow fixes — content density of this lesson is heavier than
+     lesson 1 (6-component Code, 5-sub Std III, 7-row Standards table, long
+     uppercase mono labels). Scoped here to avoid touching lesson 1. */
+  .num-list.tight li { padding: 9px 0 !important; gap: 28px; }
+  .num-list.tight .step-title { font-size: 27px; line-height: 1.18; margin-bottom: 4px; }
+  .num-list.tight .step-body { font-size: 20px; line-height: 1.38; }
+
+  .formula-box { padding: 18px 24px 20px; margin: 10px 0; }
+  .formula-box .fmt-label { margin-bottom: 10px; }
+  .formula-box .eq { font-size: 20px; padding: 10px 20px; line-height: 1.4; margin: 8px 0; }
+  .formula-box .eq + .eq { margin-top: 6px; }
+  .formula-box .note { font-size: 16px; margin-top: 10px; line-height: 1.45; }
+
+  .compare .cc .head { font-size: 50px; line-height: 1.05; margin-bottom: 22px; text-wrap: balance; }
+  .compare .cc dl { grid-template-columns: 230px 1fr; row-gap: 18px; gap: 18px; }
+  .compare .cc dt { font-size: 18px; line-height: 1.25; overflow-wrap: anywhere; }
+  .compare .cc dd { font-size: 22px; line-height: 1.42; }
 </style>
 </head>
 <body>
