@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Econ 03.04 — Monetary Policy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 108px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main"><em>Monetary</em><br>Policy.</h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 03 · Lesson 03.04 · Economics</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 04 · Money · Central bank · Tools · Transmission</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Econ</dd></div>
+      <div><dt>Module</dt><dd>04</dd></div>
+      <div><dt>Lesson</dt><dd>03.04</dd></div>
+      <div><dt>Thời lượng</dt><dd>75 min</dd></div>
+    </dl>
+    <div class="mark">Theory · Mechanisms · 1 practice Q</div>
+  </div>
+</section>
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">04</div>
+    <div class="lbl">Today's lesson</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>Central bank <em>levers</em><br>&amp; <em>limits.</em></h2>
+    <ul class="toc">
+      <li class="active">01 · Money aggregates — M0, M1, M2</li>
+      <li>02 · Quantity theory MV = PY</li>
+      <li>03 · CB tools — open market, reserves, discount rate</li>
+      <li>04 · Transmission mechanism</li>
+      <li>05 · Taylor rule — formula + intuition</li>
+      <li>06 · Inflation targeting + forward guidance</li>
+      <li>07 · QE / QT — unconventional tools</li>
+      <li>08 · CB independence</li>
+      <li>09 · Monetary limitations</li>
+      <li>10 · Practice — 1 CFA-style question</li>
+    </ul>
+  </div>
+</section>
+<!-- 03 · MONEY SUPPLY AGGREGATES -->
+<section data-label="Money aggregates" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>03 / 17</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Money supply · concept</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">M0</em>, M1, M2 aggregates.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Central bank đo money supply theo từng lớp <em>liquidity</em>. Broader aggregate = less liquid nhưng vẫn được coi là "money".
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">M0</span>
+      <div>
+        <div class="t"><em class="hi">Monetary Base</em></div>
+        <div class="d">Physical currency + bank reserves tại central bank. Thứ CB kiểm soát trực tiếp nhất.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">M1</span>
+      <div>
+        <div class="t"><em class="hi">Narrow Money</em></div>
+        <div class="d">Currency in circulation + demand deposits + checkable deposits. Dùng ngay cho giao dịch.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">M2</span>
+      <div>
+        <div class="t"><em class="hi">Broad Money</em></div>
+        <div class="d">M1 + savings deposits + small time deposits + retail money market funds. CFA focus chính.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">μ</span>
+      <div>
+        <div class="t"><em class="hi">Money Multiplier</em></div>
+        <div class="d">μ = 1 / reserve requirement. Broad money / monetary base. Bank lending amplify M0 thành M2.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — MONEY AGG</span>
+  </div>
+</section>
+
+
+<!-- 04 · QUANTITY THEORY OF MONEY -->
+<section data-label="Quantity theory" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>04 / 17</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Quantity theory · formula</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">MV = PY</em> identity.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Equation of exchange</span>
+    <div class="eq"><span class="var">M</span> · <span class="var">V</span> = <span class="var">P</span> · <span class="var">Y</span></div>
+    <div class="note"><b>M</b> money supply · <b>V</b> velocity (số lần 1 đơn vị money được spent/yr) · <b>P</b> price level · <b>Y</b> real GDP. <em>P · Y</em> = nominal GDP.</div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Classical assumption — Nếu V stable và Y ở full employment → thay đổi M dẫn proportional thay đổi P. Đây là nền tảng của <em>monetarism</em> (Friedman): "Inflation is always and everywhere a monetary phenomenon."
+  </p>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Growth form — %ΔM + %ΔV = %ΔP + %ΔY</span>
+        <span class="step-body">Nếu V constant (%ΔV = 0) và Y tăng 2% trong khi M tăng 7% → inflation ≈ 5%.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Modern view — V không stable trong short run</span>
+        <span class="step-body">QE 2010-2020 tăng M mạnh nhưng V giảm → inflation thấp. Relationship M → P chỉ hold trong long run.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — MV=PY</span>
+  </div>
+</section>
+
+
+<!-- 05 · CB OBJECTIVES & TOOLS -->
+<section data-label="CB tools" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>05 / 17</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Central bank · toolkit</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Four <em class="hi">conventional</em> tools.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CB dùng 4 công cụ để điều chỉnh <em>money supply</em> và <em>short-term interest rate</em>.
+    </p>
+  </div>
+
+  <div class="tenets-grid" style="margin-top: 16px;">
+    <div class="tenet">
+      <span class="n">01</span>
+      <div>
+        <div class="t"><em class="hi">Open Market Operations</em></div>
+        <div class="d">Mua/bán government securities. BUY → bơm reserves → M tăng, rates giảm. SELL → ngược lại. Tool chính, dùng hàng ngày.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">02</span>
+      <div>
+        <div class="t"><em class="hi">Policy Rate</em></div>
+        <div class="d">Target rate CB set cho overnight lending (Fed funds rate, ECB refi rate). Signal chính cho market.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">03</span>
+      <div>
+        <div class="t"><em class="hi">Discount Rate</em></div>
+        <div class="d">Rate CB charge commercial banks vay trực tiếp (discount window). Ceiling cho interbank rate.</div>
+      </div>
+    </div>
+    <div class="tenet">
+      <span class="n">04</span>
+      <div>
+        <div class="t"><em class="hi">Reserve Requirement</em></div>
+        <div class="d">% deposits banks phải giữ reserve. Giảm RR → multiplier tăng → M2 tăng. Blunt tool, ít dùng.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — CB TOOLS</span>
+  </div>
+</section>
+
+
+<!-- 06 · TRANSMISSION MECHANISM -->
+<section data-label="Transmission" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>06 / 17</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Transmission · mechanism</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">From <em class="hi">policy rate</em> to AD.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Policy rate thay đổi tác động lan tỏa qua 4 channel đến aggregate demand. Lag 6-18 tháng.
+    </p>
+  </div>
+
+  <div class="flow" style="margin-top: 16px;">
+    <div class="step"><span class="lbl">01</span><div class="txt"><b>Policy rate ↓</b> — CB cut target rate, signal easing.</div></div>
+    <div class="step"><span class="lbl">02</span><div class="txt"><b>Market rates ↓</b> — bank lending rates, bond yields, mortgage rates follow.</div></div>
+    <div class="step"><span class="lbl">03</span><div class="txt"><b>Credit ↑ · Asset prices ↑</b> — cheaper borrowing, equity &amp; housing tăng (wealth effect).</div></div>
+    <div class="step"><span class="lbl">04</span><div class="txt"><b>Spending ↑ · AD ↑</b> — consumption, investment tăng → GDP, inflation tăng.</div></div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Exchange rate channel — Rate cut làm currency yếu → exports cạnh tranh hơn, imports đắt hơn → net exports tăng → AD tăng. Channel thứ 5, quan trọng với small open economy như VN.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — TRANSMISSION</span>
+  </div>
+</section>
+
+
+<!-- 07 · TAYLOR RULE -->
+<section data-label="Taylor rule" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>07 / 17</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Policy rule · Taylor</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">The <em class="hi">Taylor rule</em>.</h2>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Taylor rule — policy rate prescription</span>
+    <div class="eq"><span class="var">R<sub>target</sub></span> = <span class="var">R<sub>neutral</sub></span> + 0.5 · (<span class="var">π</span> − <span class="var">π*</span>) + 0.5 · (<span class="var">Y</span> − <span class="var">Y*</span>)</div>
+    <div class="note"><b>R<sub>neutral</sub></b> neutral real rate + target inflation · <b>π − π*</b> inflation gap · <b>Y − Y*</b> output gap (% deviation from potential). Weight 0.5 — CB cân bằng inflation và output.</div>
+  </div>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Ví dụ — R<sub>neutral</sub> = 4%, inflation 5%, target 2%, output gap +1%. Target = 4 + 0.5(5−2) + 0.5(1) = 4 + 1.5 + 0.5 = <em>6%</em>. CB nên giữ rate ở 6% để cool economy và bring inflation về target.
+  </p>
+
+  <ol class="num-list tight" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Dương (positive) inflation gap → hike rate</span>
+        <span class="step-body">Inflation &gt; target → R &gt; neutral → contractionary stance để kéo inflation xuống.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Âm (negative) output gap → cut rate</span>
+        <span class="step-body">Y &lt; potential (recession) → R &lt; neutral → expansionary stance kích thích growth.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — TAYLOR</span>
+  </div>
+</section>
+
+
+<!-- 08 · INFLATION TARGETING & FORWARD GUIDANCE -->
+<section data-label="Inflation targeting" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>08 / 17</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Policy framework</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Inflation targeting</em> &amp; guidance.</h2>
+  </div>
+
+  <div class="rule-box">
+    <span class="tag">§ Inflation targeting</span>
+    CB công bố explicit inflation target (thường <b>2%</b>). Mọi policy decision aim đạt target đó trong medium run. Đa số developed-market CB theo framework này (Fed, ECB, BoE, BoJ, SBV).
+  </div>
+
+  <ol class="num-list" style="margin-top: 20px;">
+    <li>
+      <span>
+        <span class="step-title">Forward guidance — communication tool</span>
+        <span class="step-body">CB công khai future path của rates (ví dụ "rates sẽ stay low until 2027"). Anchor market expectations, giảm volatility. Fed dot plot là ví dụ điển hình.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Credibility matters — CB uy tín = inflation expectations ổn định</span>
+        <span class="step-body">Nếu public tin CB sẽ giữ inflation 2%, wage/price setters act accordingly → self-fulfilling. Mất credibility → inflation spiral (1970s US).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Symmetric vs flexible targeting</span>
+        <span class="step-body">Symmetric: undershoot và overshoot đều quan trọng. Flexible: có thể tolerate deviation tạm thời để support employment (Fed dual mandate).</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — INFL TARGET</span>
+  </div>
+</section>
+
+
+<!-- 09 · QE / QT — UNCONVENTIONAL -->
+<section data-label="QE QT" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>09 / 17</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Unconventional · balance sheet</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">QE</em> &amp; <em class="hi">QT</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Khi policy rate chạm <em>zero lower bound</em> (ZLB), CB dùng balance sheet expansion/contraction thay vì rate cuts.
+    </p>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Quantitative Easing (QE)</div>
+      <dl>
+        <dt>Action</dt>
+        <dd>CB mua large-scale long-term bonds, MBS</dd>
+        <dt>Effect</dt>
+        <dd>Balance sheet expand, bơm reserves vào banking system</dd>
+        <dt>Goal</dt>
+        <dd>Giảm long-term rates, stimulate lending &amp; asset prices</dd>
+        <dt>Use case</dt>
+        <dd>GFC 2008, COVID 2020 — khi rates đã ở 0</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Quantitative Tightening (QT)</div>
+      <dl>
+        <dt>Action</dt>
+        <dd>CB để bonds mature mà không tái đầu tư, hoặc sell</dd>
+        <dt>Effect</dt>
+        <dd>Balance sheet shrink, rút reserves ra khỏi system</dd>
+        <dt>Goal</dt>
+        <dd>Tăng long rates, tighten financial conditions</dd>
+        <dt>Use case</dt>
+        <dd>Fed 2022-2024 sau khi inflation lên 9%</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Portfolio balance channel — QE đẩy investors khỏi bonds (yields thấp) sang risky assets (equities, credit) → wealth effect + lower cost of capital for firms.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — QE/QT</span>
+  </div>
+</section>
+
+
+<!-- 14 · CB INDEPENDENCE -->
+<section data-label="CB independence" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>10 / 17</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Institutional · credibility</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Central bank <em class="hi">independence</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Independence cho phép CB focus long-term price stability thay vì short-term political pressures.
+    </p>
+  </div>
+
+  <ol class="num-list" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Operational independence</span>
+        <span class="step-body">CB tự quyết định tools và rate paths để đạt target. Không bị can thiệp hàng ngày. Fed, ECB, BoE có operational independence cao.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Target independence</span>
+        <span class="step-body">CB tự set inflation target. Hiếm hơn — thường target do government set (BoE) hoặc joint (Fed dual mandate từ Congress).</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Why independence matters</span>
+        <span class="step-body">Politicians có incentive cut rate trước election → inflation bias. Independent CB kháng political pressure → credible commitment → lower inflation expectations → lower actual inflation. Empirical: độc lập cao ↔ inflation thấp.</span>
+      </span>
+    </li>
+  </ol>
+
+  <div class="takeaway-box" style="margin-top: 20px;">
+    <div class="tlabel">Key nuance</div>
+    <div class="ttext">Independence KHÔNG có nghĩa là isolation. CB vẫn accountable (report to legislature), transparent (publish minutes, forecasts), và coordinate với Treasury trong crisis (2008, 2020).</div>
+  </div>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — INDEPENDENCE</span>
+  </div>
+</section>
+
+
+
+<!-- 11 · MONETARY LIMITATIONS -->
+<section data-label="Monetary limitations" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>11 / 17</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Monetary · limits</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">What monetary policy <em class="hi">cannot</em> do.</h2>
+  </div>
+
+  <ol class="num-list tight" style="margin-top: 16px;">
+    <li>
+      <span>
+        <span class="step-title">Zero lower bound (ZLB)</span>
+        <span class="step-body">Policy rate không thể quá âm — "pushing on a string" khi rates đã ở 0. QE và forward guidance là tools secondary; effectiveness limited. Japan 1990s, ECB 2012-2022.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Transmission lag</span>
+        <span class="step-body">Rate change đến real-economy impact mất 6-18 tháng. CB phải forecast cycle, không react sau-the-fact. Forecast errors → policy mistakes.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Credit channel can break</span>
+        <span class="step-body">Banks không lend (GFC 2008-2009, EU 2011-2013) → rate cuts không transmit đến private sector. CB phải dùng QE direct asset purchases để bypass banking system.</span>
+      </span>
+    </li>
+    <li>
+      <span>
+        <span class="step-title">Exchange rate spillover</span>
+        <span class="step-body">Small open economies (VN, EM) bị trói bởi major CB policies. Fed tighten → EM capital outflow, currency depreciation, imported inflation. Local CB phải hike để defend FX dù domestic không cần.</span>
+      </span>
+    </li>
+  </ol>
+
+  <p class="fine-muted-sm" style="margin-top: 20px;">
+    § Take-aways — Monetary mạnh nhất khi rates còn cao (room to cut), banking healthy (transmit), and FX flexible. Yếu nhất tại ZLB, banking crisis, fixed-FX regime.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — MONETARY LIMITS</span>
+  </div>
+</section>
+
+<!-- TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 1 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+<!-- 17 · Q1 EN — Taylor rule -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>13 / 17</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Apply the <em class="hi">Taylor rule</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A central bank applies the standard Taylor rule with a neutral nominal rate of <strong>4%</strong>. Current inflation is <strong>5%</strong>, the inflation target is <strong>2%</strong>, and the output gap is <strong>+2%</strong> (actual GDP above potential). What is the <strong>Taylor-rule prescribed policy rate</strong>?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">5.5%.</span></li>
+    <li><span class="lbl">B</span><span class="opt">6.5%.</span></li>
+    <li><span class="lbl">C</span><span class="opt">7.5%.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>14 / 17</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">keywords</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Keywords</span>
+    Neutral <mark>4%</mark>. Inflation <mark>5%</mark>, target <mark>2%</mark>. Output gap <mark>+2%</mark>. Taylor rule weights <mark>0.5 and 0.5</mark>.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Formula: R = R<sub>neutral</sub> + 0.5(π − π*) + 0.5(Y − Y*). Plug in: R = 4 + 0.5(5 − 2) + 0.5(2).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Inflation gap = 5 − 2 = <em>3</em>. Weighted: 0.5 × 3 = <em>1.5</em>. Output gap = <em>2</em>. Weighted: 0.5 × 2 = <em>1</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Sum: 4 + 1.5 + 1 = <em>6.5%</em>. Cả hai gap đều dương → rate prescribed cao hơn neutral → contractionary stance.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>15 / 17</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một central bank áp dụng Taylor rule chuẩn với neutral nominal rate <strong>4%</strong>. Inflation hiện tại <strong>5%</strong>, target inflation <strong>2%</strong>, output gap <strong>+2%</strong> (GDP thực tế trên potential). <strong>Policy rate</strong> mà Taylor rule khuyến nghị là bao nhiêu?
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">5.5%.</span></li>
+    <li><span class="lbl">B</span><span class="opt">6.5%.</span></li>
+    <li><span class="lbl">C</span><span class="opt">7.5%.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.04</span>
+    <span class="rule"></span>
+    <span>16 / 17</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 6.5%.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">R = 4 + 0.5(5 − 2) + 0.5(2) = 4 + 1.5 + 1.0 = <b>6.5%</b>. Inflation trên target 3% (weighted 1.5) + output trên potential 2% (weighted 1) → CB nên set rate 2.5 điểm trên neutral để cool economy.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">5.5% sai vì quên output gap. Nếu chỉ tính inflation gap: 4 + 1.5 = 5.5. Nhưng Taylor rule bao gồm CẢ hai gap — phải add 0.5 × output gap = 1.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">7.5% sai vì weight sai (có thể dùng 1.0 thay vì 0.5 cho inflation gap). Standard Taylor rule dùng weights 0.5 cho cả hai gap.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Taylor rule: <em>R = R<sub>neutral</sub> + 0.5 × inflation gap + 0.5 × output gap</em>. Cả hai gap dương → tighter than neutral. Cả hai âm → easier than neutral. Plug và go.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.04 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+
+<!-- END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>03.04 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Tiếp theo · Lesson 03.05 — Introduction to Geopolitics</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>
