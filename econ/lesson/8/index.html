@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>CFA L1 · Econ 03.08 — Exchange Rate Calculations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&family=Roboto+Slab:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="/assets/deck-stage.js"></script>
+<link rel="stylesheet" href="/assets/deck-styles.css">
+<link rel="stylesheet" href="/assets/cfa-theme.css">
+<style>
+  .title-slide .left { background: var(--accent); }
+  .title-slide .main { font-size: 96px; line-height: 0.98; }
+  .title-slide .main em { font-weight: 400; color: rgba(255,255,255,0.88); }
+  .fine-muted-sm { font-family: var(--mono); font-size: 18px; color: var(--ink-muted); letter-spacing: 0.04em; margin-top: 24px; max-width: 1440px; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- 01 · TITLE -->
+<section data-label="Title" class="slide title-slide">
+  <div class="left">
+    <div class="mark">CFA Institute · Level I</div>
+    <h1 class="main">Exchange Rate<br>&amp; <em>Calculations.</em></h1>
+    <div class="mark" style="color: rgba(255,255,255,0.7);">Topic 03 · Lesson 03.08 · Economics</div>
+  </div>
+  <div class="right">
+    <div class="mark">Module 08 · Spot · Forward · IRP · Bid-Ask · Cross Rates</div>
+    <dl class="meta-grid">
+      <div><dt>Môn</dt><dd>Econ</dd></div>
+      <div><dt>Module</dt><dd>08</dd></div>
+      <div><dt>Lesson</dt><dd>03.08</dd></div>
+      <div><dt>Thời lượng</dt><dd>90 min</dd></div>
+    </dl>
+    <div class="mark">Theory · Mechanics · 3 practice Qs</div>
+  </div>
+</section>
+
+
+<!-- 02 · AGENDA -->
+<section data-label="Agenda" class="slide section-break">
+  <div class="band">
+    <div class="lbl">PART</div>
+    <div class="n">08</div>
+    <div class="lbl">Today's lesson</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">Today's lesson</div>
+    <h2>FX <em>quotes,</em><br>forwards &amp; <em>parity.</em></h2>
+    <ul class="toc">
+      <li class="active">01 · FX quote conventions — base vs price currency</li>
+      <li>02 · Bid-ask spread + dealer quotes</li>
+      <li>03 · Cross rates + triangular arbitrage</li>
+      <li>04 · Forward rates — outright + forward points</li>
+      <li>05 · Forward premium / discount conditions</li>
+      <li>06 · Covered interest rate parity (CIRP)</li>
+      <li>07 · Mark-to-market on FX forwards</li>
+      <li>08 · Practice — 3 CFA-style questions</li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- 03 · FX CONVENTIONS -->
+<section data-label="FX conventions" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>03 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">FX · notation</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Base</em> vs price currency.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CFA convention: <em>price/base</em>. <strong>USD/EUR = 1.10</strong> nghĩa là 1 EUR = 1.10 USD. EUR là <em>base</em>, USD là <em>price</em> (số đơn vị USD cần để mua 1 EUR).
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Reading FX quotes</span>
+    <div class="eq"><span class="var">A/B</span> = <span class="var">x</span> &nbsp;&nbsp;⟹&nbsp;&nbsp; 1 unit of <span class="var">B</span> (base) = <span class="var">x</span> units of <span class="var">A</span> (price)</div>
+    <div class="note"><b>Mnemonic:</b> "A per B" — bao nhiêu A cần cho 1 B. Khi base appreciate, quote tăng (A/B↑). Khi price currency appreciate, quote giảm.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § CFA dùng convention <em>price/base</em>; market dealers thường nói "EUR-USD" (base trước) và quote số = USD per EUR. Reading order khác nhưng meaning giống. Luôn xác định base trước khi compute.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — CONVENTIONS</span>
+  </div>
+</section>
+
+
+<!-- 04 · BID-ASK SPREAD -->
+<section data-label="Bid-ask" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>04 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Dealer · quotes</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Bid-ask</em> spread &amp; pips.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Dealer quote 2 mức: <em>bid</em> (dealer mua base currency) thấp hơn <em>ask</em> (dealer bán base). Spread = compensation cho dealer + risk + inventory.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Spread mechanics</span>
+    <div class="eq">EUR/USD = <span class="var">1.0850</span> / <span class="var">1.0855</span></div>
+    <div class="eq">Bid = 1.0850 · Ask = 1.0855 · Spread = <span class="var">5 pips</span></div>
+    <div class="note"><b>Pip</b> = 0.0001 cho hầu hết currency pair (4 decimal). Yen pair = 0.01 (2 decimal). Spread tính bằng số pip giữa bid và ask. Major pairs (EUR/USD): 1-3 pips; exotic: 50-200 pips.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Client mua base ở giá ask, bán base ở giá bid. Round-trip cost = spread. Larger trade size, tighter spread (institutional vs retail). Spread widens trong volatile market hoặc thanh khoản thấp (Asian session).
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — BID-ASK</span>
+  </div>
+</section>
+
+
+<!-- 05 · CROSS RATES -->
+<section data-label="Cross rates" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>05 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Cross · rates</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Cross</em> rates from two quotes.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Cross rate = exchange rate giữa 2 currency suy ra từ 2 quote khác (thường qua USD). Triangular arbitrage đảm bảo cross rate consistent với 2 quote primary.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Cross rate construction</span>
+    <div class="eq"><span class="var">A/C</span> = <span class="var">A/B</span> × <span class="var">B/C</span> &nbsp;&nbsp;(B cancels)</div>
+    <div class="eq">Example: USD/EUR = 1.12, USD/GBP = 1.31</div>
+    <div class="eq">⟹ GBP/EUR = USD/EUR ÷ USD/GBP = 1.12 ÷ 1.31 = <span class="var">0.8550</span></div>
+    <div class="note"><b>Trick:</b> arrange quotes để middle currency cancel. Nếu cùng một currency làm price (USD/EUR và USD/GBP), invert một quote (1/USD/GBP = GBP/USD) rồi multiply: GBP/EUR = USD/EUR × GBP/USD.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Triangular arbitrage = profit không-rủi-ro nếu 3 quotes (A/B, B/C, A/C) inconsistent. Computed cross rate ≠ market quote → arbitrageur exploit instantly. Major pairs ít có cơ hội, exotic pairs đôi khi có.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — CROSS RATES</span>
+  </div>
+</section>
+
+
+<!-- 06 · FORWARD RATES + POINTS -->
+<section data-label="Forward rates" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>06 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Forward · pricing</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Forward <em class="hi">outright</em> &amp; points.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Forward = contract trao đổi currency tại tương lai với rate locked hôm nay. Dealer quote forward dạng <em>forward points</em> (added/subtracted from spot) hoặc outright.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ Forward outright = spot + points</span>
+    <div class="eq"><span class="var">F</span> = <span class="var">S</span> + <span class="var">forward points</span> / 10,000 &nbsp;&nbsp;(non-yen pairs, 4-decimal)</div>
+    <div class="eq">Example: USD/JPY spot = 145.00, 3M points = +25</div>
+    <div class="eq">⟹ F = 145.00 + 25/100 = <span class="var">145.25</span> &nbsp;&nbsp;(yen pair, 2-decimal so points/100)</div>
+    <div class="note"><b>Pip scale phụ thuộc decimal:</b> EUR/USD pip = 1/10,000; USD/JPY pip = 1/100. Positive points = base currency premium; negative = base discount.</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Forward points reflect interest rate differential (CIRP). Tenor dài → forward points lớn (in absolute value). Trader chốt forward để hedge hoặc speculate FX risk; doanh nghiệp xuất khẩu thường lock forward 3-12 tháng.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — FORWARDS</span>
+  </div>
+</section>
+
+
+<!-- 07 · FORWARD PREMIUM/DISCOUNT -->
+<section data-label="Premium discount" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>07 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Forward · sign</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Forward <em class="hi">premium</em> vs discount.</h2>
+  </div>
+
+  <div class="compare" style="margin-top: 16px;">
+    <div class="cc">
+      <div class="head">Base at <em>premium</em></div>
+      <dl>
+        <dt>Condition</dt>
+        <dd>F &gt; S (forward rate cao hơn spot)</dd>
+        <dt>Interpretation</dt>
+        <dd>Base currency dự kiến appreciate forward → forward buyer trả nhiều hơn</dd>
+        <dt>Driver (CIRP)</dt>
+        <dd>Foreign interest rate &gt; domestic → base currency phải premium để bù chênh lệch</dd>
+        <dt>Example</dt>
+        <dd>USD/CHF spot 0.92, 90D fwd 0.92 50 → CHF premium (vì USD rate &lt; CHF rate ngắn hạn)</dd>
+      </dl>
+    </div>
+    <div class="cc">
+      <div class="head">Base at <em>discount</em></div>
+      <dl>
+        <dt>Condition</dt>
+        <dd>F &lt; S (forward rate thấp hơn spot)</dd>
+        <dt>Interpretation</dt>
+        <dd>Base currency dự kiến depreciate forward</dd>
+        <dt>Driver (CIRP)</dt>
+        <dd>Foreign rate &lt; domestic → base currency discount</dd>
+        <dt>Example</dt>
+        <dd>USD/JPY spot 145, 3M fwd 144.50 → JPY ở discount (vì JPY rate &lt; USD rate)</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Cẩn thận với base direction. Trong A/B, premium của <em>B</em> (base) khi F &gt; S. Đảo quote (B/A) thì premium ↔ discount đảo dấu.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — PREMIUM</span>
+  </div>
+</section>
+
+
+<!-- 08 · COVERED INTEREST RATE PARITY -->
+<section data-label="CIRP" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>08 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">No-arbitrage · CIRP</div>
+    <h2 class="h-section" style="margin-bottom: 18px;"><em class="hi">Covered</em> interest rate parity.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      CIRP = no-arbitrage condition: lợi nhuận từ borrow domestic và đầu tư foreign currency hedged bằng forward = lợi nhuận giữ domestic. Nếu vi phạm → arbitrage instant.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ CIRP formula (price/base notation A/B)</span>
+    <div class="eq"><span class="var">F<sub>A/B</sub></span> = <span class="var">S<sub>A/B</sub></span> × (1 + <span class="var">i<sub>A</sub></span>) / (1 + <span class="var">i<sub>B</sub></span>)</div>
+    <div class="eq">⟹ F &gt; S (base premium) khi <span class="var">i<sub>A</sub></span> &gt; <span class="var">i<sub>B</sub></span> (price-currency rate cao hơn)</div>
+    <div class="eq">⟹ F &lt; S (base discount) khi <span class="var">i<sub>A</sub></span> &lt; <span class="var">i<sub>B</sub></span></div>
+    <div class="note"><b>Intuition:</b> currency với <em>lower interest rate</em> trade ở forward <em>premium</em> để bù lại lợi tức thấp. CIRP là <em>arbitrage condition</em> — luôn hold trong major pairs (otherwise traders exploit instantly).</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Uncovered IRP (UIRP) là expectations theory: expected future spot = current forward. UIRP empirically ít hold (forward bias puzzle); nhưng CIRP gần như luôn hold trong liquid markets vì arbitrage trực tiếp.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — CIRP</span>
+  </div>
+</section>
+
+
+<!-- 09 · MARK-TO-MARKET FX FORWARD -->
+<section data-label="MTM forward" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>09 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Valuation · in-flight forward</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Mark-to-market <em class="hi">FX forwards</em>.</h2>
+    <p class="small body--soft" style="max-width: 1440px; margin: 0 0 8px;">
+      Forward contract đã ký, sau t ngày, value của contract = present value của cash flow difference giữa contract rate và current forward rate.
+    </p>
+  </div>
+
+  <div class="formula-box">
+    <span class="fmt-label">§ MTM value of FX forward (long base position)</span>
+    <div class="eq"><span class="var">V<sub>t</sub></span> = (<span class="var">F<sub>t,T</sub></span> − <span class="var">F<sub>contract</sub></span>) × Notional / (1 + <span class="var">i<sub>price</sub></span> × days/360)</div>
+    <div class="note"><b>F<sub>t,T</sub></b> = current forward rate to original maturity T. Discount bằng price-currency interest rate vì cash flow là price-currency. Long base position: V positive khi forward rate tăng (base appreciate).</div>
+  </div>
+
+  <p class="fine-muted-sm">
+    § Khái niệm này testable Level 1 nhẹ; Level 2 deep dive. Logic core: contract đã lock rate cũ; nếu market forward đã tăng, position long base có gain unrealized = (F_now − F_locked) × notional, discount về present.
+  </p>
+
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — MTM</span>
+  </div>
+</section>
+
+
+<!-- 10 · TRANSITION -->
+<section data-label="Practice begins" class="slide end-slide">
+  <div>
+    <h1>Practice <em style="font-style: normal; opacity: 0.55;">→</em></h1>
+    <div class="hint">Lý thuyết xong · 3 câu hỏi thực hành CFA-style<br>EN Original → Hint → Dịch đề → Đáp án</div>
+  </div>
+</section>
+
+
+<!-- 11 · Q1 EN — Cross rate -->
+<section data-label="Q1 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>11 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Compute the <em class="hi">cross rate</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Given the following spot rates: <strong>USD/EUR = 1.1200</strong> and <strong>USD/GBP = 1.3100</strong>, the GBP/EUR cross rate is <em>closest to</em>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">0.8550.</span></li>
+    <li><span class="lbl">B</span><span class="opt">1.1696.</span></li>
+    <li><span class="lbl">C</span><span class="opt">1.4672.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — Q1 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 12 · Q1 HINT -->
+<section data-label="Q1 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>12 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Make USD <em class="hi">cancel</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Setup</span>
+    USD/EUR <mark>1.1200</mark>. USD/GBP <mark>1.3100</mark>. Want <mark>GBP/EUR</mark> = how many GBP per 1 EUR.
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">USD on top in both quotes. Để USD cancel, invert một quote: GBP/USD = 1/1.31 = 0.7634.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">GBP/EUR = GBP/USD × USD/EUR = 0.7634 × 1.12 = <em>0.8550</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Sanity check: GBP mạnh hơn EUR (1 GBP &gt; 1 EUR), nên 1 EUR &lt; 1 GBP → GBP/EUR &lt; 1 ✓.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — Q1 HINT</span>
+  </div>
+</section>
+
+
+<!-- 13 · Q1 Dịch đề -->
+<section data-label="Q1 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>13 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 01 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Cho spot rates: <strong>USD/EUR = 1.1200</strong> và <strong>USD/GBP = 1.3100</strong>. Cross rate GBP/EUR <em>gần nhất với</em>:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">0.8550.</span></li>
+    <li><span class="lbl">B</span><span class="opt">1.1696.</span></li>
+    <li><span class="lbl">C</span><span class="opt">1.4672.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — Q1 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 14 · Q1 EXPLANATION -->
+<section data-label="Q1 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>14 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 01</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — 0.8550.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">GBP/EUR = USD/EUR ÷ USD/GBP = 1.1200 ÷ 1.3100 = <b>0.8550</b>. Cùng một currency (USD) làm price ở cả hai quote, nên GBP/EUR = USD/EUR ÷ USD/GBP. Equivalent: GBP/USD × USD/EUR = (1/1.31) × 1.12 = 0.7634 × 1.12 = 0.8550.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">1.1696 = 1.31/1.12 — đảo công thức (lấy USD/GBP ÷ USD/EUR thay vì ngược lại) → ra EUR/GBP. Nhớ: numerator và denominator currency phải match question (GBP trên, EUR dưới).</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">1.4672 = 1.12 × 1.31 — multiply 2 quotes thay vì divide. Multiplication chỉ hợp lệ khi base/price khớp để cancel; ở đây cả 2 quotes có USD ở top → phải invert một, tức là divide.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Cross-rate rule: <em>arrange quotes để middle currency cancel</em>. USD/A và USD/B với cùng USD ở top → A/B = (USD/B) ÷ (USD/A) hoặc B/A = (USD/A) ÷ (USD/B). Sanity-check bằng so sánh strength: cross rate &lt; 1 nếu base yếu hơn price.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — ANSWER Q1</span>
+  </div>
+</section>
+
+
+<!-- 15 · Q2 EN — Covered IRP -->
+<section data-label="Q2 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>15 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Apply <em class="hi">CIRP</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      The one-year interest rate is <strong>3%</strong> in the domestic country and <strong>5%</strong> in the foreign country. According to <em>covered interest rate parity</em>, the domestic currency one-year forward rate will <em>most likely</em> be at a:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">forward premium relative to the spot rate.</span></li>
+    <li><span class="lbl">B</span><span class="opt">forward discount relative to the spot rate.</span></li>
+    <li><span class="lbl">C</span><span class="opt">forward rate equal to the spot rate.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — Q2 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 16 · Q2 HINT -->
+<section data-label="Q2 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>16 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">rate gap</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Setup</span>
+    Domestic <mark>3%</mark>, foreign <mark>5%</mark>. <mark>Domestic forward</mark> at premium / discount / par?
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">CIRP: currency với <em>lower interest rate</em> trade ở forward <em>premium</em> (compensate cho lãi thấp).</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Domestic 3% &lt; foreign 5% → domestic là currency lãi suất thấp hơn → <em>premium</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Logic kiểm chứng: nếu không có premium, investor sẽ đổi domestic sang foreign, hưởng 5%, hedge bằng forward → arbitrage. Premium đẩy domestic lên ngăn arbitrage.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — Q2 HINT</span>
+  </div>
+</section>
+
+
+<!-- 17 · Q2 Dịch đề -->
+<section data-label="Q2 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>17 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 02 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Lãi suất 1 năm là <strong>3%</strong> ở nội địa và <strong>5%</strong> ở nước ngoài. Theo <em>covered interest rate parity</em>, forward rate 1 năm của đồng nội địa <em>khả dĩ nhất</em> sẽ ở mức:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">forward premium so với spot rate.</span></li>
+    <li><span class="lbl">B</span><span class="opt">forward discount so với spot rate.</span></li>
+    <li><span class="lbl">C</span><span class="opt">forward rate bằng spot rate.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — Q2 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 18 · Q2 EXPLANATION -->
+<section data-label="Q2 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>18 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 02</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">A</em> — premium.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — A</div>
+      <div class="rtext">CIRP: currency với <b>lower interest rate</b> phải trade ở <b>forward premium</b>. Domestic 3% &lt; foreign 5% → domestic là currency lãi thấp → forward premium so với spot. Premium bù đắp cho việc giữ currency có yield thấp hơn — keeps no-arbitrage equilibrium.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — B</div>
+      <div class="rtext">Discount logic ngược: foreign currency (5%) sẽ ở discount, KHÔNG phải domestic. Currency lãi cao hơn trade ở forward discount để bù arbitrage. Đề hỏi <em>domestic</em> forward → premium.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">Forward = spot chỉ khi 2 lãi suất bằng nhau (i_A = i_B). Đề có gap 2% rõ ràng → forward ≠ spot. CIRP requires premium/discount để off-set rate differential.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">CIRP rule of thumb: <em>low-rate currency = forward premium</em>; <em>high-rate currency = forward discount</em>. Trong A/B notation, F &gt; S khi i_price &gt; i_base. Test wording carefully — "domestic forward at premium" có thể confusing nếu không track which currency là base.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — ANSWER Q2</span>
+  </div>
+</section>
+
+
+<!-- 19 · Q3 EN — Bid-ask spread -->
+<section data-label="Q3 Original" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>19 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Original</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Read the <em class="hi">spread</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      A dealer quotes the EUR/USD spot rate as <strong>1.0850 / 1.0855</strong>. The bid-ask spread <em>in pips</em> is:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">3 pips.</span></li>
+    <li><span class="lbl">B</span><span class="opt">5 pips.</span></li>
+    <li><span class="lbl">C</span><span class="opt">50 pips.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — Q3 ORIGINAL</span>
+  </div>
+</section>
+
+
+<!-- 20 · Q3 HINT -->
+<section data-label="Q3 Hint" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>20 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Hint · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Spot the <em class="hi">decimal</em>.</h2>
+  </div>
+  <div class="hint-card">
+    <span class="h-tag">§ Setup</span>
+    EUR/USD bid <mark>1.0850</mark>, ask <mark>1.0855</mark>. Pip = <mark>1/10,000</mark> cho non-yen pair (4-decimal).
+  </div>
+  <ol class="hint-list">
+    <li>
+      <span class="hnum">Hint 1</span>
+      <span class="htxt">Spread (in price) = ask − bid = 1.0855 − 1.0850 = <em>0.0005</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 2</span>
+      <span class="htxt">Pip = 0.0001 → spread in pips = 0.0005 / 0.0001 = <em>5 pips</em>.</span>
+    </li>
+    <li>
+      <span class="hnum">Hint 3</span>
+      <span class="htxt">Cẩn thận với yen pair: USD/JPY pip = 0.01 (2-decimal). EUR/USD là 4-decimal nên pip nhỏ hơn 100×.</span>
+    </li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — Q3 HINT</span>
+  </div>
+</section>
+
+
+<!-- 21 · Q3 Dịch đề -->
+<section data-label="Q3 Dịch đề" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>21 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Practice · Question 03 · Tiếng Việt</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Dịch <em class="hi">đề</em>.</h2>
+  </div>
+  <div class="q-card">
+    <span class="q-tag">§ Vignette</span>
+    <div class="q-stem">
+      Một dealer quote EUR/USD spot là <strong>1.0850 / 1.0855</strong>. Bid-ask spread <em>tính bằng pip</em> là:
+    </div>
+  </div>
+  <ol class="q-options">
+    <li><span class="lbl">A</span><span class="opt">3 pips.</span></li>
+    <li><span class="lbl">B</span><span class="opt">5 pips.</span></li>
+    <li><span class="lbl">C</span><span class="opt">50 pips.</span></li>
+  </ol>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — Q3 VIỆT</span>
+  </div>
+</section>
+
+
+<!-- 22 · Q3 EXPLANATION -->
+<section data-label="Q3 Explanation" class="slide">
+  <div class="run-header">
+    <span>Econ · 03.08</span>
+    <span class="rule"></span>
+    <span>22 / 23</span>
+  </div>
+  <div style="margin-top: 40px;">
+    <div class="eyebrow">Answer · Question 03</div>
+    <h2 class="h-section" style="margin-bottom: 18px;">Answer: <em class="hi">B</em> — 5 pips.</h2>
+  </div>
+  <div class="reasoning">
+    <div class="rblock">
+      <div class="rtag">✓ Correct — B</div>
+      <div class="rtext">Ask − bid = 1.0855 − 1.0850 = <b>0.0005</b>. EUR/USD là 4-decimal pair → 1 pip = 0.0001. Spread in pips = 0.0005 / 0.0001 = <b>5 pips</b>.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — A</div>
+      <div class="rtext">3 pips không khớp số học. Có thể đếm sai ở vị trí decimal (0.0003 thay vì 0.0005). Đếm từ vị trí thứ 4 sau dấu thập phân: 1.085<u>0</u> vs 1.085<u>5</u> = 5 đơn vị ở vị trí pip.</div>
+    </div>
+    <div class="rblock wrong">
+      <div class="rtag">✗ Wrong — C</div>
+      <div class="rtext">50 pips sai vì nhầm scale. 0.0005 không phải 0.0050. Lưu ý CFA exam đôi khi đặt distractor sai 1 decimal place — luôn count digit cẩn thận.</div>
+    </div>
+  </div>
+  <div class="takeaway-box">
+    <div class="tlabel">Key takeaway</div>
+    <div class="ttext">Pip rules: non-yen pairs (EUR/USD, GBP/USD, USD/CHF) có pip = 0.0001 (4-decimal). Yen pairs (USD/JPY, EUR/JPY) có pip = 0.01 (2-decimal). Spread tính bằng (ask − bid) chia cho pip size. Major pair spread thường 1-3 pips trong session sôi động, 5+ trong off-hours.</div>
+  </div>
+  <div class="run-footer">
+    <span class="footer-topic">CFA Level I</span>
+    <span>ECON · 03.08 — ANSWER Q3</span>
+  </div>
+</section>
+
+
+<!-- 23 · END -->
+<section data-label="End" class="slide end-slide">
+  <div>
+    <h1>03.08 <em style="font-style: normal; opacity: 0.55;">✓</em></h1>
+    <div class="hint">Hết Topic 03 · Economics — chuyển sang Topic 04 / Topic 5 theo curriculum</div>
+  </div>
+</section>
+
+</deck-stage>
+
+</body>
+</html>
